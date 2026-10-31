@@ -1,0 +1,425 @@
+{
+  "_comment": "Universal, extensible capability vocabulary. Keys are data, not Lean code. Every quantity is stored as an INTEGER in the canonical unit named here; the Lean checker compares units by exact string match and never converts. New keys may be registered (status 'proposed') via the API or by editing this file; a key only becomes 'established' after review. Shape: range | max | min | flag | count.",
+  "units": {
+    "mK": {
+      "description": "millikelvin",
+      "si": "K",
+      "scale": 1000
+    },
+    "mT": {
+      "description": "millitesla",
+      "si": "T",
+      "scale": 1000
+    },
+    "um": {
+      "description": "micrometre",
+      "si": "m",
+      "scale": 1000000
+    },
+    "nW": {
+      "description": "nanowatt",
+      "si": "W",
+      "scale": 1000000000
+    },
+    "uPa": {
+      "description": "micropascal",
+      "si": "Pa",
+      "scale": 1000000
+    },
+    "kHz": {
+      "description": "kilohertz",
+      "si": "Hz",
+      "scale": 0.001
+    },
+    "s": {
+      "description": "second",
+      "si": "s",
+      "scale": 1
+    },
+    "mK_per_min": {
+      "description": "millikelvin per minute",
+      "si": "K/min",
+      "scale": 1000
+    },
+    "pA": {
+      "description": "picoampere",
+      "si": "A",
+      "scale": 1000000000000
+    },
+    "uOhm": {
+      "description": "micro-ohm",
+      "si": "Ohm",
+      "scale": 1000000
+    },
+    "nm": {
+      "description": "nanometre",
+      "si": "m",
+      "scale": 1000000000
+    },
+    "mdeg": {
+      "description": "millidegree (angle)",
+      "si": "deg",
+      "scale": 1000
+    },
+    "ug": {
+      "description": "microgram",
+      "si": "g",
+      "scale": 1000000
+    },
+    "count": {
+      "description": "dimensionless count",
+      "si": "",
+      "scale": 1
+    }
+  },
+  "keys": {
+    "temperature.range": {
+      "shape": "range",
+      "unit": "mK",
+      "description": "Documented sample/operating temperature range",
+      "status": "established"
+    },
+    "temperature.base": {
+      "shape": "min",
+      "unit": "mK",
+      "description": "Documented base (lowest) temperature",
+      "status": "established"
+    },
+    "temperature.chamber.range": {
+      "shape": "range",
+      "unit": "mK",
+      "description": "Cryochamber temperature range (sectioning cryostats)",
+      "status": "established"
+    },
+    "temperature.specimen_head.range": {
+      "shape": "range",
+      "unit": "mK",
+      "description": "Specimen/object head temperature range (sectioning cryostats)",
+      "status": "established"
+    },
+    "temperature.stability": {
+      "shape": "max",
+      "unit": "mK",
+      "description": "Documented temperature stability (± value)",
+      "status": "established"
+    },
+    "temperature.sweep_rate.max": {
+      "shape": "max",
+      "unit": "mK_per_min",
+      "description": "Maximum documented heating/cooling rate",
+      "status": "established"
+    },
+    "magnetic_field.max": {
+      "shape": "max",
+      "unit": "mT",
+      "description": "Maximum documented magnetic field at the sample",
+      "status": "established"
+    },
+    "magnetic_field.vector": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Vector (multi-axis) field capability installed",
+      "status": "established"
+    },
+    "cooling_power.at_20mK": {
+      "shape": "max",
+      "unit": "nW",
+      "description": "Documented cooling power at 20 mK",
+      "status": "established"
+    },
+    "cooling_power.at_100mK": {
+      "shape": "max",
+      "unit": "nW",
+      "description": "Documented cooling power at 100 mK",
+      "status": "established"
+    },
+    "cooling_power.at_4200mK": {
+      "shape": "max",
+      "unit": "nW",
+      "description": "Documented cooling power at 4.2 K",
+      "status": "established"
+    },
+    "cooling_power.at_10000mK": {
+      "shape": "max",
+      "unit": "nW",
+      "description": "Documented cooling power at 10 K",
+      "status": "established"
+    },
+    "cooling_power.at_20000mK": {
+      "shape": "max",
+      "unit": "nW",
+      "description": "Documented cooling power at 20 K",
+      "status": "established"
+    },
+    "cooldown_time.max": {
+      "shape": "max",
+      "unit": "s",
+      "description": "Documented time to reach base temperature",
+      "status": "established"
+    },
+    "pressure.base": {
+      "shape": "min",
+      "unit": "uPa",
+      "description": "Documented base pressure / vacuum level",
+      "status": "established"
+    },
+    "vacuum.available": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Sample space can be evacuated",
+      "status": "established"
+    },
+    "sample.bore_diameter": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Clear bore / sample space diameter",
+      "status": "established"
+    },
+    "sample.diameter.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample diameter",
+      "status": "established"
+    },
+    "sample.length.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample length",
+      "status": "established"
+    },
+    "sample.width.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample width",
+      "status": "established"
+    },
+    "sample.height.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample height / thickness",
+      "status": "established"
+    },
+    "sample.mass.max": {
+      "shape": "max",
+      "unit": "ug",
+      "description": "Maximum sample mass",
+      "status": "established"
+    },
+    "section_thickness.range": {
+      "shape": "range",
+      "unit": "um",
+      "description": "Section thickness setting range (microtome cryostats)",
+      "status": "established"
+    },
+    "specimen.stroke": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Vertical specimen stroke (microtome cryostats)",
+      "status": "established"
+    },
+    "specimen.orientation.max": {
+      "shape": "max",
+      "unit": "mdeg",
+      "description": "Specimen orientation range (± angle)",
+      "status": "established"
+    },
+    "optical_access": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Optical access to the sample is installed",
+      "status": "established"
+    },
+    "optical.window_count": {
+      "shape": "count",
+      "unit": "count",
+      "description": "Number of optical windows",
+      "status": "established"
+    },
+    "optical.clear_aperture": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Clear optical aperture / view diameter",
+      "status": "established"
+    },
+    "optical.objective_working_distance.min": {
+      "shape": "min",
+      "unit": "um",
+      "description": "Minimum objective working distance the window geometry requires",
+      "status": "established"
+    },
+    "electrical.dc_lines": {
+      "shape": "count",
+      "unit": "count",
+      "description": "Number of DC wiring lines to the sample",
+      "status": "established"
+    },
+    "electrical.coax_lines": {
+      "shape": "count",
+      "unit": "count",
+      "description": "Number of coaxial / RF lines to the sample",
+      "status": "established"
+    },
+    "electrical.coax_bandwidth.max": {
+      "shape": "max",
+      "unit": "kHz",
+      "description": "Documented bandwidth of coaxial lines",
+      "status": "established"
+    },
+    "electrical.probe_arms": {
+      "shape": "count",
+      "unit": "count",
+      "description": "Number of probe arms (probe stations)",
+      "status": "established"
+    },
+    "electrical.channels": {
+      "shape": "count",
+      "unit": "count",
+      "description": "Number of measurement channels of the installed module",
+      "status": "established"
+    },
+    "electrical.current.range": {
+      "shape": "range",
+      "unit": "pA",
+      "description": "Excitation current range of the installed module",
+      "status": "established"
+    },
+    "electrical.resistance.range": {
+      "shape": "range",
+      "unit": "uOhm",
+      "description": "Resistance measurement range of the installed module",
+      "status": "established"
+    },
+    "electrical.sample_connections": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Electrical connections to the sample are installed",
+      "status": "established"
+    },
+    "module.electrical_transport": {
+      "shape": "flag",
+      "unit": "",
+      "description": "AC electrical transport option installed",
+      "status": "established"
+    },
+    "module.dc_resistivity": {
+      "shape": "flag",
+      "unit": "",
+      "description": "DC resistivity option installed",
+      "status": "established"
+    },
+    "module.vsm": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Vibrating sample magnetometer installed",
+      "status": "established"
+    },
+    "module.heat_capacity": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Heat capacity option installed",
+      "status": "established"
+    },
+    "module.acms": {
+      "shape": "flag",
+      "unit": "",
+      "description": "AC susceptibility / DC magnetometry option installed",
+      "status": "established"
+    },
+    "module.thermal_transport": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Thermal transport option installed",
+      "status": "established"
+    },
+    "module.helium3": {
+      "shape": "flag",
+      "unit": "",
+      "description": "He-3 sub-kelvin insert installed",
+      "status": "established"
+    },
+    "module.motorized_sectioning": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Motorised sectioning drive installed",
+      "status": "established"
+    },
+    "module.vacuum_system": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Section-waste vacuum system installed",
+      "status": "established"
+    },
+    "module.uvc_disinfection": {
+      "shape": "flag",
+      "unit": "",
+      "description": "UVC disinfection installed",
+      "status": "established"
+    },
+    "module.specimen_cooling_peltier": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Peltier specimen quick-freeze cooling installed",
+      "status": "established"
+    },
+    "module.ln2_pump": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Liquid-nitrogen cooling pump installed",
+      "status": "established"
+    },
+    "module.magnetic_shielding": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Magnetic shielding of the sample space installed",
+      "status": "established"
+    },
+    "cryogen.cryogen_free": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Operates without liquid cryogens (closed-cycle)",
+      "status": "established"
+    },
+    "cryogen.liquid_helium_required": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Requires liquid helium supply",
+      "status": "established"
+    },
+    "cryogen.liquid_nitrogen_required": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Requires liquid nitrogen supply",
+      "status": "established"
+    },
+    "vibration.max": {
+      "shape": "max",
+      "unit": "nm",
+      "description": "Documented sample vibration amplitude",
+      "status": "established"
+    },
+    "operating_duration.max": {
+      "shape": "max",
+      "unit": "s",
+      "description": "Documented continuous operating duration",
+      "status": "established"
+    },
+    "sample.vsm.diameter.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample/holder diameter accepted by an installed VSM coil set (module-specific; does not limit other modules)",
+      "status": "established"
+    },
+    "sample.heat_capacity.width.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample width on an installed heat-capacity platform (module-specific)",
+      "status": "established"
+    },
+    "sample.heat_capacity.length.max": {
+      "shape": "max",
+      "unit": "um",
+      "description": "Maximum sample length on an installed heat-capacity platform (module-specific)",
+      "status": "established"
+    }
+  }
+}

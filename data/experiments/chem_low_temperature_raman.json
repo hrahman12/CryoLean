@@ -1,0 +1,195 @@
+{
+  "id": "chem_low_temperature_raman",
+  "name": "In-situ low-temperature Raman spectroscopy on a Linkam THMS600 liquid-nitrogen stage",
+  "plain_name": "Study a sample using light at low temperature",
+  "industry": "chemistry_and_pharmaceuticals",
+  "sources": [
+    {
+      "id": "src_park_2026_scirep",
+      "citation": "Park, H., Wang, A., Kim, J., Pophali, A., Gersappe, D., Kim, T. (2026). Molecular-level freezing and melting dynamics of aqueous lithium chloride solutions using in-situ Raman spectroscopy. Scientific Reports 16, 32309.",
+      "doi": "10.1038/s41598-026-61621-4",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML",
+      "pmcid": "PMC13668726",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_pamula_2025_scirep",
+      "citation": "Pamula, K., Pophali, A., Gersappe, D., Kim, T. (2025). In-situ Raman spectroscopic analysis of phase transition temperatures in silica interacting with water and NaCl solutions. Scientific Reports 15, 26449.",
+      "doi": "10.1038/s41598-025-12034-2",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML",
+      "pmcid": "PMC12280175",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "− 140 °C to room temperature",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 133150,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 296150,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0020",
+      "source_id": "src_park_2026_scirep"
+    },
+    {
+      "key": "temperature.range",
+      "as_printed": "23 to -50 ℃",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 223150,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 296150,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0026",
+      "source_id": "src_pamula_2025_scirep"
+    },
+    {
+      "key": "sample.diameter.max",
+      "as_printed": "15 mm diameter quartz crucible",
+      "normalized": {
+        "value": 15000,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0021",
+      "source_id": "src_park_2026_scirep"
+    },
+    {
+      "key": "sample.diameter.max",
+      "as_printed": "15 mm diameter (Linkam THMSQ)",
+      "normalized": {
+        "value": 15000,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0028",
+      "source_id": "src_pamula_2025_scirep"
+    },
+    {
+      "key": "optical.objective_working_distance.min",
+      "as_printed": "6.5 mm (MPlan N 10x/0.25 BD)",
+      "normalized": {
+        "value": 6500,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0025",
+      "source_id": "src_pamula_2025_scirep"
+    },
+    {
+      "key": "excitation_wavelength",
+      "as_printed": "532 nm, 10 mW",
+      "normalized": {
+        "value": 532,
+        "unit": "nm"
+      },
+      "evidence_id": "ev_exp_0024",
+      "source_id": "src_pamula_2025_scirep"
+    },
+    {
+      "key": "laser_power",
+      "as_printed": "5.6 mW",
+      "normalized": null,
+      "evidence_id": "ev_exp_0023",
+      "source_id": "src_park_2026_scirep"
+    },
+    {
+      "key": "cooling_medium",
+      "as_printed": "liquid nitrogen pumped from a dewar",
+      "normalized": null,
+      "evidence_id": "ev_exp_0022",
+      "source_id": "src_park_2026_scirep"
+    },
+    {
+      "key": "cooling_medium",
+      "as_printed": "liquid nitrogen, Linkam D2L/80 dewar, LNP96 pump",
+      "normalized": null,
+      "evidence_id": "ev_exp_0027",
+      "source_id": "src_pamula_2025_scirep"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": 133150,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Park et al. (2026) cooled to −140 °C, the lowest point of that paper's freezing/melting cycles; this is the paper's choice set by the phase behaviour studied, and the user confirms −140 °C as the required operating point.",
+      "evidence_ids": [
+        "ev_exp_0020"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Raman scattering is collected through the stage window with a microscope objective in both sources; optical access to the cold sample is intrinsic to the technique.",
+      "evidence_ids": [
+        "ev_exp_0025",
+        "ev_exp_0023"
+      ]
+    },
+    {
+      "key": "sample.diameter.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 15000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Park et al. (2026) and Pamula et al. (2025) load the sample in a 15 mm diameter quartz crucible inside the stage, so the stage must accept a 15 mm sample; this is the papers' sample format, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0021",
+        "ev_exp_0028"
+      ]
+    },
+    {
+      "key": "optical.objective_working_distance.min",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": 6500,
+          "unit": "um"
+        }
+      },
+      "mandatory": false,
+      "origin": "experimental_observation",
+      "rationale": "Pamula et al. (2025) focus through the stage with a 6.5 mm working-distance objective. The working distance that the stage window geometry requires must not exceed the objective's 6.5 mm, so a stage requiring more than 6.5 mm would be incompatible with this optical setup. Non-mandatory because a longer-WD objective could be substituted.",
+      "evidence_ids": [
+        "ev_exp_0025"
+      ]
+    }
+  ],
+  "missing_information": [
+    "stage window material and thickness not stated",
+    "objective used by Park et al. not stated",
+    "purge gas / condensation control not stated",
+    "THMS600 specified temperature range not stated in either paper (only ranges used)"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}

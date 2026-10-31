@@ -1,0 +1,171 @@
+{
+  "id": "bio_cryosection_frozen_tissue",
+  "name": "Cryostat sectioning of OCT-embedded frozen tissue for immunofluorescence (Leica CM1950)",
+  "plain_name": "Cut a frozen tissue sample",
+  "industry": "biology_and_biotechnology",
+  "sources": [
+    {
+      "id": "src_li_2025_starprotoc",
+      "citation": "Li, S., You, S., Mao, K. (2025). Protocol for multiplex immunofluorescence imaging of mouse intestinal tumors. STAR Protocols 6(2), 103776.",
+      "doi": "10.1016/j.xpro.2025.103776",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12224881/fullTextXML",
+      "pmcid": "PMC12224881",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_fan_2025_protocolsio",
+      "citation": "Fan, Y., Steele, C. (2025). Coronal cryosectioning of mouse brains. protocols.io (Caltech), created 2025-01-07, last modified 2025-02-16, CC-BY.",
+      "doi": "10.17504/protocols.io.x54v9rkzpv3e/v1",
+      "doi_verified": true,
+      "url": "https://www.protocols.io/view/coronal-cryosectioning-of-mouse-brains-dxbw7ipe.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.chamber.range",
+      "as_printed": "−20°C",
+      "normalized": {
+        "value": 253150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0001",
+      "source_id": "src_li_2025_starprotoc"
+    },
+    {
+      "key": "temperature.specimen_head.range",
+      "as_printed": "−18°C",
+      "normalized": {
+        "value": 255150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0002",
+      "source_id": "src_li_2025_starprotoc"
+    },
+    {
+      "key": "section_thickness.range",
+      "as_printed": "15 μm",
+      "normalized": {
+        "value": 15,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0003",
+      "source_id": "src_li_2025_starprotoc"
+    },
+    {
+      "key": "temperature.chamber.range",
+      "as_printed": "-16 °C to -20 °C",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 253150,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 257150,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0006",
+      "source_id": "src_fan_2025_protocolsio"
+    },
+    {
+      "key": "temperature.specimen_head.range",
+      "as_printed": "-20 °C",
+      "normalized": {
+        "value": 253150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0006",
+      "source_id": "src_fan_2025_protocolsio"
+    },
+    {
+      "key": "section_thickness.range",
+      "as_printed": "100 micron",
+      "normalized": {
+        "value": 100,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0007",
+      "source_id": "src_fan_2025_protocolsio"
+    },
+    {
+      "key": "equipment_named",
+      "as_printed": "Leica CM1950",
+      "normalized": null,
+      "evidence_id": "ev_exp_0008",
+      "source_id": "src_fan_2025_protocolsio"
+    },
+    {
+      "key": "block_storage_temperature",
+      "as_printed": "−80°C (dry ice freeze; −80 °C storage)",
+      "normalized": {
+        "value": 193150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0005",
+      "source_id": "src_li_2025_starprotoc"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.chamber.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": 253150,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Li et al. (2025) set the cryostat chamber to −20 °C; this is that paper's setting, not a stated physical limit, and the user confirms it as the operating point (Fan & Steele 2025 use −16 to −20 °C).",
+      "evidence_ids": [
+        "ev_exp_0001",
+        "ev_exp_0006"
+      ]
+    },
+    {
+      "key": "temperature.specimen_head.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": 255150,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Li et al. (2025) set the sample holder (specimen head) to −18 °C; Fan & Steele (2025) used −20 °C. This is the papers' choice; the user confirms −18 °C as the operating point.",
+      "evidence_ids": [
+        "ev_exp_0002",
+        "ev_exp_0006"
+      ]
+    },
+    {
+      "key": "section_thickness.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": 15,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Li et al. (2025) cut 15 µm sections for multiplex immunofluorescence; thickness is an application choice (Fan & Steele cut 100 µm), confirmed by the user for this profile.",
+      "evidence_ids": [
+        "ev_exp_0003",
+        "ev_exp_0007"
+      ]
+    }
+  ],
+  "missing_information": [
+    "sample dimensions not stated (tissue block / OCT mold size not given in either source)",
+    "blade (knife) temperature not stated",
+    "cryostat chamber temperature range specification of the instrument not stated (only the set points used)"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}

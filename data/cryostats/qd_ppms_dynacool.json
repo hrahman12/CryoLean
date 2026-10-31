@@ -1,0 +1,1374 @@
+{
+  "id": "qd_ppms_dynacool",
+  "manufacturer": "Quantum Design",
+  "model": "PPMS DynaCool",
+  "family": "cryogen-free physical property measurement platform",
+  "description": "Cryogen-free Physical Property Measurement System using a single two-stage pulse tube cryocooler; 1.8-400 K base system with one of three conduction-cooled superconducting magnets (9 T, 12 T or 14 T) and a 12-pin puck-based open-architecture sample chamber (2.5 cm clear bore). Measurement options (ETO, DC resistivity, VSM, heat capacity, ACMS II, TTO, He-3, DR, etc.) are separately ordered add-ons. Values below are manufacturer specifications from qdusa.com brochures 1307-010 Rev. G0 and 1084-500 Rev. J0 plus the QD user manual 1307-110 Rev. D1.",
+  "documents": [
+    {
+      "id": "doc_qd_A",
+      "url": "https://qdusa.com/products/dynacool.html",
+      "title": "Quantum Design North America - Products - Quantum Design PPMS DynaCool is a Physical Property Measurement System for Low Temperature and High Magnetic Field Materials Characterization.",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_B",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+      "title": "Product Description / Cryogen-Free Physical Property Measurement System / PPMS DynaCool (1307-010 Rev. G0)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_C",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+      "title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_F",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1084-500_PPMS_AC_Resistance_ETO.pdf",
+      "title": "Electrical Transport / AC Resistance (ETO) / PPMS DynaCool (D605) / PPMS VersaLab (V605) (1084-500 Rev. J0)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_G",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1084-500_PPMS_Heat_Capacity.pdf",
+      "title": "Thermal Measurements / Heat Capacity / PPMS DynaCool (D650) / PPMS VersaLab (V650) (1084-500 Rev. J0)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_J",
+      "url": "https://qdusa.com/siteDocs/productBrochures/PPMS_Options_Compatibility_Table.pdf",
+      "title": "Compatibility Table / Sub-Kelvin Compatibility Kits (1084-500 Rev. J0)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_qd_K",
+      "url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf",
+      "title": "DynaCool User's Manual, Part Number 1307-110, D1 (Quantum Design, fifth edition November 2017; institutional mirror hosted by KTH)",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "proposed_vocabulary": [
+    {
+      "key": "system_startup_time.max",
+      "shape": "max",
+      "unit": "s",
+      "description": "Documented time for full system startup / initial cool-down from room temperature (distinct from cooldown_time.max, which here records sample cool-down 300 K to 1.9 K)",
+      "status": "proposed"
+    },
+    {
+      "key": "magnetic_field.ramp_rate.max",
+      "shape": "max",
+      "unit": "uT_per_s",
+      "description": "Maximum documented magnetic-field charging rate (unit uT_per_s proposed: microtesla per second, si T/s, scale 1000000)",
+      "status": "proposed"
+    },
+    {
+      "key": "magnetic_field.uniformity",
+      "shape": "max",
+      "unit": "ppm",
+      "description": "Documented field homogeneity (± relative, in ppm) over a stated axial length; the length would need a companion key (magnetic_field.uniformity.length, um)",
+      "status": "proposed"
+    },
+    {
+      "key": "temperature.stability.relative",
+      "shape": "max",
+      "unit": "ppm",
+      "description": "Documented temperature stability expressed as ± relative value (ppm of T); manufacturer states stability as a percentage, so the mK value in temperature.stability is a derived worst case",
+      "status": "proposed"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "qd_dynacool_9T_eto_res",
+      "name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 1800,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 400000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0005"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1800,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0006"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 80,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_qd_0008",
+            "ev_qd_0007"
+          ]
+        },
+        {
+          "key": "temperature.sweep_rate.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0021"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 9000,
+              "unit": "mT"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0002",
+            "ev_qd_0001"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0002"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 25000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0009"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0010"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0011"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 2400,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0013"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0017"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 13332,
+              "unit": "uPa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0018"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 12
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "module.electrical_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0022"
+          ]
+        },
+        {
+          "key": "module.dc_resistivity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0023"
+          ]
+        },
+        {
+          "key": "module.vsm",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0024"
+          ]
+        },
+        {
+          "key": "module.heat_capacity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0025"
+          ]
+        },
+        {
+          "key": "module.acms",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0026"
+          ]
+        },
+        {
+          "key": "module.thermal_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0027"
+          ]
+        },
+        {
+          "key": "module.helium3",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0028"
+          ]
+        },
+        {
+          "key": "electrical.channels",
+          "value": {
+            "kind": "count",
+            "n": 2
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0029"
+          ]
+        },
+        {
+          "key": "electrical.current.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 10000,
+              "unit": "pA"
+            },
+            "hi": {
+              "value": 100000000000,
+              "unit": "pA"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0030"
+          ]
+        },
+        {
+          "key": "electrical.resistance.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 10,
+              "unit": "uOhm"
+            },
+            "hi": {
+              "value": 10000000000000,
+              "unit": "uOhm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0031"
+          ]
+        }
+      ],
+      "proposed_capabilities": [
+        {
+          "key": "system_startup_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 57600,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0014"
+          ]
+        },
+        {
+          "key": "magnetic_field.ramp_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 20000,
+              "unit": "uT_per_s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0037"
+          ]
+        },
+        {
+          "key": "magnetic_field.uniformity",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0040"
+          ],
+          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+        },
+        {
+          "key": "temperature.stability.relative",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000,
+              "unit": "ppm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0007"
+          ],
+          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+        }
+      ],
+      "notes": [
+        "electrical.channels/current/resistance recorded for the ETO (D605); the co-installed DC Resistivity option (D400A) has its own documented values: 3 channels, 10 nA-8 mA, 10 uOhm-5 MOhm (evidence ev_qd_0032, ev_qd_0033, ev_qd_0034)."
+      ]
+    },
+    {
+      "id": "qd_dynacool_14T_eto_vsm_hc",
+      "name": "PPMS DynaCool, 14 T magnet, ETO + VSM + Heat Capacity",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 1800,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 400000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0005"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1800,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0006"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 80,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_qd_0008",
+            "ev_qd_0007"
+          ]
+        },
+        {
+          "key": "temperature.sweep_rate.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0021"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 14000,
+              "unit": "mT"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0004",
+            "ev_qd_0001"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0004"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 25000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0009"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0010"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0011"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 2400,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0013"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0017"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 13332,
+              "unit": "uPa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0018"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 12
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "module.electrical_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0022"
+          ]
+        },
+        {
+          "key": "module.dc_resistivity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0023"
+          ]
+        },
+        {
+          "key": "module.vsm",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0024"
+          ]
+        },
+        {
+          "key": "module.heat_capacity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0025"
+          ]
+        },
+        {
+          "key": "module.acms",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0026"
+          ]
+        },
+        {
+          "key": "module.thermal_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0027"
+          ]
+        },
+        {
+          "key": "module.helium3",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0028"
+          ]
+        },
+        {
+          "key": "electrical.channels",
+          "value": {
+            "kind": "count",
+            "n": 2
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0029"
+          ]
+        },
+        {
+          "key": "electrical.current.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 10000,
+              "unit": "pA"
+            },
+            "hi": {
+              "value": 100000000000,
+              "unit": "pA"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0030"
+          ]
+        },
+        {
+          "key": "electrical.resistance.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 10,
+              "unit": "uOhm"
+            },
+            "hi": {
+              "value": 10000000000000,
+              "unit": "uOhm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0031"
+          ]
+        },
+        {
+          "key": "sample.vsm.diameter.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 6300,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0035"
+          ]
+        },
+        {
+          "key": "sample.heat_capacity.width.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0036"
+          ]
+        },
+        {
+          "key": "sample.heat_capacity.length.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0036"
+          ]
+        }
+      ],
+      "proposed_capabilities": [
+        {
+          "key": "system_startup_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 144000,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0016"
+          ]
+        },
+        {
+          "key": "magnetic_field.ramp_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 10000,
+              "unit": "uT_per_s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0039"
+          ]
+        },
+        {
+          "key": "magnetic_field.uniformity",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0042"
+          ],
+          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+        },
+        {
+          "key": "temperature.stability.relative",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000,
+              "unit": "ppm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0007"
+          ],
+          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "qd_dynacool_12T_vsm",
+      "name": "PPMS DynaCool, 12 T magnet, VSM only",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 1800,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 400000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0005"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1800,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0006"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 80,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_qd_0008",
+            "ev_qd_0007"
+          ]
+        },
+        {
+          "key": "temperature.sweep_rate.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0021"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 12000,
+              "unit": "mT"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0003",
+            "ev_qd_0001"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0003"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 25000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0009"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0010"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0011"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 2400,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0013"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0017"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 13332,
+              "unit": "uPa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0018"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 12
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "module.electrical_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0022"
+          ]
+        },
+        {
+          "key": "module.dc_resistivity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0023"
+          ]
+        },
+        {
+          "key": "module.vsm",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0024"
+          ]
+        },
+        {
+          "key": "module.heat_capacity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0025"
+          ]
+        },
+        {
+          "key": "module.acms",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0026"
+          ]
+        },
+        {
+          "key": "module.thermal_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0027"
+          ]
+        },
+        {
+          "key": "module.helium3",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0028"
+          ]
+        },
+        {
+          "key": "sample.vsm.diameter.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 6300,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0035"
+          ]
+        }
+      ],
+      "proposed_capabilities": [
+        {
+          "key": "system_startup_time.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 108000,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0015"
+          ]
+        },
+        {
+          "key": "magnetic_field.ramp_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 10000,
+              "unit": "uT_per_s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0038"
+          ]
+        },
+        {
+          "key": "magnetic_field.uniformity",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0041"
+          ],
+          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+        },
+        {
+          "key": "temperature.stability.relative",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000,
+              "unit": "ppm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0007"
+          ],
+          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "unknowns": [
+    {
+      "key": "cooling_power.at_4200mK",
+      "note": "base-system cooling power in watts not documented in sources fetched (manual gives only pulse-tube stage temperatures ~45 K / ~4.2 K)"
+    },
+    {
+      "key": "optical_access",
+      "note": "base system optical access not documented in sources fetched; optical access exists only via optional probes (OMFP D725A/B, FOSH D320) not included in these configurations"
+    },
+    {
+      "key": "temperature.sweep_rate.max",
+      "note": "no numeric sweep-rate specification for DynaCool in brochures; manual describes fast ramps as '> 5-10 K/minute' and uses 20 K/min example set rate"
+    },
+    {
+      "key": "sample.mass.max",
+      "note": "not documented for ETO/VSM/heat-capacity pucks in sources fetched"
+    },
+    {
+      "key": "vibration.max",
+      "note": "brochure says 'low vibration environment' without a number"
+    }
+  ],
+  "modeling_notes": [
+    "2026-10-31: VSM bore (6.3 mm) and heat-capacity platform (3 x 3 mm) limits are stored under module-specific keys (sample.vsm.*, sample.heat_capacity.*); they do not limit other modules. No documented sample-size limit was found for the electrical transport (ETO) or resistivity pucks, so general sample.* limits are absent (UNKNOWN) for transport."
+  ]
+}

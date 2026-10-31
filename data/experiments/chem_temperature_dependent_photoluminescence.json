@@ -1,0 +1,255 @@
+{
+  "id": "chem_temperature_dependent_photoluminescence",
+  "name": "Temperature-dependent photoluminescence spectroscopy in an optical cryostat, 4–300 K",
+  "plain_name": "Observe a sample changing as its temperature changes",
+  "industry": "chemistry_and_pharmaceuticals",
+  "sources": [
+    {
+      "id": "src_swidinsky_2024_arxiv",
+      "citation": "Swidinsky, N., Ellingwood, E., Hucker, J., Skensved, P., Di Stefano, P., Mason, J., Boulay, M., Kemp, A., Schuckman, F., Wang, Y. (2024). Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber. arXiv:2407.08075 [physics.ins-det].",
+      "doi": "10.48550/arXiv.2407.08075",
+      "doi_verified": true,
+      "url": "https://arxiv.org/html/2407.08075v1",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_shyam_2026_arxiv",
+      "citation": "Shyam, I., Singh, R., Akkanaboina, M., Sonawane, A. M., Satheeshkumar, M., Majumder, A., Ekta, Khunte, J. J., Khaire, A., Watanabe, K., Taniguchi, T., Rajaraman, G., Dahiwale, S. S., Kumar, A. (2026). Hexagonal Boron Nitride Spin Defects for Quantum Photonics: Annealing-Free Generation by Krypton Ion Implantation. arXiv:2606.23334 [physics.optics].",
+      "doi": "10.48550/arXiv.2606.23334",
+      "doi_verified": true,
+      "url": "https://arxiv.org/html/2606.23334",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "300 K, 87 K and 4 K",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 4000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0029",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "temperature.range",
+      "as_printed": "18 temperatures between 300 K and 4 K",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 4000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0036",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "temperature.stability",
+      "as_printed": "0.1 K",
+      "normalized": {
+        "value": 100,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0030",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "pressure.base",
+      "as_printed": "lower than 10−6 mbar",
+      "normalized": {
+        "value": 100,
+        "unit": "uPa"
+      },
+      "evidence_id": "ev_exp_0031",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "optical_access",
+      "as_printed": "borosilicate glass windows in the cryostat shrouds",
+      "normalized": null,
+      "evidence_id": "ev_exp_0032",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "sample.width.max",
+      "as_printed": "25x25x2 mm3 fused silica",
+      "normalized": {
+        "value": 25000,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0033",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "sample.height.max",
+      "as_printed": "2 mm (fused silica) / 5 mm (acrylic)",
+      "normalized": {
+        "value": 5000,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0034",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "sample_mounting",
+      "as_printed": "gold-plated copper coldfinger",
+      "normalized": null,
+      "evidence_id": "ev_exp_0035",
+      "source_id": "src_swidinsky_2024_arxiv"
+    },
+    {
+      "key": "temperature.range",
+      "as_printed": "20 K to 300 K",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 20000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0037",
+      "source_id": "src_shyam_2026_arxiv"
+    },
+    {
+      "key": "pressure.base",
+      "as_printed": "10−5 mbar prior to cooling",
+      "normalized": {
+        "value": 1000,
+        "unit": "uPa"
+      },
+      "evidence_id": "ev_exp_0038",
+      "source_id": "src_shyam_2026_arxiv"
+    },
+    {
+      "key": "sample_mounting",
+      "as_printed": "cold finger, GE varnish, helium exchange gas",
+      "normalized": null,
+      "evidence_id": "ev_exp_0039",
+      "source_id": "src_shyam_2026_arxiv"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": 4000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Swidinsky et al. (2024) recorded spectra from 300 K down to 4 K (±0.1 K); the 4 K base is that paper's choice (Shyam et al. 2026 stop at 20 K). User confirms 4–300 K as the required range.",
+      "evidence_ids": [
+        "ev_exp_0029",
+        "ev_exp_0036",
+        "ev_exp_0037"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Excitation and emission pass through cryostat windows (borosilicate in Swidinsky et al.; quartz in Shyam et al.); optical access is intrinsic to photoluminescence in a cryostat.",
+      "evidence_ids": [
+        "ev_exp_0032"
+      ]
+    },
+    {
+      "key": "sample.width.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 25000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Swidinsky et al. (2024) used 25 × 25 × 2 mm fused silica substrates mounted on the coldfinger; the cryostat must accept a 25 mm wide sample. Sample size is this paper's choice, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0033",
+        "ev_exp_0035"
+      ]
+    },
+    {
+      "key": "sample.length.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 25000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Swidinsky et al. (2024) used 25 × 25 × 2 mm fused silica substrates; the cryostat must accept a 25 mm long sample. This paper's choice, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0033"
+      ]
+    },
+    {
+      "key": "vacuum.available",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Both papers evacuate the sample space before cooling (Swidinsky et al. below 1e-6 mbar; Shyam et al. 1e-5 mbar); an evacuable sample space is required.",
+      "evidence_ids": [
+        "ev_exp_0031",
+        "ev_exp_0038"
+      ]
+    },
+    {
+      "key": "pressure.base",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": 100,
+          "unit": "uPa"
+        }
+      },
+      "mandatory": false,
+      "origin": "experimental_observation",
+      "rationale": "Swidinsky et al. (2024) held the sample below 1e-6 mbar (100 uPa). Non-mandatory: Shyam et al. (2026) worked at 1e-5 mbar, so the exact vacuum level is a per-paper choice.",
+      "evidence_ids": [
+        "ev_exp_0031",
+        "ev_exp_0038"
+      ]
+    }
+  ],
+  "missing_information": [
+    "cryostat make/model not stated by Swidinsky et al. (cites prior design); Shyam et al. name only 'Lakeshore closed-cycle cryostat'",
+    "number of optical windows not stated",
+    "lateral flake size not stated by Shyam et al.",
+    "thermal load / cooling power not stated"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}

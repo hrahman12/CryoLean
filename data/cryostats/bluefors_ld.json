@@ -1,0 +1,170 @@
+{
+  "id": "bluefors_ld",
+  "manufacturer": "Bluefors",
+  "model": "LD System (LD250 / LD400; renamed LD350 / LD450 in March 2026)",
+  "family": "cryogen-free dilution refrigerator measurement system",
+  "description": "Pulse-tube-precooled, closed-cycle He-3/He-4 dilution refrigerator with a 294 mm mixing-chamber flange (current page). Bluefors renamed the LD250 to LD350 and the LD400 / LD400sl to LD450 / LD450sl on 2026-03-10 and raised the guaranteed cooling-power figures (ev_bf_0001). Original LD250/LD400 figures come from the Bluefors User Manual LD System v2.0 (2022); LD450 figures come from bluefors.com in 2026. Wiring, magnets, optical access and sample holders are options; the standard system has no documented wiring count.",
+  "documents": [
+    {"id": "doc_bf_manual_v2", "url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf", "title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)", "accessed": "2026-10-31"},
+    {"id": "doc_bf_ld_page", "url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/", "title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_rename_news", "url": "https://bluefors.com/news/increased-cooling-power-specifications-for-bluefors-dilution-refrigerators/", "title": "Increased Cooling Power Specifications for Bluefors Dilution Refrigerators", "accessed": "2026-10-31"},
+    {"id": "doc_bf_enhanced_news", "url": "https://bluefors.com/news/new-products-enhanced-cooling-high-density-flex-wiring-and-ld400sl/", "title": "New Products: Enhanced Cooling, High-Density Flex Wiring, and LD450sl", "accessed": "2026-10-31"},
+    {"id": "doc_bf_ucld_page", "url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ultra-compact-ld/", "title": "Ultra-Compact LD System | Dilution Refrigerator - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_preconfigured", "url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/preconfigured-systems/", "title": "Preconfigured Systems - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_hdw", "url": "https://bluefors.com/products/measurement-infrastructure/high-density-wiring/", "title": "High-Density Wiring - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_coax", "url": "https://bluefors.com/products/measurement-infrastructure/coaxial-wiring/", "title": "Coaxial Wiring - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_twisted_pair", "url": "https://bluefors.com/products/measurement-infrastructure/twisted-pair-wiring/", "title": "Twisted Pair Wiring - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_crioflex", "url": "https://bluefors.com/products/measurement-infrastructure/crioflex/", "title": "Cri/oFlex® | High-Density Flexible Wiring - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_qcage", "url": "https://bluefors.com/products/measurement-infrastructure/qcage/", "title": "QCage - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_solenoid", "url": "https://bluefors.com/products/magnets/solenoid-magnets/", "title": "Solenoid Magnets - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_vector", "url": "https://bluefors.com/products/magnets/vector-magnets/", "title": "Vector Magnets - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_optical", "url": "https://bluefors.com/products/cryogenic-measurement-system-options/optical-access-ports/", "title": "Optical Access Ports - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_fse", "url": "https://bluefors.com/products/cryogenic-measurement-system-options/fast-sample-exchange-system/", "title": "Fast Sample Exchange System for Dilution Refrigerators - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_pt415", "url": "https://bluefors.com/?p=814", "title": "PT415 Pulse Tube Cryocooler - Bluefors.com", "accessed": "2026-10-31"},
+    {"id": "doc_bf_pt310rm", "url": "https://bluefors.com/wp-content/uploads/2023/09/PT310-RM-CPA1114-Cryocooler-Specification.pdf", "title": "Cryocooler Specification Sheet, PT310-RM with CPA1114 (Cryomech, Revised Draft 09Mar22)", "accessed": "2026-10-31"}
+  ],
+  "configurations": [
+    {
+      "id": "bluefors_ld250_manual_v2",
+      "name": "Bluefors LD250 (renamed LD350 in 2026), standard system per User Manual v2.0 (2022), no wiring/magnet/optical options installed",
+      "configuration_basis": "Capability values are manufacturer specifications from the 2022 LD System User Manual (Table 1) except cooldown_time.max, which is the current bluefors.com guaranteed figure for the LD350 (the renamed LD250). Wiring, magnets, optical access and sample holders are catalog options not included here; install status is a catalog assumption.",
+      "capabilities": [
+        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 10, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0002"]},
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 10, "unit": "mK"}, "hi": {"value": 4200, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0002", "ev_bf_0008"]},
+        {"key": "temperature.stability", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0063"]},
+        {"key": "cooling_power.at_20mK", "value": {"kind": "max", "q": {"value": 10000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0004"]},
+        {"key": "cooling_power.at_100mK", "value": {"kind": "max", "q": {"value": 250000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0005"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0061"]},
+        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 86400, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0016", "ev_bf_0017"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0009", "ev_bf_0021"]},
+        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0009", "ev_bf_0048"]},
+        {"key": "cryogen.liquid_nitrogen_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0051"]},
+        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0049"]},
+        {"key": "pressure.base", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0062", "ev_bf_0050"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.height.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0057", "ev_bf_0027", "ev_bf_0028"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0058", "ev_bf_0029"]},
+        {"key": "electrical.coax_bandwidth.max", "value": {"kind": "max", "q": {"value": 40000000, "unit": "kHz"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0029"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0027", "ev_bf_0029"]},
+        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0056", "ev_bf_0041", "ev_bf_0038"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0039", "ev_bf_0040"]},
+        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 12000, "unit": "um"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "module.magnetic_shielding", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0059"]},
+        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0064"]}
+      ]
+    },
+    {
+      "id": "bluefors_ld400_hdw",
+      "name": "Bluefors LD400 (renamed LD450) with side-loading ports (LD400sl) and High-Density Wiring in one side-loading port",
+      "configuration_basis": "Cryogenic values are manufacturer specifications from the 2022 LD System User Manual (LD400 column of Table 1). High-Density Wiring is only offered for side-loading (LDsl / LD400sl / LD450sl) systems, so this configuration assumes the side-loading variant; the 168-line count is the documented per-port maximum and this configuration assumes ONE of the two side-loading ports is fitted (catalog assumption; two ports would give 336, ev_bf_0034). HDW lines are coaxial (DC to 18 GHz), not DC twisted pairs, so they are recorded under electrical.coax_lines and electrical.dc_lines stays unknown. Cooldown figure is the current bluefors.com guaranteed value for the renamed LD450.",
+      "capabilities": [
+        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 10, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0003"]},
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 10, "unit": "mK"}, "hi": {"value": 4200, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0003", "ev_bf_0008"]},
+        {"key": "temperature.stability", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0063"]},
+        {"key": "cooling_power.at_20mK", "value": {"kind": "max", "q": {"value": 12000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0006"]},
+        {"key": "cooling_power.at_100mK", "value": {"kind": "max", "q": {"value": 400000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0007"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0061"]},
+        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 86400, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0016", "ev_bf_0017"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0009", "ev_bf_0021"]},
+        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0009", "ev_bf_0048"]},
+        {"key": "cryogen.liquid_nitrogen_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0051"]},
+        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0049"]},
+        {"key": "pressure.base", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0062", "ev_bf_0050"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.height.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "count", "n": 168}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0031", "ev_bf_0026", "ev_bf_0065"]},
+        {"key": "electrical.coax_bandwidth.max", "value": {"kind": "max", "q": {"value": 18000000, "unit": "kHz"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0032"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0031"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0057", "ev_bf_0027"]},
+        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0056", "ev_bf_0041", "ev_bf_0038"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0039", "ev_bf_0040"]},
+        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 12000, "unit": "um"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "module.magnetic_shielding", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0059"]},
+        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0064"]}
+      ]
+    },
+    {
+      "id": "bluefors_ld450_current",
+      "name": "Bluefors LD450 (formerly LD400), current bluefors.com guaranteed specification (2026), no options installed",
+      "configuration_basis": "Capability values are the post-March-2026 guaranteed manufacturer specifications from bluefors.com (news article and LD product page). Upper temperature is not stated on the current page, so temperature.range is unknown. Wiring (including High-Density Wiring, which needs the LD450sl side-loading variant), magnets and optical access are catalog options not included; install status is a catalog assumption.",
+      "capabilities": [
+        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 10, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0010"]},
+        {"key": "temperature.range", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0060", "ev_bf_0010"]},
+        {"key": "temperature.stability", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0063"]},
+        {"key": "cooling_power.at_20mK", "value": {"kind": "max", "q": {"value": 14000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0011", "ev_bf_0015"]},
+        {"key": "cooling_power.at_100mK", "value": {"kind": "max", "q": {"value": 450000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0012", "ev_bf_0015"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0061", "ev_bf_0023"]},
+        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 86400, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0016"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0009", "ev_bf_0022"]},
+        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0009"]},
+        {"key": "cryogen.liquid_nitrogen_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_bf_0051"]},
+        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0049"]},
+        {"key": "pressure.base", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0062"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "sample.height.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0055"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0057", "ev_bf_0027", "ev_bf_0028"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "count", "n": 168}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0031", "ev_bf_0026", "ev_bf_0065"]},
+        {"key": "electrical.coax_bandwidth.max", "value": {"kind": "max", "q": {"value": 18000000, "unit": "kHz"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0032"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0025", "ev_bf_0027", "ev_bf_0031"]},
+        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "optional_not_installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0056", "ev_bf_0038"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0039", "ev_bf_0040"]},
+        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 12000, "unit": "um"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_bf_0042"]},
+        {"key": "module.magnetic_shielding", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0059"]},
+        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_bf_0064"]}
+      ]
+    }
+  ],
+  "proposed_vocabulary": [
+    {
+      "key": "plate.diameter",
+      "shape": "max",
+      "unit": "um",
+      "description": "Diameter of the coldest experimental plate (mixing chamber flange) to which samples and holders are bolted; a plate dimension, not a clear bore or maximum sample size, so it is not recorded under sample.diameter.max",
+      "status": "proposed",
+      "observed_values": [
+        {"configuration_ids": ["bluefors_ld450_current"], "value": {"kind": "max", "q": {"value": 294000, "unit": "um"}}, "applies_to": "LD350 / LD450 / LD450sl current page; not confirmed under the LD250/LD400 names", "evidence_ids": ["ev_bf_0018"]}
+      ]
+    },
+    {
+      "key": "experimental_space.height",
+      "shape": "max",
+      "unit": "um",
+      "description": "Documented height of the experimental space below the mixing chamber plate",
+      "status": "proposed",
+      "observed_values": [
+        {"configuration_ids": [], "value": {"kind": "max", "q": {"value": 237000, "unit": "um"}}, "applies_to": "Ultra-Compact LD350 / LD450 with standard 2-section vacuum can ONLY (not the frame LD configurations in this file)", "evidence_ids": ["ev_bf_0019"]},
+        {"configuration_ids": [], "value": {"kind": "max", "q": {"value": 510000, "unit": "um"}}, "applies_to": "Ultra-Compact LD350 / LD450 with optional 3-section vacuum can ONLY", "evidence_ids": ["ev_bf_0020"]}
+      ]
+    },
+    {
+      "key": "facility.electrical_power.max",
+      "shape": "max",
+      "unit": "nW",
+      "description": "Steady-state electrical input power of the pulse-tube compressor package (facility requirement); unit nW chosen because it is the vocabulary's only power unit",
+      "status": "proposed",
+      "observed_values": [
+        {"configuration_ids": ["bluefors_ld250_manual_v2", "bluefors_ld400_hdw", "bluefors_ld450_current"], "value": {"kind": "max", "q": {"value": 10700000000000, "unit": "nW"}}, "applies_to": "Default PT415 / CPA1110 compressor at 60 Hz (9.2 kW at 50 Hz)", "evidence_ids": ["ev_bf_0046", "ev_bf_0021", "ev_bf_0045"]},
+        {"configuration_ids": [], "value": {"kind": "max", "q": {"value": 13000000000000, "unit": "nW"}}, "applies_to": "Optional PT310-RM / CPA1114 Enhanced Cooling compressor at 60 Hz (12.0 kW at 50 Hz)", "evidence_ids": ["ev_bf_0047"]}
+      ]
+    }
+  ],
+  "unknowns": [
+    {"key": "sample.bore_diameter", "note": "Experimental space / sample bore below the 294 mm mixing chamber flange is not documented for the frame LD; only the Ultra-Compact variant states 237 mm / 510 mm height (ev_bf_0019, ev_bf_0020). Optional Fast Sample Exchange inserts are 48/58/78 mm (ev_bf_0053) but FSE is not available for LD450sl."},
+    {"key": "magnetic_field.max", "note": "Solenoids to 16 T and vector magnets to 9 T are offered for Bluefors systems in general, but no page states which fields fit the LD; the only LD-based documented magnet is a 1-1-1 T vector magnet on a preconfigured Ultra-Compact LD350 (ev_bf_0040)."},
+    {"key": "electrical.dc_lines", "note": "DC twisted-pair wiring is optional, sold in sets of 24 wires, max 4 sets per KF40 port; total per system not stated. High-Density Wiring lines (168 per side-loading port) are coaxial, not DC."},
+    {"key": "electrical.coax_lines", "note": "Standard LD (ISO-K63 ports) has no documented coaxial line count; only per-port feedthrough-hole counts. HDW (168/port) and Cri/oFlex (256/port, 512 total) require the side-loading sl variant."},
+    {"key": "module.magnetic_shielding", "note": "A 'Magnetic Shielding' option page is linked from the LD page but was not fetched; QCage sample holder option includes its own mu-metal + superconducting Al shielding (ev_bf_0052)."},
+    {"key": "temperature.range", "note": "Upper temperature for the current LD450 is not stated on bluefors.com; the 2022 manual gives 7 mK to 4.2 K for LD250/LD400."},
+    {"key": "cooling_power.at_4200mK", "note": "Available 4K-flange power at 4.2 K with the default PT415 is not stated; PT415 cold head is rated 1.5 W @ 4.2 K (ev_bf_0024); Enhanced Cooling gives ~500 mW at 3 K or ~1500 mW at 5 K (ev_bf_0023)."},
+    {"key": "pressure.base", "note": "Only a typical, gauge-dependent vacuum-can pressure of 1-5E-6 mbar for an LD400 is given (ev_bf_0050); no guaranteed value."},
+    {"key": "cooldown_time.max", "note": "The 24 h figure is from the current bluefors.com page for LD350/LD450; the 2022 manual gives phase timings (10-12 h precool, Still at 15 K after ~18 h) but no explicit time-to-base."},
+    {"key": "facility", "note": "Whole-system cooling-water flow and compressed-air requirements are in the sales-only Pre-Installation Guide; only compressor-level figures were found (PT415/CPA1110: 10.7 kW, 3 GPM; PT310-RM/CPA1114: 13.0 kW, 3.6 GPM)."}
+  ]
+}

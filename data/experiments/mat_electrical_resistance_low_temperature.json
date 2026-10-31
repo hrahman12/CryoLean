@@ -1,0 +1,195 @@
+{
+  "id": "mat_electrical_resistance_low_temperature",
+  "name": "Four-probe electrical resistivity of a bulk crystal, 2–300 K, in a Quantum Design PPMS",
+  "plain_name": "Measure electrical resistance at low temperature",
+  "industry": "materials_and_nanotechnology",
+  "sources": [
+    {
+      "id": "src_nowakowska_2023_scirep",
+      "citation": "Nowakowska, P., Pavlosiuk, O., Wiśniewski, P., Kaczorowski, D. (2023). Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi. Scientific Reports 13, 22776.",
+      "doi": "10.1038/s41598-023-49941-1",
+      "doi_verified": true,
+      "url": "https://arxiv.org/pdf/2401.02294",
+      "pmcid": "PMC10733278",
+      "note": "Full text read from the arXiv copy (arXiv:2401.02294) of the published open-access article.",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_rao_2026_arxiv",
+      "citation": "Rao, K., Allen, K., Gao, Y., Arushi, Mishra, S., Singh, B., Burch, K. S., Deng, L., Saha, S. R., Paglione, J., Lee, M., Zapf, V., Morosan, E. (2026). A Strategy Toward Room Temperature Topological Hall Effect via Local Moment Magnetism. arXiv:2609.03223 [cond-mat.mtrl-sci].",
+      "doi": "10.48550/arXiv.2609.03223",
+      "doi_verified": false,
+      "doi_note": "arXiv abstract page lists this DOI as pending registration; doi.org resolution not confirmed in this session.",
+      "url": "https://arxiv.org/html/2609.03223",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "2-300 K",
+      "normalized": {
+        "kind": "range",
+        "lo": {
+          "value": 2000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "evidence_id": "ev_exp_0041",
+      "source_id": "src_nowakowska_2023_scirep"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "up to 14 T",
+      "normalized": {
+        "value": 14000,
+        "unit": "mT"
+      },
+      "evidence_id": "ev_exp_0042",
+      "source_id": "src_nowakowska_2023_scirep"
+    },
+    {
+      "key": "electrical.sample_connections",
+      "as_printed": "four-probe method, PPMS (Quantum Design)",
+      "normalized": null,
+      "evidence_id": "ev_exp_0040",
+      "source_id": "src_nowakowska_2023_scirep"
+    },
+    {
+      "key": "sample.width.max",
+      "as_printed": "3 × 3 × 3 mm3 (largest crystals)",
+      "normalized": {
+        "value": 3000,
+        "unit": "um"
+      },
+      "evidence_id": "ev_exp_0043",
+      "source_id": "src_nowakowska_2023_scirep"
+    },
+    {
+      "key": "module.electrical_transport",
+      "as_printed": "electrical transport option, PPMS DynaCool",
+      "normalized": null,
+      "evidence_id": "ev_exp_0045",
+      "source_id": "src_rao_2026_arxiv"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "up to 14 T along [120]",
+      "normalized": {
+        "value": 14000,
+        "unit": "mT"
+      },
+      "evidence_id": "ev_exp_0046",
+      "source_id": "src_rao_2026_arxiv"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": 2000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Nowakowska et al. (2023) and Rao et al. (2026) both measured transport over 2–300 K in a PPMS; this is the papers' range, confirmed by the user as required.",
+      "evidence_ids": [
+        "ev_exp_0041",
+        "ev_exp_0045"
+      ]
+    },
+    {
+      "key": "module.electrical_transport",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Rao et al. (2026) name the electrical transport option of a PPMS DynaCool. Nowakowska et al. (2023) say only 'four-probe method employing the PPMS' and do not name the option, so the option requirement rests on Rao et al.; the user confirms an AC transport module is required.",
+      "evidence_ids": [
+        "ev_exp_0045",
+        "ev_exp_0040"
+      ]
+    },
+    {
+      "key": "sample.width.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 3000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm wide sample. Crystal size is this paper's material, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0043"
+      ]
+    },
+    {
+      "key": "sample.length.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 3000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm long sample. This paper's material, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0043"
+      ]
+    },
+    {
+      "key": "sample.height.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 3000,
+          "unit": "um"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm tall sample. This paper's material, confirmed by the user.",
+      "evidence_ids": [
+        "ev_exp_0043"
+      ]
+    },
+    {
+      "key": "electrical.channels",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 1
+      },
+      "mandatory": false,
+      "origin": "experimental_observation",
+      "rationale": "One four-probe resistivity channel is sufficient for the measurement described; both papers report a single sample per run. Non-mandatory.",
+      "evidence_ids": [
+        "ev_exp_0040"
+      ]
+    }
+  ],
+  "missing_information": [
+    "measurement option (ETO vs Resistivity) not named by Nowakowska et al.",
+    "contact material and number of contacts beyond 'four-probe' not stated",
+    "measured sample dimensions not stated separately from the maximum crystal size",
+    "magnetic field (up to 14 T) was used in both papers but is not a requirement for zero-field resistance; recorded in reported_conditions only"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}

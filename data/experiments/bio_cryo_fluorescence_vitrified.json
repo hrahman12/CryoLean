@@ -1,0 +1,154 @@
+{
+  "id": "bio_cryo_fluorescence_vitrified",
+  "name": "Cryo-fluorescence / cryo-CLEM imaging of plunge-frozen (vitrified) specimens kept below the devitrification temperature",
+  "plain_name": "Examine a frozen sample under the microscope while keeping it frozen",
+  "industry": "biology_and_biotechnology",
+  "sources": [
+    {
+      "id": "src_last_2023_scirep",
+      "citation": "Last, M. G. F., Tuijtel, M. W., Voortman, L. M., Sharp, T. H. (2023). Selecting optimal support grids for super-resolution cryogenic correlated light and electron microscopy. Scientific Reports 13, 8270.",
+      "doi": "10.1038/s41598-023-35590-x",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+      "pmcid": "PMC10203124",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_berkamp_2023_bioprotoc",
+      "citation": "Berkamp, S., Daviran, D., Smeets, M., Caignard, A., Jani, R. A., Sundermeyer, P., Jonker, C., Gerlach, S., Hoffmann, B., Lau, K., Sachse, C. (2023). Correlative Light and Electron Cryo-Microscopy Workflow Combining Micropatterning, Ice Shield, and an In-Chamber Fluorescence Light Microscope. Bio-protocol 13(24), e4901.",
+      "doi": "10.21769/BioProtoc.4901",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10751236/fullTextXML",
+      "pmcid": "PMC10751236",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_huebinger_2026_plosone",
+      "citation": "Huebinger, J., Bastiaens, P. I. H. (2026). Determination of factors that allow cryogenic nanoscopy with high power illumination without devitrification. PLoS One 21(3), e0344631.",
+      "doi": "10.1371/journal.pone.0344631",
+      "doi_verified": true,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13038024/fullTextXML",
+      "pmcid": "PMC13038024",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "77 K (stage)",
+      "normalized": {
+        "value": 77000,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0011",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "devitrification_threshold",
+      "as_printed": "approximately 136 K",
+      "normalized": {
+        "value": 136000,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0009",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "plunge_cryogen_temperature",
+      "as_printed": "− 183 °C (liquid ethane); Leica EM GP at 12 °C, 50% humidity",
+      "normalized": {
+        "value": 90150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0010",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "plunge_chamber_conditions",
+      "as_printed": "37 °C with 85% humidity (Vitrobot)",
+      "normalized": {
+        "value": 310150,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0015",
+      "source_id": "src_berkamp_2023_bioprotoc"
+    },
+    {
+      "key": "blotting",
+      "as_printed": "8.5 s, blot force 10, drain time 1",
+      "normalized": null,
+      "evidence_id": "ev_exp_0016",
+      "source_id": "src_berkamp_2023_bioprotoc"
+    },
+    {
+      "key": "optical_access",
+      "as_printed": "0.9 NA air objective (Nikon 100x/0.9)",
+      "normalized": null,
+      "evidence_id": "ev_exp_0013",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "equipment_named",
+      "as_printed": "Linkam CMS196v3 cryo-stage",
+      "normalized": null,
+      "evidence_id": "ev_exp_0012",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "illumination_power_density",
+      "as_printed": "186.5 W/cm2 of 488 nm",
+      "normalized": null,
+      "evidence_id": "ev_exp_0014",
+      "source_id": "src_last_2023_scirep"
+    },
+    {
+      "key": "handling",
+      "as_printed": "all tools fully cooled to liquid nitrogen temperatures",
+      "normalized": null,
+      "evidence_id": "ev_exp_0017",
+      "source_id": "src_berkamp_2023_bioprotoc"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": 136000,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Last et al. (2023) state that devitrification occurs when vitrified samples are heated above approximately 136 K; Huebinger & Bastiaens (2026) state that heating above the glass transition devitrifies the sample. Staying below this temperature is therefore a stated physical necessity for vitrified specimens, not merely the papers' choice. The sources themselves hold the stage at 77 K.",
+      "evidence_ids": [
+        "ev_exp_0009",
+        "ev_exp_0019",
+        "ev_exp_0011",
+        "ev_exp_0018"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Fluorescence imaging of the cold specimen requires an optical path to the sample; Last et al. image through a 0.9 NA air objective on a Linkam CMS196v3 cryo-stage.",
+      "evidence_ids": [
+        "ev_exp_0013",
+        "ev_exp_0012"
+      ]
+    }
+  ],
+  "missing_information": [
+    "EM grid diameter not stated (3 mm never given explicitly in either source); grids described only by mesh and film type",
+    "cryo-stage window material and clear aperture not stated",
+    "sample thermal load tolerated at 77 K stated only as illumination power densities (16–254 W/cm2 depending on grid film), not as a cooling-power figure",
+    "humidity requirement during imaging/transfer not stated (only plunge-freezer chamber humidity is given)"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}

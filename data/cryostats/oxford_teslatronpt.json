@@ -1,0 +1,118 @@
+{
+  "id": "oxford_teslatronpt",
+  "manufacturer": "Oxford Instruments NanoScience (Oxford NanoScience Ltd, trading as Quantum Design Oxford)",
+  "model": "TeslatronPT",
+  "family": "cryogen-free (Cryofree) superconducting magnet system with variable temperature insert",
+  "description": "Integrated cryogen-free superconducting magnet system with a 50 mm static-exchange-gas variable temperature insert (1.5-300 K). Standard solenoid magnets of 8 T, 12 T or 14 T, or a 6/1/1 T vector-rotation magnet. Optional HelioxVT (He-3, <300 mK) and KelvinoxJT (dilution, <25 mK) inserts. All nanoscience.oxinst.com URLs now redirect to qd-oxford.com; specifications are taken from the qd-oxford.com product page and the 2026 brochures.",
+  "documents": [
+    {"id": "doc_ox_tpt_page", "url": "https://qd-oxford.com/products/teslatronPT.html", "title": "Quantum Design Oxford - TeslatronPT", "accessed": "2026-10-31"},
+    {"id": "doc_ox_tpt_brochure", "url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf", "title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)", "accessed": "2026-10-31"},
+    {"id": "doc_ox_tptplus_page", "url": "https://qd-oxford.com/products/teslatronPT_Plus.html", "title": "Quantum Design Oxford - TeslatronPT Plus - An Open-Architecture, Low Temperature Measurement System", "accessed": "2026-10-31"},
+    {"id": "doc_ox_tptplus_brochure", "url": "https://www.qd-oxford.com/siteDocs/TeslatronPT_Plus_Brochure.pdf", "title": "TeslatronPT Plus - Made Simple (brochure)", "accessed": "2026-10-31"}
+  ],
+  "proposed_vocabulary": [
+    {
+      "key": "cooldown_time.sample_exchange",
+      "shape": "max",
+      "unit": "s",
+      "description": "Documented time to cool a freshly loaded sample/probe to base (or stated) temperature with the cryostat already cold (sample-exchange cooldown), as distinct from cooldown_time.max for the whole system from room temperature.",
+      "status": "proposed",
+      "rationale": "TeslatronPT documents only '< 2 hours from room temperature to < 2 K for Basic Probe loaded into cold VTI'; recording this under cooldown_time.max would misrepresent the system cooldown from warm, which is not documented."
+    }
+  ],
+  "configurations": [
+    {
+      "id": "oxford_teslatronpt_8T",
+      "name": "TeslatronPT, 8 T solenoid magnet, standard VTI",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 1500, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0001", "ev_ox_0002"]},
+        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0003"]},
+        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 8000, "unit": "mT"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0004"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0008"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0009"]},
+        {"key": "cooldown_time.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0018"]},
+        {"key": "cooldown_time.sample_exchange", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0010"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0015"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0011"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0012"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0013"]},
+        {"key": "optical_access", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0014"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0016"]},
+        {"key": "module.helium3", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0017"]}
+      ]
+    },
+    {
+      "id": "oxford_teslatronpt_12T",
+      "name": "TeslatronPT, 12 T solenoid magnet, standard VTI",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 1500, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0001", "ev_ox_0002"]},
+        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0003"]},
+        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 12000, "unit": "mT"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0005", "ev_ox_0004"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0008"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0009"]},
+        {"key": "cooldown_time.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0018"]},
+        {"key": "cooldown_time.sample_exchange", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0010"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0015"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0011"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0012"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0013"]},
+        {"key": "optical_access", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0014"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0016"]},
+        {"key": "module.helium3", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0017"]}
+      ]
+    },
+    {
+      "id": "oxford_teslatronpt_14T",
+      "name": "TeslatronPT, 14 T solenoid magnet, standard VTI",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications",
+      "capabilities": [
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 1500, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0001", "ev_ox_0002"]},
+        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0003"]},
+        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 14000, "unit": "mT"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0006", "ev_ox_0004"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0008"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0009"]},
+        {"key": "cooldown_time.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0018"]},
+        {"key": "cooldown_time.sample_exchange", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0010"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0015"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0011"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0012"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0013"]},
+        {"key": "optical_access", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0014"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0016"]},
+        {"key": "module.helium3", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0017"]}
+      ]
+    },
+    {
+      "id": "oxford_teslatronpt_6_1_1T_vector",
+      "name": "TeslatronPT, 6/1/1 T vector-rotation magnet, standard VTI",
+      "configuration_basis": "catalog combination of documented options; install status is a catalog assumption, capability values are manufacturer specifications. magnetic_field.max is the 6 T main-axis value; the two transverse axes are 1 T each.",
+      "capabilities": [
+        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 1500, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0001", "ev_ox_0002"]},
+        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0003"]},
+        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 6000, "unit": "mT"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0007"]},
+        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0008", "ev_ox_0007"]},
+        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0009"]},
+        {"key": "cooldown_time.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0018"]},
+        {"key": "cooldown_time.sample_exchange", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0010"]},
+        {"key": "cooling_power.at_4200mK", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0015"]},
+        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0011"]},
+        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0012"]},
+        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0013"]},
+        {"key": "optical_access", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0014"]},
+        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0016"]},
+        {"key": "module.helium3", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0017"]}
+      ]
+    }
+  ],
+  "unknowns": [
+    {"key": "cooling_power.at_4200mK", "note": "VTI / cryocooler cooling power not stated on the product page or in either brochure (ev_ox_0015)"},
+    {"key": "cooldown_time.max", "note": "Full-system cooldown from room temperature not documented; only the sample-exchange figure '< 2 hours ... loaded into cold VTI' exists (ev_ox_0010, ev_ox_0018)"},
+    {"key": "electrical.dc_lines", "note": "DC and RF wiring documented qualitatively only; no line count (ev_ox_0011, ev_ox_0012)"},
+    {"key": "electrical.coax_lines", "note": "No coax count documented (ev_ox_0013)"},
+    {"key": "optical_access", "note": "No windows documented for the TeslatronPT cryostat; 'optical' appears only as a probe-wiring option (ev_ox_0014)"},
+    {"key": "pulse_tube_details", "note": "Cryocooler model, stage count and compressor not named in any fetched source (ev_ox_0019); no vocabulary key exists for this, recorded as a note only"}
+  ],
+  "notes": "Evidence file: data/evidence/oxford.json. The HelioxVT (<300 mK) and KelvinoxJT (<25 mK) inserts are documented options not included in these configurations; only module.helium3 has a vocabulary key. Breakout-box channel counts (IsoSwitch 24, MultiSwitch 12 incl. 6 triax, SampleProtect 24 incl. 12 twinax) are room-temperature signal-chain items from the TeslatronPT Plus brochure and are not recorded as sample wiring counts."
+}

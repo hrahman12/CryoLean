@@ -1,0 +1,181 @@
+{
+  "id": "quantum_mk_vector_field_transport",
+  "name": "Millikelvin transport on a hybrid superconductor-semiconductor nanodevice in a vector magnetic field",
+  "plain_name": "Measure a nanodevice at millikelvin in a tilted magnetic field",
+  "industry": "quantum_computing_and_sensing",
+  "sources": [
+    {
+      "id": "src_vanzanten_2020_natphys",
+      "citation": "van Zanten, D. M. T., Sabonis, D., Suter, J., Väyrynen, J. I., Karzig, T., Pikulin, D. I., O'Farrell, E. C. T., Razmadze, D., Petersson, K. D., Krogstrup, P., Marcus, C. M. (2020). Photon-assisted tunnelling of zero modes in a Majorana wire. Nature Physics.",
+      "doi": "10.1038/s41567-020-0858-0",
+      "doi_verified": true,
+      "url": "https://arxiv.org/pdf/1902.00797",
+      "note": "Full text read from the arXiv copy (arXiv:1902.00797); journal version is paywalled.",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "src_zhou_2022_natcommun",
+      "citation": "Zhou, T., Dartiailh, M. C., Sardashti, K., Han, J. E., Matos-Abiague, A., Shabani, J., Žutić, I. (2022). Fusion of Majorana bound states with mini-gate control in two-dimensional systems. Nature Communications 13, 1738.",
+      "doi": "10.1038/s41467-022-29463-6",
+      "doi_verified": true,
+      "url": "https://arxiv.org/pdf/2101.09272",
+      "note": "Full text read from the arXiv copy (arXiv:2101.09272 v3).",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.base",
+      "as_printed": "T ∼50 mK (base electron temperature)",
+      "normalized": {
+        "value": 50,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0061",
+      "source_id": "src_vanzanten_2020_natphys"
+    },
+    {
+      "key": "temperature.base",
+      "as_printed": "7 mK",
+      "normalized": {
+        "value": 7,
+        "unit": "mK"
+      },
+      "evidence_id": "ev_exp_0066",
+      "source_id": "src_zhou_2022_natcommun"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "6-1-1 T vector magnet",
+      "normalized": {
+        "value": 6000,
+        "unit": "mT"
+      },
+      "evidence_id": "ev_exp_0062",
+      "source_id": "src_vanzanten_2020_natphys"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "6-3-1.5 T vector magnet",
+      "normalized": {
+        "value": 6000,
+        "unit": "mT"
+      },
+      "evidence_id": "ev_exp_0067",
+      "source_id": "src_zhou_2022_natcommun"
+    },
+    {
+      "key": "magnetic_field.vector",
+      "as_printed": "6-1-1 T vector magnet (Oxford Instruments Triton-400)",
+      "normalized": null,
+      "evidence_id": "ev_exp_0062",
+      "source_id": "src_vanzanten_2020_natphys"
+    },
+    {
+      "key": "field_used",
+      "as_printed": "B|| = 0.75 T along the nanowire",
+      "normalized": {
+        "value": 750,
+        "unit": "mT"
+      },
+      "evidence_id": "ev_exp_0063",
+      "source_id": "src_vanzanten_2020_natphys"
+    },
+    {
+      "key": "electrical.dc_lines",
+      "as_printed": "ac lock-in, 4-10 µV, below 200 Hz",
+      "normalized": null,
+      "evidence_id": "ev_exp_0064",
+      "source_id": "src_vanzanten_2020_natphys"
+    },
+    {
+      "key": "electrical.dc_lines",
+      "as_printed": "dc and lock-in, Iac = 10 nA",
+      "normalized": {
+        "value": 10000,
+        "unit": "pA"
+      },
+      "evidence_id": "ev_exp_0068",
+      "source_id": "src_zhou_2022_natcommun"
+    },
+    {
+      "key": "rf_line_attenuation",
+      "as_printed": "21 dB + 15 dB below the mixing chamber",
+      "normalized": null,
+      "evidence_id": "ev_exp_0065",
+      "source_id": "src_vanzanten_2020_natphys"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.base",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": 50,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "van Zanten et al. (2020) measured at a base electron temperature of ~50 mK (Zhou et al. 2022 at 7 mK); 50 mK is the warmer of the two papers' operating points and neither states a physical minimum, so the user confirms this value.",
+      "evidence_ids": [
+        "ev_exp_0061",
+        "ev_exp_0066"
+      ]
+    },
+    {
+      "key": "magnetic_field.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 1000,
+          "unit": "mT"
+        }
+      },
+      "mandatory": true,
+      "origin": "user_entered",
+      "rationale": "van Zanten et al. (2020) used B|| = 0.75 T along the nanowire; the user confirms 1 T as the required maximum to give headroom above 0.75 T (profile author's choice, hence user_entered). The magnets in both papers reach 6 T on the main axis, see reported_conditions.",
+      "evidence_ids": [
+        "ev_exp_0063",
+        "ev_exp_0062",
+        "ev_exp_0067"
+      ]
+    },
+    {
+      "key": "magnetic_field.vector",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Both papers use multi-axis vector magnets (6-1-1 T in van Zanten et al.; 6-3-1.5 T in Zhou et al.) to orient the field relative to the nanowire or junction; a vector field capability is required.",
+      "evidence_ids": [
+        "ev_exp_0062",
+        "ev_exp_0067"
+      ]
+    },
+    {
+      "key": "electrical.dc_lines",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 4
+      },
+      "mandatory": false,
+      "origin": "inferred_estimate",
+      "rationale": "Neither paper states the number of DC lines. A four-terminal lock-in conductance measurement plus gates implies at least four DC lines; this is an inferred lower bound and non-mandatory.",
+      "evidence_ids": [
+        "ev_exp_0064",
+        "ev_exp_0068"
+      ]
+    }
+  ],
+  "missing_information": [
+    "number of DC and coaxial lines not stated in either paper",
+    "nanowire length/diameter not stated by van Zanten et al.",
+    "minimum field or temperature required for the topological regime not stated as a general requirement",
+    "thermal load / cooling power not stated"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+}
