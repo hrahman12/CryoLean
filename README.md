@@ -1,7 +1,6 @@
 # CryoLean
 
-<img width="686" height="891" alt="image" src="https://github.com/user-attachments/assets/6b8fe6a2-140e-4765-a555-023f3610bd1f" />
-
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e0c64585-dddc-47d8-a132-848fa78e7c3c" />
 
 CryoLean
 Cryo, made simple.
