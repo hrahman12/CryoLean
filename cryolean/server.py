@@ -57,6 +57,11 @@ class Find(BaseModel):
     include_hypothetical_options: bool = True
 
 
+class LanyonAsk(BaseModel):
+    question: str
+    facts: str = ""
+
+
 class ApplyFix(BaseModel):
     experiment_id: str
     fix: dict[str, Any]
@@ -91,6 +96,22 @@ def apply_fix(b: ApplyFix):
     """Apply a verified fix exactly; Lean re-checks it. apply_fix.confirmed is true only for REQUIREMENTS_MET on the
     same Lean input hash that was verified before the fix was shown."""
     return _env(api().apply_fix(b.experiment_id, b.fix, b.parameters, b.requirement_edits, b.confirmed))
+
+
+@app.post("/api/lanyon")
+def lanyon_ask(b: LanyonAsk):
+    """Website chat -> Lanyon AI. Returns Lanyon's answer and certification; never a verdict."""
+    from . import lanyon
+    try:
+        return {"ok": True, "data": lanyon.ask(b.question[:2000], b.facts[:6000])}
+    except lanyon.LanyonUnavailable as e:
+        return JSONResponse({"ok": False, "error": {"code": "LANYON_UNAVAILABLE", "message": str(e)}}, status_code=503)
+
+
+@app.get("/api/lanyon/status")
+def lanyon_status():
+    from . import lanyon
+    return {"ok": True, "data": {**lanyon.proposer_enabled(), "client": lanyon.client_status()}}
 
 
 @app.post("/api/find")

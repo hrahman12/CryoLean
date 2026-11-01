@@ -330,9 +330,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   <div class="demo" id="demo" hidden>
     <div class="list" id="demolist"></div>
     <div class="flow" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
-    <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Lanyon + Z3 propose · Lean decides</span></h3>
+    <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Chat with Lanyon AI · Lean decides</span></h3>
       <div id="chatlog" class="chatlog" aria-live="polite"></div>
-      <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask about this run, e.g. why 39 lines?"><button type="submit" class="replay">Ask</button></form>
+      <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask Lanyon, e.g. why 39 lines?"><button type="submit" class="replay">Ask</button></form>
       <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
       <div id="viz" hidden></div><span class="cap" id="vizcap" hidden></span></div>
   </div>
@@ -651,47 +651,32 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     st.ind = i; st.exp = Math.min(m[1], D.industries[i].experiments.length - 1);
     const j = D.industries[i].configurations.findIndex((c) => c.id === m[2]); st.cfg = j >= 0 ? j : 0; st.alt = null; render();
   }
-  // ---- Claude explainer (the `sample` capability): it narrates and answers questions about the recorded run.
-  // It is given the run's real facts and told it must never decide or change a verdict; Lean's verdicts are fixed data.
-  let aiSample = null, chat = [], aiBusy = null;
-  (async () => { try { aiSample = window.claude && await window.claude.use("sample"); } catch (e) { aiSample = null; }
-    if (!aiSample) { $("chatf").hidden = true; $("explain").hidden = true; } })();
+  // ---- Lanyon assistant: the chat goes to Lanyon AI through the CryoLean server (POST /api/lanyon).
+  // Lanyon explains and proposes; it never decides. Verdicts and the facts it is given are Lean's.
+  let lanBusy = false;
   function addMsg(cls, text) { const d = document.createElement("div"); d.className = "m " + cls; d.textContent = text; $("chatlog").appendChild(d); $("chatlog").scrollTop = 1e9; return d; }
   function runFacts(id) {
     const d = DEMOS.find((x) => x.id === id);
-    return `Demo: ${d.t} (${d.d}).\nSteps (who / what / result):\n` + (STEPS[id] || []).map(([w, t, p, big]) => `- ${WHO[w]}: ${t}. ${p} Result: ${big}.`).join("\n") + `\nSummary: ${CAP[id]}`;
+    return `Demo: ${d.t} (${d.d}).\n` + (STEPS[id] || []).map(([w, t, p, big]) => `- ${WHO[w]}: ${t}. ${p} Result: ${big}.`).join("\n") + `\nSummary: ${CAP[id]}`;
   }
-  const RULES = "You are the explainer on the CryoLean website. CryoLean checks whether a cryostat can run an experiment. " +
-    "The Lean 4 checker is the ONLY thing that decides verdicts (REQUIREMENTS_MET, DOES_NOT_MEET_REQUIREMENTS, NEED_MORE_INFORMATION). " +
-    "Fixes are proposed by Lanyon (an AI that builds certified physics models) and by Z3 (a solver); they are only suggestions, and every one is re-checked by Lean before it is shown. In the recorded demos Lanyon was switched off, so the proposals shown come from Z3. You explain; you never decide, change, or guess a verdict, " +
-    "and never invent specs or numbers: use only the facts below. If asked something the facts don't cover, say so. " +
-    "Write for a smart non-expert: plain English, short sentences, no code, no markdown headings, at most 120 words.";
-  async function askAI(userText, show) {
-    if (!aiSample) return;
-    if (aiBusy) aiBusy.abort();
-    const ctl = new AbortController(); aiBusy = ctl;
-    if (show) addMsg("me", show);
-    chat.push({ role: "user", content: userText });
-    const out = addMsg("ai", "Thinking…");
+  async function askLanyon(q, show) {
+    if (lanBusy) return;
+    addMsg("me", show || q);
+    if (!LIVEAPI) { addMsg("ai", "Lanyon answers through the live CryoLean server (python -m cryolean serve with Lanyon enabled). This page is a recording, so here's what happened: " + CAP[demoCur]); return; }
+    lanBusy = true; const out = addMsg("ai", "Lanyon is working on it… (it models the physics and certifies it, which can take a few minutes)");
     try {
-      const r = await aiSample(chat.slice(-8), { signal: ctl.signal, cache: false, onText: ({ text }) => { out.textContent = text; $("chatlog").scrollTop = 1e9; } });
-      out.textContent = r.text; chat.push({ role: "assistant", content: r.text });
-    } catch (e) {
-      chat.pop();
-      if (e && e.code === "not_granted") { out.textContent = "Claude isn't enabled for this page, so here's the short version: " + CAP[demoCur]; $("chatf").hidden = true; $("explain").hidden = true; }
-      else if (e && e.name === "AbortError" || (e && e.code === "aborted")) out.remove();
-      else out.textContent = (e && e.text) || "Claude couldn't answer right now. " + CAP[demoCur];
-    } finally { if (aiBusy === ctl) aiBusy = null; }
+      const r = await post("/api/lanyon", { question: q, facts: runFacts(demoCur) });
+      out.textContent = (r.answer || "Lanyon finished but wrote no answer.") + (r.certified ? "\n\n✓ Lanyon certified this model (proof passed the Gatekeeper)." : "\n\nNot certified: " + (r.why_not_certified || "no certificate") + ".");
+    } catch (e) { out.textContent = "Lanyon isn't available on this server: " + e.message + "\n\n" + CAP[demoCur]; }
+    finally { lanBusy = false; }
   }
   function resetChat(id) {
-    if (aiBusy) { aiBusy.abort(); aiBusy = null; }
-    chat = []; $("chatlog").innerHTML = "";
-    addMsg("note", aiSample ? "Press “Explain this run” and Claude walks you through it, or ask your own question. Claude only explains; every verdict comes from Lean." : "");
+    $("chatlog").innerHTML = "";
+    addMsg("note", "Ask Lanyon AI about this run. Lanyon explains and suggests; Lean makes every final call.");
     addMsg("ai", CAP[id]);
   }
-  $("explain").onclick = () => askAI(RULES + "\n\nFACTS:\n" + runFacts(demoCur) + "\n\nWalk the viewer through this run step by step, like a friendly lab guide.", "Explain this run");
-  $("chatf").onsubmit = (e) => { e.preventDefault(); const q = $("chatq").value.trim(); if (!q) return; $("chatq").value = "";
-    askAI((chat.length ? "" : RULES + "\n\nFACTS:\n" + runFacts(demoCur) + "\n\n") + "Viewer question: " + q, q); };
+  $("explain").onclick = () => askLanyon("Walk me through this run step by step in plain English.", "Explain this run");
+  $("chatf").onsubmit = (e) => { e.preventDefault(); const q = $("chatq").value.trim(); if (!q) return; $("chatq").value = ""; askLanyon(q); };
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
     $("liverow").hidden = false; $("demo").hidden = !demo;
