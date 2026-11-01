@@ -57,6 +57,14 @@ class Find(BaseModel):
     include_hypothetical_options: bool = True
 
 
+class ApplyFix(BaseModel):
+    experiment_id: str
+    fix: dict[str, Any]
+    parameters: dict[str, Any] | None = None
+    requirement_edits: list[dict[str, Any]] | None = None
+    confirmed: bool = False
+
+
 def _env(r: dict) -> JSONResponse:
     """Bridge envelopes are {ok, data | error}; errors keep their code and HTTP 422 so the page can show them."""
     return JSONResponse(r, status_code=200 if r.get("ok") else 422)
@@ -76,6 +84,13 @@ def check(b: Check):
     """Lean verdict for one exact configuration, then Z3 suggestions (each re-checked by Lean)."""
     return _env(api().check_compatibility(b.experiment_id, b.configuration_id, b.parameters, b.requirement_edits, b.confirmed,
                                           None, b.suggestions))
+
+
+@app.post("/api/apply-fix")
+def apply_fix(b: ApplyFix):
+    """Apply a verified fix exactly; Lean re-checks it. apply_fix.confirmed is true only for REQUIREMENTS_MET on the
+    same Lean input hash that was verified before the fix was shown."""
+    return _env(api().apply_fix(b.experiment_id, b.fix, b.parameters, b.requirement_edits, b.confirmed))
 
 
 @app.post("/api/find")
@@ -108,13 +123,12 @@ def repair_demo():
     if not first.get("ok"):
         return _env(first)
     r = first["data"]
-    found = [p for p in r.get("suggestions", {}).get("parameter_changes", []) if p.get("status") == "found"]
-    steps = {"initial": r, "z3_proposals": found, "recheck": None}
-    if found:
-        p = found[0]   # the user "applies" the first proposal; Lean then checks the revised experiment from scratch
-        steps["applied"] = {p["parameter"]: {"value": p.get("suggested_exact") or p["suggested"], "unit": p.get("unit") or "count"}}
-        steps["recheck"] = a.check_compatibility("quantum_mxc_wiring_heat_budget", "bluefors_ld400_hdw", steps["applied"],
-                                                 None, True, None, False).get("data")
+    fixes = (r.get("suggestions") or {}).get("verified_fixes", [])
+    steps = {"initial": r, "verified_fixes": fixes, "z3_proposals": fixes, "recheck": None}
+    if fixes:
+        fx = fixes[0]   # the user "applies" the first verified fix; Lean then checks that exact configuration again
+        steps["applied"] = fx
+        steps["recheck"] = a.apply_fix("quantum_mxc_wiring_heat_budget", fx, None, None, True).get("data")
     return {"ok": True, "data": steps}
 
 

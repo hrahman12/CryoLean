@@ -178,6 +178,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
+.fallback[hidden] { display: none !important }
 </style>
 
 <div class="viewport" id="viewport">
@@ -342,7 +343,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   $("view-in").onclick = () => view(true); $("view-out").onclick = () => view(false);
   $("orb-l").onclick = () => has3d && Cryo3D.orbit(0.35); $("orb-r").onclick = () => has3d && Cryo3D.orbit(-0.35); $("orb-0").onclick = () => has3d && Cryo3D.reset();
   const thumbs = {};
-  const thumbOf = (kind, verdict) => { const k = kind + "|" + verdict; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
+  const thumbOf = (kind, verdict, id) => { const k = kind + "|" + verdict + "|" + id; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict, id) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
 
   // ---------------------------------------------------------------- live step 3 (Lean outcome lattice)
   // Every outcome below comes from site/lattice.json: Lean decided each requirement at every documented limit of every
@@ -570,14 +571,24 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const v = r.verification || {}, ce = v.concrete_evaluation || {}, card = r.verdict_card || {};
     const proof = `<p class="meta">Decided by <b>${esc(ce.engine || card.decided_by || "Lean checker")}</b> (Lean ${esc(ce.lean_version || card.lean_version || "")}), verified_by_lean = <b>${esc(String(ce.verified_by_lean ?? ""))}</b>, input hash <code>${esc(String(ce.lean_input_hash || card.lean_input_hash || ""))}</code>, core source hash <code>${esc((card.source_hash || "").slice(0, 16))}</code>.</p>` +
       `<p class="meta">Theorems behind this verdict: ${(card.theorems || (v.generic_theorems || {}).key_theorems || []).map((t) => `<code>${esc(typeof t === "string" ? t : t.name || JSON.stringify(t))}</code>`).join(", ")}. Axioms: standard only = <b>${esc(String(card.axioms_standard_only ?? ""))}</b>.</p>`;
-    const sg = r.suggestions || {}, alts = sg.alternatives || [], pcs = (sg.parameter_changes || []).filter((p) => p.status === "found"), cf = ((sg.conflicts || {}).conflicts || []);
-    const z3 = (cf.length ? `<p class="meta"><b>Z3 unsat core:</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "") +
-      (pcs.length ? `<p class="meta"><b>Z3 parameter changes</b> (each already re-checked by Lean):</p>` + pcs.map((p) => `<button class="fix zfix" data-p="${esc(p.parameter)}" data-v="${esc(p.suggested_exact || p.suggested)}">${esc(p.parameter)}: ${esc(p.current)} → ${esc(p.suggested)} · Lean ${esc(p.lean_verdict)}</button>`).join(" ") : "") +
-      (alts.length ? `<p class="meta"><b>Z3 alternatives</b> (Lean verdict shown for each):</p><div class="alts">` + alts.slice(0, 6).map((a) => `<button class="alt zalt" data-cid="${esc(a.configuration_id)}">${esc(a.name || a.configuration_id)} · Lean ${esc(a.lean_verdict)}${a.hypothetical ? " · with options " + esc(a.added_options.join(", ")) : ""}</button>`).join("") + `</div>` : "") ||
-      "<p class='meta'>No Z3 suggestion for this pairing.</p>";
+    const sg = r.suggestions || {}, fixes = (sg.verified_fixes || []).filter((f) => f.lean && f.lean.verdict === "REQUIREMENTS_MET"), cf = ((sg.conflicts || {}).conflicts || []);
+    const dc = sg.discarded || {}, ndisc = Object.values(dc).reduce((a, b) => a + b, 0);
+    const fixHTML = (f) => {
+      const what = f.kind === "alternative_configuration"
+        ? `Switch to <b>${esc((f.manufacturer ? f.manufacturer + " " : "") + (f.name || f.configuration_id))}</b> <code>${esc(f.configuration_id)}</code> (catalog configuration, unchanged)`
+        : (f.changes || []).map((c) => `Set <b>${esc(c.parameter)}</b>: ${esc(c.from)} → <b>${esc(c.to)}</b> <span class="meta">(exact value <code>${esc(c.value)} ${esc(c.unit)}</code>)</span>`).join("<br>");
+      return `<div class="fixcard" style="border:1.5px solid var(--met);border-radius:10px;padding:8px 10px;margin:6px 0">` +
+        `<div><span class="pill met">Lean PASS</span> ${what}</div>` +
+        `<p class="meta" style="margin:4px 0">Lean evidence: verdict <b>${esc(f.lean.verdict)}</b> · input hash <code>${esc(String(f.lean.lean_input_hash || "").slice(0, 16))}</code> · Lean ${esc(f.lean.lean_version || "")} · theorems ${(f.lean.theorems || []).map((t) => `<code>${esc(t)}</code>`).join(", ")}</p>` +
+        `<button class="fix applyfix" data-fix="${esc(f.fix_id)}">Apply fix</button></div>`;
+    };
+    const z3 = (fixes.length ? `<p class="meta">Every fix below already passed the Lean 4 checker on the exact configuration that <b>Apply fix</b> will use.</p>` + fixes.map(fixHTML).join("")
+      : `<div class="v fail on" style="opacity:1"><span class="c">!</span><span><b>No verified solution found</b><br>No candidate from Z3 passed the Lean checker within the documented catalog and your parameters. Nothing is suggested.</span></div>`) +
+      (ndisc ? `<p class="meta">${ndisc} Z3 candidate(s) discarded because Lean did not return REQUIREMENTS_MET (fail ${dc.DOES_NOT_MEET_REQUIREMENTS || 0}, unknown ${dc.NEED_MORE_INFORMATION || 0}, needs uninstalled options ${dc.needs_uninstalled_options || 0}, error ${dc.error || 0}).</p>` : "") +
+      (cf.length ? `<p class="meta"><b>Why it fails (Z3 unsat core, diagnostic only):</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "");
     const tone = VCLS[r.verdict[0]];
     return `<div style="display:grid;gap:10px"><div class="v ${tone} on" style="opacity:1"><span class="c">${tone === "met" ? "&#10003;" : tone === "fail" ? "&#10005;" : "?"}</span><span><b style="font:800 18px var(--display)">${esc(title || r.headline)}</b><br>${esc(r.user_message || r.summary)}</span></div>` +
-      sec("Detailed requirements", reqs, true) + sec("Scientific evidence", ev) + sec("Lean proof details", proof) + sec("Z3 recommendations · hints, never verdicts", z3, r.verdict !== "REQUIREMENTS_MET") + `</div>`;
+      sec("Detailed requirements", reqs, true) + sec("Scientific evidence", ev) + sec("Lean proof details", proof) + (r.verdict !== "REQUIREMENTS_MET" && r.suggestions ? sec("Suggested fixes · Lean-verified only", z3, true) : "") + `</div>`;
   }
   async function checkSetup() {
     const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
@@ -594,12 +605,22 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     try {
       const r = await post("/api/check", { experiment_id: ex.id, configuration_id: cid, requirement_edits: edits(ex.id, lv), confirmed, suggestions: true });
       $("dlgbody").innerHTML = resultHTML(r);
-      $("dlgbody").querySelectorAll("button.zalt").forEach((b) => b.onclick = () => {
-        const j = ind.configurations.findIndex((c) => c.id === b.dataset.cid);
-        if (j >= 0) { st.cfg = j; st.alt = null } else if (L.configurations[b.dataset.cid]) st.alt = b.dataset.cid;
-        render(); checkSetup();     // switching machines keeps the experiment; the new pairing is checked again
-      });
+      wireFixes(r, { experiment_id: ex.id, requirement_edits: edits(ex.id, lv), confirmed });
     } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
+  }
+  // Apply fix: send the exact verified configuration; Lean runs again and must return REQUIREMENTS_MET on the same input hash.
+  function wireFixes(r, base) {
+    const fixes = ((r.suggestions || {}).verified_fixes) || [];
+    $("dlgbody").querySelectorAll("button.applyfix").forEach((b) => b.onclick = async () => {
+      const f = fixes.find((x) => x.fix_id === b.dataset.fix); if (!f) return;
+      b.disabled = true; b.textContent = "Lean is re-checking…";
+      try {
+        const out = await post("/api/apply-fix", { ...base, fix: f });
+        const a = out.apply_fix || {}, ok = a.confirmed;
+        b.insertAdjacentHTML("afterend", `<div class="v ${ok ? "met" : "fail"} on" style="opacity:1;margin-top:6px"><span class="c">${ok ? "&#10003;" : "&#10005;"}</span><span><b>${ok ? "Applied · Lean: REQUIREMENTS_MET" : "Lean did not reproduce the verified result"}</b><br>verdict ${esc(out.verdict)} · same configuration as verified: ${esc(String(a.same_configuration))} · input hash <code>${esc(String(a.lean_input_hash || "").slice(0, 16))}</code></span></div>`);
+        b.textContent = ok ? "Applied" : "Apply failed";
+      } catch (e) { b.textContent = "Error: " + e.message; }
+    });
   }
   async function tryDemo() {
     if (!LIVEAPI) { closeDlg(); tab(true); playDemo("B"); return; }
@@ -607,11 +628,11 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("dlgbody").innerHTML = `<p class="meta">1 · Checking the 50-qubit wiring layout on a Bluefors LD400 with high-density wiring…</p>`; openDlg();
     try {
       const d = await post("/api/repair-demo", {});
-      const p = d.z3_proposals[0];
+      const fx = (d.verified_fixes || [])[0], p = fx && (fx.changes || [])[0];
       $("dlgbody").innerHTML =
         `<p class="meta"><b>1 · Lean checks the original setup.</b></p>` + resultHTML(d.initial, "Lean rejects the original wiring") +
-        (p ? `<p class="meta" style="margin-top:12px"><b>2 · Z3 proposes a change</b> (a hint): ${esc(p.parameter)} ${esc(p.current)} → ${esc(p.suggested)}. <b>3 · You apply it</b> and Lean checks the revised experiment from scratch:</p>` +
-          resultHTML(d.recheck, "Lean re-checks the revised wiring") : `<p class="meta">Z3 found no single-parameter repair.</p>`);
+        (p ? `<p class="meta" style="margin-top:12px"><b>2 · Z3 proposes, Lean verifies before showing:</b> ${esc(p.parameter)} ${esc(p.from)} → ${esc(p.to)} (Lean ${esc(fx.lean.verdict)}, hash <code>${esc(String(fx.lean.lean_input_hash).slice(0, 16))}</code>). <b>3 · You apply it</b> and Lean checks that exact configuration again:</p>` +
+          resultHTML(d.recheck, "Lean re-checks the applied fix") : `<p class="meta"><b>No verified solution found.</b></p>`);
     } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
   }
   function openDlg() { const g = $("dlg"); if (g.showModal && !g.open) g.showModal(); else g.setAttribute("open", "") }
@@ -628,7 +649,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
     const lv = liveState(ex.id);
     $("configs").innerHTML = ind.configurations.map((c, i) => {
-      const vc = VCLS[liveVerdict(ex.id, c.id, lv)], kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, vc);
+      const vc = VCLS[liveVerdict(ex.id, c.id, lv)], kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, vc, c.id);
       return `<button class="tile" aria-pressed="${!st.alt && i === st.cfg}" data-i="${i}" title="${esc((c.manufacturer || "") + " " + c.name)}">` +
         (img ? `<img alt="" src="${img}">` : `<span></span>`) +
         `<span class="lab"><span class="dot" style="background:var(--${vc})"></span><span class="n">${esc(c.manufacturer || ("Cryostat " + "ABC"[i]))}</span></span></button>`;
@@ -641,7 +662,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
     $("stagetag").textContent = altC ? `${(mc.manufacturer || "").split("(")[0]} · ${mc.name}`.slice(0, 48) : "Sample goes here";
-    if (has3d) Cryo3D.show(kind, VCLS[vcode]);
+    if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
     ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
 

@@ -286,3 +286,29 @@ def test_20_offline_verification_from_local_data(api, monkeypatch):
     assert r["verdict"] == "REQUIREMENTS_MET" and r["verification"]["concrete_evaluation"]["verified_by_lean"] is True
     assert any("leicabiosystems" in (e.get("source_url") or "") or "leica" in (e.get("document_title") or "").lower()
                for c in r["checks"] for e in c["capability_evidence"])
+
+
+# Verified-fix gate -----------------------------------------------------------------------------
+def test_suggested_fixes_are_all_lean_verified_and_apply_reproduces_them(api):
+    """Every listed fix passed Lean before it is shown; Apply fix re-runs Lean on the identical configuration."""
+    r = check(api, "quantum_mxc_wiring_heat_budget", "bluefors_ld400_hdw")
+    sg = r["suggestions"]
+    assert sg["gate"] == "lean_verified_only"
+    assert sg["verified_fixes"], "expected at least one verified fix for the wiring demo"
+    for f in sg["verified_fixes"]:
+        assert f["lean"]["verdict"] == "REQUIREMENTS_MET" and f["lean"]["lean_input_hash"]
+        assert f["verified"] is True
+    for f in sg["parameter_changes"] + sg["alternatives"]:
+        assert f["verified"] is True
+    for f in sg["verified_fixes"]:
+        out = data(api.apply_fix("quantum_mxc_wiring_heat_budget", f, None, None, True))
+        assert out["verdict"] == "REQUIREMENTS_MET"
+        assert out["apply_fix"]["same_configuration"] and out["apply_fix"]["confirmed"]
+
+
+def test_no_verified_solution_is_reported_not_faked(api):
+    r = check(api, "quantum_mxc_wiring_heat_budget", "bluefors_ld400_hdw")
+    sg = r["suggestions"]
+    if not sg["verified_fixes"]:
+        assert sg["status"] == "no_verified_solution_found" and sg["message"] == "No verified solution found"
+    assert sg["requirement_relaxations"] == []

@@ -228,6 +228,19 @@ class CryoLeanAPI:
         return res
 
     @_api
+    def apply_fix(self, experiment_id: str, fix, parameters=None, requirement_edits=None, confirmed: bool = False,
+                  extra_modifications=None):
+        """Apply a Lean-verified fix exactly as it was verified and run Lean again on that configuration."""
+        fix = _parse(fix)
+        merged = dict(_parse(parameters) or {})
+        merged.update(fix.get("parameters") or {})
+        ex = self._working(experiment_id, merged or None, requirement_edits, confirmed)
+        mods = _parse(extra_modifications) or []
+        res = verifier.apply_fix(self._catalog, ex, fix, mods if fix.get("kind") != "alternative_configuration" else [])
+        self._store(res, ex, fix["configuration_id"], mods)
+        return res
+
+    @_api
     def find_compatible_equipment(self, experiment_id: str, parameters=None, requirement_edits=None, confirmed: bool = False,
                                   max_results: int = 10, include_hypothetical_options: bool = True, offset: int = 0):
         """Lean decides EVERY registered configuration first (parallel check-batch). Z3 then ranks the verified ones by
