@@ -311,7 +311,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <h2 id="h2"><span class="num">2</span>Choose a cryostat</h2>
       <div class="machine" id="machine">
         <span class="kind" id="kind"></span>
-        <span class="tag" id="stagetag">Sample goes here</span>
+        <span class="tag" id="stagetag" hidden></span>
         <div class="gl" id="gl" role="img" aria-label="3D model of the selected cryostat. Drag to orbit, scroll to zoom."></div>
         <div class="fallback" id="fallback" hidden><svg viewBox="0 0 320 250" width="300"><rect x="70" y="28" width="180" height="16" rx="4" fill="#24324a"/><rect x="100" y="44" width="120" height="150" fill="#e7edf0"/><rect x="140" y="160" width="40" height="12" fill="#deb869"/><rect x="62" y="214" width="196" height="16" rx="4" fill="#24324a"/></svg></div>
         <div class="tools">
@@ -837,7 +837,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const vcode = liveVerdict(ex.id, mc.id, lv), v = verdictOf(ex, cfg), kind = has3d ? Cryo3D.archetype(mc) : "";
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
-    $("stagetag").textContent = altC ? `${(mc.manufacturer || "").split("(")[0]} · ${mc.name}`.slice(0, 48) : "Sample goes here";
+    $("stagetag").hidden = true;
     if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
     ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
