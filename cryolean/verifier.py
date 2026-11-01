@@ -283,7 +283,7 @@ def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, le
             configuration_id: str | None = None, extra_modifications=None) -> dict:
     configuration_id = configuration_id or cfg_doc["id"].split("~")[0]
     out = {"engine": "z3", "gate": "lean_verified_only",
-           "note": ("Z3 proposes candidates; every candidate is checked by the Lean checker on the exact configuration Apply "
+           "note": ("Lanyon (when enabled) and Z3 propose candidates; every candidate is checked by the Lean checker on the exact configuration Apply "
                     "will use. Only REQUIREMENTS_MET candidates are listed; all others are discarded.")}
     out["conflicts"] = smt.all_conflicts(cfg_doc, exp_doc)
     out["requirements_self_consistent"] = smt.requirements_self_consistent(exp_doc)
@@ -307,6 +307,31 @@ def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, le
     adjustable = {}
     for c in exp_doc.get("coupled", []):
         adjustable.update(catalog.coupled_models.get(c["model"], {}).get("parameters", {}) or {})
+    # 1a. Lanyon (AI proposer) first, when enabled: each candidate is Lean-checked exactly like Z3's
+    out["proposers"] = {"z3": {"enabled": True}}
+    from . import lanyon
+    lan = lanyon.proposer_enabled()
+    out["proposers"]["lanyon"] = {"enabled": lan["enabled"], "reason": lan["reason"]}
+    if failing and lan["enabled"]:
+        failing_checks = [c for c in lean["coupled_checks"] if c["id"] in failing]
+        try:
+            lp = lanyon.propose_repairs(catalog, exp_doc, cfg_doc, failing_checks, adjustable)
+            out["proposers"]["lanyon"].update({k: lp[k] for k in ("session_id", "certified", "evidence_status", "why_not_certified")},
+                                              candidates=len(lp["candidates"]))
+            for c in lp["candidates"]:
+                pv = {c["parameter"]: {"value": c["value"], "unit": c["unit"]}}
+                lr = ask(pv)
+                if lr:
+                    cur = next((prm.get("value") for prm in experiment.get("params", []) if prm["name"] == c["parameter"]), None)
+                    fixes.append({"kind": "parameter_change", "proposed_by": "lanyon", "lanyon_session": lp["session_id"],
+                                  "lanyon_certified": lp["certified"], "configuration_id": configuration_id, "parameters": pv,
+                                  "changes": [{"parameter": c["parameter"],
+                                               "from": units.display_catalog(cur["value"], cur["unit"]) if isinstance(cur, dict) else str(cur),
+                                               "to": units.display_catalog(c["value"], c["unit"]), "value": c["value"], "unit": c["unit"]}],
+                                  "parameter": c["parameter"], "status": "found", "lean_verdict": lr["verdict"], "verified": True,
+                                  "lean": _lean_evidence(lr)})
+        except Exception as e:   # noqa: BLE001 - Lanyon failing never blocks Z3 or Lean
+            out["proposers"]["lanyon"]["error"] = str(e)[:300]
     proposals = smt.suggest_parameters(cfg_doc, exp_doc, failing, adjustable) if failing else []
     found = [p for p in proposals if p.get("status") == "found"]
     passed_single = []
@@ -320,7 +345,7 @@ def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, le
             pv = {p["parameter"]: {"value": str(val.numerator) if val.denominator == 1 else f"{val.numerator}/{val.denominator}", "unit": u}}
             lr = ask(pv)
             if lr:
-                fx = {"kind": "parameter_change", "configuration_id": configuration_id, "parameters": pv,
+                fx = {"kind": "parameter_change", "proposed_by": "z3", "configuration_id": configuration_id, "parameters": pv,
                       "changes": [{"parameter": p["parameter"], "from": p["current"],
                                    "to": units.display(si, units.dims_of({"dim": q.get("dim", {})})),
                                    "value": pv[p["parameter"]]["value"], "unit": u,
@@ -345,7 +370,7 @@ def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, le
             chg.append({"parameter": p["parameter"], "from": p["current"], "to": p["suggested"], "value": pv[p["parameter"]]["value"], "unit": u})
         lr = ask(pv)
         if lr:
-            fixes.append({"kind": "parameter_change", "configuration_id": configuration_id, "parameters": pv, "changes": chg,
+            fixes.append({"kind": "parameter_change", "proposed_by": "z3", "configuration_id": configuration_id, "parameters": pv, "changes": chg,
                           "status": "found", "lean_verdict": lr["verdict"], "verified": True, "lean": _lean_evidence(lr)})
     out["z3_parameter_proposals"] = len(found)
 
@@ -376,7 +401,7 @@ def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, le
             lr = ask(None, cid, None)
             if lr:
                 cfg = catalog.configurations.get(cid, {})
-                fixes.append({"kind": "alternative_configuration", "configuration_id": cid, "parameters": {},
+                fixes.append({"kind": "alternative_configuration", "proposed_by": "z3", "configuration_id": cid, "parameters": {},
                               "name": r["configuration_document"]["name"], "manufacturer": cfg.get("manufacturer"),
                               "model": cfg.get("model"), "equipment_id": ev["equipment_id"],
                               "min_relative_margin": ev["min_relative_margin"], "named_in_sources": ev["named_in_sources"],

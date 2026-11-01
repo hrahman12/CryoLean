@@ -156,3 +156,59 @@ def capability_record(imported: dict, key: str, value: dict, claim: str, source_
                               "certificate_id": next(c.get("certificate_id") for c in imported["certificates"]),
                               "proof_sha256": g["sha256"], "registry_rule": g["registry_rule"]}
     return rec
+
+
+# ---------------------------------------------------------------------------- Lanyon as a repair proposer
+# Lanyon is the AI proposer for repairs: given a failing coupled relation, it specifies and certifies a physics model
+# and writes candidate parameter values. Its candidates are HINTS: verifier.suggest sends every one of them through
+# the Lean checker on the exact configuration Apply fix will use, and discards anything that is not REQUIREMENTS_MET.
+# Because this sends the problem to Lanyon's servers, it runs only when CRYOLEAN_LANYON_PROPOSER=1 is set.
+import os
+
+CANDIDATE_FILE = "candidates.json"
+
+
+def proposer_enabled() -> dict:
+    if os.environ.get("CRYOLEAN_LANYON_PROPOSER") != "1":
+        return {"enabled": False, "reason": "Lanyon proposer is off (set CRYOLEAN_LANYON_PROPOSER=1 to send repair problems to Lanyon)"}
+    st = client_status()
+    return {"enabled": st["available"], "reason": st["reason"]}
+
+
+def repair_problem(exp_doc: dict, cfg_doc: dict, failing: list[dict], adjustable: dict) -> tuple[str, str]:
+    """Plain-language repair problem + simulation instructions for Lanyon (numbers are the exact Lean inputs)."""
+    rel = "\n".join(f"- {c.get('name') or c.get('id')}: {c.get('explanation')}" for c in failing)
+    params = "\n".join(f"- {n}: may {m.get('adjustable')}{' (integer)' if m.get('integer') else ''}" for n, m in adjustable.items()
+                       if m.get("adjustable"))
+    problem = (f"Cryostat configuration '{cfg_doc.get('name')}' fails these coupled constraints for experiment "
+               f"'{exp_doc.get('name') or exp_doc.get('id')}':\n{rel}\n\nAdjustable experiment parameters:\n{params}\n\n"
+               "Model the constraint and find values of the adjustable parameters that satisfy it with the smallest change "
+               "from the current values. Do not change any equipment specification or requirement.")
+    instr = (f"Write {CANDIDATE_FILE} in results/: a JSON list of objects "
+             '{"parameter": <name>, "value": "<exact decimal or a/b>", "unit": "<unit symbol>"}, best candidate first.')
+    return problem, instr
+
+
+def propose_repairs(catalog: Catalog, exp_doc: dict, cfg_doc: dict, failing: list[dict], adjustable: dict,
+                    timeout: float = 1800) -> dict:
+    """Run Lanyon on the repair problem and return its candidates (unverified hints) plus the run's certification."""
+    st = proposer_enabled()
+    if not st["enabled"]:
+        raise LanyonUnavailable(st["reason"])
+    problem, instr = repair_problem(exp_doc, cfg_doc, failing, adjustable)
+    r = run(problem, instr, name="repair", timeout=timeout)
+    imported = import_session(catalog, r["run_dir"])
+    cands = []
+    for sim in imported["simulations"]:
+        for f in sim["results"]:
+            if Path(f).name == CANDIDATE_FILE:
+                try:
+                    raw = json.loads(Path(f).read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                for c in raw if isinstance(raw, list) else []:
+                    if isinstance(c, dict) and {"parameter", "value", "unit"} <= set(c) and c["parameter"] in adjustable:
+                        cands.append({"parameter": str(c["parameter"]), "value": str(c["value"]), "unit": str(c["unit"])})
+    return {"session_id": imported["session_id"], "run_dir": r["run_dir"], "certified": imported["certified"],
+            "evidence_status": imported["evidence_status"], "why_not_certified": imported["why_not_certified"],
+            "candidates": cands}

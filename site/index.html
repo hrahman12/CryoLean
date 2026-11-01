@@ -140,6 +140,7 @@ header.top { text-align: center; height: 172px }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
 .demo { display: grid; grid-template-columns: 260px minmax(0, 1fr) 360px; gap: 14px; height: 300px; margin-top: 8px }
+.demo .viz { min-width: 0 } .chatlog .m { overflow-wrap: anywhere }
 .chatlog { overflow: auto; display: flex; flex-direction: column; gap: 8px; min-height: 0; padding-right: 4px }
 .chatlog .m { font: 500 13px/1.4 var(--body); padding: 8px 10px; border-radius: 12px; max-width: 95%; white-space: pre-wrap }
 .chatlog .m.ai { background: var(--chip); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px }
@@ -160,6 +161,9 @@ header.top { text-align: center; height: 172px }
 .flow .st .who { font: 800 11px var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; justify-self: start }
 .flow .st.lean { border-color: var(--met) } .flow .st.lean .who { background: color-mix(in srgb, var(--met) 22%, transparent); color: var(--met) }
 .flow .st.z3 { border-style: dashed; border-color: #e0893a } .flow .st.z3 .who { background: rgba(224,137,58,.18); color: #e0893a }
+.flow .st.lanyon { border-style: dashed; border-color: #a77bff } .flow .st.lanyon .who { background: rgba(167,123,255,.18); color: #a77bff }
+.fixby { font: 800 10.5px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; margin-left: 6px }
+.fixby.lanyon { background: rgba(167,123,255,.18); color: #a77bff } .fixby.z3 { background: rgba(224,137,58,.18); color: #e0893a }
 .flow .st.you .who, .flow .st.data .who { background: var(--chip); color: var(--ink-2) }
 .flow .st b.t { font: 800 16px/1.2 var(--display); color: var(--ink) }
 .flow .st p { margin: 0; font: 500 13px/1.35 var(--body); color: var(--ink-2) }
@@ -302,7 +306,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   <div class="demo" id="demo" hidden>
     <div class="list" id="demolist"></div>
     <div class="flow" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
-    <div class="viz ai"><h3 style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span id="viztitle"></span><span class="aitag">Claude explains · Lean decides</span></h3>
+    <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Lanyon + Z3 propose · Lean decides</span></h3>
       <div id="chatlog" class="chatlog" aria-live="polite"></div>
       <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask about this run, e.g. why 39 lines?"><button type="submit" class="replay">Ask</button></form>
       <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
@@ -1471,12 +1475,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     A: [["data", "Your experiment", "Magnetoresistance needs a field of at least 10 T.", "needs 10 T", "neutral"],
         ["data", "The machine", "PPMS DynaCool, 9 T magnet. Quantum Design's brochure says the base magnet is 9 T.", "has 9 T", "neutral"],
         ["lean", "Lean checks", "Lean compares the two numbers exactly. 9 T is less than 10 T, so this requirement fails.", "Does not meet", "fail"],
-        ["z3", "Z3 explains + suggests", "Z3 points at the exact brochure line that blocks it, and looks for another magnet option: the 14 T DynaCool.", "try 14 T", "neutral"],
+        ["lanyon", "Lanyon + Z3 propose", "Lanyon (AI) and Z3 look for a way out. Z3 cites the blocking brochure line and proposes the 14 T DynaCool.", "try 14 T", "neutral"],
         ["lean", "Lean re-checks the suggestion", "The 14 T option is only shown if Lean passes it. Some of its specs aren't published, so Lean asks for more information instead of guessing.", "Need more info", "info"]],
     B: [["data", "Your experiment", "Run 50 qubits: drive, flux and readout lines all go down to the 20 mK plate.", "50 flux lines", "neutral"],
         ["data", "The machine", "Bluefors LD400 with high-density wiring. Cooling power at 20 mK: 12 µW.", "12 µW to spare", "neutral"],
         ["lean", "Lean checks", "Temperature and line count pass, but the wires leak heat. Lean adds it up: 14.592 µW, more than the 12 µW available.", "14.6 µW > 12 µW", "fail"],
-        ["z3", "Z3 suggests a fix", "Z3 finds the largest number of flux lines that still fits the heat budget.", "use 39 lines", "neutral"],
+        ["lanyon", "Lanyon + Z3 propose a fix", "Lanyon (AI) and Z3 propose fewer flux lines. Lanyon was off in this recording, so Z3's exact answer is shown.", "use 39 lines", "neutral"],
         ["lean", "Lean verifies the fix", "Lean checks the exact fixed setup before you ever see it: 11.985 µW fits under 12 µW.", "Requirements met", "met"]],
     C: [["you", "A new industry", "Someone asks about semiconductors, which CryoLean has never seen before.", "new: semiconductors", "neutral"],
         ["data", "Research + review", "The new experiment is written up from published sources, validated, and approved by a reviewer.", "sourced + reviewed", "neutral"],
@@ -1489,7 +1493,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         ["lean", "Lean checks the schedule", "Lean proves no slots overlap, all fit after cooldown, and only accepted runs are used.", "Schedule OK", "met"],
         ["z3", "If you only had 20 h", "Z3 proves it can't fit: 18 h of runs, but only 15 h left after cooldown.", "can't fit (proved)", "fail"]],
   };
-  const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests" };
+  const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
   function flowHTML(id, n) {
     return (STEPS[id] || []).map(([w, t, p, big, tone], i) => `<div class="st ${w}${i < n ? " on" : ""}"><span class="who">${WHO[w]}</span><b class="t">${esc(t)}</b><p>${esc(p)}</p><div class="big ${tone}">${esc(big)}</div></div>`).join("");
   }
@@ -1532,7 +1536,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   }
   const RULES = "You are the explainer on the CryoLean website. CryoLean checks whether a cryostat can run an experiment. " +
     "The Lean 4 checker is the ONLY thing that decides verdicts (REQUIREMENTS_MET, DOES_NOT_MEET_REQUIREMENTS, NEED_MORE_INFORMATION). " +
-    "Z3 only suggests fixes and every suggestion is re-checked by Lean before it is shown. You explain; you never decide, change, or guess a verdict, " +
+    "Fixes are proposed by Lanyon (an AI that builds certified physics models) and by Z3 (a solver); they are only suggestions, and every one is re-checked by Lean before it is shown. In the recorded demos Lanyon was switched off, so the proposals shown come from Z3. You explain; you never decide, change, or guess a verdict, " +
     "and never invent specs or numbers: use only the facts below. If asked something the facts don't cover, say so. " +
     "Write for a smart non-expert: plain English, short sentences, no code, no markdown headings, at most 120 words.";
   async function askAI(userText, show) {
@@ -1607,11 +1611,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         ? `Switch to <b>${esc((f.manufacturer ? f.manufacturer + " " : "") + (f.name || f.configuration_id))}</b> <code>${esc(f.configuration_id)}</code> (catalog configuration, unchanged)`
         : (f.changes || []).map((c) => `Set <b>${esc(c.parameter)}</b>: ${esc(c.from)} → <b>${esc(c.to)}</b> <span class="meta">(exact value <code>${esc(c.value)} ${esc(c.unit)}</code>)</span>`).join("<br>");
       return `<div class="fixcard" style="border:1.5px solid var(--met);border-radius:10px;padding:8px 10px;margin:6px 0">` +
-        `<div><span class="pill met">Lean PASS</span> ${what}</div>` +
+        `<div><span class="pill met">Lean PASS</span><span class="fixby ${esc(f.proposed_by || "z3")}">Proposed by ${f.proposed_by === "lanyon" ? "Lanyon AI" : "Z3"}</span> ${what}</div>` +
         `<p class="meta" style="margin:4px 0">Lean evidence: verdict <b>${esc(f.lean.verdict)}</b> · input hash <code>${esc(String(f.lean.lean_input_hash || "").slice(0, 16))}</code> · Lean ${esc(f.lean.lean_version || "")} · theorems ${(f.lean.theorems || []).map((t) => `<code>${esc(t)}</code>`).join(", ")}</p>` +
         `<button class="fix applyfix" data-fix="${esc(f.fix_id)}">Apply fix</button></div>`;
     };
-    const z3 = (fixes.length ? `<p class="meta">Every fix below already passed the Lean 4 checker on the exact configuration that <b>Apply fix</b> will use.</p>` + fixes.map(fixHTML).join("")
+    const lp = (sg.proposers || {}).lanyon || {};
+    const z3 = `<p class="meta"><b>Lanyon AI</b> ${lp.enabled ? "proposed " + (lp.candidates || 0) + " candidate(s)" : "is off on this server"}; <b>Z3</b> also proposes. Lean checks every proposal and only passes are shown.</p>` + (fixes.length ? `<p class="meta">Every fix below already passed the Lean 4 checker on the exact configuration that <b>Apply fix</b> will use.</p>` + fixes.map(fixHTML).join("")
       : `<div class="v fail on" style="opacity:1"><span class="c">!</span><span><b>No verified solution found</b><br>No candidate from Z3 passed the Lean checker within the documented catalog and your parameters. Nothing is suggested.</span></div>`) +
       (ndisc ? `<p class="meta">${ndisc} Z3 candidate(s) discarded because Lean did not return REQUIREMENTS_MET (fail ${dc.DOES_NOT_MEET_REQUIREMENTS || 0}, unknown ${dc.NEED_MORE_INFORMATION || 0}, needs uninstalled options ${dc.needs_uninstalled_options || 0}, error ${dc.error || 0}).</p>` : "") +
       (cf.length ? `<p class="meta"><b>Why it fails (Z3 unsat core, diagnostic only):</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "");

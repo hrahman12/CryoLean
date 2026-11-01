@@ -312,3 +312,20 @@ def test_no_verified_solution_is_reported_not_faked(api):
     if not sg["verified_fixes"]:
         assert sg["status"] == "no_verified_solution_found" and sg["message"] == "No verified solution found"
     assert sg["requirement_relaxations"] == []
+
+
+def test_lanyon_candidates_are_lean_gated(api, monkeypatch):
+    """Lanyon proposes; Lean decides. A passing Lanyon candidate is listed (proposed_by=lanyon), a failing one is discarded."""
+    from cryolean import lanyon
+    monkeypatch.setattr(lanyon, "proposer_enabled", lambda: {"enabled": True, "reason": None})
+    monkeypatch.setattr(lanyon, "propose_repairs", lambda *a, **k: {
+        "session_id": "test", "certified": False, "evidence_status": "inferred_estimate", "why_not_certified": "test",
+        "candidates": [{"parameter": "n_flux_lines", "value": "49", "unit": "count"},     # still too much heat -> discarded
+                       {"parameter": "n_flux_lines", "value": "30", "unit": "count"}]})   # fits -> listed
+    r = check(api, "quantum_mxc_wiring_heat_budget", "bluefors_ld400_hdw")
+    sg = r["suggestions"]
+    lan = [f for f in sg["verified_fixes"] if f.get("proposed_by") == "lanyon"]
+    assert [f["parameters"]["n_flux_lines"]["value"] for f in lan] == ["30"]
+    assert all(f["lean"]["verdict"] == "REQUIREMENTS_MET" for f in lan)
+    assert sg["discarded"]["DOES_NOT_MEET_REQUIREMENTS"] >= 1
+    assert sg["proposers"]["lanyon"]["candidates"] == 2
