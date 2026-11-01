@@ -649,7 +649,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       `<button class="exp" aria-pressed="${i === st.exp}" data-i="${i}" title="${esc(e.name)}"><span class="t">${esc(e.plain_name)}</span>${e.name && e.name !== e.plain_name ? `<small>${esc(e.name)}</small>` : ""}</button>`).join("");
     $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; st.alt = null; render() });
     if (hasS3d) Sample3D.show(ex);
-    $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : "Your sample";
+    $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : (ex.plain_name || "Your sample");
 
     const lv = liveState(ex.id);
     $("configs").innerHTML = ind.configurations.map((c, i) => {
