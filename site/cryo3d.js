@@ -402,9 +402,13 @@
     const keep = halo, g = new THREE.Group(); thumbScene.add(g);
     assemble(g, kind, false, verdict, id);
     // centre and fit every machine in its tile (decorations make footprints differ)
-    const bb = new THREE.Box3().setFromObject(g), c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
+    // bounds from visible parts only (near-transparent shells and the glow halo would skew the centre)
+    g.updateMatrixWorld(true);
+    const bb = new THREE.Box3();
+    g.traverse((o) => { if (o.isMesh && o.material && (o.material.opacity === undefined || o.material.opacity > 0.3) && o.material.depthTest !== false) bb.expandByObject(o); });
+    const c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
     g.position.set(-c.x, -c.y, -c.z);
-    const r = Math.max(sz.x, sz.y * 1.25, sz.z) * 0.62, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
+    const r = Math.max(sz.x * 0.85, sz.y, sz.z * 0.85) * 0.5, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
     thumbCam.position.set(d * 0.55, d * 0.32, d * 0.78); thumbCam.lookAt(0, 0, 0);
     thumbR.render(thumbScene, thumbCam);
     const url = thumbR.domElement.toDataURL("image/png");

@@ -87,7 +87,8 @@ header.top { text-align: center; height: 172px }
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; min-height: 0 }
 .tile { border: 2px solid var(--line); border-radius: 12px; background: var(--panel); cursor: pointer; padding: 4px 6px 7px; display: grid;
   grid-template-rows: minmax(0, 1fr) auto; justify-items: center; color: var(--ink); min-width: 0 }
-.tile img { width: 100%; height: 100%; max-height: 112px; object-fit: contain }
+.tile { grid-template-columns: minmax(0, 1fr); overflow: hidden; min-width: 0 }
+.tile img { display: block; width: 100%; max-width: 100%; min-width: 0; height: 104px; object-fit: contain; justify-self: center }
 .tile .lab { font: 700 15px/1.15 var(--display); display: flex; align-items: center; gap: 6px; max-width: 100% }
 .tile .lab .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .tile .dot { width: 10px; height: 10px; border-radius: 50%; flex: none }
@@ -710,9 +711,13 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const keep = halo, g = new THREE.Group(); thumbScene.add(g);
     assemble(g, kind, false, verdict, id);
     // centre and fit every machine in its tile (decorations make footprints differ)
-    const bb = new THREE.Box3().setFromObject(g), c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
+    // bounds from visible parts only (near-transparent shells and the glow halo would skew the centre)
+    g.updateMatrixWorld(true);
+    const bb = new THREE.Box3();
+    g.traverse((o) => { if (o.isMesh && o.material && (o.material.opacity === undefined || o.material.opacity > 0.3) && o.material.depthTest !== false) bb.expandByObject(o); });
+    const c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
     g.position.set(-c.x, -c.y, -c.z);
-    const r = Math.max(sz.x, sz.y * 1.25, sz.z) * 0.62, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
+    const r = Math.max(sz.x * 0.85, sz.y, sz.z * 0.85) * 0.5, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
     thumbCam.position.set(d * 0.55, d * 0.32, d * 0.78); thumbCam.lookAt(0, 0, 0);
     thumbR.render(thumbScene, thumbCam);
     const url = thumbR.domElement.toDataURL("image/png");
