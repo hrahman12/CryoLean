@@ -57,6 +57,11 @@ header.top { text-align: center; height: 172px }
 .lxs pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px; white-space: pre-wrap; overflow-wrap: anywhere }
 .flow .idle { display: grid; place-content: center; gap: 6px; text-align: center; height: 100%; min-height: 140px; color: var(--ink-2); font-size: 13.5px } .flow .idle b { font: 800 17px var(--display); color: var(--ink) }
 .suggest .tvr.idle { --c: var(--muted) }
+.suggest .stl { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 2px; font-size: 12.5px; color: var(--ink-2) }
+.suggest .stl li b { display: inline-block; width: 18px; text-align: center; font-weight: 800 } .suggest .stl li.ok b { color: var(--met) }
+.suggest .stl li.no { color: var(--fail); font-weight: 700 } .suggest .stl li.maybe { color: var(--info); font-weight: 700 } .suggest .stl li.nr { opacity: .5 } .suggest .stl em { font-style: normal; font-size: 11px }
+.runtag { position: absolute; left: 14px; top: 12px; z-index: 3; pointer-events: none; font: 700 12px var(--body); padding: 4px 10px; border-radius: 99px; background: color-mix(in srgb, var(--accent) 18%, var(--panel)); color: var(--ink); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent) }
+.runtag.ok { border-color: var(--met); color: var(--met) } .runtag.no { border-color: var(--fail); color: var(--fail) } .runtag.maybe { border-color: var(--info); color: var(--info) }
 .exp .vd { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 8px; vertical-align: middle } .vd.ok { background: var(--met) } .vd.no { background: var(--fail) } .vd.maybe { background: var(--info) } .arrow svg { transition: transform .35s ease } .arrow.back { color: var(--info) } .arrow.back svg { transform: scaleX(-1) } .arrow svg { width: 52px; height: 52px }
 .card { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
   padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; overflow: hidden }
@@ -389,6 +394,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <div class="machine" id="machine">
         <span class="kind" id="kind"></span>
         <span class="tag" id="stagetag" hidden></span>
+        <span class="runtag" id="runtag" hidden aria-live="polite"></span>
         <div class="gl" id="gl" role="img" aria-label="3D model of the selected cryostat. Drag to orbit, scroll to zoom."></div>
         <div class="fallback" id="fallback" hidden><svg viewBox="0 0 320 250" width="300"><rect x="70" y="28" width="180" height="16" rx="4" fill="#24324a"/><rect x="100" y="44" width="120" height="150" fill="#e7edf0"/><rect x="140" y="160" width="40" height="12" fill="#deb869"/><rect x="62" y="214" width="196" height="16" rx="4" fill="#24324a"/></svg></div>
         <div class="tools">
@@ -584,7 +590,7 @@ def checkValue : Constraint → CapValue → Outcome
   }
   function sample(g, at, size, verdict) {
     const c = VERDICT[verdict] || GOLD;
-    const m = add(g, new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]),
+    const m = sampleM = add(g, new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]),
       new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.35, metalness: 0.2, roughness: 0.4 })), at);
     halo = new THREE.Mesh(new THREE.SphereGeometry(Math.max(size[0], size[2]) * 1.4, 24, 16),
       new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.16, depthTest: false }));
@@ -876,6 +882,7 @@ def checkValue : Constraint → CapValue → Outcome
         if (!controls.autoRotate && idleT && t - idleT > 3000) { controls.autoRotate = true; idleT = 0; }
         if (rig) { rig.rotation.y += 0.022; rig.position.y = 0.04 * Math.sin(t / 650); }
       }
+      runTick(t);
       renderer.render(scene, camera); };
     raf = requestAnimationFrame(loop);
     return true;
@@ -893,6 +900,7 @@ def checkValue : Constraint → CapValue → Outcome
     const bb = new THREE.Box3().setFromObject(root), c = bb.getCenter(new THREE.Vector3());
     root.position.x = -c.x; root.position.z = -c.z;
     controls.target.set(0, state.inside ? target[1] * 0.6 : c.y, 0); controls.update();
+    if (runState) runStage(runState);   // the rebuilt sample/halo pick up the current stage colours
   }
 
   function assemble(g, kind, inside, verdict, id) {
@@ -940,7 +948,34 @@ def checkValue : Constraint → CapValue → Outcome
     return url;
   }
 
+  // ---------------------------------------------------------------- run stages
+  // A glowing ring travels down the machine, one level per stage of the run (load, vacuum, cool, magnet, measure,
+  // hold). The sample frosts once cool-down passes. The ring stops and pulses at the stage where the run fails.
+  const RUNCOL = { run: 0x4f8cff, p: 0x2fa35a, f: 0xd24b4b, u: 0xe0a21f, s: 0xe0a21f };
+  let runRing = null, runState = null, sampleM = null;
+  function runStage(st) {
+    runState = st;
+    if (!runRing) {
+      runRing = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.022, 12, 72), new THREE.MeshBasicMaterial({ color: RUNCOL.run, transparent: true, opacity: 0.9, depthTest: false }));
+      runRing.rotation.x = Math.PI / 2; runRing.renderOrder = 5; scene.add(runRing);
+    }
+    runRing.visible = !!st;
+    if (!st) return;
+    runRing.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
+    if (halo) halo.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
+    if (sampleM) { const c = new THREE.Color(st.cold ? 0xbfe6ff : (VERDICT[state.verdict] || GOLD)); sampleM.material.color.copy(c); sampleM.material.emissive.copy(c); }
+  }
+  function runTick(t) {
+    if (!runRing || !runState || !runRing.visible) return;
+    const n = Math.max(1, runState.n), y = 0.85 - (runState.i / Math.max(1, n - 1)) * 1.6;
+    runRing.position.y += (y - runRing.position.y) * 0.12;
+    const stopped = runState.status === "f" || runState.status === "u" || runState.status === "s";
+    runRing.material.opacity = stopped ? 0.45 + 0.45 * (1 + Math.sin(t / 180)) / 2 : 0.9;
+    const k = stopped ? 1 + 0.06 * Math.sin(t / 180) : 1; runRing.scale.set(k, k, k);
+  }
+
   window.Cryo3D = {
+    stage(st) { if (!renderer) return; runStage(st); },
     thumb,
     archetype, label: (k) => LABEL[k] || "Cryogenic apparatus",
     mount(el) { return init(el); },
@@ -1521,6 +1556,32 @@ def checkValue : Constraint → CapValue → Outcome
       return a === "f" || b === "f" ? "f" : a === "u" || b === "u" ? "u" : "p" }
     return interval(e, v * f);
   }
+  // ---- Run stages: each requirement belongs to the stage of a real cryostat run where it matters. A stage's outcome is
+  // the worst outcome of its mandatory requirements (optional ones never block, but an unticked one still stops Lean).
+  // Lean's combined checks (e.g. a heat budget over several parts) belong to "Connect and measure".
+  const STAGES = ["Load the sample", "Seal and pump the vacuum", "Cool down", "Turn on the magnet", "Connect and measure", "Hold for the whole run"];
+  const SRANK = { f: 4, u: 3, s: 2, p: 1 };
+  const tvRow = (x) => `<div class="tvr ${x[0]}"><i></i><span><b>${x[1]}</b>${x[2] ? `<small>${x[2]}</small>` : ""}</span></div>`;
+  function stageOf(key) {
+    const f = key.split(".")[0];
+    if (f === "sample" || f === "process") return 0;
+    if (f === "vacuum" || f === "pressure") return 1;
+    if (f === "temperature" || f === "cryogen" || f === "cooling_power") return 2;
+    if (f === "magnetic_field" || key === "module.magnetic_shielding") return 3;
+    if (f === "operating_duration" || f === "dwell") return 5;
+    return 4;
+  }
+  function runStages(eid, cid, rs, outs) {
+    const sts = STAGES.map((name, k) => ({ k, name, items: [], out: null }));
+    rs.forEach((r, i) => { const o = outs[i], w = r.mandatory ? o : (o === "s" ? "s" : "p"); sts[stageOf(r.keys[0])].items.push({ r, o, w }) });
+    const oc = L.lattice[eid] && L.lattice[eid][cid];
+    [...((oc && oc.coupled) || "")].forEach((o) => sts[4].items.push({ r: null, o, w: o }));
+    sts.forEach((s) => s.items.forEach((x) => { if (!s.out || SRANK[x.w] > SRANK[s.out]) s.out = x.w }));
+    const used = sts.filter((s) => s.items.length);
+    const stop = used.find((s) => s.out === "f") || used.find((s) => s.out === "u" || s.out === "s") || null;
+    return { used, stop };
+  }
+  let lastRun = null;
   // The verdict tiles stay dark until the first temperature requirement (or the first requirement) is ticked
   function gateTicked(eid, lv) {
     const rs = L.requirements[eid] || []; if (!rs.length) return true;
@@ -1592,7 +1653,20 @@ def checkValue : Constraint → CapValue → Outcome
     if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
     const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? (isDemo ? "<small>One need isn't confirmed yet, so Lean won't decide.</small>" : "<small>Tick each requirement to let Lean decide.</small>") : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
       `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
-    let h = started ? tv : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
+    const runS = runStages(ex.id, mc.id, rs, outs); lastRun = { ...runS, started, key: mc.id + "|" + ex.id };
+    const S = runS.stop, ICON = { p: "✓", f: "✗", u: "?", s: "…" };
+    const why = (s) => { const x = s.items.find((y) => y.w === s.out) || s.items[0];
+      const nm = x.r ? human(x.r.keys[0]) : "Combined check (several parts together)";
+      return x.w === "f" ? `${nm}: the machine's datasheet shows it can't meet this need.`
+        : x.w === "u" ? `${nm}: the machine's datasheet doesn't say, and Lean won't guess.`
+        : `${nm}: ${isDemo ? "this need isn't confirmed yet." : "tick it so Lean can check it."}` };
+    const head = !S ? ["ok", "Runs through every stage", "Every stage the experiment needs is covered by the machine's datasheet."]
+      : S.out === "f" ? ["no", `Fails at stage ${runS.used.indexOf(S) + 1}: ${S.name}`, why(S)]
+      : ["maybe", `Stops at stage ${runS.used.indexOf(S) + 1}: ${S.name}`, why(S)];
+    const stopAt = S ? runS.used.indexOf(S) : runS.used.length;
+    const timeline = `<div class="tv">${tvRow(head)}<ol class="stl">` + runS.used.map((s, i) =>
+      `<li class="${i < stopAt ? "ok" : i === stopAt ? { f: "no", u: "maybe", s: "maybe" }[s.out] : "nr"}"><b>${i < stopAt || i === stopAt ? ICON[s.out] : "·"}</b>${i + 1}. ${s.name}${i > stopAt ? " <em>not reached</em>" : ""}</li>`).join("") + `</ol></div>`;
+    let h = started ? timeline : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
     if (started && !unconf && vcode !== "R") {
       const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
       const steps = [];
@@ -1747,6 +1821,27 @@ def checkValue : Constraint → CapValue → Outcome
   const VWORD = { R: "Compatible", D: "Not compatible", N: "Need more info" }, VDOT = { R: "ok", D: "no", N: "maybe" };
   const procVals = (eid) => { const v = {}; (L.requirements[eid] || []).forEach((r) => { if (r.editable) v[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value }); return v };
   let demoCur = "L", demoPick = "G", lastChatKey = "";
+  // The same stages play inside the 3D machine: one stage every 1.3 s, stopping (and pulsing) where the run fails,
+  // then starting over. The tag over the viewer names the stage.
+  let run3dT = 0, run3dKey = "";
+  function runIn3D() {
+    const R = lastRun; if (!R) return;
+    const key = JSON.stringify([R.key, R.started, R.used.map((s) => s.out), R.stop && R.stop.k]);
+    if (key === run3dKey) return; run3dKey = key; clearInterval(run3dT);
+    const tag = $("runtag");
+    if (!R.started || !R.used.length) { if (has3d) Cryo3D.stage(null); tag.hidden = false; tag.className = "runtag"; tag.textContent = "Tick temperature in step 3 to start the run"; return }
+    const n = R.used.length, stopAt = R.stop ? R.used.indexOf(R.stop) : n - 1, coolAt = R.used.findIndex((s) => s.k === 2);
+    let i = 0, hold = 0;
+    const show = () => {
+      const s = R.used[i], end = i === stopAt, status = end && R.stop ? R.stop.out : (end ? "p" : "run");
+      const cold = coolAt >= 0 && (i > coolAt || (i === coolAt && end && !R.stop));
+      if (has3d) Cryo3D.stage({ i: s.k, n: STAGES.length, status, cold });
+      tag.hidden = false; tag.className = "runtag " + ({ f: "no", u: "maybe", s: "maybe", p: "ok", run: "" }[status] || "");
+      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here" : " ? stops here");
+    };
+    show();
+    run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
+  }
   function demoVerdict(d) {   // Lean verdict of an example with its fixed, ticked values (the colored dot in step 1)
     const conf = {}; (L.requirements[d.pair[1]] || []).forEach((r) => conf[r.index] = !(d.open || []).includes(r.index));
     return liveVerdict(d.pair[1], d.pair[2], { vals: procVals(d.pair[1]), conf });
@@ -2005,6 +2100,7 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     $("stagetag").hidden = true;
     if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
+    runIn3D();
     updateLiveFlow(ex, mc, vcode);
     const lit = gateTicked(ex.id, liveState(ex.id));   // no verdict tile lights until temperature is ticked
     ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", lit && VCLS[vcode] === k));

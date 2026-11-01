@@ -61,7 +61,7 @@
   }
   function sample(g, at, size, verdict) {
     const c = VERDICT[verdict] || GOLD;
-    const m = add(g, new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]),
+    const m = sampleM = add(g, new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]),
       new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.35, metalness: 0.2, roughness: 0.4 })), at);
     halo = new THREE.Mesh(new THREE.SphereGeometry(Math.max(size[0], size[2]) * 1.4, 24, 16),
       new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.16, depthTest: false }));
@@ -353,6 +353,7 @@
         if (!controls.autoRotate && idleT && t - idleT > 3000) { controls.autoRotate = true; idleT = 0; }
         if (rig) { rig.rotation.y += 0.022; rig.position.y = 0.04 * Math.sin(t / 650); }
       }
+      runTick(t);
       renderer.render(scene, camera); };
     raf = requestAnimationFrame(loop);
     return true;
@@ -370,6 +371,7 @@
     const bb = new THREE.Box3().setFromObject(root), c = bb.getCenter(new THREE.Vector3());
     root.position.x = -c.x; root.position.z = -c.z;
     controls.target.set(0, state.inside ? target[1] * 0.6 : c.y, 0); controls.update();
+    if (runState) runStage(runState);   // the rebuilt sample/halo pick up the current stage colours
   }
 
   function assemble(g, kind, inside, verdict, id) {
@@ -417,7 +419,34 @@
     return url;
   }
 
+  // ---------------------------------------------------------------- run stages
+  // A glowing ring travels down the machine, one level per stage of the run (load, vacuum, cool, magnet, measure,
+  // hold). The sample frosts once cool-down passes. The ring stops and pulses at the stage where the run fails.
+  const RUNCOL = { run: 0x4f8cff, p: 0x2fa35a, f: 0xd24b4b, u: 0xe0a21f, s: 0xe0a21f };
+  let runRing = null, runState = null, sampleM = null;
+  function runStage(st) {
+    runState = st;
+    if (!runRing) {
+      runRing = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.022, 12, 72), new THREE.MeshBasicMaterial({ color: RUNCOL.run, transparent: true, opacity: 0.9, depthTest: false }));
+      runRing.rotation.x = Math.PI / 2; runRing.renderOrder = 5; scene.add(runRing);
+    }
+    runRing.visible = !!st;
+    if (!st) return;
+    runRing.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
+    if (halo) halo.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
+    if (sampleM) { const c = new THREE.Color(st.cold ? 0xbfe6ff : (VERDICT[state.verdict] || GOLD)); sampleM.material.color.copy(c); sampleM.material.emissive.copy(c); }
+  }
+  function runTick(t) {
+    if (!runRing || !runState || !runRing.visible) return;
+    const n = Math.max(1, runState.n), y = 0.85 - (runState.i / Math.max(1, n - 1)) * 1.6;
+    runRing.position.y += (y - runRing.position.y) * 0.12;
+    const stopped = runState.status === "f" || runState.status === "u" || runState.status === "s";
+    runRing.material.opacity = stopped ? 0.45 + 0.45 * (1 + Math.sin(t / 180)) / 2 : 0.9;
+    const k = stopped ? 1 + 0.06 * Math.sin(t / 180) : 1; runRing.scale.set(k, k, k);
+  }
+
   window.Cryo3D = {
+    stage(st) { if (!renderer) return; runStage(st); },
     thumb,
     archetype, label: (k) => LABEL[k] || "Cryogenic apparatus",
     mount(el) { return init(el); },
