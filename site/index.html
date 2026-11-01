@@ -155,7 +155,31 @@ header.top { text-align: center; height: 172px }
 .demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
 .demo .list > p { display: none }
 .demo .term { height: 300px; overflow: auto }
-.flow { height: 300px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: stretch }
+.flow { --hl: color-mix(in srgb, var(--ink) 28%, transparent); --hl2: color-mix(in srgb, var(--ink) 12%, transparent);
+  height: 300px; display: flex; flex-direction: column; gap: 0; overflow: auto; padding: 0 16px 12px; border: 1px solid var(--hl); border-radius: 2px;
+  background: transparent; position: relative; scroll-behavior: smooth; font-family: ui-monospace, "SF Mono", Menlo, monospace }
+.flow .hdr { display: flex; align-items: baseline; gap: 10px; position: sticky; top: 0; z-index: 2; padding: 10px 0 8px; background: var(--bg, #0b1220);
+  border-bottom: 1px solid var(--hl); font: 500 11px ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--ink) }
+.flow .hdr .dot { width: 6px; height: 6px; border: 1px solid var(--ink); border-radius: 50%; animation: lp 1.6s infinite }
+@keyframes lp { 50% { opacity: .15 } }
+.flow .hdr small { margin-left: auto; letter-spacing: .04em; text-transform: none; color: var(--muted); font-size: 10.5px }
+.flow .msg { display: grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hl2); position: relative; animation: mi .5s ease }
+@keyframes mi { from { opacity: 0 } }
+.flow .msg::before { content: ""; position: absolute; left: 10.5px; top: 32px; bottom: -10px; width: 1px; background: var(--hl);
+  transform-origin: top; animation: draw .7s ease forwards; transform: scaleY(0) }
+.flow .msg:last-child::before { display: none }
+@keyframes draw { to { transform: scaleY(1) } }
+.flow .av { width: 22px; height: 22px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font: 500 8.5px ui-monospace, Menlo, monospace; color: var(--ink); background: transparent; letter-spacing: .02em }
+.flow .av.lean { border-color: var(--met); color: var(--met) } .flow .av.z3 { border-style: dashed }
+.flow .who2 { font: 500 10.5px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--ink) }
+.flow .who2 span { letter-spacing: .02em; text-transform: none; color: var(--muted); margin-left: 8px }
+.flow .bub { font: 400 13px/1.55 var(--body); color: var(--ink-2); margin-top: 3px }
+.flow .chip { display: inline-block; margin-top: 6px; font: 500 11.5px ui-monospace, Menlo, monospace; letter-spacing: .04em; padding: 2px 8px; border: 1px solid currentColor; border-radius: 2px; background: transparent !important }
+.flow .chip.met { color: var(--met) } .flow .chip.fail { color: var(--fail) } .flow .chip.info { color: var(--info) } .flow .chip.neutral { color: var(--ink) }
+.flow .typing::after { content: ""; display: inline-block; width: 7px; height: 1px; margin-left: 2px; background: var(--ink); vertical-align: middle; animation: lp .7s infinite }
+.flow .scan { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--ink), transparent); opacity: .35; animation: scan 3.2s linear infinite; pointer-events: none }
+@keyframes scan { from { top: 38px } to { top: 100% } }
+@media (prefers-reduced-motion: reduce) { .flow .scan, .flow .msg::before { animation: none; transform: none } }
 .flow .st { position: relative; border: 2px solid var(--line); border-radius: 14px; padding: 10px 11px; background: var(--panel); display: grid; grid-template-rows: auto auto 1fr auto; gap: 6px; opacity: .25; transform: translateY(6px); transition: opacity .45s, transform .45s, border-color .45s }
 .flow .st.on { opacity: 1; transform: none }
 .flow .st .who { font: 800 11px var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; justify-self: start }
@@ -1472,30 +1496,44 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
   // Plain-English story of each recorded run (numbers are the real outputs of `python -m cryolean demo`)
   const STEPS = {
-    A: [["data", "Your experiment", "Magnetoresistance needs a field of at least 10 T.", "needs 10 T", "neutral"],
+    A: [["lanyon", "Reading your experiment", "Magnetoresistance needs a field of at least 10 T.", "needs 10 T", "neutral"],
         ["data", "The machine", "PPMS DynaCool, 9 T magnet. Quantum Design's brochure says the base magnet is 9 T.", "has 9 T", "neutral"],
         ["lean", "Lean checks", "Lean compares the two numbers exactly. 9 T is less than 10 T, so this requirement fails.", "Does not meet", "fail"],
         ["lanyon", "Lanyon + Z3 propose", "Lanyon (AI) and Z3 look for a way out. Z3 cites the blocking brochure line and proposes the 14 T DynaCool.", "try 14 T", "neutral"],
         ["lean", "Lean re-checks the suggestion", "The 14 T option is only shown if Lean passes it. Some of its specs aren't published, so Lean asks for more information instead of guessing.", "Need more info", "info"]],
-    B: [["data", "Your experiment", "Run 50 qubits: drive, flux and readout lines all go down to the 20 mK plate.", "50 flux lines", "neutral"],
+    B: [["lanyon", "Reading your experiment", "Run 50 qubits: drive, flux and readout lines all go down to the 20 mK plate.", "50 flux lines", "neutral"],
         ["data", "The machine", "Bluefors LD400 with high-density wiring. Cooling power at 20 mK: 12 µW.", "12 µW to spare", "neutral"],
         ["lean", "Lean checks", "Temperature and line count pass, but the wires leak heat. Lean adds it up: 14.592 µW, more than the 12 µW available.", "14.6 µW > 12 µW", "fail"],
         ["lanyon", "Lanyon + Z3 propose a fix", "Lanyon (AI) and Z3 propose fewer flux lines. Lanyon was off in this recording, so Z3's exact answer is shown.", "use 39 lines", "neutral"],
         ["lean", "Lean verifies the fix", "Lean checks the exact fixed setup before you ever see it: 11.985 µW fits under 12 µW.", "Requirements met", "met"]],
-    C: [["you", "A new industry", "Someone asks about semiconductors, which CryoLean has never seen before.", "new: semiconductors", "neutral"],
+    C: [["lanyon", "A new industry", "Someone asks about semiconductors, which CryoLean has never seen before.", "new: semiconductors", "neutral"],
         ["data", "Research + review", "The new experiment is written up from published sources, validated, and approved by a reviewer.", "sourced + reviewed", "neutral"],
         ["z3", "Z3 searches machines", "Z3 ranks every machine in the catalog for this new experiment.", "220 machines", "neutral"],
         ["lean", "Lean decides", "The same Lean checker verifies the Lake Shore CRX-VF probe station for it.", "Requirements met", "met"],
         ["lean", "Nothing in the core changed", "Adding an industry is just data. The Lean checker's fingerprint is identical before and after.", "same Lean hash", "met"]],
-    D: [["you", "Your plan", "Four experiments, one 48 h cooldown on a Linkam stage. The cooldown takes 5 h.", "48 h, 4 runs", "neutral"],
+    D: [["lanyon", "Reading your plan", "Four experiments, one 48 h cooldown on a Linkam stage. The cooldown takes 5 h.", "48 h, 4 runs", "neutral"],
         ["lean", "Lean filters", "Lean rejects the 10 T magnetoresistance run: the stage has no magnet.", "1 run excluded", "fail"],
         ["z3", "Z3 packs the schedule", "Z3 fits the other three back to back: POM 5–9 h, Raman 9–17 h, fluorescence 17–23 h.", "done at 23 h", "neutral"],
         ["lean", "Lean checks the schedule", "Lean proves no slots overlap, all fit after cooldown, and only accepted runs are used.", "Schedule OK", "met"],
         ["z3", "If you only had 20 h", "Z3 proves it can't fit: 18 h of runs, but only 15 h left after cooldown.", "can't fit (proved)", "fail"]],
   };
   const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
-  function flowHTML(id, n) {
-    return (STEPS[id] || []).map(([w, t, p, big, tone], i) => `<div class="st ${w}${i < n ? " on" : ""}"><span class="who">${WHO[w]}</span><b class="t">${esc(t)}</b><p>${esc(p)}</p><div class="big ${tone}">${esc(big)}</div></div>`).join("");
+  // Lanyon session view: the run as a conversation (Lanyon AI hosts; Lean decides; Z3 computes exact values)
+  const AV = { lanyon: ["LA", "Lanyon AI", "proposes"], lean: ["L4", "Lean 4", "decides"], z3: ["Z3", "Z3 solver", "suggests"], data: ["DB", "CryoLean data", "sourced"], you: ["You", "You", ""] };
+  function flowHTML(id, n, typing) {
+    const st = STEPS[id] || [];
+    const hdr = `<span class="scan"></span><div class="hdr"><span class="dot"></span>Lanyon · session ${esc(id)}<small>recorded run · proposer off, Z3 values shown</small></div>`;
+    return hdr + st.slice(0, n).map(([w, t, p, big, tone], i) => { const a = AV[w] || AV.data; const last = i === n - 1 && typing;
+      return `<div class="msg"><span class="av ${w}">${a[0]}</span><div><div class="who2">${a[1]}<span>${a[2]} · ${esc(t)}</span></div><div class="bub${last ? " typing" : ""}" data-full="${esc(p)}">${last ? "" : esc(p)}</div>${last ? "" : `<span class="chip ${tone}">${esc(big)}</span>`}</div></div>`; }).join("");
+  }
+  let typeT = 0, flowN = 0;
+  function streamLast(id, n) {   // type the newest message like a live model, then show its result chip
+    clearInterval(typeT);
+    const b = $("flow").querySelector(".bub.typing"); if (!b) return;
+    const full = b.dataset.full.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'"); let k = 0;
+    typeT = setInterval(() => { k += 3; b.textContent = full.slice(0, k); $("flow").scrollTop = 1e9;
+      if (k >= full.length) { clearInterval(typeT); b.classList.remove("typing"); const [, , , big, tone] = STEPS[id][n - 1];
+        b.insertAdjacentHTML("afterend", `<span class="chip ${tone}">${esc(big)}</span>`); $("flow").scrollTop = 1e9; } }, 18);
   }
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
@@ -1506,9 +1544,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     let n = 0; const step = () => { n++; const p = n / lines.length;
       $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
       $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
-      $("flow").innerHTML = flowHTML(id, Math.ceil(p * (STEPS[id] || []).length));
+      { const k = Math.ceil(p * (STEPS[id] || []).length); if (k !== flowN) { flowN = k; $("flow").innerHTML = flowHTML(id, k, true); streamLast(id, k); } }
       if (n >= lines.length) clearInterval(demoTimer) };
-    $("viz").innerHTML = VIZ[id](0); $("flow").innerHTML = flowHTML(id, 0); step();
+    $("viz").innerHTML = VIZ[id](0); flowN = 0; clearInterval(typeT); $("flow").innerHTML = flowHTML(id, 0); step();
     demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
   }
   $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span></button>`).join("") +
