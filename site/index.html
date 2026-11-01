@@ -1,3 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>CryoLean</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +43,20 @@ header.top { text-align: center; height: 172px }
 .question { font: 700 40px/1.1 var(--display); margin: 6px 0 0; color: var(--ink) }
 
 .row { display: grid; grid-template-columns: 455px 44px 516px 44px minmax(0, 1fr); gap: 0 4px; height: 748px }
-.arrow { display: grid; place-items: center; color: var(--accent) } .arrow svg { width: 52px; height: 52px }
+.arrow { display: grid; place-items: center; color: var(--accent) }
+.fold { flex: none; margin-top: 14px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--panel); padding: 0 14px }
+.fold > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 12px; padding: 12px 0; font: 800 20px var(--display); color: var(--ink) }
+.fold > summary::-webkit-details-marker { display: none }
+.fold > summary::before { content: "▸"; color: var(--accent); transition: transform .2s } .fold[open] > summary::before { transform: rotate(90deg) }
+.fold > summary span { font: 500 13px var(--body); color: var(--muted) }
+.fold .mx180 { margin: 0 0 14px }
+.lx { display: grid; gap: 10px; padding: 0 0 14px }
+.lxs { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start }
+.lxs .k { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font: 800 13px var(--body) }
+.lxs b { font: 800 15px var(--display); color: var(--ink) } .lxs p { margin: 2px 0 6px; font-size: 13.5px; color: var(--ink-2); line-height: 1.45 }
+.lxs pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px; white-space: pre-wrap; overflow-wrap: anywhere }
+.flow .idle { display: grid; place-content: center; gap: 6px; text-align: center; height: 100%; min-height: 140px; color: var(--ink-2); font-size: 13.5px } .flow .idle b { font: 800 17px var(--display); color: var(--ink) }
+.suggest .tvr.idle { --c: var(--muted) } .arrow svg { transition: transform .35s ease } .arrow.back { color: var(--info) } .arrow.back svg { transform: scaleX(-1) } .arrow svg { width: 52px; height: 52px }
 .card { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
   padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; overflow: hidden }
 .card h2 { margin: 0; display: flex; align-items: center; gap: 16px; font: 800 33px/1 var(--display); color: var(--ink) }
@@ -139,7 +153,7 @@ header.top { text-align: center; height: 172px }
 .suggest .tvr i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-top: 4px }
 .suggest .tvr span { display: grid; gap: 1px } .suggest .tvr b { font: 800 14.5px var(--display); color: var(--ink) } .suggest .tvr small { font-size: 12px; color: var(--ink-2) }
 .suggest .tvsrc { font-size: 11px; color: var(--muted) }
-#demolist .di { padding: 4px 11px !important } #demolist .di b { font-size: 14px !important } #demolist .di span { font-size: 11.5px !important; line-height: 1.25; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+#demolist { min-width: 0 } #demolist .di { padding: 4px 11px !important; max-width: 100%; min-width: 0; overflow: hidden } #demolist .di b { font-size: 14px !important } #demolist .di span { font-size: 11.5px !important; line-height: 1.25; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .di .dv { display: flex; flex-wrap: nowrap; align-items: center; gap: 5px; font: 600 10.5px var(--body); font-style: normal; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .di .dv i { width: 8px; height: 8px; border-radius: 50%; display: inline-block } .di .dv i.ok { background: var(--met) } .di .dv i.no { background: var(--fail) } .di .dv i.maybe { background: var(--info) }
 .suggest .tvr.ok { --c: var(--met) } .suggest .tvr.no { --c: var(--fail) } .suggest .tvr.maybe { --c: var(--info) }
@@ -421,13 +435,15 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
       <div id="viz" hidden></div><span class="cap" id="vizcap" hidden></span></div>
   </div>
-  <section class="mx180" id="mx180" hidden aria-labelledby="mxh">
+  <details class="fold" id="mx180" hidden><summary><b>The 180 featured pairings</b><span>20 industries × 3 experiments × 3 machines, every square a Lean verdict · click to show or hide</span></summary>
+  <section class="mx180" aria-labelledby="mxh">
     <div class="mxtop"><div><h2 id="mxh">The 180 featured pairings</h2><p>20 industries × 3 experiments × 3 machines. Every square is a verdict the Lean 4 checker already returned.</p></div>
       <div class="mxsum"><b id="mxpct"></b><div class="mxbar" id="mxbar"></div><span id="mxleg"></span></div>
       <div class="seg" role="group" aria-label="Machine selection"><button id="mx-best" aria-pressed="true">Best-match machines</button><button id="mx-old" aria-pressed="false">Original selection</button></div></div>
     <div class="mxgrid" id="mxgrid"></div>
     <p class="mxnote">Best-match = the 3 machines (of 220) Lean passes most often for each industry's experiments. Some experiments pass on no machine in the catalog, so a few squares can't turn green without new machines or sourced specs.</p>
   </section>
+  </details>
   <section class="fx" id="fx" hidden aria-labelledby="fxh">
     <div class="fxtop"><div><h2 id="fxh">Proof-slop forensics: auditing the Lean core</h2>
       <p>A green <code>lake build</code> only says Lean accepted the proofs. The forensics audit checks whether the proofs actually mean what they claim, and whether any of them lean on a shortcut. AI-written proofs can look fine and still be hollow.</p></div>
@@ -454,6 +470,33 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
     <span class="small" id="stamp">Verdicts decided by the Lean 4 checker</span>
   </footer>
+  <details class="fold" id="lx" hidden><summary><b>How the physics becomes Lean</b><span>From a datasheet sentence to a proved verdict, using demo A · click to show or hide</span></summary>
+    <div class="lx">
+      <div class="lxs"><span class="k">1</span><div><b>Two sentences</b><p>The experiment's procedure says it needs a magnetic field of <b>at least 12 T</b>. The Cryogenic Ltd datasheet says its magnet goes <b>up to 9 T</b>. Each fact keeps a link to the document it came from.</p></div></div>
+      <div class="lxs"><span class="k">2</span><div><b>Exact numbers with units</b><p>Python turns each number into an exact fraction in SI units, with no rounding and no decimals, and records its unit as powers of the seven SI base units. Tesla is kg·s⁻²·A⁻¹.</p>
+        <pre>{"num": 12, "den": 1, "dim": {"kg": 1, "s": -2, "A": -1}}   // the 12 T requirement
+{"num":  9, "den": 1, "dim": {"kg": 1, "s": -2, "A": -1}}   // the 9 T magnet</pre></div></div>
+      <div class="lxs"><span class="k">3</span><div><b>Lean types</b><p>In Lean the requirement becomes a <code>Constraint</code> and the machine's spec a <code>CapValue</code> (lean/CryoLean/Model.lean).</p>
+        <pre>structure Quantity where
+  val : Q        -- exact rational num / den
+  dim : Dim      -- exponents of K, m, kg, s, A, mol, cd
+
+Constraint.atLeast ⟨⟨12, 1⟩, {kg := 1, s := -2, A := -1}⟩   -- needs at least 12 T
+CapValue.max      ⟨⟨9, 1⟩,  {kg := 1, s := -2, A := -1}⟩   -- documented maximum 9 T</pre></div></div>
+      <div class="lxs"><span class="k">4</span><div><b>Lean decides</b><p>The checker compares the two only if their units match, using whole-number cross-multiplication, so it can't make a rounding error (lean/CryoLean/Checker.lean, Num.lean).</p>
+        <pre>def Q.le (a b : Q) : Prop := a.num * (b.den : Int) ≤ b.num * (a.den : Int)
+
+def checkValue : Constraint → CapValue → Outcome
+  | .atLeast q, .max m =>
+      if m.dim = q.dim then (if Q.le q.val m.val then .pass else .fail) else .unsupported
+  ...
+-- 12 * 1 ≤ 9 * 1 is false  →  .fail  →  verdict: does not meet requirements</pre></div></div>
+      <div class="lxs"><span class="k">5</span><div><b>Proved, not just tested</b><p>A theorem says every <code>.pass</code> really means the physical requirement holds. Lean checks this proof for every case, so a pass can't be wrong (lean/CryoLean/Soundness.lean).</p>
+        <pre>theorem checkValue_pass_sound {k : Constraint} {v : CapValue}
+    (h : checkValue k v = .pass) : ValueMeets k v</pre></div></div>
+      <div class="lxs"><span class="k">6</span><div><b>Instant answers on this page</b><p>Lean already decided every requirement at each documented limit of every machine, and in every gap between limits. When you type a value, the page looks up which gap it falls in and shows Lean's answer for it. A missing spec stays <code>.unknown</code>, which is why demo B says Need more information instead of guessing.</p></div></div>
+    </div>
+  </details>
 </div>
 </div>
 
@@ -1407,6 +1450,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const stage = $("stage"), vp = $("viewport");
   let stageH = 1024;
   function fit() {
+    stage.style.height = "auto"; stageH = Math.max(1024, Math.ceil(stage.scrollHeight));
     const w = document.documentElement.clientWidth, h = window.innerHeight;
     const s = w >= 900 && h > 300 && stageH <= 1100 ? Math.min(w / 1536, h / stageH) : Math.min(w / 1536, 1);
     stage.style.height = stageH + "px";
@@ -1414,6 +1458,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
   }
   addEventListener("resize", fit); fit();
+  document.querySelectorAll("details.fold").forEach((d) => d.addEventListener("toggle", fit));
 
   const st = { ind: 0, exp: 0, cfg: 0 };
   try { Object.assign(st, JSON.parse(localStorage.getItem("cryolean-state") || "{}")) } catch (e) {}
@@ -1447,14 +1492,18 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const fnum = (x) => { if (x == null || !isFinite(x)) return ""; const a = Math.abs(x); return String(+(a >= 1e4 || (a > 0 && a < 1e-3) ? x.toPrecision(4) : x.toPrecision(6))) };
   const human = (k) => k.replace(/^module\./, "").replace(/[._]/g, " ").replace(/\bmax\b/, "(max)").replace(/\bmin\b/, "(min)").replace(/^./, (c) => c.toUpperCase());
   function factor(r) { const v = r.kind === "range_within" ? +r.lo : +r.value, si = r.kind === "range_within" ? r.si_lo : r.si; return v && si ? si / v : 1 }
+  // Live checker: every value starts at 0 and every box unticked, so Lean answers nothing until you type and confirm.
+  // Demos keep a separate state (DEMOLV) holding the procedure's own values, so switching tabs never mixes the two.
+  const DEMOLV = {};
   function liveState(eid) {
-    if (!LIVE[eid]) {
+    const pool = isDemo ? DEMOLV : LIVE;
+    if (!pool[eid]) {
       const vals = {}, conf = {};
       (L.requirements[eid] || []).forEach((r) => { conf[r.index] = false;
-        if (r.editable) vals[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value });
-      LIVE[eid] = { vals, conf };
+        if (r.editable) vals[r.index] = isDemo ? (r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value) : (r.kind === "range_within" ? [0, 0] : 0) });
+      pool[eid] = { vals, conf };
     }
-    return LIVE[eid];
+    return pool[eid];
   }
   function interval(e, x) {
     const Ls = e.limits, s = e.outcomes;
@@ -1470,6 +1519,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     if (r.kind === "range_within") { const lo = Math.min(v[0], v[1]) * f, hi = Math.max(v[0], v[1]) * f, a = interval(e, lo), b = interval(e, hi);
       return a === "f" || b === "f" ? "f" : a === "u" || b === "u" ? "u" : "p" }
     return interval(e, v * f);
+  }
+  // The verdict tiles stay dark until the first temperature requirement (or the first requirement) is ticked
+  function gateTicked(eid, lv) {
+    const rs = L.requirements[eid] || []; if (!rs.length) return true;
+    const g = rs.find((r) => r.keys.some((k) => k.startsWith("temperature"))) || rs[0];
+    return !!lv.conf[g.index];
   }
   function liveVerdict(eid, cid, lv) {
     const rs = L.requirements[eid] || [], o = L.lattice[eid] && L.lattice[eid][cid];
@@ -1519,21 +1574,24 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     passing.sort((a, b) => (featured.has(b) - featured.has(a)) || name(a).localeCompare(name(b)));
     const alts = passing.slice(0, 4).map((cid) => `<button class="alt" data-cid="${cid}">${featured.has(cid) ? "Featured · " : ""}${esc(name(cid))}</button>`).join("");
     // The two answers, straight from Lean's verdict (vcode) and its outcome on the run-time requirement
-    const unconf = outs.includes("s");
+    const unconf = outs.includes("s"), started = gateTicked(ex.id, lv);
     const cmp = vcode === "R" ? ["ok", "Experiment is compatible"] : vcode === "D" ? ["no", "Experiment is not compatible"] : ["maybe", "Experiment might be compatible"];
     const di = rs.findIndex((r) => r.keys.includes("operating_duration.max")), dur = di >= 0 ? rs[di] : null;
     const need = dur ? `needs ${fnum(lv.vals[dur.index])} ${esc(dur.unit || "h")} of continuous run time` : "";
-    const run = dur ? ({ p: ["ok", "Runs on this system", `${need}; the machine holds it.`],
-                         f: ["no", "Will not run on this system", `${need}; the machine can't hold that long.`],
-                         u: ["maybe", "Might run on this system", `${need}; the machine's run time isn't documented.`],
-                         s: ["maybe", "Might run on this system", `${need}; confirm this requirement to decide.`] })[outs[di]]
-      : vcode === "R" ? ["ok", "Runs on this system", "This procedure sets no minimum run time."]
-      : vcode === "D" ? ["no", "Will not run on this system", "Another requirement fails first."]
-      : ["maybe", "Might run on this system", "Not decided until every requirement is confirmed and documented."];
+    const dOut = dur ? outs[di] : null, opt = dur && !dur.mandatory ? " (optional in this procedure)" : "";
+    const run = unconf ? ["maybe", "Might run on this system", dur ? `${need}; tick every requirement to decide.` : "Not decided until every requirement is ticked."]
+      : vcode === "D" ? ["no", "Will not run on this system", dOut === "f" ? `${need}; the machine can't hold that long.` : "A requirement above isn't met, so the run can't start."]
+      : vcode === "N" ? ["maybe", "Might run on this system", dOut === "u" ? `${need}; the machine's run time isn't documented.` : "A required spec isn't documented, so Lean won't promise a run."]
+      : !dur ? ["ok", "Runs on this system", "This procedure sets no minimum run time."]
+      : dOut === "p" ? ["ok", "Runs on this system", `${need}; the machine holds it.`]
+      : dOut === "f" ? ["maybe", "Might not run for the full time", `${need}; the machine holds less${opt}.`]
+      : ["maybe", "Might run for the full time", `${need}; the machine's run time isn't documented${opt}.`];
+    const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
+    if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
     const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? "<small>Tick each requirement to let Lean decide.</small>" : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
       `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
-    let h = tv;
-    if (!unconf && vcode !== "R") {
+    let h = started ? tv : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
+    if (started && !unconf && vcode !== "R") {
       const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
       const steps = [];
       if (first >= 0 && r.editable && e) {
@@ -1560,10 +1618,10 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   // ---------------------------------------------------------------- demos: the recorded `python -m cryolean demo` run
   const DEMOS = [
-    { id: "A", t: "A · Confirmed incompatibility", d: "10 T magnetoresistance on a 9 T PPMS DynaCool", h: "Demo A" },
-    { id: "B", t: "B · Coupled multiphysics", d: "50-qubit wiring heat budget on a Bluefors LD400", h: "Demo B" },
-    { id: "C", t: "C · New industry", d: "Semiconductors through the research pipeline", h: "Demo C" },
-    { id: "D", t: "D · Campaign scheduling", d: "Three experiments in one 48 h cooldown", h: "Demo D" },
+    { id: "A", show: 0, t: "A · The magnet is too weak", d: "A graphene test needs a 12 T magnet. Try a 9 T machine, then a 14 T one." },
+    { id: "B", show: 1, t: "B · Lean won't guess", d: "A tank-insulation test, but the machine's datasheet leaves out two facts." },
+    { id: "C", show: 1, t: "C · A clean yes", d: "Testing a tiny computer chip, ice-cold, on a probe station." },
+    { id: "D", show: 1, t: "D · Change the plan, not the machine", d: "Same graphene test and 9 T machine as A, but you lower the field you need." },
   ];
   const LOG = String(window.DEMO_LOG || "").split("\n");
   function demoLines(h) {
@@ -1614,33 +1672,39 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     return svg(540, 350, b);
   }
   const VIZ = { A: vizA, B: vizB, C: vizC, D: vizD };
-  const CAP = { A: "Lean rejects magnetic_field.max (10 T needed, 9 T documented). Z3's unsat core cites the Quantum Design brochure quote; the 14 T configuration is proposed and Lean re-checks it.",
-    B: "Temperature and line count pass, but Lean's coupled heat budget gives 14.592 µW > 12 µW. Z3 proposes 39 flux lines; Lean re-checks: 11.985 µW, REQUIREMENTS_MET.",
-    C: "A new industry goes through registration, validation and review; Z3 searches every configuration and the same Lean binary verifies the Lake Shore CRX-VF. The Lean core hash does not change.",
-    D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
+  const CAP = {
+    A: "The graphene experiment needs a magnet of at least 12 tesla. The 9 T machine falls short, so Lean says it is not compatible. Switching to the 14 T machine covers every requirement, and Lean says compatible.",
+    B: "The heat-leak test needs the machine's warm side held at room temperature and a boil-off measuring kit. The datasheet doesn't mention either, so Lean answers Need more information instead of guessing.",
+    C: "Every required spec of the chip test (temperature range, vacuum, probe arms, wiring) is covered by the probe station's datasheet, so Lean says compatible. One optional wish isn't met, which doesn't change the answer.",
+    D: "On the 9 T machine the 12 T requirement fails. If the experiment can live with 9 T, you change the number in step 3 and Lean re-checks: compatible on the same machine." };
   // Plain-English story of each recorded run (numbers are the real outputs of `python -m cryolean demo`)
-  const STEPS = {
-    A: [["lanyon", "Reading your experiment", "Magnetoresistance needs a field of at least 10 T.", "needs 10 T", "neutral"],
-        ["data", "The machine", "PPMS DynaCool, 9 T magnet. Quantum Design's brochure says the base magnet is 9 T.", "has 9 T", "neutral"],
-        ["lean", "Lean checks", "Lean compares the two numbers exactly. 9 T is less than 10 T, so this requirement fails.", "Does not meet", "fail"],
-        ["lanyon", "Lanyon + Z3 propose", "Lanyon (AI) and Z3 look for a way out. Z3 cites the blocking brochure line and proposes the 14 T DynaCool.", "try 14 T", "neutral"],
-        ["lean", "Lean re-checks the suggestion", "The 14 T option is only shown if Lean passes it. Some of its specs aren't published, so Lean asks for more information instead of guessing.", "Need more info", "info"]],
-    B: [["lanyon", "Reading your experiment", "Run 50 qubits: drive, flux and readout lines all go down to the 20 mK plate.", "50 flux lines", "neutral"],
-        ["data", "The machine", "Bluefors LD400 with high-density wiring. Cooling power at 20 mK: 12 µW.", "12 µW to spare", "neutral"],
-        ["lean", "Lean checks", "Temperature and line count pass, but the wires leak heat. Lean adds it up: 14.592 µW, more than the 12 µW available.", "14.6 µW > 12 µW", "fail"],
-        ["lanyon", "Lanyon + Z3 propose a fix", "Lanyon (AI) and Z3 propose fewer flux lines. Lanyon was off in this recording, so Z3's exact answer is shown.", "use 39 lines", "neutral"],
-        ["lean", "Lean verifies the fix", "Lean checks the exact fixed setup before you ever see it: 11.985 µW fits under 12 µW.", "Requirements met", "met"]],
-    C: [["lanyon", "A new industry", "Someone asks about semiconductors, which CryoLean has never seen before.", "new: semiconductors", "neutral"],
-        ["data", "Research + review", "The new experiment is written up from published sources, validated, and approved by a reviewer.", "sourced + reviewed", "neutral"],
-        ["z3", "Z3 searches machines", "Z3 ranks every machine in the catalog for this new experiment.", "220 machines", "neutral"],
-        ["lean", "Lean decides", "The same Lean checker verifies the Lake Shore CRX-VF probe station for it.", "Requirements met", "met"],
-        ["lean", "Nothing in the core changed", "Adding an industry is just data. The Lean checker's fingerprint is identical before and after.", "same Lean hash", "met"]],
-    D: [["lanyon", "Reading your plan", "Four experiments, one 48 h cooldown on a Linkam stage. The cooldown takes 5 h.", "48 h, 4 runs", "neutral"],
-        ["lean", "Lean filters", "Lean rejects the 10 T magnetoresistance run: the stage has no magnet.", "1 run excluded", "fail"],
-        ["z3", "Z3 packs the schedule", "Z3 fits the other three back to back: POM 5–9 h, Raman 9–17 h, fluorescence 17–23 h.", "done at 23 h", "neutral"],
-        ["lean", "Lean checks the schedule", "Lean proves no slots overlap, all fit after cooldown, and only accepted runs are used.", "Schedule OK", "met"],
-        ["z3", "If you only had 20 h", "Z3 proves it can't fit: 18 h of runs, but only 15 h left after cooldown.", "can't fit (proved)", "fail"]],
+  // Each demo step: [who, title, plain-English text, chip, status, action]. "auto" chips are filled in from Lean's
+  // verdict right after the step's action (fill values, tick boxes, switch machine, change a number) runs.
+  const STEPS_T = {
+    A: [["you", "Your experiment", "You want to see a quantum effect in graphene, a sheet of carbon one atom thick. It only appears in a very strong magnetic field: at least 12 tesla (a fridge magnet is about 0.01 T).", "needs 12 T", "neutral", ["fill"]],
+        ["data", "The machine", "The Cryogenic Ltd system's datasheet says its magnet goes up to 9 T.", "has 9 T", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3, so Lean knows these really are the values you need.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "Lean compares every requirement with the datasheet. 9 T is less than 12 T, so this machine can't run the experiment.", "auto", "auto", null],
+        ["you", "You switch machine", "You pick the Quantum Design PPMS DynaCool, whose magnet goes up to 14 T.", "try 14 T", "neutral", ["switch", "qd_dynacool_14T_eto_vsm_hc"]],
+        ["lean", "Lean re-checks", "Same experiment, new machine: 14 T is more than 12 T, and every other requirement is covered too.", "auto", "auto", null]],
+    B: [["you", "Your experiment", "You want to measure how much heat leaks through the insulation of a liquid-nitrogen tank, by timing how fast the nitrogen boils away.", "heat-leak test", "neutral", ["fill"]],
+        ["data", "The machine", "Lake Shore VPF-100: a cryostat you fill with liquid nitrogen. Its datasheet covers the cold side, down to 77 K (about -196 °C).", "datasheet read", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "The cold temperature is fine. But the datasheet never says the warm side can be held at room temperature (293 K), or that a boil-off measuring kit exists. Lean won't fill the gaps with guesses.", "auto", "auto", null],
+        ["lean", "What would settle it", "Ask the manufacturer for those two specs. Once they are documented, Lean can give a firm yes or no.", "ask for 2 specs", "info", null]],
+    C: [["you", "Your experiment", "You want to test a tiny computer chip (5 nm transistors) while it is very cold, touching it with fine needle-like probes.", "cold chip test", "neutral", ["fill"]],
+        ["data", "The machine", "A Lake Shore probe station: a vacuum chamber that cools the chip and has six probe arms.", "6 probe arms", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "Temperature range, vacuum, number of probe arms and electrical connections are all covered by the datasheet.", "auto", "auto", null],
+        ["lean", "Optional wishes", "The plan would prefer a machine that needs no liquid cryogen (helium or nitrogen) at all. This one does, but that wish is marked optional, so the answer stays yes.", "optional only", "neutral", null]],
+    D: [["you", "Your experiment", "The same graphene experiment as demo A: it asks for a magnet of at least 12 T.", "needs 12 T", "neutral", ["fill"]],
+        ["data", "The machine", "The same Cryogenic Ltd machine, whose magnet goes up to 9 T.", "has 9 T", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "9 T is less than 12 T, so as written the experiment doesn't fit this machine.", "auto", "auto", null],
+        ["you", "You change your number", "If the effect also shows up at 9 T, you lower the magnetic-field requirement to 9 T, right in step 3.", "set 9 T", "neutral", ["set", 1, 9]],
+        ["lean", "Lean re-checks", "9 T is exactly what this machine can reach, so the requirement passes. Same machine, new plan.", "auto", "auto", null]],
   };
+  const STEPS = Object.fromEntries(Object.entries(STEPS_T).map(([k, v]) => [k, v.map((x) => x.slice())]));
   const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
   // "Computational universe" view: each participant is a body on a hairline orbit; a light pulse travels to whoever acts next.
   const AV = { lanyon: ["Lanyon AI", "suggests ideas"], lean: ["Lean", "the judge"], z3: ["Z3", "exact maths"], data: ["Datasheets", "the facts"], you: ["You", "the plan"] };
@@ -1663,7 +1727,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
     const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
     return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Cymatic pattern: the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
-      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Replay of a real run · Lanyon and Z3 suggest, Lean decides. Lanyon was off in this recording, so suggested numbers are Z3's."}</small></div></div>`;
+      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Guided example · each color is Lean's verdict for exactly the values shown in step 3."}</small></div></div>`;
   }
   // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
   function lanyonIcon(x, y, on) {
@@ -1742,66 +1806,70 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     CAP.L = `${LIVEINFO.d}: Lean says ${V[0]}. ${V[2]}`;
     if (!isDemo) { $("flow").innerHTML = flowHTML("L", STEPS.L.length); $("viztitle").textContent = "Your check"; demoCur = "L"; resetChat("L"); }
   }
-  // Final answers of each recorded demo, in the same two-line form as the live checker (tile = which verdict lights up)
-  const DEMOV = {
-    A: { tile: "info", cs: "Not compatible", rs: "Might run (14 T)", c: ["no", "Experiment is not compatible", "Needs 10 T; the 9 T DynaCool can't reach it."],
-         r: ["maybe", "Might run on the 14 T option", "Lean asks for more information: some 14 T specs aren't published."] },
-    B: { tile: "met", cs: "Compatible", rs: "Runs", c: ["ok", "Experiment is compatible (with 39 flux lines)", "Lean re-checked the fix: 11.985 µW fits under 12 µW."],
-         r: ["ok", "Runs on this system", "The heat budget holds at 20 mK with the fixed wiring."] },
-    C: { tile: "met", cs: "Compatible", rs: "Runs", c: ["ok", "Experiment is compatible", "Lean verifies the Lake Shore CRX-VF for the new semiconductor experiment."],
-         r: ["ok", "Runs on this system", "Every requirement is covered by documented specs."] },
-    D: { tile: "met", cs: "3 of 4 compatible", rs: "Runs · 23 h", c: ["ok", "3 of 4 experiments are compatible", "Lean excludes the 10 T run: the stage has no magnet."],
-         r: ["ok", "Runs: done at 23 h of the 48 h cooldown", "Lean validSchedule accepts the slots. With only 20 h it would not run (Z3 proves it)."] },
-  };
-  const tvRow = (x) => `<div class="tvr ${x[0]}"><i></i><span><b>${x[1]}</b>${x[2] ? `<small>${x[2]}</small>` : ""}</span></div>`;
-  const demoTV = (id) => `<div class="tv">${tvRow(DEMOV[id].c)}${tvRow(DEMOV[id].r)}</div><span class="tvsrc">Recorded result of demo ${id} · decided by Lean</span>`;
+  // Demo pairs: all are featured pairs, so every verdict below is read from the same Lean lattice as the live checker
+  const DEMOSEL = { A: ["scientific_research", "sci_graphene_yig_quantum_hall", "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"],
+    B: ["energy_and_hydrogen", "expc_energy_insulation_boiloff", "lake_shore_vpf_100_standard_optical"],
+    C: ["semiconductors_and_electronics", "semi_finfet_5nm_cryo_probe", "lakeshore_fwpx_6arm_standard"],
+    D: ["scientific_research", "sci_graphene_yig_quantum_hall", "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"] };
+  const VWORD = { R: "Compatible", D: "Not compatible", N: "Need more info" }, VDOT = { R: "ok", D: "no", N: "maybe" };
+  const procVals = (eid) => { const v = {}; (L.requirements[eid] || []).forEach((r) => { if (r.editable) v[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value }); return v };
+  function applyDemoAction(a, eid, lv, cid) {   // returns the (possibly new) machine id
+    if (!a) return cid;
+    if (a[0] === "fill") { lv.vals = procVals(eid); Object.keys(lv.conf).forEach((i) => lv.conf[i] = false) }
+    if (a[0] === "tick") Object.keys(lv.conf).forEach((i) => lv.conf[i] = true);
+    if (a[0] === "set") lv.vals[a[1]] = a[2];
+    if (a[0] === "switch") return a[1];
+    return cid;
+  }
+  // First and last Lean verdict of a demo, computed by replaying its actions (the colored dots on each card)
+  function demoOutcomes(id) {
+    const m = DEMOSEL[id], conf = {}; (L.requirements[m[1]] || []).forEach((r) => conf[r.index] = false);
+    const lv = { vals: procVals(m[1]), conf }; let cid = m[2]; const seen = [];
+    STEPS_T[id].forEach((x) => { cid = applyDemoAction(x[5], m[1], lv, cid); if (x[3] === "auto") seen.push(liveVerdict(m[1], cid, lv)) });
+    return [seen[0] || "N", seen[seen.length - 1] || "N"];
+  }
+  function resetDemo(id) {
+    STEPS[id] = STEPS_T[id].map((x) => x.slice());
+    delete DEMOLV[DEMOSEL[id][1]];
+    demoSelect(id);
+  }
+  function runDemoStep(id, k) {
+    const x = STEPS[id][k], m = DEMOSEL[id], ind = D.industries[st.ind]; if (!x || !ind) return;
+    const lv = liveState(m[1]), cur = ind.configurations[st.cfg].id, next = applyDemoAction(x[5], m[1], lv, cur);
+    if (next !== cur) { const j = ind.configurations.findIndex((c) => c.id === next); if (j >= 0) { st.cfg = j; st.alt = null } }
+    render();
+    if (x[3] === "auto") { const v = liveVerdict(m[1], next, lv); x[3] = VWORD[v]; x[4] = VCLS[v] }
+  }
   let demoTimer = 0, demoCur = "A";
+  function demoIdle() {   // demo tab opened: nothing plays until an example is clicked
+    demoCur = "A";
+    $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    $("viztitle").textContent = "Pick an example";
+    $("flow").innerHTML = `<div class="idle"><b>Pick an example on the left</b><span>Each one fills in steps 1–3 for you, then lets Lean decide one step at a time.</span></div>`;
+    $("chatlog").innerHTML = ""; addMsg("note", "Pick an example on the left, then ask about it here.");
+    render();
+  }
   function playDemo(id) {
-    demoCur = id; demoK = 0; clearInterval(demoTimer); demoSelect(id); resetChat(id);
-    const d = dinfo(id), lines = demoLines(d.h);
+    demoCur = id; clearInterval(demoTimer); clearInterval(typeT); resetDemo(id); resetChat(id);
+    const d = dinfo(id), steps = STEPS[id];
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
-    let n = 0; const step = () => { n++; const p = n / lines.length;
-      $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
-      $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
-      { const k = Math.ceil(p * (STEPS[id] || []).length); if (k !== flowN) { flowN = k; $("flow").innerHTML = flowHTML(id, k, true); streamLast(id, k); demoTop(id, k); } }
-      if (n >= lines.length) clearInterval(demoTimer) };
-    $("viz").innerHTML = VIZ[id](0); flowN = 0; clearInterval(typeT); $("flow").innerHTML = flowHTML(id, 0); step();
-    demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
+    let k = 0; flowN = 0; $("flow").innerHTML = flowHTML(id, 0);
+    const step = () => { runDemoStep(id, k); k++; flowN = k; $("flow").innerHTML = flowHTML(id, k, true); if (k >= steps.length) clearInterval(demoTimer) };
+    step();
+    demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 80 : 1800);
   }
-  $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span><em class="dv"><i class="${DEMOV[d.id].c[0]}"></i>${DEMOV[d.id].cs}<i class="${DEMOV[d.id].r[0]}"></i>${DEMOV[d.id].rs}</em></button>`).join("") +
-    `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
+  // One color per card: the Lean verdict the example is about (A: the 9 T failure; B, C, D: where they end)
+  $("demolist").innerHTML = DEMOS.map((d) => { const v = demoOutcomes(d.id)[d.show];
+      return `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span><em class="dv"><i class="${VDOT[v]}"></i>${VWORD[v]}</em></button>` }).join("") +
+    `<p class="cap" style="font-size:13px;color:var(--ink-2)">Each example fills in steps 1–3 for you, then lets Lean decide one step at a time. Every color comes from the same Lean results as the Live checker.</p>`;
   $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
   $("replay").onclick = () => playDemo(demoCur);
   // Demo tab = the same three live cards, set to each demo's industry/experiment/machine, plus the recorded run below
-  const DEMOSEL = { A: ["scientific_research", 1, "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"], B: ["quantum_computing_and_sensing", 1, "bluefors_xldhehp_3section"],
-    C: ["semiconductors_and_electronics", 2, "lakeshore_fwpx_6arm_standard"], D: ["chemistry_and_pharmaceuticals", 1, "linkam_thms600_lnp96_t96"] };
-  const DEMOSWITCH = { A: [4, "qd_dynacool_14T_eto_vsm_hc"] };
-  let demoK = 0;   // how many steps of the playing demo are revealed
-  // Top cards follow the demo as it plays: the lit verdict tile and the answer box track the latest Lean step
-  function demoTop(id, k) {
-    demoK = k;
-    const sw = DEMOSWITCH[id], ind = D.industries[st.ind];
-    if (sw && ind) {
-      const want = k >= sw[0] ? sw[1] : DEMOSEL[id][2], j = ind.configurations.findIndex((c) => c.id === want);
-      if (j >= 0 && j !== st.cfg) { st.cfg = j; st.alt = null; render(); return; }   // render() calls back into paintDemoTop
-    }
-    paintDemoTop(id);
-  }
-  function paintDemoTop(id) {
-    const st5 = STEPS[id] || [], k = demoK, done = k >= st5.length;
-    let last = null; for (let i = 0; i < Math.min(k, st5.length); i++) if (st5[i][4] !== "neutral") last = st5[i];
-    const tile = done ? DEMOV[id].tile : last ? { fail: "fail", met: "met", info: "info" }[last[4]] : null;
-    ["met", "fail", "info"].forEach((t) => $("v-" + t).classList.toggle("on", tile === t));
-    if (done) { $("suggest").innerHTML = demoTV(id); return; }
-    const cur = st5[Math.max(0, k - 1)], col = last ? { fail: "no", met: "ok", info: "maybe" }[last[4]] : "maybe";
-    $("suggest").innerHTML = `<div class="tv">${tvRow([col, last ? last[3] + " · " + last[1] : "Lean hasn't decided yet", cur ? cur[2] : ""])}</div>` +
-      `<span class="tvsrc">Step ${Math.min(k, st5.length)} of ${st5.length} · the final two answers appear when the run finishes</span>`;
-  }
   function demoSelect(id) {
     const m = DEMOSEL[id]; if (!m) return;
     const i = D.industries.findIndex((x) => x.id === m[0]); if (i < 0) return;
-    st.ind = i; st.exp = Math.min(m[1], D.industries[i].experiments.length - 1);
+    st.ind = i; st.exp = Math.max(0, D.industries[i].experiments.findIndex((e) => e.id === m[1]));
     const j = D.industries[i].configurations.findIndex((c) => c.id === m[2]); st.cfg = j >= 0 ? j : 0; st.alt = null; render();
   }
   // ---- Lanyon assistant: the chat goes to Lanyon AI through the CryoLean server (POST /api/lanyon).
@@ -1909,10 +1977,11 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
     isDemo = demo;
-    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("fx").hidden = !demo; if (demo) fxRun();
+    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("lx").hidden = !demo; $("fx").hidden = !demo; if (demo) fxRun();
     $("demo").classList.toggle("islive", !demo); $("demolist").hidden = !demo; $("replay").hidden = !demo; $("explain").textContent = demo ? "Explain this run" : "Explain my check";
-    stageH = demo ? 2700 : 1400; fit();
-    if (demo) playDemo(demoCur === "L" ? "A" : demoCur); else { clearInterval(demoTimer); render(); }
+    fit();
+    clearInterval(demoTimer);
+    if (demo) demoIdle(); else render();
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
   setTimeout(() => tab(location.hash === "#demo"), 0);
@@ -2043,8 +2112,8 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
     updateLiveFlow(ex, mc, vcode);
-    if (isDemo && DEMOV[demoCur]) paintDemoTop(demoCur);
-    else ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
+    const lit = gateTicked(ex.id, liveState(ex.id));   // no verdict tile lights until temperature is ticked
+    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", lit && VCLS[vcode] === k));
 
     $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
       (ex.sources || []).filter((s) => s.citation && s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">Experiment source: ${esc(s.citation)}</a>`).join("") +
@@ -2083,3 +2152,5 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
   render();
 })();
 </script>
+
+</body></html>

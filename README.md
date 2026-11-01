@@ -77,19 +77,49 @@ python -m cryolean.desktop --frontend frontend\dist\index.html
 Verification is fully offline once the database is built. Optional: `CRYOLEAN_AI_PROVIDER=claude` (with Anthropic API credentials) for
 Claude-based matching and research drafting; the default matcher is offline.
 
-## The demonstrations (`python -m cryolean demo`)
+## The four examples on the website (Demos tab)
 
-* **A — confirmed incompatibility.** A 10 T magnetoresistance measurement on the PPMS DynaCool 9 T: Lean rejects
+A cryostat is a machine that gets things extremely cold, often with a strong magnet or special wiring inside. Each example
+picks an experiment and a machine, fills in the experiment's requirements, ticks them, and lets Lean decide, one step at a
+time. Every color is read from the same Lean results as the Live checker, so the demos can never disagree with it.
+
+* **A — The magnet is too weak.** A graphene experiment only works in a magnetic field of at least 12 tesla (a fridge magnet
+  is about 0.01 T). On the Cryogenic Ltd machine, whose magnet tops out at 9 T, Lean says **not compatible**. Switch to the
+  Quantum Design PPMS DynaCool (14 T) and Lean says **compatible**.
+* **B — Lean won't guess.** Measuring heat leaking through a liquid-nitrogen tank's insulation on the Lake Shore VPF-100.
+  The cold side is fine, but the datasheet never says the warm side can be held at room temperature or that a boil-off
+  measuring kit exists. Lean answers **need more information** instead of guessing.
+* **C — A clean yes.** Testing a tiny computer chip, ice-cold, on a Lake Shore probe station. Temperature, vacuum, probe arms
+  and wiring are all documented, so Lean says **compatible**. One optional wish (needing no liquid cryogen at all) isn't met, which doesn't
+  change the answer.
+* **D — Change the plan, not the machine.** The same graphene experiment and 9 T machine as A. If the effect also shows up at
+  9 T, you lower the requirement from 12 T to 9 T in step 3, and Lean re-checks: **compatible** on the same machine.
+
+In the Live checker every value starts at 0 and every box unticked. Until you type your values and tick every requirement,
+Lean answers *need more information* and the arrow into step 3 points back. Step 3 then gives two answers: whether the
+experiment is (or might be, or is not) compatible, and whether it runs, might run, or won't run on that machine.
+
+## The command-line demonstrations (`python -m cryolean demo`)
+
+These four go deeper than the website examples, into parts of CryoLean the website doesn't show.
+
+* **A — confirmed incompatibility.** *In plain terms: the experiment needs a stronger magnet than the machine has, and
+  CryoLean points to the exact line in the brochure that proves it.* A 10 T magnetoresistance measurement on the PPMS DynaCool 9 T: Lean rejects
   (`magnetic_field.max`), Z3's unsat core cites the Quantum Design brochure quote, and the 14 T configuration is proposed.
-* **B — coupled multiphysics.** A 50-qubit wiring layout (Krinner et al., *EPJ Quantum Technology* 2019) on a Bluefors LD400
+* **B — coupled multiphysics.** *In plain terms: every wire running into the coldest part of the machine leaks a
+  little heat. Each check passes on its own, but together the wires leak more heat than the machine can remove; using fewer
+  wires fixes it.* A 50-qubit wiring layout (Krinner et al., *EPJ Quantum Technology* 2019) on a Bluefors LD400
   with high-density wiring: temperature (10 mK ≤ 20 mK) and line count (168 ≥ 124) pass, but Lean computes the mixing-chamber
   heat budget `3 × (58·13 nW + 50·(29 + 50) nW + 8·20 nW) = 14.592 µW > 12 µW` and rejects. Z3 suggests 39 flux lines;
   Lean re-checks it as `REQUIREMENTS_MET` (11.985 µW ≤ 12 µW).
-* **C — new industry.** Semiconductors are registered, a sourced candidate (two open-access papers using Lake Shore probe
+* **C — new industry.** *In plain terms: adding a whole new field (here, computer chips) is just new data. The checker
+  itself doesn't change, and it still gives exact answers.* Semiconductors are registered, a sourced candidate (two open-access papers using Lake Shore probe
   stations) passes the validation gate and reviewer approval, Z3 searches every configuration, the same Lean binary verifies
   the Lake Shore CRX-VF (and rejects the 2-probe-arm CRX-4K configuration for the ≥ 3-arm requirement), and the hash of the
   Lean core is unchanged.
-* **D — campaign scheduling.** Four experiments for one cooldown of the Lake Shore CRX-VF over 48 h. Lean rejects the 10 T
+* **D — campaign scheduling.** *In plain terms: cooling a machine down takes hours, so you want to fit several
+  experiments into one cold run. CryoLean drops the one that can't work and proves the rest fit; with too little time, it
+  proves they can't.* Four experiments for one cooldown of the Lake Shore CRX-VF over 48 h. Lean rejects the 10 T
   magnetoresistance run, so it is never scheduled. Z3 packs the other three after the documented 5 h cooldown, finishing at 23 h,
   and Lean `validSchedule` accepts the exact slot list. With a 20 h run, Z3's unsat core reports that 18 h of experiments
   cannot fit in the 15 h left.
