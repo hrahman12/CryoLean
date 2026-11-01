@@ -35,6 +35,7 @@ for ind in D["industries"]:
 data = json.dumps(out, ensure_ascii=False).replace("</", "<\\/")
 tpl = (ROOT / "site/matrix_template.html").read_text(encoding="utf-8")
 (ROOT / "site/matrix.html").write_text(tpl.replace("__MATRIX__", data), encoding="utf-8")
+(ROOT / "site/matrix_data.json").write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")   # inlined into the demo tab
 cnt = lambda k, v: sum(x == v for i in out["industries"] for row in i[k]["cells"] for x in row)
 print("best:", cnt("best", "R"), "met /", cnt("best", "N"), "info /", cnt("best", "D"), "not met")
 print("old: ", cnt("old", "R"), "met /", cnt("old", "N"), "info /", cnt("old", "D"), "not met")

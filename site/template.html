@@ -259,6 +259,22 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
+.mx180 { margin-top: 14px; display: grid; gap: 12px }
+.mxtop { display: grid; grid-template-columns: minmax(0, 1fr) 460px auto; gap: 18px; align-items: center }
+.mxtop h2 { margin: 0; font: 800 26px var(--display); color: var(--ink) } .mxtop p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px }
+.mxsum { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center } .mxsum b { font: 800 34px var(--display); color: var(--met); grid-row: span 2 }
+.mxbar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: var(--chip) } .mxbar i { height: 100% }
+.mxsum span { font-size: 12.5px; color: var(--ink-2) }
+.mxgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px }
+.mxc { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 10px; display: grid; gap: 6px }
+.mxc h4 { margin: 0; font: 800 13.5px var(--display); color: var(--ink); display: flex; justify-content: space-between; gap: 6px }
+.mxc h4 b { color: var(--met); font-size: 12px; white-space: nowrap }
+.mxm { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, 34px); gap: 3px; align-items: center }
+.mxm .h { font-size: 9.5px; color: var(--muted); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.mxm .r { font-size: 11px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.mxm .q { height: 24px; border-radius: 6px; display: grid; place-items: center; font: 800 11px var(--body); color: #fff }
+.mxm .q.R { background: var(--met) } .mxm .q.N { background: var(--info) } .mxm .q.D { background: var(--fail) }
+.mxnote { margin: 0; font-size: 12.5px; color: var(--muted) }
 .fallback[hidden], .demo[hidden], .chatf[hidden], [hidden] { display: none !important }
 </style>
 
@@ -359,6 +375,13 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
       <div id="viz" hidden></div><span class="cap" id="vizcap" hidden></span></div>
   </div>
+  <section class="mx180" id="mx180" hidden aria-labelledby="mxh">
+    <div class="mxtop"><div><h2 id="mxh">The 180 featured pairings</h2><p>20 industries × 3 experiments × 3 machines. Every square is a verdict the Lean 4 checker already returned.</p></div>
+      <div class="mxsum"><b id="mxpct"></b><div class="mxbar" id="mxbar"></div><span id="mxleg"></span></div>
+      <div class="seg" role="group" aria-label="Machine selection"><button id="mx-best" aria-pressed="true">Best-match machines</button><button id="mx-old" aria-pressed="false">Original selection</button></div></div>
+    <div class="mxgrid" id="mxgrid"></div>
+    <p class="mxnote">Best-match = the 3 machines (of 220) Lean passes most often for each industry's experiments. Some experiments pass on no machine in the catalog, so a few squares can't turn green without new machines or sourced specs.</p>
+  </section>
   <footer class="bottom">
     <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
     <span class="small" id="stamp">Verdicts decided by the Lean 4 checker</span>
@@ -406,7 +429,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   let stageH = 1024;
   function fit() {
     const w = document.documentElement.clientWidth, h = window.innerHeight;
-    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / stageH) : w / 1536;
+    const s = w >= 900 && h > 300 && stageH <= 1100 ? Math.min(w / 1536, h / stageH) : Math.min(w / 1536, 1);
     stage.style.height = stageH + "px";
     stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(stageH * s) + "px";
     stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
@@ -706,10 +729,26 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   }
   $("explain").onclick = () => askLanyon("Walk me through this run step by step in plain English.", "Explain this run");
   $("chatf").onsubmit = (e) => { e.preventDefault(); const q = $("chatq").value.trim(); if (!q) return; $("chatq").value = ""; askLanyon(q); };
+  const MX = __MATRIXDATA__; let mxMode = "best";
+  function renderMx() {
+    $("mx-best").setAttribute("aria-pressed", mxMode === "best"); $("mx-old").setAttribute("aria-pressed", mxMode === "old");
+    const all = MX.industries.flatMap((i) => i[mxMode].cells.flat()), c = (v) => all.filter((x) => x === v).length, r = c("R"), n = c("N"), d = c("D");
+    $("mxpct").textContent = Math.round(r / 180 * 100) + "%";
+    $("mxbar").innerHTML = `<i style="width:${r / 1.8}%;background:var(--met)"></i><i style="width:${n / 1.8}%;background:var(--info)"></i><i style="width:${d / 1.8}%;background:var(--fail)"></i>`;
+    $("mxleg").textContent = `${r} met · ${n} need more info · ${d} do not meet (of 180)`;
+    const SY = { R: "✓", N: "?", D: "✕" }, LB = { R: "Requirements met", N: "Need more information", D: "Does not meet" };
+    $("mxgrid").innerHTML = MX.industries.map((ind) => { const s = ind[mxMode], k = s.cells.flat().filter((v) => v === "R").length;
+      return `<div class="mxc"><h4>${esc(ind.name)}<b>${k}/9</b></h4><div class="mxm"><span></span>` +
+        s.machines.map((m) => `<span class="h" title="${esc(m.m + " · " + m.n)}">${esc(m.m.split("(")[0].trim())}</span>`).join("") +
+        ind.experiments.map((e, i) => `<span class="r" title="${esc(e.name)}">${esc(e.name)}</span>` +
+          s.cells[i].map((v, j) => `<span class="q ${v}" title="${esc(e.name)} on ${esc(s.machines[j].m)}: ${LB[v]} (Lean)">${SY[v]}</span>`).join("")).join("") + `</div></div>`; }).join("");
+  }
+  $("mx-best").onclick = () => { mxMode = "best"; renderMx(); }; $("mx-old").onclick = () => { mxMode = "old"; renderMx(); };
+  renderMx();
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
-    $("liverow").hidden = false; $("demo").hidden = !demo;
-    stageH = demo ? 1420 : 1024; fit();
+    $("liverow").hidden = false; $("demo").hidden = !demo; $("mx180").hidden = !demo;
+    stageH = demo ? 2060 : 1024; fit();
     if (demo) playDemo(demoCur); else clearInterval(demoTimer);
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
