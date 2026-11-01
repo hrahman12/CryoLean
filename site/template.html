@@ -53,7 +53,7 @@ header.top { text-align: center; height: 172px }
 
 .sample { height: 236px; border-radius: 14px; overflow: hidden; position: relative; background: radial-gradient(90% 90% at 50% 35%, var(--stage-hi), var(--sample-lo)) }
 .sample svg { position: absolute; inset: 0; width: 100%; height: 100% }
-.sample .tag { left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
+.sample .tag { z-index: 2; pointer-events: none;  left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
 .field { display: grid; gap: 6px }
 .lbl { font: 700 13px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
 .selectwrap { position: relative }
@@ -192,7 +192,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   <div class="row" id="liverow">
     <section class="card" aria-labelledby="h1">
       <h2 id="h1"><span class="num">1</span>Choose an industry</h2>
-      <div class="sample" aria-hidden="true">
+      <div class="sample" id="sample3d" aria-label="3D model of your experiment's sample. Drag to rotate.">
         <span class="tag" id="sampletag">Your sample</span>
         <svg viewBox="0 0 420 290" preserveAspectRatio="xMidYMid slice">
           <defs>
@@ -302,6 +302,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>__CRYO3D__</script>
+<script>__SAMPLE3D__</script>
 <script type="application/json" id="cryolean-data">__DATA__</script>
 <script type="application/json" id="cryolean-lattice">__LATTICE__</script>
 <script>window.DEMO_LOG = __DEMOLOG__;</script>
@@ -338,6 +339,8 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const verdictOf = (e, c) => D.verdicts[e.id + "|" + c.id];
 
   const has3d = !!(window.Cryo3D && Cryo3D.mount($("gl")));
+  const hasS3d = !!(window.Sample3D && Sample3D.mount($("sample3d")));
+  if (hasS3d) { const sv = $("sample3d").querySelector("svg"); if (sv) sv.style.display = "none"; }
   if (!has3d) { $("gl").hidden = true; $("fallback").hidden = false; document.querySelector(".tools").hidden = true; }
   const view = (inside) => { $("view-in").setAttribute("aria-pressed", inside); $("view-out").setAttribute("aria-pressed", !inside); if (has3d) Cryo3D.setInside(inside) };
   $("view-in").onclick = () => view(true); $("view-out").onclick = () => view(false);
@@ -645,6 +648,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("experiments").innerHTML = ind.experiments.map((e, i) =>
       `<button class="exp" aria-pressed="${i === st.exp}" data-i="${i}" title="${esc(e.name)}"><span class="t">${esc(e.plain_name)}</span>${e.name && e.name !== e.plain_name ? `<small>${esc(e.name)}</small>` : ""}</button>`).join("");
     $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; st.alt = null; render() });
+    if (hasS3d) Sample3D.show(ex);
     $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : "Your sample";
 
     const lv = liveState(ex.id);
