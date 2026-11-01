@@ -97,8 +97,15 @@ AI is an assistant that suggests fixes (another machine, a smaller number). It c
 you only see the ones Lean proves.
 
 In the Live checker every value starts at 0 and every box unticked. No verdict color shows until you tick the temperature
-requirement; until every requirement is ticked, Lean answers *need more information* and the arrow into step 3 points back. Step 3 then gives two answers: whether the
-experiment is (or might be, or is not) compatible, and whether it runs, might run, or won't run on that machine.
+requirement; until every requirement is ticked, Lean answers *need more information* and the arrow into step 3 points back.
+
+**Where a run fails.** Step 3 walks through the stages of a real cryostat run: load the sample → seal and pump the vacuum
+→ cool down → turn on the magnet → connect and measure → hold for the whole run. Each requirement belongs to the stage
+where it matters (sample size → load, cryogen and temperature → cool down, wiring and optics → measure, run time → hold),
+and Lean's combined checks count under "connect and measure". The page shows the first stage that fails (✗) or stalls
+because a spec is undocumented or unconfirmed (?), names the requirement responsible, and marks later stages "not reached".
+The same run plays inside the 3D cryostat: a glowing ring moves down one level per stage, the sample frosts once
+cool-down passes, and the ring stops and pulses red or amber at the failing stage.
 
 ## The command-line demonstrations (`python -m cryolean demo`)
 
