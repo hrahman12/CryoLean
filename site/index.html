@@ -563,7 +563,8 @@ def checkValue : Constraint → CapValue → Outcome
     return new THREE.MeshStandardMaterial({ color, metalness: metal, roughness: rough, transparent: opacity < 1, opacity,
       side: THREE.DoubleSide, depthWrite: opacity === 1 });
   }
-  function add(g, mesh, at) { if (at) mesh.position.set(at[0], at[1], at[2]); mesh.castShadow = mesh.receiveShadow = true; g.add(mesh); return mesh; }
+  function add(g, mesh, at) { if (at) mesh.position.set(at[0], at[1], at[2]); mesh.castShadow = mesh.receiveShadow = true;
+    if (mesh.material && mesh.material.color) mesh.userData.c0 = mesh.material.color.getHex(); g.add(mesh); return mesh; }
   function cyl(g, at, r, h, color = STEEL, opacity = 1, open = false) {
     return add(g, new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 48, 1, open), mat(color, opacity)), at);
   }
@@ -583,7 +584,7 @@ def checkValue : Constraint → CapValue → Outcome
     return add(g, new THREE.Mesh(new THREE.TubeGeometry(curve, 48, r, 8, false), mat(color, 1, 0.5, 0.4)));
   }
   function instrument(g, at, color = NAVY) {
-    const s = new THREE.Group(); s.position.set(at[0], at[1], at[2]); g.add(s);
+    const s = new THREE.Group(); s.userData.role = 4; s.position.set(at[0], at[1], at[2]); g.add(s);
     box(s, [0, 0, 0], [0.6, 0.32, 0.44]); box(s, [0, 0, 0.23], [0.5, 0.22, 0.02], color);
     box(s, [-0.08, 0.015, 0.245], [0.22, 0.09, 0.008], 0x8cb4b9); cyl(s, [0.19, -0.02, 0.25], 0.045, 0.03);
     box(s, [0, -0.18, 0], [0.42, 0.04, 0.28], NAVY);
@@ -748,13 +749,13 @@ def checkValue : Constraint → CapValue → Outcome
     [-0.09, 0.09].forEach((x) => { const f = cyl(s, [x, 0, 0], 0.055, 0.02, STEEL); f.rotation.z = Math.PI / 2; });
   }
   function feedRack(g, at, n, trim) {
-    const s = new THREE.Group(); s.position.set(at[0], at[1], at[2]); g.add(s);
+    const s = new THREE.Group(); s.userData.role = 4; s.position.set(at[0], at[1], at[2]); g.add(s);
     box(s, [0, 0, 0], [0.08 + n * 0.09, 0.07, 0.12], trim);
     for (let i = 0; i < n; i++) { const x = -n * 0.045 + 0.045 + i * 0.09;
       cyl(s, [x, 0.07, 0], 0.03, 0.08, i % 2 ? GOLD : STEEL); cyl(s, [x, 0.12, 0], 0.022, 0.02, NAVY); }
   }
   function compressor(g, at, trim, label) {
-    const s = new THREE.Group(); s.position.set(at[0], at[1], at[2]); g.add(s);
+    const s = new THREE.Group(); s.userData.role = 5; s.position.set(at[0], at[1], at[2]); g.add(s);
     box(s, [0, 0, 0], [0.55, 0.62, 0.45], WHITE); box(s, [0, 0.33, 0], [0.57, 0.04, 0.47], trim);
     for (let i = 0; i < 7; i++) box(s, [0, -0.2 + i * 0.06, 0.226], [0.42, 0.02, 0.005], 0x8795a3);
     box(s, [0.17, 0.2, 0.228], [0.12, 0.07, 0.004], 0x1c2a3a); box(s, [0.17, 0.2, 0.231], [0.09, 0.04, 0.002], label);
@@ -762,7 +763,7 @@ def checkValue : Constraint → CapValue → Outcome
     [-0.2, 0.2].forEach((x) => [-0.16, 0.16].forEach((z) => cyl(s, [x, -0.34, z], 0.035, 0.05, NAVY)));
   }
   function pump(g, at, trim) {
-    const s = new THREE.Group(); s.position.set(at[0], at[1], at[2]); g.add(s);
+    const s = new THREE.Group(); s.userData.role = 1; s.position.set(at[0], at[1], at[2]); g.add(s);
     const m = cyl(s, [0, 0, 0], 0.11, 0.38, trim); m.rotation.z = Math.PI / 2;
     for (let i = 0; i < 6; i++) ring(s, [-0.14 + i * 0.056, 0, 0], 0.115, STEEL, [0, Math.PI / 2, 0], 0.008);
     box(s, [0, -0.13, 0], [0.42, 0.04, 0.22], NAVY); cyl(s, [0.05, 0.16, 0], 0.045, 0.12, STEEL); cyl(s, [0.05, 0.23, 0], 0.07, 0.02, STEEL);
@@ -900,7 +901,7 @@ def checkValue : Constraint → CapValue → Outcome
     const bb = new THREE.Box3().setFromObject(root), c = bb.getCenter(new THREE.Vector3());
     root.position.x = -c.x; root.position.z = -c.z;
     controls.target.set(0, state.inside ? target[1] * 0.6 : c.y, 0); controls.update();
-    if (runState) runStage(runState);   // the rebuilt sample/halo pick up the current stage colours
+    indexParts(); lit = []; if (runState) { const st = runState; runState = null; runStage(st) }   // rebuilt parts pick up the current stage
   }
 
   function assemble(g, kind, inside, verdict, id) {
@@ -949,29 +950,59 @@ def checkValue : Constraint → CapValue → Outcome
   }
 
   // ---------------------------------------------------------------- run stages
-  // A glowing ring travels down the machine, one level per stage of the run (load, vacuum, cool, magnet, measure,
-  // hold). The sample frosts once cool-down passes. The ring stops and pulses at the stage where the run fails.
-  const RUNCOL = { run: 0x4f8cff, p: 0x2fa35a, f: 0xd24b4b, u: 0xe0a21f, s: 0xe0a21f };
-  let runRing = null, runState = null, sampleM = null;
+  // Each stage of a run lights up the machine parts it uses: 0 load = the sample, 1 vacuum = outer shell, pump and
+  // gauges, 2 cool down = copper/gold cold plates, 3 magnet = copper coil windings, 4 measure = instrument, feedthroughs
+  // and wiring, 5 hold = compressor and its hoses. The current stage's parts flash; at the stage where the run stops
+  // they pulse red/amber and the camera glides onto them (you can still orbit and zoom).
+  const RUNCOL = { run: 0x4f8cff, p: 0x2fa35a, f: 0xff3b3b, u: 0xffb020, s: 0xffb020 };
+  const HOSE = [0x9aa7b4, 0x5d6b78];
+  let runState = null, sampleM = null, parts = null, lit = [], zoom = null;
+  function roleOf(o) {
+    for (let p = o; p; p = p.parent) if (p.userData && p.userData.role !== undefined) return p.userData.role;
+    if (o === sampleM) return 0;
+    const c0 = o.userData.c0, t = o.geometry && o.geometry.type, prm = o.geometry && o.geometry.parameters || {};
+    if (t === "TorusGeometry" && c0 === COPPER) return 3;
+    if (t === "TubeGeometry") return HOSE.includes(c0) ? 5 : c0 === STEEL ? 1 : 4;
+    if (t === "CylinderGeometry" && (c0 === COPPER || c0 === GOLD)) return 2;
+    if (t === "CylinderGeometry" && c0 === WHITE && (prm.radiusTop || 0) > 0.3) return 1;
+    return -1;
+  }
+  function indexParts() {
+    parts = [[], [], [], [], [], []];
+    if (root) root.traverse((o) => { if (!o.isMesh || o === halo || !o.material || !o.material.emissive) return; const r = roleOf(o); if (r >= 0) parts[r].push(o); });
+    if (!parts[3].length) parts[3] = parts[2].slice();   // no coil drawn: the field acts at the cold stage
+    if (!parts[5].length) parts[5] = parts[1].slice();   // no compressor drawn: holding cold is the cryostat body
+  }
+  function unlight() {
+    lit.forEach((m) => { m.material.emissive.setHex(m.userData.e0); m.material.emissiveIntensity = m.userData.i0; });
+    lit = [];
+  }
   function runStage(st) {
-    runState = st;
-    if (!runRing) {
-      runRing = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.022, 12, 72), new THREE.MeshBasicMaterial({ color: RUNCOL.run, transparent: true, opacity: 0.9, depthTest: false }));
-      runRing.rotation.x = Math.PI / 2; runRing.renderOrder = 5; scene.add(runRing);
-    }
-    runRing.visible = !!st;
-    if (!st) return;
-    runRing.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
+    const prev = runState; runState = st; unlight();
+    if (!st || !parts) { zoom = null; return; }
+    if (sampleM) { const c = new THREE.Color(st.cold ? 0xbfe6ff : (VERDICT[state.verdict] || GOLD)); sampleM.material.color.copy(c); }
+    lit = (parts[st.i] || []).filter((m) => m.material && m.material.emissive);
+    lit.forEach((m) => { if (m.userData.e0 === undefined) { m.userData.e0 = m.material.emissive.getHex(); m.userData.i0 = m.material.emissiveIntensity } });
     if (halo) halo.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
-    if (sampleM) { const c = new THREE.Color(st.cold ? 0xbfe6ff : (VERDICT[state.verdict] || GOLD)); sampleM.material.color.copy(c); sampleM.material.emissive.copy(c); }
+    const stopped = st.status === "f" || st.status === "u" || st.status === "s";
+    if (stopped && lit.length && !(prev && prev.i === st.i && prev.status === st.status)) {
+      const bb = new THREE.Box3(); lit.forEach((m) => bb.expandByObject(m));
+      const c = bb.getCenter(new THREE.Vector3()), r = Math.max(0.25, bb.getSize(new THREE.Vector3()).length() * 0.5);
+      const dir = camera.position.clone().sub(controls.target).normalize();
+      zoom = { t0: performance.now(), fromT: controls.target.clone(), fromP: camera.position.clone(), toT: c, toP: c.clone().add(dir.multiplyScalar(r * 3.2 + 0.6)) };
+      controls.autoRotate = false;
+    }
   }
   function runTick(t) {
-    if (!runRing || !runState || !runRing.visible) return;
-    const n = Math.max(1, runState.n), y = 0.85 - (runState.i / Math.max(1, n - 1)) * 1.6;
-    runRing.position.y += (y - runRing.position.y) * 0.12;
+    if (!runState) return;
     const stopped = runState.status === "f" || runState.status === "u" || runState.status === "s";
-    runRing.material.opacity = stopped ? 0.45 + 0.45 * (1 + Math.sin(t / 180)) / 2 : 0.9;
-    const k = stopped ? 1 + 0.06 * Math.sin(t / 180) : 1; runRing.scale.set(k, k, k);
+    const col = RUNCOL[runState.status] || RUNCOL.run, k = stopped ? 0.7 + 1.1 * (1 + Math.sin(t / 160)) / 2 : 0.25 + 0.45 * (1 + Math.sin(t / 240)) / 2;
+    lit.forEach((m) => { m.material.emissive.setHex(col); m.material.emissiveIntensity = k; });
+    if (zoom) {
+      const a = Math.min(1, (t - zoom.t0) / 900), e = a * a * (3 - 2 * a);
+      controls.target.lerpVectors(zoom.fromT, zoom.toT, e); camera.position.lerpVectors(zoom.fromP, zoom.toP, e);
+      if (a >= 1) zoom = null;
+    }
   }
 
   window.Cryo3D = {
@@ -1808,14 +1839,15 @@ def checkValue : Constraint → CapValue → Outcome
   const VWORD = { R: "Compatible", D: "Not compatible", N: "Need more info" }, VDOT = { R: "ok", D: "no", N: "maybe" };
   const procVals = (eid) => { const v = {}; (L.requirements[eid] || []).forEach((r) => { if (r.editable) v[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value }); return v };
   let demoCur = "L", demoPick = "G", lastChatKey = "";
-  // The same stages play inside the 3D machine: one stage every 1.3 s, stopping (and pulsing) where the run fails,
+  // Demos tab only: the same stages play inside the 3D machine: one stage every 1.3 s, stopping (and pulsing) where the run fails,
   // then starting over. The tag over the viewer names the stage.
   let run3dT = 0, run3dKey = "";
   function runIn3D() {
     const R = lastRun; if (!R) return;
-    const key = JSON.stringify([R.key, R.started, R.used.map((s) => s.out), R.stop && R.stop.k]);
+    const key = JSON.stringify([isDemo, R.key, R.started, R.used.map((s) => s.out), R.stop && R.stop.k]);
     if (key === run3dKey) return; run3dKey = key; clearInterval(run3dT);
     const tag = $("runtag");
+    if (!isDemo) { if (has3d) Cryo3D.stage(null); tag.hidden = true; return }   // the 3D run plays in the Demos tab only
     if (!R.started || !R.used.length) { if (has3d) Cryo3D.stage(null); tag.hidden = false; tag.className = "runtag"; tag.textContent = "Tick temperature in step 3 to start the run"; return }
     const n = R.used.length, stopAt = R.stop ? R.used.indexOf(R.stop) : n - 1, coolAt = R.used.findIndex((s) => s.k === 2);
     let i = 0, hold = 0;
@@ -1824,10 +1856,10 @@ def checkValue : Constraint → CapValue → Outcome
       const cold = coolAt >= 0 && (i > coolAt || (i === coolAt && end && !R.stop));
       if (has3d) Cryo3D.stage({ i: s.k, n: STAGES.length, status, cold });
       tag.hidden = false; tag.className = "runtag " + ({ f: "no", u: "maybe", s: "maybe", p: "ok", run: "" }[status] || "");
-      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here" : " ? stops here");
+      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here (flashing part)" : " ? stops here (flashing part)");
     };
     show();
-    run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
+    run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (R.stop) clearInterval(run3dT); else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
   }
   function demoVerdict(d) {   // Lean verdict of an example with its fixed, ticked values (the colored dot in step 1)
     const conf = {}; (L.requirements[d.pair[1]] || []).forEach((r) => conf[r.index] = !(d.open || []).includes(r.index));
