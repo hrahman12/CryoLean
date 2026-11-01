@@ -139,12 +139,27 @@ header.top { text-align: center; height: 172px }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
-.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 420px; gap: 14px; height: 300px; margin-top: 8px }
+.demo { display: grid; grid-template-columns: 260px minmax(0, 1fr) 360px; gap: 14px; height: 300px; margin-top: 8px }
 .demo .viz { overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: 4px; min-height: 0 }
 .demo .viz #viz { min-height: 0 } .demo .viz #viz svg { width: 100%; height: 100%; max-height: 190px }
 .demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
 .demo .list > p { display: none }
 .demo .term { height: 300px; overflow: auto }
+.flow { height: 300px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: stretch }
+.flow .st { position: relative; border: 2px solid var(--line); border-radius: 14px; padding: 10px 11px; background: var(--panel); display: grid; grid-template-rows: auto auto 1fr auto; gap: 6px; opacity: .25; transform: translateY(6px); transition: opacity .45s, transform .45s, border-color .45s }
+.flow .st.on { opacity: 1; transform: none }
+.flow .st .who { font: 800 11px var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; justify-self: start }
+.flow .st.lean { border-color: var(--met) } .flow .st.lean .who { background: color-mix(in srgb, var(--met) 22%, transparent); color: var(--met) }
+.flow .st.z3 { border-style: dashed; border-color: #e0893a } .flow .st.z3 .who { background: rgba(224,137,58,.18); color: #e0893a }
+.flow .st.you .who, .flow .st.data .who { background: var(--chip); color: var(--ink-2) }
+.flow .st b.t { font: 800 16px/1.2 var(--display); color: var(--ink) }
+.flow .st p { margin: 0; font: 500 13px/1.35 var(--body); color: var(--ink-2) }
+.flow .st .big { font: 800 20px/1.1 var(--display); padding: 6px 8px; border-radius: 10px; text-align: center }
+.flow .st .big.met { background: color-mix(in srgb, var(--met) 20%, transparent); color: var(--met) }
+.flow .st .big.fail { background: color-mix(in srgb, var(--fail) 20%, transparent); color: var(--fail) }
+.flow .st .big.info { background: color-mix(in srgb, var(--info) 22%, transparent); color: var(--info) }
+.flow .st .big.neutral { background: var(--chip); color: var(--ink) }
+.flow .st:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 45%; font: 800 16px var(--body); color: var(--accent) }
 .demo .list { display: grid; gap: 10px; align-content: start }
 .demo .di { text-align: left; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: var(--ink) }
 .demo .di b { font: 800 19px var(--display); display: block } .demo .di span { font: 500 13.5px/1.3 var(--body); color: var(--ink-2) }
@@ -277,7 +292,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   <div class="demo" id="demo" hidden>
     <div class="list" id="demolist"></div>
-    <pre class="term" id="term" aria-live="polite"></pre>
+    <div class="flow" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
     <div class="viz"><h3 id="viztitle"></h3><div id="viz"></div><div style="display:grid;gap:8px"><span class="cap" id="vizcap"></span><button class="replay" id="replay">Replay run</button></div></div>
   </div>
   <footer class="bottom">
@@ -1438,6 +1453,33 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     B: "Temperature and line count pass, but Lean's coupled heat budget gives 14.592 µW > 12 µW. Z3 proposes 39 flux lines; Lean re-checks: 11.985 µW, REQUIREMENTS_MET.",
     C: "A new industry goes through registration, validation and review; Z3 searches every configuration and the same Lean binary verifies the Lake Shore CRX-VF. The Lean core hash does not change.",
     D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
+  // Plain-English story of each recorded run (numbers are the real outputs of `python -m cryolean demo`)
+  const STEPS = {
+    A: [["data", "Your experiment", "Magnetoresistance needs a field of at least 10 T.", "needs 10 T", "neutral"],
+        ["data", "The machine", "PPMS DynaCool, 9 T magnet. Quantum Design's brochure says the base magnet is 9 T.", "has 9 T", "neutral"],
+        ["lean", "Lean checks", "Lean compares the two numbers exactly. 9 T is less than 10 T, so this requirement fails.", "Does not meet", "fail"],
+        ["z3", "Z3 explains + suggests", "Z3 points at the exact brochure line that blocks it, and looks for another magnet option: the 14 T DynaCool.", "try 14 T", "neutral"],
+        ["lean", "Lean re-checks the suggestion", "The 14 T option is only shown if Lean passes it. Some of its specs aren't published, so Lean asks for more information instead of guessing.", "Need more info", "info"]],
+    B: [["data", "Your experiment", "Run 50 qubits: drive, flux and readout lines all go down to the 20 mK plate.", "50 flux lines", "neutral"],
+        ["data", "The machine", "Bluefors LD400 with high-density wiring. Cooling power at 20 mK: 12 µW.", "12 µW to spare", "neutral"],
+        ["lean", "Lean checks", "Temperature and line count pass, but the wires leak heat. Lean adds it up: 14.592 µW, more than the 12 µW available.", "14.6 µW > 12 µW", "fail"],
+        ["z3", "Z3 suggests a fix", "Z3 finds the largest number of flux lines that still fits the heat budget.", "use 39 lines", "neutral"],
+        ["lean", "Lean verifies the fix", "Lean checks the exact fixed setup before you ever see it: 11.985 µW fits under 12 µW.", "Requirements met", "met"]],
+    C: [["you", "A new industry", "Someone asks about semiconductors, which CryoLean has never seen before.", "new: semiconductors", "neutral"],
+        ["data", "Research + review", "The new experiment is written up from published sources, validated, and approved by a reviewer.", "sourced + reviewed", "neutral"],
+        ["z3", "Z3 searches machines", "Z3 ranks every machine in the catalog for this new experiment.", "220 machines", "neutral"],
+        ["lean", "Lean decides", "The same Lean checker verifies the Lake Shore CRX-VF probe station for it.", "Requirements met", "met"],
+        ["lean", "Nothing in the core changed", "Adding an industry is just data. The Lean checker's fingerprint is identical before and after.", "same Lean hash", "met"]],
+    D: [["you", "Your plan", "Four experiments, one 48 h cooldown on a Linkam stage. The cooldown takes 5 h.", "48 h, 4 runs", "neutral"],
+        ["lean", "Lean filters", "Lean rejects the 10 T magnetoresistance run: the stage has no magnet.", "1 run excluded", "fail"],
+        ["z3", "Z3 packs the schedule", "Z3 fits the other three back to back: POM 5–9 h, Raman 9–17 h, fluorescence 17–23 h.", "done at 23 h", "neutral"],
+        ["lean", "Lean checks the schedule", "Lean proves no slots overlap, all fit after cooldown, and only accepted runs are used.", "Schedule OK", "met"],
+        ["z3", "If you only had 20 h", "Z3 proves it can't fit: 18 h of runs, but only 15 h left after cooldown.", "can't fit (proved)", "fail"]],
+  };
+  const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests" };
+  function flowHTML(id, n) {
+    return (STEPS[id] || []).map(([w, t, p, big, tone], i) => `<div class="st ${w}${i < n ? " on" : ""}"><span class="who">${WHO[w]}</span><b class="t">${esc(t)}</b><p>${esc(p)}</p><div class="big ${tone}">${esc(big)}</div></div>`).join("");
+  }
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
     demoCur = id; clearInterval(demoTimer); demoSelect(id);
@@ -1447,8 +1489,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     let n = 0; const step = () => { n++; const p = n / lines.length;
       $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
       $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
+      $("flow").innerHTML = flowHTML(id, Math.ceil(p * (STEPS[id] || []).length));
       if (n >= lines.length) clearInterval(demoTimer) };
-    $("viz").innerHTML = VIZ[id](0); step();
+    $("viz").innerHTML = VIZ[id](0); $("flow").innerHTML = flowHTML(id, 0); step();
     demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
   }
   $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span></button>`).join("") +
