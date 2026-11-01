@@ -84,15 +84,17 @@ is the same three-step checker as the Live tab. The only differences: step 1 off
 in step 3 are filled in and ticked for you. Every color is read from the same Lean results as the Live checker, so the
 examples can never disagree with it. You can still switch cryostats in step 2 and watch the answer change.
 
-* 🟢 **Test a computer chip, ice-cold.** A tiny chip tested on a Lake Shore probe station. Temperature, vacuum, probe arms and
-  wiring are all documented, so Lean says **compatible**. One optional wish (needing no liquid cryogen at all) isn't met,
-  which doesn't change the answer.
-* 🟡 **Measure heat leaking from a nitrogen tank.** On the Lake Shore VPF-100, the cold side is fine, but the datasheet never
-  says the warm side can be held at room temperature or that a boil-off measuring kit exists. Lean answers
-  **need more information** instead of guessing.
-* 🔴 **See a quantum effect in graphene.** The effect only appears in a magnetic field of at least 12 tesla (a fridge magnet
-  is about 0.01 T). The Cryogenic Ltd machine's magnet tops out at 9 T, so Lean says **not compatible**. Switch to the
-  14 T Quantum Design PPMS DynaCool in step 2 and it turns green.
+* 🟢 **Aerospace: test Mars-rover parts in Mars-like cold.** Rover temperature sensors must survive Mars nights and days
+  (−135 °C to +125 °C). A Tinius Olsen test chamber covers −150 °C to +600 °C, so Lean says **compatible**.
+* 🟡 **Quantum: test quantum-computer chips at −271 °C.** Whole 300 mm silicon wafers on a Bluefors fridge. One need (the
+  wafer size) isn't confirmed yet, and Lean won't give an answer until every need is confirmed: **need more information**.
+* 🔴 **Biology: freeze a protein crystal to X-ray it.** The crystal has to be plunged into liquid nitrogen, but the Lake Shore
+  CCS-800 is a cooler that uses no liquid nitrogen, so Lean says **not compatible**. Switch to the Thermo Fisher freezer in
+  step 2 and it turns green.
+
+Below the three steps, a panel plays the check on a loop: your experiment, the machine, Lean's check, then Lanyon AI. Lanyon
+AI is an assistant that suggests fixes (another machine, a smaller number). It can be wrong, so Lean checks every idea and
+you only see the ones Lean proves.
 
 In the Live checker every value starts at 0 and every box unticked. No verdict color shows until you tick the temperature
 requirement; until every requirement is ticked, Lean answers *need more information* and the arrow into step 3 points back. Step 3 then gives two answers: whether the
