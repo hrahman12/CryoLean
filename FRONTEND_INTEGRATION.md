@@ -1,18 +1,18 @@
-# FRONTEND_INTEGRATION — connecting the Antigravity frontend to the local CryoLean backend
+# FRONTEND_INTEGRATION — connecting the Codex frontend to the local CryoLean backend
 
-CryoLean runs **locally on Windows with no web server**. The Antigravity frontend is loaded into a native
+CryoLean runs **locally on Windows with no web server**. The frontend, built with Codex in `frontend/`, is loaded into a native
 window by PyWebView, and calls the Python backend directly through `window.pywebview.api.*`.
 
 ```
-Antigravity UI (HTML/JS) ──window.pywebview.api.method(...)──► cryolean.bridge.CryoLeanAPI (Python)
+Codex UI (frontend/) ─────window.pywebview.api.method(...)──► cryolean.bridge.CryoLeanAPI (Python)
                                                                  ├─ SQLite evidence/catalog DB   (data/cryolean.db)
                                                                  ├─ Lean 4 checker (subprocess)  (lean/.lake/build/bin/cryolean.exe)
                                                                  └─ Z3 solver (in process)
 ```
 
-## 1. Copy-paste for Antigravity
+## 1. Copy-paste for Codex
 
-1. Copy [`docs/antigravity/cryolean-client.js`](docs/antigravity/cryolean-client.js) into the frontend project.
+1. Use [`docs/codex/cryolean-client.js`](docs/codex/cryolean-client.js), the canonical client. The Codex frontend re-exports it from `frontend/src/services/cryolean-client-raw.js` instead of keeping a copy.
 2. Use it like this:
 
 ```js
@@ -46,7 +46,7 @@ await cryo.selectEquipment(s.id, "qd_dynacool_14T_eto_vsm_hc");   // previous re
 const r2 = await cryo.checkSession(s.id);
 ```
 
-3. Short prompt for Antigravity:
+3. Short prompt for Codex:
 
 > Build the CryoLean screen described in the README using `cryolean-client.js`. Never compute a verdict in
 > the UI; show `HEADLINE[result.verdict]`, `result.user_message` and `result.next_step`, and a verified badge
@@ -64,7 +64,7 @@ const r2 = await cryo.checkSession(s.id);
 pip install -r requirements.txt pywebview
 cd lean; lake build; cd ..
 python -m cryolean build-db
-python -m cryolean.desktop --frontend C:\path\to\antigravity\dist\index.html
+python -m cryolean.desktop --frontend frontend\dist\index.html
 ```
 
 Without `--frontend`, a status page shows the Lean checker status. Every bridge method can also be called
@@ -117,6 +117,7 @@ Arguments may be passed as objects or JSON strings. Quantities are `{"value": "<
 | `research_new_experiment(description, industry="unspecified", research_text=None)` | NEED_MORE_INFORMATION + 12-step research plan (+ optional untrusted AI draft) |
 | `get_research_coverage()` | coverage registry (industries, profiles, equipment, evidence, 40 properties, coupled models, gaps) |
 | `get_lean_status()` / `get_physical_properties()` / `reload_catalog()` | status and registries |
+| `get_data_completeness(experiment_ids=None)` | per cryostat: score (share of experiments its documented data lets Lean decide), `fully_documented`, `missing_keys`; filter the cryostat list with it |
 | `get_verification_card()` | theorem names, audited axioms, Lean source hash, forensics summary |
 | `schedule_campaign(configuration_id, experiment_ids, run_length, durations, parameters=None, confirmed=False)` | Lean verdict per experiment, Z3 packs the accepted ones into one cooldown (minimum makespan, unsat core if they cannot fit), Lean `validSchedule` checks the slots. Show "Schedule OK" only when `schedule_ok` is true |
 | `check_schedule(document)` | Lean `validSchedule` on an edited slot list (the `lean_input` of a schedule result) |

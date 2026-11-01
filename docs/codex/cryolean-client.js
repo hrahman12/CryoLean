@@ -1,6 +1,6 @@
-// cryolean-client.js — drop-in client for the Antigravity frontend.
+// cryolean-client.js — the canonical client for the Codex-built frontend (frontend/ re-exports this file).
 // Talks to the local Python backend through PyWebView (no web server):
-//     python -m cryolean.desktop --frontend <path-to-antigravity-build>/index.html
+//     python -m cryolean.desktop --frontend frontend/dist/index.html
 // Every call resolves to the backend's `data` or throws a CryoLeanError (error.code, error.message).
 // Verdicts ONLY come from the Lean checker in the backend; never compute or override one here.
 
@@ -86,6 +86,12 @@ export const getSessionResult = (sessionId) => call("get_session_result", sessio
 export const getResearchCoverage = () => call("get_research_coverage");
 export const getLeanStatus = () => call("get_lean_status");
 export const getPhysicalProperties = () => call("get_physical_properties");
+/**
+ * Data completeness per cryostat: { configurations: { id: { score, fully_documented, complete_for, missing_keys } },
+ * fully_documented: [...ids] }. A cryostat is complete for an experiment when its own documented data lets Lean decide.
+ * Use it to show or filter "fully documented" cryostats, e.g. a badge or a toggle in "Change cryostat".
+ */
+export const getDataCompleteness = (experimentIds = null) => call("get_data_completeness", experimentIds);
 /** Theorem names, their audited axioms, the Lean source hash and the forensics summary. */
 export const getVerificationCard = () => call("get_verification_card");
 

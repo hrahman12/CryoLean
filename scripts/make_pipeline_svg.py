@@ -107,8 +107,8 @@ box(830, 122, 392, 720, "#f0faf3", "#1a7f37", r=14, sw=2)
 
 # ---------------------------------------------------------------- inputs
 x, w = COLS["in"]
-card(x, 130, w, 150, ["antigravity.png", "pywebview.png"], "Desktop UI",
-     ["Google Antigravity frontend in a", "PyWebView window. No web server:", "window.pywebview.api.* calls", "the Python bridge directly."],
+card(x, 130, w, 150, ["codex.png", "pywebview.png"], "Desktop UI",
+     ["Codex-built frontend in a", "PyWebView window. No web server:", "window.pywebview.api.* calls", "the Python bridge directly."],
      "cryolean/bridge.py")
 card(x, 296, w, 150, ["sqlite.jpg"], "Cryostat sheet",
      ["26 configurations, 9 families,", "667 sourced evidence records.", "Missing facts stay UNKNOWN."],

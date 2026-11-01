@@ -25,7 +25,7 @@ Built for the [VibeCheck FM + AI Hackathon](https://fmxai.org/vibecheck/).
 | <img src="docs/images/logos/sqlite-96.png" width="44" alt="SQLite"> | **SQLite** | `data/cryolean.db` | Catalog built from the JSON seeds: 667 sourced records, 26 configurations, 11 experiment profiles, 40 properties, 13 coupled models, plus the rule Registry. | Data, validated |
 | <img src="docs/images/logos/python-96.png" width="44" alt="Python"> | **Python** | `cryolean/` | Exact unit conversion, fail-closed JSON for Lean, orchestration. | Never decides a verdict |
 | <img src="docs/images/logos/pywebview-96.png" width="44" alt="pywebview"> | **PyWebView** | `cryolean/desktop.py`, `cryolean/bridge.py` | Native Windows window; the UI calls `window.pywebview.api.*`. No web server. | Transport |
-| <img src="docs/images/logos/antigravity-96.png" width="44" alt="Google Antigravity"> | **Google Antigravity** | separate frontend | The UI. Copy [docs/antigravity/cryolean-client.js](docs/antigravity/cryolean-client.js); see [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md). | Display only |
+| <img src="docs/images/logos/codex-96.png" width="44" alt="OpenAI Codex"> | **Codex** | `frontend/` | The UI, built with Codex: a React app that runs in the PyWebView window and calls the bridge through [docs/codex/cryolean-client.js](docs/codex/cryolean-client.js); see [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md). | Display only |
 
 ## How the code differs from the original sketch
 
@@ -65,10 +65,10 @@ python -m cryolean demo
 python -m pytest
 ```
 
-Launch with the Antigravity frontend (PyWebView):
+Launch with the Codex-built frontend (PyWebView; build it once with `npm ci --prefix frontend` and `npm run build`):
 
 ```powershell
-python -m cryolean.desktop --frontend C:\path\to\antigravity\dist\index.html
+python -m cryolean.desktop --frontend frontend\dist\index.html
 ```
 
 `python -m pytest` compiles every Lean proof (`lake build`) and runs the axiom audit; use `-m "not slow"` to skip those two.
@@ -117,7 +117,7 @@ Missing facts are UNKNOWN (121 capability entries); `get_research_coverage()` li
 | `cryolean/` | `bridge` (desktop API), `verifier` (Lean then Z3, verdict card), `smt`, `schedule` (Z3 campaign packing), `gatekeeper` (rule Registry), `lanyon`, `serialize` (the Python→Lean boundary), `units`, `db`, `catalog`, `validation`, `research`, `modifications`, `edits`, `coverage`, `ai`, `demo`, `desktop` |
 | `data/` | JSON seeds (`cryostats/`, `experiments/`, `evidence/`, `physics/`, `capability_vocabulary.json`, `industries.json`), `evidence.json`, `coverage.json`, `SCHEMA.md` |
 | `research/` | raw research notes, the re-verified v2 research (`research/v2/`), new-industry candidate, the Lanyon prompts (`research/lanyon/`) |
-| `docs/` | `PRODUCT.md`, `antigravity/cryolean-client.js`, `forensics/` (audit report), `lanyon/` (first certified session), `images/` (pipeline), real example outputs in `examples/` |
+| `docs/` | `PRODUCT.md`, `codex/cryolean-client.js`, `forensics/` (audit report), `lanyon/` (first certified session), `images/` (pipeline), real example outputs in `examples/` |
 | `scripts/` | `audit_axioms.py`, `run_forensics.py`, `make_pipeline_svg.py`, `validate_sources.py`, `build_evidence.py`, `build_coverage.py`, `promote_candidate.py`, `import_research_v2.py` |
 | `tests/` | 68 tests: the 20 required scenarios, engine guarantees, review regressions, Lean build + axiom audit, data and bridge |
 

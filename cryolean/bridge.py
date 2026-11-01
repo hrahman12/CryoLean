@@ -1,4 +1,4 @@
-"""Local desktop bridge for the Antigravity frontend (no web server required).
+"""Local desktop bridge for the Codex-built frontend in frontend/ (no web server required).
 
 Usage with PyWebView (Windows):
 
@@ -25,7 +25,7 @@ import json
 import traceback
 import uuid
 
-from . import ai, coverage, db, gatekeeper, lanyon, lean_runner, modifications, research, schedule, serialize, verifier
+from . import ai, completeness, coverage, db, gatekeeper, lanyon, lean_runner, modifications, research, schedule, serialize, verifier
 from .catalog import Catalog, CatalogError
 from .edits import EditError
 from .modifications import ModificationError
@@ -82,7 +82,7 @@ def _parse(x):
 
 
 class CryoLeanAPI:
-    """The callable interface for the Antigravity desktop frontend."""
+    """The callable interface for the Codex-built desktop frontend."""
 
     def __init__(self, db_path: str | None = None):
         if db_path is None:
@@ -376,6 +376,14 @@ class CryoLeanAPI:
         inv = lean_runner.theorem_inventory()
         return {"lean_available": inv["lean_binary_present"], "version": lean_runner.version(), "selftest_passed": ok,
                 "theorem_count": inv["count"], "theorems": inv["theorems"], "unsafe_markers": inv["unproved_or_unsafe_markers"]}
+
+    @_api
+    def get_data_completeness(self, experiment_ids=None):
+        """For each cryostat configuration: for which experiments its own documented data is enough for Lean to decide
+        (score 0-1), which keys are missing, and whether it is fully documented. Use it to show or filter only cryostats
+        whose data is complete. Experiment-side gaps (parameters the user has not entered) do not count against a cryostat."""
+        ids = list(_parse(experiment_ids)) if experiment_ids else None
+        return completeness.completeness(self._catalog, None, ids)
 
     @_api
     def get_verification_card(self):
