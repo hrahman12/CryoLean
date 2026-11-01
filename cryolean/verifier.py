@@ -157,7 +157,8 @@ def check(catalog: Catalog, experiment: dict, configuration_id: str, extra_modif
         "lean_input": {"configuration": cfg_doc, "experiment": exp_doc},
     }
     result["verdict_card"] = verdict_card(verdict, msg, lean, result["failed_requirements"], result["missing_information"])
-    result["suggestions"] = suggest(catalog, experiment, cfg_doc, exp_doc, lean, max_alternatives) if suggestions else None
+    result["suggestions"] = (suggest(catalog, experiment, cfg_doc, exp_doc, lean, max_alternatives, configuration_id,
+                                     extra_modifications) if suggestions else None)
     return result
 
 
@@ -232,88 +233,203 @@ def _references(catalog: Catalog, experiment: dict, checks: list, coupled: list)
 
 
 # ---------------------------------------------------------------------------- Z3 suggestions (after Lean)
-def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, lean: dict, max_alternatives: int = 5) -> dict:
-    out = {"engine": "z3", "note": ("Suggestions come from the Z3 solver. A suggestion is marked verified only if the Lean "
-                                    "checker accepted the exact suggested configuration and parameters.")}
-    # 1. why it fails / what blocks it
+# The gate: a fix is shown to the user ONLY if the Lean checker returned REQUIREMENTS_MET on the exact documents
+# that "Apply fix" will rebuild (same catalog path: working experiment -> build_documents -> Lean). Candidates that
+# return DOES_NOT_MEET_REQUIREMENTS, NEED_MORE_INFORMATION or error are discarded and only counted.
+NUDGES = (Fraction(0), Fraction(1, 1000), Fraction(1, 100), Fraction(5, 100), Fraction(10, 100))
+
+
+def _lean_evidence(lr: dict) -> dict:
+    return {"verdict": lr["verdict"], "lean_input_hash": lr.get("input_hash"), "lean_version": lr.get("lean_version"),
+            "checker": lr.get("checker"), "summary": lr.get("summary"),
+            "theorems": CARD_THEOREMS["REQUIREMENTS_MET"] if lr["verdict"] == "REQUIREMENTS_MET" else []}
+
+
+def _param_unit(experiment: dict, name: str, dim: dict) -> str:
+    """The unit the experiment already uses for this parameter (so the applied value is in the user's own unit)."""
+    for prm in experiment.get("params", []):
+        if prm["name"] == name and isinstance(prm.get("value"), dict) and prm["value"].get("unit"):
+            return prm["value"]["unit"]
+    for sym, u in units.UNITS.items():
+        if u.scale == 1 and u.dim_dict() == dim:
+            return sym
+    return "count"
+
+
+def _candidate_values(best: Fraction, direction: str, is_int: bool):
+    """Z3's optimum first, then the same value pushed further into the feasible side (still the user's own parameter;
+    no requirement or specification is changed). Lean decides each one."""
+    seen = []
+    for n in NUDGES:
+        v = best * (1 - n) if direction == "decrease" else best * (1 + n)
+        if is_int:
+            v = Fraction(int(v // 1)) if direction == "decrease" else Fraction(-int((-v) // 1))
+        if v not in seen and (direction != "decrease" or v >= 0):
+            seen.append(v)
+    return seen
+
+
+def _lean_on_applied(catalog: Catalog, experiment: dict, configuration_id: str, extra_modifications, param_values: dict | None):
+    """Rebuild exactly what check_compatibility will build after Apply fix, and ask Lean."""
+    from .edits import apply_parameter_values
+    ex2 = copy.deepcopy(experiment)
+    if param_values:
+        apply_parameter_values(catalog, ex2, param_values)
+    cd, ed, _, _ = build_documents(catalog, ex2, configuration_id, extra_modifications)
+    return lean_runner.check(cd, ed)
+
+
+def suggest(catalog: Catalog, experiment: dict, cfg_doc: dict, exp_doc: dict, lean: dict, max_alternatives: int = 5,
+            configuration_id: str | None = None, extra_modifications=None) -> dict:
+    configuration_id = configuration_id or cfg_doc["id"].split("~")[0]
+    out = {"engine": "z3", "gate": "lean_verified_only",
+           "note": ("Lanyon (when enabled) and Z3 propose candidates; every candidate is checked by the Lean checker on the exact configuration Apply "
+                    "will use. Only REQUIREMENTS_MET candidates are listed; all others are discarded.")}
     out["conflicts"] = smt.all_conflicts(cfg_doc, exp_doc)
     out["requirements_self_consistent"] = smt.requirements_self_consistent(exp_doc)
+    discarded = {"DOES_NOT_MEET_REQUIREMENTS": 0, "NEED_MORE_INFORMATION": 0, "error": 0, "needs_uninstalled_options": 0}
+    fixes: list[dict] = []
 
-    # 2. parameter changes for failing coupled relations, re-checked by Lean
+    def ask(param_values, cid=configuration_id, mods=extra_modifications):
+        try:
+            lr = _lean_on_applied(catalog, experiment, cid, mods, param_values)
+        except (lean_runner.LeanUnavailable, lean_runner.LeanDecodeError, Exception) as e:   # noqa: BLE001 - any failure = not verified
+            discarded["error"] += 1
+            out.setdefault("lean_errors", []).append(str(e)[:300])
+            return None
+        if lr["verdict"] != "REQUIREMENTS_MET":
+            discarded[lr["verdict"]] += 1
+            return None
+        return lr
+
+    # 1. parameter changes for failing coupled relations: Z3 proposes, Lean decides each candidate value
     failing = [c["id"] for c in lean["coupled_checks"] if c["mandatory"] and c["applicable"] and c["outcome"] == "fail"]
     adjustable = {}
     for c in exp_doc.get("coupled", []):
-        model = catalog.coupled_models.get(c["model"], {})
-        adjustable.update(model.get("parameters", {}) or {})
-    params = smt.suggest_parameters(cfg_doc, exp_doc, failing, adjustable) if failing else []
-    for p in params:
-        if p.get("status") != "found":
-            continue
-        exp2 = copy.deepcopy(exp_doc)
-        for prm in exp2["params"]:
-            if prm["name"] == p["parameter"]:
-                prm["value"] = p["suggested_quantity"]
-                prm["origin"] = "user_entered"
+        adjustable.update(catalog.coupled_models.get(c["model"], {}).get("parameters", {}) or {})
+    # 1a. Lanyon (AI proposer) first, when enabled: each candidate is Lean-checked exactly like Z3's
+    out["proposers"] = {"z3": {"enabled": True}}
+    from . import lanyon
+    lan = lanyon.proposer_enabled()
+    out["proposers"]["lanyon"] = {"enabled": lan["enabled"], "reason": lan["reason"]}
+    if failing and lan["enabled"]:
+        failing_checks = [c for c in lean["coupled_checks"] if c["id"] in failing]
         try:
-            r = lean_runner.check(cfg_doc, exp2)
-            p["lean_verdict"] = r["verdict"]
-            p["verified"] = r["verdict"] == "REQUIREMENTS_MET"
-            p["coupled_after"] = next((c["explanation"] for c in r["coupled_checks"] if c["id"] == p["coupled_id"]), None)
-        except lean_runner.LeanUnavailable as e:
-            p["lean_verdict"] = None
-            p["verified"] = False
-            p["lean_error"] = str(e)
-    out["parameter_changes"] = params
+            lp = lanyon.propose_repairs(catalog, exp_doc, cfg_doc, failing_checks, adjustable)
+            out["proposers"]["lanyon"].update({k: lp[k] for k in ("session_id", "certified", "evidence_status", "why_not_certified")},
+                                              candidates=len(lp["candidates"]))
+            for c in lp["candidates"]:
+                pv = {c["parameter"]: {"value": c["value"], "unit": c["unit"]}}
+                lr = ask(pv)
+                if lr:
+                    cur = next((prm.get("value") for prm in experiment.get("params", []) if prm["name"] == c["parameter"]), None)
+                    fixes.append({"kind": "parameter_change", "proposed_by": "lanyon", "lanyon_session": lp["session_id"],
+                                  "lanyon_certified": lp["certified"], "configuration_id": configuration_id, "parameters": pv,
+                                  "changes": [{"parameter": c["parameter"],
+                                               "from": units.display_catalog(cur["value"], cur["unit"]) if isinstance(cur, dict) else str(cur),
+                                               "to": units.display_catalog(c["value"], c["unit"]), "value": c["value"], "unit": c["unit"]}],
+                                  "parameter": c["parameter"], "status": "found", "lean_verdict": lr["verdict"], "verified": True,
+                                  "lean": _lean_evidence(lr)})
+        except Exception as e:   # noqa: BLE001 - Lanyon failing never blocks Z3 or Lean
+            out["proposers"]["lanyon"]["error"] = str(e)[:300]
+    proposals = smt.suggest_parameters(cfg_doc, exp_doc, failing, adjustable) if failing else []
+    found = [p for p in proposals if p.get("status") == "found"]
+    passed_single = []
+    for p in found:
+        q = p["suggested_quantity"]
+        best = Fraction(int(q["num"]), int(q["den"]))
+        u = _param_unit(experiment, p["parameter"], q.get("dim", {}))
+        is_int = bool((adjustable.get(p["parameter"]) or {}).get("integer"))
+        for si in _candidate_values(best, p.get("direction") or "decrease", is_int):
+            val = si / units.unit(u).scale
+            pv = {p["parameter"]: {"value": str(val.numerator) if val.denominator == 1 else f"{val.numerator}/{val.denominator}", "unit": u}}
+            lr = ask(pv)
+            if lr:
+                fx = {"kind": "parameter_change", "proposed_by": "z3", "configuration_id": configuration_id, "parameters": pv,
+                      "changes": [{"parameter": p["parameter"], "from": p["current"],
+                                   "to": units.display(si, units.dims_of({"dim": q.get("dim", {})})),
+                                   "value": pv[p["parameter"]]["value"], "unit": u,
+                                   "z3_optimum": p["suggested"], "nudged_from_z3": si != best}],
+                      "lean": _lean_evidence(lr),
+                      # flat fields kept for existing callers
+                      "parameter": p["parameter"], "coupled_id": p["coupled_id"], "status": "found", "current": p["current"],
+                      "suggested": units.display(si, units.dims_of({"dim": q.get("dim", {})})),
+                      "suggested_exact": str(si), "lean_verdict": lr["verdict"], "verified": True}
+                fixes.append(fx)
+                passed_single.append(p["parameter"])
+                break
+    # 1b. still nothing? Lean-check Z3's proposals applied together (each relation repaired at once)
+    if found and not passed_single and len(found) > 1:
+        pv, chg = {}, []
+        for p in found:
+            q = p["suggested_quantity"]
+            si = Fraction(int(q["num"]), int(q["den"]))
+            u = _param_unit(experiment, p["parameter"], q.get("dim", {}))
+            val = si / units.unit(u).scale
+            pv[p["parameter"]] = {"value": f"{val.numerator}/{val.denominator}" if val.denominator != 1 else str(val.numerator), "unit": u}
+            chg.append({"parameter": p["parameter"], "from": p["current"], "to": p["suggested"], "value": pv[p["parameter"]]["value"], "unit": u})
+        lr = ask(pv)
+        if lr:
+            fixes.append({"kind": "parameter_change", "proposed_by": "z3", "configuration_id": configuration_id, "parameters": pv, "changes": chg,
+                          "status": "found", "lean_verdict": lr["verdict"], "verified": True, "lean": _lean_evidence(lr)})
+    out["z3_parameter_proposals"] = len(found)
 
-    # 3. requirement relaxations (only offered, never applied): the documented limit for each failing requirement
-    relax = []
-    for c in lean["checks"]:
-        if c["mandatory"] and c["applicable"] and c["outcome"] == "fail":
-            for pk in c["per_key"]:
-                cap = pk["capability"]
-                if cap and cap["install"] == "installed" and cap["value"]["kind"] in ("max", "min", "range"):
-                    relax.append({"keys": c["keys"], "your_requirement": c["required_display"],
-                                  "documented_limit": pk["available_display"],
-                                  "note": "Only if your experiment can tolerate it: changing a requirement is your decision and resets confirmation."})
-    out["requirement_relaxations"] = relax
+    # 2. requirement relaxations are NEVER offered as fixes (that would change the scientific requirement).
+    out["requirement_relaxations"] = []
 
-    # 4. alternative configurations across all equipment, ranked by Z3, each re-checked by Lean
+    # 3. alternative configurations, ranked by Z3, decided by Lean on the exact catalog configuration
     if lean["verdict"] != "REQUIREMENTS_MET":
         pairs = []
         for cid in catalog.configurations:
-            if cid == cfg_doc["id"].split("~")[0]:
+            if cid == configuration_id:
                 continue
-            # same documents a direct check would use: registered modifications applied
             cd, ed, _, _ = build_documents(catalog, experiment, cid)
-            ed["confirmed"] = exp_doc["confirmed"]
             pairs.append((cd, ed))
         models = {cid: f"{cfg.get('manufacturer', '')} {cfg.get('model', '')} {cfg.get('name', '')}" for cid, cfg in catalog.configurations.items()}
         ranked = [r for r in smt.rank_alternatives(pairs, reported_equipment=experiment.get("reported_equipment", []), models=models)
                   if r["evaluation"]["status"] != "conflict"
-                  and (r["evaluation"]["status"] != "pending_information" or r["evaluation"]["documented_passes"] > 0)][:max_alternatives]
-        alts = []
-        try:
-            # one Lean call per distinct experiment document (slots may differ per configuration)
-            for r in ranked:
-                lr = lean_runner.check(r["configuration_document"], r["experiment_document"])
-                ev = r["evaluation"]
-                alts.append({"configuration_id": r["configuration_document"]["id"], "equipment_id": ev["equipment_id"],
-                             "name": r["configuration_document"]["name"],
-                             "z3_status": ev["status"], "added_options": ev["added_options"],
-                             "z3_unknown_items": ev["unknown_items"], "min_relative_margin": ev["min_relative_margin"],
-                             "named_in_sources": ev["named_in_sources"], "documented_passes": ev["documented_passes"],
-                             "hypothetical": bool(ev["added_options"]), "lean_verdict": lr["verdict"],
-                             "verified": lr["verdict"] == "REQUIREMENTS_MET", "lean_summary": lr["summary"]})
-        except lean_runner.LeanUnavailable as e:
-            out["alternatives_error"] = str(e)
-        out["alternatives"] = alts
-        out["ranking_criteria"] = ["Z3 status tier: satisfiable < needs documented options < pending information",
-                                   "fewest added optional accessories", "equipment model named in the experiment's sources",
-                                   "fewest unknown items", "most mandatory items documented as passing",
-                                   "largest smallest relative margin over numeric requirements"]
-    else:
-        out["alternatives"] = []
+                  and (r["evaluation"]["status"] != "pending_information" or r["evaluation"]["documented_passes"] > 0)]
+        n_alt = 0
+        for r in ranked:
+            if n_alt >= max_alternatives:
+                break
+            ev = r["evaluation"]
+            if ev["added_options"]:
+                discarded["needs_uninstalled_options"] += 1     # would need hardware the catalog does not list as installed
+                continue
+            cid = r["configuration_document"]["id"].split("~")[0].split("+")[0]
+            lr = ask(None, cid, None)
+            if lr:
+                cfg = catalog.configurations.get(cid, {})
+                fixes.append({"kind": "alternative_configuration", "proposed_by": "z3", "configuration_id": cid, "parameters": {},
+                              "name": r["configuration_document"]["name"], "manufacturer": cfg.get("manufacturer"),
+                              "model": cfg.get("model"), "equipment_id": ev["equipment_id"],
+                              "min_relative_margin": ev["min_relative_margin"], "named_in_sources": ev["named_in_sources"],
+                              "z3_status": ev["status"], "added_options": [], "hypothetical": False,
+                              "lean_verdict": lr["verdict"], "verified": True, "lean": _lean_evidence(lr)})
+                n_alt += 1
+    for i, f in enumerate(fixes):
+        f["fix_id"] = f"fix_{i + 1}"
+    out["verified_fixes"] = fixes
+    out["discarded"] = discarded
+    out["status"] = "verified_solutions_found" if fixes else "no_verified_solution_found"
+    out["message"] = (f"{len(fixes)} Lean-verified fix(es)." if fixes else "No verified solution found")
+    # legacy keys, now restricted to verified entries only
+    out["parameter_changes"] = [f for f in fixes if f["kind"] == "parameter_change"]
+    out["alternatives"] = [f for f in fixes if f["kind"] == "alternative_configuration"]
     return out
+
+
+def apply_fix(catalog: Catalog, experiment: dict, fix: dict, extra_modifications=None) -> dict:
+    """Apply the exact verified configuration and run Lean again. The fix's parameters are already merged into
+    `experiment` by the caller (working_experiment), so this is a plain check of that exact configuration."""
+    res = check(catalog, experiment, fix["configuration_id"], extra_modifications, suggestions=False)
+    expected = (fix.get("lean") or {}).get("lean_input_hash")
+    got = res["verification"]["concrete_evaluation"]["lean_input_hash"]
+    res["apply_fix"] = {"fix_id": fix.get("fix_id"), "verdict": res["verdict"], "expected_lean_input_hash": expected,
+                        "lean_input_hash": got, "same_configuration": expected == got,
+                        "confirmed": res["verdict"] == "REQUIREMENTS_MET" and expected == got}
+    return res
 
 
 def verify_candidates(catalog: Catalog, experiment: dict, candidate_docs: list[dict]) -> list[dict]:

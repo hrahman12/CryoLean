@@ -91,8 +91,8 @@ box(0, 0, W, H, "#ffffff", "#ffffff", r=0)
 
 # ---------------------------------------------------------------- title
 text(30, 44, "CryoLean pipeline", 28, "bold")
-text(30, 70, "Z3, Claude and Lanyon propose. The Lean 4 kernel decides. Every verdict comes back as a card with "
-     "its theorems, axioms and source hash.", 15, fill="#59636e")
+text(30, 70, "Lanyon, Z3 and Claude propose. The Lean 4 kernel decides. Only Lean-verified fixes reach the user, and every "
+     "verdict comes back as a card with its theorems, axioms and source hash.", 15, fill="#59636e")
 
 # ---------------------------------------------------------------- column headers
 COLS = {"in": (44, 276), "un": (342, 416), "tr": (832, 390), "out": (1250, 220)}
@@ -107,14 +107,14 @@ box(830, 122, 392, 720, "#f0faf3", "#1a7f37", r=14, sw=2)
 
 # ---------------------------------------------------------------- inputs
 x, w = COLS["in"]
-card(x, 130, w, 150, ["codex.png", "pywebview.png"], "Desktop UI",
-     ["Codex-built frontend in a", "PyWebView window. No web server:", "window.pywebview.api.* calls", "the Python bridge directly."],
-     "cryolean/bridge.py")
+card(x, 130, w, 150, ["pywebview.png"], "Desktop UI + website",
+     ["PyWebView window (bridge), or", "python -m cryolean serve: website +", "/api/check, /api/apply-fix,", "/api/lanyon. Same CryoLeanAPI."],
+     "cryolean/server.py")
 card(x, 296, w, 150, ["sqlite.jpg"], "Cryostat sheet",
-     ["26 configurations, 9 families,", "667 sourced evidence records.", "Missing facts stay UNKNOWN."],
+     ["220 configurations,", "3,335 sourced evidence records.", "Missing facts stay UNKNOWN."],
      "data/cryostats  ->  SQLite")
 card(x, 462, w, 150, ["sqlite.jpg"], "Experiment sheet",
-     ["11 profiles from published", "procedures, 20 industries,", "40 physical properties,", "13 coupled models."],
+     ["204 experiments from published", "procedures, 20 industries,", "40 physical properties,", "13 coupled models."],
      "data/experiments  ->  SQLite")
 card(x, 628, w, 150, ["python.png"], "Python boundary",
      ["Exact rational units (no floats)", "and fail-closed JSON for Lean.", "Python never decides a verdict."],
@@ -132,9 +132,9 @@ card(x + 10, 304, cw, 160, ["z3.jpg"], "Z3 campaign scheduler",
 card(x + 10, 476, cw, 160, ["claude.svg"], "Claude: new rule or new sheet",
      ["Matches plain language to a profile", "(closed set). Drafts new Lean rules or",
       "new sheets, stored as untrusted", "candidates until reviewed."], "cryolean/ai.py, research.py", stroke="#e7b48f")
-card(x + 10, 648, cw, 182, ["lanyon.png"], "Lanyon certified simulation",
-     ["specify -> verify -> compile -> simulate.", "Exports a Lean + Rocq proof and a",
-      "certificate. Counts as certified_simulation", "only if its Lean proof passes the", "Gatekeeper."],
+card(x + 10, 648, cw, 182, ["lanyon.png"], "Lanyon AI: fixes, chat, simulation",
+     ["Proposes repair values for failing setups", "and answers the website chat (/api/lanyon).",
+      "Every candidate is re-checked by Lean.", "Certified simulations (Lean + Rocq proof)", "count only via the Gatekeeper."],
      "cryolean/lanyon.py", stroke="#e7b48f")
 
 # ---------------------------------------------------------------- trusted Lean kernel
@@ -178,9 +178,9 @@ text(x + 24, 502, "Rejected", 13.5, "bold", "#cf222e", family=MONO)
 text(x + 24, 520, "with Lean's reasons, or", 12)
 text(x + 24, 536, "Z3's unsat core", 12)
 box(x, 572, w, 258, "#ffffff", "#d0d7de")
-text(x + 14, 600, "Rule Registry", 16, "bold")
-for i, ln in enumerate(["Admitted rules only, each", "with its SHA-256, theorem", "names and axioms.", "",
-                        "Lanyon results become", "certified_simulation", "evidence only through", "an admitted proof."]):
+text(x + 14, 600, "Fixes + Registry", 16, "bold")
+for i, ln in enumerate(["Suggested fixes:", "Lean-verified only, else", "\"No verified solution found\".", "Apply fix re-runs Lean on", "the same input hash.", "",
+                        "Rule Registry: admitted rules", "only (SHA-256, theorems)."]):
     text(x + 14, 626 + i * 19, ln, 13, family=MONO if ln == "certified_simulation" else FONT)
 
 # ---------------------------------------------------------------- arrows
@@ -196,6 +196,7 @@ arrow(752, 212, 840, 232, "#bc4c00", "6 5", "hint", 795, 210)
 arrow(752, 384, 840, 440, "#bc4c00", "6 5", "slots", 795, 398)
 arrow(752, 556, 840, 650, "#bc4c00", "6 5", "Lean code", 792, 578)
 arrow(752, 739, 840, 739, "#bc4c00", "6 5", "proof", 795, 731)
+arrow(752, 700, 840, 330, "#8250df", "6 5", "fix candidates", 770, 470)
 # kernel -> outputs
 arrow(1214, 250, 1248, 250, "#1a7f37", width=2.5)
 arrow(1214, 470, 1248, 470, "#1a7f37", width=2.5)
@@ -208,7 +209,7 @@ img(46, 920, "lean.png", 44)
 text(102, 936, "Verdict card, back to the UI", 17, "bold", "#0969da")
 text(102, 960, "verdict  ·  reason  ·  theorem names  ·  their axioms (cached #print axioms)  ·  Lean source hash  ·  input hash",
      14, family=FONT)
-text(1452, 948, "Z3 output is a hint, never a verdict.", 15, "bold", "#bc4c00", anchor="end")
+text(1452, 948, "Lanyon and Z3 output are hints, never verdicts.", 15, "bold", "#bc4c00", anchor="end")
 path_arrow("M1360,836 L 1360,896", "#0969da")
 path_arrow("M22,900 L 22,205 L 40,205", "#0969da")
 

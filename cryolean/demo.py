@@ -72,7 +72,9 @@ def run() -> int:
     for e in ev:
         print(f"   manufacturer evidence {e['id']}: \"{e.get('quote', '')[:100]}\" — {e['document_title'][:70]} ({e['location'][:50]})")
     for a in r["suggestions"]["alternatives"][:3]:
-        print(f"   Z3 alternative {a['configuration_id']:40} z3={a['z3_status']:20} Lean={a['lean_verdict']}")
+        print(f"   Lean-verified alternative {a['configuration_id']:40} z3={a['z3_status']:20} Lean={a['lean_verdict']}")
+    if not r["suggestions"]["verified_fixes"]:
+        print("   No verified solution found")
     _save("demo_a_incompatibility", r)
 
     # ------------------------------------------------------------------ B
@@ -86,8 +88,8 @@ def run() -> int:
         print("   assumption:", a)
     print("   cooling-power slot:", c["slot_resolution"])
     for p in r["suggestions"]["parameter_changes"]:
-        if p["status"] == "found":
-            print(f"   Z3 parameter change: {p['parameter']} {p['current']} -> {p['suggested']}  | Lean re-check: {p['lean_verdict']} (verified={p['verified']})")
+        if p.get("parameter"):
+            print(f"   Lean-verified fix: {p['parameter']} {p['current']} -> {p['suggested']}  | Lean re-check: {p['lean_verdict']} (verified={p['verified']})")
     _save("demo_b_coupled", r)
 
     # ------------------------------------------------------------------ C

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CryoLean 180 Matrix</title>
+<style>
+:root {
+  --bg: #f6f8fb; --panel: #ffffff; --ink: #0f1a2b; --ink-2: #3c4a5e; --muted: #6b7889; --line: #dfe5ee; --chip: #eef2f7;
+  --met: #1f9d55; --info: #d99a12; --fail: #d64545; --accent: #2f6fed;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1220; --panel: #111a2c; --ink: #eef3fb; --ink-2: #b7c3d6; --muted: #8494ab; --line: #24324a; --chip: #1a2539;
+  --met: #34c172; --info: #f0b43a; --fail: #ef6464; --accent: #5b8cff; } }
+:root[data-theme="dark"] { --bg: #0b1220; --panel: #111a2c; --ink: #eef3fb; --ink-2: #b7c3d6; --muted: #8494ab; --line: #24324a; --chip: #1a2539;
+  --met: #34c172; --info: #f0b43a; --fail: #ef6464; --accent: #5b8cff; }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 28px 16px 48px }
+h1 { font-size: clamp(26px, 4vw, 40px); margin: 0 0 6px; letter-spacing: -.02em }
+.lede { color: var(--ink-2); margin: 0 0 20px; max-width: 820px }
+.top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: end; margin-bottom: 18px }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel) }
+.seg button { border: 0; background: none; color: var(--ink-2); padding: 8px 14px; font: 600 14px inherit; font-family: inherit; cursor: pointer }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff }
+.sum { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 18px }
+.big { font: 800 44px/1 system-ui; color: var(--met) } .big small { display: block; font: 600 13px system-ui; color: var(--muted); margin-top: 4px }
+.bar { display: flex; height: 16px; border-radius: 99px; overflow: hidden; background: var(--chip) }
+.bar i { display: block; height: 100%; transition: width .6s ease }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; color: var(--ink-2); font-size: 13.5px }
+.legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c) }
+.cmp { font-size: 13px; color: var(--muted); margin-top: 6px }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 12px 10px; display: grid; gap: 8px }
+.card h3 { margin: 0; font-size: 15.5px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline }
+.card h3 b { font-size: 13px; color: var(--met); white-space: nowrap }
+.mx { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, 46px); gap: 4px; align-items: center }
+.mx .h { font-size: 10.5px; color: var(--muted); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.15 }
+.mx .r { font-size: 12.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 4px }
+.mx .r em { font-style: normal; color: var(--muted); font-size: 11px }
+.c { height: 34px; border-radius: 7px; display: grid; place-items: center; font: 800 13px system-ui; color: #fff; cursor: default; transition: transform .15s, background .4s }
+.c:hover { transform: scale(1.08) }
+.c.R { background: var(--met) } .c.N { background: var(--info) } .c.D { background: var(--fail) }
+.mini { display: flex; height: 6px; border-radius: 99px; overflow: hidden; background: var(--chip) }
+.note { margin-top: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; color: var(--ink-2); font-size: 14px }
+.note h4 { margin: 0 0 6px; color: var(--ink); font-size: 15px }
+.note li { margin: 3px 0 }
+code { font-size: 12.5px; background: var(--chip); padding: 1px 5px; border-radius: 5px }
+@media (max-width: 640px) { .top { grid-template-columns: 1fr } .sum { grid-template-columns: 1fr } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The 180 featured pairings</h1>
+  <p class="lede">20 industries × 3 experiments × 3 machines. Every square is a verdict the Lean 4 checker already returned. Nothing on this page is recomputed or recolored.</p>
+  <div class="top">
+    <div class="cmp" id="sel"></div>
+    <div class="seg" role="group" aria-label="Machine selection">
+      <button id="b-best" aria-pressed="true">Best-match machines</button><button id="b-old" aria-pressed="false">Original selection</button>
+    </div>
+  </div>
+  <div class="sum">
+    <div class="big" id="pct"></div>
+    <div>
+      <div class="bar" id="bar"></div>
+      <div class="legend"><span style="--c:var(--met)" id="lg-r"></span><span style="--c:var(--info)" id="lg-n"></span><span style="--c:var(--fail)" id="lg-d"></span></div>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="note">
+    <h4>How the green went up, honestly</h4>
+    <ul>
+      <li><b>Best-match machines:</b> for each industry, the 3 machines (out of all 220) that Lean passes most often for its 3 experiments. Lean already checked every experiment against every machine, so this just features the right ones.</li>
+      <li><b>The ceiling is real:</b> some experiments pass on no machine in the catalog (shown as <em>0 anywhere</em>), so a few red squares can't turn green without new machines or newly sourced specs.</li>
+      <li>Verdicts are at each experiment's default values. Source: <code>site/lattice.json</code>, Lean source hash <code id="hash"></code>.</li>
+    </ul>
+  </div>
+</div>
+<script>
+const M = __MATRIX__;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const LBL = { R: "Requirements met", N: "Need more information", D: "Does not meet requirements" }, SYM = { R: "✓", N: "?", D: "✕" };
+let mode = "best";
+try { const m = localStorage.getItem("mx-mode"); if (m === "old" || m === "best") mode = m; } catch (e) {}
+function count(k) { const c = { R: 0, N: 0, D: 0 }; M.industries.forEach((i) => i[k].cells.flat().forEach((v) => c[v]++)); return c; }
+function render() {
+  $("b-best").setAttribute("aria-pressed", mode === "best"); $("b-old").setAttribute("aria-pressed", mode === "old");
+  const c = count(mode), o = count(mode === "best" ? "old" : "best"), t = 180;
+  $("pct").innerHTML = `${Math.round(c.R / t * 100)}%<small>${c.R} of 180 met</small>`;
+  $("bar").innerHTML = `<i style="width:${c.R / t * 100}%;background:var(--met)"></i><i style="width:${c.N / t * 100}%;background:var(--info)"></i><i style="width:${c.D / t * 100}%;background:var(--fail)"></i>`;
+  $("lg-r").textContent = `Met ${c.R}`; $("lg-n").textContent = `Need more info ${c.N}`; $("lg-d").textContent = `Does not meet ${c.D}`;
+  $("sel").textContent = mode === "best" ? `Showing best-match machines · the original hand-picked selection had ${o.R} met.` : `Showing the original selection · best-match machines reach ${o.R} met.`;
+  $("grid").innerHTML = M.industries.map((ind) => {
+    const s = ind[mode], k = s.cells.flat(), r = k.filter((v) => v === "R").length, n = k.filter((v) => v === "N").length;
+    return `<div class="card"><h3>${esc(ind.name)}<b>${r}/9 met</b></h3><div class="mx"><span></span>` +
+      s.machines.map((m) => `<span class="h" title="${esc(m.m + " · " + m.n)}">${esc(m.m.split("(")[0].trim())}</span>`).join("") +
+      ind.experiments.map((e, i) => `<span class="r" title="${esc(e.name)}">${esc(e.name)}${e.anywhere === 0 ? " <em>· 0 anywhere</em>" : ""}</span>` +
+        s.cells[i].map((v, j) => `<span class="c ${v}" title="${esc(e.name)} on ${esc(s.machines[j].m + " " + s.machines[j].n)}: ${LBL[v]} (Lean)">${SYM[v]}</span>`).join("")).join("") +
+      `</div><div class="mini"><i style="width:${r / 9 * 100}%;background:var(--met)"></i><i style="width:${n / 9 * 100}%;background:var(--info)"></i><i style="width:${(9 - r - n) / 9 * 100}%;background:var(--fail)"></i></div></div>`;
+  }).join("");
+}
+$("b-best").onclick = () => { mode = "best"; try { localStorage.setItem("mx-mode", mode) } catch (e) {} render(); };
+$("b-old").onclick = () => { mode = "old"; try { localStorage.setItem("mx-mode", mode) } catch (e) {} render(); };
+$("hash").textContent = M.lean_source_hash.slice(0, 16);
+render();
+</script>
+</body>
+</html>

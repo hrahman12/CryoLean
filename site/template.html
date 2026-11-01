@@ -1,3 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>CryoLean</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +43,20 @@ header.top { text-align: center; height: 172px }
 .question { font: 700 40px/1.1 var(--display); margin: 6px 0 0; color: var(--ink) }
 
 .row { display: grid; grid-template-columns: 455px 44px 516px 44px minmax(0, 1fr); gap: 0 4px; height: 748px }
-.arrow { display: grid; place-items: center; color: var(--accent) } .arrow svg { width: 52px; height: 52px }
+.arrow { display: grid; place-items: center; color: var(--accent) }
+.fold { flex: none; margin-top: 14px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--panel); padding: 0 14px }
+.fold > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: 12px; padding: 12px 0; font: 800 20px var(--display); color: var(--ink) }
+.fold > summary::-webkit-details-marker { display: none }
+.fold > summary::before { content: "▸"; color: var(--accent); transition: transform .2s } .fold[open] > summary::before { transform: rotate(90deg) }
+.fold > summary span { font: 500 13px var(--body); color: var(--muted) }
+.fold .mx180 { margin: 0 0 14px }
+.lx { display: grid; gap: 10px; padding: 0 0 14px }
+.lxs { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start }
+.lxs .k { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font: 800 13px var(--body) }
+.lxs b { font: 800 15px var(--display); color: var(--ink) } .lxs p { margin: 2px 0 6px; font-size: 13.5px; color: var(--ink-2); line-height: 1.45 }
+.lxs pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px; white-space: pre-wrap; overflow-wrap: anywhere }
+.flow .idle { display: grid; place-content: center; gap: 6px; text-align: center; height: 100%; min-height: 140px; color: var(--ink-2); font-size: 13.5px } .flow .idle b { font: 800 17px var(--display); color: var(--ink) }
+.suggest .tvr.idle { --c: var(--muted) } .arrow svg { transition: transform .35s ease } .arrow.back { color: var(--info) } .arrow.back svg { transform: scaleX(-1) } .arrow svg { width: 52px; height: 52px }
 .card { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
   padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; overflow: hidden }
 .card h2 { margin: 0; display: flex; align-items: center; gap: 16px; font: 800 33px/1 var(--display); color: var(--ink) }
@@ -53,7 +67,7 @@ header.top { text-align: center; height: 172px }
 
 .sample { height: 236px; border-radius: 14px; overflow: hidden; position: relative; background: radial-gradient(90% 90% at 50% 35%, var(--stage-hi), var(--sample-lo)) }
 .sample svg { position: absolute; inset: 0; width: 100%; height: 100% }
-.sample .tag { left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
+.sample .tag { z-index: 2; pointer-events: none;  left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
 .field { display: grid; gap: 6px }
 .lbl { font: 700 13px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
 .selectwrap { position: relative }
@@ -87,7 +101,8 @@ header.top { text-align: center; height: 172px }
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; min-height: 0 }
 .tile { border: 2px solid var(--line); border-radius: 12px; background: var(--panel); cursor: pointer; padding: 4px 6px 7px; display: grid;
   grid-template-rows: minmax(0, 1fr) auto; justify-items: center; color: var(--ink); min-width: 0 }
-.tile img { width: 100%; height: 100%; max-height: 112px; object-fit: contain }
+.tile { grid-template-columns: minmax(0, 1fr); overflow: hidden; min-width: 0 }
+.tile img { display: block; width: 100%; max-width: 100%; min-width: 0; height: 104px; object-fit: contain; justify-self: center }
 .tile .lab { font: 700 15px/1.15 var(--display); display: flex; align-items: center; gap: 6px; max-width: 100% }
 .tile .lab .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .tile .dot { width: 10px; height: 10px; border-radius: 50%; flex: none }
@@ -133,12 +148,110 @@ header.top { text-align: center; height: 172px }
 .badge.p { background: var(--met-soft); color: var(--met) } .badge.f { background: var(--fail-soft); color: var(--fail) } .badge.u { background: var(--info-soft); color: var(--info) } .badge.s { background: var(--chip); color: var(--muted) }
 .suggest { background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 12px; display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); min-height: 0; overflow: auto; flex: 1 }
 .suggest b.h { font: 800 15px var(--display); color: var(--ink) }
+.suggest .tv { display: grid; gap: 6px }
+.suggest .tvr { display: grid; grid-template-columns: 10px 1fr; gap: 9px; align-items: start; padding: 6px 9px; border-radius: 9px; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); background: color-mix(in srgb, var(--c) 10%, transparent) }
+.suggest .tvr i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-top: 4px }
+.suggest .tvr span { display: grid; gap: 1px } .suggest .tvr b { font: 800 14.5px var(--display); color: var(--ink) } .suggest .tvr small { font-size: 12px; color: var(--ink-2) }
+.suggest .tvsrc { font-size: 11px; color: var(--muted) }
+#demolist { min-width: 0 } #demolist .di { padding: 4px 11px !important; max-width: 100%; min-width: 0; overflow: hidden } #demolist .di b { font-size: 14px !important } #demolist .di span { font-size: 11.5px !important; line-height: 1.25; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.di .dv { display: flex; flex-wrap: nowrap; align-items: center; gap: 5px; font: 600 10.5px var(--body); font-style: normal; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.di .dv i { width: 8px; height: 8px; border-radius: 50%; display: inline-block } .di .dv i.ok { background: var(--met) } .di .dv i.no { background: var(--fail) } .di .dv i.maybe { background: var(--info) }
+.suggest .tvr.ok { --c: var(--met) } .suggest .tvr.no { --c: var(--fail) } .suggest .tvr.maybe { --c: var(--info) }
 .suggest .alts { display: flex; flex-wrap: wrap; gap: 6px }
 .suggest button.alt, .suggest button.fix { border: 1.5px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 8px; padding: 4px 9px; font: 700 12.5px var(--body); cursor: pointer; text-align: left }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
-.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 520px; gap: 16px; height: 748px }
+.demo { flex: none; display: grid; grid-template-columns: 260px minmax(0, 1fr) 360px; gap: 14px; height: 300px; margin-top: 8px }
+.demo .viz { min-width: 0 } .chatlog .m { overflow-wrap: anywhere }
+.chatlog { overflow: auto; display: flex; flex-direction: column; gap: 8px; min-height: 0; padding-right: 4px }
+.chatlog .m { font: 500 13px/1.4 var(--body); padding: 8px 10px; border-radius: 12px; max-width: 95%; white-space: pre-wrap }
+.chatlog .m.ai { background: var(--chip); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px }
+.chatlog .m.me { background: var(--accent); color: var(--accent-ink); align-self: flex-end; border-bottom-right-radius: 4px }
+.chatlog .m.note { background: transparent; color: var(--muted); font-size: 12px; padding: 0 }
+.chatf { display: grid; grid-template-columns: 1fr auto; gap: 6px }
+.chatf input { background: var(--panel-solid); border: 1.5px solid var(--line); color: var(--ink); border-radius: 10px; padding: 7px 10px; font: 500 13px var(--body); min-width: 0 }
+.aitag { font: 800 10.5px var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: color-mix(in srgb, var(--accent) 15%, transparent); padding: 3px 8px; border-radius: 99px; white-space: nowrap }
+.demo.islive { grid-template-columns: minmax(0, 1fr) 360px }
+.demo .viz.ai { grid-template-rows: auto minmax(0, 1fr) auto auto !important }
+.demo .viz { overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: 4px; min-height: 0 }
+.demo .viz #viz { min-height: 0 } .demo .viz #viz svg { width: 100%; height: 100%; max-height: 190px }
+.demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
+.demo .list > p { display: none }
+.demo .term { height: 300px; overflow: auto }
+.uni { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); height: 300px; border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent); border-radius: 2px; overflow: hidden;
+  background: radial-gradient(120% 120% at 30% 40%, color-mix(in srgb, #7a4fe0 10%, transparent), transparent 60%) }
+.uni svg { width: 100%; height: 100%; display: block }
+.uni .orb { fill: none; stroke: color-mix(in srgb, var(--ink) 22%, transparent); stroke-width: .6 }
+.uni .link { fill: none; stroke: var(--ink); stroke-width: .7; opacity: .55; stroke-dasharray: 1 0 }
+.uni .link.draw { stroke-dasharray: 400; stroke-dashoffset: 400; animation: udraw 1.1s ease forwards }
+@keyframes udraw { to { stroke-dashoffset: 0 } }
+.uni .body { fill: var(--bg, #0b1220); stroke: var(--ink); stroke-width: .8 } .uni .body.on { stroke-width: 1.4 }
+.uni .body.lean { stroke: var(--met) } .uni .body.lanyon { stroke: #a77bff } .uni .body.z3 { stroke-dasharray: 2 2 }
+.uni .lany .strap { fill: none; stroke: #a77bff; stroke-width: 2.4; stroke-linecap: round } .uni .lany .clip { fill: #c9b3ff; stroke: #7a4fe0; stroke-width: .6 }
+.uni .lany .card { fill: var(--bg, #0b1220); stroke: #a77bff; stroke-width: 1 } .uni .lany .band { fill: #a77bff } .uni .lany .face { fill: none; stroke: #c9b3ff; stroke-width: 1 }
+.uni .lany.on .card { stroke-width: 1.6 } .uni .lany.on .strap { filter: drop-shadow(0 0 3px #a77bff) }
+.uni .cym { position: relative; min-width: 0; cursor: crosshair; overflow: hidden }
+.uni .cym canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block }
+.uni .cymlbl { position: absolute; left: 14px; top: 12px; display: grid; gap: 1px; pointer-events: none; font: 600 10.5px var(--body); letter-spacing: .08em; text-transform: uppercase }
+.uni .cymlbl span { font-weight: 500; font-size: 9px; color: var(--muted); letter-spacing: .04em; text-transform: none }
+.uni .cymhint { position: absolute; right: 12px; bottom: 10px; font: 500 9px var(--body); color: var(--muted); opacity: .7; pointer-events: none }
+.uni .lbl { font: 600 10.5px var(--body); fill: var(--ink); text-anchor: middle } .uni .sub { font: 500 8.5px var(--body); fill: var(--muted); text-anchor: middle }
+.uni .star { fill: var(--ink); opacity: .35 } .uni .pulse { fill: #fff; filter: drop-shadow(0 0 4px #a77bff) }
+.uni .halo { fill: none; stroke: currentColor; stroke-width: .6; opacity: 0; transform-box: fill-box; transform-origin: center }
+.uni .halo.go { animation: uhalo 1.6s ease-out infinite }
+@keyframes uhalo { 0% { opacity: .7; transform: scale(1) } 100% { opacity: 0; transform: scale(2.4) } }
+.uni .cap { padding: 16px 18px; display: grid; align-content: center; gap: 8px; border-left: 1px solid color-mix(in srgb, var(--ink) 15%, transparent) }
+.uni .cap .k { font: 600 12px var(--body); color: var(--muted) } .uni .cap .k b { color: var(--ink) }
+.uni .cap h4 { margin: 0; font: 800 19px/1.2 var(--display); color: var(--ink) }
+.uni .cap p { margin: 0; font: 400 14.5px/1.5 var(--body); color: var(--ink-2) }
+.uni .cap .res { justify-self: start; font: 700 14px var(--display); padding: 3px 12px; border: 1px solid currentColor; border-radius: 99px }
+.uni .cap .res.met { color: var(--met) } .uni .cap .res.fail { color: var(--fail) } .uni .cap .res.info { color: var(--info) } .uni .cap .res.neutral { color: var(--ink) }
+.uni .cap .dots { display: flex; gap: 6px } .uni .cap .dots i { width: 18px; height: 2px; background: color-mix(in srgb, var(--ink) 20%, transparent) } .uni .cap .dots i.on { background: var(--ink) }
+.uni .cap small { font: 500 11.5px var(--body); color: var(--muted) }
+@media (prefers-reduced-motion: reduce) { .uni .halo.go, .uni .link.draw { animation: none; stroke-dashoffset: 0 } }
+.flow.u { border: 0; padding: 0; overflow: visible } .flow { --hl: color-mix(in srgb, var(--ink) 28%, transparent); --hl2: color-mix(in srgb, var(--ink) 12%, transparent);
+  height: 300px; display: flex; flex-direction: column; gap: 0; overflow: auto; padding: 0 16px 12px; border: 1px solid var(--hl); border-radius: 2px;
+  background: transparent; position: relative; scroll-behavior: smooth }
+.flow .hdr { display: flex; align-items: baseline; gap: 10px; position: sticky; top: 0; z-index: 2; padding: 10px 0 8px; background: var(--bg, #0b1220);
+  border-bottom: 1px solid var(--hl); font: 700 15px var(--display); color: var(--ink) }
+.flow .hdr .dot { width: 6px; height: 6px; border: 1px solid var(--ink); border-radius: 50%; animation: lp 1.6s infinite }
+@keyframes lp { 50% { opacity: .15 } }
+.flow .hdr small { margin-left: auto; font: 500 12px var(--body); color: var(--muted) }
+.flow .msg { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hl2); position: relative; animation: mi .5s ease }
+@keyframes mi { from { opacity: 0 } }
+.flow .msg::before { content: ""; position: absolute; left: 16.5px; top: 44px; bottom: -10px; width: 1px; background: var(--hl);
+  transform-origin: top; animation: draw .7s ease forwards; transform: scaleY(0) }
+.flow .msg:last-child::before { display: none }
+@keyframes draw { to { transform: scaleY(1) } }
+.flow .av { width: 34px; height: 34px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 17px; background: transparent }
+.flow .av.lean { border-color: var(--met); color: var(--met) } .flow .av.z3 { border-style: dashed }
+.flow .who2 { font: 700 14px var(--display); color: var(--ink) }
+.flow .who2 span { font: 500 12.5px var(--body); color: var(--muted); margin-left: 8px }
+.flow .bub { font: 400 14.5px/1.5 var(--body); color: var(--ink-2); margin-top: 3px }
+.flow .chip { display: inline-block; margin-top: 6px; font: 700 13.5px var(--display); padding: 3px 10px; border: 1px solid currentColor; border-radius: 99px; background: transparent !important }
+.flow .chip.met { color: var(--met) } .flow .chip.fail { color: var(--fail) } .flow .chip.info { color: var(--info) } .flow .chip.neutral { color: var(--ink) }
+.flow .typing::after { content: ""; display: inline-block; width: 7px; height: 1px; margin-left: 2px; background: var(--ink); vertical-align: middle; animation: lp .7s infinite }
+.flow .scan { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--ink), transparent); opacity: .35; animation: scan 3.2s linear infinite; pointer-events: none }
+@keyframes scan { from { top: 38px } to { top: 100% } }
+@media (prefers-reduced-motion: reduce) { .flow .scan, .flow .msg::before { animation: none; transform: none } }
+.flow .st { position: relative; border: 2px solid var(--line); border-radius: 14px; padding: 10px 11px; background: var(--panel); display: grid; grid-template-rows: auto auto 1fr auto; gap: 6px; opacity: .25; transform: translateY(6px); transition: opacity .45s, transform .45s, border-color .45s }
+.flow .st.on { opacity: 1; transform: none }
+.flow .st .who { font: 800 11px var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; justify-self: start }
+.flow .st.lean { border-color: var(--met) } .flow .st.lean .who { background: color-mix(in srgb, var(--met) 22%, transparent); color: var(--met) }
+.flow .st.z3 { border-style: dashed; border-color: #e0893a } .flow .st.z3 .who { background: rgba(224,137,58,.18); color: #e0893a }
+.flow .st.lanyon { border-style: dashed; border-color: #a77bff } .flow .st.lanyon .who { background: rgba(167,123,255,.18); color: #a77bff }
+.fixby { font: 800 10.5px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; margin-left: 6px }
+.fixby.lanyon { background: rgba(167,123,255,.18); color: #a77bff } .fixby.z3 { background: rgba(224,137,58,.18); color: #e0893a }
+.flow .st.you .who, .flow .st.data .who { background: var(--chip); color: var(--ink-2) }
+.flow .st b.t { font: 800 16px/1.2 var(--display); color: var(--ink) }
+.flow .st p { margin: 0; font: 500 13px/1.35 var(--body); color: var(--ink-2) }
+.flow .st .big { font: 800 20px/1.1 var(--display); padding: 6px 8px; border-radius: 10px; text-align: center }
+.flow .st .big.met { background: color-mix(in srgb, var(--met) 20%, transparent); color: var(--met) }
+.flow .st .big.fail { background: color-mix(in srgb, var(--fail) 20%, transparent); color: var(--fail) }
+.flow .st .big.info { background: color-mix(in srgb, var(--info) 22%, transparent); color: var(--info) }
+.flow .st .big.neutral { background: var(--chip); color: var(--ink) }
+.flow .st:not(:last-child)::after { content: "\2192"; position: absolute; right: -13px; top: 45%; font: 800 16px var(--body); color: var(--accent) }
 .demo .list { display: grid; gap: 10px; align-content: start }
 .demo .di { text-align: left; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: var(--ink) }
 .demo .di b { font: 800 19px var(--display); display: block } .demo .di span { font: 500 13.5px/1.3 var(--body); color: var(--ink-2) }
@@ -178,6 +291,51 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
+.mx180 { flex: none; margin-top: 14px; display: grid; gap: 12px }
+.mxtop { display: grid; grid-template-columns: minmax(0, 1fr) 460px auto; gap: 18px; align-items: center }
+.mxtop h2 { margin: 0; font: 800 26px var(--display); color: var(--ink) } .mxtop p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px }
+.mxsum { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center } .mxsum b { font: 800 34px var(--display); color: var(--met); grid-row: span 2 }
+.mxbar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: var(--chip) } .mxbar i { height: 100% }
+.mxsum span { font-size: 12.5px; color: var(--ink-2) }
+.mxgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px }
+.mxc { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 10px; display: grid; gap: 6px }
+.mxc h4 { margin: 0; font: 800 13.5px var(--display); color: var(--ink); display: flex; justify-content: space-between; gap: 6px }
+.mxc h4 b { color: var(--met); font-size: 12px; white-space: nowrap }
+.mxm { display: grid; grid-template-columns: minmax(0, 1fr) repeat(3, 34px); gap: 3px; align-items: center }
+.mxm .h { font-size: 9.5px; color: var(--muted); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.mxm .r { font-size: 11px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.mxm .q { height: 24px; border-radius: 6px; display: grid; place-items: center; font: 800 11px var(--body); color: #fff }
+.mxm .q.R { background: var(--met) } .mxm .q.N { background: var(--info) } .mxm .q.D { background: var(--fail) }
+.mxnote { margin: 0; font-size: 12.5px; color: var(--muted) }
+.fx { flex: none; margin-top: 16px; display: grid; gap: 12px }
+.fxtop { display: flex; justify-content: space-between; gap: 16px; align-items: start }
+.fxtop h2 { margin: 0; font: 800 26px var(--display); color: var(--ink) } .fxtop p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; max-width: 980px }
+.fxsrc { color: var(--accent); font: 700 14px var(--body); white-space: nowrap; text-decoration: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px }
+.fxstats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px }
+.fxstats div { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; display: grid }
+.fxstats b { font: 800 30px var(--display); color: var(--ink) } .fxstats span { font-size: 12.5px; color: var(--ink-2) }
+.fxstats .ok b { color: var(--met) } .fxstats .warn b { color: var(--info) }
+.fxrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px }
+.fxtbl, .fxgap { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px }
+.fx h3 { margin: 0 0 8px; font: 800 16px var(--display); color: var(--ink) }
+.fxtbl table { width: 100%; border-collapse: collapse; font-size: 13px } .fxtbl th { text-align: left; color: var(--muted); font-weight: 700; padding: 4px 6px; border-bottom: 1px solid var(--line) }
+.fxtbl td { padding: 5px 6px; color: var(--ink-2); border-bottom: 1px solid color-mix(in srgb, var(--line) 50%, transparent) } .fxtbl tr.hot td { color: var(--ink); background: color-mix(in srgb, var(--info) 12%, transparent) }
+.fxgap { display: grid; gap: 10px; align-content: start } .ba { display: grid; gap: 4px } .ba p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.45 }
+.ba .tag { position: static; transform: none; justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px }
+.ba .tag.bad { background: color-mix(in srgb, var(--fail) 20%, transparent); color: var(--fail) } .ba .tag.good { background: color-mix(in srgb, var(--met) 20%, transparent); color: var(--met) }
+.fxrun, .fxcode { background: #0a0f1a; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; align-content: start; min-width: 0 }
+.fxbar2 { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: #8b9bb4 } .fxbar2 b { color: #e8eef8; font: 800 15px var(--display) }
+.fxbar2 button { margin-left: auto; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 4px 10px; font: 700 12px var(--body); cursor: pointer }
+.fxlog { margin: 0; height: 420px; overflow: hidden; font: 12px/1.55 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre }
+.fxlog .ok { color: #3ddc84 } .fxlog .k { color: #c792ea } .fxlog .n { color: #82aaff } .fxlog .ax { color: #7f8ea6 } .fxlog .w { color: #ffcb6b } .fxlog .bad { color: #ff6b6b }
+.fxjudges { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px }
+.fxjudges div { border: 1px solid #24324a; border-radius: 8px; padding: 5px 6px; font-size: 10.5px; color: #8b9bb4; line-height: 1.25; transition: all .3s }
+.fxjudges div b { display: block; font: 800 14px var(--display); color: #8b9bb4 } .fxjudges div.done b { color: #3ddc84 } .fxjudges div.hot { border-color: #ffcb6b } .fxjudges div.hot b { color: #ffcb6b }
+.cd { display: grid; gap: 4px } .fxtag { justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px } .fxtag.bad { background: rgba(255,107,107,.18); color: #ff6b6b } .fxtag.good { background: rgba(61,220,132,.16); color: #3ddc84 } .cd pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre-wrap; overflow-wrap: anywhere; overflow-x: auto; max-width: 100%; box-sizing: border-box; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 12px 8px 10px }
+.cd pre .hl, .cd pre .hg { -webkit-box-decoration-break: clone; box-decoration-break: clone }
+.cd pre .kw { color: #c792ea } .cd pre .cm { color: #697a94; font-style: italic } .cd pre .ct { color: #f78c6c } .cd pre .fn { color: #82aaff } .cd pre .hl { background: rgba(255,107,107,.18); outline: 1px solid rgba(255,107,107,.5); border-radius: 3px }
+.cd pre .hg { background: rgba(61,220,132,.16); outline: 1px solid rgba(61,220,132,.45); border-radius: 3px }
+.fallback[hidden], .demo[hidden], .chatf[hidden], [hidden] { display: none !important }
 </style>
 
 <div class="viewport" id="viewport">
@@ -191,7 +349,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   <div class="row" id="liverow">
     <section class="card" aria-labelledby="h1">
       <h2 id="h1"><span class="num">1</span>Choose an industry</h2>
-      <div class="sample" aria-hidden="true">
+      <div class="sample" id="sample3d" aria-label="3D model of your experiment's sample. Drag to rotate.">
         <span class="tag" id="sampletag">Your sample</span>
         <svg viewBox="0 0 420 290" preserveAspectRatio="xMidYMid slice">
           <defs>
@@ -229,7 +387,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <h2 id="h2"><span class="num">2</span>Choose a cryostat</h2>
       <div class="machine" id="machine">
         <span class="kind" id="kind"></span>
-        <span class="tag" id="stagetag">Sample goes here</span>
+        <span class="tag" id="stagetag" hidden></span>
         <div class="gl" id="gl" role="img" aria-label="3D model of the selected cryostat. Drag to orbit, scroll to zoom."></div>
         <div class="fallback" id="fallback" hidden><svg viewBox="0 0 320 250" width="300"><rect x="70" y="28" width="180" height="16" rx="4" fill="#24324a"/><rect x="100" y="44" width="120" height="150" fill="#e7edf0"/><rect x="140" y="160" width="40" height="12" fill="#deb869"/><rect x="62" y="214" width="196" height="16" rx="4" fill="#24324a"/></svg></div>
         <div class="tools">
@@ -270,13 +428,75 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   <div class="demo" id="demo" hidden>
     <div class="list" id="demolist"></div>
-    <pre class="term" id="term" aria-live="polite"></pre>
-    <div class="viz"><h3 id="viztitle"></h3><div id="viz"></div><div style="display:grid;gap:8px"><span class="cap" id="vizcap"></span><button class="replay" id="replay">Replay run</button></div></div>
+    <div class="flow u" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
+    <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Chat with Lanyon AI · Lean decides</span></h3>
+      <div id="chatlog" class="chatlog" aria-live="polite"></div>
+      <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask, e.g. why 39 lines? (say “model it” for Lanyon)"><button type="submit" class="replay">Ask</button></form>
+      <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
+      <div id="viz" hidden></div><span class="cap" id="vizcap" hidden></span></div>
   </div>
+  <details class="fold" id="mx180" hidden><summary><b>The 180 featured pairings</b><span>20 industries × 3 experiments × 3 machines, every square a Lean verdict · click to show or hide</span></summary>
+  <section class="mx180" aria-labelledby="mxh">
+    <div class="mxtop"><div><h2 id="mxh">The 180 featured pairings</h2><p>20 industries × 3 experiments × 3 machines. Every square is a verdict the Lean 4 checker already returned.</p></div>
+      <div class="mxsum"><b id="mxpct"></b><div class="mxbar" id="mxbar"></div><span id="mxleg"></span></div>
+      <div class="seg" role="group" aria-label="Machine selection"><button id="mx-best" aria-pressed="true">Best-match machines</button><button id="mx-old" aria-pressed="false">Original selection</button></div></div>
+    <div class="mxgrid" id="mxgrid"></div>
+    <p class="mxnote">Best-match = the 3 machines (of 220) Lean passes most often for each industry's experiments. Some experiments pass on no machine in the catalog, so a few squares can't turn green without new machines or sourced specs.</p>
+  </section>
+  </details>
+  <section class="fx" id="fx" hidden aria-labelledby="fxh">
+    <div class="fxtop"><div><h2 id="fxh">Proof-slop forensics: auditing the Lean core</h2>
+      <p>A green <code>lake build</code> only says Lean accepted the proofs. The forensics audit checks whether the proofs actually mean what they claim, and whether any of them lean on a shortcut. AI-written proofs can look fine and still be hollow.</p></div>
+      <a class="fxsrc" href="https://github.com/emberian/forensics" target="_blank" rel="noopener">forensics ↗</a></div>
+    <div class="fxstats">
+      <div><b>839</b><span>declarations scanned</span></div>
+      <div class="ok"><b>0</b><span>sorry / native_decide / extra axioms</span></div>
+      <div class="ok"><b>0</b><span>statement smells (trivial or vacuous)</span></div>
+      <div class="ok"><b>0</b><span>unsafe / partial / opaque flags</span></div>
+      <div class="warn"><b>1</b><span>real soundness gap found and fixed</span></div>
+    </div>
+    <div class="fxrow">
+      <div class="fxrun"><div class="fxbar2"><b>Live run</b><span id="fxprog">replaying the recorded audit</span><button type="button" id="fxplay">Run again</button></div>
+        <pre class="fxlog" id="fxlog" aria-live="off"></pre>
+        <div class="fxjudges" id="fxjudges"></div></div>
+      <div class="fxcode"><div class="fxbar2"><b>The slop it caught</b><span>lean/CryoLean/Checker.lean · checkCapability</span></div>
+        <div class="cd"><span class="fxtag bad">Before</span><pre id="fxbefore"></pre></div>
+        <div class="cd"><span class="fxtag good">After</span><pre id="fxafter"></pre></div>
+        <div class="cd"><span class="fxtag good">New proof</span><pre id="fxthm"></pre></div>
+      </div>
+    </div>
+  </section>
   <footer class="bottom">
     <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
     <span class="small" id="stamp">Verdicts decided by the Lean 4 checker</span>
   </footer>
+  <details class="fold" id="lx" hidden><summary><b>How the physics becomes Lean</b><span>From a datasheet sentence to a proved verdict, using demo A · click to show or hide</span></summary>
+    <div class="lx">
+      <div class="lxs"><span class="k">1</span><div><b>Two sentences</b><p>The experiment's procedure says it needs a magnetic field of <b>at least 12 T</b>. The Cryogenic Ltd datasheet says its magnet goes <b>up to 9 T</b>. Each fact keeps a link to the document it came from.</p></div></div>
+      <div class="lxs"><span class="k">2</span><div><b>Exact numbers with units</b><p>Python turns each number into an exact fraction in SI units, with no rounding and no decimals, and records its unit as powers of the seven SI base units. Tesla is kg·s⁻²·A⁻¹.</p>
+        <pre>{"num": 12, "den": 1, "dim": {"kg": 1, "s": -2, "A": -1}}   // the 12 T requirement
+{"num":  9, "den": 1, "dim": {"kg": 1, "s": -2, "A": -1}}   // the 9 T magnet</pre></div></div>
+      <div class="lxs"><span class="k">3</span><div><b>Lean types</b><p>In Lean the requirement becomes a <code>Constraint</code> and the machine's spec a <code>CapValue</code> (lean/CryoLean/Model.lean).</p>
+        <pre>structure Quantity where
+  val : Q        -- exact rational num / den
+  dim : Dim      -- exponents of K, m, kg, s, A, mol, cd
+
+Constraint.atLeast ⟨⟨12, 1⟩, {kg := 1, s := -2, A := -1}⟩   -- needs at least 12 T
+CapValue.max      ⟨⟨9, 1⟩,  {kg := 1, s := -2, A := -1}⟩   -- documented maximum 9 T</pre></div></div>
+      <div class="lxs"><span class="k">4</span><div><b>Lean decides</b><p>The checker compares the two only if their units match, using whole-number cross-multiplication, so it can't make a rounding error (lean/CryoLean/Checker.lean, Num.lean).</p>
+        <pre>def Q.le (a b : Q) : Prop := a.num * (b.den : Int) ≤ b.num * (a.den : Int)
+
+def checkValue : Constraint → CapValue → Outcome
+  | .atLeast q, .max m =>
+      if m.dim = q.dim then (if Q.le q.val m.val then .pass else .fail) else .unsupported
+  ...
+-- 12 * 1 ≤ 9 * 1 is false  →  .fail  →  verdict: does not meet requirements</pre></div></div>
+      <div class="lxs"><span class="k">5</span><div><b>Proved, not just tested</b><p>A theorem says every <code>.pass</code> really means the physical requirement holds. Lean checks this proof for every case, so a pass can't be wrong (lean/CryoLean/Soundness.lean).</p>
+        <pre>theorem checkValue_pass_sound {k : Constraint} {v : CapValue}
+    (h : checkValue k v = .pass) : ValueMeets k v</pre></div></div>
+      <div class="lxs"><span class="k">6</span><div><b>Instant answers on this page</b><p>Lean already decided every requirement at each documented limit of every machine, and in every gap between limits. When you type a value, the page looks up which gap it falls in and shows Lean's answer for it. A missing spec stays <code>.unknown</code>, which is why demo B says Need more information instead of guessing.</p></div></div>
+    </div>
+  </details>
 </div>
 </div>
 
@@ -301,6 +521,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>__CRYO3D__</script>
+<script>__SAMPLE3D__</script>
 <script type="application/json" id="cryolean-data">__DATA__</script>
 <script type="application/json" id="cryolean-lattice">__LATTICE__</script>
 <script>window.DEMO_LOG = __DEMOLOG__;</script>
@@ -316,13 +537,17 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   // scale the 1536 x 1024 landscape stage to the window (whole stage on screen on desktops, full width on phones)
   const stage = $("stage"), vp = $("viewport");
+  let stageH = 1024;
   function fit() {
+    stage.style.height = "auto"; stageH = Math.max(1024, Math.ceil(stage.scrollHeight));
     const w = document.documentElement.clientWidth, h = window.innerHeight;
-    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / 1024) : w / 1536;
-    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(1024 * s) + "px";
+    const s = w >= 900 && h > 300 && stageH <= 1100 ? Math.min(w / 1536, h / stageH) : Math.min(w / 1536, 1);
+    stage.style.height = stageH + "px";
+    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(stageH * s) + "px";
     stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
   }
   addEventListener("resize", fit); fit();
+  document.querySelectorAll("details.fold").forEach((d) => d.addEventListener("toggle", fit));
 
   const st = { ind: 0, exp: 0, cfg: 0 };
   try { Object.assign(st, JSON.parse(localStorage.getItem("cryolean-state") || "{}")) } catch (e) {}
@@ -337,12 +562,14 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const verdictOf = (e, c) => D.verdicts[e.id + "|" + c.id];
 
   const has3d = !!(window.Cryo3D && Cryo3D.mount($("gl")));
+  const hasS3d = !!(window.Sample3D && Sample3D.mount($("sample3d")));
+  if (hasS3d) { const sv = $("sample3d").querySelector("svg"); if (sv) sv.style.display = "none"; }
   if (!has3d) { $("gl").hidden = true; $("fallback").hidden = false; document.querySelector(".tools").hidden = true; }
   const view = (inside) => { $("view-in").setAttribute("aria-pressed", inside); $("view-out").setAttribute("aria-pressed", !inside); if (has3d) Cryo3D.setInside(inside) };
   $("view-in").onclick = () => view(true); $("view-out").onclick = () => view(false);
   $("orb-l").onclick = () => has3d && Cryo3D.orbit(0.35); $("orb-r").onclick = () => has3d && Cryo3D.orbit(-0.35); $("orb-0").onclick = () => has3d && Cryo3D.reset();
   const thumbs = {};
-  const thumbOf = (kind, verdict) => { const k = kind + "|" + verdict; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
+  const thumbOf = (kind, verdict, id) => { const k = kind + "|" + verdict + "|" + id; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict, id) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
 
   // ---------------------------------------------------------------- live step 3 (Lean outcome lattice)
   // Every outcome below comes from site/lattice.json: Lean decided each requirement at every documented limit of every
@@ -354,14 +581,18 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const fnum = (x) => { if (x == null || !isFinite(x)) return ""; const a = Math.abs(x); return String(+(a >= 1e4 || (a > 0 && a < 1e-3) ? x.toPrecision(4) : x.toPrecision(6))) };
   const human = (k) => k.replace(/^module\./, "").replace(/[._]/g, " ").replace(/\bmax\b/, "(max)").replace(/\bmin\b/, "(min)").replace(/^./, (c) => c.toUpperCase());
   function factor(r) { const v = r.kind === "range_within" ? +r.lo : +r.value, si = r.kind === "range_within" ? r.si_lo : r.si; return v && si ? si / v : 1 }
+  // Live checker: every value starts at 0 and every box unticked, so Lean answers nothing until you type and confirm.
+  // Demos keep a separate state (DEMOLV) holding the procedure's own values, so switching tabs never mixes the two.
+  const DEMOLV = {};
   function liveState(eid) {
-    if (!LIVE[eid]) {
+    const pool = isDemo ? DEMOLV : LIVE;
+    if (!pool[eid]) {
       const vals = {}, conf = {};
       (L.requirements[eid] || []).forEach((r) => { conf[r.index] = false;
-        if (r.editable) vals[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value });
-      LIVE[eid] = { vals, conf };
+        if (r.editable) vals[r.index] = isDemo ? (r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value) : (r.kind === "range_within" ? [0, 0] : 0) });
+      pool[eid] = { vals, conf };
     }
-    return LIVE[eid];
+    return pool[eid];
   }
   function interval(e, x) {
     const Ls = e.limits, s = e.outcomes;
@@ -377,6 +608,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     if (r.kind === "range_within") { const lo = Math.min(v[0], v[1]) * f, hi = Math.max(v[0], v[1]) * f, a = interval(e, lo), b = interval(e, hi);
       return a === "f" || b === "f" ? "f" : a === "u" || b === "u" ? "u" : "p" }
     return interval(e, v * f);
+  }
+  // The verdict tiles stay dark until the first temperature requirement (or the first requirement) is ticked
+  function gateTicked(eid, lv) {
+    const rs = L.requirements[eid] || []; if (!rs.length) return true;
+    const g = rs.find((r) => r.keys.some((k) => k.startsWith("temperature"))) || rs[0];
+    return !!lv.conf[g.index];
   }
   function liveVerdict(eid, cid, lv) {
     const rs = L.requirements[eid] || [], o = L.lattice[eid] && L.lattice[eid][cid];
@@ -425,12 +662,25 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const featured = new Set(ind.configurations.map((c) => c.id));
     passing.sort((a, b) => (featured.has(b) - featured.has(a)) || name(a).localeCompare(name(b)));
     const alts = passing.slice(0, 4).map((cid) => `<button class="alt" data-cid="${cid}">${featured.has(cid) ? "Featured · " : ""}${esc(name(cid))}</button>`).join("");
-    let h = "";
-    if (outs.includes("s")) {
-      h = `<b class="h">Confirm your requirements</b><span>Tick each requirement once its value matches your experiment. Until all are confirmed, Lean answers Need more information for every machine.</span>`;
-    } else if (vcode === "R") {
-      h = `<b class="h">All ${rs.length} requirements met, decided by Lean</b><span>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these exact values.</span>`;
-    } else {
+    // The two answers, straight from Lean's verdict (vcode) and its outcome on the run-time requirement
+    const unconf = outs.includes("s"), started = gateTicked(ex.id, lv);
+    const cmp = vcode === "R" ? ["ok", "Experiment is compatible"] : vcode === "D" ? ["no", "Experiment is not compatible"] : ["maybe", "Experiment might be compatible"];
+    const di = rs.findIndex((r) => r.keys.includes("operating_duration.max")), dur = di >= 0 ? rs[di] : null;
+    const need = dur ? `needs ${fnum(lv.vals[dur.index])} ${esc(dur.unit || "h")} of continuous run time` : "";
+    const dOut = dur ? outs[di] : null, opt = dur && !dur.mandatory ? " (optional in this procedure)" : "";
+    const run = unconf ? ["maybe", "Might run on this system", dur ? `${need}; tick every requirement to decide.` : "Not decided until every requirement is ticked."]
+      : vcode === "D" ? ["no", "Will not run on this system", dOut === "f" ? `${need}; the machine can't hold that long.` : "A requirement above isn't met, so the run can't start."]
+      : vcode === "N" ? ["maybe", "Might run on this system", dOut === "u" ? `${need}; the machine's run time isn't documented.` : "A required spec isn't documented, so Lean won't promise a run."]
+      : !dur ? ["ok", "Runs on this system", "This procedure sets no minimum run time."]
+      : dOut === "p" ? ["ok", "Runs on this system", `${need}; the machine holds it.`]
+      : dOut === "f" ? ["maybe", "Might not run for the full time", `${need}; the machine holds less${opt}.`]
+      : ["maybe", "Might run for the full time", `${need}; the machine's run time isn't documented${opt}.`];
+    const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
+    if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
+    const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? "<small>Tick each requirement to let Lean decide.</small>" : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
+      `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
+    let h = started ? tv : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
+    if (started && !unconf && vcode !== "R") {
       const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
       const steps = [];
       if (first >= 0 && r.editable && e) {
@@ -441,7 +691,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       }
       steps.push(passing.length ? `<span>Or switch to a machine that meets every value you typed (${passing.length} found by Lean):</span><div class="alts">${alts}</div>`
         : `<span>No catalog machine meets all of these values. Relax the failing value.</span>`);
-      h = `<b class="h">Requirement ${k + 1} ${first >= 0 ? "fails" : "is not documented"} on this machine: ${esc(human(r.keys[0]))}</b>` +
+      h += `<b class="h">Requirement ${k + 1} ${first >= 0 ? "fails" : "is not documented"} on this machine: ${esc(human(r.keys[0]))}</b>` +
         steps.map((t, j) => `<div class="step"><span class="k">${j + 1}</span><span>${t}</span></div>`).join("");
     }
     $("suggest").innerHTML = h;
@@ -457,10 +707,10 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   // ---------------------------------------------------------------- demos: the recorded `python -m cryolean demo` run
   const DEMOS = [
-    { id: "A", t: "A · Confirmed incompatibility", d: "10 T magnetoresistance on a 9 T PPMS DynaCool", h: "Demo A" },
-    { id: "B", t: "B · Coupled multiphysics", d: "50-qubit wiring heat budget on a Bluefors LD400", h: "Demo B" },
-    { id: "C", t: "C · New industry", d: "Semiconductors through the research pipeline", h: "Demo C" },
-    { id: "D", t: "D · Campaign scheduling", d: "Three experiments in one 48 h cooldown", h: "Demo D" },
+    { id: "A", show: 0, t: "A · The magnet is too weak", d: "A graphene test needs a 12 T magnet. Try a 9 T machine, then a 14 T one." },
+    { id: "B", show: 1, t: "B · Lean won't guess", d: "A tank-insulation test, but the machine's datasheet leaves out two facts." },
+    { id: "C", show: 1, t: "C · A clean yes", d: "Testing a tiny computer chip, ice-cold, on a probe station." },
+    { id: "D", show: 1, t: "D · Change the plan, not the machine", d: "Same graphene test and 9 T machine as A, but you lower the field you need." },
   ];
   const LOG = String(window.DEMO_LOG || "").split("\n");
   function demoLines(h) {
@@ -511,34 +761,319 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     return svg(540, 350, b);
   }
   const VIZ = { A: vizA, B: vizB, C: vizC, D: vizD };
-  const CAP = { A: "Lean rejects magnetic_field.max (10 T needed, 9 T documented). Z3's unsat core cites the Quantum Design brochure quote; the 14 T configuration is proposed and Lean re-checks it.",
-    B: "Temperature and line count pass, but Lean's coupled heat budget gives 14.592 µW > 12 µW. Z3 proposes 39 flux lines; Lean re-checks: 11.985 µW, REQUIREMENTS_MET.",
-    C: "A new industry goes through registration, validation and review; Z3 searches every configuration and the same Lean binary verifies the Lake Shore CRX-VF. The Lean core hash does not change.",
-    D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
+  const CAP = {
+    A: "The graphene experiment needs a magnet of at least 12 tesla. The 9 T machine falls short, so Lean says it is not compatible. Switching to the 14 T machine covers every requirement, and Lean says compatible.",
+    B: "The heat-leak test needs the machine's warm side held at room temperature and a boil-off measuring kit. The datasheet doesn't mention either, so Lean answers Need more information instead of guessing.",
+    C: "Every required spec of the chip test (temperature range, vacuum, probe arms, wiring) is covered by the probe station's datasheet, so Lean says compatible. One optional wish isn't met, which doesn't change the answer.",
+    D: "On the 9 T machine the 12 T requirement fails. If the experiment can live with 9 T, you change the number in step 3 and Lean re-checks: compatible on the same machine." };
+  // Plain-English story of each recorded run (numbers are the real outputs of `python -m cryolean demo`)
+  // Each demo step: [who, title, plain-English text, chip, status, action]. "auto" chips are filled in from Lean's
+  // verdict right after the step's action (fill values, tick boxes, switch machine, change a number) runs.
+  const STEPS_T = {
+    A: [["you", "Your experiment", "You want to see a quantum effect in graphene, a sheet of carbon one atom thick. It only appears in a very strong magnetic field: at least 12 tesla (a fridge magnet is about 0.01 T).", "needs 12 T", "neutral", ["fill"]],
+        ["data", "The machine", "The Cryogenic Ltd system's datasheet says its magnet goes up to 9 T.", "has 9 T", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3, so Lean knows these really are the values you need.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "Lean compares every requirement with the datasheet. 9 T is less than 12 T, so this machine can't run the experiment.", "auto", "auto", null],
+        ["you", "You switch machine", "You pick the Quantum Design PPMS DynaCool, whose magnet goes up to 14 T.", "try 14 T", "neutral", ["switch", "qd_dynacool_14T_eto_vsm_hc"]],
+        ["lean", "Lean re-checks", "Same experiment, new machine: 14 T is more than 12 T, and every other requirement is covered too.", "auto", "auto", null]],
+    B: [["you", "Your experiment", "You want to measure how much heat leaks through the insulation of a liquid-nitrogen tank, by timing how fast the nitrogen boils away.", "heat-leak test", "neutral", ["fill"]],
+        ["data", "The machine", "Lake Shore VPF-100: a cryostat you fill with liquid nitrogen. Its datasheet covers the cold side, down to 77 K (about -196 °C).", "datasheet read", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "The cold temperature is fine. But the datasheet never says the warm side can be held at room temperature (293 K), or that a boil-off measuring kit exists. Lean won't fill the gaps with guesses.", "auto", "auto", null],
+        ["lean", "What would settle it", "Ask the manufacturer for those two specs. Once they are documented, Lean can give a firm yes or no.", "ask for 2 specs", "info", null]],
+    C: [["you", "Your experiment", "You want to test a tiny computer chip (5 nm transistors) while it is very cold, touching it with fine needle-like probes.", "cold chip test", "neutral", ["fill"]],
+        ["data", "The machine", "A Lake Shore probe station: a vacuum chamber that cools the chip and has six probe arms.", "6 probe arms", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "Temperature range, vacuum, number of probe arms and electrical connections are all covered by the datasheet.", "auto", "auto", null],
+        ["lean", "Optional wishes", "The plan would prefer a machine that needs no liquid cryogen (helium or nitrogen) at all. This one does, but that wish is marked optional, so the answer stays yes.", "optional only", "neutral", null]],
+    D: [["you", "Your experiment", "The same graphene experiment as demo A: it asks for a magnet of at least 12 T.", "needs 12 T", "neutral", ["fill"]],
+        ["data", "The machine", "The same Cryogenic Ltd machine, whose magnet goes up to 9 T.", "has 9 T", "neutral", null],
+        ["you", "You confirm your numbers", "You tick each requirement in step 3.", "boxes ticked", "neutral", ["tick"]],
+        ["lean", "Lean checks", "9 T is less than 12 T, so as written the experiment doesn't fit this machine.", "auto", "auto", null],
+        ["you", "You change your number", "If the effect also shows up at 9 T, you lower the magnetic-field requirement to 9 T, right in step 3.", "set 9 T", "neutral", ["set", 1, 9]],
+        ["lean", "Lean re-checks", "9 T is exactly what this machine can reach, so the requirement passes. Same machine, new plan.", "auto", "auto", null]],
+  };
+  const STEPS = Object.fromEntries(Object.entries(STEPS_T).map(([k, v]) => [k, v.map((x) => x.slice())]));
+  const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
+  // "Computational universe" view: each participant is a body on a hairline orbit; a light pulse travels to whoever acts next.
+  const AV = { lanyon: ["Lanyon AI", "suggests ideas"], lean: ["Lean", "the judge"], z3: ["Z3", "exact maths"], data: ["Datasheets", "the facts"], you: ["You", "the plan"] };
+  const POS = { you: [70, 150], data: [120, 64], lanyon: [250, 70], z3: [330, 170], lean: [200, 205] };
+  const STARS = Array.from({ length: 70 }, (_, i) => [(i * 97.3) % 420, (i * 53.7) % 300, ((i * 7) % 3) * 0.35 + 0.35]);
+  function flowHTML(id, n) {
+    const st = STEPS[id] || [], cur = st[Math.max(0, n - 1)], who = new Set(st.map((x) => x[0]));
+    const used = [...who];
+    let svgc = STARS.map(([x, y, r]) => `<circle class="star" cx="${x}" cy="${y}" r="${r}"/>`).join("");
+    svgc += [70, 115, 160].map((r) => `<ellipse class="orb" cx="210" cy="140" rx="${r * 1.35}" ry="${r * 0.62}"/>`).join("");
+    for (let i = 1; i < n; i++) { const [a, b] = [POS[st[i - 1][0]], POS[st[i][0]]]; if (!a || !b) continue;
+      const mx = (a[0] + b[0]) / 2, my = Math.min(a[1], b[1]) - 30;
+      svgc += `<path class="link${i === n - 1 ? " draw" : ""}" d="M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}" id="lk${i}"/>`; }
+    used.forEach((w) => { const [x, y] = POS[w] || POS.data, on = cur && cur[0] === w;
+      svgc += `<g style="color:${w === "lean" ? "var(--met)" : w === "lanyon" ? "#a77bff" : "var(--ink)"}"><circle class="halo${on ? " go" : ""}" cx="${x}" cy="${y}" r="15"/>` +
+        (w === "lanyon" ? lanyonIcon(x, y, on) : `<circle class="body ${w}${on ? " on" : ""}" cx="${x}" cy="${y}" r="${w === "lean" ? 15 : 11}"/>`) +
+        `<text class="lbl" x="${x}" y="${y + (w === "lean" ? 31 : 27)}">${AV[w][0]}</text><text class="sub" x="${x}" y="${y + (w === "lean" ? 42 : 38)}">${AV[w][1]}</text></g>`; });
+    if (n > 1) { const p = `lk${n - 1}`; svgc += `<circle class="pulse" r="2.6"><animateMotion dur="1.1s" fill="freeze"><mpath href="#${p}"/></animateMotion></circle>`; }
+    const cap = cur && n ? `<div class="k"><b>${esc(AV[cur[0]][0])}</b> · step ${n} of ${st.length}</div><h4>${esc(cur[1])}</h4><p>${esc(cur[2])}</p><span class="res ${cur[4]}">${esc(cur[3])}</span>`
+      : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
+    const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
+    return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Cymatic pattern: the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
+      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Guided example · each color is Lean's verdict for exactly the values shown in step 3."}</small></div></div>`;
+  }
+  // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
+  function lanyonIcon(x, y, on) {
+    return `<g class="lany${on ? " on" : ""}"><path class="strap" d="M${x - 6},${y - 10} L${x - 12},${y - 34} Q${x},${y - 46} ${x + 12},${y - 34} L${x + 6},${y - 10}"/>` +
+      `<rect class="clip" x="${x - 3.5}" y="${y - 14}" width="7" height="6" rx="1.2"/>` +
+      `<rect class="card" x="${x - 11}" y="${y - 9}" width="22" height="25" rx="3"/>` +
+      `<rect class="band" x="${x - 11}" y="${y - 9}" width="22" height="6" rx="3"/>` +
+      `<circle class="face" cx="${x}" cy="${y + 3}" r="3.6"/><path class="face" d="M${x - 6},${y + 13} Q${x},${y + 6} ${x + 6},${y + 13}"/></g>`;
+  }
+  // Cymatic surface: hairline particles settle onto the nodal lines of a Chladni plate. Each actor has its own
+  // vibration mode, so the pattern re-forms at every step; the pointer shakes particles loose and they settle back.
+  const CYM = (() => {
+    const MODE = { you: [2, 5], data: [3, 7], lanyon: [5, 8], z3: [4, 9], lean: [3, 6] };
+    const N = 6000, P = new Float32Array(N * 2);
+    for (let i = 0; i < N * 2; i++) P[i] = Math.random();
+    let n = 3, m = 6, tn = 3, tm = 6, ax = 2, mx = -1, my = -1, el = null, cv = null, ctx = null, w = 0, h = 0, dpr = 1;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const f = (x, y) => { x *= ax; return Math.cos(n * Math.PI * x) * Math.cos(m * Math.PI * y) + Math.cos(m * Math.PI * x) * Math.cos(n * Math.PI * y); };
+    function attach() {
+      const host = document.querySelector(".uni .cym");
+      if (!host) { el = null; return false; }
+      if (host !== el) {
+        el = host; cv = host.querySelector("canvas"); ctx = cv.getContext("2d");
+        host.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height; });
+        host.addEventListener("pointerleave", () => { mx = my = -1; });
+      }
+      const mode = MODE[host.dataset.who] || MODE.you; tn = mode[0]; tm = mode[1];
+      const r = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
+      if (Math.round(r.width * dpr) !== w || Math.round(r.height * dpr) !== h) { w = cv.width = Math.round(r.width * dpr); h = cv.height = Math.round(r.height * dpr); }
+      return w > 0 && h > 0;
+    }
+    function frame() {
+      if (attach() && document.visibilityState === "visible") {
+        const bend = mx >= 0 ? (mx - 0.5) * 1.6 : 0, lift = my >= 0 ? (0.5 - my) * 1.2 : 0;   // hovering bends the mode
+        n += (tn + bend - n) * 0.05; m += (tm + lift - m) * 0.05;          // glide between modes instead of snapping
+        const ink = getComputedStyle(el).color || "#e8eef8";
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = ink; ctx.globalAlpha = 0.12; ctx.lineWidth = 1;
+        ctx.strokeRect(0.5 * dpr * 2, 0.5 * dpr * 2, w - 2 * dpr, h - 2 * dpr);   // hairline plate edge
+        ctx.fillStyle = ink; ctx.globalAlpha = 1;
+        const s = Math.max(1.2, dpr * 1.2), aspect = w / h; ax = Math.max(1, aspect);
+        for (let i = 0; i < N; i++) {
+          let x = P[2 * i], y = P[2 * i + 1];
+          const v = f(x, y), e = 0.002, gx = (f(x + e, y) - v) / e, gy = (f(x, y + e) - v) / e, g2 = gx * gx + gy * gy + 1e-6;
+          const pull = Math.min(0.02, Math.abs(v) / Math.sqrt(g2)) * 0.8;   // step down |f| toward the nodal line
+          x -= Math.sign(v) * gx / Math.sqrt(g2) * pull; y -= Math.sign(v) * gy / Math.sqrt(g2) * pull;
+          let amp = (reduce ? 0.0003 : 0.0007) + Math.abs(v) * 0.002;
+          if (mx >= 0) { const dx = (x - mx) * aspect, dy = y - my, d2 = dx * dx + dy * dy; if (d2 < 0.05) amp += (0.05 - d2) * 1.4; }
+          x += (Math.random() - 0.5) * amp; y += (Math.random() - 0.5) * amp;
+          if (x < 0 || x > 1 || y < 0 || y > 1) { x = Math.random(); y = Math.random(); }
+          P[2 * i] = x; P[2 * i + 1] = y;
+          ctx.fillRect(x * w, y * h, s, s);
+        }
+        ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    return { attach };
+  })();
+  let typeT = 0, flowN = 0; function streamLast() {}
+  // Live checker uses the same Lanyon panel, built from the pairing you picked (id "L")
+  let LIVEINFO = { id: "L", t: "Your check", d: "Your experiment on your machine" }, isDemo = false;
+  const dinfo = (id) => (id === "L" ? LIVEINFO : DEMOS.find((x) => x.id === id));
+  function updateLiveFlow(ex, mc, vcode) {
+    const m = ((mc.manufacturer || "").split("(")[0].trim() + " " + (mc.name || "")).trim();
+    const V = { R: ["Requirements met", "met", "Every mandatory requirement is covered by this machine's documented specs."],
+                D: ["Does not meet", "fail", "A documented limit of this machine conflicts with one of your requirements."],
+                N: ["Need more info", "info", "A required spec isn't published, or your requirements aren't confirmed yet, so Lean won't guess."] }[vcode] || ["Need more info", "info", ""];
+    LIVEINFO = { id: "L", t: "Your check", d: (ex.plain_name || ex.name) + " on " + m };
+    STEPS.L = [["data", "Your experiment", ex.plain_name || ex.name, "your requirements", "neutral"],
+               ["data", "The machine", m + ": specs from the manufacturer's datasheets.", "documented specs", "neutral"],
+               ["lean", "Lean checks", V[2], V[0], V[1]]];
+    if (vcode !== "R") STEPS.L.push(["lanyon", "Lanyon + Z3 look for a fix", "Press “Check my setup”: Lanyon AI and Z3 propose changes or other machines. These are only suggestions.", "suggestions", "neutral"],
+                                    ["lean", "Lean verifies every fix", "Only fixes Lean passes on the exact setup are shown. If none pass, you'll see “No verified solution found”.", "verified fixes only", "met"]);
+    CAP.L = `${LIVEINFO.d}: Lean says ${V[0]}. ${V[2]}`;
+    if (!isDemo) { $("flow").innerHTML = flowHTML("L", STEPS.L.length); $("viztitle").textContent = "Your check"; demoCur = "L"; resetChat("L"); }
+  }
+  // Demo pairs: all are featured pairs, so every verdict below is read from the same Lean lattice as the live checker
+  const DEMOSEL = { A: ["scientific_research", "sci_graphene_yig_quantum_hall", "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"],
+    B: ["energy_and_hydrogen", "expc_energy_insulation_boiloff", "lake_shore_vpf_100_standard_optical"],
+    C: ["semiconductors_and_electronics", "semi_finfet_5nm_cryo_probe", "lakeshore_fwpx_6arm_standard"],
+    D: ["scientific_research", "sci_graphene_yig_quantum_hall", "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"] };
+  const VWORD = { R: "Compatible", D: "Not compatible", N: "Need more info" }, VDOT = { R: "ok", D: "no", N: "maybe" };
+  const procVals = (eid) => { const v = {}; (L.requirements[eid] || []).forEach((r) => { if (r.editable) v[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value }); return v };
+  function applyDemoAction(a, eid, lv, cid) {   // returns the (possibly new) machine id
+    if (!a) return cid;
+    if (a[0] === "fill") { lv.vals = procVals(eid); Object.keys(lv.conf).forEach((i) => lv.conf[i] = false) }
+    if (a[0] === "tick") Object.keys(lv.conf).forEach((i) => lv.conf[i] = true);
+    if (a[0] === "set") lv.vals[a[1]] = a[2];
+    if (a[0] === "switch") return a[1];
+    return cid;
+  }
+  // First and last Lean verdict of a demo, computed by replaying its actions (the colored dots on each card)
+  function demoOutcomes(id) {
+    const m = DEMOSEL[id], conf = {}; (L.requirements[m[1]] || []).forEach((r) => conf[r.index] = false);
+    const lv = { vals: procVals(m[1]), conf }; let cid = m[2]; const seen = [];
+    STEPS_T[id].forEach((x) => { cid = applyDemoAction(x[5], m[1], lv, cid); if (x[3] === "auto") seen.push(liveVerdict(m[1], cid, lv)) });
+    return [seen[0] || "N", seen[seen.length - 1] || "N"];
+  }
+  function resetDemo(id) {
+    STEPS[id] = STEPS_T[id].map((x) => x.slice());
+    delete DEMOLV[DEMOSEL[id][1]];
+    demoSelect(id);
+  }
+  function runDemoStep(id, k) {
+    const x = STEPS[id][k], m = DEMOSEL[id], ind = D.industries[st.ind]; if (!x || !ind) return;
+    const lv = liveState(m[1]), cur = ind.configurations[st.cfg].id, next = applyDemoAction(x[5], m[1], lv, cur);
+    if (next !== cur) { const j = ind.configurations.findIndex((c) => c.id === next); if (j >= 0) { st.cfg = j; st.alt = null } }
+    render();
+    if (x[3] === "auto") { const v = liveVerdict(m[1], next, lv); x[3] = VWORD[v]; x[4] = VCLS[v] }
+  }
   let demoTimer = 0, demoCur = "A";
+  function demoIdle() {   // demo tab opened: nothing plays until an example is clicked
+    demoCur = "A";
+    $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+    $("viztitle").textContent = "Pick an example";
+    $("flow").innerHTML = `<div class="idle"><b>Pick an example on the left</b><span>Each one fills in steps 1–3 for you, then lets Lean decide one step at a time.</span></div>`;
+    $("chatlog").innerHTML = ""; addMsg("note", "Pick an example on the left, then ask about it here.");
+    render();
+  }
   function playDemo(id) {
-    demoCur = id; clearInterval(demoTimer);
-    const d = DEMOS.find((x) => x.id === id), lines = demoLines(d.h);
+    demoCur = id; clearInterval(demoTimer); clearInterval(typeT); resetDemo(id); resetChat(id);
+    const d = dinfo(id), steps = STEPS[id];
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
-    let n = 0; const step = () => { n++; const p = n / lines.length;
-      $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
-      $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
-      if (n >= lines.length) clearInterval(demoTimer) };
-    $("viz").innerHTML = VIZ[id](0); step();
-    demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
+    let k = 0; flowN = 0; $("flow").innerHTML = flowHTML(id, 0);
+    const step = () => { runDemoStep(id, k); k++; flowN = k; $("flow").innerHTML = flowHTML(id, k, true); if (k >= steps.length) clearInterval(demoTimer) };
+    step();
+    demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 80 : 1800);
   }
-  $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span></button>`).join("") +
-    `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
+  // One color per card: the Lean verdict the example is about (A: the 9 T failure; B, C, D: where they end)
+  $("demolist").innerHTML = DEMOS.map((d) => { const v = demoOutcomes(d.id)[d.show];
+      return `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span><em class="dv"><i class="${VDOT[v]}"></i>${VWORD[v]}</em></button>` }).join("") +
+    `<p class="cap" style="font-size:13px;color:var(--ink-2)">Each example fills in steps 1–3 for you, then lets Lean decide one step at a time. Every color comes from the same Lean results as the Live checker.</p>`;
   $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
   $("replay").onclick = () => playDemo(demoCur);
+  // Demo tab = the same three live cards, set to each demo's industry/experiment/machine, plus the recorded run below
+  function demoSelect(id) {
+    const m = DEMOSEL[id]; if (!m) return;
+    const i = D.industries.findIndex((x) => x.id === m[0]); if (i < 0) return;
+    st.ind = i; st.exp = Math.max(0, D.industries[i].experiments.findIndex((e) => e.id === m[1]));
+    const j = D.industries[i].configurations.findIndex((c) => c.id === m[2]); st.cfg = j >= 0 ? j : 0; st.alt = null; render();
+  }
+  // ---- Lanyon assistant: the chat goes to Lanyon AI through the CryoLean server (POST /api/lanyon).
+  // Lanyon explains and proposes; it never decides. Verdicts and the facts it is given are Lean's.
+  let lanBusy = false;
+  function addMsg(cls, text) { const d = document.createElement("div"); d.className = "m " + cls; d.textContent = text; $("chatlog").appendChild(d); $("chatlog").scrollTop = 1e9; return d; }
+  function runFacts(id) {
+    const d = dinfo(id);
+    return `Demo: ${d.t} (${d.d}).\n` + (STEPS[id] || []).map(([w, t, p, big]) => `- ${WHO[w]}: ${t}. ${p} Result: ${big}.`).join("\n") + `\nSummary: ${CAP[id]}`;
+  }
+  async function askLanyon(q, show) {
+    if (lanBusy) return;
+    addMsg("me", show || q);
+    lanBusy = true; const out = addMsg("ai", "Claude is reading Lean's verdict…");
+    try {
+      const r = await post("/api/lanyon", { question: q, facts: runFacts(demoCur) });
+      let t = (r.answer || "No answer came back.") + "\n\n— answered by Claude · Lean decides every verdict";
+      const m = r.lanyon;
+      if (m && m.skipped) t += "\n\nLanyon model not run here: " + m.skipped + ".";
+      else if (m) t += "\n\nLanyon model: " + (m.certified ? "✓ certified (proof passed the Gatekeeper)." : "not certified (" + (m.why_not_certified || "no certificate") + ").");
+      out.textContent = t;
+    } catch (e) { out.textContent = "The chat isn't available right now: " + e.message + "\n\n" + CAP[demoCur]; }
+    finally { lanBusy = false; }
+  }
+  function resetChat(id) {
+    $("chatlog").innerHTML = "";
+    addMsg("note", "Ask about this run. Claude explains, Lanyon models the physics when you ask it to, and Lean makes every final call.");
+    addMsg("ai", CAP[id]);
+  }
+  $("explain").onclick = () => askLanyon("Walk me through this run step by step in plain English.", "Explain this run");
+  $("chatf").onsubmit = (e) => { e.preventDefault(); const q = $("chatq").value.trim(); if (!q) return; $("chatq").value = ""; askLanyon(q); };
+  const MX = __MATRIXDATA__; let mxMode = "best";
+  function renderMx() {
+    $("mx-best").setAttribute("aria-pressed", mxMode === "best"); $("mx-old").setAttribute("aria-pressed", mxMode === "old");
+    const all = MX.industries.flatMap((i) => i[mxMode].cells.flat()), c = (v) => all.filter((x) => x === v).length, r = c("R"), n = c("N"), d = c("D");
+    $("mxpct").textContent = Math.round(r / 180 * 100) + "%";
+    $("mxbar").innerHTML = `<i style="width:${r / 1.8}%;background:var(--met)"></i><i style="width:${n / 1.8}%;background:var(--info)"></i><i style="width:${d / 1.8}%;background:var(--fail)"></i>`;
+    $("mxleg").textContent = `${r} met · ${n} need more info · ${d} do not meet (of 180)`;
+    const SY = { R: "✓", N: "?", D: "✕" }, LB = { R: "Requirements met", N: "Need more information", D: "Does not meet" };
+    $("mxgrid").innerHTML = MX.industries.map((ind) => { const s = ind[mxMode], k = s.cells.flat().filter((v) => v === "R").length;
+      return `<div class="mxc"><h4>${esc(ind.name)}<b>${k}/9</b></h4><div class="mxm"><span></span>` +
+        s.machines.map((m) => `<span class="h" title="${esc(m.m + " · " + m.n)}">${esc(m.m.split("(")[0].trim())}</span>`).join("") +
+        ind.experiments.map((e, i) => `<span class="r" title="${esc(e.name)}">${esc(e.name)}</span>` +
+          s.cells[i].map((v, j) => `<span class="q ${v}" title="${esc(e.name)} on ${esc(s.machines[j].m)}: ${LB[v]} (Lean)">${SY[v]}</span>`).join("")).join("") + `</div></div>`; }).join("");
+  }
+  $("mx-best").onclick = () => { mxMode = "best"; renderMx(); }; $("mx-old").onclick = () => { mxMode = "old"; renderMx(); };
+  renderMx();
+  // ---- Forensics live run: replays the recorded audit over the REAL 839 declarations (docs/forensics/cryolean-forensics.json)
+  const FX = __FXDECLS__;
+  const BEFORE = `def checkCapability (k : Constraint) (c : Capability) : Outcome :=
+  match c.install with
+  | .optionalNotInstalled =>
+      -- a documented option that is NOT fitted: absent.
+      if k = .flagIs false then (if trustedB c.evidence then .pass else .unknown) ⟦else .fail⟧
+  | .unknown => .unknown
+  | .installed => if trustedB c.evidence then checkValue k c.value else .unknown`;
+  const AFTER = `def checkCapability (k : Constraint) (c : Capability) : Outcome :=
+  match c.install with
+  | .optionalNotInstalled =>
+      -- the "not fitted" claim needs trusted provenance, for pass AND for fail
+      ⟪if trustedB c.evidence then⟫ (if k = .flagIs false then .pass else .fail) ⟪else .unknown⟫
+  | .unknown => .unknown
+  | .installed => if trustedB c.evidence then checkValue k c.value else .unknown`;
+  const THM = `theorem fail_needs_trusted {k : Constraint} {c : Capability}
+    (h : checkCapability k c = .fail) : TrustedEvidence c.evidence := by
+  rcases checkCapability_fail_sound h with ⟨_, ht, _⟩ | ⟨_, ht, _⟩ <;> exact ht
+
+theorem untrusted_never_fails {k : Constraint} {c : Capability}
+    (h : ¬ TrustedEvidence c.evidence) : checkCapability k c ≠ .fail :=
+  fun hf => h (fail_needs_trusted hf)`;
+  function leanHL(src) {
+    let h = esc(src);
+    h = h.replace(/(--[^\n]*)/g, '<span class="cm">$1</span>');
+    h = h.replace(/\b(def|theorem|match|with|if|then|else|fun|by|exact|rcases)\b(?![^<]*<\/span>)/g, '<span class="kw">$1</span>');
+    h = h.replace(/(\.[a-z][A-Za-z]+)\b(?![^<]*<\/span>)/g, '<span class="ct">$1</span>');
+    h = h.replace(/\b(checkCapability|checkValue|trustedB|TrustedEvidence|checkCapability_fail_sound|fail_needs_trusted|untrusted_never_fails)\b(?![^<]*<\/span>)/g, '<span class="fn">$1</span>');
+    return h.replace(/⟦(.*?)⟧/g, '<span class="hl">$1</span>').replace(/⟪(.*?)⟫/g, '<span class="hg">$1</span>');
+  }
+  $("fxbefore").innerHTML = leanHL(BEFORE); $("fxafter").innerHTML = leanHL(AFTER); $("fxthm").innerHTML = leanHL(THM);
+  const JUDGES = [["Unnecessary hyps", 0], ["Duplicates", 2], ["Def. fidelity", 16], ["Vacuity", 3, true], ["Generality", 2], ["Repeated proofs", 2], ["Readability", 2]];
+  let fxT = 0;
+  function fxRun() {
+    clearInterval(fxT); const log = $("fxlog"), lines = []; let i = 0, ph = 0, j = 0;
+    $("fxjudges").innerHTML = JUDGES.map(([n]) => `<div><b>…</b>${esc(n)}</div>`).join("");
+    const push = (h) => { lines.push(h); if (lines.length > 25) lines.shift(); log.innerHTML = lines.join("\n"); };
+    push('<span class="ax">$ python scripts/run_forensics.py   # replay of the recorded run, forensics e5b80ca2</span>');
+    const fast = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    fxT = setInterval(() => {
+      if (ph === 0) {
+        for (let s = 0; s < (fast ? 839 : 11) && i < FX.length; s++, i++) { const [n, k, ax, sm, fl] = FX[i];
+          const UNSAFE = ["partial", "opaque", "implemented_by", "extern", "unsafe"];
+          const bad = sm || fl.some((f) => UNSAFE.includes(f)) || ax.some((a) => !["propext", "Classical.choice", "Quot.sound"].includes(a));
+          push(`<span class="${bad ? "bad" : "ok"}">${bad ? "✕" : "✓"}</span> <span class="k">${esc(k.padEnd(12))}</span><span class="n">${esc(n.length > 52 ? n.slice(0, 51) + "…" : n)}</span> <span class="ax">${ax.length ? "axioms: " + esc(ax.join(", ")) : "no axioms"}${fl.length ? " · " + esc(fl.join(", ")) : ""}</span>`); }
+        $("fxprog").textContent = `${i} / ${FX.length} declarations`;
+        if (i >= FX.length) { ph = 1; push('<span class="ok">✓ 839 declarations · 0 non-standard axioms · 0 sorry · 0 smells · 0 unsafe flags</span>'); push('<span class="ax">running the seven judge indicators…</span>'); }
+      } else if (ph === 1) {
+        const d = $("fxjudges").children[j], [n, f, hot] = JUDGES[j];
+        d.classList.add(hot ? "hot" : "done"); d.querySelector("b").textContent = f ? f + " flagged" : "clean";
+        push(`<span class="${hot ? "w" : "ok"}">${hot ? "!" : "✓"}</span> judge <span class="n">${esc(n)}</span>: ${f ? f + " flagged" : "nothing flagged"}${hot ? ' <span class="w">→ untrusted "not installed" record can REJECT · soundness gap</span>' : ""}`);
+        if (++j >= JUDGES.length) { ph = 2; push('<span class="ok">✓ gap fixed in checkCapability · proved fail_needs_trusted, untrusted_never_passes, untrusted_never_fails</span>'); $("fxprog").textContent = "audit complete · clean"; clearInterval(fxT); }
+      }
+    }, fast ? 1 : (ph === 0 ? 45 : 520));
+  }
+  $("fxplay").onclick = fxRun;
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
-    $("liverow").hidden = demo; $("demo").hidden = !demo;
-    if (demo) playDemo(demoCur); else clearInterval(demoTimer);
+    isDemo = demo;
+    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("lx").hidden = !demo; $("fx").hidden = !demo; if (demo) fxRun();
+    $("demo").classList.toggle("islive", !demo); $("demolist").hidden = !demo; $("replay").hidden = !demo; $("explain").textContent = demo ? "Explain this run" : "Explain my check";
+    fit();
+    clearInterval(demoTimer);
+    if (demo) demoIdle(); else render();
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
-  if (location.hash === "#demo") setTimeout(() => tab(true), 0);
+  setTimeout(() => tab(location.hash === "#demo"), 0);
 
   // ---------------------------------------------------------------- real backend (python -m cryolean serve)
   // When the page is served by the CryoLean API, "Check my setup" runs the compiled Lean checker on the server with the
@@ -570,14 +1105,25 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const v = r.verification || {}, ce = v.concrete_evaluation || {}, card = r.verdict_card || {};
     const proof = `<p class="meta">Decided by <b>${esc(ce.engine || card.decided_by || "Lean checker")}</b> (Lean ${esc(ce.lean_version || card.lean_version || "")}), verified_by_lean = <b>${esc(String(ce.verified_by_lean ?? ""))}</b>, input hash <code>${esc(String(ce.lean_input_hash || card.lean_input_hash || ""))}</code>, core source hash <code>${esc((card.source_hash || "").slice(0, 16))}</code>.</p>` +
       `<p class="meta">Theorems behind this verdict: ${(card.theorems || (v.generic_theorems || {}).key_theorems || []).map((t) => `<code>${esc(typeof t === "string" ? t : t.name || JSON.stringify(t))}</code>`).join(", ")}. Axioms: standard only = <b>${esc(String(card.axioms_standard_only ?? ""))}</b>.</p>`;
-    const sg = r.suggestions || {}, alts = sg.alternatives || [], pcs = (sg.parameter_changes || []).filter((p) => p.status === "found"), cf = ((sg.conflicts || {}).conflicts || []);
-    const z3 = (cf.length ? `<p class="meta"><b>Z3 unsat core:</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "") +
-      (pcs.length ? `<p class="meta"><b>Z3 parameter changes</b> (each already re-checked by Lean):</p>` + pcs.map((p) => `<button class="fix zfix" data-p="${esc(p.parameter)}" data-v="${esc(p.suggested_exact || p.suggested)}">${esc(p.parameter)}: ${esc(p.current)} → ${esc(p.suggested)} · Lean ${esc(p.lean_verdict)}</button>`).join(" ") : "") +
-      (alts.length ? `<p class="meta"><b>Z3 alternatives</b> (Lean verdict shown for each):</p><div class="alts">` + alts.slice(0, 6).map((a) => `<button class="alt zalt" data-cid="${esc(a.configuration_id)}">${esc(a.name || a.configuration_id)} · Lean ${esc(a.lean_verdict)}${a.hypothetical ? " · with options " + esc(a.added_options.join(", ")) : ""}</button>`).join("") + `</div>` : "") ||
-      "<p class='meta'>No Z3 suggestion for this pairing.</p>";
+    const sg = r.suggestions || {}, fixes = (sg.verified_fixes || []).filter((f) => f.lean && f.lean.verdict === "REQUIREMENTS_MET"), cf = ((sg.conflicts || {}).conflicts || []);
+    const dc = sg.discarded || {}, ndisc = Object.values(dc).reduce((a, b) => a + b, 0);
+    const fixHTML = (f) => {
+      const what = f.kind === "alternative_configuration"
+        ? `Switch to <b>${esc((f.manufacturer ? f.manufacturer + " " : "") + (f.name || f.configuration_id))}</b> <code>${esc(f.configuration_id)}</code> (catalog configuration, unchanged)`
+        : (f.changes || []).map((c) => `Set <b>${esc(c.parameter)}</b>: ${esc(c.from)} → <b>${esc(c.to)}</b> <span class="meta">(exact value <code>${esc(c.value)} ${esc(c.unit)}</code>)</span>`).join("<br>");
+      return `<div class="fixcard" style="border:1.5px solid var(--met);border-radius:10px;padding:8px 10px;margin:6px 0">` +
+        `<div><span class="pill met">Lean PASS</span><span class="fixby ${esc(f.proposed_by || "z3")}">Proposed by ${f.proposed_by === "lanyon" ? "Lanyon AI" : "Z3"}</span> ${what}</div>` +
+        `<p class="meta" style="margin:4px 0">Lean evidence: verdict <b>${esc(f.lean.verdict)}</b> · input hash <code>${esc(String(f.lean.lean_input_hash || "").slice(0, 16))}</code> · Lean ${esc(f.lean.lean_version || "")} · theorems ${(f.lean.theorems || []).map((t) => `<code>${esc(t)}</code>`).join(", ")}</p>` +
+        `<button class="fix applyfix" data-fix="${esc(f.fix_id)}">Apply fix</button></div>`;
+    };
+    const lp = (sg.proposers || {}).lanyon || {};
+    const z3 = `<p class="meta"><b>Lanyon AI</b> ${lp.enabled ? "proposed " + (lp.candidates || 0) + " candidate(s)" : "is off on this server"}; <b>Z3</b> also proposes. Lean checks every proposal and only passes are shown.</p>` + (fixes.length ? `<p class="meta">Every fix below already passed the Lean 4 checker on the exact configuration that <b>Apply fix</b> will use.</p>` + fixes.map(fixHTML).join("")
+      : `<div class="v fail on" style="opacity:1"><span class="c">!</span><span><b>No verified solution found</b><br>No candidate from Z3 passed the Lean checker within the documented catalog and your parameters. Nothing is suggested.</span></div>`) +
+      (ndisc ? `<p class="meta">${ndisc} Z3 candidate(s) discarded because Lean did not return REQUIREMENTS_MET (fail ${dc.DOES_NOT_MEET_REQUIREMENTS || 0}, unknown ${dc.NEED_MORE_INFORMATION || 0}, needs uninstalled options ${dc.needs_uninstalled_options || 0}, error ${dc.error || 0}).</p>` : "") +
+      (cf.length ? `<p class="meta"><b>Why it fails (Z3 unsat core, diagnostic only):</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "");
     const tone = VCLS[r.verdict[0]];
     return `<div style="display:grid;gap:10px"><div class="v ${tone} on" style="opacity:1"><span class="c">${tone === "met" ? "&#10003;" : tone === "fail" ? "&#10005;" : "?"}</span><span><b style="font:800 18px var(--display)">${esc(title || r.headline)}</b><br>${esc(r.user_message || r.summary)}</span></div>` +
-      sec("Detailed requirements", reqs, true) + sec("Scientific evidence", ev) + sec("Lean proof details", proof) + sec("Z3 recommendations · hints, never verdicts", z3, r.verdict !== "REQUIREMENTS_MET") + `</div>`;
+      sec("Detailed requirements", reqs, true) + sec("Scientific evidence", ev) + sec("Lean proof details", proof) + (r.verdict !== "REQUIREMENTS_MET" && r.suggestions ? sec("Suggested fixes · Lean-verified only", z3, true) : "") + `</div>`;
   }
   async function checkSetup() {
     const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
@@ -594,12 +1140,22 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     try {
       const r = await post("/api/check", { experiment_id: ex.id, configuration_id: cid, requirement_edits: edits(ex.id, lv), confirmed, suggestions: true });
       $("dlgbody").innerHTML = resultHTML(r);
-      $("dlgbody").querySelectorAll("button.zalt").forEach((b) => b.onclick = () => {
-        const j = ind.configurations.findIndex((c) => c.id === b.dataset.cid);
-        if (j >= 0) { st.cfg = j; st.alt = null } else if (L.configurations[b.dataset.cid]) st.alt = b.dataset.cid;
-        render(); checkSetup();     // switching machines keeps the experiment; the new pairing is checked again
-      });
+      wireFixes(r, { experiment_id: ex.id, requirement_edits: edits(ex.id, lv), confirmed });
     } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
+  }
+  // Apply fix: send the exact verified configuration; Lean runs again and must return REQUIREMENTS_MET on the same input hash.
+  function wireFixes(r, base) {
+    const fixes = ((r.suggestions || {}).verified_fixes) || [];
+    $("dlgbody").querySelectorAll("button.applyfix").forEach((b) => b.onclick = async () => {
+      const f = fixes.find((x) => x.fix_id === b.dataset.fix); if (!f) return;
+      b.disabled = true; b.textContent = "Lean is re-checking…";
+      try {
+        const out = await post("/api/apply-fix", { ...base, fix: f });
+        const a = out.apply_fix || {}, ok = a.confirmed;
+        b.insertAdjacentHTML("afterend", `<div class="v ${ok ? "met" : "fail"} on" style="opacity:1;margin-top:6px"><span class="c">${ok ? "&#10003;" : "&#10005;"}</span><span><b>${ok ? "Applied · Lean: REQUIREMENTS_MET" : "Lean did not reproduce the verified result"}</b><br>verdict ${esc(out.verdict)} · same configuration as verified: ${esc(String(a.same_configuration))} · input hash <code>${esc(String(a.lean_input_hash || "").slice(0, 16))}</code></span></div>`);
+        b.textContent = ok ? "Applied" : "Apply failed";
+      } catch (e) { b.textContent = "Error: " + e.message; }
+    });
   }
   async function tryDemo() {
     if (!LIVEAPI) { closeDlg(); tab(true); playDemo("B"); return; }
@@ -607,11 +1163,11 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("dlgbody").innerHTML = `<p class="meta">1 · Checking the 50-qubit wiring layout on a Bluefors LD400 with high-density wiring…</p>`; openDlg();
     try {
       const d = await post("/api/repair-demo", {});
-      const p = d.z3_proposals[0];
+      const fx = (d.verified_fixes || [])[0], p = fx && (fx.changes || [])[0];
       $("dlgbody").innerHTML =
         `<p class="meta"><b>1 · Lean checks the original setup.</b></p>` + resultHTML(d.initial, "Lean rejects the original wiring") +
-        (p ? `<p class="meta" style="margin-top:12px"><b>2 · Z3 proposes a change</b> (a hint): ${esc(p.parameter)} ${esc(p.current)} → ${esc(p.suggested)}. <b>3 · You apply it</b> and Lean checks the revised experiment from scratch:</p>` +
-          resultHTML(d.recheck, "Lean re-checks the revised wiring") : `<p class="meta">Z3 found no single-parameter repair.</p>`);
+        (p ? `<p class="meta" style="margin-top:12px"><b>2 · Z3 proposes, Lean verifies before showing:</b> ${esc(p.parameter)} ${esc(p.from)} → ${esc(p.to)} (Lean ${esc(fx.lean.verdict)}, hash <code>${esc(String(fx.lean.lean_input_hash).slice(0, 16))}</code>). <b>3 · You apply it</b> and Lean checks that exact configuration again:</p>` +
+          resultHTML(d.recheck, "Lean re-checks the applied fix") : `<p class="meta"><b>No verified solution found.</b></p>`);
     } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
   }
   function openDlg() { const g = $("dlg"); if (g.showModal && !g.open) g.showModal(); else g.setAttribute("open", "") }
@@ -624,11 +1180,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("experiments").innerHTML = ind.experiments.map((e, i) =>
       `<button class="exp" aria-pressed="${i === st.exp}" data-i="${i}" title="${esc(e.name)}"><span class="t">${esc(e.plain_name)}</span>${e.name && e.name !== e.plain_name ? `<small>${esc(e.name)}</small>` : ""}</button>`).join("");
     $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; st.alt = null; render() });
-    $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : "Your sample";
+    if (hasS3d) Sample3D.show(ex);
+    $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : (ex.plain_name || "Your sample");
 
     const lv = liveState(ex.id);
     $("configs").innerHTML = ind.configurations.map((c, i) => {
-      const vc = VCLS[liveVerdict(ex.id, c.id, lv)], kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, vc);
+      const vc = VCLS[liveVerdict(ex.id, c.id, lv)], kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, vc, c.id);
       return `<button class="tile" aria-pressed="${!st.alt && i === st.cfg}" data-i="${i}" title="${esc((c.manufacturer || "") + " " + c.name)}">` +
         (img ? `<img alt="" src="${img}">` : `<span></span>`) +
         `<span class="lab"><span class="dot" style="background:var(--${vc})"></span><span class="n">${esc(c.manufacturer || ("Cryostat " + "ABC"[i]))}</span></span></button>`;
@@ -640,10 +1197,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const vcode = liveVerdict(ex.id, mc.id, lv), v = verdictOf(ex, cfg), kind = has3d ? Cryo3D.archetype(mc) : "";
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
-    $("stagetag").textContent = altC ? `${(mc.manufacturer || "").split("(")[0]} · ${mc.name}`.slice(0, 48) : "Sample goes here";
-    if (has3d) Cryo3D.show(kind, VCLS[vcode]);
+    $("stagetag").hidden = true;
+    if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
-    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
+    updateLiveFlow(ex, mc, vcode);
+    const lit = gateTicked(ex.id, liveState(ex.id));   // no verdict tile lights until temperature is ticked
+    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", lit && VCLS[vcode] === k));
 
     $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
       (ex.sources || []).filter((s) => s.citation && s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">Experiment source: ${esc(s.citation)}</a>`).join("") +
@@ -682,3 +1241,5 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   render();
 })();
 </script>
+
+</body></html>

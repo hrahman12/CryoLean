@@ -57,6 +57,19 @@ class Find(BaseModel):
     include_hypothetical_options: bool = True
 
 
+class LanyonAsk(BaseModel):
+    question: str
+    facts: str = ""
+
+
+class ApplyFix(BaseModel):
+    experiment_id: str
+    fix: dict[str, Any]
+    parameters: dict[str, Any] | None = None
+    requirement_edits: list[dict[str, Any]] | None = None
+    confirmed: bool = False
+
+
 def _env(r: dict) -> JSONResponse:
     """Bridge envelopes are {ok, data | error}; errors keep their code and HTTP 422 so the page can show them."""
     return JSONResponse(r, status_code=200 if r.get("ok") else 422)
@@ -76,6 +89,37 @@ def check(b: Check):
     """Lean verdict for one exact configuration, then Z3 suggestions (each re-checked by Lean)."""
     return _env(api().check_compatibility(b.experiment_id, b.configuration_id, b.parameters, b.requirement_edits, b.confirmed,
                                           None, b.suggestions))
+
+
+@app.post("/api/apply-fix")
+def apply_fix(b: ApplyFix):
+    """Apply a verified fix exactly; Lean re-checks it. apply_fix.confirmed is true only for REQUIREMENTS_MET on the
+    same Lean input hash that was verified before the fix was shown."""
+    return _env(api().apply_fix(b.experiment_id, b.fix, b.parameters, b.requirement_edits, b.confirmed))
+
+
+@app.post("/api/lanyon")
+def lanyon_ask(b: LanyonAsk):
+    """Website chat: Claude answers in plain English; Lanyon builds a certified model when the question asks for one.
+    Neither changes a verdict."""
+    from . import chat, lanyon
+    q, facts = b.question[:2000], b.facts[:6000]
+    try:
+        data: dict[str, Any] = {"answer": chat.answer(q, facts), "answered_by": "claude", "lanyon": None}
+    except chat.ChatUnavailable as e:
+        return JSONResponse({"ok": False, "error": {"code": "CHAT_UNAVAILABLE", "message": str(e)}}, status_code=503)
+    if chat.wants_model(q):
+        try:
+            data["lanyon"] = lanyon.ask(q, facts)
+        except lanyon.LanyonUnavailable as e:
+            data["lanyon"] = {"skipped": str(e)}
+    return {"ok": True, "data": data}
+
+
+@app.get("/api/lanyon/status")
+def lanyon_status():
+    from . import lanyon
+    return {"ok": True, "data": {**lanyon.proposer_enabled(), "client": lanyon.client_status()}}
 
 
 @app.post("/api/find")
@@ -108,13 +152,12 @@ def repair_demo():
     if not first.get("ok"):
         return _env(first)
     r = first["data"]
-    found = [p for p in r.get("suggestions", {}).get("parameter_changes", []) if p.get("status") == "found"]
-    steps = {"initial": r, "z3_proposals": found, "recheck": None}
-    if found:
-        p = found[0]   # the user "applies" the first proposal; Lean then checks the revised experiment from scratch
-        steps["applied"] = {p["parameter"]: {"value": p.get("suggested_exact") or p["suggested"], "unit": p.get("unit") or "count"}}
-        steps["recheck"] = a.check_compatibility("quantum_mxc_wiring_heat_budget", "bluefors_ld400_hdw", steps["applied"],
-                                                 None, True, None, False).get("data")
+    fixes = (r.get("suggestions") or {}).get("verified_fixes", [])
+    steps = {"initial": r, "verified_fixes": fixes, "z3_proposals": fixes, "recheck": None}
+    if fixes:
+        fx = fixes[0]   # the user "applies" the first verified fix; Lean then checks that exact configuration again
+        steps["applied"] = fx
+        steps["recheck"] = a.apply_fix("quantum_mxc_wiring_heat_budget", fx, None, None, True).get("data")
     return {"ok": True, "data": steps}
 
 
