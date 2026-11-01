@@ -696,23 +696,10 @@ def checkValue : Constraint → CapValue → Outcome
     const featured = new Set(ind.configurations.map((c) => c.id));
     passing.sort((a, b) => (featured.has(b) - featured.has(a)) || name(a).localeCompare(name(b)));
     const alts = passing.slice(0, 4).map((cid) => `<button class="alt" data-cid="${cid}">${featured.has(cid) ? "Featured · " : ""}${esc(name(cid))}</button>`).join("");
-    // The two answers, straight from Lean's verdict (vcode) and its outcome on the run-time requirement
+    // Stage timeline below replaces the old two-line answer; the arrow into step 3 points back until every box is ticked
     const unconf = outs.includes("s"), started = gateTicked(ex.id, lv);
-    const cmp = vcode === "R" ? ["ok", "Experiment is compatible"] : vcode === "D" ? ["no", "Experiment is not compatible"] : ["maybe", "Experiment might be compatible"];
-    const di = rs.findIndex((r) => r.keys.includes("operating_duration.max")), dur = di >= 0 ? rs[di] : null;
-    const need = dur ? `needs ${fnum(lv.vals[dur.index])} ${esc(dur.unit || "h")} of continuous run time` : "";
-    const dOut = dur ? outs[di] : null, opt = dur && !dur.mandatory ? " (optional in this procedure)" : "";
-    const run = unconf ? ["maybe", "Might run on this system", dur ? `${need}; tick every requirement to decide.` : "Not decided until every requirement is ticked."]
-      : vcode === "D" ? ["no", "Will not run on this system", dOut === "f" ? `${need}; the machine can't hold that long.` : "A requirement above isn't met, so the run can't start."]
-      : vcode === "N" ? ["maybe", "Might run on this system", dOut === "u" ? `${need}; the machine's run time isn't documented.` : "A required spec isn't documented, so Lean won't promise a run."]
-      : !dur ? ["ok", "Runs on this system", "This procedure sets no minimum run time."]
-      : dOut === "p" ? ["ok", "Runs on this system", `${need}; the machine holds it.`]
-      : dOut === "f" ? ["maybe", "Might not run for the full time", `${need}; the machine holds less${opt}.`]
-      : ["maybe", "Might run for the full time", `${need}; the machine's run time isn't documented${opt}.`];
     const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
     if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
-    const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? (isDemo ? "<small>One need isn't confirmed yet, so Lean won't decide.</small>" : "<small>Tick each requirement to let Lean decide.</small>") : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
-      `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
     const runS = runStages(ex.id, mc.id, rs, outs); lastRun = { ...runS, started, key: mc.id + "|" + ex.id };
     const S = runS.stop, ICON = { p: "✓", f: "✗", u: "?", s: "…" };
     const why = (s) => { const x = s.items.find((y) => y.w === s.out) || s.items[0];
