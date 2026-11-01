@@ -1,0 +1,101 @@
+{
+  "configuration_id": "lake_shore_vpf_100_standard_optical",
+  "archetype": "ln2_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 583,
+      "unit": "mm",
+      "location": "overall cryostat height, LN2 reservoir/fill funnel at top, optical vacuum shroud at bottom",
+      "quote": "Height (approximate) | 583 mm (23 in)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/lhe-and-ln-cryostats/vpf-series-cryostats-sample-in-vacuum"
+    },
+    "width_or_diameter": {
+      "value": 76.2,
+      "unit": "mm",
+      "location": "INNER diameter of the optical vacuum shroud at the sample region (outer diameter not published; shroud wall thickness unknown)",
+      "quote": "Inner diameter (at sample region) | 76.2 mm (3 in) | 63.5 mm (2.5 in)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/lhe-and-ln-cryostats/vpf-series-cryostats-sample-in-vacuum"
+    },
+    "color_note": "Lake Shore datasheet photo shows a polished stainless/aluminium cylinder with a black anodized optional base plate (BASE-ST-VPF); no colour is specified in text."
+  },
+  "stages": [
+    {
+      "name": "LN2 reservoir (pour-fill, 400 mL) with thermal impedance displacer",
+      "temperature_K": 77,
+      "quote": "400 mL LN2 reservoir and fill funnel ... Thermal impedance displacer with integrated LN2 refill port",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/lake-shore/_pdf/VPF-100_cryostats_fr.pdf"
+    },
+    {
+      "name": "Copper sample mount with built-in heater and calibrated silicon diode (77 K to 500 K)",
+      "temperature_K": 77,
+      "diameter_mm": 31.75,
+      "quote": "32 mm (1.25 in) diameter copper sample mount. Integrated control heater and calibrated silicon diode control sensor",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/lake-shore/_pdf/VPF-100_cryostats_fr.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "disc sample holder on the bottom of the cold finger, inside the 76.2 mm ID optical shroud, level with the four side windows",
+    "description": "Sample in vacuum on a 31.75 mm (1.25 in) copper mount (SH-OPTICAL-1.25-STD optical sample holder), hanging below the LN2 reservoir inside the optical vacuum shroud; evacuated to ~1e-3 Torr before cooling.",
+    "diameter_or_width": {
+      "value": 31.75,
+      "unit": "mm",
+      "location": "sample mount at the bottom of the cold finger",
+      "quote": "Sample mount diameter | 31.75 mm (1.25 in)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/lhe-and-ln-cryostats/vpf-series-cryostats-sample-in-vacuum"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_twisted_pair",
+      "count": 10,
+      "from": "10-pin hermetic feedthrough on the instrumentation adapter (room temperature)",
+      "to": "sample holder",
+      "quote": "WH-10P | 10-pin feedthrough with 10 PhBr twisted-pair wires installed; includes mating connector",
+      "source_url": "https://www.lakeshore.com/products/product-detail/janis/cryostat-feedthroughs"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 1,
+      "from": "10-pin feedthrough",
+      "to": "sample mount (calibrated silicon diode control sensor)",
+      "quote": "Cryostats come standard with one installed temperature sensor.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 1,
+      "from": "feedthrough",
+      "to": "sample mount heater",
+      "quote": "Built-in heater to for variable temperature control",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14"
+    }
+  ],
+  "windows": {
+    "count": 4,
+    "axis": "side",
+    "diameter_mm": 41,
+    "quote": "Optical vacuum shroud with four 41 mm (1.63 in) diameter clear aperture o-ring sealed fused silica windows",
+    "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/lake-shore/_pdf/VPF-100_cryostats_fr.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "ln2_boiloff_vapour",
+      "rate": "400 mL reservoir boils off over 8 h at 77 K (4.5 h at 100 K, 2.5 h at 200 K); vented through the top fill funnel/refill port",
+      "quote": "LN2 hold time (77 K) 8 h ... LN2 hold time (100 K) 4.5 h ... LN2 hold time (200 K) 2.5 h",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14"
+    }
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "outer.depth",
+    "outer.width_or_diameter (true outer diameter of the vacuum shroud; only the 76.2 mm inner diameter is published)",
+    "sample_space.height",
+    "stages[].diameter_mm for the LN2 reservoir",
+    "radiation shield (presence and dimensions not documented for VPF-100)",
+    "feedthrough port count on instrumentation adapter beyond 'three spare o-ring sealed ports'",
+    "window thickness for the standard WR-STD-FS fused silica windows (3 mm is stated only for the optional materials)"
+  ],
+  "notes": "Static pour-fill LN2 cryostat: no cryocooler, no pump inside the cryostat, no magnet; the only motion is LN2 boil-off vapour from the 400 mL top reservoir. Configured without VPF-PM pumping manifold so range is 77-500 K. Weight 3.3 kg (7 lb). The instrumentation adapter (brochure) carries a 10-pin electrical feedthrough, three spare o-ring sealed ports, an evacuation valve and a pressure relief valve; the wired variant WH-10P gives 10 PhBr twisted pairs. The stage temperature_K values are the 77 K base (both reservoir and mount sit at LN2 temperature when not heated). Window material default is fused silica (WR-STD-FS); sapphire, ZnSe, CaF2, KBr, TPX are 3 mm or 6 mm options."
+}

@@ -1,0 +1,52 @@
+{
+  "configuration_id": "tinius_olsen_environmental_chamber_m150_600_ln2",
+  "archetype": "environmental_chamber",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 760, "unit": "mm", "quote": "External dimensions (WxDxH): Height 760mm, width 350mm, depth 650mm", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/", "location": "Specifications > Dimensions & Power"},
+    "width_or_diameter": {"value": 350, "unit": "mm", "quote": "External dimensions (WxDxH): Height 760mm, width 350mm, depth 650mm", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/", "location": "Specifications > Dimensions & Power"},
+    "depth": {"value": 650, "unit": "mm", "quote": "External dimensions (WxDxH): Height 760mm, width 350mm, depth 650mm", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/", "location": "Specifications > Dimensions & Power"},
+    "color_note": "Weight including controller 65 kg. Insulated box with heating elements in a separate insulated enclosure (depth 650 mm vs internal 230 mm: the extra depth houses the heater/baffle plenum behind the working space). Left-hinged door with central window. Supported on a frame between the UTM columns; rolls back to park. Separate self-pressurising LN2 Dewar (size not published). Finish colour not published."
+  },
+  "stages": [
+    {"name": "Working chamber (forced-air, recirculated top and bottom; -150 to 600 C, +/-2 C)", "temperature_K": 123.15, "quote": "Operating temperature range: -150 to 600°C/-238 to 1112°F", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"name": "Heater enclosure (insulated, behind baffle; 4.2 kW)", "temperature_K": 873.15, "quote": "Air is forced over the heating elements located in an insulated enclosure protecting the user and forced into the working chamber area top and bottom.", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"name": "Self-pressurising LN2 Dewar (external, optional sub-zero supply)", "temperature_K": 77.4, "quote": "Optional sub-zero temperature testing is available via a self-pressurising liquid nitrogen Dewar.", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular box 240 W x 230 D x 610 H mm, open top and bottom for the UTM pull rods between the machine columns",
+    "description": "Specimen hangs on the testing-machine grips/pull rods passing vertically through the chamber; air enters top and bottom and is drawn back through the centre to the heater baffle. Visible through the 350 x 170 mm door window for non-contact extensometry.",
+    "diameter_or_width": {"value": 240, "unit": "mm", "quote": "Internal dimensions (WxDxH): Height 610mm, width 240mm, depth 230mm", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/", "location": "Specifications > Dimensions & Power"},
+    "height": {"value": 610, "unit": "mm", "quote": "Internal dimensions (WxDxH): Height 610mm, width 240mm, depth 230mm", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/", "location": "Specifications > Dimensions & Power"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 1, "from": "Eurotherm 3016 controller", "to": "single control thermocouple in the working chamber", "quote": "Controller type Eurotherm model 3016 for single thermocouple temperature control configuration.", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"kind": "heater_lead", "count": 1, "from": "230 V single-phase 50 Hz supply via controller", "to": "heating elements in insulated enclosure (4.2 kW)", "quote": "Power: 230V, single phase, 50Hz, 4.2kW", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "side",
+    "quote": "Viewing window is central to door 350mm high by 170mm wide. supports use of non contacting extensometer and deflectometers.",
+    "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "quote": "Air is forced over the heating elements ... forced into the working chamber area top and bottom. It is then drawn back through the centre of the chamber, through a baffler to the heating elements and recirculated.", "rate": "continuous forced-air recirculation (fan speed not published)", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"part": "ln2_boiloff_vapour", "quote": "Optional sub-zero temperature testing is available via a self-pressurising liquid nitrogen Dewar.", "rate": "LN2 injected on demand below ambient; flow rate not published", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"part": "door", "quote": "Door is left hinged. Safety interlock operated by door hinge cut heating process when door is opened.", "rate": "manual, left-hinged", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"},
+    {"part": "stage_translation", "quote": "When the chamber is not in use, the chamber can be rolled back and parked clear of the operating area.", "rate": "manual roll-back on frame", "source_url": "https://www.tiniusolsen.com/product/chamber-150-to-600c/"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "stages[].diameter_mm (rectangular chamber; no plate diameters apply)",
+    "LN2 Dewar capacity, dimensions, pressure and hold time",
+    "fan type, diameter and speed (only 'air is forced' is stated)",
+    "windows.diameter_mm (window is rectangular 350 x 170 mm; no diameter)",
+    "window glazing type/thickness for this model",
+    "wiring: specimen/strain-gauge feedthrough ports (electrical.sample_connections unknown in catalog)",
+    "heater element count and layout",
+    "outer colour/finish",
+    "frame dimensions and column spacing"
+  ],
+  "notes": "Single source: Tinius Olsen product page 'Chamber - (-150 to 600°C)', fetched 2026-10-31, text cached at research/v5/cache/80f05ca6503e9958.txt (Specifications tab lines: temperature -150 to 600 C, thermocouple sample time 62.5 ms/16 Hz, stability +/-2 C, internal 610 H x 240 W x 230 D mm, external 760 H x 350 W x 650 D mm, window 350 x 170 mm, 230 V 50 Hz 4.2 kW, 65 kg incl. controller). Note the page labels dimensions '(WxDxH)' but lists Height/width/depth explicitly; values used as labelled. A separate Tinius Olsen brochure CF0000EN02 (research/v5/cache/b2a50b257353eee1.txt) describes the -70/+300 C family with an 'internal radial fan' and 'triple glazed window' but is a different model, so its numbers were not used. Nothing is cryogenic beyond the LN2 Dewar feed; no vacuum, no cold head, no magnet. Scene: box_on_frame hung between UTM columns, door with tall window on the front, heater plenum at the rear, LN2 Dewar as a separate external vessel."
+}

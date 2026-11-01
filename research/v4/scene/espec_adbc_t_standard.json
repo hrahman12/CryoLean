@@ -1,0 +1,58 @@
+{
+  "configuration_id": "espec_adbc_t_standard",
+  "archetype": "environmental_chamber",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 2022, "unit": "mm", "location": "external cabinet height (H of W x D x H), whole three-zone cabinet", "quote": "External Dimensions (W x D x H) | 47\" x 51\" x 80\" (1200 x 1300 x 2022 mm)", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    "width_or_diameter": {"value": 1200, "unit": "mm", "location": "external cabinet width (W of W x D x H)", "quote": "External Dimensions (W x D x H) | 47\" x 51\" x 80\" (1200 x 1300 x 2022 mm)", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    "depth": {"value": 1300, "unit": "mm", "location": "external cabinet depth (D of W x D x H)", "quote": "External Dimensions (W x D x H) | 47\" x 51\" x 80\" (1200 x 1300 x 2022 mm)", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    "color_note": "Flyer photo: tall dark-grey/black cabinet with three stacked slate-blue zone doors on the left (each with a round screw-in lock knob), a fourth shorter blue panel at the bottom (machinery bay), a vertical black control column on the right carrying three zone controllers, a red emergency-stop button and status lamps, louvred vents on the right side wall and top, and a refrigeration/condenser unit at the base. Flyer caption: 'Inside the chamber with battery cells'; rear chamber wall shows round cable-port holes and yellow cell holders."
+  },
+  "stages": [
+    {"name": "Zone interior air (each of three independently controlled 510 x 400 x 400 mm zones, horizontal laminar airflow); lower limit of range", "temperature_K": 233.15, "quote": "Temperature Range | -40°C to +100°C", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    {"name": "Zone interior air, upper limit of the same volume", "temperature_K": 373.15, "quote": "Temperature Rise Time | +20°C to +100°C within 60 min.", "source_url": "https://espec.com/na/products/family/battery_test_chambers"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular box workspace 510 x 400 x 400 mm (W x D x H), one per zone, three zones stacked vertically",
+    "description": "Three independently controlled test zones stacked vertically behind three front doors, each 20 x 16 x 16 in (510 x 400 x 400 mm), floor load 40 kg per zone, +/-1.5 C uniformity, horizontal laminar airflow across the cells; cells sit on the zone floor or on custom battery mounting boards (option), wired through round ports in the rear wall to a user-chosen external charge/discharge power supply.",
+    "diameter_or_width": {"value": 510, "unit": "mm", "location": "internal zone width (W of W x D x H); zone depth is 400 mm", "quote": "Internal Dimensions (W x D x H) | 20\" x 16\" x 16\" (510 x 400 x 400 mm)", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    "height": {"value": 400, "unit": "mm", "location": "internal zone height (H of W x D x H)", "quote": "Internal Dimensions (W x D x H) | 20\" x 16\" x 16\" (510 x 400 x 400 mm)", "source_url": "https://espec.com/na/products/family/battery_test_chambers"}
+  },
+  "wiring": [
+    {"kind": "none", "count": 0, "from": "external charge-discharge power supply of the user's choice (not part of the chamber)", "to": "battery cells in each zone, through round cable ports in the zone rear wall (flyer photo); port count and diameter not published", "quote": "Flexibly integrates a charge-discharge power supply from manufacturer of your choice and has an integrated design to enable space savings", "source_url": "https://espec.com/na/products/family/battery_test_chambers"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Options: Pressure relief vent Gas detector CO2 Fire Extinguisher Impedance measurement function Custom battery mounting boards Water-cooled refrigeration system",
+    "source_url": "https://espec.com/images/uploads/files/ADBC_flyer.pdf"
+  },
+  "moving_parts": [
+    {"part": "door", "quote": "Safety Device | Screw-in type door locks, Emergency stop switch", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    {"part": "gas_flow", "rate": "horizontal laminar airflow in each zone; +20 to +100 C in 60 min, +20 to -30 C in 60 min", "quote": "Features a special design for charge-discharge testing and horizontal laminar airflow for high temperature uniformity performance.", "source_url": "https://espec.com/na/products/family/battery_test_chambers"},
+    {"part": "compressor", "rate": "cooling +20 C to -30 C within 60 min (condenser unit visible at cabinet base in flyer photo; water-cooled is an option)", "quote": "Cooling System | Independent control of three chambers", "source_url": "https://espec.com/na/products/family/battery_test_chambers"}
+  ],
+  "cryogen": "mechanical_refrigeration",
+  "not_found": [
+    "stages.cooling_coil_temperature",
+    "stages.heater_power_kW",
+    "stages.zone_plenum_dimensions",
+    "wiring.cable_port_count_per_zone",
+    "wiring.cable_port_diameter_mm",
+    "wiring.sensor_or_voltage_sense_line_counts",
+    "windows.diameter_mm (no window listed as standard or option)",
+    "moving_parts.blower_rpm_or_airflow_CFM",
+    "moving_parts.compressor_count_type_and_hp",
+    "moving_parts.compressor_stages (cascade vs single)",
+    "refrigerant_type",
+    "refrigeration_condenser_cooling_standard (air vs water; only water-cooled option is named)",
+    "electrical_supply_voltage_and_current",
+    "heat_rejection_to_room",
+    "noise_level_dBA",
+    "zone_door_dimensions",
+    "machinery_bay_height_mm",
+    "zone_spacing_and_vertical_positions_mm"
+  ],
+  "notes": "Two sources only, both ESPEC North America: the 2-page ADBC-T flyer (research/v5/cache/0adc2434242b8421.raw, an image-only PDF read visually; its .txt is empty) and the Battery Test Systems family page (research/v5/cache/ba9022fb6a6fdaa3.txt), which repeats the flyer spec table verbatim; quotes are taken from the family-page text where available. Flyer-only numbers: Weight Approx. 1,455 lbs (660 kg); Floor load capacity of the chamber (Equally distributed load) 88 lbs (40 kg). Geometry for the 3D model: a single 1200 W x 1300 D x 2022 H mm floor-standing box; three equal 510 x 400 x 400 mm zones stacked vertically behind three slate-blue front doors with screw-in lock knobs; a shorter blue panel below them fronting the refrigeration/machinery bay (flyer photo shows a finned condenser unit at the base and louvred side/top vents); a full-height black control column on the right with three zone controllers (one per zone), status lamps and a red emergency-stop button. Each zone rear wall carries a grid of round cable ports (flyer photo) for the user-supplied charge/discharge power supply; the ADBC-T itself has no instrumentation lines, so wiring kind is 'none'. Horizontal laminar airflow per zone (blower/plenum behind the rear wall; no CFM published). Cooling: 'Independent control of three chambers' plus a 'Water-cooled refrigeration system' option and the condenser unit in the flyer photo establish a mechanical refrigeration system; the standard condenser type, compressor count and refrigerant are not published (catalog flags cryogen fields unknown). No window is listed as standard or option; no vacuum, no magnet. Options not fitted in this configuration: pressure relief vent, gas detector, CO2 fire extinguisher, impedance measurement function, custom battery mounting boards, water-cooled refrigeration. Tavily quota was exhausted; WebSearch found no additional ADBC-T spec source (ESPEC NA has no separate ADBC-T model page)."
+}

@@ -1,0 +1,99 @@
+{
+  "configuration_id": "stirling_cryogenics_spc_1_n2_reliquefier",
+  "archetype": "reliquefier",
+  "outer": {
+    "shape": "box",
+    "height": {
+      "value": 1650,
+      "unit": "mm",
+      "location": "Overall system height of the stand-alone SPC-1 cryogenerator unit (crankcase, motor, cold head and control unit), 'System size (l x w x h) 1,0 x 0,7 x 1,65 m'.",
+      "quote": "Weight 550 kg Soundlevel < 72 dBA System size (l x w x h) 1,0 x 0,7 x 1,65 m",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    "width_or_diameter": {
+      "value": 1000,
+      "unit": "mm",
+      "location": "Overall system length (longest footprint side).",
+      "quote": "System size (l x w x h) 1,0 x 0,7 x 1,65 m",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    "depth": {
+      "value": 700,
+      "unit": "mm",
+      "location": "Overall system width (shorter footprint side).",
+      "quote": "System size (l x w x h) 1,0 x 0,7 x 1,65 m",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    "color_note": "Industrial floor-standing machine, 550 kg, enclosed-room installation (5-45 C). Datasheet text: electric-motor-driven crankcase with its own control unit; the cold head on top carries an integrated process heat exchanger (gas in / liquid out) and the water-cooling loop connections. Colour/finish not stated in any source."
+  },
+  "stages": [
+    {
+      "name": "cold head / integrated process heat exchanger (single stage, N2 (re-)liquefaction mode)",
+      "temperature_K": 77,
+      "quote": "The SPC-1 is a single stage Cryogenerator that provides cooling power in the range of 400 W to 2,7 kW at temperatures of 50-160 K.",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "process-gas heat exchanger integrated in the cold head; nitrogen vapour enters, is condensed on the cold heat exchanger and leaves as liquid (no sample stage).",
+    "description": "No sample space: the SPC-1 is a cryogenerator, not a cryostat. The 'load' is the process gas (N2 boil-off) flowing through the cold-head heat exchanger at up to 20 barg; the customer's LN2 bath / cable loop is external and not supplied."
+  },
+  "wiring": [
+    {
+      "kind": "none",
+      "count": 0,
+      "from": "3-phase mains supply",
+      "to": "SPC-1 drive motor and PLC control unit",
+      "quote": "It is driven by an electrical motor and has it's own control unit. ... Power supply 3ph 400V, 50Hz 3ph 480V, 60Hz Others upon request",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Process specific heat exchanger integrated in the cold head",
+    "source_url": "https://stirlingcryogenics.com/products/cryogenerators/"
+  },
+  "moving_parts": [
+    {
+      "part": "stirling_piston",
+      "rate": "1455 rpm crankshaft speed (= 24.25 Hz) under the datasheet graph conditions, 30 barg helium charge",
+      "quote": "compression and expansion of a working gas in a closed cycle by mechanical pistons ... Graph conditions Helium pressure 30 barg RPM 1.455",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+      "part": "compressor",
+      "rate": "mains-frequency electric motor, 3ph 400 V 50 Hz or 480 V 60 Hz; sound < 72 dBA; all seals at ambient temperature",
+      "quote": "All rotational and reciprocating seals work at ambient temperatures",
+      "source_url": "https://stirlingcryogenics.com/products/cryogenerators/"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "process N2 at up to 20 barg through the cold-head heat exchanger; cooling water 1200 l/h (20% glycol) at 2.5 bar dP",
+      "quote": "Water cooling loop (20% glycol added) 1.200 l/hr @ dP of 2.5 bar ... Max process gas pressure 20 barg",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+      "part": "ln2_boiloff_vapour",
+      "rate": "boil-off from the customer's LN2 bath returned to the cryogenerator and re-liquefied; rate set by heat load",
+      "quote": "The evaporated gas is directed to the Cryogenerator where is it re-liquefied. The pressure is controlled by adapting the liquefaction capacity to the actual heat load",
+      "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/Leaflet-HTS-Cooling_Stirling-Cryogenics_LR.pdf"
+    }
+  ],
+  "cryogen": "stirling",
+  "not_found": [
+    "cold_head.diameter_mm",
+    "cold_head.height_mm",
+    "stages[0].diameter_mm",
+    "cylinder_count (product page says units come in 1- or 4-cylinder versions but does not state which the SPC-1 is)",
+    "piston_stroke_mm / bore_mm / drive_type (rhombic or crank)",
+    "helium_charge_volume",
+    "heat_exchanger.process_gas_connections_size",
+    "outer.color / finish",
+    "sample_space.diameter_or_width",
+    "sample_space.height",
+    "motor_power_kW (only the input-power curve, up to ~15 kW axis, is drawn; no number is printed)"
+  ],
+  "notes": "Scene: a floor-standing industrial Stirling cryogenerator box 1.0 m x 0.7 m x 1.65 m, 550 kg, not a cryostat. Datasheet SPC-1 (2026/01): single-stage reversed Stirling cycle, 400 W - 2.7 kW at 50-160 K, graph conditions 30 barg helium at 1455 rpm, water-cooled (1200 l/h, 20% glycol), 3-phase 400 V/50 Hz or 480 V/60 Hz, max process gas 20 barg, < 72 dBA, > 8000 h maintenance interval. Catalog capability 400 W at 77/80 K comes from the net N2/O2 cooling-power curve. Product page: process heat exchanger integrated in the cold head; PLC controlled; all rotating/reciprocating seals at ambient temperature; units exist in 1- or 4-cylinder, single- or two-stage versions (the SPC-4 datasheet lists 2.5-11 kW, consistent with SPC-1 being the 1-cylinder unit, but the cylinder count is not printed for the SPC-1 so it is left in not_found). HTS leaflet: in re-liquefier mode the boil-off of the customer's LN2 (or LNe) bath flows to the cryogenerator and is condensed; LN2 sub-cooling to 68 K for cables uses external pumps and a pressurising vessel. Animation: crankshaft/pistons at 1455 rpm (24.25 Hz) in the ambient-temperature crankcase, helium shuttling to the cold head, N2 vapour entering and liquid dripping from the cold-head heat exchanger, water loop at 1200 l/h. Snapshots: research/v5/cache/6d69d588ab57bc7d.txt (datasheet), 0e75173522936e3e.txt (product page), c800e29cf4e0b6ef.txt (HTS leaflet)."
+}

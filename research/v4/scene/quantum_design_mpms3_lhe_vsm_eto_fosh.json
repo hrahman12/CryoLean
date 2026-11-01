@@ -1,0 +1,51 @@
+{
+  "configuration_id": "quantum_design_mpms3_lhe_vsm_eto_fosh",
+  "archetype": "squid_magnetometer",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 200, "unit": "cm", "quote": "Main cabinet (without keyboard arm) 105 cm x 84 cm x 200 cm, approx. 400 kg", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf", "location": "General system details for MPMS 3 liquid helium and EverCool dewar, Dimensions & weight"},
+    "width_or_diameter": {"value": 105, "unit": "cm", "quote": "Main cabinet (without keyboard arm) 105 cm x 84 cm x 200 cm, approx. 400 kg", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf", "location": "Dimensions & weight"},
+    "depth": {"value": 84, "unit": "cm", "quote": "Main cabinet (without keyboard arm) 105 cm x 84 cm x 200 cm, approx. 400 kg", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf", "location": "Dimensions & weight"},
+    "color_note": "Cabinet with helium dewar in the lower half; computer and CAN electronics in the upper half behind swinging smoked plastic doors (QD SQUID VSM product description, qd-europe/cache b37620d206a9553b: 'Helium dewar is in the lower part of the cabinet and the computer and system electronics are in the upper half behind swinging smoked plastic doors'). Separate pump console 61 x 71 x 61 cm, ~65 kg."
+  },
+  "stages": [
+    {"name": "Liquid-nitrogen jacket (shielded nitrogen jacketed dewar)", "temperature_K": 77, "quote": "Shielded nitrogen jacketed dewar", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"},
+    {"name": "Liquid-helium bath / 7 T vapor-cooled superconducting magnet", "temperature_K": 4.2, "quote": "7 Tesla vapor-cooled superconducting magnet", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf"},
+    {"name": "Sample chamber (temperature control insert, 9 mm bore)", "temperature_K": 1.8, "diameter_mm": 9, "quote": "continuous operation at 1.8 K as well as smooth temperature control through the liquid helium boiling point at 4.2 K. Heaters allow for operation up to 400 K", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "vertical cylinder (9 mm I.D. bore of the temperature-control insert), sample on a rod lowered from the top of the dewar to the SQUID pickup-coil / magnet centre",
+    "description": "9 mm I.D. vacuum-insulated sample chamber cooled by helium drawn through a variable flow valve; sample sits at magnet centre on a 160 mm x 5 mm x 0.5 mm holder (oven holder spec) or the 4 mm x 4 mm standard platform; field uniform to 0.01% over 4 cm.",
+    "diameter_or_width": {"value": 9, "unit": "mm", "quote": "Sample Chamber I.D.: 9 mm", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf", "location": "Temperature Control Specifications, p.5"},
+    "height": {"value": 40, "unit": "mm", "quote": "Field Uniformity: 0.01% over 4 cm", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf", "location": "Magnet specifications (homogeneous measurement region, not a chamber length)"}
+  },
+  "wiring": [
+    {"kind": "dc_twisted_pair", "count": 4, "from": "ETO CAN modules via Wire Access Port on sample-rod head", "to": "ETO PCB sample holder at bore centre", "quote": "In the classic four-terminal geometry or 4-wire mode, two leads pass a current through the sample and two separate leads measure the drop of the electric voltage.", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf"},
+    {"kind": "dc_twisted_pair", "count": 8, "from": "ETO electronics (two channels)", "to": "parallel-field PCB holder (two 4-wire channels)", "quote": "The parallel holder can support the two measurement channels of the 4-wire set-up (perpendicular holder: one channel).", "source_url": "https://sai.unizar.es/medidas-fisicas/doc/MPMS3.pdf"},
+    {"kind": "optical_fibre", "count": 1, "from": "TLS120Xe light source / Wire Access Port", "to": "FOSH sample cup at bore centre", "quote": "The Wire Access Port (WAP) allows connectivity to the FOSH, Oven, Rotator, and ETO.", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"}
+  ],
+  "windows": {"count": 0, "axis": "none", "quote": "Fiber Optic Sample Holder (FOSH) ... Sample cup and lid / Fiber optic insert / FOSH sample rod", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"},
+  "moving_parts": [
+    {"part": "vsm_vibrator", "rate": "amplitude 0.1-8 mm peak; frequency not published", "quote": "0.1 to 8 mm oscillation amplitude enables a large dynamic range", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"},
+    {"part": "sample_rotator", "rate": "10 um encoder resolution", "quote": "Linear Transport Motor: 10um Resolution (Optical Encoder) Vibrational Amplitude: 0.5mm - 8mm", "source_url": "https://nanousers.mit.edu/quantum-design-inc-magnetic-property-measurement-system-mpms-3"},
+    {"part": "magnet_ramp", "rate": "4 Oe/s to 700 Oe/s", "quote": "4 Oe/sec to 700 Oe/sec", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"},
+    {"part": "gas_flow", "rate": "variable flow valve", "quote": "a vacuum-insulated chamber into which cold helium is drawn through a variable flow valve", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"},
+    {"part": "ln2_boiloff_vapour", "rate": "LHe 4 L/day, LN2 5 L/day", "quote": "Liquid Helium Usage: 4 liters/day (typical) ... Liquid Nitrogen Usage: 5 liters/day (typical)", "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"}
+  ],
+  "cryogen": "liquid_helium_bath",
+  "not_found": [
+    "vsm_vibration_frequency_hz",
+    "dewar_outer_diameter",
+    "dewar_neck_diameter",
+    "magnet_bore_diameter",
+    "magnet_length",
+    "sample_chamber_length",
+    "sample_rod_length",
+    "fosh_fiber_core_diameter",
+    "eto_sample_rod_wire_count_total",
+    "squid_pickup_coil_dimensions",
+    "window_count (no optical windows; light enters via fibre only)"
+  ],
+  "notes": "Cabinet dimensions are quoted by the QD GmbH description under 'General system details for MPMS 3 liquid helium and EverCool dewar' (same ~84x105x200 cm / 400 kg figure as the EverCool page of brochure 1500-103), so they apply to the standard LHe cabinet. The 'sample_rotator' moving-part entry actually represents the linear sample-transport motor (stepper/optical encoder) in the rod head; the enum has no 'linear_transport' value. The 'sample_space.height' is the 4 cm field-uniform region, not a physical chamber length. Standard dewar capacities: 70 L LHe / 60 L LN2 (brochure) vs 65 L LHe (GmbH sheet). SQUID-VSM frequency is not stated in any located QD document; MPMS 3 appnote 1500-031 only says the sample oscillates at a chosen frequency. Cryogen enum: LHe bath with LN2 jacket (no mechanical cooler in the standard non-EverCool version). Local snapshots: research/v5/cache/05b6a3c2a597a01b.txt (1500-103), 994f128dda837f2c.txt (unizar), b37620d206a9553b.txt, a8c6ed788dc6f1e4.txt (MIT)."
+}

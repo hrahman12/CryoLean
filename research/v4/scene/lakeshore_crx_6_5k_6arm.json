@@ -1,0 +1,130 @@
+{
+  "configuration_id": "lakeshore_crx_6_5k_6arm",
+  "archetype": "probe_station",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {
+      "value": 132,
+      "unit": "mm",
+      "location": "Height of the cylindrical vacuum chamber only (the 203 mm OD can that holds the sample stage, shield and viewport). Overall station height including base, probe-arm manipulators, microscope and CCR cold head is NOT published; see not_found.",
+      "quote": "Vacuum chamber ... Overall size: | 203 mm (8 in) outer diameter x 132 mm (5.2 in) tall",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    "width_or_diameter": {
+      "value": 654,
+      "unit": "mm",
+      "location": "Station footprint width (bench-top station body with six probe-arm manipulators around the 203 mm diameter vacuum chamber); the separate CCR compressor is excluded.",
+      "quote": "Station footprint: | 654 mm (25.8 in) width x 676 mm (26.6 in) depth (does not include CCR compressor)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    "depth": {
+      "value": 676,
+      "unit": "mm",
+      "location": "Station footprint depth, CCR compressor excluded.",
+      "quote": "Station footprint: | 654 mm (25.8 in) width x 676 mm (26.6 in) depth (does not include CCR compressor)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    "color_note": "Vacuum chamber and radiation shield are electroless nickel-plated aluminum (matte silver-grey metal). Chamber is a 203 mm OD x 132 mm cylinder with a 152 mm top opening and a 63.5 mm fused-quartz viewport on top; six micro-manipulated probe arms enter radially through the chamber wall. Catalog cross-section labels: Radiation shield stage (35 K), Sample stage (8 K), Probe arm base, Probe arm shield, Thermal anchors, Vacuum chamber base, Probe (18 K)."
+  },
+  "stages": [
+    {
+      "name": "CCR 1st stage / radiation shield stage (electroless nickel-plated aluminum shield with 132 mm lid and 50 mm IR-absorbing top window; probe arms thermally anchored here)",
+      "temperature_K": 35,
+      "diameter_mm": 132,
+      "quote": "Radiation shield stage (35 K) ... Radiation shielding | Material: Electroless nickel-plated aluminum | Sample access: 132 mm (5.2 in) diameter lid",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    {
+      "name": "CCR 2nd stage / sample stage (base 10 K with 6 probe arms installed; 8 K with 2 arms per catalog cross-section); DT-670-CU-HT diode + 100 W heater; 51 mm max sample",
+      "temperature_K": 10,
+      "quote": "10 K | 10.5 K to 350 K | 6 probe arms installed",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    {
+      "name": "Probe mounts (ZN50 probe base with copper braids anchored to the sample stage); probe tip temperature",
+      "temperature_K": 18,
+      "quote": "Probe (18 K) ... Cooled probe mounts: <20 K with sample at base temperature | Probe mount: Thermally anchored to sample stage | Probe arm: Thermally anchored to radiation shield",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "flat horizontal sample stage (disc) under the top viewport, inside the radiation shield, inside the 203 mm vacuum chamber; six probe tips land from the sides",
+    "description": "Full or partial wafers up to 51 mm (2 in) diameter on a horizontal sample stage; the included removable SH-1.25-G grounded holder takes 31.8 mm samples. Loaded through the 152 mm chamber opening and 132 mm shield lid. All six probes can land within a 25.4 mm diameter circle. No backside optical access, no sample rotation. Vacuum <1e-5 Torr at base.",
+    "diameter_or_width": {
+      "value": 51,
+      "unit": "mm",
+      "location": "Maximum sample diameter on the sample stage.",
+      "quote": "Maximum sample size: | 51 mm (2 in) diameter",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "probe_arm",
+      "count": 6,
+      "from": "micro-manipulator stages outside the vacuum chamber wall (6 radial positions)",
+      "to": "probe tips on the sample stage (land within 25.4 mm circle); arms anchored to radiation shield, probe mounts anchored to sample stage",
+      "quote": "Maximum probes: | 6 ... Probe landing: | All probes can land at single point in a 25.4 mm (1 in) diameter circle",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    {
+      "kind": "coax",
+      "count": 6,
+      "from": "feedthrough on each probe arm (2-lug BNC ZN50C-G, 3-lug triax ZN50C-T, 2.92 mm K or 1.85 mm Z connector depending on configuration ordered)",
+      "to": "probe tip (one internal cable per probe arm: miniature cryogenic coax for DC, semi-rigid 2.92/1.85 mm coax for RF/microwave)",
+      "quote": "General purpose DC | ZN50C-G 2-lug BNC | ZN50R or ZN50R-CVT | Miniature cryogenic coaxial with grounded shield ... RF/microwave up to 67 GHz | HMWC-XX-185(-NM) 1.85 mm (Z-connector) | Semi-rigid coaxial, 1.85mm",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 5,
+      "from": "Model 336 temperature controller (room temperature); probe-arm sensor via 6-pin feedthrough in arm location #1",
+      "to": "DT-670 silicon diodes on sample stage, radiation shield, CCR 2nd stage, CCR 1st stage, and one probe arm",
+      "quote": "Sample stage sensor/heater power: DT-670-CU-HT ... Radiation shield sensor: DT-670C-CU ... CCR 2nd stage: DT-670A-CU ... CCR 1st stage: DT-670C-CU ... Probe arm: DT-670C-SD silicon diode (on one probe arm)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 4,
+      "from": "Model 336 temperature controller",
+      "to": "sample stage heater 100 W, radiation shield heater 50 W, CCR 2nd stage heater 50 W, CCR 1st stage heater 100 W",
+      "quote": "Sample stage sensor/heater power: | DT-670-CU-HT calibrated silicon diode/100 W | Radiation shield sensor/heater power: | DT-670C-CU silicon diode/50 W | CCR 2nd stage ... /50 W | CCR 1st stage ... /100 W",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    }
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "diameter_mm": 63.5,
+    "quote": "Viewport: | 63.5 mm (2.50 in) diameter fused quartz | Viewing area: | 54.0 mm (2.13 in) diameter ... Radiation shielding ... Viewport: | 50 mm (1.97 in) diameter IR absorbing window",
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+  },
+  "moving_parts": [
+    {
+      "part": "compressor",
+      "rate": "not published (water-cooled CCR helium compressor, separate from the 654 x 676 mm station footprint; 3.0 kW at 208 V 60 Hz; 3.2 kW to cooling water)",
+      "quote": "1-phase power (CCR): | 3.0 kW, 15.5 A full load at 208 V, 60 Hz; 2.6 kW, 13 A full load at 200 V, 50 Hz | Cooling water power dissipation (CCR): | 3.2 kW",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station"
+    },
+    {
+      "part": "probe_arm",
+      "rate": "manual micro-manipulation (X/Y/Z) by the operator; six arms",
+      "quote": "This comprehensive line of standard micro-manipulated probe arms and accessories ... Maximum probes: 6",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.height (overall station height incl. base, manipulators, microscope, cold head; only the 132 mm vacuum chamber height is published)",
+    "station weight",
+    "CCR cold head type (Gifford-McMahon vs pulse tube) and cycle rate - Lake Shore says only: 2-stage closed cycle refrigerator (CCR) with 3 W cooling power at 10 K",
+    "CCR compressor dimensions",
+    "sample stage diameter / thickness",
+    "sample space height (stage-to-shield-lid clearance)",
+    "probe arm length / travel",
+    "number of coax cables per arm beyond one internal cable (configuration-dependent, customer specifies)",
+    "colour / finish of the station base and manipulators"
+  ],
+  "notes": "Bench-top cryogen-free probe station: 654 x 676 mm footprint with a 203 mm OD x 132 mm tall electroless-nickel aluminum vacuum chamber, 152 mm top opening, 63.5 mm fused-quartz top viewport (54 mm viewing), inner radiation shield (132 mm lid, 50 mm IR-absorbing window). Two-stage CCR: 1st stage cools the radiation shield (catalog cross-section labels 35 K), 2nd stage cools the sample stage (10 K base with 6 arms; 8 K with 2, 9 K with 4). Six micro-manipulated probe arms anchored to the shield with ZN50 probe bases braid-anchored to the sample stage (probes ~18 K / <20 K). Cooldown 3.5 h, warmup 2.25 h, 6.25 h cycle. Vibration at sample <2 um. The CCR is tagged cryogen_free_gm as the closest enum: Lake Shore does not name the cold head technology, so the GM displacer motion is not sourced and is listed in not_found rather than in moving_parts. Ring magnet kit (PS-RING-MAG-KIT) and PS-HTSTAGE are not fitted in this configuration. Snapshot ids: research/v5/cache/13d95a1cf6b35faf.txt (spec page), 75efd8eb8da79422.txt (probe station catalog PDF pp. 16, 40-41)."
+}

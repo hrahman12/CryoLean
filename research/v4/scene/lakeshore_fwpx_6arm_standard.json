@@ -1,0 +1,135 @@
+{
+  "configuration_id": "lakeshore_fwpx_6arm_standard",
+  "archetype": "probe_station",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 178,
+      "unit": "mm",
+      "location": "vacuum chamber (squat cylinder on the station platform; overall station height incl. platform, microscope and probe arms not published)",
+      "quote": "Overall size: 406 mm (16 in) outer diameter × 178 mm (7 in) tall",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    "width_or_diameter": {
+      "value": 406,
+      "unit": "mm",
+      "location": "vacuum chamber outer diameter",
+      "quote": "Overall size: 406 mm (16 in) outer diameter × 178 mm (7 in) tall",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    "depth": {
+      "value": 851,
+      "unit": "mm",
+      "location": "station footprint depth (platform carrying chamber and six micromanipulator probe arms); footprint width is 1067 mm",
+      "quote": "Station footprint: 1067 mm (42 in) width × 851 mm (33.5 in) depth (does not include console)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    "color_note": "Vacuum chamber and radiation shield are both electroless nickel-plated aluminum (catalog p.39: 'Material: Electroless nickel-plated aluminum') - dull silver-grey metallic. Top viewport is clear fused quartz; the inner shield window is IR-absorbing glass."
+  },
+  "stages": [
+    {
+      "name": "Radiation shield stage (flow-cryostat 2nd stage; surrounds sample, 180 mm diameter lid, 159 mm IR-absorbing top window)",
+      "temperature_K": 20,
+      "diameter_mm": 180,
+      "quote": "Radiation shield stage (20 K) ... Radiation shielding ... Sample access: 180 mm (7.1 in) diameter lid",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    {
+      "name": "Probe (probe mount thermally anchored to sample stage; probe arm anchored to radiation shield)",
+      "temperature_K": 25,
+      "quote": "Probe (25 K) ... Cooled probe mounts: <30 K with sample at base temperature",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    {
+      "name": "Sample stage (flow-cryostat 1st stage; DT-670-CU-HT sensor, 100 W heater) with removable 102 mm SH-4.00-G grounded sample holder",
+      "temperature_K": 4.5,
+      "diameter_mm": 102,
+      "quote": "Sample stage (4.5 K) ... Included sample holder: Removable SH-4.00-G, 102 mm (4 in) maximum sample size, grounded",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    }
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "flat 102 mm wafer on top of the sample stage, viewed from above through two concentric top windows; stage translates in x-y and rotates +/-5 deg; probes land from the side",
+    "description": "Full 102 mm (4 in) wafer lies flat on the x-y translating sample stage inside the radiation shield; the chamber is accessed through a 330 mm top opening and the shield through a 180 mm lid. All six probe tips can land on a single point within a 51 mm circle.",
+    "diameter_or_width": {
+      "value": 102,
+      "unit": "mm",
+      "location": "maximum sample (wafer) diameter on the stage",
+      "quote": "Maximum sample size: | 102 mm (4 in) diameter",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "probe_arm",
+      "count": 6,
+      "from": "micromanipulator bases on the station platform, through the chamber wall",
+      "to": "probe tips on the wafer (arm anchored to radiation shield, probe mount anchored to sample stage)",
+      "quote": "4.5 K | 5 K to 475 K | Up to 6 probe arms installed ... Maximum probes: | 6",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 3,
+      "from": "two Model 336 temperature controllers in the electronics console",
+      "to": "sample stage (DT-670-CU-HT), radiation shield (DT-670C-CU) and one probe arm (DT-670C-SD) silicon diodes",
+      "quote": "Sample stage sensor/heater power: DT-670-CU-HT calibrated silicon diode/100 W ... Radiation shield sensor/heater power: DT-670C-CU silicon diode/100 W ... Probe arm: DT-670C-SD silicon diode (on one probe arm)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 2,
+      "from": "Model 336 controllers",
+      "to": "sample stage (100 W) and radiation shield (100 W)",
+      "quote": "Sample stage sensor/heater power: DT-670-CU-HT calibrated silicon diode/100 W ... Radiation shield sensor/heater power: DT-670C-CU silicon diode/100 W",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+    }
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "diameter_mm": 102,
+    "quote": "Viewport: 102 mm (4.0 in) diameter fused quartz | Viewing area: 91 mm (3.6 in) diameter ... Radiation shielding ... Viewport: 159 mm (6.25 in) diameter IR absorbing window",
+    "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13"
+  },
+  "moving_parts": [
+    {
+      "part": "gas_flow",
+      "quote": "Cooling source: | Liquid helium (LHe) or liquid nitrogen (LN 2 ) ... Helium at 5 K: | <5 liquid L/h | Nitrogen at 80 K: | <0.5 liquid L/h",
+      "rate": "continuous cryogen flow through the transfer line and sample-stage heat exchanger while cold: <5 L/h LHe at 5 K or <0.5 L/h LN2 at 80 K; 10 L LHe or 6 L LN2 for the 1.5 h cooldown",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    },
+    {
+      "part": "stage_translation",
+      "quote": "Sample rotation: | ±5° in-plane rotation | Sample translation: | Translation in x- and y-axis for full 102 mm (4 in) wafer probing",
+      "rate": "manual x-y translation and +/-5 deg rotation of the wafer stage when the operator repositions the wafer under the probes",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    },
+    {
+      "part": "probe_arm",
+      "quote": "Probe landing: | All probes can land at single point in a 51 mm (2 in) diameter circle",
+      "rate": "manual micromanipulator translation of each of the six arms when the operator lands or lifts a probe",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    },
+    {
+      "part": "turbo_pump",
+      "quote": "Standard TPS-FRG | Pump down time | 30 min (to reach <1 × 10 -3 Torr) ... Pump port: NW 40 with included vacuum isolation valve",
+      "rate": "runs during the 0.5 h pump-down and while cold; connected to the NW40 pump port",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station"
+    }
+  ],
+  "cryogen": "lhe_flow",
+  "not_found": [
+    "outer.height (overall station height incl. platform, microscope and probe arms; only chamber height 178 mm and footprint 1067 x 851 mm are published)",
+    "sample stage plate diameter (only the 102 mm SH-4.00-G sample holder, 102 mm max sample and 180 mm shield lid are published)",
+    "radiation shield outer diameter and height",
+    "electrical.coax_lines count (each arm carries one internal coax or semi-rigid cable chosen per order: ZN50C-G BNC, ZN50C-T triaxial, 2.92 mm or 1.85 mm; per-station count not published)",
+    "electrical.dc_lines count",
+    "transfer-line / cryostat inlet diameter and position on the chamber",
+    "station mass / weight",
+    "electronics console dimensions",
+    "TPS-FRG turbo pump rotation speed"
+  ],
+  "notes": "Sources: Lake Shore FWPX technical-specifications page (cache research/v5/cache/9ae700052f15978d.txt) and Lake Shore Probe Stations catalog PDF probestationcatalog_l.pdf pp. 38-39 (cache research/v5/cache/75efd8eb8da79422.txt), whose cross-section diagram labels 'Radiation shield stage (20 K) / Sample stage (4.5 K) / Probe (25 K) / Probe arm base / Probe arm shield / Thermal anchors / Vacuum chamber base'. Scene geometry: a 406 mm OD x 178 mm tall nickel-plated aluminium vacuum chamber (330 mm top opening, 102 mm fused-quartz top viewport with 91 mm viewing area, NW40 pump port with isolation valve, NW25 gauge port, 0.25 in NPT gas port, 3.5 kPa relief valve) on a 1067 x 851 mm platform; inside, a nickel-plated aluminium radiation shield with 180 mm lid and 159 mm IR-absorbing window (152 mm viewing area) surrounds the 4.5 K x-y translating sample stage carrying a 102 mm grounded SH-4.00-G sample holder; six micromanipulated probe arms enter from the sides, arm anchored to the 20 K shield, probe anchored to the sample stage. Cooling is a 2-stage continuous-flow cryostat (sample + radiation shield) fed by a large-bore S-style LHe/LN2 transfer line with 12.7 mm top-port Dewar withdrawal; no compressor or cold head, so the only mechanical motion is cryogen flow, the pump, and operator-driven stage/probe moves. Base 4.5 K with up to 6 arms (3.5 K with PS-LT, not fitted); control range 5-475 K on the current web page (4.5-420 K in the catalog PDF); cooldown 1.5 h, warmup 1.5 h, cycle 3.5 h, vibration <30 nm, base pressure <1e-5 Torr, no magnet option, no backside optical access. The 'lhe_flow' enum covers both cryogens: the same flow circuit runs on LN2 (80 K) or LHe (5 K)."
+}

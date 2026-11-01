@@ -1,0 +1,133 @@
+{
+  "configuration_id": "quantum_design_oxford_proteox_lx_iso100",
+  "archetype": "dilution_refrigerator",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 0,
+      "unit": "mm",
+      "location": "NOT PUBLISHED - overall frame/OVC height of the ProteoxLX is not given in any manufacturer document found; value 0 is a placeholder, see not_found",
+      "quote": "Cross-braced stiffened frame that minimizes vibration transmission eliminating the need for active damping",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    "width_or_diameter": {
+      "value": 530,
+      "unit": "mm",
+      "location": "Mixing-chamber (sample) plate diameter - the only lateral dimension published; the outer vacuum can diameter is NOT published (see not_found) and must be larger than this",
+      "quote": "Sample Space Diameter: | 530 mm plate",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    "color_note": "Outer vacuum envelope aluminium with cylindrical sections removed from below (QSHS paper on the sibling Proteox MX500: 'housed in an aluminium outer vacuum envelope whose cylindrical component sections are removed from below'); top plate stainless steel (app note: 'a stainless steel top plate which forms part of the vacuum enclosure'); inner plate colour/finish not stated in text."
+  },
+  "stages": [
+    {
+      "name": "Top plate (room temperature, part of vacuum enclosure)",
+      "temperature_K": 300,
+      "quote": "There is a stainless steel 'top plate' which forms part of the vacuum enclosure. Below this are the PT1 and PT2 stages, both coupled to the PTR",
+      "source_url": "https://qd-oxford.com/siteDocs/appNotes/Proteox_High_temperature_operation.pdf"
+    },
+    {
+      "name": "PT1 plate (first pulse-tube stage) - temperature from sibling Proteox MX500 installation, not LX-specific",
+      "temperature_K": 77,
+      "quote": "The upper (PT1) and lower (PT2) pulse tube cooler plates, shown in Figure 1 reach base temperatures of 77 K and 4 K, respectively.",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "PT2 plate ('4 K' plate, twin PTRs on LX); Proteox blog shows PT2 can run above 6.5 K under 10 W load",
+      "temperature_K": 4,
+      "quote": "twin Pulse Tube Refrigerators (PTR) allows for several watts of dissipation at the 4 K plate (exceptional PTR damping)",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    {
+      "name": "Still plate - temperature from sibling Proteox MX (QSHS Figure 1 label), not LX-specific",
+      "temperature_K": 0.7,
+      "quote": "Still plate (700 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "Cold plate - temperature from sibling Proteox MX (QSHS Figure 1 label), not LX-specific",
+      "temperature_K": 0.1,
+      "quote": "Cold plate (100 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "Mixing chamber plate (sample plate)",
+      "temperature_K": 0.007,
+      "diameter_mm": 530,
+      "quote": "Base Temperature: | < 7 mK ... Sample Space Diameter: | 530 mm plate",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "description": "Experiments mount on the 530 mm diameter mixing-chamber plate at the bottom of the insert (base < 7 mK, controllable to 30 K). Line-of-sight access from the top plate down to the MXC plate is through 2 side-loading Secondary Inserts, each with a 117 mm x 252 mm rectangular port (configured here as ISO100-2: two ISO100 ports per SI), plus 4 x KF25 ports. Secondary Inserts slide in from the side of the frame and are exchangeable between Proteox systems.",
+    "shape": "circular plate; two 117 x 252 mm rectangular line-of-sight columns",
+    "diameter_or_width": {
+      "value": 530,
+      "unit": "mm",
+      "location": "mixing chamber plate diameter",
+      "quote": "Sample Space Diameter: | 530 mm plate",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "coax",
+      "count": 37,
+      "from": "top plate (ISO100 line-of-sight port on Secondary Insert)",
+      "to": "mixing chamber plate",
+      "quote": "ISO100-2 | A standard configuration of 2 x ISO100 ports, with multiple ISO100 options to provide experimental wiring. Up to 37 UT85 coax per ISO100 port",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    {
+      "kind": "coax",
+      "count": 256,
+      "from": "top plate",
+      "to": "mixing chamber plate",
+      "quote": "up to a maximum of 256* SMA connectors per LX using the custom Secondary Insert",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    {
+      "kind": "dc_loom",
+      "count": 24,
+      "from": "top plate (24-way micro-D / Fischer interface)",
+      "to": "mixing chamber plate",
+      "quote": "Shielded or unshielded 24-way twisted-pair DC looms with Cu, PhBr or NbTi conductors",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Integrate multiple optical fibres on numerous non line of site ports and choose to access the sample space via optional windows.",
+    "source_url": "https://qd-oxford.com/siteDocs/ProteoxLX_brochure.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "pulse_tube_rotary_valve",
+      "quote": "PTR Options: | 2 x 1.35 W, 1.50 W or 1.80 W ... twin Pulse Tube Refrigerators (PTR) allows for several watts of dissipation at the 4 K plate (exceptional PTR damping)",
+      "source_url": "https://qd-oxford.com/products/proteoxLX.html"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "3He circulation ~2 mmol/s (Proteox platform blog)",
+      "quote": "the circulation system must support 3He flow rates around 2 mmols-1 with an inlet pressure of around 1 Pa and exhaust pressures up to 200 kPa",
+      "source_url": "https://qd-oxford.com/blog/2025_09_03_blog_item.html"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height (overall frame / OVC height not published in any ProteoxLX or Proteox family document; placeholder 0)",
+    "outer.width_or_diameter of the outer vacuum can (only the 530 mm MXC plate diameter is published; OVC must be wider)",
+    "outer.depth (cylindrical system; frame footprint not published)",
+    "outer.weight",
+    "stages.PT1/PT2/still/cold plate diameters (only the 530 mm MXC plate diameter is published)",
+    "stages LX-specific PT1, still and cold-plate temperatures (values given are from a Proteox MX500 installation, same Proteox platform)",
+    "sample_space.height (plate spacing / usable height below MXC plate not published; brochure says only 'increased plate spacing')",
+    "wiring installed line count for this configuration (only capacities are published: 37 UT85 coax per ISO100 port, 256 SMA max per LX)",
+    "wiring.optical_fibre count (fibres are optional; none specified in this configuration)",
+    "moving_parts.pulse_tube_rotary_valve rate (PTR valve frequency not published for Proteox)",
+    "PTR model/manufacturer for the LX (only cooling powers 1.35/1.50/1.80 W given)"
+  ],
+  "notes": "ProteoxLX: twin-PTR cryogen-free dilution refrigerator, 530 mm MXC plate, < 7 mK base, > 25 uW at 20 mK, > 850 uW at 100 mK, 7 mK to 30 K control range (qd-oxford.com/products/proteoxLX.html). Stage stack per the Proteox high-temperature app note: stainless top plate (vacuum enclosure) -> PT1 -> PT2 -> still -> cold plate -> mixing chamber, with gas-gap heat switches and a remote sorption pump weakly coupled to PT2. Line of sight: 2 x Secondary Insert (117 x 252 mm) + 4 x KF25. This configuration (ISO100-2 SI, no magnet, no windows) has no optical windows and no bottom loader. Helium-3 requirement for LX is 50 L per the family brochure table (qd-oxford.com/siteDocs/The_Proteox_Family_Brochure.pdf). Outer dimensions are genuinely unpublished (searched qd-oxford, oxinst redirects, directindustry 403, Japanese QD pages, facility pages); the renderer must not treat the 0 height as real. PT1/still/cold-plate temperatures come from the QSHS axion paper (arXiv 2504.12257) describing a Proteox MX500 and are flagged as sibling-platform data."
+}

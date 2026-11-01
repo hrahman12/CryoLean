@@ -1,0 +1,58 @@
+{
+  "configuration_id": "linkam_lts420_lnp96",
+  "archetype": "heating_cooling_stage",
+  "outer": {
+    "shape": "table_top_stage",
+    "height": {"value": 24, "unit": "mm", "location": "stage body thickness (LTS420 stage only, excluding swing-out lid, LNP96 pump unit, dewar and T96 controller)", "quote": "Stage body size 166mm x 90mm x 24mm", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    "width_or_diameter": {"value": 166, "unit": "mm", "location": "stage body length", "quote": "Stage body size 166mm x 90mm x 24mm", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    "depth": {"value": 90, "unit": "mm", "location": "stage body width", "quote": "Stage body size 166mm x 90mm x 24mm", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    "color_note": "Not published as a colour spec. The only material statement is the silver heating block: 'It features a 53.5mm x 43mm silver block with a platinum resistor sensor embedded close to the surface' (LTS420 brochure v1.18). Stage body is water-cooled for work above 300 C."
+  },
+  "stages": [
+    {"name": "silver heating/cooling block (sample block, direct LN2 injection, embedded Pt100)", "temperature_K": 78.15, "quote": "Temperature range < -195°C to 420°C ... Direct injection of coolant into block ... Highly conductive metal for improved heat transfer ... 100 Ohm platinum sensor", "source_url": "https://www.linkam.co.uk/lts420-specifications"}
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "rectangular 53.5 x 43 mm silver block under a swing-out lid with a central viewing aperture; gas-tight chamber with quick-release gas valves; slide clamped on block with 15 mm XY manipulation",
+    "description": "Sample sits on a standard 76 x 26 mm microscope slide in direct contact with the 53.5 x 43 mm silver block; chamber is gas tight with valves for atmospheric control; inner lid for stability; objective looks down through the lid window (min working distance 6.5 mm), condenser from below (12.5 mm) for transmitted light.",
+    "diameter_or_width": {"value": 53.5, "unit": "mm", "location": "heated sample area (53.5 x 43 mm)", "quote": "Sample area of 53.5mm x 43mm ... Sample holder for standard 76mm x 26mm microscope slides", "source_url": "https://www.linkam.co.uk/lts420-specifications"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 1, "from": "T96-S controller stage lead", "to": "Pt100 sensor embedded in the silver block", "quote": "100 Ohm platinum sensor ... Temperature stability <0.01°C", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    {"kind": "heater_lead", "count": 1, "from": "T96-S controller stage lead", "to": "silver heating block", "quote": "A system requires both the LTS420 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen", "source_url": "https://www.linkam.co.uk/lts420-brochure"},
+    {"kind": "none", "count": 0, "from": "n/a", "to": "n/a (electrical sample connections are an option not installed in this standard configuration)", "quote": "ELECTRICAL CONNECTIONS AND PROBES Optional electrical connections and probes enable electrical measurements to be carried out on the sample.", "source_url": "https://www.linkam.co.uk/lts420-brochure"}
+  ],
+  "windows": {
+    "count": 2,
+    "axis": "top",
+    "diameter_mm": 18,
+    "quote": "The LTS stages are now available with larger viewing windows. The standard 18mm viewing aperture can now be increased to up to 50mm. We have both 35mm and 50mm viewing apertures available upon request.",
+    "source_url": "https://www.bioimager.com/?p=1963"
+  },
+  "moving_parts": [
+    {"part": "door", "rate": "manual swing-out lid, opened for sample loading", "quote": "Swing out lid for easy sample loading", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    {"part": "stage_translation", "rate": "manual, 15 mm travel in X and Y", "quote": "Sample position can be controlled over 15mm of travel in X and Y directions via the precision manipulators.", "source_url": "https://www.linkam.co.uk/lts420-brochure"},
+    {"part": "circulation_pump", "rate": "LN2 pumping rate automatically controlled by T96; cooling 0.01 to 50 C/min on the LTS420", "quote": "A cooling system consists of the control unit housing the pumps and a Dewar. The LNP96 can be added as an option to several Linkam systems to allow cooling down to < -195°C.", "source_url": "https://www.linkam.co.uk/lnp96"},
+    {"part": "ln2_boiloff_vapour", "rate": "continuous LN2 flow injected into the block during cooling; warmed N2 exhaust", "quote": "Direct injection of coolant into block", "source_url": "https://www.linkam.co.uk/lts420-specifications"},
+    {"part": "gas_flow", "rate": "purge gas through quick-release valves (atmospheric control)", "quote": "Quick-release gas valves for atmospheric control", "source_url": "https://www.linkam.co.uk/lts420-specifications"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "outer.height_including_lid (only the 24 mm body thickness is published; closed-lid height not given)",
+    "outer.weight_kg",
+    "lnp96.pump_unit_dimensions_mm",
+    "lnp96.dewar_volume_L (LNP96 pages say only 'a Dewar'; the 2 L figure in McCrone's cooling-systems PDF is for the predecessor LNP95 and is not transferred)",
+    "lnp96.ln2_flow_rate_or_consumption",
+    "lnp96.pump_frequency_hz",
+    "t96_controller.dimensions_mm",
+    "sample_space.height_mm (chamber clearance above the block not published)",
+    "sample_space.lid_window_material_and_thickness (not published by Linkam; only the reseller 18 mm aperture)",
+    "windows.lower_condenser_window_diameter_mm (condenser working distance 12.5 mm published, aperture not)",
+    "stages.silver_block_thickness_mm",
+    "stages.cooling_power_W",
+    "stages.cooling_rate_max_on_LTS420_with_LNP96 (brochure gives heating/cooling 0.01-50 C/min; LNP96 100 C/min rating is generic)",
+    "wiring.pt100_lead_count_and_connector_pinout",
+    "outer.color_note (no published finish)"
+  ],
+  "notes": "Standard LTS420 (non-E) with T96-S controller and LNP96-S LN2 pump. Geometry: a flat 166 x 90 x 24 mm stage body (Linkam spec page; McCrone lists an older '160 x 80 x 24 mm') carrying a 53.5 x 43 mm silver block; swing-out lid with a standard 18 mm viewing aperture (Bioimager, Linkam distributor; 35/50 mm on request); inner lid for stability. Window count 2 = top lid window plus a lower window inferred only from 'Can be used with transmitted or reflected light' and the published condenser working distance of 12.5 mm; the lower aperture size is not published. Stage body is water-cooled for work above 300 C (brochure). Objective min working distance 6.5 mm, condenser 12.5 mm. Temperature < -195 C (78 K) to 420 C, stability < 0.01 C, rates 0.01-50 C/min. LN2 is pumped from the LNP96 dewar by the control unit's pumps (T96-controlled) and injected directly into the block; the T96 drives the Pt100 sensor and heater. No electrical sample lines in this configuration (LTS420E variants add 2-pin LEMO/BNC/probes). Brochure quotes come from Linkam's own 'Download PDF Product Brochure' link on https://www.linkam.co.uk/lts420-brochure (Google Drive id 1wbj1pLk89eX-y2dWxbxm_mYzIBILZAab, v1.18 2026); v5_snapshot could not cache it (robots.txt), text extracted locally. Cached sources: research/v5/cache/ede560bbd69a02c5.txt (spec), 68407e7751e2b5b3.txt (product page), 4dc102a14d5f1192.txt (LNP96), c29000755c869722.txt (Electrical Stage Product Guide), b21a77653698c1e5.txt (Bioimager), 5731faf02d576a23.txt (McCrone LTS420), 2faaf288dd195567.txt (McCrone LNP95 cooling systems PDF)."
+}

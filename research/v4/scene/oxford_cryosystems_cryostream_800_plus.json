@@ -1,0 +1,51 @@
+{
+  "configuration_id": "oxford_cryosystems_cryostream_800_plus",
+  "archetype": "cryostream",
+  "outer": {
+    "shape": "horizontal_cylinder",
+    "height": {"value": 600, "unit": "mm", "quote": "Varibeam Support Stand Max. table to sample height (Cryostream vertical) 600 mm", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf", "location": "Section 5.1 Standard Cryostream Technical Data, p.10"},
+    "width_or_diameter": {"value": 430, "unit": "mm", "quote": "Max. horizontal distance to sample from Varibeam column (Reach) 430 mm", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf", "location": "Section 5.1 Standard Cryostream Technical Data, p.10"},
+    "color_note": "Envelope is the Varibeam coldhead support stand (6 kg) that carries the coldhead with its nozzle pointing at the crystal; the coldhead body itself has no published length or diameter in the 800 Series manual. The coldhead continues as a vacuum-insulated transfer line: 1500 mm flexible section + 905 mm rigid leg (total 2405 mm) plunged into the 60 L ES60 dewar (725 mm H x 457 mm D, 36 kg empty, 96 kg full). Separate bench units: controller 263 W x 141 H x 299 D mm (6.25 kg), gas pump 263 W x 184 H x 272 D mm (6.75 kg), AD51 dry-air unit 660 x 300 x 415 mm (42 kg). Colours/finish not published (dry-air tubing is red PTFE 6 mm OD)."
+  },
+  "stages": [
+    {"name": "Cold nitrogen gas stream at the crystal (open air, 5 mm from nozzle tip)", "temperature_K": 80, "quote": "Temperature Range 80-400 Kelvin (or 80-500 Kelvin for Cryostream Plus) ... Temperature Stability 0.1 Kelvin ... Cool Down Time to 100 Kelvin 20 minutes", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"name": "Rigid transfer-line leg in the LN2 dewar (small cryopump at its end)", "temperature_K": 77, "quote": "The Cryostream transfer line has a small Cryopump at the end that acts to improve the vacuum pressure, but only when submerged in liquid nitrogen.", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"name": "Dry-air shroud around the cold stream (AD51 unit, 12-13 L/min)", "temperature_K": 293, "quote": "The cold nitrogen gas stream requires a shroud of dry gas as it exits the nozzle to ensure an ice-free environment on and around the sample while at low temperatures.", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"}
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "open gas stream; crystal < 1 mm3 held on a goniometer within 8 mm of the nozzle tip, in the central 2 mm of the stream",
+    "description": "No chamber or vacuum: the crystal sits in open laboratory air inside a laminar cold-nitrogen stream from the coldhead nozzle, wrapped in a dry-air shroud. Optimum distance 5 mm from the nozzle end, maximum 8 mm, centred in the 2 mm core of the stream.",
+    "diameter_or_width": {"value": 2, "unit": "mm", "quote": "The crystal should be less than 8 mm from the end of the Cryostream nozzle (optimum distance is 5 mm) in the centre 2 mm of the gas stream; this will help to prevent icing.", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf", "location": "Section 6.3.2, p.14 (stream-core positioning width, not a sample-size limit; sample must be < 1 mm3)"},
+    "height": {"value": 8, "unit": "mm", "quote": "The crystal should be less than 8 mm from the end of the Cryostream nozzle (optimum distance is 5 mm) in the centre 2 mm of the gas stream", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf", "location": "Section 6.3.2, p.14 (usable stream length from nozzle tip)"}
+  },
+  "wiring": [
+    {"kind": "none", "count": 0, "from": "sample", "to": "none", "quote": "To cool a sample of less than 1mm3 in an open stream of gas. The nozzle is not designed to be enclosed or to cool samples that are enclosed inside any kind of sample holder, chamber or vessel.", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"kind": "thermometer_lead", "count": 3, "from": "800 Series controller Coldhead socket via 3.5 m Coldhead Cable", "to": "three temperature sensors inside the coldhead", "quote": "Displayed are the live readings from the three temperature sensors together with the current heater outputs", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"kind": "heater_lead", "count": 1, "from": "800 Series controller via Coldhead Cable (3.5m)", "to": "internal heaters in the coldhead (number not published)", "quote": "Gas flow is halted and the whole system brought up to 300 K using its internal heaters, at which point the system stops.", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "To cool a sample of less than 1mm3 in an open stream of gas. The nozzle is not designed to be enclosed",
+    "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "quote": "Nitrogen Gas Flow Rate 5 or 10 litres/minute", "rate": "5 L/min normal, 10 L/min in Cool or below 90 K; limited to 5 L/min above 310 K", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"part": "circulation_pump", "quote": "800 Series Gas Pump Dimensions & weight 263 mm W x 184 mm H x 272 mm D, 6.75 kg", "rate": "delivers the 5 or 10 L/min nitrogen gas flow; pump speed/frequency not published", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"part": "ln2_boiloff_vapour", "quote": "Liquid Nitrogen Consumption 0.6 litres/hour at 5 litres/minute gas flow 1.2 litres/hour at 10 litres/minute gas flow", "rate": "0.6-1.2 L/h LN2 drawn from the 60 L ES60 dewar", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"},
+    {"part": "gas_flow", "quote": "set the flow to approximately 12-13 litres per minute using the flow meter on the front of the unit. This is the ideal flow rate for use with the Cryostream system", "rate": "12-13 L/min dry-air shroud from the AD51 (max 25 L/min)", "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "outer coldhead body length and diameter (800 Series manual publishes no coldhead dimensions; the current Cryostream SCD page's '1.1 kg, dia 82 x H 442 x D 98 mm' is a different model and was not used)",
+    "nozzle outlet diameter",
+    "stages[].diameter_mm",
+    "number and power of internal heaters (only 'internal heaters' and 'heater outputs' are stated)",
+    "sensor type of the three temperature sensors",
+    "gas pump mechanism, speed and frequency (not stated in the 800 Series manual)",
+    "coldhead vacuum-space pressure (only the service pump spec 1e-2 mbar is given)",
+    "outer colour/finish"
+  ],
+  "notes": "Single source: 800 Series Cryostream Operating and Instruction Guide, Oxford Cryosystems 2014 (SFU mirror), text cached at research/v5/cache/4dfb8bc9e86001d6.txt (65 pages). Cryostream Plus differs from the standard only by its 500 K upper limit (Section 5.1); all geometry is identical. Physical layout from the manual: coldhead with integral vacuum-insulated transfer line (1500 mm flexible + 905 mm rigid leg, min bend radius 200 mm, ~900 mm leg uses top 850 mm of dewar) plunged into the unpressurised 60 L ES60 dewar (NW50 KF neck, 50 mm bore); coldhead clamped in the Varibeam stand with fine X/Y/Z translation; red 6 mm PTFE dry-air tube to the coldhead; 3.5 m Coldhead Cable to the controller (placed < 3 m from coldhead, < 2 m from the gas pump). Vacuum space re-pumped every 12-18 months via the pump-out adaptor (NW16/KF16) with the CRH25 re-activation heater. Nothing moves in the coldhead itself: the only motion is the N2 gas flow driven by the separate gas pump, the dry-air shroud, and LN2 consumption/boil-off from the dewar. 'outer' uses the Varibeam stand envelope (600 mm height, 430 mm reach) because the coldhead body has no published dimensions. Tavily quota was exhausted; corpora.tika.apache.org (older manual with 'How the Cryostream Cooler Works') and the APS 700 quick-start PDF were unreachable (DNS / 403)."
+}

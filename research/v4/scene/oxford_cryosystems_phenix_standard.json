@@ -1,0 +1,101 @@
+{
+  "configuration_id": "oxford_cryosystems_phenix_standard",
+  "archetype": "heating_cooling_stage",
+  "outer": {
+    "shape": "box",
+    "height": {
+      "value": 54,
+      "unit": "cm",
+      "location": "K450 helium compressor cabinet (W x D x H as listed; the PheniX chamber itself has no published dimensions)",
+      "quote": "K450 Helium Compressor | Weights & Dimensions | 64 x 61 x 54 cm, 100 kg",
+      "source_url": "https://www.oxcryo.com/products/phenix"
+    },
+    "width_or_diameter": {
+      "value": 64,
+      "unit": "cm",
+      "location": "K450 helium compressor cabinet width",
+      "quote": "K450 Helium Compressor | Weights & Dimensions | 64 x 61 x 54 cm, 100 kg",
+      "source_url": "https://www.oxcryo.com/products/phenix"
+    },
+    "depth": {
+      "value": 61,
+      "unit": "cm",
+      "location": "K450 helium compressor cabinet depth",
+      "quote": "K450 Helium Compressor | Weights & Dimensions | 64 x 61 x 54 cm, 100 kg",
+      "source_url": "https://www.oxcryo.com/products/phenix"
+    },
+    "color_note": "Sample stages are chromium-plated copper; radiation shield window is mylar, lid window is Kapton (amber). Chamber body finish not described."
+  },
+  "stages": [
+    {
+      "name": "Sample stage (20 mm chromium-plated copper plate, conduction-cooled from the two-stage GM coldhead; base temperature)",
+      "temperature_K": 12,
+      "diameter_mm": 20,
+      "quote": "Temperature Range: 12-290 K ... Sample Mounts | ⌀ 20 mm chromium-plated copper",
+      "source_url": "https://www.oxcryo.com/products/phenix"
+    },
+    {
+      "name": "Two-stage Gifford-McMahon coldhead inside the Phenix body (individual first/second stage temperatures not published)",
+      "temperature_K": 12,
+      "quote": "A two stage Gifford McMahon (GM) closed cycle cooler, made by Oxford Cryosystems, is mounted within the body of the Phenix",
+      "source_url": "https://oxcryo.com/app/uploads/2024/07/Phenix-Brochure-v2.3.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "flat circular plate (flat or recessed), reflection geometry, under vacuum",
+    "description": "Flat-plate powder sample pressed onto a 20 mm diameter chromium-plated copper stage (2 flat + 2 recessed included), in vacuum at 1e-4 mbar, viewed through a 120 degree X-ray window arc in the lid and radiation shield.",
+    "diameter_or_width": {
+      "value": 20,
+      "unit": "mm",
+      "location": "sample mount diameter",
+      "quote": "A number of 20 mm diameter chromium plated copper sample stages are provided with the Phenix system, including flat plate and recessed copper holders.",
+      "source_url": "https://www.oxcryo.com/products/phenix"
+    }
+  },
+  "wiring": [],
+  "windows": {
+    "count": 2,
+    "axis": "side",
+    "quote": "a radiation shield which incorporates a 0.005 mm thick mylar window, and the attachable lid has a 0.25 mm thick kapton window. Combined, they offer a 120o X-ray transparent view of the sample chamber.",
+    "source_url": "https://www.oxcryo.com/products/phenix"
+  },
+  "moving_parts": [
+    {
+      "part": "gm_displacer",
+      "quote": "The system houses our custom built 2-stage Gifford McMahon (GM) cooler.",
+      "rate": "variable coldhead motor speed (controller relates sample temperature to coldhead motor speed); Hz not published",
+      "source_url": "https://oxcryo.com/app/uploads/2024/07/Phenix-Brochure-v2.3.pdf"
+    },
+    {
+      "part": "compressor",
+      "quote": "operates using compressed helium gas provided by our K450 helium compressor",
+      "rate": "not published",
+      "source_url": "https://oxcryo.com/app/uploads/2024/07/Phenix-Brochure-v2.3.pdf"
+    },
+    {
+      "part": "sample_rotator",
+      "quote": "a specially designed rotating seal that sits between the integrated GM Cryocooler and the sample stage. This allows the sample stage to move in the theta - 2 theta range",
+      "rate": "goniometer theta scan rate (set by diffractometer, not published)",
+      "source_url": "https://oxcryo.com/app/uploads/2024/07/Phenix-Brochure-v2.3.pdf"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.height (PheniX chamber/body)",
+    "outer.width_or_diameter (PheniX chamber/body)",
+    "outer.depth (PheniX chamber/body)",
+    "outer.shape (chamber)",
+    "PheniX chamber weight",
+    "stages.first_stage_temperature_K",
+    "stages.second_stage_temperature_K",
+    "stages.plate_diameter_mm (coldhead stages)",
+    "sample_space.height",
+    "wiring (thermometer/heater lead counts; only 'sample temperature is measured at the sample stage' is stated)",
+    "windows.diameter_mm (only the 120 degree arc and foil thicknesses are given)",
+    "moving_parts.gm_displacer.rate_Hz",
+    "radiation shield diameter",
+    "cooling power at 12 K"
+  ],
+  "notes": "Oxford Cryosystems does not publish the PheniX chamber dimensions; the only dimensions in the spec table are for the K450 helium compressor (64 x 61 x 54 cm, 100 kg), so the outer block carries those with the location flagged, and the chamber itself is listed under not_found. Verified facts for the scene: two-stage GM coldhead built into the Phenix body, fed by the K450 compressor through high-pressure hoses via a rotating seal so the stage can do theta-2theta scans; sample is conduction-cooled on a 20 mm Cr-plated Cu plate in vacuum (1e-4 mbar per PANalytical leaflet); mylar radiation shield window 0.005 mm and Kapton lid window 0.25 mm giving a 120 degree X-ray view; 12-290 K, +/-0.1 K, 20 K in 40 min, 12 K in 60 min, warm-up 45 min; optional vacuum system continuously pumps the vacuum space and rotating seal; cooling water 5 L/min at 18 C (3 kW chiller, not supplied). Wood et al. 2018 (PMC5988005) confirms the standard PheniX is two-stage and 12 K base but dimensions its PheniX-FL variant only. Sources cached: research/v5/cache/f6147428caec3334.txt (oxcryo page), 84b274426dc8f10d.txt (brochure v2.3), 45e1c536294e5ac8.txt (PANalytical leaflet), 424bcd3476ae3b26.txt (PMC paper)."
+}

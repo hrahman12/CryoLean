@@ -1,0 +1,109 @@
+{
+ "configuration_id": "retsch_mm_500_control_cryopad_ln2",
+ "archetype": "cryogenic_mill",
+ "outer": {
+  "shape": "box",
+  "height": {
+   "value": 485,
+   "unit": "mm",
+   "quote": "W x H x D closed with cryoPad | 690 x 485 x 585 mm",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/",
+   "location": "Technical Data table; mill alone closed is 690 x 375 x 585 mm, cryoPad unit beneath is 670 x 110 x 590 mm"
+  },
+  "width_or_diameter": {
+   "value": 690,
+   "unit": "mm",
+   "quote": "W x H x D closed with cryoPad | 690 x 485 x 585 mm",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/",
+   "location": "Technical Data table"
+  },
+  "depth": {
+   "value": 585,
+   "unit": "mm",
+   "quote": "W x H x D closed with cryoPad | 690 x 485 x 585 mm",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/",
+   "location": "Technical Data table (cryoPad base unit is 590 mm deep)"
+  },
+  "color_note": "Bench-top mill housing with touch display on a separate 110 mm high cryoPad base unit with LED status light; colour not stated in source text."
+ },
+ "stages": [
+  {
+   "name": "thermal plates (cooling plates) under the two jars",
+   "temperature_K": 173.15,
+   "quote": "temperature range of cooling plates | +100 \u00b0C ... -100 \u00b0C",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  },
+  {
+   "name": "liquid nitrogen feed (cryoPad fluid)",
+   "temperature_K": 77.15,
+   "quote": "temperature range of fluids | -196 \u00b0C",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  }
+ ],
+ "sample_space": {
+  "position": "inside_chamber",
+  "shape": "two horizontal screw-lock grinding jars with rounded ends, clamped on thermal plates",
+  "description": "Two grinding stations; each screw-lock jar up to 125 ml sits on a thermal plate and oscillates radially in a horizontal position. Sample feed size <= 10 mm, batch max 2 x 45 ml. Source quotes: 'Grinding chamber volume | max. 2 x 125 ml', 'No. of grinding stations | 2', 'Max. feed size | <= 10 mm', 'Batch size / feed quantity | max. 2 x 45 ml', 'The grinding jars of the mixer mill MM 500 control perform radial oscillations in a horizontal position.'",
+  "diameter_or_width": {
+   "value": 10,
+   "unit": "mm",
+   "quote": "Max. feed size | <= 10 mm",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/",
+   "location": "Technical Data table; this is the max sample particle size, not the jar diameter"
+  }
+ },
+ "wiring": [
+  {
+   "kind": "none",
+   "count": 0,
+   "quote": "Interface | RS-232 (MM 500 control) ... Communication connection | via included connection cable",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/",
+   "from": "cryoPad",
+   "to": "MM 500 control",
+   "count_note": "only a control cable mill-to-cryoPad plus LN2 tubing set; no sample electrical connections"
+  }
+ ],
+ "windows": {
+  "count": 0,
+  "axis": "none",
+  "quote": "W x H x D closed | 690 x 375 x 585 mm",
+  "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+ },
+ "moving_parts": [
+  {
+   "part": "stage_translation",
+   "quote": "The grinding jars of the mixer mill MM 500 control perform radial oscillations in a horizontal position.",
+   "rate": "3-30 Hz (Vibrational frequency | 3 - 30 Hz (180 -1800 min-1))",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  },
+  {
+   "part": "door",
+   "quote": "W x H x D closed | 690 x 375 x 585 mm",
+   "rate": "opened manually for jar clamping (Ergonomic jar clamping)",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  },
+  {
+   "part": "gas_flow",
+   "quote": "The cryoPad regulates the flow of LN2 through the thermal plate",
+   "rate": "PID-controlled LN2 flow at 1.2-1.4 bar supply",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  },
+  {
+   "part": "ln2_boiloff_vapour",
+   "quote": "Emissions | Liquid nitrogen gas, condensation ... Exhaust outlet | via included Exhaust adapter and aluminum corrugated tube",
+   "source_url": "https://www.retsch.com/products/milling/ball-mills/mm-500-control/"
+  }
+ ],
+ "cryogen": "ln2_flow",
+ "not_found": [
+  "grinding_jar_outer_diameter_mm",
+  "grinding_jar_length_mm",
+  "thermal_plate_diameter_mm",
+  "oscillation_amplitude_mm",
+  "housing_colour",
+  "touch_display_size",
+  "sample_space.height",
+  "noise_level_dB"
+ ],
+ "notes": "All numbers from the RETSCH MM 500 control product page Technical Data (snapshot research/v5/cache/0e554a018b650808.txt). Mill alone: 690 x 375 x 585 mm, ~63 kg, 750 W; cryoPad base unit: 670 x 110 x 590 mm, ~26 kg, 24 V 1 A, LED status light, RS-232 link. Stacked height 485 mm. Thermal plates settable 0 to -100 C in 10 C steps (PID) with LN2 at 1.2-1.4 bar; LN2 itself -196 C. Jar materials: hardened steel, stainless steel, tungsten carbide, zirconium oxide; jar sizes 10/25/50/80/125 ml. Jar outer dimensions are not published on this page, so jar geometry must come from the 125 ml volume only. The wiring entry 'none' records that there are no sample electrical connections; the cryoPad-to-mill RS-232 cable and LN2 tubing set are the only connections."
+}

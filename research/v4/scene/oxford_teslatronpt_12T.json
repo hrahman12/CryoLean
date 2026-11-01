@@ -1,0 +1,40 @@
+{
+  "configuration_id": "oxford_teslatronpt_12T",
+  "archetype": "ppms_magnet_platform",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 0, "unit": "mm", "quote": "NOT PUBLISHED - no overall height found in any TeslatronPT source (qd-oxford.com page, 2026 brochure, QD Japan page, Oxford PDFs now redirected).", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf", "location": "not_found"},
+    "width_or_diameter": {"value": 0, "unit": "mm", "quote": "NOT PUBLISHED - no outer diameter/footprint found; only the 50 mm sample space is documented.", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf", "location": "not_found"},
+    "color_note": "Top-loading vertical cryostat; magnet at the bottom of the cryostat, VTI heat exchanger ~10 cm above magnet top plate (arXiv 1805.11148 description of a TeslatronPT). Colour not documented."
+  },
+  "stages": [
+    {"name": "VTI sample space (static exchange gas)", "temperature_K": 1.5, "diameter_mm": 50, "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf"},
+    {"name": "Magnet / cryostat 4 K (pulse-tube second stage; reached after system cooldown)", "temperature_K": 4, "quote": "System cooldown | 60 hours from room temperature to 4K", "source_url": "https://www.qd-japan.com/products/teslatronpt/"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "vertical cylinder, top-loading, static exchange gas",
+    "description": "50 mm nominal diameter VTI sample space inside the 12 T solenoid bore; sample sits at magnet centre when a probe is loaded from the top. Sample holders: 20-pin LCC, 16-pin DIP, 44-pin LCC, PCB interface with 44 spring pins.",
+    "diameter_or_width": {"value": 50, "unit": "mm", "quote": "Variable temperature insert sample space diameter | 50mm nominal", "source_url": "https://www.qd-japan.com/products/teslatronpt/"}
+  },
+  "wiring": [
+    {"kind": "dc_twisted_pair", "count": 13, "from": "probe head (room temperature)", "to": "sample holder (44-pin PCB interface)", "quote": "測定用ケーブルは、13ペアのツイストペア（10ペアは26AWGの錫メッキ銅、3ペアは22AWGの錫メッキ銅）からなる ... ケーブルです。各ペアはホイルスクリーニングされています。", "source_url": "https://www.qd-japan.com/products/teslatronpt/"},
+    {"kind": "coax", "count": 0, "from": "probe head", "to": "sample", "quote": "DC and RF wiring to the sample", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf"}
+  ],
+  "windows": {"count": 0, "axis": "none", "quote": "Insert features and options: - DC and RF wiring to the sample - < 300 mK with the HelioxVT ³He refrigerator", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf"},
+  "moving_parts": [
+    {"part": "pulse_tube_rotary_valve", "rate": "1.4 Hz", "quote": "Since the noise from PTC is mainly concentrated toward low-frequency end (1.4Hz and higher orders), we choose to use an 125 Hz low pass filter", "source_url": "https://arxiv.org/pdf/1805.11148"},
+    {"part": "compressor", "quote": "低消費電力：パルス管式冷凍機1台で動作。", "source_url": "https://www.qd-japan.com/products/teslatronpt/"},
+    {"part": "magnet_ramp", "quote": "Magnetic Field Options 8 T, 12 T, 14 T and 6/1/1 Vector Rotation", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf"},
+    {"part": "gas_flow", "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet", "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height", "outer.width_or_diameter", "outer.depth", "weight",
+    "pulse_tube_model", "pulse_tube_stage_temperatures (50 K / 4 K plate values)", "stage_plate_diameters",
+    "magnet_bore_diameter (only 50 mm sample space published)", "magnet_length",
+    "sample_space.height", "coax_line_count", "window_count (no windows documented)",
+    "cooling_power", "compressor_model"
+  ],
+  "notes": "Sources: qd-oxford.com 2026 brochure (cached research/v5/cache/aae2af8d9642bcdc.txt), QD Japan TeslatronPT page (933e4d10b41e7af8.txt: 60 h system cooldown, single pulse tube, 13 twisted pairs, 44-pin interface, top-loading), arXiv 1805.11148 STM-in-TeslatronPT paper (c4b006de77b0ac07.txt: 1.4 Hz PTC noise, magnet at bottom of cryostat, VTI heat exchanger 10 cm above magnet top plate, +/-10 um vibration). Field 12 T from brochure 'Key Specifications'. The 'coax' wiring entry has count 0 because RF wiring is documented only qualitatively ('DC and RF wiring to the sample'). Outer height/diameter values are 0 placeholders flagged NOT PUBLISHED: all legacy nanoscience.oxinst.com PDFs (Feb2018 brochure, datasheet) now redirect to a generic QD Oxford page; directindustry/scribd copies return 403/410. Tavily quota exhausted during this run. XMU facility page (377916408ef9bdae.txt) describes a 14 T TeslatronPT with HelioxVT (22 constantan twisted pairs, 43 mm sample space, <60 min ramp to full field) - He-3 insert config, not used for the standard VTI."
+}

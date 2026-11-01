@@ -1,0 +1,111 @@
+{
+  "configuration_id": "lakeshore_ccs_400",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 890,
+      "unit": "mm",
+      "location": "Approximate overall cryostat height, CCS-400 column of the CCR vacuum cryostats datasheet; published as a range 61 to 89 cm (depends on cold head ordered), upper bound given here.",
+      "quote": "Height (approximate) ... 61 to 89 cm (24 to 35 in)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    "width_or_diameter": {
+      "value": 85,
+      "unit": "mm",
+      "location": "Square window block at the sample end of the vacuum shroud (the only published lateral dimension; 83 mm to 85 mm square). The diameter of the main cylindrical vacuum shroud above the block is NOT published; see not_found.",
+      "quote": "Window block size ... 83 mm to 85 mm (3.25 in to 3.75 in) square",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    "color_note": "Datasheet photos show a bare metal vacuum shroud ending in a square window block, cold head on top, sample at the bottom; shroud finish is not described in text. Weight (approximate) 16 to 30 kg (36 to 65 lb) for the CCS-400 column."
+  },
+  "stages": [
+    {
+      "name": "cold head first stage (radiation shield anchor). Temperature from the SHI RDK-408D2, the 1 W at 4.2 K Gifford-McMahon head matching Lake Shore option 408; Lake Shore itself publishes no first-stage temperature (inference, see notes)",
+      "temperature_K": 43,
+      "quote": "1 st Stage Capacity | 40 W @ 43 K | 50 W @ 43 K",
+      "source_url": "https://shicryogenics.com/product/rdk-408d2-4k-cryocooler-series/"
+    },
+    {
+      "name": "cold head second stage / sample mount (408 head, 1 W at 4.2 K), bottom of the cold finger inside the window block; <4 K to 500 K with integrated control heater",
+      "temperature_K": 4,
+      "quote": "CCS-400 Optical, high-temperature (500 K), vacuum ... 408 <4 K ... 408 1 W at 4.2 K bare head cooling power",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "sample holder bolted to the bottom of the cold finger (second stage), in vacuum, surrounded by the radiation shield and the 83-85 mm square window block of the bottom-loading shroud",
+    "description": "Sample in vacuum, bottom-loading: shroud and shield are removed from below to reach the sample holder (SH-BLANK-1.5-STD, SH-OPTICAL-1.5-STD, SH-RESISTIVITY-1.5-STD; '-800' high-temperature holders for the 400H). Sample holder footprint and sample-space height are not published in the datasheet; see not_found."
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 1,
+      "from": "feedthrough port on the cryostat (room temperature)",
+      "to": "sample mount / cold finger (calibrated control sensor; thermocouple option for CCS-400/H)",
+      "quote": "Integrated control heater and calibrated control sensor ... Cryostats come standard with one installed temperature sensor.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 1,
+      "from": "feedthrough port (room temperature)",
+      "to": "control heater on the cold finger / sample mount",
+      "quote": "Integrated control heater and calibrated control sensor",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    {
+      "kind": "dc_twisted_pair",
+      "count": 0,
+      "from": "1.375 in square o-ring sealed feedthrough port (optional WH-10P: 10 PhBr twisted pairs, not installed in the standard configuration)",
+      "to": "sample holder (wiring loose in the sample area)",
+      "quote": "All options fit a standard 1.375 in square o-ring sealed feedthrough port unless noted. ... WH-10P | 10-pin feedthrough with 10 PhBr twisted-pair wires installed",
+      "source_url": "https://www.lakeshore.com/products/product-detail/janis/cryostat-feedthroughs"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "side",
+    "diameter_mm": 41.4,
+    "quote": "Standard fused silica ... is the material used on all standard 1.63 in clear view Environment by Janis window ports.",
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13"
+  },
+  "moving_parts": [
+    {
+      "part": "gm_displacer",
+      "rate": "not published by Lake Shore (closed-cycle refrigerator cold head, option 408 = 1 W at 4.2 K two-stage Gifford-McMahon head; cycle rate not stated)",
+      "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. ... 408 1 W at 4.2 K bare head cooling power",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    {
+      "part": "compressor",
+      "rate": "not published (3-phase water-cooled helium compressor for the 408/415/418 heads, 7.5 to 7.8 kW, 443 x 493 x 532 mm, 100 kg; separate unit)",
+      "quote": "200 VAC, 3-phase, 7.5 to 7.8 kW ... 6 to 9 L/min at 5 to 25 °C ... 443 mm × 493 mm × 532 mm high; 100 kg",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    },
+    {
+      "part": "turbo_pump",
+      "rate": "external, optional (each cryostat requires a vacuum pump; TS-85-D turbopumping station or 10RVP/10DDP mechanical pumping station)",
+      "quote": "Each cryostat requires a pump to operate. ... 10RVP General-purpose mechanical pumping station ... TS-85-D Turbopumping station",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.width_or_diameter (true vacuum shroud diameter above the 83-85 mm square window block)",
+    "outer.depth",
+    "outer.height exact value (only the approximate range 61 to 89 cm is published)",
+    "stages[].diameter_mm (cold head stage flange / cold finger diameters)",
+    "stages[first stage].temperature_K from Lake Shore (only via the SHI RDK-408D2 head, 43 K)",
+    "sample_space.diameter_or_width (sample holder size; product codes carry '1.5' but no unit or dimension is stated)",
+    "sample_space.height",
+    "windows.count for CCS-400 (optical, square window block, but the number of ports is not stated)",
+    "window thickness and CCS-400-specific clear aperture (1.63 in clear view is the generic Environment by Janis standard)",
+    "electrical.dc_lines / electrical.coax_lines installed count (wiring is a separate ordering choice)",
+    "GM displacer cycle rate (Hz) and cold head vibration amplitude",
+    "radiation shield dimensions and temperature",
+    "cold head location for the CCS-400 row (blank in the extracted datasheet text; 'Any' is printed for CCS-100/300)"
+  ],
+  "notes": "Lake Shore (Environment by Janis) CCS-400: optical, high-temperature (500 K), sample-in-vacuum, bottom-loading closed-cycle refrigerator cryostat, <4 K to 500 K with the 408 cold head (1 W at 4.2 K), typical stability +/-50 mK, cooldown 1.5 h to 3 h (CCS-400 column). Datasheet column mapping (CCS-100 / 300S / 300ST / 400 / 400H) was read from pdftotext layout: height 56-84 / 71-99 / 71-99 / 61-89 / 66-94 cm; weight 16-30 kg; window block 83-85 mm square for CCS-100 and CCS-400 (38 mm square for CCS-300S). The cold head is a required ordering choice (204, 204N, 101, 408, 415, 418); this scene assumes the 408 as the catalog file does. Lake Shore does not name the cold head maker; the '408 / 1 W at 4.2 K' spec matches the SHI RDK-408D2 two-stage GM cryocooler (557 x 180 x 294 mm, 18 kg, <3.5 K, first stage 40/50 W at 43 K), used here only for the first-stage temperature and flagged as an inference. Every cryostat ships with a Lake Shore temperature controller and calibrated sensor; sample wiring (WH-10P etc.) and windows are ordered separately, so dc/coax counts are 0 in this standard configuration. Moving parts: GM displacer in the cold head (rate not published), remote water-cooled helium compressor, external vacuum pump; no magnet, no VSM, no liquid cryogen. Sources: ccr-vacuum.pdf (code 102126), cryostat-feedthroughs product page, cryostatwindows.pdf, shicryogenics.com RDK-408D2 page."
+}

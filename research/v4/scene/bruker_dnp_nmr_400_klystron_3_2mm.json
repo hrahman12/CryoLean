@@ -1,0 +1,44 @@
+{
+  "configuration_id": "bruker_dnp_nmr_400_klystron_3_2mm",
+  "archetype": "nmr_magnet",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 2.49, "unit": "m", "location": "magnet height from floor including stand (400/89 Ascend)", "quote": "400/89 Ascend 1.30 2.49 1.38 682", "source_url": "https://2210pc.chem.uic.edu/nmr/downloads/bruker/en-US/pdf/h157654.pdf"},
+    "width_or_diameter": {"value": 1.30, "unit": "m", "location": "maximum magnet diameter (400/89 Ascend); footprint 1.38 m", "quote": "Table 9.3: Magnet Dimensions and Weight: Wide Bore 89 mm ... 400/89 Ascend 1.30 2.49 1.38 682", "source_url": "https://2210pc.chem.uic.edu/nmr/downloads/bruker/en-US/pdf/h157654.pdf"},
+    "color_note": "Bruker Ascend magnets are white-painted vertical dewars on a stand; klystron (BH4100) hangs on a rail under the magnet; LT-MAS cabinet is a separate 188 cm (H) x 101 cm (D) x 80 cm (W) cabinet on casters; klystron chiller 74 x 44 x 68 cm."
+  },
+  "stages": [
+    {"name": "Superconducting magnet coils (liquid helium bath)", "temperature_K": 4.2, "quote": "The cryo-coils are cooled by liquid helium at a temperature of -269 C (4.2 K). To minimize the helium evaporation rate, the reservoir is vacuum isolated and additionally shielded by an outer container containing liquid nitrogen.", "source_url": "https://www.corzilius.chemie.uni-rostock.de/en/hauptmenue/research/instrumentation/400-mhz-widebore-nmr/"},
+    {"name": "Sample rotor in MAS stator (cold N2 gas from LT-MAS cabinet)", "temperature_K": 95, "quote": "Temperature control range 95 K - 300 K", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item2/Datasheet+LTMAS+Cooling+Cabinet.pdf"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "cylindrical 3.2 mm MAS rotor spinning at the magic angle inside the probe stator, probe inserted from the bottom of the 89 mm room-temperature bore",
+    "description": "9.4 T wide-bore (89 mm) magnet; bottom-inserted LT-MAS DNP probe; 3.2 mm sapphire rotor with 25 ul sample volume; microwaves arrive via 7.6 mm ID probe waveguide",
+    "diameter_or_width": {"value": 3.2, "unit": "mm", "location": "rotor outer diameter", "quote": "as packed in 3.2 mm sapphire rotor with 25 ul sample volume and with a Bruker DNP probe", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item0/Datasheet+263+GHz+Klystron+BH4100.pdf"}
+  },
+  "wiring": [
+    {"kind": "coax", "count": 3, "from": "Avance console amplifiers (300 W 1H, 500 W X/Y)", "to": "triple-resonance H/X/Y 3.2 mm DNP probe", "quote": "Triple Resonance X/Y/H 3.2 mm DNP Probe | 400, 600 and 800 MHz (WB) | PH2747_NCH_G", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr.html"},
+    {"kind": "none", "count": 1, "from": "263 GHz klystron (under magnet)", "to": "probe waveguide, 7.6 mm ID", "quote": "Overmoded Gaussian beam/HE11 and coupling into 7.6 mm ID probe waveguide (as standard on Bruker DNP probes)", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item0/Datasheet+263+GHz+Klystron+BH4100.pdf"}
+  ],
+  "windows": {"count": 0, "axis": "none", "quote": "The NMR magnet can be equipped with a sweep coil, enabling the user to change the B0 field within the range required to tune the DNP matching condition to the microwave frequency.", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr.html"},
+  "moving_parts": [
+    {"part": "gas_flow", "rate": "3.2 mm rotor MAS 5-15 kHz (12 kHz max at 100 K recommended for sapphire); N2 drive/bearing gas > 120 L/min STP at > 6 bar", "quote": "For 3.2 mm, 12.5 kHz MAS: > 120 L/min STP @ > 6 bar", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item2/Datasheet+LTMAS+Cooling+Cabinet.pdf"},
+    {"part": "ln2_boiloff_vapour", "rate": "LN2 consumption 7-10 L/h STP; nitrogen exhaust 15 m3/h (STP) at 15 kHz, 3.2 mm rotor", "quote": "Nitrogen gas exhaust (probe exhaust and heat exchanger reservoir boil-off) Rotor 3.2 mm ... Flow m3/h (STP) 15", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item2/Datasheet+LTMAS+Cooling+Cabinet.pdf"},
+    {"part": "magnet_ramp", "rate": "superconducting sweep coil +/-75 mT around 9.4 T", "quote": "An additional superconducting sweep coil allows the variation of the magnetic field by +/- 75 mT for an optimum adjustment of DNP matching conditions.", "source_url": "https://www.corzilius.chemie.uni-rostock.de/en/hauptmenue/research/instrumentation/400-mhz-widebore-nmr/"},
+    {"part": "stage_translation", "rate": "klystron on rail under magnet, xyz and tilt stages; parked aside during probe exchange", "quote": "mounting and rail system to underside of magnet for convenient positioning of klystron (fine adjustments with precsion xyz and tilting stages) and for parking klystron aside during probe exchange", "source_url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr/_jcr_content/root/sections/highlights/sectionpar/twocolumns/contentpar-2/calltoaction_1259740487.download-asset.pdf/links/item0/Datasheet+263+GHz+Klystron+BH4100.pdf"}
+  ],
+  "cryogen": "liquid_helium_bath",
+  "not_found": [
+    "outer.depth (cylindrical magnet; footprint diameter 1.38 m given instead)",
+    "Ascend 400 DNP-specific magnet dimensions (figures are for the generic 400/89 Ascend in Bruker Site Planning H157654)",
+    "stage plate diameters (LHe vessel, LN2 shield diameters)",
+    "LN2 shield temperature (shield described, no temperature published)",
+    "sample_space.height (rotor length not published)",
+    "liquid helium hold time / refill interval for the DNP magnet",
+    "probe body length and diameter",
+    "DC wiring, thermometer and heater lead counts",
+    "windows.diameter_mm (no optical windows on this instrument)"
+  ],
+  "notes": "Scene = vertical white Bruker Ascend 400/89 WB magnet dewar (1.30 m dia, 2.49 m tall incl. stand, 682 kg with cryogens) with 89 mm vertical bore; LHe bath at 4.2 K around the coils, LN2 outer container; probe enters from below; 263 GHz klystron BH4100 (1-5 W, 263 GHz) hangs on a rail under the magnet and feeds a 7.6 mm ID waveguide; separate LT-MAS cabinet (188x101x80 cm, ~500 kg, 2500 W) and klystron chiller (74x44x68 cm, 3.5 kW heat) stand beside it. Catalog entry says 9.4 T, 95-300 K, LHe+LN2, 5 W max microwave, purge gas true. Snapshots: research/v5/cache/06d6a3c21935c4d3.txt (LTMAS), 29e3f2cf9b2cb161.txt (klystron), 0f6ee54464e0939b.txt (Rostock), ab0eadd41cdf0e12.txt (product page), b957197664622488.txt (site planning H157654, Jan 2017)."
+}

@@ -1,0 +1,53 @@
+{
+  "configuration_id": "attocube_attodry800_basic_shroud",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 305, "unit": "mm", "location": "optical table top thickness; the cryocooler hangs underneath, legs are 597 mm (published separately, not summed)", "quote": "optical table standard size 900 mm x 1800 mm x 305 mm (leg height 597 mm), other table sizes available; metric or imperial mounting threads", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    "width_or_diameter": {"value": 1800, "unit": "mm", "location": "optical table length", "quote": "optical table standard size 900 mm x 1800 mm x 305 mm (leg height 597 mm), other table sizes available", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    "depth": {"value": 900, "unit": "mm", "location": "optical table width", "quote": "optical table standard size 900 mm x 1800 mm x 305 mm (leg height 597 mm), other table sizes available", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    "color_note": "Not published; the only outer object is a standard optical table with the cryocooler assembly underneath ('The cryocooler assembly is located in the otherwise unused space underneath.')"
+  },
+  "stages": [
+    {"name": "cold plate / cold breadboard (sample stage, flush with table surface)", "temperature_K": 3.8, "diameter_mm": 75, "quote": "integrated cold plate of 75 mm in diameter ... temperature range 3.8 .. 320 K (depending on configuration)", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    {"name": "4 K wiring heat-sink stage", "temperature_K": 4, "quote": "36 customer wires included, heat sunk @ 4 K (additional wiring on request)", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"}
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "circular cold plate flush with the optical table, covered by a cold shield and a cylindrical vacuum shroud with a single top window",
+    "description": "Sample sits on the 75 mm cold breadboard (ASH/Zvar manual sample holder, +/-7 mm z range) under a cold shield whose lid sets a 3.5 mm working distance to a room-temperature objective outside the top window; sample cooled via ATC100 braids in cryogenic vacuum (<5e-6 mbar).",
+    "diameter_or_width": {"value": 75, "unit": "mm", "quote": "sample space 75 mm (diameter)", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"}
+  },
+  "wiring": [
+    {"kind": "dc_loom", "count": 36, "from": "room-temperature feedthrough", "to": "4 K heat sink / cold plate", "quote": "36 customer wires included, heat sunk @ 4 K (additional wiring on request)", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    {"kind": "dc_twisted_pair", "count": 12, "from": "feedthrough ring", "to": "ASH/PCB/12mini sample holder (optional)", "quote": "ASH/PCB/12mini for ASH/Zvar with 12 electrical contacts wired to twisted pairs", "source_url": "https://www.attocube.com/en/products/cryostats/closed-cycle-cryostats/attodry800/vacuum-shrouds/basic-standard-shroud"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "diameter_mm": 25,
+    "quote": "vacuum top window, 25 mm x 1.5 mm, fused silica (others on request) ... cold shield top window, 12.7 mm x 0.5 mm, fused silica; default cold shield clear aperture 9 mm",
+    "source_url": "https://www.attocube.com/en/products/cryostats/closed-cycle-cryostats/attodry800/vacuum-shrouds/basic-standard-shroud"
+  },
+  "moving_parts": [
+    {"part": "pulse_tube_rotary_valve", "rate": "1 Hz", "quote": "the pulse width modulator built in the inverter driving the 1 Hz rotating valve of the three phase motor of the cryostat", "source_url": "https://arxiv.org/pdf/2103.05619"},
+    {"part": "compressor", "rate": "max. 3 kW, water cooled, 6 m flexlines", "quote": "Compressor power consumption max. 3 kW; cooling of compressor water cooling (default; requires local infrastructure) ... flexlines extension to 13 m or 20 m (instead of 6 m)", "source_url": "https://www.attocube.com/downloads/attodry800.pdf"},
+    {"part": "turbo_pump", "quote": "high quality vacuum system with turbo pump -> keeps your samples clean", "source_url": "https://www.attocube.com/en/products/cryostats/closed-cycle-cryostats/attodry800-optical-cryostat"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.cryostat_body_dimensions (attoDRY800 spec sheet gives only the optical table; the brochure's '430 x 710 x 890 mm' row matches the attoDRY800xs sheet and is not trusted for the 800)",
+    "stages.first_stage_temperature_K (no 40-50 K stage published)",
+    "stages.first_stage_diameter_mm",
+    "stages.cold_plate_cooling_power_at_first_stage",
+    "sample_space.height (manufacturer lists only 'customized height' as an option)",
+    "vacuum_shroud.height_mm",
+    "vacuum_shroud.outer_diameter_mm",
+    "cold_shield.diameter_mm",
+    "wiring.gauge_or_material",
+    "windows.side_windows (Basic shroud lists only the top window)",
+    "outer.color_note (no published finish)",
+    "pulse_tube.model (cold head manufacturer/model not published)"
+  ],
+  "notes": "Basic (standard) shroud configuration: room-temperature objective (max. outer diameter 36 mm) looks down through a single 25 mm fused-silica top window; cold shield lid adjustable for a 3.5 mm minimum working distance; lid carries 88x M6 holes on a 12.5 mm grid and 30/60 mm cage threads; feedthrough ring with blind flanges included (DC/SMA/fiber optional); not compatible with positioners. Base temp 3.5-3.8 K per shroud page, 3.8-320 K per spec sheet; cooldown < 4.5 h to 5 K; cooling power > 170 mW @ 5 K; vibration < 5 nm p-p vertical. Pulse-tube identification and the 1 Hz valve rate come from Vadia et al., PRX Quantum 2, 040318 (2021) (arXiv:2103.05619, co-authored by attocube), which also reports '1 Hz periodic pattern of mechanical pulses characteristic of closed-cycle coolers'; attocube's own pages only call it a 'closed-cycle cryostat' with 'cryocooler assembly ... underneath'. Permanent-magnet shroud exists as a custom option only; no magnet in this configuration. Cached sources: research/v5/cache/5295d024c2d737cc.txt (spec), 4b7ada6b9903adcb.txt (Basic shroud), 5039eed9ac55d4ca.txt (product page), 3a645da2483eab24.txt (brochure), 1a4d6faca33fc8fd.txt (arXiv)."
+}

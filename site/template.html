@@ -260,7 +260,11 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         <div class="v info" id="v-info"><span class="c">?</span>Need more information</div>
       </div>
       <div class="suggest" id="suggest" aria-live="polite"></div>
-      <button class="why" id="whybtn" style="margin-top:0;font-size:13.5px">Why this verdict? Every requirement and source</button>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="replay" id="checkbtn" style="font-size:15px;padding:9px 16px">Check my setup</button>
+        <button class="replay" id="demobtn" style="background:var(--chip);color:var(--ink);font-size:13px">Try a demo</button>
+        <button class="why" id="whybtn" style="margin:0;font-size:13px">Why this verdict?</button>
+      </div>
     </section>
   </div>
 
@@ -280,12 +284,15 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   <div class="dlg">
     <button class="x" id="dlgclose">Close</button>
     <h3 id="dlgtitle">Why this verdict</h3>
+    <div id="dlgbody"></div>
+    <div id="whyparts" style="display:grid;gap:16px">
     <div class="meta" id="pairmeta"></div>
     <div class="tablebox"><table class="checks"><thead><tr><th>Property</th><th>Experiment needs</th><th>Machine documents</th><th>Outcome</th></tr></thead><tbody id="checks"></tbody></table></div>
     <div class="two">
       <div><h3 id="gridtitle" style="font-size:18px;margin-bottom:8px">All 9 pairings</h3><div class="matrix" id="matrix"></div></div>
       <div style="display:grid;gap:10px"><h3 style="font-size:18px">Whole catalog</h3><div class="totals" id="alltotals"></div>
         <p class="meta" id="stamp2" style="margin:0"></p></div>
+    </div>
     </div>
   </div>
 </dialog>
@@ -533,6 +540,83 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
   if (location.hash === "#demo") setTimeout(() => tab(true), 0);
 
+  // ---------------------------------------------------------------- real backend (python -m cryolean serve)
+  // When the page is served by the CryoLean API, "Check my setup" runs the compiled Lean checker on the server with the
+  // values typed above; on the static page it uses the precomputed Lean outcomes (and says so).
+  const LIVEAPI = typeof window.CRYOLEAN_API === "string";
+  const decStr = (x) => { let s = String(x); if (/e/i.test(s)) s = Number(x).toFixed(20).replace(/0+$/, "").replace(/\.$/, ""); return s };
+  function edits(eid, lv) {
+    return (L.requirements[eid] || []).filter((r) => r.editable && r.keys.length === 1).map((r) => {
+      const v = lv.vals[r.index];
+      const c = r.kind === "range_within" ? { kind: "range_within", lo: { value: decStr(Math.min(v[0], v[1])), unit: r.unit }, hi: { value: decStr(Math.max(v[0], v[1])), unit: r.unit } }
+        : { kind: r.kind, q: { value: decStr(v), unit: r.unit } };
+      return { key: r.keys[0], constraint: c };
+    });
+  }
+  async function post(path, body) {
+    const res = await fetch((window.CRYOLEAN_API || "") + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) });
+    const j = await res.json();
+    if (!j.ok) throw new Error((j.error && j.error.message) || "backend error");
+    return j.data;
+  }
+  const PILL = { pass: "pass", fail: "fail", unknown: "unknown" };
+  function resultHTML(r, title) {
+    const sec = (t, body, open) => `<details ${open ? "open" : ""} style="border:1px solid var(--line);border-radius:10px;padding:8px 12px"><summary style="font:800 15px var(--display);cursor:pointer">${t}</summary><div style="margin-top:8px">${body}</div></details>`;
+    const reqs = `<div class="tablebox"><table class="checks"><thead><tr><th>Requirement</th><th>Needs</th><th>Machine</th><th>Lean</th></tr></thead><tbody>` +
+      r.checks.map((c) => `<tr><td class="k">${esc(c.keys.join(" or "))}</td><td>${esc(c.required)}</td><td>${esc(c.available)}</td><td><span class="pill ${PILL[c.outcome]}">${OUT[c.outcome] || c.outcome}</span><div class="ex">${esc(c.explanation)}</div></td></tr>`).join("") +
+      (r.coupled_checks || []).map((c) => `<tr><td class="k">${esc(c.name)}</td><td>${esc(c.equation || "")}</td><td>lhs ${esc(c.lhs && c.lhs.display)} · rhs ${esc(c.rhs && c.rhs.display)}</td><td><span class="pill ${PILL[c.outcome]}">${OUT[c.outcome] || c.outcome}</span><div class="ex">${esc(c.explanation)}</div></td></tr>`).join("") + `</tbody></table></div>`;
+    const ev = r.checks.flatMap((c) => (c.capability_evidence || []).concat(c.requirement_evidence || [])).filter((e, i, a) => e && a.findIndex((x) => x.id === e.id) === i).slice(0, 12)
+      .map((e) => `<p class="meta" style="margin:0 0 6px"><b>${esc(e.id)}</b> · ${esc(e.evidence_status || "")} · "${esc((e.quote || "").slice(0, 220))}" ${e.source_url ? `<a href="${esc(e.source_url)}" target="_blank" rel="noopener">${esc(e.document_title || "source")}</a>` : ""}</p>`).join("") || "<p class='meta'>No evidence records attached.</p>";
+    const v = r.verification || {}, ce = v.concrete_evaluation || {}, card = r.verdict_card || {};
+    const proof = `<p class="meta">Decided by <b>${esc(ce.engine || card.decided_by || "Lean checker")}</b> (Lean ${esc(ce.lean_version || card.lean_version || "")}), verified_by_lean = <b>${esc(String(ce.verified_by_lean ?? ""))}</b>, input hash <code>${esc(String(ce.lean_input_hash || card.lean_input_hash || ""))}</code>, core source hash <code>${esc((card.source_hash || "").slice(0, 16))}</code>.</p>` +
+      `<p class="meta">Theorems behind this verdict: ${(card.theorems || (v.generic_theorems || {}).key_theorems || []).map((t) => `<code>${esc(typeof t === "string" ? t : t.name || JSON.stringify(t))}</code>`).join(", ")}. Axioms: standard only = <b>${esc(String(card.axioms_standard_only ?? ""))}</b>.</p>`;
+    const sg = r.suggestions || {}, alts = sg.alternatives || [], pcs = (sg.parameter_changes || []).filter((p) => p.status === "found"), cf = ((sg.conflicts || {}).conflicts || []);
+    const z3 = (cf.length ? `<p class="meta"><b>Z3 unsat core:</b> ${cf.map((c) => esc(c.explanation)).join("<br>")}</p>` : "") +
+      (pcs.length ? `<p class="meta"><b>Z3 parameter changes</b> (each already re-checked by Lean):</p>` + pcs.map((p) => `<button class="fix zfix" data-p="${esc(p.parameter)}" data-v="${esc(p.suggested_exact || p.suggested)}">${esc(p.parameter)}: ${esc(p.current)} → ${esc(p.suggested)} · Lean ${esc(p.lean_verdict)}</button>`).join(" ") : "") +
+      (alts.length ? `<p class="meta"><b>Z3 alternatives</b> (Lean verdict shown for each):</p><div class="alts">` + alts.slice(0, 6).map((a) => `<button class="alt zalt" data-cid="${esc(a.configuration_id)}">${esc(a.name || a.configuration_id)} · Lean ${esc(a.lean_verdict)}${a.hypothetical ? " · with options " + esc(a.added_options.join(", ")) : ""}</button>`).join("") + `</div>` : "") ||
+      "<p class='meta'>No Z3 suggestion for this pairing.</p>";
+    const tone = VCLS[r.verdict[0]];
+    return `<div style="display:grid;gap:10px"><div class="v ${tone} on" style="opacity:1"><span class="c">${tone === "met" ? "&#10003;" : tone === "fail" ? "&#10005;" : "?"}</span><span><b style="font:800 18px var(--display)">${esc(title || r.headline)}</b><br>${esc(r.user_message || r.summary)}</span></div>` +
+      sec("Detailed requirements", reqs, true) + sec("Scientific evidence", ev) + sec("Lean proof details", proof) + sec("Z3 recommendations · hints, never verdicts", z3, r.verdict !== "REQUIREMENTS_MET") + `</div>`;
+  }
+  async function checkSetup() {
+    const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
+    const cid = st.alt || cfg.id, lv = liveState(ex.id);
+    const confirmed = (L.requirements[ex.id] || []).every((r) => lv.conf[r.index]);
+    $("dlgtitle").textContent = "Check my setup";
+    if (!LIVEAPI) {
+      const code = liveVerdict(ex.id, cid, lv);
+      $("dlgbody").innerHTML = `<p class="meta">This published page answers from the precomputed Lean outcomes (every value range of every machine was decided by the Lean checker). Run <code>python -m cryolean serve</code> to have this button call the Lean checker live on your values.</p>` +
+        `<div class="v ${VCLS[code]} on" style="opacity:1"><span class="c">${code === "R" ? "&#10003;" : code === "D" ? "&#10005;" : "?"}</span><span><b>${{ R: "Requirements met", D: "Does not meet requirements", N: "Need more information" }[code]}</b></span></div>`;
+      openDlg(); return;
+    }
+    $("dlgbody").innerHTML = `<p class="meta">Running the Lean checker on the server…</p>`; openDlg();
+    try {
+      const r = await post("/api/check", { experiment_id: ex.id, configuration_id: cid, requirement_edits: edits(ex.id, lv), confirmed, suggestions: true });
+      $("dlgbody").innerHTML = resultHTML(r);
+      $("dlgbody").querySelectorAll("button.zalt").forEach((b) => b.onclick = () => {
+        const j = ind.configurations.findIndex((c) => c.id === b.dataset.cid);
+        if (j >= 0) { st.cfg = j; st.alt = null } else if (L.configurations[b.dataset.cid]) st.alt = b.dataset.cid;
+        render(); checkSetup();     // switching machines keeps the experiment; the new pairing is checked again
+      });
+    } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
+  }
+  async function tryDemo() {
+    if (!LIVEAPI) { closeDlg(); tab(true); playDemo("B"); return; }
+    $("dlgtitle").textContent = "Try a demo · 50-qubit wiring repair loop";
+    $("dlgbody").innerHTML = `<p class="meta">1 · Checking the 50-qubit wiring layout on a Bluefors LD400 with high-density wiring…</p>`; openDlg();
+    try {
+      const d = await post("/api/repair-demo", {});
+      const p = d.z3_proposals[0];
+      $("dlgbody").innerHTML =
+        `<p class="meta"><b>1 · Lean checks the original setup.</b></p>` + resultHTML(d.initial, "Lean rejects the original wiring") +
+        (p ? `<p class="meta" style="margin-top:12px"><b>2 · Z3 proposes a change</b> (a hint): ${esc(p.parameter)} ${esc(p.current)} → ${esc(p.suggested)}. <b>3 · You apply it</b> and Lean checks the revised experiment from scratch:</p>` +
+          resultHTML(d.recheck, "Lean re-checks the revised wiring") : `<p class="meta">Z3 found no single-parameter repair.</p>`);
+    } catch (e) { $("dlgbody").innerHTML = `<p class="meta">The backend returned an error: ${esc(e.message)}</p>` }
+  }
+  function openDlg() { const g = $("dlg"); if (g.showModal && !g.open) g.showModal(); else g.setAttribute("open", "") }
+  function closeDlg() { const g = $("dlg"); if (g.close) g.close(); else g.removeAttribute("open") }
+
   function render() {
     save();
     const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
@@ -589,7 +673,10 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   $("stamp2").innerHTML = `Generated ${esc(D.generated)} · ${esc(D.lean_version || "Lean checker")} · source hash <code>${esc((D.lean_source_hash || "").slice(0, 16))}</code>. Verdicts are precomputed by the Lean checker; the page decides nothing.`;
   $("stamp").textContent = (K.pairs ? `${fmt(K.pairs)} experiment-machine pairs` : `${D.pairings} pairings`) + ` decided by the Lean 4 checker · 3D models are illustrative`;
   const dlg = $("dlg");
-  $("whybtn").onclick = () => { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "") };
+  $("whybtn").onclick = () => { $("dlgtitle").textContent = "Why this verdict"; $("dlgbody").innerHTML = ""; $("whyparts").hidden = false; if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "") };
+  $("checkbtn").onclick = () => { $("whyparts").hidden = true; checkSetup() };
+  $("demobtn").onclick = () => { $("whyparts").hidden = true; tryDemo() };
+  if (LIVEAPI) $("checkbtn").title = "Runs the Lean checker on the server with your values";
   $("dlgclose").onclick = () => dlg.close ? dlg.close() : dlg.removeAttribute("open");
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close() });
   render();

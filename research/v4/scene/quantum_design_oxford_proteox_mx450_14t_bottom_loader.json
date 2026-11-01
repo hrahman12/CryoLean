@@ -1,0 +1,169 @@
+{
+  "configuration_id": "quantum_design_oxford_proteox_mx450_14t_bottom_loader",
+  "archetype": "dilution_refrigerator",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 2,
+      "unit": "m",
+      "location": "Scale label on the QSHS Figure 1 schematic of a Proteox MX (MX500, Sheffield) cryostat: overall cryostat height. NOT a manufacturer dimension; QD Oxford publishes no outer dimensions for ProteoxMX.",
+      "quote": "2 m 0.6 m Upper pulse tube cooler plate (70K) Lower pulse tube cooler plate (4K) Still plate (700 mK) Cold plate (100 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    "width_or_diameter": {
+      "value": 0.6,
+      "unit": "m",
+      "location": "Scale label on the QSHS Figure 1 schematic of a Proteox MX cryostat: outer vacuum can diameter. NOT a manufacturer dimension.",
+      "quote": "2 m 0.6 m Upper pulse tube cooler plate (70K) Lower pulse tube cooler plate (4K) Still plate (700 mK) Cold plate (100 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    "color_note": "Aluminium outer vacuum envelope made of cylindrical sections that are removed from below (Viton O-ring seals), hung from a stainless top plate on a cross-braced stiffened steel frame; separate gas handling rack, Sumitomo F-100 water-cooled compressor and valve unit. Quote: 'housed in an aluminium outer vacuum envelope whose cylindrical component sections are removed from below' (arxiv 2504.12257)."
+  },
+  "stages": [
+    {
+      "name": "PT1 plate (pulse tube first stage, radiation shield)",
+      "temperature_K": 77,
+      "quote": "The upper (PT1) and lower (PT2) pulse tube cooler plates, shown in Figure 1 reach base temperatures of 77 K and 4 K, respectively.",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "PT2 plate (pulse tube second stage, copper 4 K shield; magnet hangs from the shield)",
+      "temperature_K": 4,
+      "quote": "The magnet is suspended from the bottom of the copper 4 K thermal shield attached to PT2.",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "Still plate (700 mK shield)",
+      "temperature_K": 0.7,
+      "quote": "Still plate (700 mK) Cold plate (100 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "Cold plate",
+      "temperature_K": 0.1,
+      "quote": "Still plate (700 mK) Cold plate (100 mK)",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "name": "Mixing chamber plate (MX450 experimental plate)",
+      "temperature_K": 0.01,
+      "diameter_mm": 360,
+      "quote": "Base Temperature: | < 10 mK ... Cooling Power at 100 mK: | > 450 μW Sample Space Diameter: | 360 mm plate",
+      "source_url": "https://qd-oxford.com/products/proteoxMX.html"
+    },
+    {
+      "name": "Bottom-loader cold finger / BLL-72 sample puck (docked below the mixing chamber plate, inside the magnet bore)",
+      "temperature_K": 0.012,
+      "diameter_mm": 72,
+      "quote": "Cooling power 150 µW at 100 mK Base temperature < 12 mK.",
+      "source_url": "https://qd-oxford.com/products/sample_loading_pucks.html"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "cylindrical sample puck, 72 mm sample space, 144 mm long, docked from below onto a cold finger on the BLL-72 Secondary Insert and sitting in the solenoid bore",
+    "description": "Patented bottom loader: the puck is pushed up a vacuum lock from below with a removable loading arm and pressed onto the cold-finger docking interface (make-before-break grounding for ESD). Puck carries 96 DC lines (2 x 51-way Nano-D) and up to 28 SMP coax. 14 T solenoid option; the magnet text gives bores 77-152 mm but does not state the 14 T bore, so the 14 T + 72 mm pairing is undocumented (brochure: 'Dependent on magnet selection').",
+    "diameter_or_width": {
+      "value": 72,
+      "unit": "mm",
+      "location": "BLL-72 puck sample space",
+      "quote": "Puck | BLL-42 | BLL-60 | BLL-72 ... Magnet Bore | 57 mm | 77 mm | 90 mm Sample Space | 42 mm | 60 mm | 72 mm Puck Length | 94 mm | 144 mm | 144 mm",
+      "source_url": "https://qd-oxford.com/products/sample_loading_pucks.html"
+    },
+    "height": {
+      "value": 144,
+      "unit": "mm",
+      "location": "BLL-72 puck length",
+      "quote": "The BLL-72 puck has a sample space of 72 mm and a puck length of 144 mm. The magnet bore size required for the BLL-72 is 90 mm.",
+      "source_url": "https://qd-oxford.com/products/sample_loading_pucks.html"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 96,
+      "from": "4 x 24-way Fischer connectors on the BLL-72 Secondary Insert top flange (room temperature)",
+      "to": "2 x 51-way Nano-D on the cold finger docking interface / puck",
+      "quote": "4 × 24 way Fischer connectors for DC looms Cold finger interface terminating in 28 × SMP connectors and 2 × 51 way Nano-D connectors for DC wiring",
+      "source_url": "https://qd-oxford.com/products/secondary_inserts.html"
+    },
+    {
+      "kind": "coax",
+      "count": 28,
+      "from": "28 x SMA hermetic fittings on the BLL-72 Secondary Insert (room temperature)",
+      "to": "28 x SMP on the cold finger / puck; UT47 silver-plated coax from mixing chamber to docking interface",
+      "quote": "28 × SMA hermetic fittings ... Cold finger interface terminating in 28 × SMP connectors ... UT47 silver plated coaxial lines from mixing chamber to docking interface.",
+      "source_url": "https://qd-oxford.com/products/secondary_inserts.html"
+    },
+    {
+      "kind": "coax",
+      "count": 37,
+      "from": "1 x ISO100 line-of-sight port on the bottom-loader Secondary Insert (optional capacity, cover plates fitted as standard)",
+      "to": "mixing chamber plate (UT085/UT034 semi-rigid, customer specified)",
+      "quote": "The ISO100 line-of-sight port leaves space for up to 37 × UT085/UT034 coaxial lines, either with the order of the SI or in the future as an upgrade",
+      "source_url": "https://qd-oxford.com/products/secondary_inserts.html"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 0,
+      "from": "Lake Shore 372 AC bridge (room temperature)",
+      "to": "RuO2 sensors on the dilution plates (lead count not published; 0 = unknown)",
+      "quote": "A Lakeshore 372 AC resistance bridge and Lakeshore ruthenium oxide temperature sensors allow for cryogenic temperature control",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Optical access is provided axially through the top of the puck. ... Up to 15 SMP coaxial connectors are provided on the puck.",
+    "source_url": "https://qd-oxford.com/products/sample_loading_pucks.html"
+  },
+  "moving_parts": [
+    {
+      "part": "pulse_tube_rotary_valve",
+      "quote": "Pre-cooling is achieved with a Sumitomo RP-182B2S two-stage pulse tube cooler having 1.5 W of cooling power at a PT2 temperature of 4 K, driven from a 3-phase Sumitomo Heavy Industries F-100 compressor",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "part": "compressor",
+      "quote": "Compressor F-100 F-100 Mass CH: approx. 18 kg* VU: approx. 11 kg* ... Power consumption (50Hz/60Hz) 11.8 kW*/14.5 kW*",
+      "source_url": "https://inspirehep.net/files/8eb3359aa093ce45b48868a5190f0a4e"
+    },
+    {
+      "part": "gas_flow",
+      "quote": "The dilution refrigerator requires an 18 litre charge of 3He in a 100 litre vessel of 3He/4He gas mixture supplied by Oxford Instruments.",
+      "source_url": "https://arxiv.org/pdf/2504.12257"
+    },
+    {
+      "part": "magnet_ramp",
+      "rate": "full field in 1 hour or less",
+      "quote": "Range of field strengths from 1 T to 14 T ... All magnets ramp to full field in 1 hour or less",
+      "source_url": "https://qd-oxford.com/products/proteoxMX.html"
+    },
+    {
+      "part": "probe_arm",
+      "rate": "puck load < 15 minutes; BLL-72 cooldown 10 h",
+      "quote": "Our unique combination of a high-force pressed contact, spring-loaded radiation baffles and removable loading arm results in market leading thermal performance.",
+      "source_url": "https://qd-oxford.com/products/sample_loading_pucks.html"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height (manufacturer value; only a 2 m scale label on the QSHS Proteox MX500 schematic exists)",
+    "outer.width_or_diameter (manufacturer value; only a 0.6 m scale label on the QSHS schematic exists)",
+    "outer.depth",
+    "stages[PT1].diameter_mm",
+    "stages[PT2].diameter_mm",
+    "stages[still].diameter_mm",
+    "stages[cold_plate].diameter_mm",
+    "MX450-specific PT1/PT2/still/cold-plate temperatures (values are from the Sheffield Proteox MX500 paper)",
+    "14 T solenoid bore diameter and whether it accepts the 72 mm puck (magnet text only says bores 77 mm to 152 mm)",
+    "moving_parts[pulse_tube_rotary_valve].rate (Sumitomo publishes only 50/60 Hz mains, no valve frequency)",
+    "thermometer lead count",
+    "heater lead count",
+    "plate spacing / stage heights",
+    "system mass",
+    "frame dimensions"
+  ],
+  "notes": "Scene: vertical aluminium OVC of stacked cylindrical sections on a cross-braced steel frame; inside, top plate -> PT1 (77 K) -> PT2 (4 K copper shield, magnet hangs from it) -> still (700 mK shield) -> cold plate (100 mK) -> 360 mm mixing chamber plate (< 10 mK; MX450 guaranteed > 450 uW at 100 mK, > 12 uW at 20 mK). One Sumitomo RP-182B2S pulse tube (PTR options 1.35/1.50/1.80 W; 1.5 W = RP-182B2S) with separated valve unit. One 117 x 252 mm Secondary Insert slot carries the BLL-72 bottom-loader SI with cold finger: 28 SMA hermetic + 4 x 24-way Fischer at room temperature, 28 SMP + 2 x 51-way Nano-D at the cold finger, plus one spare ISO100 LOS port (up to 37 coax). The 72 mm x 144 mm puck enters from below through a vacuum lock on a removable loading arm; load < 15 min, 10 h cooldown, < 12 mK and 150 uW at 100 mK at the puck. 14 T solenoid, quench protected, ramps to full field in 1 h or less; patented gas-gap heat switches with a remote sorb (outgassed at ~30 K) link the plates. Also 2 x KF40 + 2 x KF25 LOS ports on the top plate. CAVEATS: PT1/PT2/still/cold-plate temperatures and the 2 m x 0.6 m outer size come from the published Sheffield QSHS Proteox MX500 (8 T custom magnet), the closest documented Proteox MX, not an MX450 datasheet. The catalog unknown stands: the 14 T + 72 mm / 28-coax pairing is 'Dependent on magnet selection' and undocumented; the BLL-60 (77 mm bore, 22 coax, 96 DC) may be the actual 14 T puck. A Pisa MX450 (no magnet) is wired with 7 coax, 2 x 24-wire DC looms and 2 single-mode fibres (cisup.unipi.it/?p=5370), a different real-world wiring."
+}

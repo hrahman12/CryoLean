@@ -1,0 +1,118 @@
+{
+  "configuration_id": "mve_heco_1800_1879p_190",
+  "archetype": "ln2_storage_dewar",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 1618,
+      "unit": "mm",
+      "location": "Overall height, floor to top of closed lid, as published for the TS (touch-screen) model; the spec sheet gives no separate TEC 3000 height. Liftover height (floor to neck rim) 985 mm.",
+      "quote": "Overall Height in. (mm) TS Model 63.7 (1618) ... Liftover Height in. (mm) 38.8 (985)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    },
+    "width_or_diameter": {
+      "value": 1422,
+      "unit": "mm",
+      "location": "INNER diameter of the storage vessel (56.0 in). The outer shell diameter is NOT published; the only outer-width figure is the 1524 mm door-width clearance ('Minimum width required for vessel to pass through opening'). See not_found.",
+      "quote": "Inner Diameter in. (mm) 56.0 (1422) ... Door Width Requirement** in. (mm) 60.0 (1524)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    },
+    "color_note": "Double-walled vacuum-insulated stainless-steel dewar ('constructed of stainless steel and aluminum'); hinged work surfaces fully enclose the electronics and LN2 plumbing; two-tier folding step; hinged lid. Empty weight 781 kg, liquid-full est. 2191 kg."
+  },
+  "stages": [
+    {
+      "name": "vapour-phase storage zone (top box, inside neck, above vapour platform)",
+      "temperature_K": 83.15,
+      "diameter_mm": 1422,
+      "quote": "-190°C top box temperature ... Inner Diameter in. (mm) 56.0 (1422)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    },
+    {
+      "name": "liquid-nitrogen reservoir below the vapour platform (292 L at platform level)",
+      "temperature_K": 77,
+      "quote": "LN2 Capacity at Vapor Platform L est. 292 ... LN2 becomes vapor at temperatures greater than -320.8°F (-196°C)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "open-top vertical cylinder: 635 mm neck opening widening to a 1422 mm inner-diameter vessel, 749 mm usable height above the vapour platform, filled with 54 large + 30 mini square racks of 13 shelves",
+    "description": "Dry vapour-phase storage of vials/blood bags in racks standing on the vapour platform above the LN2 pool; samples are retrieved through the 635 mm neck after lifting the hinged lid. 79,950 x 1.2/2 ml vials maximum.",
+    "diameter_or_width": {
+      "value": 635,
+      "unit": "mm",
+      "location": "neck opening (access aperture); vessel inner diameter below the neck is 1422 mm",
+      "quote": "Neck Opening in. (mm) 25 (635) ... Inner Diameter in. (mm) 56.0 (1422)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    },
+    "height": {
+      "value": 749,
+      "unit": "mm",
+      "location": "usable internal height (rack height) above the vapour platform",
+      "quote": "Usable Internal Height in. (mm) 29.5 (749)",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "none",
+      "count": 0,
+      "from": "n/a",
+      "to": "n/a",
+      "quote": "Fully enclosed wiring and plumbing ... Dry sample storage",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-HEco-1800-Series-Spec-Sheet.pdf"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 1,
+      "from": "TEC 3000 / touch-screen controller in the enclosed work surface",
+      "to": "gas-bypass temperature sensor on the plumbing stack (Pt-1000 RTD)",
+      "quote": "Gas Bypass Temp Sensor Pt-1000 RTD",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Each freezer is individually made, double-walled, vacuum insulated stainless steel dewar designed to maintain temperature with minimal LN2 evaporation.",
+    "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/21841529-C-CryoVerse-Connect-on-HE-OT-Manual-Rev-C.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "door",
+      "rate": "manual; lid-open alarm after 5 min",
+      "quote": "Carefully raise and lower the step and freezer lid with caution. ... If the lid remains open longer than 5 minutes, a Lid Time Alarm is announced.",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/21841529-C-CryoVerse-Connect-on-HE-OT-Manual-Rev-C.pdf"
+    },
+    {
+      "part": "sample_rotator",
+      "rate": "manual rotation of the turn tray",
+      "quote": "Rotate and stop the turn tray slowly ... Turn-tray: Shape of turn-tray dividers, HE and HEco series only; P = pie-shaped, R =",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "intermittent automatic LN2 fill through 24 VDC fill solenoid via the annular fill line (rate not published)",
+      "quote": "The plumbing assembly carries and regulates the flow of LN2 from the liquid supply through the annular fill line, and into the freezer. ... Fill Solenoid Valve 24 VDC",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    },
+    {
+      "part": "ln2_boiloff_vapour",
+      "rate": "continuous slow boil-off vented through the lid (rate not published; shown only as a hold-time graph)",
+      "quote": "Cryogenic Freezers are non-pressurized vessels and are vented through the lid into",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/21841529-C-CryoVerse-Connect-on-HE-OT-Manual-Rev-C.pdf"
+    }
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "outer.depth",
+    "outer shell outside diameter (only inner diameter 1422 mm and 1524 mm door clearance are published)",
+    "overall height of the TEC 3000 (non-TS) variant",
+    "vapour platform height above vessel floor",
+    "LN2 boil-off / static evaporation rate (hold time given only as a graph)",
+    "fill solenoid cycle frequency",
+    "lid diameter and thickness",
+    "neck tube length"
+  ],
+  "notes": "Vertical stainless-steel vapour-phase LN2 freezer, not a cryostat: no vacuum sample space, no windows, no sample wiring, no magnet. Scene = 1618 mm tall cylinder (inner vessel 1422 mm dia; outer shell slightly larger, unpublished) with 635 mm neck and hinged lid at the 985 mm liftover line, 54 large + 30 mini square racks (13 shelves) standing on a vapour platform above a 292 L LN2 pool; enclosed plumbing/electronics work surface with TEC 3000 or touch screen; two-tier folding step. Only moving things: hinged lid, manual turn tray, solenoid-controlled LN2 fill and lid-vented boil-off. Catalog document list points at the labrepco mirror of the same ML-000019 Rev 0 spec sheet; URLs here are the mvebio.com originals verified in research/v5/cache (0d5eb2789a332582, 13289499-R, CryoVerse manual). Rev 3 of ML-000019 (2025 catalog) revises 1879P neck to 627 mm and height to 1619 mm."
+}

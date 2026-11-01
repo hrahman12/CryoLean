@@ -1,0 +1,138 @@
+{
+  "configuration_id": "mi_6800c_cfms_9t_30_h3",
+  "archetype": "other",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 50,
+      "unit": "mm",
+      "location": "LOWER BOUND ONLY: homogeneous sample region at the bottom of the VTI. Overall cryostat height is not published by MI (only the compressor is dimensioned: W 444 x L 529 x H 576 mm, 100 kg).",
+      "quote": "the temperature remains stable and homogeneous within 100 mK over a height of at least 5 cm from the bottom of the VTI, where the samples will be placed",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    "width_or_diameter": {
+      "value": 52,
+      "unit": "mm",
+      "location": "LOWER BOUND ONLY: clear bore of the superconducting magnet. Outer vacuum-can diameter is not published.",
+      "quote": "liquid helium free superconducting magnets producing a vertical magnetic field with the central bore of 52 mm",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    "color_note": "No colour or finish is stated in the brochure or product page."
+  },
+  "stages": [
+    {
+      "name": "Pulse-tube 1st stage",
+      "temperature_K": 45,
+      "quote": "Cooling Powers at 50 Hz 1st Stage: 35 W @ 45 K, 2nd Stage: 0.9 W @ 4.2 K",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "name": "Pulse-tube 2nd stage",
+      "temperature_K": 4.2,
+      "quote": "Cooling Powers at 50 Hz 1st Stage: 35 W @ 45 K, 2nd Stage: 0.9 W @ 4.2 K",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "name": "Cryocooler base (second stage, no load)",
+      "temperature_K": 3,
+      "quote": "Base Temperature < 3 K Orientation Vertical Only Maintenance Interval 30,000 hrs – 40,000 hrs",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "name": "VTI sample space (continuous 4He gas flow, scroll-pumped)",
+      "temperature_K": 1.3,
+      "diameter_mm": 30,
+      "quote": "Sample Space 30 mm / 40 mm Temperature Range (with Continuous Gas Flow in VTI) Below 1.3 K to 100 K with 40 cubic metre scroll pump",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "description": "30 mm VTI inside the 52 mm bore of a vertical-field 9 T magnet; top-loading dual TO-8 probe through an airlock and gate valve; samples sit at the bottom of the VTI where temperature is homogeneous within 100 mK over >= 5 cm.",
+    "shape": "vertical cylinder (VTI tube)",
+    "diameter_or_width": {
+      "value": 30,
+      "unit": "mm",
+      "location": "VTI bore (CFMS-9T-30-H3 is the 30 mm VTI item; 40 mm is the alternative)",
+      "quote": "Sample Space 30 mm / 40 mm",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    "height": {
+      "value": 50,
+      "unit": "mm",
+      "location": "homogeneous sample region measured from the bottom of the VTI (lower bound)",
+      "quote": "homogeneous within 100 mK over a height of at least 5 cm from the bottom of the VTI, where the samples will be placed, even while sweeping the magnetic induction at 0.5 T/min rate",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 8,
+      "from": "probe head (room temperature)",
+      "to": "TO-8 socket, sample platform 1",
+      "quote": "The standard sample platform has 8 electrical connections using PTFE insulated silver wiring to a TO8 socket. The probe is shipped with two TO8 sample platforms as standard.",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "kind": "dc_loom",
+      "count": 8,
+      "from": "probe head (room temperature)",
+      "to": "TO-8 socket, sample platform 2 (dual sample probe)",
+      "quote": "The system has been specially designed for a dual sample platform to allow for GaAs/AlGaAs and Graphene QHR sample use. Both samples can be inserted at the same time",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "The QHE device is mounted on a special probe that passes through an airlock so as to maintain the system clean and free of atmospheric gas",
+    "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "pulse_tube_rotary_valve",
+      "quote": "The use of patented technology allows the whole system to be operated from a pulse-tube cryocooler.",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "part": "compressor",
+      "rate": "50 Hz or 60 Hz mains, water-cooled F70LP/H",
+      "quote": "Compressor – F70LP/H (Water Cooled) Main Power Requirement 7.2 kW (steady), 8.5 kW (max), 3-phase",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "40 m3/h scroll pump on the VTI",
+      "quote": "Temperature control with stability at the mK level is achieved using a continuous flow of recirculating 4He gas in the closed-loop.",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "part": "magnet_ramp",
+      "rate": "0.5 T/min (15 min to 9 T); persistent-mode decay 10 ppm/hr",
+      "quote": "Ramp rates 15 minutes to 9 Tesla",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    },
+    {
+      "part": "probe_arm",
+      "rate": "sample change in a few minutes, top-loading through airlock and gate valve",
+      "quote": "Samples are top loaded into the sample access column via an airlock and gate valve located at the top of the sample space",
+      "source_url": "https://mintl.com/wp-content/uploads/6800C_Brochure-1.pdf"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height (overall cryostat/vacuum-can height; only the compressor W 444 x L 529 x H 576 mm is dimensioned)",
+    "outer.width_or_diameter (vacuum-can outer diameter; only the 52 mm magnet bore is published)",
+    "outer.depth",
+    "cryostat weight (only compressor weight 100 kg)",
+    "stage plate diameters (50 K and 4 K plates)",
+    "VTI / sample-space usable length (only the >= 5 cm homogeneous region)",
+    "probe length and probe-head dimensions",
+    "pulse-tube rotary valve frequency (pulse-tube model not named, only the F70 compressor)",
+    "magnet physical dimensions (coil OD and length)",
+    "vacuum.available / pressure.base",
+    "colour or finish of the cryostat"
+  ],
+  "notes": "Scene source: MI 6800C brochure (2021, 8 pp.) and the mintl.com product page, which repeats the brochure text; no third-party facility paper naming the 6800C was found, and MI does not publish cryostat footprint, height or weight. Configuration CFMS-9T-30-H3: 9 T vertical-field cryogen-free magnet (52 mm bore, 0.02 % over 1 cm3, 120 A / 5 V supply), 30 mm VTI with JT-condensed 4He gas loop and external scroll pump to 1.3 K, two-stage pulse-tube cryocooler (35 W @ 45 K / 0.9 W @ 4.2 K, F70 water-cooled compressor, 30,000-40,000 h service), top-loading airlock + gate valve, dual TO-8 probe with 8 PTFE-insulated silver wires per socket (16 sample lines total). No optical windows: the sample is enclosed in a VTI accessed only via airlock. 3He insert (22 mm OD, < 300 mK) and 14 T / 40 mm VTI are options not in this configuration. Rendering guidance: draw a vertical cylinder with top-mounted airlock/gate valve and probe, a separate 444 x 529 x 576 mm compressor box, and the 6020Q bridge rack; treat the outer-can dimensions as unknown."
+}

@@ -1,0 +1,51 @@
+{
+  "configuration_id": "thermo_scientific_cryomed_tscm48xv_standard",
+  "archetype": "controlled_rate_freezer",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 551, "unit": "mm", "location": "Dimensions and Construction, Exterior Dimensions (W X H X D)", "quote": "Exterior Dimensions (W X H X D) 49.3 x 21.7 x 24.3in. (125.2 x 55.1 x 61cm)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    "width_or_diameter": {"value": 1252, "unit": "mm", "location": "Dimensions and Construction, Exterior Dimensions (W X H X D)", "quote": "Exterior Dimensions (W X H X D) 49.3 x 21.7 x 24.3in. (125.2 x 55.1 x 61cm)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    "depth": {"value": 610, "unit": "mm", "location": "Dimensions and Construction, Exterior Dimensions (W X H X D); add 7.1 cm front-to-back for utilities and door handle", "quote": "Exterior Dimensions (W X H X D) 49.3 x 21.7 x 24.3in. (125.2 x 55.1 x 61cm)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    "color_note": "Exterior: 'Stainless Steel powder-coat finish' (datasheet); 'Type 304 stainless steel with exterior powder-coat finish' (brochure). Powder-coat colour itself not published. Interior: stainless steel. Touch-screen LCD user interface on the front; no thermal printer (printer cover blank) on this XV model."
+  },
+  "stages": [
+    {"name": "chamber air, minimum operating temperature (-180 C)", "temperature_K": 93.15, "quote": "Operation Temp Range +50°C to -180°C", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    {"name": "chamber air, maximum operating temperature (+50 C)", "temperature_K": 323.15, "quote": "Operation Temp Range +50°C to -180°C", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular stainless-steel chamber, front-loading through a single door, with LN2 injection ring and tubular heater; removable freezing racks / bag presses / canister racks",
+    "description": "48 L (1.7 cu ft) stainless-steel interior 48.3 cm W x 30.5 cm H x 33 cm D, front loading through one door opening left to right. Holds e.g. 5 large + 5 small 1.2/2 mL freezing racks in two rack holders (1,185 vials), 12 straw racks (480 straws), or 12 bag presses (24 x 250 mL bags). Cooling by LN2 injection ring fed by dual solenoid valves; warming by 945 W tubular heater; air-handling system for uniformity.",
+    "diameter_or_width": {"value": 483, "unit": "mm", "location": "Dimensions and Construction, Interior Dimensions (W x H x D)", "quote": "Interior Dimensions (W x H x D) 19 x 12 x 13in. (48.3 x 30.5 x 33cm)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    "height": {"value": 305, "unit": "mm", "location": "Dimensions and Construction, Interior Dimensions (W x H x D)", "quote": "Interior Dimensions (W x H x D) 19 x 12 x 13in. (48.3 x 30.5 x 33cm)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 2, "from": "controller (touch-screen UI)", "to": "chamber air (chamber thermocouple) and sample (sample thermocouple, vial/bag/straw sensor accessories 4000385/4000386/4000393/4000384)", "quote": "Chamber and sample temperatures are monitored by Type T thermocouples, eliminating lag time and providing \"real time\" responsiveness", "source_url": "https://assets.thermofisher.com/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf"},
+    {"kind": "heater_lead", "count": 1, "from": "controller", "to": "tubular heater in chamber", "quote": "Heating Method Tubular Heater 945W, 115V", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "No. of doors / Type of door (1) Front access door opening left to right.",
+    "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "quote": "Cooling Method LN2 injection using dual solenoid valve and LN2 injection ring", "rate": "0.1 to 99.9 C/min freezing rate (no load, centre of chamber)", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"},
+    {"part": "ln2_boiloff_vapour", "quote": "Consistent temperature control and uniformity achieved via an air-handling system and liquid nitrogen injection ring", "source_url": "https://assets.thermofisher.com/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf"},
+    {"part": "door", "quote": "No. of doors / Type of door (1) Front access door opening left to right.", "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "windows.diameter_mm (no viewing window is listed; door described only as a front access door with T-handle latch)",
+    "interior_depth_in_sample_space_schema (published: 13 in / 33 cm)",
+    "air_handling_fan_speed_rpm (an 'air-handling system' is stated but no fan speed or fan count is published)",
+    "solenoid_valve_cycle_rate (dual solenoid valves stated; no pulse frequency published)",
+    "exterior_powder_coat_colour",
+    "stages.plate_diameters (not applicable: air-cooled chamber, no cold plates)",
+    "wiring.thermocouple_feedthrough_count (number of sample thermocouple ports not published; brochure lists chamber + sample sensors)",
+    "chamber_wall_insulation_thickness (foamed-in-place polyurethane, thickness not published)",
+    "ln2_consumption_rate",
+    "door_thickness (shown on the dimensional drawing but the dimension text was not extractable)"
+  ],
+  "notes": "Horizontal front-loading box: 125.2 cm W x 55.1 cm H x 61 cm D (add 7.1 cm F-B for utilities and door handle), 87 kg unpacked, freestanding, powder-coated 304 stainless steel. Interior 48.3 x 30.5 x 33 cm, 48 L. One front door opening left to right with T-handle high-compression latch; foamed-in-place polyurethane insulation with Teflon heat breaks. Cooling: LN2 injected through an injection ring via dual solenoid valves from a 22 psi (1.5 bar) low-pressure supply tank via a 6 ft braided stainless hose with 0.5 in 45-degree flare connectors (LN2 inlet on the back, per drawing labels LN2 INLET, POWER PLUG, REMOTE ALARM CONTACT, RS232/PC INTERFACE). Heating: 945 W 115 V tubular heater. Rates 0.1-99.9 C/min cooling, 0.1-10 C/min warming, +50 to -180 C. Air-handling system circulates chamber air (fan implied, speed not published). Touch-screen LCD on the front, no thermal printer on XV. Type T thermocouples for chamber and sample. Catalog 'Compressor: Air-cooled' on the product page is a web attribute conflicting with the LN2-injection design and is not modelled. Snapshots: research/v5/cache/71473aefe22b27ba.txt (datasheet), b12899ec69de1d30.txt (brochure), 01d212c7f880e1f0.txt (product page)."
+}

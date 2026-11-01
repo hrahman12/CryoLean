@@ -1,0 +1,53 @@
+{
+  "configuration_id": "espec_ext2_0_standard",
+  "archetype": "environmental_chamber",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 2054, "unit": "mm", "location": "exterior cabinet height (H of W x D x H)", "quote": "Exterior Dimensions (W x D x H) | 38.8\" x 47\" x 80.9\" 985 x 1193 x 2054 mm", "source_url": "https://espec.com/na/products/model/ext2.0"},
+    "width_or_diameter": {"value": 985, "unit": "mm", "location": "exterior cabinet width (W of W x D x H)", "quote": "Exterior Dimensions (W x D x H) | 38.8\" x 47\" x 80.9\" 985 x 1193 x 2054 mm", "source_url": "https://espec.com/na/products/model/ext2.0"},
+    "depth": {"value": 1193, "unit": "mm", "location": "exterior cabinet depth (D of W x D x H)", "quote": "Exterior Dimensions (W x D x H) | 38.8\" x 47\" x 80.9\" 985 x 1193 x 2054 mm", "source_url": "https://espec.com/na/products/model/ext2.0"},
+    "color_note": "Painted exterior cabinet, stainless steel interior, single full-opening front door on the 2.0 model, adjustable leveling feet. Quote: 'Stainless steel interior, painted exterior with two full opening doors (one door on 2.0 models)' and 'Adjustable feet for leveling unit (stand options for 2.5/3.0 models)' (family page https://espec.com/na/products/family/ext_tc)."
+  },
+  "stages": [
+    {"name": "Chamber interior air (stainless steel workspace, LN2-cooled / nichrome-heated, forced air)", "temperature_K": 173.15, "quote": "Temperature Range | -100 to 200°C -148 to 392°F", "source_url": "https://espec.com/na/products/model/ext2.0"},
+    {"name": "Overhead heater plenum (nichrome wire heating, upper limit of the same air volume)", "temperature_K": 473.15, "quote": "Nichrome wire heating built into an overhead plenum", "source_url": "https://espec.com/na/products/family/ext_tc"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular box workspace 685 x 685 x 736 mm (W x D x H), 233 L",
+    "description": "Single-zone stainless steel interior, 27 x 27 x 29 in (685 x 685 x 736 mm), 12 cu ft / 233 L, conditioned by high-velocity air from an overhead plenum containing the nichrome heaters and LN2 injection; product loaded through the single full-opening front door.",
+    "diameter_or_width": {"value": 685, "unit": "mm", "location": "interior width (W of W x D x H); interior depth is also 685 mm", "quote": "Interior Dimensions (W x D x H) | 27\" x 27\" x 29\" 685 x 685 x 736 mm", "source_url": "https://espec.com/na/products/model/ext2.0"},
+    "height": {"value": 736, "unit": "mm", "location": "interior height (H of W x D x H)", "quote": "Interior Dimensions (W x D x H) | 27\" x 27\" x 29\" 685 x 685 x 736 mm", "source_url": "https://espec.com/na/products/model/ext2.0"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 4, "from": "Allen-Bradley PLC controller (thermocouple input channels)", "to": "product in chamber workspace (product thermocouples are a listed option)", "quote": "Four additional thermocouple input channels available", "source_url": "https://espec.com/na/products/model/ext2.0"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Cabinet Options Windows and ports Door Lock",
+    "source_url": "https://espec.com/na/products/model/ext2.0"
+  },
+  "moving_parts": [
+    {"part": "door", "quote": "Stainless steel interior, painted exterior with two full opening doors (one door on 2.0 models)", "source_url": "https://espec.com/na/products/family/ext_tc"},
+    {"part": "gas_flow", "quote": "High-velocity airflow for improved product temperature change rates.", "source_url": "https://espec.com/na/products/family/ext_tc"},
+    {"part": "ln2_boiloff_vapour", "rate": "chamber air changes up to 70 C/min (empty)", "quote": "Vacuum Jacketed (VJ) liquid nitrogen (LN2) valves and manifold.", "source_url": "https://espec.com/na/products/model/ext2.0"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "outer.weight",
+    "outer.door_dimensions",
+    "outer.plenum_height",
+    "windows.diameter_mm (option 'Windows and ports' not fitted; no size published)",
+    "wiring.port_feedthrough_count_and_diameter (option, not published)",
+    "wiring.thermocouple_type_and_gauge",
+    "moving_parts.circulation_fan_speed_rpm",
+    "moving_parts.airflow_velocity",
+    "moving_parts.ln2_flow_rate_or_consumption",
+    "moving_parts.ln2_valve_count",
+    "heater_power_kW",
+    "controller_pc_monitor_dimensions",
+    "ln2_supply_connection_size"
+  ],
+  "notes": "Two sources only, both ESPEC North America pages (snapshots research/v5/cache/f56c92956c6d509c.txt = model page, research/v5/cache/d2daf4bba5d454ea.txt = family page; the linked 'EXT Brochure' PDF URL is not exposed in the page text). Floor-standing painted box cabinet 985 W x 1193 D x 2054 H mm with ONE full-opening front door (family page says two doors except 'one door on 2.0 models'); stainless interior 685 x 685 x 736 mm (233 L). Thermal system: LN2 injected through vacuum-jacketed valves/manifold (proportional manifold is optional on 2.0, so standard is on/off solenoid valves), nichrome heaters in an overhead plenum, high-velocity recirculating air; -100 to 200 C, 70 C/min empty, 208/230 V 1ph 70 A. No vacuum, no magnet. Standard configuration has no window (cabinet option 'Windows and ports' not fitted) and no sample feedthrough ports; the only documented sample-side signal path is the PLC's four spare thermocouple input channels (product thermocouple is an instrumentation option). For the 3D model: single-zone box with a door on the front face, plenum at the top of the interior containing heaters and LN2 injection, air circulating downward over the workspace; an LN2 supply line (Dewar or bulk tank) enters from outside. The PLC/desktop PC with flat panel monitor is a separate item whose dimensions are not published."
+}

@@ -1,0 +1,51 @@
+{
+  "configuration_id": "martin_christ_epsilon_2_10d_lscplus_standard",
+  "archetype": "freeze_dryer",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 1303, "unit": "mm", "quote": "Dimensions (W x H x D) with stoppering device (mm) ... Epsilon 2-10D LSCplus ... 1,190 x 1,303 x 968", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf", "location": "p.18-19 Technical data table, 2-10D column"},
+    "width_or_diameter": {"value": 1190, "unit": "mm", "quote": "Dimensions (W x H x D) with stoppering device (mm) ... Epsilon 2-10D LSCplus ... 1,190 x 1,303 x 968", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf", "location": "p.18-19 Technical data table, 2-10D column"},
+    "depth": {"value": 968, "unit": "mm", "quote": "Dimensions (W x H x D) with stoppering device (mm) ... Epsilon 2-10D LSCplus ... 1,190 x 1,303 x 968", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf", "location": "p.18-19 Technical data table, 2-10D column"},
+    "color_note": "Stainless-steel cabinet with a transparent acrylic chamber door on the front ('Both films enable continued full-surface product observation through the acrylic door', p.9). Weight approx. 750 kg (p.19)."
+  },
+  "stages": [
+    {"name": "shelf stack (5 shelves, 350 x 400 x 15 mm, 59 mm spacing, 0.70 m2)", "temperature_K": 213.15, "diameter_mm": 400, "quote": "Shelf area dimensions (W x D x H): 350 mm x 400 mm x 15 mm ... 5 0.70 59 3065 1630 ... Standard configuration", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"name": "shelf temperature range -60 C to +60 C, precision <+-1 K", "temperature_K": 213.15, "quote": "Shelf area system: Dimensions (W x D) 350 mm x 400 mm; Temperature range (approx.) -60 °C to +60 °C; Temperature precision <±1 K", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"name": "ice condenser (separate chamber, 10 kg, 8 kg/24 h, approx. 50 l)", "temperature_K": 185.15, "quote": "Ice condenser: Max. Capacity 10 kg; Performance 8 kg/24 h; Temperature (approx.) -88 °C; Chamber volume (approx.) 50 l", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular shelf stack: 5 shelves 350 x 400 mm, 59 mm clear spacing, with an intermediate valve to the ice condenser chamber behind/beneath",
+    "description": "Vials, trays or plates rest on 5 fluid-cooled stainless shelves (350 x 400 mm, 59 mm spacing) in the drying chamber; up to 3065 2 ml vials. Ice condenser sits directly behind or beneath the drying chamber with an intermediate valve.",
+    "diameter_or_width": {"value": 350, "unit": "mm", "quote": "Shelf area dimensions (W x D x H): 350 mm x 400 mm x 15 mm", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf", "location": "p.20 Capacities and shelf dimensions"},
+    "height": {"value": 59, "unit": "mm", "quote": "Number of shelves / Area (m²) / Spacing (mm) / Max. number of vials ... 5 0.70 59 3065 1630 ... Standard configuration", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf", "location": "p.20, bold standard row"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 1, "from": "LSCplus controller", "to": "product vials on shelves (PT100 product temperature sensor, standard)", "quote": "Each shelf area can be equipped with WTMPlus and/or a PT100 sensor to measure the product temperature.", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"kind": "thermometer_lead", "count": 1, "from": "LSCplus controller", "to": "product (LyoRx resistance/temperature sensor for LyoControl, standard)", "quote": "Our LyoRx sensor monitors the electrical resistance and product temperature. From the curves of both data points, you can automatically determine the freezing point of your product.", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "side",
+    "quote": "Both films enable continued full-surface product observation through the acrylic door.",
+    "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"
+  },
+  "moving_parts": [
+    {"part": "compressor", "rate": "mechanical refrigeration chillers 2x 1.2 kW & 1x 0.9 kW (rotation rate not published)", "quote": "Chiller ... Epsilon 2-10D LSCplus ... 2x 1.2 kW & 1x 0.9 kW", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"part": "stage_translation", "rate": "hydraulic shelf stoppering stroke (vertical shelf compression), once per batch", "quote": "Vial stoppering: Manual; Hydraulic; Automatic 'ventilation - stoppering - shelf' function", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"part": "door", "rate": "acrylic front chamber door, opened for loading", "quote": "Both films enable continued full-surface product observation through the acrylic door.", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"part": "gas_flow", "rate": "water vapour sublimating from shelves into the ice condenser; intermediate valve closes for pressure-rise test; hot-gas defrost", "quote": "Intermediate valve for determining the transition from primary to secondary drying phase", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"},
+    {"part": "circulation_pump", "rate": "vacuum pump pulling chamber to about 0.005 mbar (pump type/speed not published)", "quote": "The final vacuum is about 0.005 mbar (depending on the performance of the vacuum pump).", "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"}
+  ],
+  "cryogen": "mechanical_refrigeration",
+  "not_found": [
+    "drying chamber internal dimensions / product chamber volume (50 l is listed under Ice condenser and is ambiguous)",
+    "acrylic door diameter / window size",
+    "ice condenser coil dimensions",
+    "vacuum pump model and rotation speed",
+    "compressor rotation rate",
+    "number and type of chamber feed-throughs / sensor ports",
+    "stage plate diameters other than shelf footprint"
+  ],
+  "notes": "Double-chamber pilot freeze dryer: drying chamber with 5 stainless shelves (350x400 mm, 59 mm spacing, 0.70 m2) behind an acrylic front door, ice condenser chamber (10 kg, -88 C, approx. 50 l) directly behind or beneath it with an intermediate valve, three refrigeration compressors (2x1.2 kW + 0.9 kW) and vacuum pump in the lower cabinet. Outer envelope 1190 W x 1303 H x 968 D mm including the hydraulic stoppering device, approx. 750 kg, 3x400 V/50 Hz, 64 dB(A). Shelf -60 to +60 C (<+-1 K), ramp up to >2 K/min. All numbers from the Martin Christ Pilot Freeze Dryers brochure EN 10/2017 (snapshot research/v5/cache/59e39ed209fac3ab.txt). The stages temperature_K for shelves is the -60 C minimum. No magnetic field, mechanical refrigeration only, LN2 booster option not fitted."
+}

@@ -1,0 +1,55 @@
+{
+  "configuration_id": "espec_epx_2j_standard",
+  "archetype": "environmental_chamber",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 1930, "unit": "mm", "location": "exterior cabinet height (H of W x D x H), model page; brochure gives 1934 mm", "quote": "Exterior Dimensions (W x D x H) | 38.3\" x 48\" x 76\" 973 x 1220 x 1930 mm", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    "width_or_diameter": {"value": 973, "unit": "mm", "location": "exterior cabinet width (W of W x D x H); same on brochure", "quote": "Exterior Dimensions (W x D x H) | 38.3\" x 48\" x 76\" 973 x 1220 x 1930 mm", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    "depth": {"value": 1220, "unit": "mm", "location": "exterior cabinet depth (D of W x D x H), model page; brochure gives 1184 mm", "quote": "Exterior Dimensions (W x D x H) | 38.3\" x 48\" x 76\" 973 x 1220 x 1930 mm", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    "color_note": "Brushed stainless steel exterior and interior, black resin thermal breaks around the door frame, heavy-duty casters, hinged service panels, 10-inch touchscreen GL controller. Quotes: 'Stainless steel exterior construction for durability over time' (model page) and 'Rounded interior corners and black resin thermal breaks around the door and doorframe are unique features found only on ESPEC chambers.' (brochure p.3)."
+  },
+  "stages": [
+    {"name": "Chamber interior air (stainless steel test area, recirculating airflow over cooling coil, heaters and humidity bath); lower limit of range", "temperature_K": 203.15, "quote": "Temperature Range | -70 to 180°C -94 to 356°F", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    {"name": "Chamber interior air, upper limit of the same volume (heaters in conditioning plenum)", "temperature_K": 453.15, "quote": "Temperature Range: -70°C to 180°C (-94°F to 356°F)", "source_url": "https://espec.com/images/uploads/files/e_platinous-j.pdf"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular box workspace 500 x 600 x 750 mm (W x D x H), 225 L",
+    "description": "Single-zone stainless steel workspace with rounded corners, 19.7 x 23.6 x 29.5 in (500 x 600 x 750 mm), 8 cu ft / 225 L, conditioned by a blower recirculating air over a cooling coil, heaters and an in-chamber humidity bath; one wire shelf on adjustable rails; loaded through a single front door; one 4 in cable port centred in the left wall.",
+    "diameter_or_width": {"value": 500, "unit": "mm", "location": "interior width (W of W x D x H); interior depth is 600 mm", "quote": "Interior Dimensions (W x D x H) | 19.7\" x 23.6\" x 29.5\" 500 x 600 x 750 mm", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    "height": {"value": 750, "unit": "mm", "location": "interior height (H of W x D x H)", "quote": "Interior Dimensions (W x D x H) | 19.7\" x 23.6\" x 29.5\" 500 x 600 x 750 mm", "source_url": "https://espec.com/na/products/model/epx-2j"}
+  },
+  "wiring": [
+    {"kind": "none", "count": 0, "from": "one 4 in (101.6 mm) diameter cable port centred in the left wall, with two flexible silicone plugs and cover", "to": "workspace (user-supplied specimen cables; no instrumentation lines fitted as standard)", "quote": "One 4\" diameter cable port, centered in the left wall (additional ports optional)", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    {"kind": "none", "count": 0, "from": "specimen power safety interlock relay / external alarm output / two time-signal relays (controller-side dry contacts)", "to": "user equipment outside the chamber", "quote": "Specimen power safety interlock relay • External alarm output • Two time signal relays", "source_url": "https://espec.com/images/uploads/files/e_platinous-j.pdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Optional viewing window with full-pane heaters to help keep condensation and frost clear.",
+    "source_url": "https://espec.com/na/products/model/epx-2j"
+  },
+  "moving_parts": [
+    {"part": "door", "quote": "Rounded interior corners and black resin thermal breaks around the door and doorframe are unique features found only on ESPEC chambers.", "source_url": "https://espec.com/images/uploads/files/e_platinous-j.pdf"},
+    {"part": "gas_flow", "rate": "400 CFM recirculating air", "quote": "Air Flow | 400 CFM", "source_url": "https://espec.com/na/products/model/epx-2j"},
+    {"part": "compressor", "rate": "cooling 4 C/min (-40 to 125 C, empty); 76 dBA at 1 m", "quote": "Platinous chambers feature finely tuned refrigeration systems with advanced control algorithms and electronic expansion valves.", "source_url": "https://espec.com/images/uploads/files/e_platinous-j.pdf"}
+  ],
+  "cryogen": "mechanical_refrigeration",
+  "not_found": [
+    "outer.weight",
+    "outer.door_dimensions",
+    "outer.caster_and_service_panel_dimensions",
+    "stages.cooling_coil_temperature",
+    "stages.humidity_bath_water_temperature",
+    "stages.heater_power_kW",
+    "windows.diameter_mm (standard configuration has no window; option is 9 x 10.3 in)",
+    "wiring.instrumentation_line_counts (none fitted as standard; product-temperature sensor is an option)",
+    "moving_parts.blower_rpm_or_motor_power",
+    "moving_parts.compressor_count_and_speed",
+    "moving_parts.compressor_stages (cascade vs single)",
+    "refrigerant_type",
+    "controller_touchscreen_position_on_cabinet",
+    "cable_port_height_on_left_wall"
+  ],
+  "notes": "Two sources only, both ESPEC North America (snapshots research/v5/cache/c98e1451f190c129.txt = model page, research/v5/cache/d57669701effc740.txt = Platinous J brochure Feb 2026). Exterior dimensions disagree slightly: model page 973 x 1220 x 1930 mm vs brochure 973 x 1184 x 1934 mm; the model page (catalog primary document) values are used. Floor-standing stainless box cabinet on heavy-duty casters with one front door; stainless workspace 500 x 600 x 750 mm (225 L) with rounded corners and one wire shelf. Thermal system per brochure cutaway (p.3): a blower at the rear recirculates air across a cooling coil, heaters and an in-chamber heated humidity bath (labels: 'Test Area, Blower, Heaters, Cooling Coil, Humidity Bath, Air Flow'); mechanical refrigeration with electronic expansion valves, no cryogen in standard configuration (LN2 boost is an unfitted option). -70 to 180 C, 10-98 %RH, 6 C/min heating, 4 C/min cooling, 400 CFM, 208/230 V 3ph 40 A, 25,000 BTU/h heat to room, 76 dBA. No vacuum, no magnet. Standard configuration has no window (viewing window option 9 x 10.3 in not fitted); the only sample pass-through is a single 4 in cable port centred in the left wall with two flexible plugs. For the 3D model: box with front door, conditioning plenum (blower, heaters, coil, humidity bath) behind/above the test area, air circulating through the workspace, a 4 in round port on the left wall, 10-inch touchscreen GL controller on the cabinet, 1/2 in condensate drain hose. Refrigeration machinery is below the workspace behind hinged service panels (height not published)."
+}

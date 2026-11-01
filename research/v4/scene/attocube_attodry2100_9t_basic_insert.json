@@ -1,0 +1,58 @@
+{
+  "configuration_id": "attocube_attodry2100_9t_basic_insert",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 1050, "unit": "mm", "location": "cryostat frame (width x depth x height); insert withdrawal requires ~2.60 m ceiling", "quote": "cryostat (width x depth x height) 1120 x 640 x 1050 mm³; required min. ceiling height approx. 2.60 m (depending on magnet)", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    "width_or_diameter": {"value": 1120, "unit": "mm", "location": "cryostat frame width", "quote": "cryostat (width x depth x height) 1120 x 640 x 1050 mm³", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    "depth": {"value": 640, "unit": "mm", "location": "cryostat frame depth", "quote": "cryostat (width x depth x height) 1120 x 640 x 1050 mm³", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    "color_note": "Not published; the only outer structure described is the 1120 x 640 x 1050 mm cryostat frame with an integrated touchscreen ('fully automated temp. and mag. field control via integrated touchscreen'), plus an optional 640 x 640 x 1050 mm electronics rack."
+  },
+  "stages": [
+    {"name": "sample location in He exchange gas (variable-temperature insert, Basic Measurement Insert heater stage)", "temperature_K": 1.65, "diameter_mm": 48, "quote": "base temperature 1.65 .. 1.8 K (for standard inserts) ... cooling power at sample location > 1 mW @ 2 K ... sample space ... Ø 48 mm for cylindrical components", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "vertical cylindrical top-loading probe bore filled with He exchange gas, centred in the 9 T solenoid",
+    "description": "Top-loading insert carrying the Basic Measurement Insert (heater stage with calibrated T sensor, sample base plate, cage plate for an LT-APO objective) lowered into a 49 mm (49.7 mm probe bore) exchange-gas sample tube at the centre of the superconducting solenoid; optical access from above through a 25 mm fused-silica top window.",
+    "diameter_or_width": {"value": 48, "unit": "mm", "quote": "sample space Ø 49 mm for components with circular segments (e.g. cage plates), Ø 48 mm for cylindrical components", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"}
+  },
+  "wiring": [
+    {"kind": "dc_twisted_pair", "count": 12, "from": "room-temperature 12-pin patch cable / BNC break-out panel", "to": "Basic Measurement Insert sample base plate", "quote": "12 manganin wires as twisted pairs for customer use incl. 5m 12-pin patch cable and break-out panels to BNC", "source_url": "https://www.attocube.com/en/products/cryostats/features/basic-measurement-insert"},
+    {"kind": "dc_loom", "count": 24, "from": "room-temperature 12-pin patch cables / BNC break-out panels", "to": "Basic Measurement Insert (nanopositioner drive lines)", "quote": "2x12 low-resistance brass wires (as e.g. required for nanopositioners) incl. 5m 12-pin patch cable and break-out panels to BNC", "source_url": "https://www.attocube.com/en/products/cryostats/features/basic-measurement-insert"},
+    {"kind": "thermometer_lead", "count": 1, "from": "included temperature controller (eNSPIRE)", "to": "heater stage calibrated T sensor", "quote": "heater stage with calibrated T sensor", "source_url": "https://www.attocube.com/en/products/cryostats/features/basic-measurement-insert"},
+    {"kind": "heater_lead", "count": 1, "from": "included temperature controller (eNSPIRE)", "to": "heater stage", "quote": "heater stage with calibrated T sensor", "source_url": "https://www.attocube.com/en/products/cryostats/features/basic-measurement-insert"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "diameter_mm": 25,
+    "quote": "optical access via top window (diameter 25mm, fused silica uncoated)",
+    "source_url": "https://www.attocube.com/en/products/cryostats/features/basic-measurement-insert"
+  },
+  "moving_parts": [
+    {"part": "pulse_tube_rotary_valve", "quote": "mechanical vibrations created by the pulse-tube coldhead are decoupled from the measurement platform", "source_url": "https://www.attocube.com/en/products/cryostats/closed-cycle-cryostats/attodry2100"},
+    {"part": "compressor", "rate": "max. 9.0 kW, 7.2 kW steady state, water cooled", "quote": "power consumption max. 9.0 kW, 7.2 kW steady state; cooling of compressor water cooling (requires local infrastructure)", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    {"part": "magnet_ramp", "rate": "0 to 9 T, bipolar", "quote": "max. magnetic field 100 % (e.g. 9 T) @ 300 K ... bipolar magnet power supply included (with optional magnet)", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    {"part": "turbo_pump", "quote": "pumping kit turbomolecular pump with suitable backing pump for sample space preparation", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"},
+    {"part": "gas_flow", "quote": "temperature control fully automated, including all pumps and valves, touchscreen & remote control via PC ... sample environment He exchange gas", "source_url": "https://www.attocube.com/downloads/attodry2100.pdf"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "moving_parts.pulse_tube_rotary_valve.rate (no valve frequency or cold-head model published for the attoDRY2100)",
+    "stages.first_stage_temperature_K (no 40-50 K pulse-tube stage temperature published)",
+    "stages.first_stage_diameter_mm",
+    "stages.second_stage_4K_plate_temperature_K and diameter (magnet/4 K plate not specified)",
+    "stages.magnet_temperature_K",
+    "sample_space.height (no insert length or usable sample height published; catalog also records sample.height.max unknown)",
+    "magnet.bore_diameter_mm (only the 49.7 mm probe bore is given, not the solenoid bore)",
+    "magnet.homogeneity_and_dimensions",
+    "outer.vacuum_can_or_dewar_diameter_mm (only the overall frame envelope is published)",
+    "outer.weight_kg",
+    "outer.color_note (no published finish)",
+    "wiring.gauge (manganin and brass stated, no AWG)",
+    "windows.thickness_mm",
+    "windows.cold_window_or_radiation_shield_aperture"
+  ],
+  "notes": "attoDRY2100 with the optional 9 T solenoid and the Basic Measurement Insert (art. 1007005). Pulse-tube closed-cycle magneto-optical cryostat, 1.65-300 K automated, base 1.65-1.8 K for standard inserts, stability < ±10 mK guaranteed (1.5-10 K), > 1 mW at 2 K at the sample, full 9 T available at 300 K, initial cooldown 20-24 h incl. 9 T magnet, sample cooldown 3-5 h. Sample sits in He exchange gas inside a top-loading probe bore (49 mm / 49.7 mm per brochure); optical access only via the insert's single 25 mm uncoated fused-silica top window. Pulse-tube identification is explicit on the product page ('mechanical vibrations created by the pulse-tube coldhead are decoupled'), but no cold-head model or valve frequency is published for this model, so the rate is omitted. Cached sources: research/v5/cache/465c82dd2b1ea577.txt (datasheet 1009389), 1712f2e73b097b95.txt (product page), 080be7f40dfda0d5.txt (Basic Measurement Insert page), 3a645da2483eab24.txt (attoDRY brochure, '49.7 mm diameter probe bore fitting all attocube inserts')."
+}

@@ -1,0 +1,65 @@
+{
+  "configuration_id": "cole_parmer_spex_cg_400_standard",
+  "archetype": "cryogenic_mill",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 46, "unit": "cm", "quote": "Dimensions (L x W x H) | 52 x 55 x 46 cm (20.5 x 21.5 x 18.0 in.)", "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill", "location": "Specifications table"},
+    "width_or_diameter": {"value": 55, "unit": "cm", "quote": "Dimensions (L x W x H) | 52 x 55 x 46 cm (20.5 x 21.5 x 18.0 in.)", "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill", "location": "Specifications table (W)"},
+    "depth": {"value": 52, "unit": "cm", "quote": "Dimensions (L x W x H) | 52 x 55 x 46 cm (20.5 x 21.5 x 18.0 in.)", "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill", "location": "Specifications table (L)"},
+    "color_note": "Benchtop cabinet with hinged lid; lid carries the dual-electromagnet coil housing over an insulated LN2 tub. Net weight 20 kg (44 lb) empty. Colour not stated in text sources."
+  },
+  "stages": [
+    {
+      "name": "Liquid-nitrogen tub (vial immersed in LN2 at 1 atm)",
+      "temperature_K": 77.34,
+      "quote": "T boil | 77.34 | K | N/A | Jacobsen, Stewart, et al., 1986 | TRC",
+      "source_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7727379&Mask=4"
+    }
+  ],
+  "sample_space": {
+    "position": "in_bath",
+    "shape": "Closed cylindrical grinding vial (center cylinder, two end plugs, steel impactor) held in the coil, immersed in the LN2 tub",
+    "description": "Grinding chamber holds one large grinding vial, one mid-size vial, four standard grinding vials, or four microvial sets (product page). Vials: 'consist of a center cylinder, two end plugs, and an impactor' (SPEX Handbook p.53). Capacities: small vial 'actual volume with impactor, approximately 25 ml'; large vial 6801 'Sample capacity up to 50 mL (1 - 100 g)'; mid-size 6881 'up to 25 mL (1-40 g)'. Sample range 0.1-50 g per run. Pre-cool and grind in one step. Vial outer dimensions not published."
+  },
+  "wiring": [
+    {"kind": "none", "count": 0, "quote": "Grinding Mechanism | Steel impactor driven by dual electromagnets", "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill", "from": "controller", "to": "coil in lid"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Lid safety interlock for operator protection prevents mill from running if lid is not latched shut.",
+    "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill"
+  },
+  "moving_parts": [
+    {
+      "part": "none",
+      "quote": "Magnetically driven impactor in the vial is the only moving part.",
+      "rate": "Impactor shuttle rate set on touchscreen in cycles per second; SPEX Handbook 6875 application examples use 8, 12 and 15 cps ('impactor rate of 15 cps. In the 6875 Freezer/Mill'). Each cycle strikes both end plugs.",
+      "source_url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf"
+    },
+    {
+      "part": "ln2_boiloff_vapour",
+      "quote": "Liquid nitrogen consumption is 4-6 liters for each hour or operation. Actual liquid nitrogen consumption can vary.",
+      "rate": "4-6 L/h LN2 boil-off from open-top insulated tub; 10-15 L initial fill",
+      "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill"
+    },
+    {
+      "part": "door",
+      "quote": "Lid safety interlock for operator protection prevents mill from running if lid is not latched shut.",
+      "rate": "Hinged lid, opened manually between runs only",
+      "source_url": "https://www.spexsampleprep.com/product/cryogenic-mills/cg-400-freezer-mill"
+    }
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "stages[].diameter_mm (LN2 tub inner dimensions not published)",
+    "sample_space.diameter_or_width (vial outer/inner diameters not published)",
+    "sample_space.height (vial lengths not published)",
+    "LN2 tub volume (only 10-15 L initial fill stated)",
+    "impactor rate min/max for CG-400 (only example rates 8-15 cps published for the 6875)",
+    "window diameter (no window documented; lid opacity not stated)",
+    "cabinet colour / material",
+    "electromagnet coil dimensions and field strength"
+  ],
+  "notes": "CG-400 = SPEX item 6875 (same 52x55x46 cm, 20 kg specs appear in the SPEX 14th Edition Handbook p.49 for the 6875). Single grinding chamber in the lid: a dual-electromagnet coil housing hangs into an insulated LN2 tub; the closed vial sits inside the coil, fully immersed, and the steel impactor is shuttled magnetically end-to-end at the programmed cps (the mill's only moving part; the user-facing 'rate' is back-and-forth cycles per second, so 10 cps = 20 impacts/s per the sibling 6770 manual, https://isolab.ess.washington.edu/resources/manuals/SPEX_Cryo_Mill.pdf). LN2 level sensor shuts the mill down when low; auto-fill (6875A/CG-450) is NOT fitted in this configuration. Touchscreen controller stores 20 programs, dual USB. No vacuum, no magnet spec, no sample electrical connections. Render: box cabinet with lid, LN2 pool at 77 K with boil-off vapour, one cylindrical vial in a coil with an oscillating impactor (8-15 Hz)."
+}

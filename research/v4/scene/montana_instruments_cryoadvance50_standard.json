@@ -1,0 +1,123 @@
+{
+  "configuration_id": "montana_instruments_cryoadvance50_standard",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box",
+    "height": {
+      "value": 490,
+      "unit": "mm",
+      "location": "Cryostation assembly on the optical table (cooling tower in sheet-metal rear case + sample chamber on common baseplate); L x W x H = 56.3 x 23.2 x 49 cm",
+      "quote": "Physical Dimensions Component L x W x H Mass Cryostation CryoAdvance-50 56.3 cm x 23.2 cm x 49 cm 29 kg",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    "width_or_diameter": {
+      "value": 232,
+      "unit": "mm",
+      "location": "Cryostation width (W in L x W x H)",
+      "quote": "CryoAdvance-50 56.3 cm x 23.2 cm x 49 cm 29 kg",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    "depth": {
+      "value": 563,
+      "unit": "mm",
+      "location": "Cryostation length (L in L x W x H), long axis from rear cooling tower to front sample chamber",
+      "quote": "CryoAdvance-50 56.3 cm x 23.2 cm x 49 cm 29 kg",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    "color_note": "Two bodies on one baseplate: a vertical aluminum cooling-tower cylinder inside a sheet-metal rear case, joined by a semi-rigid bellows to a lift-off sample-chamber housing with 5 round windows and a flat top lid. Manual: 'the vertical aluminum cylinder inside the sheet-metal rear case'. Beam height 137.1 mm from table (QD datasheet). Mass 29 kg. Window retaining rings are Delrin. Separate off-table units: water-cooled compressor 46 x 45 x 57 cm 73 kg, 4U system control unit, 6U vacuum control unit."
+  },
+  "stages": [
+    {
+      "name": "Stage 1 (GM cryocooler first stage) - thermally coupled to the radiation shield around the sample; four 30 K lagging points",
+      "temperature_K": 27.5,
+      "quote": "Stage 1 Stage 2 Platform Sample Temperature 27 – 28 K 2.4 – 2.7 K 2.7 – 3.0 K 2.8 – 3.2 K",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    {
+      "name": "Stage 2 (GM cryocooler second stage) - thermally coupled to the sample mount platform via the contraction-cancelling support",
+      "temperature_K": 2.55,
+      "quote": "Stage 1 is thermally coupled to the radiation shield inside the sample chamber. Stage 2 is thermally coupled to the sample mount platform.",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    {
+      "name": "Sample platform - circular mounting plate with 1-inch M3 bolt pattern; spec base <3.2 K with ATSM (manual example 2.7-3.0 K)",
+      "temperature_K": 3.2,
+      "quote": "Platform temperature range (with ATSM) <3.2 K - 350 K ... Platform style Circular mounting plate with 1-inch M3 bolt pattern",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "cylinder inside the radiation shield, sample sitting on the circular platform at beam height 137.1 mm, centred on the 4 radial window axes",
+    "description": "Sample-in-vacuum: 53 mm diameter x 63 mm high volume inside the bolt-on radiation shield, enclosed by the lift-off outer vacuum housing. Access by lifting the top lid/window assembly and then the radiation shield cap. Montana's own US brochure lists the sample space as Ø53 mm x 116 mm (likely measured to the top window rather than inside the shield).",
+    "diameter_or_width": {
+      "value": 53,
+      "unit": "mm",
+      "location": "inside radiation shield",
+      "quote": "Sample chamber Dimensions 53 mm diameter x 63 mm height (inside radiation shield)",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    },
+    "height": {
+      "value": 63,
+      "unit": "mm",
+      "location": "inside radiation shield",
+      "quote": "Sample chamber Dimensions 53 mm diameter x 63 mm height (inside radiation shield)",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 20,
+      "from": "black printed circuit board on the lower vacuum housing side panel (external DC feedthrough connectors)",
+      "to": "header pins, then under thermal clamps on Stage 1 / radiation shield into the cold sample space",
+      "quote": "Standard I/O (included) 20-line DC on PCB in vacuum chamber",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    },
+    {
+      "kind": "coax",
+      "count": 2,
+      "from": "standard side panel RF feedthrough (1x: 2 RF)",
+      "to": "sample chamber, flex coax thermally lagged to Stage 1",
+      "quote": "2x 20 GHz RF channels with lagged flex-coax routed to sample chamber",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 2,
+      "from": "TCM card DSUB37 (HEATER/THERMOMETER CONTROL) in the system control unit",
+      "to": "platform sensor and sample sensor (plus Stage 1 and Stage 2 cryocooler thermometers and heaters; 1 spare user channel)",
+      "quote": "Temperature sensors 1 platform + 1 sample sensor included, 1 available user-channel",
+      "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+    }
+  ],
+  "windows": {
+    "count": 5,
+    "axis": "multiple",
+    "diameter_mm": 50,
+    "quote": "5x 50 mm vacuum windows (4 radial + 1 top) with corresponding 30 mm internal \"cold windows\" on radiation shield",
+    "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "gm_displacer",
+      "quote": "The main cooling is provided by a two-stage Gifford-McMahon (GM) cryocooler suspended inside the cooling tower assembly (the vertical aluminum cylinder inside the sheet-metal rear case).",
+      "rate": "displacer cycle rate not published; compressor/cryocooler drive runs at 60 Hz (<10 K), 50 Hz (10-20 K), 40 Hz (>20 K) - inverter frequency, not the stroke rate",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    },
+    {
+      "part": "compressor",
+      "quote": "Vibrational performance may vary depending on the operating speed of the compressor/cryocooler. Speed based on target temperature is as follows: <10K High (60 Hz) 10-20K Medium (50 Hz) >20K Low (40 Hz)",
+      "rate": "40-60 Hz variable speed, off-table on the floor (Sumitomo F-20L / FA-20L), 3.3 m flex lines",
+      "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/67ae78f5090e88e66af1904d_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance).pdf"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "stages[].diameter_mm (radiation shield and platform plate diameters not published; only the 53 mm sample-space diameter and a 1-inch M3 bolt pattern)",
+    "moving_parts.gm_displacer.rate (displacer stroke frequency not published)",
+    "window thickness / cold-window mounting geometry beyond working distance '>25.3 mm horizontal, >8.8 mm vertical'",
+    "outer dimensions of the sample chamber housing alone (only the full Cryostation L x W x H is published; the datasheet dimension drawing is image-only)"
+  ],
+  "notes": "Standard configuration (no magneto-optic, no 1.2 K OneK-Optic, no nanopositioner). Sample-space height conflict: QD Europe datasheet says 53 x 63 mm inside the radiation shield; Montana's US brochure says Ø53mm x 116mm - the catalog uses 63 mm. Stage temperatures 27-28 K / 2.4-2.7 K are the manual's 'example' base-temperature table for a standard CryoAdvance-50, with the platform spec of <3.2 K; the sample lags Stage 1 by ~100 K during cooldown. Working distance: horizontal >25.3 mm, vertical >8.8 mm; acceptance angle 60 deg full. Heat load if a cold window is removed: 50-100 mW per window. Cooling power 130 mW at 4.2 K; cooldown ~2 h; vibration <5 nm p-p. GM cryocooler is suspended in the cooling tower with a vibration-damping support and a semi-rigid bellows to the sample chamber; whole assembly bolts to the optical table at 45 or 90 deg. Snapshots: research/v5/cache/6109cc8e21471c80.txt (user manual), 81f37ecee1d5fe74.txt (QD datasheet), 8f8f5995cec8d032.txt (Montana brochure), 73681689cde96835.txt (installation procedure)."
+}

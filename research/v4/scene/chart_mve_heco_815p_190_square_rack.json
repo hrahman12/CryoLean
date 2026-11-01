@@ -1,0 +1,120 @@
+{
+  "configuration_id": "chart_mve_heco_815p_190_square_rack",
+  "archetype": "ln2_storage_dewar",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 1257,
+      "unit": "mm",
+      "quote": "Overall Height in. (mm) 49.5 (1257) 53.9 (1370) 57.70 (1465)",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+      "location": "p. 2, Unit Dimensions, MVE HEco 815P-190 column (ML-CRYO0032 E, 2015). Current MVE sheet ML-000019 Rev 0 lists 53.1 (1350) for the TS (touch-screen) model."
+    },
+    "width_or_diameter": {
+      "value": 813,
+      "unit": "mm",
+      "quote": "Door Width Requirement** in. (mm) 32.0 (813) ... **Minimum width required for vessel to pass through opening.",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+      "location": "p. 2, Unit Dimensions and footnote. Vessel outer width is given only as this door-width requirement; inner diameter is 28.8 in (731 mm)."
+    },
+    "color_note": "Not published as a specification; spec sheet describes a shroud with hinged work surfaces that enclose electronics and plumbing (no colour stated)."
+  },
+  "stages": [
+    {
+      "name": "Top box (vapour phase, highest stored sample)",
+      "temperature_K": 83.15,
+      "diameter_mm": 731,
+      "quote": "-190°C top box temperature",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+    },
+    {
+      "name": "Liquid nitrogen reservoir under tray",
+      "temperature_K": 77.3,
+      "diameter_mm": 731,
+      "quote": "LN2 Capacity L 370 ... LN2 Capacity Under Tray L 52 ... Inner Diameter in. (mm) 28.8 (731)",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "cylinder (731 mm inner diameter) holding 12 square racks of 100-cell boxes plus 4 mini racks, loaded through an offset 317 mm neck",
+    "description": "Dry vapour-phase storage above the LN2 pool: 12 large square racks (12 shelves each) and 4 mini racks on a turn-tray, 15,600 x 1.2/2 ml vials; neck opening 317 mm, usable internal height 676 mm, inner diameter 731 mm.",
+    "diameter_or_width": {
+      "value": 731,
+      "unit": "mm",
+      "quote": "Inner Diameter in. (mm) 28.8 (731) 28.8 (731) 28.8 (731)",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+      "location": "p. 2, Unit Dimensions"
+    },
+    "height": {
+      "value": 676,
+      "unit": "mm",
+      "quote": "Usable Internal Height in. (mm) 26.6 (676) 30.7 (78) 34.5 (877)",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+      "location": "p. 2, Unit Dimensions, 815P-190 column (current sheet ML-000019 prints 26.5 (673))"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 2,
+      "from": "TEC 3000 controller (Temp A / Temp B ports)",
+      "to": "two Pt-1000 probes in the three-tube sensor assembly at the centre of the freezer top, Temp A at top-box level",
+      "quote": "2-wire Platinum RTD (Pt-1000) 2 1000 Ω @ 0°C",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    },
+    {
+      "kind": "none",
+      "count": 0,
+      "from": "",
+      "to": "stored samples",
+      "quote": "Fully enclosed wiring and plumbing",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Features include: LN2 usage reduction; Fully enclosed wiring and plumbing; Vacuum jacketed transfer hose; Dry sample storage; -190°C top box temperature; Lowest liftover height",
+    "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "ln2_boiloff_vapour",
+      "quote": "Static Hold Time—Vapor days 10 11 11 Static Hold Time—Liquid Full days 74 84 92",
+      "rate": "370 L LN2 lasts 74 days static (liquid full); 10 days in vapour mode",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+    },
+    {
+      "part": "gas_flow",
+      "quote": "Fill Solenoid Valve 24 VDC, R ≈ 70 Ω (single), 35 Ω (dual) ... Purge (3-way) SolenoidValve 24 VDC, R ≈ 140 Ω",
+      "rate": "intermittent LN2 auto-fill through the annular fill line, triggered by the TEC 3000 differential-pressure level sensor; no published fill frequency",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    },
+    {
+      "part": "sample_rotator",
+      "quote": "Figure 1: Top-view of HE Freezer showing offset neck and P and R turn-trays",
+      "rate": "manual rotation of the turn-tray to bring racks under the offset neck",
+      "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/13289499-R.pdf"
+    },
+    {
+      "part": "door",
+      "quote": "Lid Open Test -170°C Max (2 Days)",
+      "rate": "manual hinged lid over the 317 mm neck",
+      "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+    }
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "outer.depth",
+    "outer.color",
+    "outer true outside diameter (only door-width requirement 813 mm and inner diameter 731 mm published)",
+    "square rack external dimensions",
+    "turn-tray platform height for HEco (TEC 3000 manual gives 6.6 in (168 mm) for the MVE 815P-190 HE row, not confirmed for HEco)",
+    "neck tube length",
+    "vacuum-jacket thickness",
+    "LN2 fill frequency / fill rate",
+    "static evaporation rate in L/day"
+  ],
+  "notes": "Passive vacuum-insulated LN2 vapour-phase freezer with no moving mechanical refrigerator: the only motion is LN2 boil-off vapour, intermittent solenoid-valved auto-fill from an external LN2 supply, the manually rotated turn-tray and the hinged lid. Geometry for the 3D model: an 813 mm wide, 1257 mm tall cylinder (liftover height 40 in / 1016 mm per the same sheet) with an offset 317 mm neck; inside, a 731 mm diameter cavity with a 52 L LN2 pool under a turn-tray and 676 mm of usable height above it filled by 12 square racks (12 shelves of 100-cell boxes) plus 4 mini racks, two Pt-1000 probes in a central three-tube sensor assembly. The catalog's primary document (bsilab, ML-CRYO0032 E, 2015) was used for consistency with the catalog values (370 L, 676 mm, 1257 mm); the current MVE sheet ML-000019 Rev 0 (https://mvebio.com/wp-content/uploads/sites/4/2025/01/MVE-HEco-800-Series-Spec-Sheet-091024.pdf) gives 360 L w/o inventory, 673 mm usable height, 1350 mm overall (TS model), 1038 mm liftover, 218 kg empty / 526 kg full. Temperatures: -190 C top box = 83.15 K; LN2 pool assumed at its 77.3 K boiling point (the source states LN2, not a temperature)."
+}

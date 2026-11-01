@@ -1,0 +1,108 @@
+{
+  "configuration_id": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 0,
+      "unit": "mm",
+      "location": "NOT PUBLISHED - sentinel 0; see not_found. Only the internal sample-space length (200 mm) is documented.",
+      "quote": "Sample Space | D. 200mm L. 200mm as standard (custom sizes available)",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    "width_or_diameter": {
+      "value": 200,
+      "unit": "mm",
+      "location": "inner sample-space diameter (OVC outer diameter NOT published; this is the only documented diameter)",
+      "quote": "Sample Space | D. 200mm L. 200mm as standard (custom sizes available)",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    "color_note": "Brochure photos only; no colour or finish specification published. Compact bottom-loading benchtop form: 'Compact benchtop design'."
+  },
+  "stages": [
+    {
+      "name": "1K stage (He-4 condensation stage above the He-3 pot)",
+      "temperature_K": 1.5,
+      "quote": "A 1K stage allows full condensation of the He3 charges which extends the hold time at a base temperature of 290mK for up to 50 hours",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    {
+      "name": "He-3 pot / sample stage (single-shot base)",
+      "temperature_K": 0.29,
+      "quote": "Base Temperature | Single shot: 290mK Continuous: 1.5K",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "description": "Bottom-loading sample space in vacuum, 200 mm diameter x 200 mm long, hung below the He-3 pot; accessed by removing the bottom of the OVC/radiation shield.",
+    "shape": "cylinder",
+    "diameter_or_width": {
+      "value": 200,
+      "unit": "mm",
+      "location": "sample space diameter",
+      "quote": "Sample Space | D. 200mm L. 200mm as standard (custom sizes available)",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    "height": {
+      "value": 200,
+      "unit": "mm",
+      "location": "sample space length",
+      "quote": "Sample Space | D. 200mm L. 200mm as standard (custom sizes available)",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 24,
+      "from": "24-way Fischer connector at the top plate (diagnostic/customer DC port)",
+      "to": "sample stage (Lemo or Micro D at cold end)",
+      "quote": "Wiring | 24-way Fischer, Constantan, Manganin or copper looms fitted on request DC, RF and fiber optic options available",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    {
+      "kind": "dc_loom",
+      "count": 24,
+      "from": "24-way Fischer on top plate",
+      "to": "Lemo / Micro D inside the cryostat",
+      "quote": "Connectors | 24-way Fischer as standard on the top plate. Lemo or Micro D are used within the cryogenic environment.",
+      "source_url": "https://www.iceoxford.com/DC-Wiring.htm"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Optical access | Multiple windows available e.g. Sapphire, Quartz and Spectrosil ( see window materials )",
+    "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+  },
+  "moving_parts": [
+    {
+      "part": "compressor",
+      "rate": "not published",
+      "quote": "Compressor | Air or water cooled options available",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "He-3 sorption cycle: 45 min regeneration, 50 h hold with 5 L He-3",
+      "quote": "Regeneration Time | 45 minutes",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height",
+    "outer.depth",
+    "outer.width_or_diameter (OVC outer diameter; only the 200 mm inner sample space is published)",
+    "cold head type for this model (pulse tube vs GM) and its cycle rate",
+    "50K and 4K stage temperatures and plate diameters",
+    "1K stage temperature (only described as a '1K stage'; 1.5 K continuous base used as proxy)",
+    "He-3 pot / sample plate diameter",
+    "wiring count beyond one 24-way Fischer connector; coax count (RF optional, not fitted)",
+    "window count and diameter (optional, not fitted in this configuration)",
+    "weight",
+    "vibration frequency at sample (only amplitude published: ±20 nm with anti-vibration options)"
+  ],
+  "notes": "Sources: ICEoxford product page https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm (SPECIFICATION table, cached research/v5/cache/760000ef5f2cca9b.txt) and the DRY ICE 300mK Series brochure https://www.iceoxford.com/files/image/files/DRY%20ICE%20300mK%20Series%20Brochure_digitalreduced(1).pdf (comparison table, cached research/v5/cache/336340f045b85472.txt: 'SAMPLE SPACE | Ø 200mm', 'ACCESS TO SAMPLE SPACE | Bottom Loading', 'DIAGNOSTIC WIRING | 24-way Fischer', 'HOLD TIME | 50 hours† ... †with 5 litres of He3'). Neither document publishes external dimensions or the cryocooler type; the brochure calls the series 'a range of closed cycle cryostats'. The cryogen enum value cryogen_free_pulse_tube is the closest enum for a cryogen-free closed-cycle He-3 sorption system but the pulse-tube/GM choice is NOT documented for this model (listed in not_found). Both wiring entries describe the same single 24-way Fischer loom from two sources; render one 24-wire loom. Windows and magnets are optional and NOT fitted in this configuration. Tavily quota was exhausted; gophotonics distributor page returned 403 and holds no dimensions per web search summary."
+}

@@ -1,0 +1,77 @@
+{
+  "configuration_id": "lake_shore_st_500_lhe_standard",
+  "archetype": "flow_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 67,
+      "unit": "mm",
+      "location": "overall cryostat body height (ST-500 column of the datasheet size table; low-profile puck that sits on a microscope stage)",
+      "quote": "Size Height 67 mm (2.62 in) 29.5 mm (1.16 in) Varies",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    },
+    "width_or_diameter": {
+      "value": 152,
+      "unit": "mm",
+      "location": "vacuum shroud outer diameter (circular puck)",
+      "quote": "Featured components 152 mm (6 in) vacuum shroud",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    },
+    "color_note": "Material and finish of the vacuum shroud are not stated in the datasheet or product page (not_found: outer.color). Shroud inner diameter at the sample region is 73 mm (2.9 in) per the datasheet, i.e. a 152 mm OD / 73 mm ID puck 67 mm tall; mass 3.2 kg excluding transfer line. Flexible LHe/LN2 transfer line with integrated supply and return bayonets enters the side."
+  },
+  "stages": [
+    {
+      "name": "Sample mount (cold finger, continuous LHe flow; 19.05 mm diameter; one installed calibrated temperature sensor)",
+      "temperature_K": 3.5,
+      "diameter_mm": 19.05,
+      "quote": "Temperature range 3.5 K to 475 K ... Sample mount diameter 19.05 mm (0.75 in)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    }
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "flat disc on top of the cold finger, inside a 73 mm ID vacuum shroud, viewed from above through the top window",
+    "description": "Sample sits in vacuum (~1e-5 Torr during operation) on the 19.05 mm sample mount; accessed and exchanged from the top without removing the cryostat from the microscope. Working distance from objective to sample as short as 1 mm. Transmission geometry available via the optional bottom window.",
+    "diameter_or_width": {
+      "value": 19.05,
+      "unit": "mm",
+      "location": "sample mount diameter",
+      "quote": "Sample mount diameter 19.05 mm (0.75 in)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "none",
+      "count": 0,
+      "from": "n/a",
+      "to": "n/a",
+      "quote": "We offer a variety of both unwired and wired feedthroughs to complete your measurement setup.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    }
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "quote": "Top windows WT-ST-500-062-FS Top UV-grade fused silica window — 1.57 mm thick ... WB-ST-500-BLNK Blank bottom plate",
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+  },
+  "moving_parts": [
+    {
+      "part": "gas_flow",
+      "quote": "Cryogen consumption (LHe at 5 K) 1.1 L/h",
+      "rate": "1.1 L/h LHe at 5 K; 0.5 L/h at 10 K; 0.2 L/h at 20 K; 0.1 L/h LN2 at 80 K (continuous flow through the flexible transfer line and cold finger, vented back out the return bayonet)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/st-500-series505f048e-194a-4d5d-9826-593fb5b58529.pdf?sfvrsn=1d356fbe_24"
+    }
+  ],
+  "cryogen": "lhe_flow",
+  "not_found": [
+    "outer.depth (circular puck: diameter applies; no separate depth published)",
+    "outer.color / shroud material and finish",
+    "windows.diameter_mm (top window clear aperture not published; only the optional cooled radiation shield window is given as 0.875 in diameter)",
+    "radiation shield stage temperature",
+    "transfer line length and bayonet diameter",
+    "vibration frequency spectrum peaks (only <12 nm amplitude and a 0-100 Hz plot are published)"
+  ],
+  "notes": "Standard ST-500 (not -C or -LGV), unwired, top window only, no magnet extension, no Infinite Helium recirculator: a 152 mm OD, 67 mm tall vacuum-shroud puck with a 73 mm ID sample region and a 19.05 mm cold-finger sample mount at 3.5-475 K, fed by a flexible LHe/LN2 transfer line with integrated supply and return bayonets (datasheet). Only visible motion is the cryogen flow (1.1 L/h LHe at 5 K) and the external vacuum pump the datasheet says every cryostat requires ('Each cryostat requires a pump to operate'); the cryostat body itself has no moving parts and is specified at <12 nm vibration and 2 nm/min drift at 4 K. Stability (+/-50 mK) and base pressure (~1e-5 Torr) are typical, not guaranteed. Window materials offered: UV fused silica, ZnSe, sapphire, CaF2 (top and bottom); bottom may be a blank plate. Sources: Lake Shore ST-500 Series datasheet (research/v5/cache/18e9f6b81e2ca517.txt) and SuperTran specification page https://www.lakeshore.com/products/categories/specification/environment-by-janis/lhe-and-ln-cryostats/supertran-continuous-flow-cryostats (research/v5/cache/2058d9a53b4f6bb0.txt) which repeats the same spec table and weight ~3.2 kg."
+}

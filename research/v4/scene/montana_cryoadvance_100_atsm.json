@@ -1,0 +1,49 @@
+{
+  "configuration_id": "montana_cryoadvance_100_atsm",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 49, "unit": "cm", "location": "overall Cryostation (cooling tower + sample chamber on baseplate), H of L x W x H", "quote": "CryoAdvance 100 25.2 x 9.1 x 19.3 in [64 x 23.2 x 49 cm] 64 lbs [29 kg]", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/6ace8849c855362024ba2831_4400-1-SD001_A3%20(Lab%20Requirements%20-%20CryoAdvance%2C%20s200%20Coolpak).pdf"},
+    "width_or_diameter": {"value": 64, "unit": "cm", "location": "overall length L (cooling tower behind sample chamber)", "quote": "CryoAdvance 100 25.2 x 9.1 x 19.3 in [64 x 23.2 x 49 cm] 64 lbs [29 kg]", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/6ace8849c855362024ba2831_4400-1-SD001_A3%20(Lab%20Requirements%20-%20CryoAdvance%2C%20s200%20Coolpak).pdf"},
+    "depth": {"value": 23.2, "unit": "cm", "location": "overall width W", "quote": "CryoAdvance 100 25.2 x 9.1 x 19.3 in [64 x 23.2 x 49 cm] 64 lbs [29 kg]", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/6ace8849c855362024ba2831_4400-1-SD001_A3%20(Lab%20Requirements%20-%20CryoAdvance%2C%20s200%20Coolpak).pdf"},
+    "color_note": "Cooling tower is 'the vertical aluminum cylinder inside the sheet-metal rear case'; the vacuum case around the cryocooler is described as a 'black cylinder surrounding cryocooler'; sample-chamber housing is aluminum with a lift-off upper vacuum housing carrying the outer 'warm' windows (user manual). Beam height 139.8 mm from table (QD Europe datasheet)."
+  },
+  "stages": [
+    {"name": "Stage 1 / radiation shield (30 K lagging)", "temperature_K": 30, "quote": "Thermal lagging Four 30 K lagging points", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"},
+    {"name": "Stage 2 / sample mount platform (base, with ATSM)", "temperature_K": 3.4, "quote": "Platform temperature range (with ASTM) <3.4 K - 350 K", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "vertical cylinder inside radiation shield, sample at centre of chamber on a circular platform",
+    "description": "Sample-in-vacuum chamber 100 mm diameter x 116 mm high inside the radiation shield; circular mounting plate with 1-inch M3 bolt pattern; ATSM variable-temperature mount with integrated Cernox thermometer and heater; lift-off outer vacuum shroud and bolt-on inner radiation shield for access.",
+    "diameter_or_width": {"value": 100, "unit": "mm", "location": "inside radiation shield", "quote": "Sample chamber Dimensions 100 mm diameter x 116 mm height (inside radiation shield)", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"},
+    "height": {"value": 116, "unit": "mm", "location": "inside radiation shield", "quote": "Sample chamber Dimensions 100 mm diameter x 116 mm height (inside radiation shield)", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"}
+  },
+  "wiring": [
+    {"kind": "coax", "count": 4, "from": "standard side-panel RF feedthrough", "to": "sample chamber (lagged at stage 1 / radiation shield)", "quote": "4x 20 GHz RF channels; semi-rigid lagged coax routed to sample chamber", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"},
+    {"kind": "dc_loom", "count": 25, "from": "25-line DC side panel", "to": "vacuum chamber 4 K circuit-board wedge (20 channels reach the chamber)", "quote": "Standard I/O included: 4x RF, 25x DC. 20x DC channels in vacuum chamber", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"},
+    {"kind": "thermometer_lead", "count": 2, "from": "system control unit temperature channels", "to": "platform sensor + sample sensor (plus 1 user channel)", "quote": "Temperature sensors 1 platform + 1 sample sensor included, 1 available user-channel", "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"},
+    {"kind": "heater_lead", "count": 2, "from": "high-speed temperature controller", "to": "ATSM heater", "quote": "Control Connections 2 heater + 4 thermometer", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/69ab509c4c466fc2b91c0e19_4400-1-MK004_1.0%20(ATSM).pdf"}
+  ],
+  "windows": {
+    "count": 5,
+    "axis": "multiple",
+    "diameter_mm": 50,
+    "quote": "5x 50 mm vacuum windows (4 radial + 1 top) with corresponding 30 mm internal \"cold windows\" on radiation shield",
+    "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-100.pdf"
+  },
+  "moving_parts": [
+    {"part": "gm_displacer", "rate": "cryocooler drive speed 40/50/60 Hz selected by target temperature (SHI); displacer cycle frequency itself not published", "quote": "The main cooling is provided by a two-stage Gifford-McMahon (GM) cryocooler suspended inside the cooling tower assembly (the vertical aluminum cylinder inside the sheet-metal rear case).", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/6a0e0778b8dea8ee24591ce7_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance%20Coolpak).pdf"},
+    {"part": "compressor", "rate": "variable speed: <10K High (60 Hz), 10-20K Medium (50 Hz), >20K Low (40 Hz)", "quote": "Vibrational performance may vary depending on the operating speed of the compressor/cryocooler. SHI Only: Speed based on target temperature is as follows: <10K High (60 Hz) 10-20K Medium (50 Hz) >20K Low (40 Hz)", "source_url": "https://cdn.prod.website-files.com/6118466f5c775b56d53d49e9/6a0e0778b8dea8ee24591ce7_4400-2-DOC001_1.0%20(User%20Manual%20-%20CryoAdvance%20Coolpak).pdf"}
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "stages[].diameter_mm (stage-1 and stage-2 plate diameters not published)",
+    "stage 1 steady-state temperature (only '30 K lagging points' and 'Stage 1 reaches 30 K' during cooldown are published)",
+    "gm_displacer cycle frequency in Hz (only compressor/cryocooler drive speed 40-60 Hz published)",
+    "sample-chamber housing outer diameter (datasheet dimensions page is a drawing with no extractable text)",
+    "cooling tower cylinder diameter",
+    "window thickness"
+  ],
+  "notes": "Compressor sits on the floor off-table (SHI F-20L/FA-20L or Leybold Coolpak 2000e, water-cooled 46x45x57 cm / 73 kg) and connects through 3.3 m helium flex lines; the Cryostation is mounted at 45 deg or 90 deg to the optical-table hole pattern. Cooling tower (GM cryocooler in a vertical aluminium cylinder) is linked to the sample chamber by a baseplate and semi-rigid bellows. Chamber stack from inside out: sample platform (stage 2) -> radiation shield with 30 mm cold windows (stage 1) -> lift-off upper vacuum housing with 50 mm warm windows (4 side + 1 top, 27.4 deg full acceptance angle, AR-coated fused silica); bosses around the windows on the CA-100 housing. Cooling power 90 mW at 4.2 K, cooldown ~3 h, vibration <15 nm p-p, 25 DC + 4 RF standard. Removing a cold window adds 50-100 mW heat load per window (manual). Rack electronics: 4U system control unit (43x38x17 cm) and 6U vacuum control unit with integrated roughing pump (43x38x26.5 cm). Tavily quota was exhausted; sources were fetched with scripts/v5_snapshot.py (cache ids e975f013d8b76232, 129cdf555f511333, c7739686ffe958f1, cd28539c56e007e8, 4cd20279bb134e4e, 03ed03798c79225b, 8c9497affb5ba7e6)."
+}

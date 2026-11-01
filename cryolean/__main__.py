@@ -1,10 +1,11 @@
-"""Command line for the local backend (no server).
+"""Command line for the local backend.
 
     python -m cryolean build-db                 # (re)build data/cryolean.db from the JSON seeds
     python -m cryolean validate                 # source-data validation
     python -m cryolean methods                  # list bridge methods
     python -m cryolean call <method> '<json>'   # call a bridge method with JSON keyword arguments
-    python -m cryolean demo                     # acceptance demonstrations A, B, C
+    python -m cryolean demo                     # acceptance demonstrations A, B, C, D
+    python -m cryolean serve [--port 8000]      # HTTP API + website in live mode (real Lean checks)
 """
 from __future__ import annotations
 
@@ -44,6 +45,9 @@ def main(argv: list[str]) -> int:
         kwargs = json.loads(argv[2]) if len(argv) > 2 else {}
         print(json.dumps(getattr(api, argv[1])(**kwargs), indent=2, ensure_ascii=False))
         return 0
+    if cmd == "serve":
+        from .server import main as serve
+        return serve(argv[1:])
     if cmd == "demo":
         from .demo import run
         return run()

@@ -1,0 +1,48 @@
+{
+  "configuration_id": "minitube_icecube_14_m",
+  "archetype": "controlled_rate_freezer",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 550, "unit": "mm", "location": "lid closed; 860 mm with lid open", "quote": "Outer dimensions (mm; W x D x H) ... 630 x 510 x 550 (860 H with open lid)", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"},
+    "width_or_diameter": {"value": 630, "unit": "mm", "location": "overall width", "quote": "Outer dimensions (mm; W x D x H) ... 630 x 510 x 550 (860 H with open lid)", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"},
+    "depth": {"value": 510, "unit": "mm", "location": "overall depth", "quote": "Dimensions 630 x 510 x 550 (860) mm (B x T x H) (H with open lid)", "source_url": "https://www.minitube.com/catalog/en/icecube-14-m-automatic-freezer-p1826/"},
+    "color_note": "Chamber is stainless steel with a transparent glass door (catalog page: 'Chamber volume: 36 l, stainless steel, transparent glass door'); outer housing colour not published."
+  },
+  "stages": [
+    {"name": "freezing chamber (LN2-vapour, single temperature zone)", "temperature_K": 93.15, "quote": "Temperature range +40°C to -180°C (104°F to 292°F)", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "rectangular box, stainless steel, open at top under hinged glass door/lid",
+    "description": "36 L stainless-steel freezing chamber 297 x 317 x 378 mm (W x D x H) holding double freezing racks of 0.25/0.5 mL straws (up to 2300 x 0.5 mL or 3450 x 0.25 mL straws per cycle); LN2 vapour circulated by a turbine fan.",
+    "diameter_or_width": {"value": 297, "unit": "mm", "location": "chamber width (D 317 mm)", "quote": "Freezing chamber 297 x 317 x 378 mm (W x D x H)", "source_url": "https://www.minitube.com/catalog/en/icecube-14-m-automatic-freezer-p1826/"},
+    "height": {"value": 378, "unit": "mm", "location": "chamber height", "quote": "Freezing chamber size (mm; L x T x H) ... 297 x 317 x 378 ... Liter ... 36", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 2, "from": "RISC microcontroller", "to": "freezing chamber (Pt-100 sensors, 4-wire each)", "quote": "Temperature measurement via 2 Pt-100 resistance thermometers in shielded 4-wire measuring technology", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"},
+    {"kind": "heater_lead", "count": 1, "from": "controller", "to": "chamber heater (heating 0.01-20 C/min; thermal fuse)", "quote": "Heating rates 0.01°C/min to max. 20°C/min from -180°C to -50°C ... Thermal fuse for overheating protection", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "quote": "Hinged transparent glass door ... 630 x 510 x 550 (860 H with open lid)",
+    "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "rate": "not published", "quote": "Turbine fan for gas turbulence", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"},
+    {"part": "ln2_boiloff_vapour", "rate": "not published", "quote": "Pressure sensor for LN supply ... Pressure container for liquid nitrogen, with manometer, security valves, liquid and gas phase withdrawal", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"},
+    {"part": "door", "rate": "manual, hinged upward (550 mm closed to 860 mm open)", "quote": "Hinged transparent glass door", "source_url": "https://www.minitube.com/module/dcshop/webforms/download_file.php?file=1482"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "outer housing colour",
+    "glass door/window dimensions (diameter_mm)",
+    "turbine fan speed",
+    "LN2 consumption rate",
+    "Pt-100 sensor positions within chamber",
+    "heater power",
+    "stage plate diameters (not applicable: single-chamber vapour freezer, no cold plates)",
+    "straw rack dimensions"
+  ],
+  "notes": "Benchtop LN2-vapour controlled-rate freezer, not a cryostat: a 630 x 510 x 550 mm box (39 kg) with a 297 x 317 x 378 mm, 36 L stainless-steel chamber under a hinged transparent glass lid (860 mm tall when open). Fed from a pressurised LN2 container (connector kit 16820/5100 included; catalog lists a 99 L TP100 tank and 60/120/189 L containers); vapour is stirred by a turbine fan and sensed by two 4-wire Pt-100s. Scene: translucent lid on top, racks of 0.25/0.5 mL straws standing in the chamber, LN2 vapour swirl animated, Pt-100 leads only. No vacuum, no magnet, no cold plates. Sources: leaflet 1682x-xxxx_leaflet-icecube_en_250905 V1 09/2025 (research/v5/cache/2cc09895ebb94ef8.txt) and catalog page p1826 (research/v5/cache/9297e2b381e0856a.txt)."
+}

@@ -1,0 +1,102 @@
+{
+  "configuration_id": "expc_npl_helium_tensile_20k",
+  "archetype": "tensile_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 0,
+      "unit": "mm",
+      "location": "NOT PUBLISHED - sentinel 0; see not_found. Only published size constraint is the ~250 mm specimen length that the test space must accommodate.",
+      "quote": "systems that can accommodate tensile specimens up to approximately 250 mm long under controlled cryogenic conditions.",
+      "source_url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services"
+    },
+    "width_or_diameter": {
+      "value": 0,
+      "unit": "mm",
+      "location": "NOT PUBLISHED - sentinel 0; see not_found. NPL's requirements report only states the dewar is ~20-25 litres and must fit between the test-machine columns.",
+      "quote": "The volume of the cryostat test dewar for mechanical testing is approximately 20-25 litres.",
+      "source_url": "https://eprintspublications.npl.co.uk/9464/1/MAT102.pdf"
+    },
+    "color_note": "No photograph or colour specification published. Requirements report (MAT 102) describes a double-wall vessel: outer-jacketed LN2 dewar surrounding an inner LHe dewar, mounted on a T-slotted platen of a servo-hydraulic load frame with top-mounted actuator."
+  },
+  "stages": [
+    {
+      "name": "Test dewar / wet bath (specimen, grips and pull-rods submerged in controllably boiling liquid helium, heater-regulated to 20 K)",
+      "temperature_K": 20,
+      "quote": "for 20 K, a novel temperature control configuration was developed, operating on the principal of controllably boiling liquid helium inside the test dewar with a set of heating elements.",
+      "source_url": "https://indico.cern.ch/event/1431974/contributions/6396972"
+    }
+  ],
+  "sample_space": {
+    "position": "in_bath",
+    "description": "Flat rectangular composite coupon (or metallic flat/cylindrical specimen) held between pull-rod-mounted cryogenic grips inside a wet-bath test dewar; at 20 K the test space is filled with liquid helium boiled controllably by heater elements. The dewar must accommodate specimens of approximately 250 mm length; the NPL grip-validation coupons were 250 mm x 25 mm x 5 mm.",
+    "shape": "cylindrical dewar bath around a flat coupon load train",
+    "height": {
+      "value": 250,
+      "unit": "mm",
+      "location": "maximum tensile specimen length accommodated in the test space (not the dewar depth)",
+      "quote": "systems that can accommodate tensile specimens up to approximately 250 mm long under controlled cryogenic conditions.",
+      "source_url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services"
+    },
+    "diameter_or_width": {
+      "value": 25,
+      "unit": "mm",
+      "location": "width of the standard coupon tested in NPL's cryogenic grips (dewar inner diameter not published)",
+      "quote": "specimens were straight rectangular coupons (dimensions of 250 mm x 25 mm x 5 mm) and were gripped without additional end-tabs.",
+      "source_url": "https://eprintspublications.npl.co.uk/10069/1/eid10069.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 3,
+      "from": "top flange / temperature controller",
+      "to": "one on each grip and one on the specimen",
+      "quote": "Three Type-T thermocouples were used to measure temperature during the test, one mounted on each grip and one in direct contact with the specimen.",
+      "source_url": "https://eprintspublications.npl.co.uk/10069/1/eid10069.pdf"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 0,
+      "from": "temperature controller",
+      "to": "heating elements in the liquid-helium test dewar (count not published)",
+      "quote": "controllably boiling liquid helium inside the test dewar with a set of heating elements.",
+      "source_url": "https://indico.cern.ch/event/1431974/contributions/6396972"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "The dewar should feature inlet and outlet ports in the top flange (Figure 4, C), a suitable cryogen dispenser mechanism and sensors to control and monitor temperature",
+    "source_url": "https://eprintspublications.npl.co.uk/9464/1/MAT102.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "probe_arm",
+      "quote": "Specimens were loaded in displacement control at 2 mm/min until failure.",
+      "rate": "2 mm/min crosshead/actuator displacement (pull-rod load train, top-mounted servo-hydraulic actuator)",
+      "source_url": "https://eprintspublications.npl.co.uk/10069/1/eid10069.pdf"
+    },
+    {
+      "part": "ln2_boiloff_vapour",
+      "quote": "operating on the principal of controllably boiling liquid helium inside the test dewar with a set of heating elements.",
+      "rate": "helium boil-off vapour from heater-regulated bath; rate not published",
+      "source_url": "https://indico.cern.ch/event/1431974/contributions/6396972"
+    }
+  ],
+  "cryogen": "liquid_helium_bath",
+  "not_found": [
+    "outer.height",
+    "outer.width_or_diameter",
+    "outer.depth",
+    "dewar inner diameter",
+    "dewar depth",
+    "load frame / cryostat load rating as built (MAT 102 specifies a 250 kN requirement; grip paper gives 100 or 250 kN grip rating and 60 kN preload, none stated as the 20 K rig's rating)",
+    "heater element count and power",
+    "helium boil-off rate",
+    "window count (no optical access described)",
+    "extensometer / strain-gauge lead count",
+    "colour / finish"
+  ],
+  "notes": "Bespoke NPL facility, not a catalogue product. Sources: (1) NPL cryogenic testing services page: helium cooling with active temperature control for ~20 K, capabilities to 4 K, 'bespoke LN2 and LHe cryostats', specimens up to ~250 mm. (2) CEC/ICMC 2025 abstract M4Or1B-02 (Spetsieris, Gower, Giannis, NPL): wet-bath cryostat; 77 K by submerging the rig in LN2, 20 K by controllably boiling LHe in the test dewar with heating elements. (3) ECCM21 2024 grip paper (eprintspublications.npl.co.uk/10069): cylindrical cryogenic grips rated 100 or 250 kN, steel pull-rods, 60 kN preload, 250x25x5 mm coupons, three Type-T thermocouples, 2 mm/min displacement control, 'liquid flow cryostat' submerged in LN2 at 77 K. (4) NPL Report MAT 102 (2022) is a REQUIREMENTS specification for the planned system, not an as-built description: servo-hydraulic frame with top-mounted actuator, 250 kN load cell, telescopic lift cylinders for the dewar top, T-slotted platen, ~20-25 litre double-wall dewar (LN2 jacket around LHe inner), top-flange inlet/outlet ports, thermal baffles, 20-300 K control with ±2 K accuracy; use these only as 'design intent'. Rendering guidance: vertical dewar on a load-frame base, pull-rod from a top actuator, coupon in bath; LHe liquid plus heater-driven bubbling/vapour at 20 K. Lean temperature capability for this configuration is the single 20 K point (20000 mK), consistent with the NPL page. 'probe_arm' is used for the moving pull-rod/actuator since no tensile-specific enum exists."
+}

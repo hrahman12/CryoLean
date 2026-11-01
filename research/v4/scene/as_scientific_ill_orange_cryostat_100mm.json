@@ -1,0 +1,56 @@
+{
+  "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+  "archetype": "other",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 1192, "unit": "mm", "location": "top flange to beam centre of a 100 mm Orange cryostat (NIST OC-100, same ILL design); total vessel height and the ILL 82ILHV100 unit's own height are NOT published", "quote": "100mm Orange Cryostat | 1.5 - 300K | D = 99mm (3.90\") B = 1192mm (46.93\") from top L = 192mm (7.56\")", "source_url": "https://www.nist.gov/node/1905111"},
+    "width_or_diameter": {"value": 99, "unit": "mm", "location": "sample-well bore diameter at beam height (the only transverse dimension published); outer vessel and tail outer diameters are NOT published", "quote": "100mm Orange Cryostat | 1.5 - 300K | D = 99mm (3.90\")", "source_url": "https://www.nist.gov/node/1905111"},
+    "color_note": "The design is universally called the 'Orange' cryostat after its original orange-painted outer vacuum vessel; no finish is specified on the ILL equipment card. In-beam tail material is aluminium alloy ('Material in the beam A5 - AG3')."
+  },
+  "stages": [
+    {"name": "liquid helium bath / reservoir (feeds cold valve and capillary to heat exchanger)", "temperature_K": 4.2, "quote": "through a metered \"warm valve\" directly to atmosphere (for 4.2 Kelvin minimum temperature) 2.) through a port connected to a high capacity vacuum pump (this mode required below 4.2K)", "source_url": "https://www.nist.gov/ncnr/neutron-instruments/sample-environment/equipment/liquid-helium-cryostats/orange-cryostats"},
+    {"name": "heat exchanger / annulus around the sample well, pumped (base)", "temperature_K": 1.5, "diameter_mm": 100, "quote": "82ILHV100 | 1.5 - 320 | A5 - AG3 | Ø100 x 265 | Quad-exchanger, top loading for HP meas", "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/"}
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "vertical cylindrical sample well filled with static helium exchange gas, sample hanging from the bottom of a top-loading sample stick",
+    "description": "Top-loading sample stick lowered through a 3-way valve flange into a Ø100 x 265 mm well; 20 cc of helium exchange gas couples the sample to the pumped quad heat exchanger/annulus. Five concentric volumes from outside in: vacuum jacket, LN2 bin and jacket, LHe bin, annulus, sample volume. Stick terminates in a 5/16\"-18 stud (NIST/ORNL sticks).",
+    "diameter_or_width": {"value": 100, "unit": "mm", "quote": "82ILHV100 | 1.5 - 320 | A5 - AG3 | Ø100 x 265 | Quad-exchanger, top loading for HP meas", "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/"},
+    "height": {"value": 265, "unit": "mm", "quote": "82ILHV100 | 1.5 - 320 | A5 - AG3 | Ø100 x 265 | Quad-exchanger, top loading for HP meas", "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 4, "from": "regulation socket pins K, L, N, P", "to": "silicon diode on heat exchanger", "quote": "K I+ L I- N V+ P V- Silicon Diode DT-470 or SI 410 Calibrated from 1.4 to 300 K Use for control", "source_url": "https://www.nist.gov/document/usermanualpdf"},
+    {"kind": "heater_lead", "count": 2, "from": "regulation socket pins M, A", "to": "primary heater (50 ohm) at heat exchanger", "quote": "M Heater I+ A Heater I- Primary Heater normally 50 Ω", "source_url": "https://www.nist.gov/document/usermanualpdf"},
+    {"kind": "heater_lead", "count": 2, "from": "regulation socket pins B, C", "to": "cold-valve heater", "quote": "B Valve Htr I+ C Valve Htr I- Valve Heater Requires special attachment", "source_url": "https://www.nist.gov/document/usermanualpdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "82ILHV100 | 1.5 - 320 | A5 - AG3 | Ø100 x 265 | Quad-exchanger, top loading for HP meas",
+    "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "rate": "4-6 l/min helium at ~2 mbar through the annulus (100 mm cryostat, below 4.2 K)", "quote": "Adjust the cold valve so that a steady pressure of about 2mbar is reached and the flowmeter reads between 4-6l/min.", "source_url": "https://web.archive.org/web/2017id_/https://www.isis.stfc.ac.uk/Pages/orange-cryostat-operating-procedures.pdf"},
+    {"part": "circulation_pump", "rate": "roots pump on KF40 annulus port (needed below 4.2 K)", "quote": "Connect roots pump to KF40 valve on the cryostat.", "source_url": "https://web.archive.org/web/2017id_/https://www.isis.stfc.ac.uk/Pages/orange-cryostat-operating-procedures.pdf"},
+    {"part": "ln2_boiloff_vapour", "rate": "LN2 bath refilled about daily; LHe lasts 1.5-2 days", "quote": "Typically the nitrogen holds for one day while the helium lasts for between 1.5 and 2 days.", "source_url": "https://www.nist.gov/document/usermanualpdf"},
+    {"part": "turbo_pump", "rate": "isolation vacuum pumped to better than 1e-5 before cooldown", "quote": "pump the isolation vacuum via the vacuum valve to better than 10-5 using a turbo-pump", "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/instruction-manual/"}
+  ],
+  "cryogen": "liquid_helium_bath",
+  "not_found": [
+    "outer.total_height_mm (ILL 82ILHV100 card lists only type and sample dimensions; NIST OC-100 letters A-G 1192.5/152/431/395/800/355/1096 are undefined, ISIS MAXI 100 'Bottom Height ~1280' undefined)",
+    "outer.vessel_outer_diameter_mm",
+    "outer.tail_outer_diameter_mm",
+    "outer.depth (cylindrical)",
+    "outer.weight_kg",
+    "stages.liquid_nitrogen_jacket_temperature_K (bin exists, temperature not stated)",
+    "stages.plate_diameters_mm (bath cryostat; no plates)",
+    "helium_bath_volume_l for the 100 mm unit (ILL manual: '12 litres ... sufficient to cool down and fill the bath' is generic; NIST overview: '10 liter reservoir' generic; NIST OC-100 fill '~40 L')",
+    "nitrogen_bath_volume_l",
+    "wiring.sample_stick_wire_count (ILL only says sticks exist; NIST manual lists cryostat regulation socket only)",
+    "wiring.coax_lines",
+    "cooling_power_W",
+    "helium_consumption_l_per_h",
+    "outer.color_note (finish not specified)"
+  ],
+  "notes": "ILL pool unit 82ILHV100: 'Type | Orange Ø100', 'Quad-exchanger', 1.5-320 K, Ø100 x 265 mm sample space, aluminium A5-AG3 in beam, top loading for high-pressure measurements. Wet cryostat: LN2 bath + LHe bath, cold valve + capillary to the heat exchanger, He vapour drawn through the annulus to a roots/rotary pump for <4.2 K (ISIS: 2 psi feed, 50 ohm 100 W max heater, cooldown 3.5-4 h for 100 mm, 10-15 min from 20 K to 1.5 K). ILL manual: sample chamber pumped with a primary pump then 20 cc helium exchange gas admitted via blue 3-way valve; isolation vacuum pumped <1e-5 with a turbo. AS Scientific has built the Orange under ILL licence since 1981 (ILL history page); 2015 exchanger modification 'operates three times faster'. Outer-dimension values above are from NIST's 100 mm Orange (same ILL design) and are a top-flange-to-beam distance and the well bore only; the renderer should treat vessel/tail diameters as unpublished. Cached: research/v5/cache/4ef6c7058959c505.txt (ILL table), 800b12f55af8a918.txt (82ILHV100 card), 33f7e008eb49571d.txt (ILL manual), aa77df4a32984201.txt (ILL history), 3b5e1af9925afc93.txt (NIST MACS), a718fdb17d6b09ae.txt (NIST manual), 67472fdca3fc83bd.txt (NIST schematic key), 4ad8260f8aba713b.txt (ISIS procedures), c2abc65056a27b39.txt (NIST OC-100), f80f04ffbbefe28a.txt (ISIS MAXI 100)."
+}

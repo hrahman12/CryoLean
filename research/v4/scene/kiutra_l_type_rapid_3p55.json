@@ -1,0 +1,129 @@
+{
+  "configuration_id": "kiutra_l_type_rapid_3p55",
+  "archetype": "adr",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {
+      "value": 232,
+      "unit": "cm",
+      "quote": "94 x 94 x 232 cm (max., sample changer open), with a weight under 600 kg",
+      "source_url": "https://kiutra.com/wp-content/uploads/2025/02/kiutra-L-Type-Rapid-Installation-Requirements.pdf",
+      "location": "Installation Requirements L-Type Rapid Cryostat (kiutra GmbH), typical layout table; maximum height with the automatic sample changer open"
+    },
+    "width_or_diameter": {
+      "value": 94,
+      "unit": "cm",
+      "quote": "94 x 94 x 232 cm (max., sample changer open), with a weight under 600 kg",
+      "source_url": "https://kiutra.com/wp-content/uploads/2025/02/kiutra-L-Type-Rapid-Installation-Requirements.pdf",
+      "location": "Installation Requirements L-Type Rapid Cryostat, typical layout table"
+    },
+    "depth": {
+      "value": 94,
+      "unit": "cm",
+      "quote": "94 x 94 x 232 cm (max., sample changer open), with a weight under 600 kg",
+      "source_url": "https://kiutra.com/wp-content/uploads/2025/02/kiutra-L-Type-Rapid-Installation-Requirements.pdf",
+      "location": "Installation Requirements L-Type Rapid Cryostat, typical layout table"
+    },
+    "color_note": "Square 94 x 94 cm footprint cabinet with a top-mounted automatic sample loader (airlock) that rises to 232 cm when open; a separate electronics rack of 60 x 80 x 168 cm (under 250 kg) stands on either side. Enclosure colour is not stated in any text source."
+  },
+  "stages": [
+    {
+      "name": "Cryocooler stage (ADR pre-cooling, '4 K stage')",
+      "temperature_K": 4,
+      "quote": "both the cooling medium and the attached sample stage are cooled to the cryocooler base temperature of about 4 K.",
+      "source_url": "https://kiutra.com/technology"
+    },
+    {
+      "name": "Sample stage, 3P55 base temperature (one-shot, three ADR units)",
+      "temperature_K": 0.05,
+      "quote": "3P55 ... Base temperature (expected) ... < 50 mK (40 mK)",
+      "source_url": "https://kiutra.com/media/pages/products/l-type-rapid-cryostat/becddea505-1789748678/L-Type-Platform-November-2025.pdf"
+    },
+    {
+      "name": "Sample stage, 3P55 continuous-operation floor (cADR)",
+      "temperature_K": 0.1,
+      "quote": "Continuous operation (expected) | > 3.0 K | > 3.2 K | > 200 mK | > 100 mK",
+      "source_url": "https://kiutra.com/products/l-type-rapid-cryostat"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "description": "Puck 55 sample puck, 55 mm diameter x 117 mm high, top-loaded by the Automatic Sample Loader through an airlock onto the millikelvin sample stage; the puck carries 2x 24-pin DC sockets (48 DC lines), 3x 4-channel Rosenberger Mini-Coax RF ports and a 4-pin thermometer port. Radiation shield standard interface inner diameter 55 mm, 6.3 mm step shown on the data-sheet drawing.",
+    "shape": "cylinder",
+    "diameter_or_width": {
+      "value": 55,
+      "unit": "mm",
+      "quote": "Sample Space Diameter: 55 mm | Height: 117 mm Standard interface: Inner diameter: 55mm",
+      "source_url": "https://kiutra.com/media/pages/products/l-type-rapid-cryostat/0342da074d-1789748678/kiutra-L-Type-Rapid-Technical-Data-Sheet-Puck-55-1.pdf"
+    },
+    "height": {
+      "value": 117,
+      "unit": "mm",
+      "quote": "Puck 55: 55 mm in diameter and 117 mm in height.",
+      "source_url": "https://kiutra.com/products/l-type-rapid-cryostat"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_twisted_pair",
+      "count": 48,
+      "from": "room-temperature breakout box / Measure Module 1 and 2",
+      "to": "Puck 55 (2x Harwin 24-pin sockets, DC 1-24 and DC 25-48)",
+      "quote": "DC wiring (twisted-pair lines) 48 48 48 48",
+      "source_url": "https://kiutra.com/media/pages/products/l-type-rapid-cryostat/becddea505-1789748678/L-Type-Platform-November-2025.pdf"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 4,
+      "from": "measurement electronics",
+      "to": "Puck 55 thermometer port (I+, I-, U-, U+)",
+      "quote": "Thermometer port: Puck: Harwin 4 Pin Socket M50-3140445",
+      "source_url": "https://kiutra.com/media/pages/products/l-type-rapid-cryostat/0342da074d-1789748678/kiutra-L-Type-Rapid-Technical-Data-Sheet-Puck-55-1.pdf"
+    },
+    {
+      "kind": "coax",
+      "count": 0,
+      "from": "top plate (optional, not fitted in 3P55 standard)",
+      "to": "Puck 55: 3x Rosenberger Multiport Mini-Coax (4 channels) = up to 12 RF lines",
+      "quote": "RF wiring (< 18 GHz) up to 12 0 up to 12 up to 12",
+      "source_url": "https://kiutra.com/media/pages/products/l-type-rapid-cryostat/becddea505-1789748678/L-Type-Platform-November-2025.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "The system is equipped with DC lines. It can be configured with RF wiring and RF electronics during the assembly.",
+    "source_url": "https://kiutra.com/products/l-type-rapid-cryostat"
+  },
+  "moving_parts": [
+    {
+      "part": "compressor",
+      "quote": "The compressor requires maintenance every 30,000 operating hours, and the coldhead after 20,000 hours.",
+      "source_url": "https://kiutra.com/products/l-type-rapid-cryostat"
+    },
+    {
+      "part": "magnet_ramp",
+      "rate": "ADR demagnetization field ramp; hold time at base > 5 h (3P55), regenerated continuously above 100 mK",
+      "quote": "Reducing the magnetic field adiabatically lowers the temperature of the cooling medium, cooling the attached sample stage.",
+      "source_url": "https://kiutra.com/technology"
+    },
+    {
+      "part": "stage_translation",
+      "rate": "Automatic Sample Loader: full load < 10 min; unload ~5 min",
+      "quote": "including airlock evacuation and transfer to the millikelvin stage, the full process takes less than 10 minutes.",
+      "source_url": "https://kiutra.com/products/l-type-rapid-cryostat"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "stage_plate_diameters",
+    "cryocooler_type (pulse tube vs Gifford-McMahon) and cold-head frequency",
+    "number_of_radiation_shields",
+    "pressure.base / vacuum level",
+    "optical_access / windows (none mentioned; count 0 is absence of evidence, not a documented 0)",
+    "outer_enclosure_colour",
+    "compressor dimensions and weight",
+    "sample_magnet geometry (5 T / 8 T solenoid or 3-1-1 T vector are options, not fitted)"
+  ],
+  "notes": "Outer dimensions (94 x 94 x 232 cm, < 600 kg; electronics rack 60 x 80 x 168 cm, < 250 kg; ceiling clearance >= 232 cm to open the sample loader) come from kiutra's 'Installation Requirements L-Type Rapid Cryostat' PDF. That PDF's original URL now returns 404 and the current copy at https://kiutra.com/resources/l-type-rapid-installation-requirements is gated behind a contact form, so the figures were recovered from the search-engine index of the document, not read directly from the file; treat them as lower-confidence than the other quotes. 'cryogen' is set to cryogen_free_pulse_tube because the enum has no generic closed-cycle option; kiutra's sources only say 'closed-cycle refrigeration' with a compressor and coldhead, never naming the cooler type. Stray field at sample < 50 uT with all ADR magnets powered (kiutra technology page). 3P55 turnaround 4.5 h: cooldown < 4 h, warmup and puck exchange < 0.5 h."
+}

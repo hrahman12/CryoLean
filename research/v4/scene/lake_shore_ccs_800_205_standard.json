@@ -1,0 +1,98 @@
+{
+  "configuration_id": "lake_shore_ccs_800_205_standard",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 168,
+      "unit": "cm",
+      "location": "overall cryostat on its pneumatically isolated stand; published as a 142 to 168 cm range (stand height adjustable), upper bound given here",
+      "quote": "Height (approximate) | 142 to 168 cm (56 to 66 in)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    },
+    "width_or_diameter": {
+      "value": 57.2,
+      "unit": "mm",
+      "location": "outer diameter of the window block (the optical sample-tube tail the gamma beam passes through); overall cryostat body and stand width are not published",
+      "quote": "Window block size | 57.2 mm (2.25 in) OD",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    },
+    "color_note": "Cryostat mass 27.2 kg (60 lb) on a 327 kg (720 lb) stand that includes lead shielding; separate water-cooled compressor cabinet 442 mm x 493 mm x 532 mm high, 96 kg."
+  },
+  "stages": [
+    {
+      "name": "Sample tube in static helium exchange gas (cooled by bottom-mounted -205 cold head)",
+      "temperature_K": 5,
+      "diameter_mm": 38,
+      "quote": "Temperature range | <5 K to 300 K 1 ... Sample chamber inner diameter | 38 mm (1.5 in) ... Cold head location | Bottom",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "vertical cylindrical sample tube, top-loaded, static He exchange gas",
+    "description": "Powder or irregular solid sample top-loaded into a 38 mm ID sample tube filled with static helium exchange gas; sample sits at the window block level for transmission Mossbauer; rotatable sample.",
+    "diameter_or_width": {
+      "value": 38,
+      "unit": "mm",
+      "location": "sample chamber inner diameter",
+      "quote": "Sample chamber inner diameter | 38 mm (1.5 in)",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 2,
+      "from": "temperature controller",
+      "to": "two installed calibrated temperature sensors",
+      "quote": "Cryostats come standard with two installed temperature sensors. Other sensors are available—contact us.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-mossbauer.pdf?sfvrsn=225b247a_15"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 1,
+      "from": "temperature controller",
+      "to": "integrated control heater",
+      "quote": "Featured components Integrated control heater and calibrated control sensor",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-mossbauer.pdf?sfvrsn=225b247a_15"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "side",
+    "diameter_mm": 57.2,
+    "quote": "Optical | ✔ ... Window block size | 57.2 mm (2.25 in) OD",
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+  },
+  "moving_parts": [
+    {
+      "part": "gm_displacer",
+      "quote": "Cryocooler | Gifford-McMahon ... | CCS-800 | ✔ | | Mössbauer | | Bottom | Exchange gas | 2 h to 2.5 h | <10 min | ✔ | 300 K",
+      "source_url": "https://www.lakeshore.com/products/product-detail/janis/cryostat-selection-guide"
+    },
+    {
+      "part": "compressor",
+      "quote": "800 | -205 | 30,000 h | 10,000 h | 200 VAC, 3-phase, 4.6 to 5.6 kW ... 4 to 9 L/min at 5 to 25 °C | 442 mm × 493 mm × 532 mm high; 96 kg",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    },
+    {
+      "part": "sample_rotator",
+      "quote": "Rotatable sample | ✔",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-mossbauer-cryostats"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.depth",
+    "outer.width_or_diameter (overall cryostat body / stand width; only the 57.2 mm window block OD is published)",
+    "stages first-stage (radiation shield) temperature and plate diameters",
+    "sample_space.height",
+    "windows.count (count set to 0 as placeholder; 'Optical' and window block OD are published but the number and material of windows are not)",
+    "windows material (beryllium/Mylar/aluminium not stated)",
+    "moving_parts.gm_displacer.rate (cold head cycle frequency not published by Lake Shore)",
+    "electrical sample connections / coax / DC loom",
+    "pressure.base"
+  ],
+  "notes": "All numbers from Lake Shore (Environment by Janis) CCS-800-205 spec page, brochure (ccr-mossbauer.pdf) and the Lake Shore cryostat selection guide, which lists the entire CCR line including CCS-800 as Gifford-McMahon cryocoolers. The -205 cold head is bottom-mounted; the sample is top-loaded into static He exchange gas in a 38 mm ID tube (tube must be evacuated above 150 K). Vibration: typical line broadening 0.01 mm/s; CCR on/off linewidth 0.241 vs 0.234 mm/s on 25 um Fe foil. Pneumatically isolated stand with lead shielding (327 kg). Cooldown 2.5 h; stability +/-50 mK. Height is an adjustable 142-168 cm range: upper bound recorded. The SHI RDK-205D is the commonly assumed '-205' GM cold head but Lake Shore does not state the make, so it is not asserted here."
+}

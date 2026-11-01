@@ -1,0 +1,128 @@
+{
+  "configuration_id": "sunpower_cryotel_ct_standard",
+  "archetype": "cryocooler_cold_head",
+  "outer": {
+    "shape": "horizontal_cylinder",
+    "height": {
+      "value": 83,
+      "unit": "mm",
+      "location": "pressure vessel outer diameter (largest diameter of the integral unit; operates in any orientation)",
+      "quote": "Diameter 1.65 in (41.9 mm) cold tip 2.0 in (52 mm) heat rejector 3.3 in (83 mm) pressure vessel",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    "width_or_diameter": {
+      "value": 261,
+      "unit": "mm",
+      "location": "overall length along the cold-finger axis, passive balancer to cold tip",
+      "quote": "Length 10.3 in (261 mm) (with passive balancer) 8.5 in (217 mm) (without passive balancer)",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    "depth": {
+      "value": 83,
+      "unit": "mm",
+      "location": "pressure vessel outer diameter",
+      "quote": "Length 261 mm Diameter 83 mm Lowest Temperature < 40 K Orientation any",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Datasheet.pdf?sc_lang=en"
+    },
+    "color_note": "Stepped cylinder: 83 mm stainless pressure vessel (linear alternator + piston), 52 mm copper-coloured heat rejector band, 41.9 mm cold finger ending in the cold tip; passive balancer disc on the pressure-vessel end. Separate Gen II controller box 116 x 98 x 65 mm (manual Table 2-2)."
+  },
+  "stages": [
+    {
+      "name": "heat rejector (warm end, 23 C reject condition)",
+      "temperature_K": 296,
+      "diameter_mm": 52,
+      "quote": "11 W (at 77 K cold tip temperature and 23 °C reject temperature)",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    {
+      "name": "cold tip (nominal operating point)",
+      "temperature_K": 77,
+      "diameter_mm": 41.9,
+      "quote": "Nominal Heat Load @ 77 K (23º C reject) 11 W",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Datasheet.pdf?sc_lang=en"
+    },
+    {
+      "name": "cold tip (lowest temperature)",
+      "temperature_K": 40,
+      "diameter_mm": 41.9,
+      "quote": "Lowest Temperature < 40 K",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Datasheet.pdf?sc_lang=en"
+    }
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "thermal load bolted or braided to a 41.9 mm diameter cold tip; no enclosed sample volume is supplied",
+    "description": "The CT is a bare cold head: the customer's thermal load attaches to the 41.9 mm cold tip (optionally via copper braid) and the cold finger is inserted into a customer-supplied cryostat through an optional NW50 or 4.5-inch ConFlat flange. Sunpower publishes no sample chamber dimensions. Manual customer-supplied list: 'Cryostat or Dewar Vessel (to enclose the thermal load and the CT's cold finger in a vacuum)'.",
+    "diameter_or_width": {
+      "value": 41.9,
+      "unit": "mm",
+      "location": "cold tip thermal-interface diameter (not a sample size limit)",
+      "quote": "Diameter 1.65 in (41.9 mm) cold tip",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 4,
+      "from": "RTD (Lake Shore PT-111 on copper bobbin) at cold tip or load",
+      "to": "cryostat feedthrough / RTD cable to Gen II controller",
+      "quote": "The four 12 in (304.8 mm) long polyimide-insulated sensor leads are 36 AWG, phosphor-bronze wires thermally anchored to the bobbin.",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    {
+      "kind": "dc_loom",
+      "count": 4,
+      "from": "cryostat exterior / RTD wire",
+      "to": "Gen II controller 6-socket connector",
+      "quote": "The RTD cable (figure 1-7) is a four-conductor shielded cable with a green, 6-socket connector",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 2,
+      "from": "Gen II controller",
+      "to": "linear alternator feedthroughs on pressure vessel (alternator drive power, not a heater)",
+      "quote": "supplies electrical power from the controller to the linear alternator inside the pressure vessel of the cryocooler to drive the piston. The cable is a two-conductor cable",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the CT's cold finger in a vacuum)",
+    "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+  },
+  "moving_parts": [
+    {
+      "part": "stirling_piston",
+      "rate": "60 Hz",
+      "quote": "The balancer is optimized to absorb 60 Hz vibration energy from the cryocooler. (60 Hz is the frequency at which the cryocooler piston is driven.)",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    {
+      "part": "stirling_piston",
+      "rate": "60 Hz (displacer inside cold finger, driven by the pressure wave)",
+      "quote": "The oscillating pressure wave generated by the piston passes from the pressure vessel into the cold finger causing the displacer inside the cold finger to move.",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    },
+    {
+      "part": "stirling_piston",
+      "rate": "60 Hz, up to 5 mm amplitude (passive balancer counter-mass on pressure-vessel end)",
+      "quote": "The maximum amplitude of the balancer's oscillation is 5 mm.",
+      "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en"
+    }
+  ],
+  "cryogen": "stirling",
+  "not_found": [
+    "cold_finger_length (only in Figure 2-1 drawing, not in text)",
+    "sample_space.height",
+    "stage.plate_diameters (no plates; bare cold tip)",
+    "coax_lines",
+    "dc_twisted_pairs",
+    "heater (optional, customer-supplied, no spec)",
+    "vacuum_shroud_dimensions (customer-supplied cryostat)",
+    "piston_stroke"
+  ],
+  "notes": "Standard CT system (manual Table 3-1): cooler P/N 100215, passive balancer 100903, Gen II controller 100870 (116 x 98 x 65 mm, 490 g), RTD with wire 100300, RTD cable 100880, cooler power cable 100887, RS-232 cable 100884. Mass 3.1 kg with balancer, 2.6 kg without. Nominal input 160 W, lift 11 W at 77 K / 23 C reject, stability +/-0.1 K, any orientation, can operate in vacuum, MTTF 200,000 h. Manual states a minimum load of about 4 W at 77 K for gas-bearing operation. The 296 K heat-rejector stage is the 23 C reject condition from the lift spec, not a measured plate. The two-conductor power cable is filed under heater_lead for lack of a drive-lead enum; it carries alternator drive power. The three moving_parts entries describe one 60 Hz free-piston mechanism: piston (pressure vessel), displacer (cold finger), passive balancer (counter-mass). Snapshots: research/v5/cache/d041cbe2ab9e0c1f.txt (datasheet), research/v5/cache/d24c2809cad3b9f8.txt (manual)."
+}

@@ -1,0 +1,52 @@
+{
+  "configuration_id": "fluke_7380_standard",
+  "archetype": "calibration_bath",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 762, "unit": "mm", "location": "User's Guide section 3.1 Specifications, Size row (W x H x D)", "quote": "Size 12\" W x 30\" H x 24\" D (305 x 762 x 610 mm)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    "width_or_diameter": {"value": 305, "unit": "mm", "location": "User's Guide section 3.1 Specifications, Size row (W x H x D)", "quote": "Size 12\" W x 30\" H x 24\" D (305 x 762 x 610 mm)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    "depth": {"value": 610, "unit": "mm", "location": "User's Guide section 3.1 Specifications, Size row (W x H x D)", "quote": "Size 12\" W x 30\" H x 24\" D (305 x 762 x 610 mm)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    "color_note": "Tank and wetted parts are stainless steel (304 SST per product page; 'The bath tank is constructed of stainless steel' per User's Guide 7.2). Exterior cabinet colour not published. Casters included on the 7380 (product page)."
+  },
+  "stages": [
+    {"name": "bath fluid, minimum operating temperature (-80 C, ethanol)", "temperature_K": 193.15, "quote": "Range –80°C to 100°C (–112°F to 212°F)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"name": "bath fluid, maximum operating temperature (+100 C, oil 5012)", "temperature_K": 373.15, "quote": "Range –80°C to 100°C (–112°F to 212°F)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"}
+  ],
+  "sample_space": {
+    "position": "in_bath",
+    "shape": "rectangular access opening in the insulated top lid, 83 x 114 mm, over a 4 L stirred stainless-steel tank; probes immersed vertically up to 180 mm",
+    "description": "Thermometers under test are inserted through the 83 x 114 mm rectangular access hole in the bath lid (or through holes the user drills in the insulated access-hole cover) into the stirred liquid (ethanol for the low range), to a maximum immersion depth of 180 mm. The 4 L tank is 304 stainless steel; the fluid level must sit 12 to 50 mm below the tank top.",
+    "diameter_or_width": {"value": 83, "unit": "mm", "location": "User's Guide section 3.1 Specifications, Access Opening row (short side; long side 114 mm)", "quote": "Access Opening 3.25\" x 4.5\" (83 x 114 mm)", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    "height": {"value": 180, "unit": "mm", "location": "User's Guide section 3.1 Specifications, Immersion Depth row", "quote": "Immersion Depth 7\" (180 mm) max", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 1, "from": "controller electronics", "to": "control PRT in the small hole in the top of the bath, tip immersed in the fluid", "quote": "The control probe is a precision platinum resistance thermometer (PRT). It is delicate and must be handled carefully. The probe is placed in the small hole in the top of the bath", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"kind": "heater_lead", "count": 1, "from": "controller", "to": "500 W bath heater in the tank", "quote": "Heater Power 500 W", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"kind": "none", "count": 0, "from": "n/a", "to": "n/a", "quote": "Digital remote communication is available with an RS-232", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "An insulated access hole cover is provided and should be used to cover the access opening in the top of the bath.",
+    "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"
+  },
+  "moving_parts": [
+    {"part": "circulation_pump", "quote": "The stirring motor is mounted on the bath tank lid under the motor cover. It drives the stirring propeller to provide mixing of the bath fluid.", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"part": "compressor", "rate": "two-stage cascade; first stage starts with the cooling switch, second stage 2 to 4 minutes later", "quote": "Refrigeration Cascade Two ¼ HP compressors", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"part": "compressor", "quote": "When the cooling switch has been turned on, the first stage compressor powers up. The second stage comes on automatically when proper conditions are met. This takes 2 to 4 minutes.", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"},
+    {"part": "door", "quote": "An insulated access hole cover is provided and should be used to cover the access opening in the top of the bath.", "source_url": "https://media.fluke.com/d3fcbf9d-a6ca-4027-9528-b10800c26e8c_original%20file.pdf"}
+  ],
+  "cryogen": "mechanical_refrigeration",
+  "not_found": [
+    "stirrer_propeller_speed_rpm (manual lists a 'Stir Speed' operating parameter and says 'The stirrer is precisely adjusted for optimum performance' but publishes no rpm)",
+    "compressor_speed_rate",
+    "tank_internal_dimensions (only Volume 4 liters and the 83 x 114 mm access opening are published)",
+    "working_area_depth_dimension (product page 'Working Area 86 x 114 mm' only)",
+    "windows.diameter_mm (no optical window; opaque insulated SST access cover)",
+    "exterior_cabinet_colour",
+    "stages.plate_diameters (not applicable: stirred liquid bath, no cold plates)",
+    "electrical sample connections / coax / DC lines (none; RS-232 is a control interface on the back panel, not sample wiring)",
+    "condenser_fan_speed (manual mentions condenser cleaning and a removable vent panel only)"
+  ],
+  "notes": "Compact ultra-low-temperature stirred-liquid metrology bath, -80 C to 100 C, cascade refrigeration with two 1/4 HP compressors and a 500 W heater; 1700 VA at 115 V/60 Hz or 230 V/50 Hz. Outer box 305 W x 762 H x 610 D mm, 52 kg, casters fitted. The 4 L stainless-steel tank sits under an insulated lid carrying the stirring motor (under a motor cover), the control PRT in a small hole, and the 83 x 114 mm rectangular access hole with an insulated access cover the user may drill for probe fixtures; max immersion 180 mm. Fluid level 12 to 50 mm below tank top. Back panel: circuit breaker, IEC power inlet, drain valve, RS-232 connector, removable vent panel. Stability +/-0.006 C and uniformity +/-0.008 C at -80 C (ethanol); cooling 25 C to -80 C in 130 min. Source discrepancies: the current Fluke product page gives Access Opening 86 x 114 mm, Depth 178 mm and 'Size (WxDxH) 305 x 610 x 762 mm' vs the User's Guide 83 x 114 mm / 180 mm (the catalog capabilities use 83 mm and 178 mm); the catalog description's 'two 1/2 HP compressors' is not supported by the manual, which says 'Two 1/4 HP compressors'. The User's Guide PDF is robots-blocked for scripts/v5_snapshot.py; text was extracted from a WebFetch-saved copy. Product page snapshot: research/v5/cache/a3d05ea0d7cbcd34.txt."
+}

@@ -1,0 +1,52 @@
+{
+  "configuration_id": "oxford_optistatdry_blv",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 635, "unit": "mm", "quote": "OptistatDry BLV cryostat 290 x 170 x 635 16 (Component Dimensions D x W x H / mm Weight / kg)", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf", "location": "MAN-OPTDRY-BLV-2.1.0, Appendix A - System weights and dimensions (p.63); cryostat alone. With stand: 'Dimensions (HxWxD) 635-900 (adjustable) x 240 x 290 mm' (section 8.4)"},
+    "width_or_diameter": {"value": 170, "unit": "mm", "quote": "OptistatDry BLV cryostat 290 x 170 x 635 16", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf", "location": "Appendix A; stand side panels widen this to 240 mm: 'Cryostat with support stand 290 x 240 x 900 (max) 23'"},
+    "depth": {"value": 290, "unit": "mm", "quote": "Dimensions (HxWxD) 635-900 (adjustable) x 240 x 290 mm", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf", "location": "Section 8.4 Physical; same figure on QD-Oxford product page 'Dimensions (HxWxD): 635-900 (adjustable) x 240 x 290 mm Weight: 23 kg'"},
+    "color_note": "Cryostat with integral SHI cold head weighs ~16 kg; cryostat + vertical support stand 23 kg. Stand: two side panels + support cradle on four anti-vibration mounts, four slotted feet for 1 inch / 25 mm optical-table hole patterns; cradle height adjustable so radial window centre height A above table is 55-180 mm. Main OVC body has T-slots on its exterior for radial restraints; the lower tail (optical window block) is 80 mm across ('The dimension across the BLV tail is 80mm.'). Compressor (separate, 3 m He lines): SHI HC4A2 air-cooled 111 kg or HC4E2 water-cooled 82 kg. Shipping blanks are black opaque plastic. Panel/finish colour not published."
+  },
+  "stages": [
+    {"name": "GM first stage (GM1) cooling the radiation shield with activated-charcoal sorption pump (temperature not published; 0 is a placeholder, see not_found)", "temperature_K": 0, "quote": "The first stage of the refrigerator is used to cool a radiation shield which acts to minimise the radiative heat load to the second stage of the refrigerator and the sample region.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"},
+    {"name": "GM second stage (GM2) / heat exchanger with Cernox sensor and 40 ohm Firerod heater, sample platform bolted to it (base 6.5 K with 4 windows, <3 K with blanks)", "temperature_K": 6.5, "quote": "Base temperature | ... | 6.5 (4 windows) | 6.5 (4 windows); Minimum temperature | ... | <4 K (blanks fitted) | <3 K (blanks fitted)", "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html"}
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "cylindrical vacuum space in the window block tail, 40 mm diameter x 50 mm tall, at the height of the four radial windows",
+    "description": "Sample in vacuum on a removable platform (nickel-plated copper blade holder, or a circuit-board puck DRYPUCK12R/12T pressed onto spring-loaded pins on the cold head, held by three T10 Torx screws at ~1.0 Nm) conductively linked to the GM second stage. Loaded through a front sample access plate on the window block after lifting off a removable radiation-shield plate (four T10 bolts) that carries the charcoal sorption pump; the optional DRYLX20 20-pin connector sits at the top of the sample space.",
+    "diameter_or_width": {"value": 40, "unit": "mm", "quote": "Maximum sample space 20 mm diameter 40 mm dia x 50 mm tall (OptistatDry TLEX | OptistatDry BLV)", "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf", "location": "OptistatDry Specifications table (OPTSS 0926 R5); product page: 'Sample Space: 40 mm x 50 mm vacuum'"},
+    "height": {"value": 50, "unit": "mm", "quote": "Maximum sample space 20 mm diameter 40 mm dia x 50 mm tall", "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf", "location": "OptistatDry Specifications table"}
+  },
+  "wiring": [
+    {"kind": "dc_loom", "count": 12, "from": "21-way hermetic micro-D connector on OVC flange (pins 1-5, 12-16, 10, 21)", "to": "12 sprung PCB tracks of DRYPUCK12R / DRYPUCK12T puck (10x constantan 42 SWG + 2x copper 36 SWG)", "quote": "Sample holders are available for transmission or reflection with the option of a 20-pin wired connector above the sample position or 12 sprung PCB connections for dc electrical signals in/out.", "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html"},
+    {"kind": "thermometer_lead", "count": 4, "from": "15-way hermetic micro-D connector on OVC (pins 1, 9, 2, 10), constantan 42 SWG", "to": "Cernox sensor on heat exchanger", "quote": "1 Constantan 42SWG Cernox sensor (V-) ... 9 Constantan 42SWG Cernox sensor (V+) 200 - 300 Ω 2 Constantan 42SWG Cernox sensor (I+) 200 - 300 Ω 10 Constantan 42SWG Cernox sensor (I-)", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"},
+    {"kind": "heater_lead", "count": 2, "from": "15-way micro-D connector (pins 3, 11), copper 36 SWG", "to": "40 ohm Firerod heater on heat exchanger", "quote": "3 Copper 36SWG Firerod heater (I+) from pin 3 to: 11 Copper 36SWG Firerod heater (I+) 40 Ω", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"},
+    {"kind": "thermometer_lead", "count": 2, "from": "15-way micro-D connector on OVC", "to": "temperature sensors GM1 and GM2 on the cold head first and second stages (count = 2 sensors; lead count per sensor not tabulated)", "quote": "The 1 st and 2nd stages of the cold head are fitted with temperature sensors, wired to the 15-way micro-D connector on the OVC.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"}
+  ],
+  "windows": {
+    "count": 5,
+    "axis": "multiple",
+    "diameter_mm": 28,
+    "quote": "The standard cryostat is fitted with 4 optical radial windows and 1 blank axial window. ... Optical access 28 mm diameter clear view, f1",
+    "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"
+  },
+  "moving_parts": [
+    {"part": "gm_displacer", "quote": "The refrigerator is a Sumitomo SHI 101D cold head with Standard A SHI HC4A2 air-cooled or Option W SHI HC4E2 water-cooled compressor. ... Displacer replacement: 10,000 hrs", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"},
+    {"part": "compressor", "quote": "Compressor Standard A 3.0 kW 200V, 220V, 230/240 V 50 Hz; Compressor Standard A 3.4 kW 220 V 60 Hz", "rate": "mains 50 or 60 Hz single-phase; cold head cooling power 0.2 W at 4.2 K (60 Hz), 0.16 W at 4.2 K (50 Hz)", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-bl4-user-guide.pdf"},
+    {"part": "door", "quote": "Changing samples via the unique sample access port is quick and simple, eliminating the need to remove the cryostat from the optical bench or re-align your optics after each and every sample change.", "rate": "manual; sample change 4-5 h including re-cool", "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html"}
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "stages[0].temperature_K (GM first-stage / radiation-shield temperature not published; 0 recorded as placeholder, treat as unknown)",
+    "stages[].diameter_mm (cold-head stage, radiation shield and heat-exchanger diameters not published)",
+    "moving_parts gm_displacer rate (SHI RDK-101D cycle frequency not stated in Oxford documents)",
+    "window physical diameter and thickness (only '28 mm diameter clear view, f1' published; manual mentions '2mm thick windows' as one option)",
+    "axial window position (top vs bottom) and material of axial blank not stated explicitly",
+    "GM1/GM2 stage sensor type and lead count",
+    "compressor dimensions ('485 x xxx x xxx tbd' in manual)",
+    "outer finish colour"
+  ],
+  "notes": "Sources: OptistatDry BLV manual MAN-OPTDRY-BLV-2.1.0 Sep 2017 (andor.oxinst.com; robots.txt blocked scripts/v5_snapshot.py so it was fetched with WebFetch and text-extracted with pypdf into the scratchpad), OptistatDry brochure doc 4694 (2018) 'Cool down time from ambient to 4.2 K < 160 minutes at 50 Hz; Typical cooling power 0.2 W at 4.2 K; Optical access 28 mm diameter clear view, f1', Optistat matrix PDF (research/v5/cache/c73e273061693731.txt) and QD-Oxford product page (research/v5/cache/295cbbaf14723ca3.txt). Geometry: vertical cryostat body (OVC with SHI 101D two-stage GM cold head on top, He gas lines entering at the rear), narrowing to an 80 mm optical window block tail at the bottom with four radial window ports (f/1, 28 mm clear view) and one axial port underneath (blanked as standard); each OVC window held by an O-ring and 4 M3 nylon screws, with a matching radiation-shield window/blank held by a spring clip. Radiation shield is cooled by the GM first stage and carries the charcoal sorb on its removable front plate; sample platform/puck bolts to the heat exchanger on the GM second stage. Whole cryostat hangs in a stand with two side panels, cradle on four anti-vibration mounts (M6, 25 mm fine height adjust) and radial restraints in the OVC T-slots. Standard wiring here is the 12-track PCB puck (12P code); the alternative LX20 20-pin option (nine constantan twisted pairs + one copper pair) is not part of this configuration. Vibration <10 um RMS at the sample. Cooldown RT to base ~3.0 h (DC12 puck). Temperature control by Mercury iTC (450 W)."
+}

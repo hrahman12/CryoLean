@@ -1,0 +1,50 @@
+{
+  "configuration_id": "cryogenic_ltd_mcfms_qhr_5t_30mm_transport",
+  "archetype": "ppms_magnet_platform",
+  "outer": {
+    "shape": "box",
+    "height": {"value": 900, "unit": "mm", "quote": "900 mm", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf", "location": "flyer page 1, vertical dimension arrow beside the cryostat photo (base plate to top of VTI/cryocooler head)"},
+    "width_or_diameter": {"value": 440, "unit": "mm", "quote": "440 mm", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf", "location": "flyer page 1, horizontal arrow across the front of the green cryostat box"},
+    "depth": {"value": 660, "unit": "mm", "quote": "660 mm", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf", "location": "flyer page 1, diagonal arrow along the side (front-to-back) of the base"},
+    "color_note": "Photo on flyer page 1: dark green rectangular cryostat box with Cryogenic badge, on a dark green base plate with adjustable feet; polished stainless cylindrical VTI/cryocooler column with pressure gauge and flexible helium lines rising from the top."
+  },
+  "stages": [
+    {"name": "pulse tube cryocooler cold stage (magnet + VTI cooling)", "temperature_K": 3, "quote": "Pulse tube cryocooler: Base temperature below 3 K, cooling power 0.5 W or 1 W at 4.2 K (depending on the size of the magnet)", "source_url": "https://www.cryogenic.co.uk/products/mini-cryogen-free-systems-mcfms-3-7-tesla"},
+    {"name": "superconducting magnet (5 T option)", "temperature_K": 3, "quote": "Choice of 3 Tesla, 5 Tesla or 7 Tesla superconducting magnets, with high performance current sources.", "source_url": "https://www.cryogenic.co.uk/products/mini-cryogen-free-systems-mcfms-3-7-tesla"},
+    {"name": "VTI sample space (continuous gas flow)", "temperature_K": 1.6, "quote": "Variable temperature. Closed circuit gas flow VTI with continuous sample temperature control from 1.6 Kelvin to 400 Kelvin.", "source_url": "https://www.cryogenic.co.uk/products/mini-cryogen-free-systems-mcfms-3-7-tesla"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "description": "Top-loading DC resistivity/Hall probe inserted down the 30 mm ID VTI into the magnet bore; two 6-contact sample sockets, one parallel and one perpendicular to B; sample in flowing helium gas, 1.6-400 K.",
+    "shape": "vertical cylinder (VTI bore)",
+    "diameter_or_width": {"value": 30, "unit": "mm", "quote": "Sample space of 25 mm or 30 mm in the VTI", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf", "location": "flyer page 1 bullet list; CFMS brochure p.20 spec table also gives 'Sample space 30 mm'"}
+  },
+  "wiring": [
+    {"kind": "dc_loom", "count": 6, "from": "probe-head connector at room temperature", "to": "each of two sample sockets on the probe end (parallel and perpendicular to B)", "quote": "measurement of two solid samples, one positioned parallel and one perpendicular to the magnetic field. Each sample socket has six contacts", "source_url": "https://www.cryogenic.co.uk/products/resistivity-and-hall-effect"},
+    {"kind": "dc_twisted_pair", "count": 0, "from": "probe head", "to": "sample platform", "quote": "Probe wiring options include twisted pairs, miniature coaxial cables (for high-frequency measurements) or triaxial lines (for very low current measurements).", "source_url": "http://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed_1.pdf"}
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "The VTI base may, as an option, include optical access in line with the sample column axis to allow for sample illumination from below the cryostat.",
+    "source_url": "http://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed_1.pdf"
+  },
+  "moving_parts": [
+    {"part": "pulse_tube_rotary_valve", "quote": "High power Pulse Tube cryocooler with low vibration", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf"},
+    {"part": "compressor", "quote": "Independent and easily transportable as it runs from standard electrical supply.", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/quantum-hall-res-brochures.pdf"},
+    {"part": "gas_flow", "quote": "Closed circuit gas flow VTI with continuous sample temperature control from 1.6 Kelvin to 400 Kelvin.", "source_url": "https://www.cryogenic.co.uk/products/mini-cryogen-free-systems-mcfms-3-7-tesla"},
+    {"part": "magnet_ramp", "quote": "Choice of 3 Tesla, 5 Tesla or 7 Tesla superconducting magnets, with high performance current sources.", "source_url": "https://www.cryogenic.co.uk/products/mini-cryogen-free-systems-mcfms-3-7-tesla"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "stages[*].diameter_mm (no plate diameters published for the m-CFMS)",
+    "sample_space.height for the 30 mm VTI (only the 25 mm VTI is quoted as '100 mm long isothermal region')",
+    "magnet bore diameter and magnet winding dimensions",
+    "pulse tube cryocooler model and rotary-valve frequency",
+    "wiring twisted-pair count (brochure lists wiring options without a line count)",
+    "cryostat outer-vacuum-chamber (OVC) wall / radiation shield diameters",
+    "VTI gas flow rate and needle-valve details for the m-CFMS",
+    "compressor dimensions and placement"
+  ],
+  "notes": "Outer dimensions come from the dimension callouts on the Cryogenic m-CFMS flyer photo (page 1): the 900 mm arrow is vertical beside the cryostat, 440 mm runs across the front of the base, 660 mm along the side (verified by rendering the PDF page). Stage temperatures: the m-CFMS product page gives pulse tube base <3 K and VTI 1.6-400 K; the magnet is conduction-cooled by the same cryocooler (same page: 'Cooling for both the magnet and the sample space is provided by a cryocooler'), so it is modelled at the cryocooler stage temperature. The dc_twisted_pair wiring entry has count 0 because the brochure names twisted pairs as a wiring option but gives no count; the six-contact-per-socket figure (two sockets) is from the Resistivity and Hall Effect product page for the standard DC probe. Optical access (VTI-base) and He-3 insert are options NOT fitted in this configuration, hence windows count 0. The 25 mm VTI variant on the m-CFMS page quotes a '100 mm long isothermal region, with a possibility of a single optical access'; this configuration uses the 30 mm VTI so that length is not applied. Cached snapshots: research/v5/cache/e3e268b3bbbcf817.txt (QHR/m-CFMS flyer), d64bf86a9e24f673.txt (m-CFMS page), 8126d89197e64581.txt (CFMS brochure v5.2), 6b590fbc3deef1d7.txt (Resistivity and Hall Effect page), 39ef1507bc24b4af.txt (QHR standard page)."
+}
