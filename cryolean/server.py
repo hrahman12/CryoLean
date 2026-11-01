@@ -100,12 +100,20 @@ def apply_fix(b: ApplyFix):
 
 @app.post("/api/lanyon")
 def lanyon_ask(b: LanyonAsk):
-    """Website chat -> Lanyon AI. Returns Lanyon's answer and certification; never a verdict."""
-    from . import lanyon
+    """Website chat: Claude answers in plain English; Lanyon builds a certified model when the question asks for one.
+    Neither changes a verdict."""
+    from . import chat, lanyon
+    q, facts = b.question[:2000], b.facts[:6000]
     try:
-        return {"ok": True, "data": lanyon.ask(b.question[:2000], b.facts[:6000])}
-    except lanyon.LanyonUnavailable as e:
-        return JSONResponse({"ok": False, "error": {"code": "LANYON_UNAVAILABLE", "message": str(e)}}, status_code=503)
+        data: dict[str, Any] = {"answer": chat.answer(q, facts), "answered_by": "claude", "lanyon": None}
+    except chat.ChatUnavailable as e:
+        return JSONResponse({"ok": False, "error": {"code": "CHAT_UNAVAILABLE", "message": str(e)}}, status_code=503)
+    if chat.wants_model(q):
+        try:
+            data["lanyon"] = lanyon.ask(q, facts)
+        except lanyon.LanyonUnavailable as e:
+            data["lanyon"] = {"skipped": str(e)}
+    return {"ok": True, "data": data}
 
 
 @app.get("/api/lanyon/status")

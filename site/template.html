@@ -134,6 +134,15 @@ header.top { text-align: center; height: 172px }
 .badge.p { background: var(--met-soft); color: var(--met) } .badge.f { background: var(--fail-soft); color: var(--fail) } .badge.u { background: var(--info-soft); color: var(--info) } .badge.s { background: var(--chip); color: var(--muted) }
 .suggest { background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 12px; display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); min-height: 0; overflow: auto; flex: 1 }
 .suggest b.h { font: 800 15px var(--display); color: var(--ink) }
+.suggest .tv { display: grid; gap: 6px }
+.suggest .tvr { display: grid; grid-template-columns: 10px 1fr; gap: 9px; align-items: start; padding: 6px 9px; border-radius: 9px; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); background: color-mix(in srgb, var(--c) 10%, transparent) }
+.suggest .tvr i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-top: 4px }
+.suggest .tvr span { display: grid; gap: 1px } .suggest .tvr b { font: 800 14.5px var(--display); color: var(--ink) } .suggest .tvr small { font-size: 12px; color: var(--ink-2) }
+.suggest .tvsrc { font-size: 11px; color: var(--muted) }
+#demolist .di { padding: 4px 11px !important } #demolist .di b { font-size: 14px !important } #demolist .di span { font-size: 11.5px !important; line-height: 1.25; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.di .dv { display: flex; flex-wrap: nowrap; align-items: center; gap: 5px; font: 600 10.5px var(--body); font-style: normal; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.di .dv i { width: 8px; height: 8px; border-radius: 50%; display: inline-block } .di .dv i.ok { background: var(--met) } .di .dv i.no { background: var(--fail) } .di .dv i.maybe { background: var(--info) }
+.suggest .tvr.ok { --c: var(--met) } .suggest .tvr.no { --c: var(--fail) } .suggest .tvr.maybe { --c: var(--info) }
 .suggest .alts { display: flex; flex-wrap: wrap; gap: 6px }
 .suggest button.alt, .suggest button.fix { border: 1.5px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 8px; padding: 4px 9px; font: 700 12.5px var(--body); cursor: pointer; text-align: left }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
@@ -165,6 +174,14 @@ header.top { text-align: center; height: 172px }
 @keyframes udraw { to { stroke-dashoffset: 0 } }
 .uni .body { fill: var(--bg, #0b1220); stroke: var(--ink); stroke-width: .8 } .uni .body.on { stroke-width: 1.4 }
 .uni .body.lean { stroke: var(--met) } .uni .body.lanyon { stroke: #a77bff } .uni .body.z3 { stroke-dasharray: 2 2 }
+.uni .lany .strap { fill: none; stroke: #a77bff; stroke-width: 2.4; stroke-linecap: round } .uni .lany .clip { fill: #c9b3ff; stroke: #7a4fe0; stroke-width: .6 }
+.uni .lany .card { fill: var(--bg, #0b1220); stroke: #a77bff; stroke-width: 1 } .uni .lany .band { fill: #a77bff } .uni .lany .face { fill: none; stroke: #c9b3ff; stroke-width: 1 }
+.uni .lany.on .card { stroke-width: 1.6 } .uni .lany.on .strap { filter: drop-shadow(0 0 3px #a77bff) }
+.uni .cym { position: relative; min-width: 0; cursor: crosshair; overflow: hidden }
+.uni .cym canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block }
+.uni .cymlbl { position: absolute; left: 14px; top: 12px; display: grid; gap: 1px; pointer-events: none; font: 600 10.5px var(--body); letter-spacing: .08em; text-transform: uppercase }
+.uni .cymlbl span { font-weight: 500; font-size: 9px; color: var(--muted); letter-spacing: .04em; text-transform: none }
+.uni .cymhint { position: absolute; right: 12px; bottom: 10px; font: 500 9px var(--body); color: var(--muted); opacity: .7; pointer-events: none }
 .uni .lbl { font: 600 10.5px var(--body); fill: var(--ink); text-anchor: middle } .uni .sub { font: 500 8.5px var(--body); fill: var(--muted); text-anchor: middle }
 .uni .star { fill: var(--ink); opacity: .35 } .uni .pulse { fill: #fff; filter: drop-shadow(0 0 4px #a77bff) }
 .uni .halo { fill: none; stroke: currentColor; stroke-width: .6; opacity: 0; transform-box: fill-box; transform-origin: center }
@@ -284,7 +301,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .fxstats div { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; display: grid }
 .fxstats b { font: 800 30px var(--display); color: var(--ink) } .fxstats span { font-size: 12.5px; color: var(--ink-2) }
 .fxstats .ok b { color: var(--met) } .fxstats .warn b { color: var(--info) }
-.fxrow { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 12px }
+.fxrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px }
 .fxtbl, .fxgap { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px }
 .fx h3 { margin: 0 0 8px; font: 800 16px var(--display); color: var(--ink) }
 .fxtbl table { width: 100%; border-collapse: collapse; font-size: 13px } .fxtbl th { text-align: left; color: var(--muted); font-weight: 700; padding: 4px 6px; border-bottom: 1px solid var(--line) }
@@ -300,7 +317,8 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .fxjudges { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px }
 .fxjudges div { border: 1px solid #24324a; border-radius: 8px; padding: 5px 6px; font-size: 10.5px; color: #8b9bb4; line-height: 1.25; transition: all .3s }
 .fxjudges div b { display: block; font: 800 14px var(--display); color: #8b9bb4 } .fxjudges div.done b { color: #3ddc84 } .fxjudges div.hot { border-color: #ffcb6b } .fxjudges div.hot b { color: #ffcb6b }
-.cd { display: grid; gap: 4px } .fxtag { justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px } .fxtag.bad { background: rgba(255,107,107,.18); color: #ff6b6b } .fxtag.good { background: rgba(61,220,132,.16); color: #3ddc84 } .cd pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre-wrap; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px }
+.cd { display: grid; gap: 4px } .fxtag { justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px } .fxtag.bad { background: rgba(255,107,107,.18); color: #ff6b6b } .fxtag.good { background: rgba(61,220,132,.16); color: #3ddc84 } .cd pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre-wrap; overflow-wrap: anywhere; overflow-x: auto; max-width: 100%; box-sizing: border-box; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 12px 8px 10px }
+.cd pre .hl, .cd pre .hg { -webkit-box-decoration-break: clone; box-decoration-break: clone }
 .cd pre .kw { color: #c792ea } .cd pre .cm { color: #697a94; font-style: italic } .cd pre .ct { color: #f78c6c } .cd pre .fn { color: #82aaff } .cd pre .hl { background: rgba(255,107,107,.18); outline: 1px solid rgba(255,107,107,.5); border-radius: 3px }
 .cd pre .hg { background: rgba(61,220,132,.16); outline: 1px solid rgba(61,220,132,.45); border-radius: 3px }
 .fallback[hidden], .demo[hidden], .chatf[hidden], [hidden] { display: none !important }
@@ -399,7 +417,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     <div class="flow u" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
     <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Chat with Lanyon AI · Lean decides</span></h3>
       <div id="chatlog" class="chatlog" aria-live="polite"></div>
-      <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask Lanyon, e.g. why 39 lines?"><button type="submit" class="replay">Ask</button></form>
+      <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask, e.g. why 39 lines? (say “model it” for Lanyon)"><button type="submit" class="replay">Ask</button></form>
       <div style="display:flex;gap:8px"><button type="button" class="replay" id="explain">Explain this run</button><button class="replay" id="replay" style="background:var(--chip);color:var(--ink)">Replay</button></div>
       <div id="viz" hidden></div><span class="cap" id="vizcap" hidden></span></div>
   </div>
@@ -589,12 +607,22 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const featured = new Set(ind.configurations.map((c) => c.id));
     passing.sort((a, b) => (featured.has(b) - featured.has(a)) || name(a).localeCompare(name(b)));
     const alts = passing.slice(0, 4).map((cid) => `<button class="alt" data-cid="${cid}">${featured.has(cid) ? "Featured · " : ""}${esc(name(cid))}</button>`).join("");
-    let h = "";
-    if (outs.includes("s")) {
-      h = `<b class="h">Confirm your requirements</b><span>Tick each requirement once its value matches your experiment. Until all are confirmed, Lean answers Need more information for every machine.</span>`;
-    } else if (vcode === "R") {
-      h = `<b class="h">All ${rs.length} requirements met, decided by Lean</b><span>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these exact values.</span>`;
-    } else {
+    // The two answers, straight from Lean's verdict (vcode) and its outcome on the run-time requirement
+    const unconf = outs.includes("s");
+    const cmp = vcode === "R" ? ["ok", "Experiment is compatible"] : vcode === "D" ? ["no", "Experiment is not compatible"] : ["maybe", "Experiment might be compatible"];
+    const di = rs.findIndex((r) => r.keys.includes("operating_duration.max")), dur = di >= 0 ? rs[di] : null;
+    const need = dur ? `needs ${fnum(lv.vals[dur.index])} ${esc(dur.unit || "h")} of continuous run time` : "";
+    const run = dur ? ({ p: ["ok", "Runs on this system", `${need}; the machine holds it.`],
+                         f: ["no", "Will not run on this system", `${need}; the machine can't hold that long.`],
+                         u: ["maybe", "Might run on this system", `${need}; the machine's run time isn't documented.`],
+                         s: ["maybe", "Might run on this system", `${need}; confirm this requirement to decide.`] })[outs[di]]
+      : vcode === "R" ? ["ok", "Runs on this system", "This procedure sets no minimum run time."]
+      : vcode === "D" ? ["no", "Will not run on this system", "Another requirement fails first."]
+      : ["maybe", "Might run on this system", "Not decided until every requirement is confirmed and documented."];
+    const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? "<small>Tick each requirement to let Lean decide.</small>" : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
+      `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
+    let h = tv;
+    if (!unconf && vcode !== "R") {
       const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
       const steps = [];
       if (first >= 0 && r.editable && e) {
@@ -605,7 +633,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       }
       steps.push(passing.length ? `<span>Or switch to a machine that meets every value you typed (${passing.length} found by Lean):</span><div class="alts">${alts}</div>`
         : `<span>No catalog machine meets all of these values. Relax the failing value.</span>`);
-      h = `<b class="h">Requirement ${k + 1} ${first >= 0 ? "fails" : "is not documented"} on this machine: ${esc(human(r.keys[0]))}</b>` +
+      h += `<b class="h">Requirement ${k + 1} ${first >= 0 ? "fails" : "is not documented"} on this machine: ${esc(human(r.keys[0]))}</b>` +
         steps.map((t, j) => `<div class="step"><span class="k">${j + 1}</span><span>${t}</span></div>`).join("");
     }
     $("suggest").innerHTML = h;
@@ -717,14 +745,74 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       svgc += `<path class="link${i === n - 1 ? " draw" : ""}" d="M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}" id="lk${i}"/>`; }
     used.forEach((w) => { const [x, y] = POS[w] || POS.data, on = cur && cur[0] === w;
       svgc += `<g style="color:${w === "lean" ? "var(--met)" : w === "lanyon" ? "#a77bff" : "var(--ink)"}"><circle class="halo${on ? " go" : ""}" cx="${x}" cy="${y}" r="15"/>` +
-        `<circle class="body ${w}${on ? " on" : ""}" cx="${x}" cy="${y}" r="${w === "lean" || w === "lanyon" ? 15 : 11}"/>` +
+        (w === "lanyon" ? lanyonIcon(x, y, on) : `<circle class="body ${w}${on ? " on" : ""}" cx="${x}" cy="${y}" r="${w === "lean" ? 15 : 11}"/>`) +
         `<text class="lbl" x="${x}" y="${y + (w === "lean" ? 31 : 27)}">${AV[w][0]}</text><text class="sub" x="${x}" y="${y + (w === "lean" ? 42 : 38)}">${AV[w][1]}</text></g>`; });
     if (n > 1) { const p = `lk${n - 1}`; svgc += `<circle class="pulse" r="2.6"><animateMotion dur="1.1s" fill="freeze"><mpath href="#${p}"/></animateMotion></circle>`; }
     const cap = cur && n ? `<div class="k"><b>${esc(AV[cur[0]][0])}</b> · step ${n} of ${st.length}</div><h4>${esc(cur[1])}</h4><p>${esc(cur[2])}</p><span class="res ${cur[4]}">${esc(cur[3])}</span>`
       : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
-    return `<div class="uni"><svg viewBox="0 0 420 280" role="img" aria-label="Diagram of who acts in each step">${svgc}</svg><div class="cap">${cap}` +
+    const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
+    return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Cymatic pattern: the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
       `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Replay of a real run · Lanyon and Z3 suggest, Lean decides. Lanyon was off in this recording, so suggested numbers are Z3's."}</small></div></div>`;
   }
+  // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
+  function lanyonIcon(x, y, on) {
+    return `<g class="lany${on ? " on" : ""}"><path class="strap" d="M${x - 6},${y - 10} L${x - 12},${y - 34} Q${x},${y - 46} ${x + 12},${y - 34} L${x + 6},${y - 10}"/>` +
+      `<rect class="clip" x="${x - 3.5}" y="${y - 14}" width="7" height="6" rx="1.2"/>` +
+      `<rect class="card" x="${x - 11}" y="${y - 9}" width="22" height="25" rx="3"/>` +
+      `<rect class="band" x="${x - 11}" y="${y - 9}" width="22" height="6" rx="3"/>` +
+      `<circle class="face" cx="${x}" cy="${y + 3}" r="3.6"/><path class="face" d="M${x - 6},${y + 13} Q${x},${y + 6} ${x + 6},${y + 13}"/></g>`;
+  }
+  // Cymatic surface: hairline particles settle onto the nodal lines of a Chladni plate. Each actor has its own
+  // vibration mode, so the pattern re-forms at every step; the pointer shakes particles loose and they settle back.
+  const CYM = (() => {
+    const MODE = { you: [2, 5], data: [3, 7], lanyon: [5, 8], z3: [4, 9], lean: [3, 6] };
+    const N = 6000, P = new Float32Array(N * 2);
+    for (let i = 0; i < N * 2; i++) P[i] = Math.random();
+    let n = 3, m = 6, tn = 3, tm = 6, ax = 2, mx = -1, my = -1, el = null, cv = null, ctx = null, w = 0, h = 0, dpr = 1;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const f = (x, y) => { x *= ax; return Math.cos(n * Math.PI * x) * Math.cos(m * Math.PI * y) + Math.cos(m * Math.PI * x) * Math.cos(n * Math.PI * y); };
+    function attach() {
+      const host = document.querySelector(".uni .cym");
+      if (!host) { el = null; return false; }
+      if (host !== el) {
+        el = host; cv = host.querySelector("canvas"); ctx = cv.getContext("2d");
+        host.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height; });
+        host.addEventListener("pointerleave", () => { mx = my = -1; });
+      }
+      const mode = MODE[host.dataset.who] || MODE.you; tn = mode[0]; tm = mode[1];
+      const r = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
+      if (Math.round(r.width * dpr) !== w || Math.round(r.height * dpr) !== h) { w = cv.width = Math.round(r.width * dpr); h = cv.height = Math.round(r.height * dpr); }
+      return w > 0 && h > 0;
+    }
+    function frame() {
+      if (attach() && document.visibilityState === "visible") {
+        const bend = mx >= 0 ? (mx - 0.5) * 1.6 : 0, lift = my >= 0 ? (0.5 - my) * 1.2 : 0;   // hovering bends the mode
+        n += (tn + bend - n) * 0.05; m += (tm + lift - m) * 0.05;          // glide between modes instead of snapping
+        const ink = getComputedStyle(el).color || "#e8eef8";
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = ink; ctx.globalAlpha = 0.12; ctx.lineWidth = 1;
+        ctx.strokeRect(0.5 * dpr * 2, 0.5 * dpr * 2, w - 2 * dpr, h - 2 * dpr);   // hairline plate edge
+        ctx.fillStyle = ink; ctx.globalAlpha = 1;
+        const s = Math.max(1.2, dpr * 1.2), aspect = w / h; ax = Math.max(1, aspect);
+        for (let i = 0; i < N; i++) {
+          let x = P[2 * i], y = P[2 * i + 1];
+          const v = f(x, y), e = 0.002, gx = (f(x + e, y) - v) / e, gy = (f(x, y + e) - v) / e, g2 = gx * gx + gy * gy + 1e-6;
+          const pull = Math.min(0.02, Math.abs(v) / Math.sqrt(g2)) * 0.8;   // step down |f| toward the nodal line
+          x -= Math.sign(v) * gx / Math.sqrt(g2) * pull; y -= Math.sign(v) * gy / Math.sqrt(g2) * pull;
+          let amp = (reduce ? 0.0003 : 0.0007) + Math.abs(v) * 0.002;
+          if (mx >= 0) { const dx = (x - mx) * aspect, dy = y - my, d2 = dx * dx + dy * dy; if (d2 < 0.05) amp += (0.05 - d2) * 1.4; }
+          x += (Math.random() - 0.5) * amp; y += (Math.random() - 0.5) * amp;
+          if (x < 0 || x > 1 || y < 0 || y > 1) { x = Math.random(); y = Math.random(); }
+          P[2 * i] = x; P[2 * i + 1] = y;
+          ctx.fillRect(x * w, y * h, s, s);
+        }
+        ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    return { attach };
+  })();
   let typeT = 0, flowN = 0; function streamLast() {}
   // Live checker uses the same Lanyon panel, built from the pairing you picked (id "L")
   let LIVEINFO = { id: "L", t: "Your check", d: "Your experiment on your machine" }, isDemo = false;
@@ -743,27 +831,62 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     CAP.L = `${LIVEINFO.d}: Lean says ${V[0]}. ${V[2]}`;
     if (!isDemo) { $("flow").innerHTML = flowHTML("L", STEPS.L.length); $("viztitle").textContent = "Your check"; demoCur = "L"; resetChat("L"); }
   }
+  // Final answers of each recorded demo, in the same two-line form as the live checker (tile = which verdict lights up)
+  const DEMOV = {
+    A: { tile: "info", cs: "Not compatible", rs: "Might run (14 T)", c: ["no", "Experiment is not compatible", "Needs 10 T; the 9 T DynaCool can't reach it."],
+         r: ["maybe", "Might run on the 14 T option", "Lean asks for more information: some 14 T specs aren't published."] },
+    B: { tile: "met", cs: "Compatible", rs: "Runs", c: ["ok", "Experiment is compatible (with 39 flux lines)", "Lean re-checked the fix: 11.985 µW fits under 12 µW."],
+         r: ["ok", "Runs on this system", "The heat budget holds at 20 mK with the fixed wiring."] },
+    C: { tile: "met", cs: "Compatible", rs: "Runs", c: ["ok", "Experiment is compatible", "Lean verifies the Lake Shore CRX-VF for the new semiconductor experiment."],
+         r: ["ok", "Runs on this system", "Every requirement is covered by documented specs."] },
+    D: { tile: "met", cs: "3 of 4 compatible", rs: "Runs · 23 h", c: ["ok", "3 of 4 experiments are compatible", "Lean excludes the 10 T run: the stage has no magnet."],
+         r: ["ok", "Runs: done at 23 h of the 48 h cooldown", "Lean validSchedule accepts the slots. With only 20 h it would not run (Z3 proves it)."] },
+  };
+  const tvRow = (x) => `<div class="tvr ${x[0]}"><i></i><span><b>${x[1]}</b>${x[2] ? `<small>${x[2]}</small>` : ""}</span></div>`;
+  const demoTV = (id) => `<div class="tv">${tvRow(DEMOV[id].c)}${tvRow(DEMOV[id].r)}</div><span class="tvsrc">Recorded result of demo ${id} · decided by Lean</span>`;
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
-    demoCur = id; clearInterval(demoTimer); demoSelect(id); resetChat(id);
+    demoCur = id; demoK = 0; clearInterval(demoTimer); demoSelect(id); resetChat(id);
     const d = dinfo(id), lines = demoLines(d.h);
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
     let n = 0; const step = () => { n++; const p = n / lines.length;
       $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
       $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
-      { const k = Math.ceil(p * (STEPS[id] || []).length); if (k !== flowN) { flowN = k; $("flow").innerHTML = flowHTML(id, k, true); streamLast(id, k); } }
+      { const k = Math.ceil(p * (STEPS[id] || []).length); if (k !== flowN) { flowN = k; $("flow").innerHTML = flowHTML(id, k, true); streamLast(id, k); demoTop(id, k); } }
       if (n >= lines.length) clearInterval(demoTimer) };
     $("viz").innerHTML = VIZ[id](0); flowN = 0; clearInterval(typeT); $("flow").innerHTML = flowHTML(id, 0); step();
     demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
   }
-  $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span></button>`).join("") +
+  $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span><em class="dv"><i class="${DEMOV[d.id].c[0]}"></i>${DEMOV[d.id].cs}<i class="${DEMOV[d.id].r[0]}"></i>${DEMOV[d.id].rs}</em></button>`).join("") +
     `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
   $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
   $("replay").onclick = () => playDemo(demoCur);
   // Demo tab = the same three live cards, set to each demo's industry/experiment/machine, plus the recorded run below
   const DEMOSEL = { A: ["scientific_research", 1, "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"], B: ["quantum_computing_and_sensing", 1, "bluefors_xldhehp_3section"],
-    C: ["astronomy_and_astrophysics", 0, "lakeshore_crx_4k"], D: ["chemistry_and_pharmaceuticals", 1, "linkam_thms600_lnp96_t96"] };
+    C: ["semiconductors_and_electronics", 2, "lakeshore_fwpx_6arm_standard"], D: ["chemistry_and_pharmaceuticals", 1, "linkam_thms600_lnp96_t96"] };
+  const DEMOSWITCH = { A: [4, "qd_dynacool_14T_eto_vsm_hc"] };
+  let demoK = 0;   // how many steps of the playing demo are revealed
+  // Top cards follow the demo as it plays: the lit verdict tile and the answer box track the latest Lean step
+  function demoTop(id, k) {
+    demoK = k;
+    const sw = DEMOSWITCH[id], ind = D.industries[st.ind];
+    if (sw && ind) {
+      const want = k >= sw[0] ? sw[1] : DEMOSEL[id][2], j = ind.configurations.findIndex((c) => c.id === want);
+      if (j >= 0 && j !== st.cfg) { st.cfg = j; st.alt = null; render(); return; }   // render() calls back into paintDemoTop
+    }
+    paintDemoTop(id);
+  }
+  function paintDemoTop(id) {
+    const st5 = STEPS[id] || [], k = demoK, done = k >= st5.length;
+    let last = null; for (let i = 0; i < Math.min(k, st5.length); i++) if (st5[i][4] !== "neutral") last = st5[i];
+    const tile = done ? DEMOV[id].tile : last ? { fail: "fail", met: "met", info: "info" }[last[4]] : null;
+    ["met", "fail", "info"].forEach((t) => $("v-" + t).classList.toggle("on", tile === t));
+    if (done) { $("suggest").innerHTML = demoTV(id); return; }
+    const cur = st5[Math.max(0, k - 1)], col = last ? { fail: "no", met: "ok", info: "maybe" }[last[4]] : "maybe";
+    $("suggest").innerHTML = `<div class="tv">${tvRow([col, last ? last[3] + " · " + last[1] : "Lean hasn't decided yet", cur ? cur[2] : ""])}</div>` +
+      `<span class="tvsrc">Step ${Math.min(k, st5.length)} of ${st5.length} · the final two answers appear when the run finishes</span>`;
+  }
   function demoSelect(id) {
     const m = DEMOSEL[id]; if (!m) return;
     const i = D.industries.findIndex((x) => x.id === m[0]); if (i < 0) return;
@@ -781,17 +904,20 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   async function askLanyon(q, show) {
     if (lanBusy) return;
     addMsg("me", show || q);
-    if (!LIVEAPI) { addMsg("ai", "Lanyon answers through the live CryoLean server (python -m cryolean serve with Lanyon enabled). This page is a recording, so here's what happened: " + CAP[demoCur]); return; }
-    lanBusy = true; const out = addMsg("ai", "Lanyon is working on it… (it models the physics and certifies it, which can take a few minutes)");
+    lanBusy = true; const out = addMsg("ai", "Claude is reading Lean's verdict…");
     try {
       const r = await post("/api/lanyon", { question: q, facts: runFacts(demoCur) });
-      out.textContent = (r.answer || "Lanyon finished but wrote no answer.") + (r.certified ? "\n\n✓ Lanyon certified this model (proof passed the Gatekeeper)." : "\n\nNot certified: " + (r.why_not_certified || "no certificate") + ".");
-    } catch (e) { out.textContent = "Lanyon isn't available on this server: " + e.message + "\n\n" + CAP[demoCur]; }
+      let t = (r.answer || "No answer came back.") + "\n\n— answered by Claude · Lean decides every verdict";
+      const m = r.lanyon;
+      if (m && m.skipped) t += "\n\nLanyon model not run here: " + m.skipped + ".";
+      else if (m) t += "\n\nLanyon model: " + (m.certified ? "✓ certified (proof passed the Gatekeeper)." : "not certified (" + (m.why_not_certified || "no certificate") + ").");
+      out.textContent = t;
+    } catch (e) { out.textContent = "The chat isn't available right now: " + e.message + "\n\n" + CAP[demoCur]; }
     finally { lanBusy = false; }
   }
   function resetChat(id) {
     $("chatlog").innerHTML = "";
-    addMsg("note", "Ask Lanyon AI about this run. Lanyon explains and suggests; Lean makes every final call.");
+    addMsg("note", "Ask about this run. Claude explains, Lanyon models the physics when you ask it to, and Lean makes every final call.");
     addMsg("ai", CAP[id]);
   }
   $("explain").onclick = () => askLanyon("Walk me through this run step by step in plain English.", "Explain this run");
@@ -1006,7 +1132,8 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
     updateLiveFlow(ex, mc, vcode);
-    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
+    if (isDemo && DEMOV[demoCur]) paintDemoTop(demoCur);
+    else ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
 
     $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
       (ex.sources || []).filter((s) => s.citation && s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">Experiment source: ${esc(s.citation)}</a>`).join("") +
