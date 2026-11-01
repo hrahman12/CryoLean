@@ -107,7 +107,7 @@ box(830, 122, 392, 720, "#f0faf3", "#1a7f37", r=14, sw=2)
 
 # ---------------------------------------------------------------- inputs
 x, w = COLS["in"]
-card(x, 130, w, 150, ["codex.png", "pywebview.png"], "Desktop UI + website",
+card(x, 130, w, 150, ["pywebview.png"], "Desktop UI + website",
      ["PyWebView window (bridge), or", "python -m cryolean serve: website +", "/api/check, /api/apply-fix,", "/api/lanyon. Same CryoLeanAPI."],
      "cryolean/server.py")
 card(x, 296, w, 150, ["sqlite.jpg"], "Cryostat sheet",
