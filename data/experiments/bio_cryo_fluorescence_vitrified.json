@@ -1,7 +1,7 @@
 {
   "id": "bio_cryo_fluorescence_vitrified",
   "name": "Cryo-fluorescence / cryo-CLEM imaging of plunge-frozen (vitrified) specimens kept below the devitrification temperature",
-  "plain_name": "Examine a frozen sample under the microscope while keeping it frozen",
+  "plain_name": "Examine a sample under the microscope while keeping it cold",
   "industry": "biology_and_biotechnology",
   "sources": [
     {
@@ -141,6 +141,33 @@
         "ev_exp_0013",
         "ev_exp_0012"
       ]
+    },
+    {
+      "keys": [
+        "vacuum.available",
+        "purge.gas"
+      ],
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "conditions": [
+        {
+          "kind": "param_at_most",
+          "name": "operating_temperature",
+          "q": {
+            "value": 273150,
+            "unit": "mK"
+          }
+        }
+      ],
+      "origin": "experimental_observation",
+      "rationale": "Condensation/frost: a cold specimen or window below the frost point collects ice unless the sample space is evacuated or purged with dry gas (pm_015, pm_016). Applies only when the operating temperature is at or below 0 °C.",
+      "evidence_ids": [
+        "pm_015",
+        "pm_016",
+        "pm_017"
+      ]
     }
   ],
   "missing_information": [
@@ -150,5 +177,23 @@
     "humidity requirement during imaging/transfer not stated (only plunge-freezer chamber humidity is given)"
   ],
   "confirmed": true,
-  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used.",
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 77000,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "description": "Stage temperature used for cryo-fluorescence imaging in Last et al. (77 K, Linkam CMS196v3)",
+      "evidence_ids": [
+        "ev_exp_0011"
+      ]
+    }
+  ],
+  "coupled": [],
+  "reported_equipment": [
+    "Linkam"
+  ]
 }

@@ -1,0 +1,1350 @@
+{
+  "verdict": "REQUIREMENTS_MET",
+  "headline": "Requirements met",
+  "user_message": "This machine meets the requirements for your experiment.",
+  "next_step": "View the checks or save the result.",
+  "summary": "Requirements met. All 3 applicable mandatory requirements and 0 coupled constraints are satisfied by the documented capabilities of this configuration.",
+  "equipment": {
+    "id": "lakeshore_crx",
+    "manufacturer": "Lake Shore Cryotronics",
+    "model": "CRX series cryogen-free cryogenic probe stations (CRX-VF, CRX-4K)",
+    "configuration_id": "lakeshore_crx_vf",
+    "configuration_name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
+    "catalog_configuration_id": "lakeshore_crx_vf",
+    "modifications_applied": []
+  },
+  "experiment": {
+    "id": "semi_cryo_probe_station_device_iv",
+    "name": "Temperature-dependent I-V / transfer characterisation of a three-terminal semiconductor transistor in a closed-cycle cryogenic probe station (Lake Shore CRX series)",
+    "plain_name": "Measure a semiconductor device on a cold probe station",
+    "industry": "semiconductors_and_electronics",
+    "confirmed": true,
+    "parameters": []
+  },
+  "checks": [
+    {
+      "kind": "requirement",
+      "keys": [
+        "temperature.range"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "must cover the whole range 10 K to 296 K",
+      "available": "a documented range of 10 K to 420 K",
+      "constraint": {
+        "hi": {
+          "den": 1,
+          "dim": {
+            "A": 0,
+            "K": 1,
+            "cd": 0,
+            "kg": 0,
+            "m": 0,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 296
+        },
+        "kind": "range_within",
+        "lo": {
+          "den": 1,
+          "dim": {
+            "A": 0,
+            "K": 1,
+            "cd": 0,
+            "kg": 0,
+            "m": 0,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 10
+        }
+      },
+      "conditions": [],
+      "explanation": "'temperature.range' must cover the whole range 10 K to 296 K; this configuration has a documented range of 10 K to 420 K (manufacturer specification). Requirement met.",
+      "property": 1,
+      "per_key": [
+        {
+          "available_display": "a documented range of 10 K to 420 K",
+          "capability": {
+            "evidence_ids": [
+              "ev_ls_0001",
+              "ev_ls_0002",
+              "ev_ls_0004"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "temperature.range",
+            "value": {
+              "hi": {
+                "den": 1,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 420
+              },
+              "kind": "range",
+              "lo": {
+                "den": 1,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 10
+              }
+            }
+          },
+          "key": "temperature.range",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Pucher et al. (2026) measured the transistor at 10, 70, 150, 200 and 296 K in a Lakeshore CRX-6.5 probe station; 10–296 K is that paper's cryogenic-to-room-temperature span (Liu et al. 2026 used 77 K and room temperature). This is the papers' choice, not a stated physical necessity; the user confirms the range.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Transfer curves at six temperatures: 10, 70, 150 K (first part of Figure 5 caption)",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0004",
+          "location": "Figure 5 caption (Section 2.5, Temperature-Dependent Output Characteristics)",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 150000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 10000
+            }
+          },
+          "quote": "10 K (rhombohedral phase), 70 K (rhombohedral phase), 150 K (rhombohedral phase, transition to orthorhombic phase)",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "10 K, 70 K, 150 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Transfer curves at 200 K, 296 K and 420 K (second part of Figure 5 caption)",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0005",
+          "location": "Figure 5 caption (Section 2.5, Temperature-Dependent Output Characteristics)",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 420000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 200000
+            }
+          },
+          "quote": "200 K (orthorhombic phase), 296 K (tetragonal ferroelectric phase at room temperature), and 420 K",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "200 K, 296 K, 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Transistor measured at 10 K",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0003",
+          "location": "Section 2.3, Low Temperature Output Characteristics",
+          "normalized": {
+            "unit": "mK",
+            "value": 10000
+          },
+          "quote": "we performed electrical measurements at 10 K, where bulk BTO is in its rhombohedral ferroelectric phase",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "10 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "GaN resonant tunneling transistor / RTD on bare wafer, Lakeshore CRX-4K probe station",
+          "claim": "I-V measured at room temperature and 77 K",
+          "collected_by": "research agent",
+          "document_title": "Gallium Nitride Semiconductor Resonant Tunneling Transistor",
+          "doi": "10.1002/advs.202516334",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0013",
+          "location": "Section 2.2",
+          "normalized": {
+            "unit": "mK",
+            "value": 77000
+          },
+          "quote": "notably asymmetric output current-voltage (I-V) behavior measured at room temperature and 77 K",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12955862/fullTextXML",
+          "value_as_printed": "room temperature and 77 K"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF, standard configuration (base 10 K with up to 6 probe arms installed)",
+          "claim": "CRX-VF standard operating temperature range: lower bound 10 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore overview page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0001",
+          "location": "Body text under product heading",
+          "normalized": {
+            "unit": "mK",
+            "value": 10000
+          },
+          "quote": "It operates over a standard range of 10 K to 420 K.",
+          "review_status": "unreviewed",
+          "source_url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "10 K to 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF; above 400 K the field is limited to ±1 T (see ev_ls_0004)",
+          "claim": "CRX-VF standard operating temperature range: upper bound 420 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore overview page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0002",
+          "location": "Body text under product heading",
+          "normalized": {
+            "unit": "mK",
+            "value": 420000
+          },
+          "quote": "It operates over a standard range of 10 K to 420 K.",
+          "review_status": "unreviewed",
+          "source_url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "10 K to 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF; normalized value is the ±2 T available over 11 K to 400 K. Footnote: 'Base temperature assumes heat load for probes thermally anchored as listed in the probing section'",
+          "claim": "CRX-VF field vs temperature: ±2.5 T at 10 K; ±2 T from 11 K to 400 K; ±1 T from 401 K to 420 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0004",
+          "location": "Temperature(1) table (Magnetic field | Temperature range | Configuration) and footnote 1",
+          "normalized": {
+            "unit": "mT",
+            "value": 2000
+          },
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed; ±2 T 11 K to 400 K; ±1 T 401 K to 420 K",
+          "review_status": "unreviewed",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "±2.5 T | 10 K ; ±2 T | 11 K to 400 K ; ±1 T | 401 K to 420 K"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "temperature.range"
+      ],
+      "mandatory": false,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "must be able to operate at 420 K",
+      "available": "a documented range of 10 K to 420 K",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "den": 1,
+          "dim": {
+            "A": 0,
+            "K": 1,
+            "cd": 0,
+            "kg": 0,
+            "m": 0,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 420
+        }
+      },
+      "conditions": [],
+      "explanation": "'temperature.range' must be able to operate at 420 K; this configuration has a documented range of 10 K to 420 K (manufacturer specification). Requirement met.",
+      "property": 1,
+      "per_key": [
+        {
+          "available_display": "a documented range of 10 K to 420 K",
+          "capability": {
+            "evidence_ids": [
+              "ev_ls_0001",
+              "ev_ls_0002",
+              "ev_ls_0004"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "temperature.range",
+            "value": {
+              "hi": {
+                "den": 1,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 420
+              },
+              "kind": "range",
+              "lo": {
+                "den": 1,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 10
+              }
+            }
+          },
+          "key": "temperature.range",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Pucher et al. (2026) also measured at 420 K using the probe station's high-temperature stage; non-mandatory because the cryogenic characterisation does not depend on it.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Transfer curves at 200 K, 296 K and 420 K (second part of Figure 5 caption)",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0005",
+          "location": "Figure 5 caption (Section 2.5, Temperature-Dependent Output Characteristics)",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 420000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 200000
+            }
+          },
+          "quote": "200 K (orthorhombic phase), 296 K (tetragonal ferroelectric phase at room temperature), and 420 K",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "200 K, 296 K, 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "HT stage anneals at 500 K and cools to 10 K during measurements",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0002",
+          "location": "Section 4.4, Electrical Characterization",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 500000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 10000
+            }
+          },
+          "quote": "The HT stage allows to thermally anneal the samples in vacuum at 500 K before characterization, while having the ability to cool down to 10 K during measurements.",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "500 K; 10 K"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF, standard configuration (base 10 K with up to 6 probe arms installed)",
+          "claim": "CRX-VF standard operating temperature range: lower bound 10 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore overview page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0001",
+          "location": "Body text under product heading",
+          "normalized": {
+            "unit": "mK",
+            "value": 10000
+          },
+          "quote": "It operates over a standard range of 10 K to 420 K.",
+          "review_status": "unreviewed",
+          "source_url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "10 K to 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF; above 400 K the field is limited to ±1 T (see ev_ls_0004)",
+          "claim": "CRX-VF standard operating temperature range: upper bound 420 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore overview page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0002",
+          "location": "Body text under product heading",
+          "normalized": {
+            "unit": "mK",
+            "value": 420000
+          },
+          "quote": "It operates over a standard range of 10 K to 420 K.",
+          "review_status": "unreviewed",
+          "source_url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "10 K to 420 K"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF; normalized value is the ±2 T available over 11 K to 400 K. Footnote: 'Base temperature assumes heat load for probes thermally anchored as listed in the probing section'",
+          "claim": "CRX-VF field vs temperature: ±2.5 T at 10 K; ±2 T from 11 K to 400 K; ±1 T from 401 K to 420 K",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0004",
+          "location": "Temperature(1) table (Magnetic field | Temperature range | Configuration) and footnote 1",
+          "normalized": {
+            "unit": "mT",
+            "value": 2000
+          },
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed; ±2 T 11 K to 400 K; ±1 T 401 K to 420 K",
+          "review_status": "unreviewed",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "±2.5 T | 10 K ; ±2 T | 11 K to 400 K ; ±1 T | 401 K to 420 K"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "electrical.probe_arms"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "needs at least 3",
+      "available": "a documented count of 6",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 3
+      },
+      "conditions": [],
+      "explanation": "'electrical.probe_arms' needs at least 3; this configuration has a documented count of 6 (manufacturer specification). Requirement met.",
+      "property": 37,
+      "per_key": [
+        {
+          "available_display": "a documented count of 6",
+          "capability": {
+            "evidence_ids": [
+              "ev_ls_0008"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "electrical.probe_arms",
+            "value": {
+              "kind": "count",
+              "n": 6
+            }
+          },
+          "key": "electrical.probe_arms",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "inferred_estimate",
+      "requirement_rationale": "Neither source states the number of probes. Both devices are stated to be three-terminal (Pucher: three-electrode source/drain/gate design; Liu: three-terminal RTTs), so contacting source, drain and gate implies at least 3 probe arms. This count is inferred, not observed.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Three-electrode (source, drain, gate) device design",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0008",
+          "location": "Section 2.1, Device Fabrication",
+          "normalized": null,
+          "quote": "A buried three‐electrode design was prepared by maskless lithography",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "three-electrode"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "GaN resonant tunneling transistor / RTD on bare wafer, Lakeshore CRX-4K probe station",
+          "claim": "Three-terminal transistor",
+          "collected_by": "research agent",
+          "document_title": "Gallium Nitride Semiconductor Resonant Tunneling Transistor",
+          "doi": "10.1002/advs.202516334",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0016",
+          "location": "Abstract",
+          "normalized": null,
+          "quote": "Here, we demonstrate three-terminal GaN resonant tunneling transistors (RTTs)",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12955862/fullTextXML",
+          "value_as_printed": "three-terminal"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Source-meter and DC supplies for transistor characterization",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0010",
+          "location": "Section 4.4, Electrical Characterization",
+          "normalized": null,
+          "quote": "To perform electrical transistor characterization a source‐meter unit (Keithley 2450) was used to measure drain current while applying a source‐drain voltage and two DC power supplies (Tenma 72–2715) back‐to‐back were used to apply gate bias.",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "Keithley 2450; Tenma 72–2715"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF; family flyer (probestationfamily.pdf) lists 'Max standard probe arms' 6 for CRX-VF",
+          "claim": "CRX-VF maximum number of probe arms 6",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0008",
+          "location": "Probing configurations",
+          "normalized": {
+            "unit": "count",
+            "value": 6
+          },
+          "quote": "Maximum probes: 6",
+          "review_status": "unreviewed",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "6"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "vacuum.available"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "must be installed / available",
+      "available": "documented as present",
+      "constraint": {
+        "b": true,
+        "kind": "flag_is"
+      },
+      "conditions": [],
+      "explanation": "'vacuum.available' must be installed / available; this configuration has documented as present (manufacturer specification). Requirement met.",
+      "property": 27,
+      "per_key": [
+        {
+          "available_display": "documented as present",
+          "capability": {
+            "evidence_ids": [
+              "ev_ls_0015"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "vacuum.available",
+            "value": {
+              "b": true,
+              "kind": "flag"
+            }
+          },
+          "key": "vacuum.available",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Pucher et al. (2026) state all electrical measurements were performed in vacuum inside the probe station.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Electrical measurements in vacuum in a Lakeshore CRX-6.5 closed-cycle probe station with high-temperature stage",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0001",
+          "location": "Section 4.4, Electrical Characterization",
+          "normalized": null,
+          "quote": "All electrical measurements were performed in vacuum inside a commercial closed‐cycle refrigeration probe station (Lakeshore CRX‐6.5), equipped with a high‐temperature (HT) stage.",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "Lakeshore CRX-6.5"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Room-temperature output characteristics measured at 1e-6 mbar",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0007",
+          "location": "Section 2.2, BTO/MoS2 FET Output Characteristics",
+          "normalized": {
+            "unit": "uPa",
+            "value": 100
+          },
+          "quote": "These measurements are taken at room temperature in vacuum conditions (10−6 mbar)",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "10−6 mbar"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF standard pumping; conversion 1 Torr = 133322 uPa",
+          "claim": "CRX-VF vacuum at base temperature below 1e-5 Torr (standard TPS-FRG)",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0015",
+          "location": "Vacuum table, column Standard TPS-FRG, row Base temperature",
+          "normalized": {
+            "unit": "uPa",
+            "value": 1333
+          },
+          "quote": "<1 × 10-5 Torr",
+          "review_status": "unreviewed",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "<1 × 10-5 Torr"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "pressure.base"
+      ],
+      "mandatory": false,
+      "applicable": true,
+      "outcome": "fail",
+      "required": "needs 100 µPa or lower",
+      "available": "a documented minimum of 1.333 mPa",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "den": 10000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 1,
+            "m": -1,
+            "mol": 0,
+            "s": -2
+          },
+          "num": 1
+        }
+      },
+      "conditions": [],
+      "explanation": "'pressure.base' needs 100 µPa or lower, but this configuration has a documented minimum of 1.333 mPa (manufacturer specification). Requirement not met.",
+      "property": 27,
+      "per_key": [
+        {
+          "available_display": "a documented minimum of 1.333 mPa",
+          "capability": {
+            "evidence_ids": [
+              "ev_ls_0015"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "pressure.base",
+            "value": {
+              "kind": "min",
+              "q": {
+                "den": 1000000,
+                "dim": {
+                  "A": 0,
+                  "K": 0,
+                  "cd": 0,
+                  "kg": 1,
+                  "m": -1,
+                  "mol": 0,
+                  "s": -2
+                },
+                "num": 1333
+              }
+            }
+          },
+          "key": "pressure.base",
+          "outcome": "fail"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Pucher et al. (2026) report 1e-6 mbar (100 uPa) for the room-temperature output measurements; the vacuum level at low temperature is not stated, so this is non-mandatory and is this paper's condition.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "BaTiO3/1L-MoS2 back-gated FET on SiO2/Si, Lakeshore CRX-6.5 probe station",
+          "claim": "Room-temperature output characteristics measured at 1e-6 mbar",
+          "collected_by": "research agent",
+          "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+          "doi": "10.1002/advs.77639",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_semi_0007",
+          "location": "Section 2.2, BTO/MoS2 FET Output Characteristics",
+          "normalized": {
+            "unit": "uPa",
+            "value": 100
+          },
+          "quote": "These measurements are taken at room temperature in vacuum conditions (10−6 mbar)",
+          "review_status": "unreviewed",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+          "value_as_printed": "10−6 mbar"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "CRX-VF standard pumping; conversion 1 Torr = 133322 uPa",
+          "claim": "CRX-VF vacuum at base temperature below 1e-5 Torr (standard TPS-FRG)",
+          "collected_by": "research agent",
+          "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_ls_0015",
+          "location": "Vacuum table, column Standard TPS-FRG, row Base temperature",
+          "normalized": {
+            "unit": "uPa",
+            "value": 1333
+          },
+          "quote": "<1 × 10-5 Torr",
+          "review_status": "unreviewed",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "<1 × 10-5 Torr"
+        }
+      ]
+    }
+  ],
+  "coupled_checks": [],
+  "missing_information": [],
+  "failed_requirements": [],
+  "verification": {
+    "generic_theorems": {
+      "status": "kernel-checked when the Lean project is built (`lake build`, `lean/Audit.lean`)",
+      "key_theorems": [
+        "verdict_accept_sound",
+        "verdict_accept_iff",
+        "accept_no_unknown",
+        "fail_implies_reject",
+        "violation_prevents_accept",
+        "verdict_ignores_optional",
+        "verdict_ignores_nonapplicable",
+        "not_installed_never_passes",
+        "run_binds_inputs",
+        "candidates_accept_sound",
+        "candidates_verdicts_are_lean",
+        "verdict_industry_irrelevant",
+        "coupled_pass_dims_match"
+      ]
+    },
+    "concrete_evaluation": {
+      "engine": "CryoLean Lean 4 compatibility checker v2",
+      "lean_version": "4.35.0",
+      "verified_by_lean": true,
+      "lean_input_hash": "14146946071595274236",
+      "verdict": "REQUIREMENTS_MET"
+    },
+    "source_data_validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "[warning] experiment:semi_cryo_probe_station_device_iv.requirements[2](electrical.probe_arms): mandatory requirement rests on an inferred estimate; a reviewer/user must confirm it"
+      ]
+    },
+    "physical_model_assumptions": []
+  },
+  "references": [
+    {
+      "type": "experiment_source",
+      "citation": "Pucher, T., Mompeán, F., Rouco, V., León, C., Santamaría, J., Munuera, C., García-Hernández, M., Castellanos-Gomez, A. (2026). Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures. Advanced Science, e77639.",
+      "doi": "10.1002/advs.77639",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experiment_source",
+      "citation": "Liu, F., Xue, J., Wu, G., Yuan, J., Yao, J., Liu, R., Guo, Z., Li, Z., Hu, H., Sun, W., Zhao, C., Zhang, C., Liu, X., Zhang, K., Zhang, J., Hao, Y. (2026). Gallium Nitride Semiconductor Resonant Tunneling Transistor. Advanced Science 13(13), e16334.",
+      "doi": "10.1002/advs.202516334",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12955862/fullTextXML",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "CRX-VF cryogenic probe station (Lake Shore overview page)",
+      "url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "CRX-VF cryogenic probe station (Lake Shore specifications page)",
+      "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "Mechanisms of Temperature-Dependent Hysteresis in Freestanding BaTiO3/MoS2 Heterostructures",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13554489/fullTextXML",
+      "doi": "10.1002/advs.77639",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "Gallium Nitride Semiconductor Resonant Tunneling Transistor",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12955862/fullTextXML",
+      "doi": "10.1002/advs.202516334",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "fingerprint": "c4177fc13ec61ae26b5e5359fefa8394910c6a04c2b6c43174ac07641de1ecb6",
+  "catalog_version": "4e4ba91737f659e2",
+  "checked_at": "2026-11-01T01:02:22.133515+00:00",
+  "lean_input": {
+    "configuration": {
+      "id": "lakeshore_crx_vf",
+      "equipment_id": "lakeshore_crx",
+      "name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "num": 10,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            },
+            "hi": {
+              "num": 420,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0001",
+            "ev_ls_0002",
+            "ev_ls_0004"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 10,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0004",
+            "ev_ls_0001"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 1,
+              "den": 100,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0006"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 5,
+              "den": 2,
+              "dim": {
+                "kg": 1,
+                "s": -2,
+                "A": -1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0003",
+            "ev_ls_0004"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0003"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 1,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0012"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 21,
+              "den": 5,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 18000,
+              "den": 1,
+              "dim": {
+                "s": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0014"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 1333,
+              "den": 1000000,
+              "dim": {
+                "m": -1,
+                "kg": 1,
+                "s": -2
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0015"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0015"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 51,
+              "den": 1000,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0007"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0009",
+            "ev_ls_0010",
+            "ev_ls_0021"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "count",
+            "n": 1
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0021",
+            "ev_ls_0009"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 20,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0010",
+            "ev_ls_0009"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0018",
+            "ev_ls_0011"
+          ]
+        },
+        {
+          "key": "electrical.probe_arms",
+          "value": {
+            "kind": "count",
+            "n": 6
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0008"
+          ]
+        },
+        {
+          "key": "electrical.coax_bandwidth.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 67000000000,
+              "den": 1,
+              "dim": {
+                "s": -1
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0011"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0019"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0020"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 1,
+              "den": 1000000,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0013"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0017"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0017"
+          ]
+        }
+      ]
+    },
+    "experiment": {
+      "id": "semi_cryo_probe_station_device_iv",
+      "name": "Temperature-dependent I-V / transfer characterisation of a three-terminal semiconductor transistor in a closed-cycle cryogenic probe station (Lake Shore CRX series)",
+      "industry": "semiconductors_and_electronics",
+      "params": [],
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "num": 10,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            },
+            "hi": {
+              "num": 296,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Pucher et al. (2026) measured the transistor at 10, 70, 150, 200 and 296 K in a Lakeshore CRX-6.5 probe station; 10–296 K is that paper's cryogenic-to-room-temperature span (Liu et al. 2026 used 77 K and room temperature). This is the papers' choice, not a stated physical necessity; the user confirms the range.",
+          "evidence_ids": [
+            "ev_semi_0004",
+            "ev_semi_0005",
+            "ev_semi_0003",
+            "ev_semi_0013"
+          ]
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "num": 420,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "mandatory": false,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Pucher et al. (2026) also measured at 420 K using the probe station's high-temperature stage; non-mandatory because the cryogenic characterisation does not depend on it.",
+          "evidence_ids": [
+            "ev_semi_0005",
+            "ev_semi_0002"
+          ]
+        },
+        {
+          "keys": [
+            "electrical.probe_arms"
+          ],
+          "constraint": {
+            "kind": "count_at_least",
+            "n": 3
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "inferred_estimate",
+          "rationale": "Neither source states the number of probes. Both devices are stated to be three-terminal (Pucher: three-electrode source/drain/gate design; Liu: three-terminal RTTs), so contacting source, drain and gate implies at least 3 probe arms. This count is inferred, not observed.",
+          "evidence_ids": [
+            "ev_semi_0008",
+            "ev_semi_0016",
+            "ev_semi_0010"
+          ]
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Pucher et al. (2026) state all electrical measurements were performed in vacuum inside the probe station.",
+          "evidence_ids": [
+            "ev_semi_0001",
+            "ev_semi_0007"
+          ]
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "num": 1,
+              "den": 10000,
+              "dim": {
+                "m": -1,
+                "kg": 1,
+                "s": -2
+              }
+            }
+          },
+          "mandatory": false,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Pucher et al. (2026) report 1e-6 mbar (100 uPa) for the room-temperature output measurements; the vacuum level at low temperature is not stated, so this is non-mandatory and is this paper's condition.",
+          "evidence_ids": [
+            "ev_semi_0007"
+          ]
+        }
+      ],
+      "coupled": [],
+      "confirmed": true
+    }
+  },
+  "suggestions": null,
+  "result_id": "res_f38f169e9352"
+}

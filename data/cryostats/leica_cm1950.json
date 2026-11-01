@@ -83,14 +83,10 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
-            "q": {
-              "value": 5000,
-              "unit": "mK"
-            }
+            "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_leica_0003"
           ],
@@ -270,7 +266,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 28800,
               "unit": "s"
@@ -286,7 +282,7 @@
         {
           "key": "defrost.cycle_duration",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 720,
               "unit": "s"
@@ -414,14 +410,10 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
-            "q": {
-              "value": 5000,
-              "unit": "mK"
-            }
+            "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_leica_0003"
           ],
@@ -601,7 +593,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 28800,
               "unit": "s"
@@ -617,7 +609,7 @@
         {
           "key": "defrost.cycle_duration",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 720,
               "unit": "s"
@@ -744,14 +736,10 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
-            "q": {
-              "value": 3000,
-              "unit": "mK"
-            }
+            "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_leica_0004"
           ],
@@ -960,7 +948,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 7200,
               "unit": "s"
@@ -1058,62 +1046,8 @@
       "note": "Weights (Gen B max. 172 kg; Gen A 145-193 kg) recorded in the evidence file only (ev_leica_0041, ev_leica_0042), because the unit g is not in the vocabulary."
     }
   ],
-  "proposed_vocabulary": [
-    {
-      "key": "trimming_thickness.range",
-      "shape": "range",
-      "unit": "um",
-      "description": "Trimming (coarse) section thickness setting range (microtome cryostats)",
-      "status": "proposed",
-      "used_in_configurations": true
-    },
-    {
-      "key": "temperature.peltier_delta.max",
-      "shape": "max",
-      "unit": "mK",
-      "description": "Maximum temperature difference of Peltier quick-freeze stations below the freezing shelf",
-      "status": "proposed",
-      "used_in_configurations": true
-    },
-    {
-      "key": "temperature.quick_freeze_shelf.min",
-      "shape": "min",
-      "unit": "mK",
-      "description": "Lowest documented quick-freeze shelf / station temperature (at stated chamber temperature)",
-      "status": "proposed",
-      "used_in_configurations": true
-    },
-    {
-      "key": "defrost.cycle_duration",
-      "shape": "max",
-      "unit": "s",
-      "description": "Duration of one cryochamber defrost cycle",
-      "status": "proposed",
-      "used_in_configurations": true
-    },
-    {
-      "key": "electrical.apparent_power.max",
-      "shape": "max",
-      "unit": "VA",
-      "description": "Maximum documented apparent power consumption; requires registering unit VA (volt-ampere, scale 1)",
-      "status": "proposed",
-      "used_in_configurations": false
-    },
-    {
-      "key": "equipment.mass.max",
-      "shape": "max",
-      "unit": "g",
-      "description": "Instrument mass; requires registering unit g (gram, scale 1)",
-      "status": "proposed",
-      "used_in_configurations": false
-    },
-    {
-      "key": "specimen.feed.horizontal.max",
-      "shape": "max",
-      "unit": "um",
-      "description": "Total horizontal specimen feed (microtome cryostats)",
-      "status": "proposed",
-      "used_in_configurations": false
-    }
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json).",
+    "Review fix DP-3: the printed set-range tolerances (±5 K Gen A, ±3 K Gen B) are not temperature-stability specifications; temperature.stability is UNKNOWN (the tolerance records remain in the evidence database)."
   ]
 }

@@ -19,8 +19,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from backend.catalog import Catalog  # noqa: E402
-from backend.validation import validate_catalog  # noqa: E402
+from cryolean.catalog import Catalog  # noqa: E402
+from cryolean.validation import validate_catalog  # noqa: E402
 
 
 def check_urls(catalog: Catalog, timeout: float = 15.0) -> list[str]:

@@ -125,7 +125,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 10,
               "unit": "mK"
@@ -295,6 +295,35 @@
           "evidence_ids": [
             "ev_linkam_0021"
           ]
+        },
+        {
+          "key": "purge.gas",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_045",
+            "eg_046"
+          ]
+        },
+        {
+          "key": "temperature.cooling_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 100000,
+              "unit": "mK_per_min"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_063",
+            "eg_068"
+          ]
         }
       ]
     },
@@ -333,7 +362,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 10,
               "unit": "mK"
@@ -504,6 +533,19 @@
           "evidence_ids": [
             "ev_linkam_0021"
           ]
+        },
+        {
+          "key": "purge.gas",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_045",
+            "eg_046"
+          ]
         }
       ]
     },
@@ -550,7 +592,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 100,
               "unit": "mK"
@@ -731,6 +773,35 @@
           "evidence_ids": [
             "ev_linkam_0023"
           ]
+        },
+        {
+          "key": "purge.gas",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_045",
+            "eg_046"
+          ]
+        },
+        {
+          "key": "temperature.cooling_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 100000,
+              "unit": "mK_per_min"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_063",
+            "eg_068"
+          ]
         }
       ]
     }
@@ -765,27 +836,7 @@
       "note": "LNP96 dewar volume not stated on linkam.co.uk/lnp96; only the predecessor LNP95 is documented with a 2 L dewar (no vocabulary key exists; informational only)"
     }
   ],
-  "proposed_vocabulary": [
-    {
-      "key": "temperature.cooling_rate.max",
-      "shape": "max",
-      "unit": "mK_per_min",
-      "description": "Maximum documented cooling rate, recorded separately from the heating rate when a manufacturer specifies different heating and cooling maxima (THMS600: 150 °C/min heating vs 100 °C/min cooling with LNP96; ev_linkam_0006, ev_linkam_0007).",
-      "status": "proposed",
-      "example": {
-        "configuration_id": "linkam_thms600_lnp96_t96",
-        "value": {
-          "kind": "max",
-          "q": {
-            "value": 100000,
-            "unit": "mK_per_min"
-          }
-        },
-        "evidence_ids": [
-          "ev_linkam_0006",
-          "ev_linkam_0007"
-        ]
-      }
-    }
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json)."
   ]
 }

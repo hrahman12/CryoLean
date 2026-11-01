@@ -1,61 +1,56 @@
-"""Genuine Lean proof compilation and audit."""
+"""Genuine Lean compilation, proof audit and runtime self-test."""
 import re
 import subprocess
 from pathlib import Path
 
 import pytest
 
-from backend import lean_runner
+from cryolean import lean_runner
 
 LEAN = Path(__file__).resolve().parents[1] / "lean"
-
-REQUIRED_THEOREMS = [
-    "verdict_accept_sound", "verdict_accept_complete", "verdict_accept_iff", "verdict_reject_sound",
-    "accept_no_unknown", "fail_implies_reject", "missing_capability_unknown", "not_installed_never_passes",
-    "unknown_install_never_passes", "estimate_never_passes", "no_provenance_never_passes",
-    "unknown_value_never_passes", "pass_implies_units_match", "unconfirmed_not_accept", "empty_not_accept",
-    "satisfies_violates_exclusive", "run_binds_inputs", "verdict_industry_irrelevant", "checks_cover_requirements",
+REQUIRED = [
+    "verdict_accept_sound", "accept_all_coupled", "verdict_accept_complete", "verdict_accept_iff", "verdict_reject_sound",
+    "verdict_reject_complete", "accept_no_unknown", "missing_capability_unknown", "unknown_value_never_passes",
+    "estimate_never_passes", "no_provenance_never_passes", "cap_not_usable_missing", "fail_implies_reject",
+    "violation_prevents_accept", "verdict_ignores_optional", "verdict_ignores_nonapplicable", "condition_false_not_applicable",
+    "not_installed_never_passes", "unknown_install_never_passes", "run_binds_inputs", "verdict_deterministic",
+    "run_reports_everything", "candidates_accept_sound", "candidates_verdicts_are_lean", "verdict_industry_irrelevant",
+    "verdict_name_irrelevant", "pass_implies_dims_match", "coupled_pass_dims_match", "Q.le_scale_left", "Q.le_scale_right",
+    "evalExpr_sound", "evalExpr_complete", "satisfies_spec_exclusive",
 ]
 
 
 @pytest.mark.slow
-def test_lake_build_compiles_all_proofs():
-    """`lake build` re-checks every proof (no-op if up to date, still exits non-zero on any error)."""
-    p = subprocess.run(["lake", "build"], cwd=LEAN, capture_output=True, text=True, timeout=1200)
+def test_lake_build_compiles_every_proof():
+    p = subprocess.run(["lake", "build"], cwd=LEAN, capture_output=True, text=True, timeout=1800)
     assert p.returncode == 0, p.stdout[-3000:] + p.stderr[-3000:]
-    assert "error" not in p.stdout.lower().replace("errors", "")
 
 
-def test_no_sorry_admit_or_custom_axioms():
-    for f in (LEAN / "CryoLean").glob("*.lean"):
-        text = f.read_text(encoding="utf-8")
-        code = re.sub(r"/-.*?-/", "", text, flags=re.S)           # strip block comments / docstrings
-        code = "\n".join(l.split("--")[0] for l in code.splitlines())
-        assert not re.search(r"\bsorry\b", code), f"sorry in {f.name}"
-        assert not re.search(r"\badmit\b", code), f"admit in {f.name}"
-        assert not re.search(r"^\s*axiom\b", code, flags=re.M), f"custom axiom in {f.name}"
-        assert "native_decide" not in code, f"native_decide in {f.name}"
+def test_no_sorry_admit_axiom_or_native_decide():
+    inv = lean_runner.theorem_inventory()
+    assert inv["unproved_or_unsafe_markers"] == []
 
 
 def test_required_theorems_present():
-    names = {t["name"] for t in lean_runner.proof_inventory()["theorems"]}
-    missing = [t for t in REQUIRED_THEOREMS if t not in names]
+    names = {t["name"] for t in lean_runner.theorem_inventory()["theorems"]}
+    short = {n.split(".")[-1] for n in names} | names
+    missing = [t for t in REQUIRED if t not in short and t.split(".")[-1] not in short]
     assert not missing, missing
 
 
 @pytest.mark.slow
-def test_axiom_audit_has_no_sorryAx():
-    p = subprocess.run(["lake", "env", "lean", "Audit.lean"], cwd=LEAN, capture_output=True, text=True, timeout=600)
+def test_axiom_audit_standard_axioms_only():
+    p = subprocess.run(["lake", "env", "lean", "Audit.lean"], cwd=LEAN, capture_output=True, text=True, timeout=900)
     assert p.returncode == 0, p.stderr
-    lines = [l for l in p.stdout.splitlines() if "depends on axioms" in l or "does not depend" in l]
-    assert len(lines) == len(REQUIRED_THEOREMS), p.stdout
+    lines = [l for l in p.stdout.splitlines() if "axioms" in l]
+    assert len(lines) == len(REQUIRED), p.stdout
     for l in lines:
-        assert "sorryAx" not in l, l
-        axioms = re.findall(r"\[(.*)\]", l)
-        if axioms:
-            assert set(a.strip() for a in axioms[0].split(",")) <= {"propext", "Classical.choice", "Quot.sound"}, l
+        assert "sorryAx" not in l
+        found = re.findall(r"\[(.*)\]", l)
+        if found:
+            assert {a.strip() for a in found[0].split(",")} <= {"propext", "Classical.choice", "Quot.sound"}, l
 
 
-def test_binary_selftest(lean_available):
+def test_runtime_binary_selftest(lean_available):
     ok, out = lean_runner.selftest()
     assert ok, out

@@ -182,6 +182,33 @@
       "evidence_ids": [
         "ev_exp_0025"
       ]
+    },
+    {
+      "keys": [
+        "vacuum.available",
+        "purge.gas"
+      ],
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "conditions": [
+        {
+          "kind": "param_at_most",
+          "name": "operating_temperature",
+          "q": {
+            "value": 273150,
+            "unit": "mK"
+          }
+        }
+      ],
+      "origin": "experimental_observation",
+      "rationale": "Condensation/frost: a cold specimen or window below the frost point collects ice unless the sample space is evacuated or purged with dry gas (pm_015, pm_016). Applies only when the operating temperature is at or below 0 °C.",
+      "evidence_ids": [
+        "pm_015",
+        "pm_016",
+        "pm_017"
+      ]
     }
   ],
   "missing_information": [
@@ -191,5 +218,23 @@
     "THMS600 specified temperature range not stated in either paper (only ranges used)"
   ],
   "confirmed": true,
-  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used.",
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 133150,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "description": "Lowest measurement temperature of the procedure (Park et al., -140 °C)",
+      "evidence_ids": [
+        "ev_exp_0020"
+      ]
+    }
+  ],
+  "coupled": [],
+  "reported_equipment": [
+    "THMS600"
+  ]
 }

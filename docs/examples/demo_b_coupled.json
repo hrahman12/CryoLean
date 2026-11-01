@@ -1,0 +1,1962 @@
+{
+  "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+  "headline": "Doesn't meet requirements",
+  "user_message": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.",
+  "next_step": "See why it fails and the suggested alternatives below.",
+  "summary": "Does not meet requirements. A documented limitation conflicts with: Mixing-chamber wiring heat load (with design margin) vs cooling power.",
+  "equipment": {
+    "id": "bluefors_ld",
+    "manufacturer": "Bluefors",
+    "model": "LD System (LD250 / LD400; renamed LD350 / LD450 in March 2026)",
+    "configuration_id": "bluefors_ld400_hdw",
+    "configuration_name": "Bluefors LD400 (renamed LD450) with side-loading ports (LD400sl) and High-Density Wiring in one side-loading port",
+    "catalog_configuration_id": "bluefors_ld400_hdw",
+    "modifications_applied": []
+  },
+  "experiment": {
+    "id": "quantum_mxc_wiring_heat_budget",
+    "name": "Wiring heat budget at the mixing chamber for a 50-qubit superconducting processor",
+    "plain_name": "Check that the wiring for a superconducting qubit chip does not overheat the coldest stage",
+    "industry": "quantum_computing_and_sensing",
+    "confirmed": true,
+    "parameters": [
+      {
+        "name": "operating_temperature",
+        "value": {
+          "unit": "mK",
+          "value": 20
+        },
+        "origin": "experimental_observation",
+        "display": "20 mK"
+      },
+      {
+        "name": "n_drive_lines",
+        "value": {
+          "unit": "count",
+          "value": 58
+        },
+        "origin": "experimental_observation",
+        "display": "58"
+      },
+      {
+        "name": "n_flux_lines",
+        "value": {
+          "unit": "count",
+          "value": 50
+        },
+        "origin": "experimental_observation",
+        "display": "50"
+      },
+      {
+        "name": "n_output_lines",
+        "value": {
+          "unit": "count",
+          "value": 8
+        },
+        "origin": "experimental_observation",
+        "display": "8"
+      },
+      {
+        "name": "q_drive_line",
+        "value": {
+          "unit": "nW",
+          "value": 13
+        },
+        "origin": "experimental_observation",
+        "display": "13 nW"
+      },
+      {
+        "name": "q_flux_line",
+        "value": {
+          "unit": "nW",
+          "value": 29
+        },
+        "origin": "experimental_observation",
+        "display": "29 nW"
+      },
+      {
+        "name": "q_output_line",
+        "value": {
+          "unit": "nW",
+          "value": 20
+        },
+        "origin": "experimental_observation",
+        "display": "20 nW"
+      },
+      {
+        "name": "p_flux_dc",
+        "value": {
+          "unit": "nW",
+          "value": 50
+        },
+        "origin": "experimental_observation",
+        "display": "50 nW"
+      },
+      {
+        "name": "design_margin",
+        "value": {
+          "unit": "count",
+          "value": 3
+        },
+        "origin": "experimental_observation",
+        "display": "3"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "kind": "requirement",
+      "keys": [
+        "temperature.base"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "needs 20 mK or lower",
+      "available": "a documented minimum of 10 mK",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "den": 50,
+          "dim": {
+            "A": 0,
+            "K": 1,
+            "cd": 0,
+            "kg": 0,
+            "m": 0,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 1
+        }
+      },
+      "conditions": [],
+      "explanation": "'temperature.base' needs 20 mK or lower; this configuration has a documented minimum of 10 mK (manufacturer specification). Requirement met.",
+      "property": 1,
+      "per_key": [
+        {
+          "available_display": "a documented minimum of 10 mK",
+          "capability": {
+            "evidence_ids": [
+              "ev_bf_0003"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "temperature.base",
+            "value": {
+              "kind": "min",
+              "q": {
+                "den": 100,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 1
+              }
+            }
+          },
+          "key": "temperature.base",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "The heat budget is evaluated at 20 mK, the temperature at which Krinner et al. quote the mixing-chamber cooling power.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Bluefors XLD400 dilution refrigerator (ETH Zurich custom version), wiring per Krinner et al. 2019; measured with pre-installed DC wiring, no RF cabling",
+          "claim": "Measured available cooling power at the mixing chamber of the Krinner XLD400 is 19 uW at 20 mK.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_002",
+          "location": "PDF page 4, Table 1 (MXC row)",
+          "normalized": null,
+          "quote": "CP 82 × 10–3 200 × 10–6 (at 140 mK) 170 MXC 6 × 10–3 19 × 10–6 (at 20 mK) 140",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "W",
+            "value": "1.9e-5"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "19 × 10–6 W (at 20 mK)",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Bluefors XLD400 dilution refrigerator (ETH Zurich custom version), wiring per Krinner et al. 2019; empty DR",
+          "claim": "Base temperature of the MXC stage in the empty Krinner XLD400 after installation is 6 mK.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_003",
+          "location": "PDF page 4, Table 1 (MXC row, Temperature column)",
+          "normalized": null,
+          "quote": "CP 82 × 10–3 200 × 10–6 (at 140 mK) 170 MXC 6 × 10–3 19 × 10–6 (at 20 mK) 140",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "K",
+            "value": "0.006"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "6 × 10–3 K",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "LD400, user manual v2.0 (2022)",
+          "claim": "LD400 guaranteed base temperature",
+          "collected_by": "research agent",
+          "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_bf_0003",
+          "location": "PDF page 6, Table 1: Main technical characteristics, LD400 column",
+          "normalized": {
+            "unit": "mK",
+            "value": 10
+          },
+          "quote": "LD250 LD400 / Base temperature: ≤ 10 mK ≤ 10 mK",
+          "review_status": "unreviewed",
+          "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "value_as_printed": "≤ 10 mK"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "electrical.coax_lines"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "needs at least 124",
+      "available": "a documented count of 168",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 124
+      },
+      "conditions": [],
+      "explanation": "'electrical.coax_lines' needs at least 124; this configuration has a documented count of 168 (manufacturer specification). Requirement met.",
+      "property": 37,
+      "per_key": [
+        {
+          "available_display": "a documented count of 168",
+          "capability": {
+            "evidence_ids": [
+              "ev_bf_0031",
+              "ev_bf_0026",
+              "ev_bf_0065"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "electrical.coax_lines",
+            "value": {
+              "kind": "count",
+              "n": 168
+            }
+          },
+          "key": "electrical.coax_lines",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "A 50-qubit processor with individual drive and flux control needs 124 RF lines.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Bluefors XLD400 dilution refrigerator (ETH Zurich custom version), wiring per Krinner et al. 2019; 50-qubit budget",
+          "claim": "A 50-qubit processor with individual drive and flux control requires 124 RF lines (50 drive, 50 flux, 8 output, 8 readout drive, 8 TWPA pump), the full capacity of the presented system.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "textbook_model",
+          "id": "hl_033",
+          "location": "PDF page 22, Sect. 6 Conclusion",
+          "normalized": null,
+          "quote": "Such a quan- tum processor requires a total of 124 RF lines (50 drive lines, 50 flux lines, 8 output lines, 8 readout resonator drive lines, 8 TWPA pump lines), corresponding to the operation of the presented system at its full capacity.",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "1",
+            "value": "124"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "124 RF lines",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "LDsl / LD450sl (previously LD400sl) and XLDsl, optional High-Density Wiring, per port",
+          "claim": "High-Density Wiring (coaxial SMPM) lines per side-loading port; available only on side-loading (sl) systems",
+          "collected_by": "research agent",
+          "document_title": "High-Density Wiring - Bluefors.com",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_bf_0031",
+          "location": "Product description",
+          "normalized": {
+            "unit": "count",
+            "value": 168
+          },
+          "quote": "each side-loading port in Bluefors XLDsl and LDsl Systems can be equipped with up to 168 high-frequency lines.",
+          "review_status": "unreviewed",
+          "source_url": "https://bluefors.com/products/measurement-infrastructure/high-density-wiring/",
+          "value_as_printed": "up to 168 high-frequency lines (per side-loading port)"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "LD450sl (previously LD400sl), current page",
+          "claim": "Wiring ports on LD450sl (side-loading configuration): two side-loading ports",
+          "collected_by": "research agent",
+          "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_bf_0026",
+          "location": "Side-loading configuration section",
+          "normalized": {
+            "unit": "count",
+            "value": 2
+          },
+          "quote": "2 x LOS side-loading ports slotted in all flanges; 4 x KF40 ports",
+          "review_status": "unreviewed",
+          "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+          "value_as_printed": "2 x LOS side-loading ports; 4 x KF40 ports"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "LD400sl / LD450sl with High-Density Wiring",
+          "claim": "UNKNOWN: number of side-loading ports actually fitted with High-Density Wiring in a given LD400sl/LD450sl delivery is a purchase choice; the configuration 'bluefors_ld400_hdw' assumes one port (168 lines) as a catalog assumption",
+          "collected_by": "research agent",
+          "document_title": "High-Density Wiring - Bluefors.com",
+          "evidence_status": "unknown",
+          "id": "ev_bf_0065",
+          "location": "n/a",
+          "normalized": null,
+          "quote": "",
+          "review_status": "unreviewed",
+          "source_url": "https://bluefors.com/products/measurement-infrastructure/high-density-wiring/",
+          "value_as_printed": "UNKNOWN (configuration-dependent)"
+        }
+      ]
+    }
+  ],
+  "coupled_checks": [
+    {
+      "kind": "coupled",
+      "id": "mxc_wiring_heat_budget#0.0",
+      "name": "Mixing-chamber wiring heat load (with design margin) vs cooling power",
+      "model": "mxc_wiring_heat_budget",
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "fail",
+      "lhs": {
+        "display": "14.592 µW",
+        "status": "ok",
+        "value": {
+          "den": 1000000000000000000000000000000000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 1,
+            "m": 2,
+            "mol": 0,
+            "s": -3
+          },
+          "num": 14592000000000000000000000000
+        }
+      },
+      "rhs": {
+        "display": "12 µW",
+        "status": "ok",
+        "value": {
+          "den": 250000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 1,
+            "m": 2,
+            "mol": 0,
+            "s": -3
+          },
+          "num": 3
+        }
+      },
+      "validity": [
+        {
+          "a": {
+            "display": "20 mK",
+            "status": "ok",
+            "value": {
+              "den": 50,
+              "dim": {
+                "A": 0,
+                "K": 1,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 1
+            }
+          },
+          "b": {
+            "display": "20 mK",
+            "status": "ok",
+            "value": {
+              "den": 50,
+              "dim": {
+                "A": 0,
+                "K": 1,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 1
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "3",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 3
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "58",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 58
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "50",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 50
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "8",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 8
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0 K",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 1,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "20 mK",
+            "status": "ok",
+            "value": {
+              "den": 50,
+              "dim": {
+                "A": 0,
+                "K": 1,
+                "cd": 0,
+                "kg": 0,
+                "m": 0,
+                "mol": 0,
+                "s": 0
+              },
+              "num": 1
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0 W",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "50 nW",
+            "status": "ok",
+            "value": {
+              "den": 20000000,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 1
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0 W",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "13 nW",
+            "status": "ok",
+            "value": {
+              "den": 1000000000,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 13
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0 W",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "29 nW",
+            "status": "ok",
+            "value": {
+              "den": 1000000000,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 29
+            }
+          },
+          "outcome": "pass"
+        },
+        {
+          "a": {
+            "display": "0 W",
+            "status": "ok",
+            "value": {
+              "den": 1,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 0
+            }
+          },
+          "b": {
+            "display": "20 nW",
+            "status": "ok",
+            "value": {
+              "den": 50000000,
+              "dim": {
+                "A": 0,
+                "K": 0,
+                "cd": 0,
+                "kg": 1,
+                "m": 2,
+                "mol": 0,
+                "s": -3
+              },
+              "num": 1
+            }
+          },
+          "outcome": "pass"
+        }
+      ],
+      "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.",
+      "equation": "margin * (n_drive*q_drive + n_flux*(q_flux + p_flux_dc) + n_out*q_out) <= P_cool(T_doc)   valid when T_doc <= T_op",
+      "assumptions": [
+        "per-line passive loads measured by Krinner et al. on their XLD400 transfer to the candidate refrigerator with the same cable types",
+        "measurement uncertainties of the per-line loads are not propagated (central values used)",
+        "active drive-line dissipation and TWPA pump lines are not included",
+        "cooling capacity does not decrease with temperature above the documented point"
+      ],
+      "valid_range": "mixing-chamber operating temperatures at or above the documented cooling-power temperature",
+      "slot_resolution": {
+        "cooling": "cooling_power.at_20mK"
+      },
+      "notes": [
+        "cooling: using cooling_power.at_20mK (highest documented temperature not above the operating temperature)"
+      ],
+      "rationale": "Krinner et al.'s design rule applied to the documented cooling power of the candidate refrigerator.",
+      "evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Bluefors XLD400 dilution refrigerator (ETH Zurich custom version), wiring per Krinner et al. 2019",
+          "claim": "The wiring and attenuation scheme was designed so that the resulting heat load is at least about a factor three smaller than the measured cooling powers.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_010",
+          "location": "PDF page 10, Sect. 3.1",
+          "normalized": null,
+          "quote": "We designed and planned the wiring and attenuation scheme of the dilution refrigerator with the goal that the resulting heat load is at least about a factor three smaller than those cooling powers.",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "1",
+            "value": "3"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "factor three",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "UT-085-SS-SS 0.085 in stainless steel coax drive line, attenuators 20 dB at 4 K, CP, MXC (C3={0,20,0,20,20} dB), Bluefors XLD400",
+          "claim": "Measured passive heat load per stainless-steel (UT-085-SS-SS) drive line at the MXC is 0.013(6) uW.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_011",
+          "location": "PDF page 18, Table 2, drive line, MXC column",
+          "normalized": null,
+          "quote": "Drive line UT-085-SS-SS Measured HL 45(34) mW 1.0(5) mW 4(3) μW 0.4(2) μW 0.013(6) μW",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "W",
+            "value": "1.3e-8"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "0.013(6) μW",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "UT-085-SS-SS 0.085 in stainless steel coax flux line (no attenuator at CP), Bluefors XLD400",
+          "claim": "Measured passive heat load per UT-085-SS-SS flux line at the MXC is 0.029(5) uW (and 0.3(1) uW at the CP).",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_017",
+          "location": "PDF page 18, Table 2, flux line, MXC column",
+          "normalized": null,
+          "quote": "Flux line UT-085-SS-SS Measured HL 56(39) mW 1.2(8) mW 2(1) μW 0.3(1) μW 0.029(5) μW",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "W",
+            "value": "2.9e-8"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "0.029(5) μW",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "UT-085-NbTi 0.085 in NbTi coax output line, 4 K to MXC section, Bluefors XLD400",
+          "claim": "Measured passive heat load per UT-085-NbTi output line at the MXC is 0.020(16) uW (and 0.3(3) uW at the CP).",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_019",
+          "location": "PDF page 18, Table 2, output line, MXC column",
+          "normalized": null,
+          "quote": "Output line UT-085-NbTi Measured HL – – – 0.3(3) μW 0.020(16) μW",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "W",
+            "value": "2.0e-8"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "0.020(16) μW",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "UT-085-SS-SS 0.085 in stainless steel coax flux line (no attenuator at CP), Bluefors XLD400; worst-case random offset flux, Imax = 1 mA; si value is per line",
+          "claim": "DC flux biasing (currents uniform in [-1,1] mA) dissipates on average 0.050(3) uW per flux line on the MXC; 25 flux lines give 1.25(7) uW on MXC, about 15 times below the MXC cooling power at 20 mK.",
+          "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "doi": "10.1140/epjqt/s40507-019-0072-0",
+          "evidence_status": "experimental_observation",
+          "id": "hl_029",
+          "location": "PDF page 22, Sect. 5.2 Flux lines",
+          "normalized": null,
+          "quote": "dissipated, evaluating to 0.050(3) μW (0.140(7) μW) on MXC (CP). For 25 flux lines this sums up to 1.25(7) μW (3.5(2) μW) on MXC (CP), which is about a factor of 15 (40) smaller than the cooling power available at MXC (CP) at a temperature of 20 mK (140 mK).",
+          "research_topic": "heat_load_demo",
+          "si": {
+            "unit": "W",
+            "value": "5.0e-8"
+          },
+          "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+          "value_as_printed": "0.050(3) μW per line; 1.25(7) μW for 25 lines",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Cryocoolers in general; measured on a Cryomech PT415 pulse tube in the PB-2b receiver",
+          "claim": "Every cryocooler has a load curve/capacity map relating the maximum heat load it can remove to its operating temperature; loads above the nominal operating point drive the stage to a higher temperature, and the base temperature is set by the balance between cooling capacity and parasitic load.",
+          "document_title": "Design and characterization of the POLARBEAR-2b and POLARBEAR-2c cosmic microwave background cryogenic receivers",
+          "doi": "10.48550/arXiv.1806.05576",
+          "evidence_status": "experimental_observation",
+          "id": "pm_002",
+          "location": "Section 2.1 '50 K and 4 K Refrigeration', p. 3-4 (arXiv v1)",
+          "normalized": null,
+          "quote": "For all cryocoolers there is a relation between the maximum heat load that they can dissipate and their operating temperature, known as a load curve, or in a two-parameter space, a capacity map.",
+          "research_topic": "physics_models",
+          "si": null,
+          "source_url": "https://arxiv.org/pdf/1806.05576",
+          "value_as_printed": "",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Pulse tube cryocooler (PT415) stages; general steady-state cryostat heat balance",
+          "claim": "Heat loads above (below) a cryocooler's operating point give higher (lower) stage temperatures; the base temperature is a balance of cooling capacity and parasitic loading (steady-state heat balance).",
+          "document_title": "Design and characterization of the POLARBEAR-2b and POLARBEAR-2c cosmic microwave background cryogenic receivers",
+          "doi": "10.48550/arXiv.1806.05576",
+          "evidence_status": "experimental_observation",
+          "id": "pm_003",
+          "location": "Section 2.1 '50 K and 4 K Refrigeration'; see also Figure 4 (load curve of PT415 second stage, base 2.54 K at 0 W)",
+          "normalized": null,
+          "quote": "Heat loads above (below) these operating points results in higher (lower) system temperatures [...] The lowest temperature reached by each stage of the PTC is referred to as the base temperature, which is a balance of the PTC cooling capacity and the parasitic loading.",
+          "research_topic": "physics_models",
+          "si": null,
+          "source_url": "https://arxiv.org/pdf/1806.05576",
+          "value_as_printed": "",
+          "verification": "independently re-fetched and confirmed 2026-10-31"
+        }
+      ],
+      "property": 2
+    }
+  ],
+  "missing_information": [],
+  "failed_requirements": [
+    "Mixing-chamber wiring heat load (with design margin) vs cooling power"
+  ],
+  "verification": {
+    "generic_theorems": {
+      "status": "kernel-checked when the Lean project is built (`lake build`, `lean/Audit.lean`)",
+      "key_theorems": [
+        "verdict_accept_sound",
+        "verdict_accept_iff",
+        "accept_no_unknown",
+        "fail_implies_reject",
+        "violation_prevents_accept",
+        "verdict_ignores_optional",
+        "verdict_ignores_nonapplicable",
+        "not_installed_never_passes",
+        "run_binds_inputs",
+        "candidates_accept_sound",
+        "candidates_verdicts_are_lean",
+        "verdict_industry_irrelevant",
+        "coupled_pass_dims_match"
+      ]
+    },
+    "concrete_evaluation": {
+      "engine": "CryoLean Lean 4 compatibility checker v2",
+      "lean_version": "4.35.0",
+      "verified_by_lean": true,
+      "lean_input_hash": "3987998938908462003",
+      "verdict": "DOES_NOT_MEET_REQUIREMENTS"
+    },
+    "source_data_validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    "physical_model_assumptions": [
+      {
+        "model": "mxc_wiring_heat_budget",
+        "status": "validated",
+        "equation": "margin * (n_drive*q_drive + n_flux*(q_flux + p_flux_dc) + n_out*q_out) <= P_cool(T_doc)   valid when T_doc <= T_op",
+        "assumptions": [
+          "per-line passive loads measured by Krinner et al. on their XLD400 transfer to the candidate refrigerator with the same cable types",
+          "measurement uncertainties of the per-line loads are not propagated (central values used)",
+          "active drive-line dissipation and TWPA pump lines are not included",
+          "cooling capacity does not decrease with temperature above the documented point"
+        ],
+        "valid_range": "mixing-chamber operating temperatures at or above the documented cooling-power temperature"
+      }
+    ]
+  },
+  "references": [
+    {
+      "type": "experiment_source",
+      "citation": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+      "doi": "10.1140/epjqt/s40507-019-0072-0",
+      "url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+      "url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+      "url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+      "doi": "10.1140/epjqt/s40507-019-0072-0",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "High-Density Wiring - Bluefors.com",
+      "url": "https://bluefors.com/products/measurement-infrastructure/high-density-wiring/",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+      "url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "Design and characterization of the POLARBEAR-2b and POLARBEAR-2c cosmic microwave background cryogenic receivers",
+      "url": "https://arxiv.org/pdf/1806.05576",
+      "doi": "10.48550/arXiv.1806.05576",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "fingerprint": "71422dcdcf94cb52757acdc42ec1b446701f6a8ba4229e390cb5e5388e1a0fef",
+  "catalog_version": "b69dd6affd4ff447",
+  "checked_at": "2026-11-01T01:02:20.282529+00:00",
+  "lean_input": {
+    "configuration": {
+      "id": "bluefors_ld400_hdw",
+      "equipment_id": "bluefors_ld",
+      "name": "Bluefors LD400 (renamed LD450) with side-loading ports (LD400sl) and High-Density Wiring in one side-loading port",
+      "capabilities": [
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 1,
+              "den": 100,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0003"
+          ]
+        },
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "num": 1,
+              "den": 100,
+              "dim": {
+                "K": 1
+              }
+            },
+            "hi": {
+              "num": 21,
+              "den": 5,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0003",
+            "ev_bf_0008"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0063"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 3,
+              "den": 250000,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0006"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 50,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0006"
+          ]
+        },
+        {
+          "key": "cooling_power.at_100mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 2500,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0007"
+          ]
+        },
+        {
+          "key": "cooling_power.at_100mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 10,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0007"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0061"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK.temperature",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0061"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 86400,
+              "den": 1,
+              "dim": {
+                "s": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0016",
+            "ev_bf_0017"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0009",
+            "ev_bf_0021"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_bf_0009",
+            "ev_bf_0048"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_nitrogen_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_bf_0051"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0049"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0062",
+            "ev_bf_0050"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0055"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0055"
+          ]
+        },
+        {
+          "key": "sample.height.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0055"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "count",
+            "n": 168
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0031",
+            "ev_bf_0026",
+            "ev_bf_0065"
+          ]
+        },
+        {
+          "key": "electrical.coax_bandwidth.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 18000000000,
+              "den": 1,
+              "dim": {
+                "s": -1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0032"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0031"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0057",
+            "ev_bf_0027"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0056",
+            "ev_bf_0041",
+            "ev_bf_0038"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0039",
+            "ev_bf_0040"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0042"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 3,
+              "den": 250,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_bf_0042"
+          ]
+        },
+        {
+          "key": "module.magnetic_shielding",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_084",
+            "eg_085"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_bf_0064"
+          ]
+        }
+      ]
+    },
+    "experiment": {
+      "id": "quantum_mxc_wiring_heat_budget",
+      "name": "Wiring heat budget at the mixing chamber for a 50-qubit superconducting processor",
+      "industry": "quantum_computing_and_sensing",
+      "params": [
+        {
+          "name": "operating_temperature",
+          "value": {
+            "num": 1,
+            "den": 50,
+            "dim": {
+              "K": 1
+            }
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "n_drive_lines",
+          "value": {
+            "num": 58,
+            "den": 1,
+            "dim": {}
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "n_flux_lines",
+          "value": {
+            "num": 50,
+            "den": 1,
+            "dim": {}
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "n_output_lines",
+          "value": {
+            "num": 8,
+            "den": 1,
+            "dim": {}
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "q_drive_line",
+          "value": {
+            "num": 13,
+            "den": 1000000000,
+            "dim": {
+              "m": 2,
+              "kg": 1,
+              "s": -3
+            }
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "q_flux_line",
+          "value": {
+            "num": 29,
+            "den": 1000000000,
+            "dim": {
+              "m": 2,
+              "kg": 1,
+              "s": -3
+            }
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "q_output_line",
+          "value": {
+            "num": 1,
+            "den": 50000000,
+            "dim": {
+              "m": 2,
+              "kg": 1,
+              "s": -3
+            }
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "p_flux_dc",
+          "value": {
+            "num": 1,
+            "den": 20000000,
+            "dim": {
+              "m": 2,
+              "kg": 1,
+              "s": -3
+            }
+          },
+          "origin": "experimental_observation"
+        },
+        {
+          "name": "design_margin",
+          "value": {
+            "num": 3,
+            "den": 1,
+            "dim": {}
+          },
+          "origin": "experimental_observation"
+        }
+      ],
+      "requirements": [
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "num": 1,
+              "den": 50,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "The heat budget is evaluated at 20 mK, the temperature at which Krinner et al. quote the mixing-chamber cooling power.",
+          "evidence_ids": [
+            "hl_002",
+            "hl_003"
+          ]
+        },
+        {
+          "keys": [
+            "electrical.coax_lines"
+          ],
+          "constraint": {
+            "kind": "count_at_least",
+            "n": 124
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "A 50-qubit processor with individual drive and flux control needs 124 RF lines.",
+          "evidence_ids": [
+            "hl_033"
+          ]
+        }
+      ],
+      "coupled": [
+        {
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Krinner et al.'s design rule applied to the documented cooling power of the candidate refrigerator.",
+          "id": "mxc_wiring_heat_budget#0.0",
+          "name": "Mixing-chamber wiring heat load (with design margin) vs cooling power",
+          "model": "mxc_wiring_heat_budget",
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "param",
+              "name": "design_margin"
+            },
+            "b": {
+              "op": "add",
+              "a": {
+                "op": "add",
+                "a": {
+                  "op": "mul",
+                  "a": {
+                    "op": "param",
+                    "name": "n_drive_lines"
+                  },
+                  "b": {
+                    "op": "param",
+                    "name": "q_drive_line"
+                  }
+                },
+                "b": {
+                  "op": "mul",
+                  "a": {
+                    "op": "param",
+                    "name": "n_flux_lines"
+                  },
+                  "b": {
+                    "op": "add",
+                    "a": {
+                      "op": "param",
+                      "name": "q_flux_line"
+                    },
+                    "b": {
+                      "op": "param",
+                      "name": "p_flux_dc"
+                    }
+                  }
+                }
+              },
+              "b": {
+                "op": "mul",
+                "a": {
+                  "op": "param",
+                  "name": "n_output_lines"
+                },
+                "b": {
+                  "op": "param",
+                  "name": "q_output_line"
+                }
+              }
+            }
+          },
+          "rhs": {
+            "op": "cap",
+            "key": "cooling_power.at_20mK",
+            "sel": "max"
+          },
+          "validity": [
+            {
+              "a": {
+                "op": "cap",
+                "key": "cooling_power.at_20mK.temperature",
+                "sel": "max"
+              },
+              "b": {
+                "op": "param",
+                "name": "operating_temperature"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {}
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "design_margin"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {}
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "n_drive_lines"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {}
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "n_flux_lines"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {}
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "n_output_lines"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {
+                    "K": 1
+                  }
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "operating_temperature"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {
+                    "m": 2,
+                    "kg": 1,
+                    "s": -3
+                  }
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "p_flux_dc"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {
+                    "m": 2,
+                    "kg": 1,
+                    "s": -3
+                  }
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "q_drive_line"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {
+                    "m": 2,
+                    "kg": 1,
+                    "s": -3
+                  }
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "q_flux_line"
+              }
+            },
+            {
+              "a": {
+                "op": "lit",
+                "q": {
+                  "num": 0,
+                  "den": 1,
+                  "dim": {
+                    "m": 2,
+                    "kg": 1,
+                    "s": -3
+                  }
+                }
+              },
+              "b": {
+                "op": "param",
+                "name": "q_output_line"
+              }
+            }
+          ],
+          "evidence_ids": [
+            "hl_010",
+            "hl_011",
+            "hl_017",
+            "hl_019",
+            "hl_029",
+            "pm_002",
+            "pm_003"
+          ]
+        }
+      ],
+      "confirmed": true
+    }
+  },
+  "suggestions": {
+    "engine": "z3",
+    "note": "Suggestions come from the Z3 solver. A suggestion is marked verified only if the Lean checker accepted the exact suggested configuration and parameters.",
+    "conflicts": {
+      "engine": "z3 5.3.3",
+      "status": "unsat",
+      "conflicts": [
+        {
+          "requirements": [
+            {
+              "kind": "coupled",
+              "index": 0,
+              "id": "mxc_wiring_heat_budget#0.0",
+              "name": "Mixing-chamber wiring heat load (with design margin) vs cooling power",
+              "model": "mxc_wiring_heat_budget",
+              "evidence_ids": [
+                "hl_010",
+                "hl_011",
+                "hl_017",
+                "hl_019",
+                "hl_029",
+                "pm_002",
+                "pm_003"
+              ],
+              "label": "coupled#0:mxc_wiring_heat_budget#0.0"
+            }
+          ],
+          "facts": [
+            {
+              "kind": "parameter",
+              "name": "n_flux_lines",
+              "text": "n_flux_lines = 50 (experimental_observation)",
+              "label": "param:n_flux_lines"
+            },
+            {
+              "kind": "parameter",
+              "name": "n_output_lines",
+              "text": "n_output_lines = 8 (experimental_observation)",
+              "label": "param:n_output_lines"
+            },
+            {
+              "kind": "parameter",
+              "name": "p_flux_dc",
+              "text": "p_flux_dc = 50 nW (experimental_observation)",
+              "label": "param:p_flux_dc"
+            },
+            {
+              "kind": "parameter",
+              "name": "n_drive_lines",
+              "text": "n_drive_lines = 58 (experimental_observation)",
+              "label": "param:n_drive_lines"
+            },
+            {
+              "kind": "parameter",
+              "name": "design_margin",
+              "text": "design_margin = 3 (experimental_observation)",
+              "label": "param:design_margin"
+            },
+            {
+              "kind": "parameter",
+              "name": "q_output_line",
+              "text": "q_output_line = 20 nW (experimental_observation)",
+              "label": "param:q_output_line"
+            },
+            {
+              "kind": "parameter",
+              "name": "q_flux_line",
+              "text": "q_flux_line = 29 nW (experimental_observation)",
+              "label": "param:q_flux_line"
+            },
+            {
+              "kind": "parameter",
+              "name": "q_drive_line",
+              "text": "q_drive_line = 13 nW (experimental_observation)",
+              "label": "param:q_drive_line"
+            },
+            {
+              "kind": "fact",
+              "key": "cooling_power.at_20mK",
+              "text": "cooling_power.at_20mK documented as 12 µW (manufacturer_specification)",
+              "evidence_ids": [
+                "ev_bf_0006"
+              ],
+              "label": "fact:cooling_power.at_20mK.max"
+            }
+          ],
+          "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power cannot hold together with n_flux_lines = 50 (experimental_observation); n_output_lines = 8 (experimental_observation); p_flux_dc = 50 nW (experimental_observation); n_drive_lines = 58 (experimental_observation); design_margin = 3 (experimental_observation); q_output_line = 20 nW (experimental_observation); q_flux_line = 29 nW (experimental_observation); q_drive_line = 13 nW (experimental_observation); cooling_power.at_20mK documented as 12 µW (manufacturer_specification)"
+        }
+      ],
+      "not_encoded": [],
+      "note": "Each conflict is a minimal unsat core: the listed requirements cannot all hold given the listed documented facts. Items depending on missing information are listed under not_encoded (they are never treated as satisfied)."
+    },
+    "requirements_self_consistent": {
+      "consistent": true,
+      "conflicting_requirements": []
+    },
+    "parameter_changes": [
+      {
+        "coupled_id": "mxc_wiring_heat_budget#0.0",
+        "model": "mxc_wiring_heat_budget",
+        "parameter": "n_drive_lines",
+        "direction": "decrease",
+        "current": "58",
+        "current_exact": "58",
+        "status": "no_feasible_value",
+        "reason": "no value of this parameter alone satisfies the relation"
+      },
+      {
+        "coupled_id": "mxc_wiring_heat_budget#0.0",
+        "model": "mxc_wiring_heat_budget",
+        "parameter": "n_flux_lines",
+        "direction": "decrease",
+        "current": "50",
+        "current_exact": "50",
+        "status": "found",
+        "suggested_exact": "39",
+        "suggested": "39",
+        "suggested_quantity": {
+          "num": 39,
+          "den": 1,
+          "dim": {}
+        },
+        "lean_verdict": "REQUIREMENTS_MET",
+        "verified": true,
+        "coupled_after": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 11.985 µW ≤ 12 µW. Constraint met."
+      },
+      {
+        "coupled_id": "mxc_wiring_heat_budget#0.0",
+        "model": "mxc_wiring_heat_budget",
+        "parameter": "n_output_lines",
+        "direction": "decrease",
+        "current": "8",
+        "current_exact": "8",
+        "status": "no_feasible_value",
+        "reason": "no value of this parameter alone satisfies the relation"
+      }
+    ],
+    "requirement_relaxations": [],
+    "alternatives": [],
+    "ranking_criteria": [
+      "Z3 status tier: satisfiable < needs documented options < pending information",
+      "fewest added optional accessories",
+      "equipment model named in the experiment's sources",
+      "fewest unknown items",
+      "most mandatory items documented as passing",
+      "largest smallest relative margin over numeric requirements"
+    ]
+  },
+  "result_id": "res_30e7b82155de"
+}

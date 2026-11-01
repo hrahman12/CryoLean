@@ -5,40 +5,339 @@
   "family": "closed-cycle-refrigerator (CCR) cryogenic probe station",
   "description": "Cryogen-free micro-manipulated probe stations for wafers up to 51 mm (2 in). CRX-VF adds a ±2.5 T vertical-field superconducting solenoid (10-420 K); CRX-4K is the lowest-temperature cryogen-free station (4.5 K base, 5-350 K, up to 675 K with the PS-HTSTAGE option). Both use a 2-stage CCR rated 1 W at 4.2 K, up to 6 probe arms (DC/RF, microwave to 67 GHz, fibre optic), a single top viewport (63.5 mm fused quartz chamber window, 50 mm IR-absorbing shield window), <1 um vibration at the sample.",
   "documents": [
-    {"id": "doc_ls_crxvf_spec", "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station", "title": "CRX-VF cryogenic probe station (specifications page)", "accessed": "2026-10-31"},
-    {"id": "doc_ls_crxvf_overview", "url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station", "title": "CRX-VF cryogenic probe station (overview page)", "accessed": "2026-10-31"},
-    {"id": "doc_ls_crx4k_spec", "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station", "title": "CRX-4K cryogenic probe station - CRX-4K probe station specifications", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ps_catalog", "url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_68", "title": "Probe Stations (Lake Shore Cryotronics catalog; CRX-4K pp. 42-43, CRX-VF pp. 44-45)", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ps_family", "url": "https://www.lakeshore.com/docs/default-source/product-downloads/literature/probestationfamily.pdf?sfvrsn=3f78b12e_15", "title": "Lake Shore Probe Stations (family comparison flyer)", "accessed": "2026-10-31"}
+    {
+      "id": "doc_ls_crxvf_spec",
+      "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+      "title": "CRX-VF cryogenic probe station (specifications page)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_crxvf_overview",
+      "url": "http://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+      "title": "CRX-VF cryogenic probe station (overview page)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_crx4k_spec",
+      "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+      "title": "CRX-4K cryogenic probe station - CRX-4K probe station specifications",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ps_catalog",
+      "url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_68",
+      "title": "Probe Stations (Lake Shore Cryotronics catalog; CRX-4K pp. 42-43, CRX-VF pp. 44-45)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ps_family",
+      "url": "https://www.lakeshore.com/docs/default-source/product-downloads/literature/probestationfamily.pdf?sfvrsn=3f78b12e_15",
+      "title": "Lake Shore Probe Stations (family comparison flyer)",
+      "accessed": "2026-10-31"
+    }
   ],
-  "proposed_vocabulary": [],
   "configurations": [
     {
       "id": "lakeshore_crx_vf",
       "name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
       "configuration_basis": "catalog standard configuration; capability values are manufacturer specifications. optical.clear_aperture is the 50 mm radiation-shield viewing area, which is the limiting aperture of the single top optical path (the outer chamber viewing area is 54.0 mm). magnetic_field.max is the ±2.5 T value at 10 K; only ±2 T is available from 11 K to 400 K and ±1 T from 401 K to 420 K.",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 10000, "unit": "mK"}, "hi": {"value": 420000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0001", "ev_ls_0002", "ev_ls_0004"]},
-        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 10000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0004", "ev_ls_0001"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 10, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0006"]},
-        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 2500, "unit": "mT"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0003", "ev_ls_0004"]},
-        {"key": "magnetic_field.vector", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0003"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0012"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 18000, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0014"]},
-        {"key": "pressure.base", "value": {"kind": "min", "q": {"value": 1333, "unit": "uPa"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0015"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0015"]},
-        {"key": "sample.diameter.max", "value": {"kind": "max", "q": {"value": 51000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0007"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0009", "ev_ls_0010", "ev_ls_0021"]},
-        {"key": "optical.window_count", "value": {"kind": "count", "n": 1}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0021", "ev_ls_0009"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0010", "ev_ls_0009"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0018", "ev_ls_0011"]},
-        {"key": "electrical.probe_arms", "value": {"kind": "count", "n": 6}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0008"]},
-        {"key": "electrical.coax_bandwidth.max", "value": {"kind": "max", "q": {"value": 67000000, "unit": "kHz"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0011"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0019"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0020"]},
-        {"key": "vibration.max", "value": {"kind": "max", "q": {"value": 1000, "unit": "nm"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0013"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0017"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0017"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 10000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 420000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0001",
+            "ev_ls_0002",
+            "ev_ls_0004"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0004",
+            "ev_ls_0001"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0006"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 2500,
+              "unit": "mT"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0003",
+            "ev_ls_0004"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0003"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 18000,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0014"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1333,
+              "unit": "uPa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0015"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0015"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 51000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0007"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0009",
+            "ev_ls_0010",
+            "ev_ls_0021"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "count",
+            "n": 1
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0021",
+            "ev_ls_0009"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 50000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0010",
+            "ev_ls_0009"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0018",
+            "ev_ls_0011"
+          ]
+        },
+        {
+          "key": "electrical.probe_arms",
+          "value": {
+            "kind": "count",
+            "n": 6
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0008"
+          ]
+        },
+        {
+          "key": "electrical.coax_bandwidth.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 67000000,
+              "unit": "kHz"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0011"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0019"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0020"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1000,
+              "unit": "nm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0013"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0017"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0017"
+          ]
+        }
       ]
     },
     {
@@ -46,32 +345,303 @@
       "name": "CRX-4K cryogen-free probe station, 2 probe arms installed (4.5 K base), standard vacuum",
       "configuration_basis": "catalog standard configuration; capability values are manufacturer specifications. Base temperature and lower range bound depend on the number of probe arms installed: 4.5 K / 5 K with 2 arms (used here), 5.5 K / 6 K with 4 arms, 6.0 K / 6.5 K with 6 arms. electrical.probe_arms records the documented maximum (6). temperature.stability is the worst case within 5-350 K (±50 mK below 10 K). optical.clear_aperture is the 50 mm radiation-shield viewing area (chamber viewing area 54.0 mm).",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 5000, "unit": "mK"}, "hi": {"value": 350000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0030", "ev_ls_0031"]},
-        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 4500, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0032"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0034"]},
-        {"key": "magnetic_field.max", "value": {"kind": "max", "q": {"value": 190, "unit": "mT"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0035"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0041"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0043"]},
-        {"key": "pressure.base", "value": {"kind": "min", "q": {"value": 1333, "unit": "uPa"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0044"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0044"]},
-        {"key": "sample.diameter.max", "value": {"kind": "max", "q": {"value": 51000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0036"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0038", "ev_ls_0039"]},
-        {"key": "optical.window_count", "value": {"kind": "count", "n": 1}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0038", "ev_ls_0039"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0039", "ev_ls_0038"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0048", "ev_ls_0040"]},
-        {"key": "electrical.probe_arms", "value": {"kind": "count", "n": 6}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0037"]},
-        {"key": "electrical.coax_bandwidth.max", "value": {"kind": "max", "q": {"value": 67000000, "unit": "kHz"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0040"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0046"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0047"]},
-        {"key": "vibration.max", "value": {"kind": "max", "q": {"value": 1000, "unit": "nm"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0042"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0045"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0045"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 5000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 350000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0030",
+            "ev_ls_0031"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 4500,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0032"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 50,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0034"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 190,
+              "unit": "mT"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0035"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0041"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 7200,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0043"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1333,
+              "unit": "uPa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0044"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0044"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 51000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0036"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0038",
+            "ev_ls_0039"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "count",
+            "n": 1
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0038",
+            "ev_ls_0039"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 50000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0039",
+            "ev_ls_0038"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0048",
+            "ev_ls_0040"
+          ]
+        },
+        {
+          "key": "electrical.probe_arms",
+          "value": {
+            "kind": "count",
+            "n": 2
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0030",
+            "ev_ls_0032"
+          ]
+        },
+        {
+          "key": "electrical.coax_bandwidth.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 67000000,
+              "unit": "kHz"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0040"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0046"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0047"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 1000,
+              "unit": "nm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0042"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0045"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0045"
+          ]
+        }
       ]
     }
   ],
   "unknowns": [
-    {"key": "electrical.dc_lines", "note": "Pages state probe-arm count (6) and probe types (DC/RF >100 GΩ isolation, microwave DC-67 GHz, fibre optic) but no count of DC lines (ev_ls_0019, ev_ls_0046)"},
-    {"key": "electrical.coax_lines", "note": "Coax/RF line count depends on probe-arm configuration; not stated (ev_ls_0020, ev_ls_0047)"}
+    {
+      "key": "electrical.dc_lines",
+      "note": "Pages state probe-arm count (6) and probe types (DC/RF >100 GΩ isolation, microwave DC-67 GHz, fibre optic) but no count of DC lines (ev_ls_0019, ev_ls_0046)"
+    },
+    {
+      "key": "electrical.coax_lines",
+      "note": "Coax/RF line count depends on probe-arm configuration; not stated (ev_ls_0020, ev_ls_0047)"
+    }
   ],
-  "notes": "Evidence file: data/evidence/lakeshore.json. CRX-VF optical.clear_aperture is recorded as 50 mm (radiation-shield viewing area, ev_ls_0010) rather than the 54.0 mm chamber viewing area (ev_ls_0009), because the sample is viewed through both windows in series. CRX-VF optional PS-HV-CPX high-vacuum package reaches <5e-7 Torr (67 uPa, ev_ls_0016); CRX-VF 'Customizable up to 3 T with specialized probes' (ev_ls_0005) is a non-standard configuration. CRX-4K optional PS-HTSTAGE extends the range to 20-675 K (ev_ls_0033). Both stations: 'Sample backside optical access: Not an option', 'Sample rotation: Not an option'."
+  "notes": "Evidence file: data/evidence/lakeshore.json. CRX-VF optical.clear_aperture is recorded as 50 mm (radiation-shield viewing area, ev_ls_0010) rather than the 54.0 mm chamber viewing area (ev_ls_0009), because the sample is viewed through both windows in series. CRX-VF optional PS-HV-CPX high-vacuum package reaches <5e-7 Torr (67 uPa, ev_ls_0016); CRX-VF 'Customizable up to 3 T with specialized probes' (ev_ls_0005) is a non-standard configuration. CRX-4K optional PS-HTSTAGE extends the range to 20-675 K (ev_ls_0033). Both stations: 'Sample backside optical access: Not an option', 'Sample rotation: Not an option'.",
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json).",
+    "Review fix DP-2: lakeshore_crx_4k records the 2 probe arms its documented base/range figures apply to (up to 6 arms are possible but change the base temperature; model them as a separate configuration)."
+  ]
 }

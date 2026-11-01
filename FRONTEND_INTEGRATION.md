@@ -1,97 +1,178 @@
-# FRONTEND_INTEGRATION — connecting Antigravity to the CryoLean backend
+# FRONTEND_INTEGRATION — connecting the Antigravity frontend to the local CryoLean backend
 
-Base URL (local): `http://127.0.0.1:8000`. Interactive docs: `/docs`. OpenAPI 3 schema: `/openapi.json`
-(a copy is committed as `openapi.json`; regenerate with `python scripts/export_openapi.py`).
-All responses are JSON. No authentication in the MVP.
+CryoLean runs **locally on Windows with no web server**. The Antigravity frontend is loaded into a native
+window by PyWebView, and calls the Python backend directly through `window.pywebview.api.*`.
 
-## 1. The three answers
+```
+Antigravity UI (HTML/JS) ──window.pywebview.api.method(...)──► cryolean.bridge.CryoLeanAPI (Python)
+                                                                 ├─ SQLite evidence/catalog DB   (data/cryolean.db)
+                                                                 ├─ Lean 4 checker (subprocess)  (lean/.lake/build/bin/cryolean.exe)
+                                                                 └─ Z3 solver (in process)
+```
 
-Render `verdict` with `headline` and `user_message`; never compute a verdict client-side.
+## 1. Copy-paste for Antigravity
 
-| `verdict` | `headline` | UI |
+1. Copy [`docs/antigravity/cryolean-client.js`](docs/antigravity/cryolean-client.js) into the frontend project.
+2. Use it like this:
+
+```js
+import * as cryo from "./cryolean-client.js";
+
+// "What would you like to do?"
+const { industries } = await cryo.listIndustries();          // category tabs
+const { experiments } = await cryo.listExperiments("materials_and_nanotechnology");
+const ai = await cryo.matchExperiment("test how a material's resistance changes in a strong magnetic field");
+// -> ai.matches[0].experiment_id, ai.matches[0].plain_name ; ALWAYS ask the user to confirm
+
+// Review the prepared profile, let the user edit values, then confirm
+const profile = await cryo.getExperimentRequirements("mat_magnetoresistance_10T");
+
+// "Change cryostat"
+const { equipment } = await cryo.listEquipment();
+
+// "Check setup"  (show "Checking your setup…" while awaiting)
+const r = await cryo.checkCompatibility("mat_magnetoresistance_10T", "qd_dynacool_9T_eto_res", { confirmed: true });
+render(cryo.HEADLINE[r.verdict], r.user_message, r.next_step);
+showBadge(cryo.isVerified(r));                       // badge ONLY for a Lean REQUIREMENTS_MET
+renderChecks(r.checks.concat(r.coupled_checks));    // "See checks": cryo.checkQuestion(c), c.outcome, c.explanation, evidence
+renderSuggestions(r.suggestions);                    // Z3: conflicts, parameter_changes, alternatives (each with lean_verdict)
+
+// Switching cryostats without losing the experiment
+const s = await cryo.startSession("mat_magnetoresistance_10T");
+await cryo.updateSession(s.id, { confirmed: true });
+await cryo.selectEquipment(s.id, "qd_dynacool_9T_eto_res");
+const r1 = await cryo.checkSession(s.id);
+await cryo.selectEquipment(s.id, "qd_dynacool_14T_eto_vsm_hc");   // previous result is invalidated
+const r2 = await cryo.checkSession(s.id);
+```
+
+3. Short prompt for Antigravity:
+
+> Build the CryoLean screen described in the README using `cryolean-client.js`. Never compute a verdict in
+> the UI; show `HEADLINE[result.verdict]`, `result.user_message` and `result.next_step`, and a verified badge
+> only when `isVerified(result)` is true. "See checks" lists `result.checks` and `result.coupled_checks`
+> with `checkQuestion(check)`, the outcome, the explanation and the evidence (document title, page/section,
+> quote, link). Show `result.missing_information` as questions. Show `result.suggestions` under "Other
+> options": `parameter_changes` and `alternatives` with their own `lean_verdict` (only `verified: true` may be
+> called compatible). When the user changes the cryostat, call `selectEquipment` and clear the old result.
+> Handle `CryoLeanError` codes: `stale_result` → clear and re-check; `lean_unavailable` → "Verification is
+> unavailable" (no verdict); `edit_refused` → show the message.
+
+## 2. Launching locally (Windows)
+
+```powershell
+pip install -r requirements.txt pywebview
+cd lean; lake build; cd ..
+python -m cryolean build-db
+python -m cryolean.desktop --frontend C:\path\to\antigravity\dist\index.html
+```
+
+Without `--frontend`, a status page shows the Lean checker status. Every bridge method can also be called
+from the command line for testing:
+
+```powershell
+python -m cryolean methods
+python -m cryolean call check_compatibility "{\"experiment_id\": \"mat_magnetoresistance_10T\", \"configuration_id\": \"qd_dynacool_9T_eto_res\", \"confirmed\": true}"
+```
+
+## 3. Envelope and errors
+
+Every method returns `{"ok": true, "data": ...}` or `{"ok": false, "error": {"code", "message", "verdict": null}}`.
+
+| code | meaning | UI |
 |---|---|---|
-| `ACCEPT` | Requirements met | Show the verified badge (only when `verified_by_lean === true`). |
-| `REJECT` | Doesn't meet requirements | Show `user_message` (the first failing check, in plain words) and offer "Change cryostat" / "Find alternatives". |
-| `NEED_MORE_INFORMATION` | Need more information | Show `user_message`; list `missing_information` as specific questions. |
+| `lean_unavailable` | Lean binary missing or failed — **no verdict exists** | "Verification is unavailable" |
+| `lean_rejected_input` | Lean refused a malformed document (fail-closed) | show message |
+| `not_found` | unknown experiment / configuration / equipment / result / session (also: an unapproved candidate) | show message |
+| `invalid_input` | bad unit, float value, bad JSON | show message |
+| `edit_refused` | tried to remove or make optional a mandatory requirement, or a bad modification | show message |
+| `stale_result` | the catalog, configuration or experiment changed since the result | clear result, re-check |
+| `research_refused` | candidate promotion refused (validation errors / no reviewer) | show message |
+| `internal_error` | unexpected | show message |
 
-`next_step` is a one-line suggestion. "See checks" = the `checks` array: each has `key`, `mandatory`,
-`outcome` (`pass|fail|unknown|unsupported`), `explanation` (plain sentence from Lean),
-`capability` (value + install + evidence status), `capability_evidence` and `requirement_evidence`
-(records with `source_url`, `document_title`, `location`, `quote`, `evidence_status`, `accessed`).
+## 4. Method reference (exact signatures)
 
-Plain-language question per check (suggested mapping by key prefix):
-`temperature.*` → "Is it cold enough?", `sample.*` → "Does the sample fit?", `magnetic_field.*` →
-"Is the magnetic field strong enough?", `cooling_power.*` → "Is there enough cooling power?",
-`optical*` → "Can you see the sample?", `electrical.*` → "Does it have the connections?",
-`module.*` → "Is the measurement module installed?", `vacuum.*`/`pressure.*` → "Can it hold a vacuum?".
-Fall back to `checks[i].vocabulary.description`.
+Arguments may be passed as objects or JSON strings. Quantities are `{"value": "<int or exact decimal string>", "unit": "<symbol>"}`
+— floats are refused. Units: `K mK uK m mm um nm cm inch kg g mg ug s ms min h A mA uA nA pA W mW uW nW J T mT uT Oe T_per_s mT_per_s uT_per_s Oe_per_s Pa uPa mbar Torr Hz kHz MHz GHz V mV uV nV Ohm kOhm MOhm mOhm uOhm K_per_s K_per_min mK_per_min count percent ppm deg mdeg NA f_number m3 L L_per_min Pa_m3_per_s mbar_L_per_s W_per_m_K K_per_W`.
 
-## 2. Main flow (recommended: sessions)
-
-```
-GET  /industries                       → category tabs (filter with ?q=)
-GET  /experiments?industry=<id>        → experiment picker (use plain_name)
-POST /ai/match {text}                  → "Describe your experiment" box; show matches, ask user to confirm
-POST /sessions {experiment_id}         → session (starts UNCONFIRMED)
-GET  /sessions/{id}                    → requirements for review (experiment.requirements)
-PATCH /sessions/{id}/requirements [...] → user edits a value (resets confirmation)
-POST /sessions/{id}/confirm            → user confirms the requirements
-GET  /equipment, /configurations       → "Change cryostat" catalog (manufacturer, model, configuration name)
-POST /sessions/{id}/select-configuration {configuration_id}
-POST /sessions/{id}/verify             → "Check setup" (show "Checking your setup…" while pending)
-GET  /sessions/{id}/result             → current result; 409 if stale → clear the result UI
-POST /ai/explain {session_id}          → explanation + alternatives (each Lean-checked)
-```
-
-Switching cryostat = `select-configuration` again: the experiment stays, the previous result is
-invalidated (`has_valid_result: false`, `GET result` → 409). Never keep showing a previous machine's result.
-
-Instrument differences: `PUT /sessions/{id}/instrument-overrides` with
-`[{key, documented, value?, install?, note}]`. `documented:false` = undocumented modification (that check
-becomes Need more information). Overrides are cleared when the configuration changes.
-
-## 3. Stateless endpoints
-
-| Endpoint | Use |
+| Method | Purpose |
 |---|---|
-| `POST /verify` `{experiment_id, configuration_id, confirmed, requirement_edits?, instrument_overrides?}` | One check |
-| `POST /compare` `{experiment_id, configuration_ids[], confirmed}` | "Compare cryostats" view (2–3 machines, one verdict each, across manufacturers/industries) |
-| `POST /search` `{experiment_id, allow_hypothetical_options?, max_candidates?, equipment_filter?}` | "Find another suitable configuration": Z3 proposals, each with its Lean result. Show `verified_compatible` as compatible; `candidates_not_verified` with their Lean verdict. `candidate.kind`: `catalog`, `hypothetical` (adds documented optional accessories — label "with option X installed"), `pending_information` (`assumed_unknown` lists what is missing). |
-| `GET /configurations/{id}` | Specifications with evidence per capability (`include_evidence=true`) |
-| `GET /evidence/{id}`, `GET /evidence?ids=a,b` | Evidence records |
-| `GET /coverage` | Research coverage (what has and has not been researched) |
-| `GET /health` | Lean availability, theorem count, Z3 version |
-| `GET /vocabulary` | Capability keys, shapes, canonical units |
+| `list_industries(query=None)` | all industries (standard + registered + used), `status`: known / registered / researched |
+| `register_industry(name, description="", industry_id=None)` | add any industry (a label; no special logic) |
+| `list_experiments(industry=None)` | prepared profiles (`plain_name` for the menu) |
+| `get_experiment_requirements(experiment_id)` | requirements, parameters, coupled constraints, sources, evidence, `missing_information` |
+| `match_experiment(text, top_k=3)` | AI closed-set matching; `needs_confirmation` is always true |
+| `register_experiment(document, evidence=None, submitted_by="user", request_id=None)` | validated, stored **untrusted** |
+| `register_equipment(document, evidence=None, submitted_by="user", request_id=None)` | same for equipment |
+| `approve_candidate(candidate_id, reviewed_by)` | reviewer promotion into the trusted catalog |
+| `list_candidates()` | research candidates and their validation |
+| `list_equipment(manufacturer=None, family=None)` | catalog for "Change cryostat" |
+| `get_equipment_details(equipment_or_configuration_id)` | capabilities with evidence, `unknown_capabilities`, `optional_accessories_not_installed`, modifications |
+| `register_modification(configuration_id, status, changes, description="")` | `installed_documented` / `proposed` / `undocumented` |
+| `check_compatibility(experiment_id, configuration_id, parameters=None, requirement_edits=None, confirmed=False, extra_modifications=None, suggestions=True)` | **the main call** |
+| `find_compatible_equipment(experiment_id, parameters=None, requirement_edits=None, confirmed=True, max_results=10, include_hypothetical_options=True)` | Z3 search over all equipment, each candidate Lean-checked |
+| `compare_equipment(experiment_id, configuration_ids, parameters=None, requirement_edits=None, confirmed=True)` | one Lean verdict per configuration + comparison table |
+| `get_verification_details(result_id)` | stored result; `stale_result` if anything changed |
+| `start_session(experiment_id)` / `update_session(session_id, parameters=None, requirement_edits=None, confirmed=None)` / `select_equipment(session_id, configuration_id)` / `check_session(session_id)` / `get_session_result(session_id)` | switching cryostats with automatic invalidation |
+| `research_new_experiment(description, industry="unspecified", research_text=None)` | NEED_MORE_INFORMATION + 12-step research plan (+ optional untrusted AI draft) |
+| `get_research_coverage()` | coverage registry (industries, profiles, equipment, evidence, 40 properties, coupled models, gaps) |
+| `get_lean_status()` / `get_physical_properties()` / `reload_catalog()` | status and registries |
 
-## 4. Any industry / custom experiments
+`requirement_edits`: `[{"key": "magnetic_field.max", "constraint": {"kind": "at_least", "q": {"value": 12000, "unit": "mT"}}}]`.
+Edits mark the requirement `user_entered` and reset confirmation; removing a mandatory requirement or changing its
+`mandatory` flag is refused.
 
-* `POST /industries {name, description?, id?}` registers a custom industry (it is just a label).
-* No good AI match (`no_good_match: true`) or an industry without profiles → `POST /research/requests
-  {industry, description}`. The response has `verdict: "NEED_MORE_INFORMATION"`, the 10 research steps
-  and any partially matching profiles. Show it as "We need to research this experiment first".
-* `POST /research/candidates` accepts research output; it is validated and stored as **untrusted**
-  (`trust: "candidate"`). It is never used for verification until a reviewer promotes it.
-* `POST /vocabulary/propose` registers a new capability key (shape + canonical unit).
+## 5. The result object (`check_compatibility`, real values from Demo B)
 
-## 5. Units
+Full real outputs: [`docs/examples/demo_a_incompatibility.json`](docs/examples/demo_a_incompatibility.json),
+[`demo_b_coupled.json`](docs/examples/demo_b_coupled.json), [`demo_c_new_industry_check.json`](docs/examples/demo_c_new_industry_check.json),
+[`demo_c_new_industry_search.json`](docs/examples/demo_c_new_industry_search.json).
 
-Quantities are integers in canonical units: temperature `mK`, field `mT`, length `um`, power `nW`,
-pressure `uPa`, frequency `kHz`, time `s` (see `GET /vocabulary`). Convert for display
-(e.g. `{"value": 1800, "unit": "mK"}` → 1.8 K). When the user edits a value, convert back to the
-canonical unit and send an integer; a different unit string is reported as `unsupported`, never converted.
+```jsonc
+{
+  "verdict": "DOES_NOT_MEET_REQUIREMENTS",          // REQUIREMENTS_MET | DOES_NOT_MEET_REQUIREMENTS | NEED_MORE_INFORMATION
+  "headline": "Doesn't meet requirements",
+  "user_message": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.",
+  "next_step": "See why it fails and the suggested alternatives below.",
+  "equipment": {"id": "bluefors_ld", "manufacturer": "Bluefors", "configuration_id": "bluefors_ld400_hdw", "modifications_applied": []},
+  "experiment": {"id": "quantum_mxc_wiring_heat_budget", "industry": "quantum_computing_and_sensing", "confirmed": true, "parameters": [...]},
+  "checks": [{"kind": "requirement", "keys": ["temperature.base"], "mandatory": true, "applicable": true, "outcome": "pass",
+              "required": "needs 20 mK or lower", "available": "a documented minimum of 10 mK",
+              "explanation": "...", "property": 1, "capability_evidence": [{"id": "ev_bf_0003", "quote": "...", "document_title": "...", "location": "...", "source_url": "..."}]}],
+  "coupled_checks": [{"kind": "coupled", "model": "mxc_wiring_heat_budget", "outcome": "fail",
+                      "lhs": {"display": "14.592 µW", "value": {"num": ..., "den": ..., "dim": {...}}},
+                      "rhs": {"display": "12 µW"}, "equation": "margin * (...) <= P_cool(T_doc)", "assumptions": ["..."],
+                      "slot_resolution": {"cooling": "cooling_power.at_20mK"}, "evidence": [...]}],
+  "missing_information": [],                          // keys/models that blocked acceptance for lack of evidence
+  "failed_requirements": ["Mixing-chamber wiring heat load (with design margin) vs cooling power"],
+  "verification": {
+    "generic_theorems": {"status": "kernel-checked when the Lean project is built", "key_theorems": ["verdict_accept_sound", "..."]},
+    "concrete_evaluation": {"engine": "CryoLean Lean 4 compatibility checker v2", "verified_by_lean": true, "lean_input_hash": "...", "verdict": "..."},
+    "source_data_validation": {"ok": true, "errors": [], "warnings": []},
+    "physical_model_assumptions": [{"model": "mxc_wiring_heat_budget", "equation": "...", "assumptions": ["..."]}]
+  },
+  "suggestions": {                                     // Z3, AFTER the Lean verdict
+    "conflicts": {"status": "unsat", "conflicts": [{"explanation": "... cannot hold together with p_flux_dc = 50 nW; ...", "requirements": [...], "facts": [...]}]},
+    "parameter_changes": [{"parameter": "n_flux_lines", "current": "50", "suggested": "39", "lean_verdict": "REQUIREMENTS_MET", "verified": true}],
+    "requirement_relaxations": [],                    // only offered: changing a requirement is the user's decision
+    "alternatives": [{"configuration_id": "...", "z3_status": "satisfiable|needs_options|pending_information", "added_options": [], "hypothetical": false,
+                      "lean_verdict": "REQUIREMENTS_MET", "verified": true}]
+  },
+  "references": [{"type": "experiment_source", "citation": "...", "doi": "10.1140/epjqt/s40507-019-0072-0"}],
+  "fingerprint": "427a71d0...",                        // SHA-256 of catalog version + exact Lean input
+  "result_id": "res_9e2722c43fb7",
+  "lean_input": {"configuration": {...}, "experiment": {...}}   // the exact documents Lean checked
+}
+```
 
-## 6. Errors
+Outcomes per check: `pass`, `fail`, `unknown` (missing information), `unsupported` (unrepresentable or model not
+valid here), `not_applicable` (a condition is false, e.g. the frost rule above 0 °C).
 
-| HTTP | Meaning | UI |
-|---|---|---|
-| 400 | Invalid edit (e.g. trying to remove/relax a mandatory requirement) | Show `error` |
-| 404 | Unknown experiment/configuration/industry/evidence | Show `error` |
-| 409 | Stale result (`stale: true`) | Clear the result, prompt to check again |
-| 422 | Lean rejected the input document | Show `error`; no verdict |
-| 503 | Lean checker unavailable (`verdict: null`) | "Verification is temporarily unavailable" — never show a verdict |
+## 6. How results update when equipment changes
 
-## 7. Saving a report
-
-Persist the whole `VerificationResult`: it includes `lean_input` (the exact document Lean checked),
-`lean_input_hash`, `result_token`, `catalog_version`, `checked_at` and all evidence — enough to reproduce
-the verdict with `cryolean check`.
+* Each result is bound to its exact inputs by `fingerprint`; `get_verification_details(result_id)` recomputes it and
+  returns `stale_result` if the catalog version, configuration (including modifications) or experiment changed.
+* In a session, `select_equipment` keeps the experiment and parameters, clears `result_id`, and
+  `get_session_result` returns `stale_result` until `check_session` runs again.
+* Editing requirements or parameters resets `confirmed`; the next check is `NEED_MORE_INFORMATION` until the user confirms.
+* A modified instrument is checked under a new id `<configuration>~mod:<hash>` so its verdict is never shown for the catalog configuration.

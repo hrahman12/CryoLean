@@ -1,380 +1,1008 @@
 import CryoLean.Spec
 /-!
-# Soundness of the generic checker
+# Soundness (and completeness) of the generic checker — v2
 
-Every theorem here is about the *fixed* executable checker in `CryoLean.Checker`
-and the *independent* specification in `CryoLean.Spec`.  None of them mentions
-an industry, a manufacturer, or an experiment: they hold for every data record
-that decodes into the model, which is what makes the engine universal.
-
-Guarantee map (see `VERIFICATION_SCOPE.md`):
-
-| Guarantee                                             | Theorem                              |
-|-------------------------------------------------------|--------------------------------------|
-| ACCEPT ⇒ every mandatory requirement is satisfied     | `verdict_accept_sound`               |
-| ACCEPT ⇒ every mandatory requirement was checked=pass | `accept_all_mandatory_pass`          |
-| Missing information cannot produce ACCEPT             | `accept_no_unknown`, `missing_capability_unknown` |
-| Unsupported requirements cannot produce ACCEPT        | `accept_no_unknown`                  |
-| A confirmed incompatibility cannot produce ACCEPT     | `fail_implies_reject`                |
-| REJECT ⇒ a documented conflict exists                 | `verdict_reject_sound`               |
-| Installed vs optional accessories are distinguished   | `not_installed_never_passes`         |
-| Estimates are never treated as specifications         | `estimate_never_passes`              |
-| Units are never silently converted                    | `pass_implies_units_match`           |
-| Unconfirmed / empty profiles are never accepted       | `unconfirmed_not_accept`, `empty_not_accept` |
-| Verdict is bound to the exact inputs                  | `run_binds_inputs`, `verdict_deterministic` |
-| The industry label cannot influence the verdict       | `verdict_industry_irrelevant`        |
-| Satisfaction and violation are mutually exclusive     | `satisfies_violates_exclusive`       |
-| ACCEPT exactly characterises the spec (completeness)  | `verdict_accept_iff`                 |
+All theorems are about the fixed executable checker (`CryoLean.Checker`) and the
+independent specification (`CryoLean.Spec`).  None mentions an industry, a
+manufacturer, an experiment or a physical property; they hold for every record
+that decodes into the model.
 -/
 
 namespace CryoLean
 
-/-! ## Value-level soundness -/
+/-! ## Evidence and usability -/
 
-theorem checkValue_pass_sound {c : Constraint} {v : CapValue}
-    (h : checkValue c v = .pass) : ValueMeets c v := by
-  cases c <;> cases v <;> simp only [checkValue] at h <;> (try cases h)
-  case pointWithin.range q lo hi =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .pointWithin hu.1 hu.2 hv.1 hv.2
-      · cases h
-    · cases h
-  case rangeWithin.range rlo rhi lo hi =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .rangeWithin hu.1 hu.2.1 hu.2.2.1 hu.2.2.2 hv.1 hv.2
-      · cases h
-    · cases h
-  case atLeast.range q lo hi =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .atLeastRange hu hv
-      · cases h
-    · cases h
-  case atLeast.max q m =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .atLeastMax hu hv
-      · cases h
-    · cases h
-  case atMost.range q lo hi =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .atMostRange hu hv
-      · cases h
-    · cases h
-  case atMost.min q m =>
-    split at h
-    · split at h
-      · rename_i hu hv; exact .atMostMin hu hv
-      · cases h
-    · cases h
-  case present.flag b =>
-    cases b
-    · cases h
-    · exact .present
-  case countAtLeast.count n m =>
-    split at h
-    · rename_i hv; exact .countAtLeast hv
-    · cases h
+theorem trustedB_iff (s : EvidenceStatus) : trustedB s = true ↔ TrustedEvidence s := by
+  cases s <;> simp [trustedB, TrustedEvidence]
 
-theorem checkValue_fail_sound {c : Constraint} {v : CapValue}
-    (h : checkValue c v = .fail) : ValueFails c v := by
-  cases c <;> cases v <;> simp only [checkValue] at h <;> (try cases h)
-  case pointWithin.range q lo hi =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv
-        refine .pointWithin hu.1 hu.2 ?_
-        omega
-    · cases h
-  case rangeWithin.range rlo rhi lo hi =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv
-        refine .rangeWithin hu.1 hu.2.1 hu.2.2.1 hu.2.2.2 ?_
-        omega
-    · cases h
-  case atLeast.range q lo hi =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv; exact .atLeastRange hu (by omega)
-    · cases h
-  case atLeast.max q m =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv; exact .atLeastMax hu (by omega)
-    · cases h
-  case atMost.range q lo hi =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv; exact .atMostRange hu (by omega)
-    · cases h
-  case atMost.min q m =>
-    split at h
-    · split at h
-      · cases h
-      · rename_i hu hv; exact .atMostMin hu (by omega)
-    · cases h
-  case present.flag b =>
-    cases b
-    · exact .present
-    · cases h
-  case countAtLeast.count n m =>
-    split at h
-    · cases h
-    · rename_i hv; exact .countAtLeast (by omega)
+theorem usable_iff (c : Capability) :
+    usable c = true ↔ c.install = .installed ∧ TrustedEvidence c.evidence := by
+  simp [usable, ← trustedB_iff]
 
-/-- Completeness at the value level: whenever the spec holds the checker says pass. -/
-theorem checkValue_pass_complete {c : Constraint} {v : CapValue}
-    (h : ValueMeets c v) : checkValue c v = .pass := by
-  cases h <;> simp [checkValue, *]
+/-! ## Value level -/
 
-/-- A passing comparison always happened in identical units (no silent conversion). -/
-theorem pass_implies_units_match {q m : Quantity}
-    (h : checkValue (.atLeast q) (.max m) = .pass) : m.unit = q.unit := by
+theorem checkValue_pass_sound {k : Constraint} {v : CapValue}
+    (h : checkValue k v = .pass) : ValueMeets k v := by
+  cases k <;> cases v <;> simp only [checkValue] at h <;> (try cases h) <;>
+    (repeat' split at h) <;> (try cases h) <;>
+    first
+    | (rename_i hd hv; exact .pointWithin hd.1 hd.2 hv.1 hv.2)
+    | (rename_i hd hv; exact .rangeWithin hd.1 hd.2.1 hd.2.2.1 hd.2.2.2 hv.1 hv.2)
+    | (rename_i hd hv; first | exact .atLeastMax hd hv | exact .atLeastRange hd hv
+                             | exact .atMostMin hd hv | exact .atMostRange hd hv)
+    | (rename_i hv; subst hv; exact .flagIs)
+    | (rename_i hv; first | exact .countAtLeast hv | (subst hv; exact .countEquals)
+                          | exact .enumIn hv | exact .setContains hv)
+
+theorem checkValue_fail_sound {k : Constraint} {v : CapValue}
+    (h : checkValue k v = .fail) : ValueFails k v := by
+  cases k <;> cases v <;> simp only [checkValue] at h <;> (try cases h) <;>
+    (repeat' split at h) <;> (try cases h) <;>
+    first
+    | (rename_i hd hv; exact .pointWithin hd.1 hd.2 hv)
+    | (rename_i hd hv; exact .rangeWithin hd.1 hd.2.1 hd.2.2.1 hd.2.2.2 hv)
+    | (rename_i hd hv; first | exact .atLeastMax hd hv | exact .atLeastRange hd hv
+                             | exact .atMostMin hd hv | exact .atMostRange hd hv)
+    | (rename_i hv; exact .flagIs hv)
+    | (rename_i hv; first | exact .countAtLeast (Nat.lt_of_not_le hv) | exact .countEquals (Ne.symm hv)
+                          | exact .enumIn hv | exact .setContains hv)
+
+theorem checkValue_pass_complete {k : Constraint} {v : CapValue}
+    (h : ValueMeets k v) : checkValue k v = .pass := by
+  cases h <;> simp_all [checkValue]
+
+theorem unknown_value_never_passes (k : Constraint) : checkValue k .unknown ≠ .pass := by
+  cases k <;> simp [checkValue]
+
+/-- A passing numeric comparison always happened in identical dimensions (no silent unit conversion). -/
+theorem pass_implies_dims_match {q m : Quantity}
+    (h : checkValue (.atLeast q) (.max m) = .pass) : m.dim = q.dim := by
   cases checkValue_pass_sound h; assumption
 
-theorem pass_implies_units_match_point {q lo hi : Quantity}
-    (h : checkValue (.pointWithin q) (.range lo hi) = .pass) :
-    lo.unit = q.unit ∧ hi.unit = q.unit := by
-  cases checkValue_pass_sound h; exact ⟨‹_›, ‹_›⟩
+/-! ## Capability and key level -/
 
-/-- An explicitly unknown value never passes. -/
-theorem unknown_value_never_passes (c : Constraint) : checkValue c .unknown ≠ .pass := by
-  cases c <;> simp [checkValue]
+theorem checkValue_fail_complete {k : Constraint} {v : CapValue}
+    (h : ValueFails k v) : checkValue k v = .fail := by
+  cases h <;> simp_all [checkValue]
+  all_goals omega
 
-/-! ## Capability-level soundness -/
 
-theorem checkCapability_pass_sound {r : Requirement} {c : Capability}
-    (h : checkCapability r c = .pass) :
-    c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueMeets r.constraint c.value := by
-  revert h
-  cases hi : c.install <;> cases he : c.evidence <;>
-    simp [checkCapability, hi, he, TrustedEvidence] <;>
-    exact checkValue_pass_sound
+theorem checkCapability_pass_sound {k : Constraint} {c : Capability}
+    (h : checkCapability k c = .pass) :
+    (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueMeets k c.value) ∨
+    (c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ k = .flagIs false) := by
+  unfold checkCapability at h
+  split at h
+  · rename_i hi
+    split at h
+    · rename_i hk
+      split at h
+      · rename_i ht; exact .inr ⟨hi, (trustedB_iff _).1 ht, hk⟩
+      · cases h
+    · cases h
+  · cases h
+  · rename_i hi
+    split at h
+    · rename_i ht
+      exact .inl ⟨hi, (trustedB_iff _).1 ht, checkValue_pass_sound h⟩
+    · cases h
 
-theorem checkCapability_fail_sound {r : Requirement} {c : Capability}
-    (h : checkCapability r c = .fail) :
-    c.install = .optionalNotInstalled ∨
-      (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueFails r.constraint c.value) := by
-  revert h
-  cases hi : c.install <;> cases he : c.evidence <;>
-    simp [checkCapability, hi, he, TrustedEvidence] <;>
-    exact checkValue_fail_sound
+theorem checkCapability_fail_sound {k : Constraint} {c : Capability}
+    (h : checkCapability k c = .fail) :
+    (c.install = .optionalNotInstalled ∧ k ≠ .flagIs false) ∨
+      (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueFails k c.value) := by
+  unfold checkCapability at h
+  split at h
+  · rename_i hi
+    split at h
+    · split at h <;> cases h
+    · rename_i hk; exact .inl ⟨hi, hk⟩
+  · cases h
+  · rename_i hi
+    split at h
+    · rename_i ht
+      exact .inr ⟨hi, (trustedB_iff _).1 ht, checkValue_fail_sound h⟩
+    · cases h
 
-/-- An optional accessory that is not fitted to this configuration never passes. -/
-theorem not_installed_never_passes {r : Requirement} {c : Capability}
-    (h : c.install = .optionalNotInstalled) : checkCapability r c ≠ .pass := by
-  simp [checkCapability, h]
+theorem checkCapability_pass_complete {k : Constraint} {c : Capability}
+    (h : (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueMeets k c.value) ∨
+         (c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ k = .flagIs false)) :
+    checkCapability k c = .pass := by
+  rcases h with ⟨hi, ht, hv⟩ | ⟨hi, ht, hk⟩
+  · unfold checkCapability
+    rw [hi]
+    simp [(trustedB_iff _).2 ht, checkValue_pass_complete hv]
+  · unfold checkCapability
+    rw [hi]
+    simp [(trustedB_iff _).2 ht, hk]
+
+theorem checkCapability_fail_complete {k : Constraint} {c : Capability}
+    (h : (c.install = .optionalNotInstalled ∧ k ≠ .flagIs false) ∨
+         (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueFails k c.value)) :
+    checkCapability k c = .fail := by
+  rcases h with ⟨hi, hk⟩ | ⟨hi, ht, hv⟩
+  · unfold checkCapability
+    rw [hi]
+    simp [hk]
+  · unfold checkCapability
+    rw [hi]
+    simp [(trustedB_iff _).2 ht, checkValue_fail_complete hv]
+
+theorem checkCapability_ne_notApplicable (k : Constraint) (c : Capability) :
+    checkCapability k c ≠ .notApplicable := by
+  unfold checkCapability
+  split
+  · split
+    · split <;> simp
+    · simp
+  · simp
+  · split
+    · cases k <;> cases hv : c.value <;> simp [checkValue] <;> (repeat' split) <;> simp
+    · simp
+
+/-- An optional accessory that is not fitted never passes a requirement that needs it
+(it only satisfies a requirement that the item be ABSENT). -/
+theorem not_installed_never_passes {k : Constraint} {c : Capability}
+    (h : c.install = .optionalNotInstalled) (hk : k ≠ .flagIs false) : checkCapability k c ≠ .pass := by
+  simp [checkCapability, h, hk]
 
 /-- Unknown installation status never passes. -/
-theorem unknown_install_never_passes {r : Requirement} {c : Capability}
-    (h : c.install = .unknown) : checkCapability r c ≠ .pass := by
+theorem unknown_install_never_passes {k : Constraint} {c : Capability}
+    (h : c.install = .unknown) : checkCapability k c ≠ .pass := by
   simp [checkCapability, h]
 
 /-- An inferred estimate is never treated as a verified specification. -/
-theorem estimate_never_passes {r : Requirement} {c : Capability}
-    (h : c.evidence = .inferredEstimate) : checkCapability r c ≠ .pass := by
-  cases hi : c.install <;> simp [checkCapability, hi, h]
+theorem estimate_never_passes {k : Constraint} {c : Capability}
+    (h : c.evidence = .inferredEstimate) : checkCapability k c ≠ .pass := by
+  unfold checkCapability
+  cases c.install <;> simp [h, trustedB] <;> split <;> simp
 
 /-- A fact with no recorded provenance never passes. -/
-theorem no_provenance_never_passes {r : Requirement} {c : Capability}
-    (h : c.evidence = .unknown) : checkCapability r c ≠ .pass := by
-  cases hi : c.install <;> simp [checkCapability, hi, h]
+theorem no_provenance_never_passes {k : Constraint} {c : Capability}
+    (h : c.evidence = .unknown) : checkCapability k c ≠ .pass := by
+  unfold checkCapability
+  cases c.install <;> simp [h, trustedB] <;> split <;> simp
 
-/-! ## Requirement-level soundness -/
-
-theorem checkRequirement_pass_sound {cfg : Configuration} {r : Requirement}
-    (h : checkRequirement cfg r = .pass) : Satisfies cfg r := by
-  unfold checkRequirement at h
+theorem keyOutcome_pass_sound {cfg : Configuration} {k : Constraint} {key : String}
+    (h : keyOutcome cfg k key = .pass) : SatisfiesKey cfg k key := by
+  unfold keyOutcome at h
   split at h
   · cases h
   · rename_i c hc
-    obtain ⟨h₁, h₂, h₃⟩ := checkCapability_pass_sound h
-    exact ⟨c, hc, h₁, h₂, h₃⟩
+    exact ⟨c, hc, checkCapability_pass_sound h⟩
 
-theorem checkRequirement_fail_sound {cfg : Configuration} {r : Requirement}
-    (h : checkRequirement cfg r = .fail) : Violates cfg r := by
-  unfold checkRequirement at h
+theorem keyOutcome_fail_sound {cfg : Configuration} {k : Constraint} {key : String}
+    (h : keyOutcome cfg k key = .fail) : ViolatesKey cfg k key := by
+  unfold keyOutcome at h
   split at h
   · cases h
   · rename_i c hc
     exact ⟨c, hc, checkCapability_fail_sound h⟩
 
-/-- A requirement whose key has no recorded capability is `unknown`, never `pass`. -/
-theorem missing_capability_unknown {cfg : Configuration} {r : Requirement}
-    (h : lookup cfg r.key = none) : checkRequirement cfg r = .unknown := by
-  simp [checkRequirement, h]
+theorem keyOutcome_pass_complete {cfg : Configuration} {k : Constraint} {key : String}
+    (h : SatisfiesKey cfg k key) : keyOutcome cfg k key = .pass := by
+  obtain ⟨c, hc, hcase⟩ := h
+  simp [keyOutcome, hc, checkCapability_pass_complete hcase]
 
-theorem checkRequirement_pass_complete {cfg : Configuration} {r : Requirement}
-    (h : Satisfies cfg r) : checkRequirement cfg r = .pass := by
-  obtain ⟨c, hc, hi, he, hv⟩ := h
-  have hcv := checkValue_pass_complete hv
-  cases hev : c.evidence <;> simp [hev, TrustedEvidence] at he <;>
-    simp [checkRequirement, hc, checkCapability, hi, hev, hcv]
+/-- A capability that is not recorded at all is `unknown`, never `pass`. -/
+theorem missing_capability_unknown {cfg : Configuration} {k : Constraint} {key : String}
+    (h : lookup cfg key = none) : keyOutcome cfg k key = .unknown := by
+  simp [keyOutcome, h]
 
-/-! ## Mutual exclusion of the spec -/
+theorem keyOutcome_ne_notApplicable (cfg : Configuration) (k : Constraint) (key : String) :
+    keyOutcome cfg k key ≠ .notApplicable := by
+  unfold keyOutcome
+  split
+  · simp
+  · exact checkCapability_ne_notApplicable _ _
 
-theorem valueMeets_valueFails_exclusive {c : Constraint} {v : CapValue}
-    (hm : ValueMeets c v) (hf : ValueFails c v) : False := by
-  cases hm <;> cases hf <;> omega
+/-! ## Alternatives (any-of) -/
 
-theorem satisfies_violates_exclusive {cfg : Configuration} {r : Requirement}
-    (hs : Satisfies cfg r) (hv : Violates cfg r) : False := by
-  obtain ⟨c, hc, hi, _, hm⟩ := hs
-  obtain ⟨c', hc', hbad⟩ := hv
-  rw [hc] at hc'
-  cases hc'
-  rcases hbad with hopt | ⟨_, _, hf⟩
-  · rw [hi] at hopt; cases hopt
-  · exact valueMeets_valueFails_exclusive hm hf
+theorem combineAny_pass_iff (os : List Outcome) : combineAny os = .pass ↔ .pass ∈ os := by
+  unfold combineAny
+  constructor
+  · intro h
+    split at h
+    · assumption
+    · split at h <;> (try split at h) <;> cases h
+  · intro h; simp [h]
 
-/-! ## Verdict-level soundness -/
-
-/-- Unpacking lemma: what `verdict = accept` tells us about the executable checks. -/
-theorem accept_all_mandatory_pass {cfg : Configuration} {e : Experiment}
-    (h : verdict cfg e = .accept) :
-    e.confirmed = true ∧ mandatoryReqs e ≠ [] ∧
-      ∀ r ∈ mandatoryReqs e, checkRequirement cfg r = .pass := by
-  unfold verdict at h
+theorem combineAny_fail {os : List Outcome} (h : combineAny os = .fail) :
+    os ≠ [] ∧ ∀ o ∈ os, o = .fail := by
+  unfold combineAny at h
   split at h
   · cases h
   · split at h
+    · assumption
+    · split at h <;> cases h
+
+theorem combineAny_ne_notApplicable (os : List Outcome) : combineAny os ≠ .notApplicable := by
+  unfold combineAny
+  split
+  · simp
+  · split
+    · simp
+    · split <;> simp
+
+/-! ## Conditions -/
+
+theorem paramValue_sound {e : Experiment} {name : String} {q : Quantity}
+    (h : paramValue e name = some q) : ParamIs e name q := by
+  unfold paramValue at h
+  split at h
+  · rename_i p hp
+    split at h
+    · rename_i ht
+      exact ⟨p, hp, (trustedB_iff _).1 ht, h⟩
+    · cases h
+  · cases h
+
+theorem paramValue_complete {e : Experiment} {name : String} {q : Quantity}
+    (h : ParamIs e name q) : paramValue e name = some q := by
+  obtain ⟨p, hp, ht, hv⟩ := h
+  simp [paramValue, hp, (trustedB_iff _).2 ht, hv]
+
+theorem evalCond_holds_sound {cfg : Configuration} {e : Experiment} {c : Condition}
+    (h : evalCond cfg e c = .holds) : CondHolds cfg e c := by
+  cases c with
+  | capFlag key b =>
+    simp only [evalCond] at h
+    split at h
+    · cases h
+    · rename_i cap hc
+      split at h
+      · rename_i hopt
+        split at h
+        · rename_i ht
+          split at h
+          · rename_i hb; exact ⟨cap, hc, .inl ⟨hopt, (trustedB_iff _).1 ht, hb⟩⟩
+          · cases h
+        · cases h
+      · split at h
+        · rename_i _ hu
+          obtain ⟨hi, ht⟩ := (usable_iff cap).1 hu
+          split at h
+          · rename_i v hv
+            split at h
+            · rename_i hvb; subst hvb; exact ⟨cap, hc, .inr ⟨hi, ht, hv⟩⟩
+            · cases h
+          · cases h
+        · cases h
+  | paramAtMost name q =>
+    simp only [evalCond] at h
+    split at h
+    · rename_i v hv
+      split at h
+      · rename_i hd
+        split at h
+        · rename_i hle; exact ⟨v, paramValue_sound hv, hd, hle⟩
+        · cases h
+      · cases h
+    · cases h
+  | paramAtLeast name q =>
+    simp only [evalCond] at h
+    split at h
+    · rename_i v hv
+      split at h
+      · rename_i hd
+        split at h
+        · rename_i hle; exact ⟨v, paramValue_sound hv, hd, hle⟩
+        · cases h
+      · cases h
+    · cases h
+
+theorem evalCond_fails_sound {cfg : Configuration} {e : Experiment} {c : Condition}
+    (h : evalCond cfg e c = .fails) : CondFails cfg e c := by
+  cases c with
+  | capFlag key b =>
+    simp only [evalCond] at h
+    split at h
+    · cases h
+    · rename_i cap hc
+      split at h
+      · rename_i hopt
+        split at h
+        · rename_i ht
+          split at h
+          · cases h
+          · rename_i hb
+            exact ⟨cap, hc, .inl ⟨hopt, (trustedB_iff _).1 ht, by cases b <;> simp_all⟩⟩
+        · cases h
+      · split at h
+        · rename_i _ hu
+          obtain ⟨hi, ht⟩ := (usable_iff cap).1 hu
+          split at h
+          · rename_i v hv
+            split at h
+            · cases h
+            · rename_i hvb; exact ⟨cap, hc, .inr ⟨hi, ht, v, hv, hvb⟩⟩
+          · cases h
+        · cases h
+  | paramAtMost name q =>
+    simp only [evalCond] at h
+    split at h
+    · rename_i v hv
+      split at h
+      · rename_i hd
+        split at h
+        · cases h
+        · rename_i hle; exact ⟨v, paramValue_sound hv, hd, hle⟩
+      · cases h
+    · cases h
+  | paramAtLeast name q =>
+    simp only [evalCond] at h
+    split at h
+    · rename_i v hv
+      split at h
+      · rename_i hd
+        split at h
+        · cases h
+        · rename_i hle; exact ⟨v, paramValue_sound hv, hd, hle⟩
+      · cases h
+    · cases h
+
+theorem evalCond_holds_complete {cfg : Configuration} {e : Experiment} {c : Condition}
+    (h : CondHolds cfg e c) : evalCond cfg e c = .holds := by
+  cases c with
+  | capFlag key b =>
+    obtain ⟨cap, hc, hcase⟩ := h
+    rcases hcase with ⟨hopt, ht, hb⟩ | ⟨hi, ht, hv⟩
+    · simp [evalCond, hc, hopt, (trustedB_iff _).2 ht, hb]
+    · have hu : usable cap = true := (usable_iff cap).2 ⟨hi, ht⟩
+      simp [evalCond, hc, hi, hu, hv]
+  | paramAtMost name q =>
+    obtain ⟨v, hp, hd, hle⟩ := h
+    simp [evalCond, paramValue_complete hp, hd, hle]
+  | paramAtLeast name q =>
+    obtain ⟨v, hp, hd, hle⟩ := h
+    simp [evalCond, paramValue_complete hp, hd, hle]
+
+theorem evalCond_fails_complete {cfg : Configuration} {e : Experiment} {c : Condition}
+    (h : CondFails cfg e c) : evalCond cfg e c = .fails := by
+  cases c with
+  | capFlag key b =>
+    obtain ⟨cap, hc, hcase⟩ := h
+    rcases hcase with ⟨hopt, ht, hb⟩ | ⟨hi, ht, v, hv, hvb⟩
+    · simp [evalCond, hc, hopt, (trustedB_iff _).2 ht, hb]
+    · have hu : usable cap = true := (usable_iff cap).2 ⟨hi, ht⟩
+      simp [evalCond, hc, hi, hu, hv, hvb]
+  | paramAtMost name q =>
+    obtain ⟨v, hp, hd, hle⟩ := h
+    simp [evalCond, paramValue_complete hp, hd, hle]
+  | paramAtLeast name q =>
+    obtain ⟨v, hp, hd, hle⟩ := h
+    simp [evalCond, paramValue_complete hp, hd, hle]
+
+theorem condsResult_fails_iff {cfg : Configuration} {e : Experiment} {cs : List Condition} :
+    condsResult cfg e cs = .fails ↔ ∃ c ∈ cs, CondFails cfg e c := by
+  unfold condsResult
+  constructor
+  · intro h
+    split at h
+    · rename_i hex
+      obtain ⟨c, hc, hf⟩ := hex
+      exact ⟨c, hc, evalCond_fails_sound hf⟩
+    · split at h <;> cases h
+  · rintro ⟨c, hc, hf⟩
+    have : ∃ c ∈ cs, evalCond cfg e c = .fails := ⟨c, hc, evalCond_fails_complete hf⟩
+    simp [this]
+
+theorem condsResult_holds_sound {cfg : Configuration} {e : Experiment} {cs : List Condition}
+    (h : condsResult cfg e cs = .holds) : ∀ c ∈ cs, CondHolds cfg e c := by
+  unfold condsResult at h
+  split at h
+  · cases h
+  · split at h
+    · rename_i hall
+      intro c hc
+      exact evalCond_holds_sound (hall c hc)
+    · cases h
+
+theorem condsResult_holds_complete {cfg : Configuration} {e : Experiment} {cs : List Condition}
+    (h : ∀ c ∈ cs, CondHolds cfg e c) : condsResult cfg e cs = .holds := by
+  have hall : ∀ c ∈ cs, evalCond cfg e c = .holds := fun c hc => evalCond_holds_complete (h c hc)
+  have hnf : ¬ ∃ c ∈ cs, evalCond cfg e c = .fails := by
+    rintro ⟨c, hc, hf⟩
+    rw [hall c hc] at hf
+    cases hf
+  unfold condsResult
+  rw [if_neg hnf, if_pos hall]
+
+theorem condsResult_unknown_or {cfg : Configuration} {e : Experiment} {cs : List Condition} :
+    condsResult cfg e cs = .holds ∨ condsResult cfg e cs = .fails ∨ condsResult cfg e cs = .unknown := by
+  cases condsResult cfg e cs <;> simp
+
+/-! ## Value-level failure completeness (needed for "a documented violation forces REJECT") -/
+
+theorem keyOutcome_fail_complete {cfg : Configuration} {k : Constraint} {key : String}
+    (h : ViolatesKey cfg k key) : keyOutcome cfg k key = .fail := by
+  obtain ⟨c, hc, hcase⟩ := h
+  simp [keyOutcome, hc, checkCapability_fail_complete hcase]
+
+/-! ## Expressions (coupled multiphysics) -/
+
+theorem selValue_ok {v : CapValue} {s : Sel} {q : Quantity} (h : selValue v s = .ok q) :
+    (s = .lo ∧ ∃ hi, v = .range q hi) ∨ (s = .hi ∧ ∃ lo, v = .range lo q) ∨
+    (s = .max ∧ v = .max q) ∨ (s = .min ∧ v = .min q) ∨
+    (s = .count ∧ ∃ n, v = .count n ∧ q = ⟨Q.ofNat n, Dim.one⟩) := by
+  cases s <;> cases v <;> simp [selValue] at h <;> subst h <;> simp
+
+theorem evalExpr_sound {cfg : Configuration} {e : Experiment} :
+    ∀ {x : Expr} {q : Quantity}, evalExpr cfg e x = .ok q → Denotes cfg e x q := by
+  intro x
+  induction x with
+  | lit q' =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h
+    · cases h
+    · rename_i hd; cases h; exact .lit hd
+  | cap key s =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h
+    · cases h
+    · rename_i c hc
+      split at h
+      · rename_i hu
+        obtain ⟨hi, ht⟩ := (usable_iff c).1 hu
+        rcases selValue_ok h with ⟨hs, hi', hv⟩ | ⟨hs, lo, hv⟩ | ⟨hs, hv⟩ | ⟨hs, hv⟩ | ⟨hs, n, hv, hq⟩
+        · subst hs; exact .capLo hc hi ht hv
+        · subst hs; exact .capHi hc hi ht hv
+        · subst hs; exact .capMax hc hi ht hv
+        · subst hs; exact .capMin hc hi ht hv
+        · subst hs; subst hq; exact .capCount hc hi ht hv
+      · cases h
+  | param name =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h
+    · rename_i q' hp
+      split at h
+      · cases h
+      · rename_i hd; cases h; exact .param (paramValue_sound hp) hd
+    · cases h
+  | add a b iha ihb =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h <;> (try cases h)
+    rename_i x y hx hy
+    split at h
+    · rename_i hd; cases h; exact .add (iha hx) (ihb hy) hd
+    · cases h
+  | sub a b iha ihb =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h <;> (try cases h)
+    rename_i x y hx hy
+    split at h
+    · rename_i hd; cases h; exact .sub (iha hx) (ihb hy) hd
+    · cases h
+  | mul a b iha ihb =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h <;> (try cases h)
+    rename_i x y hx hy
+    exact .mul (iha hx) (ihb hy)
+  | neg a ih =>
+    intro q h
+    simp only [evalExpr] at h
+    split at h
+    · rename_i x hx; cases h; exact .neg (ih hx)
+    · rename_i _ hne
+      exact absurd h (hne q)
+
+theorem evalExpr_complete {cfg : Configuration} {e : Experiment} {x : Expr} {q : Quantity}
+    (h : Denotes cfg e x q) : evalExpr cfg e x = .ok q := by
+  induction h with
+  | lit hd => simp [evalExpr, hd]
+  | capLo hl hi ht hv => simp [evalExpr, hl, (usable_iff _).2 ⟨hi, ht⟩, hv, selValue]
+  | capHi hl hi ht hv => simp [evalExpr, hl, (usable_iff _).2 ⟨hi, ht⟩, hv, selValue]
+  | capMax hl hi ht hv => simp [evalExpr, hl, (usable_iff _).2 ⟨hi, ht⟩, hv, selValue]
+  | capMin hl hi ht hv => simp [evalExpr, hl, (usable_iff _).2 ⟨hi, ht⟩, hv, selValue]
+  | capCount hl hi ht hv => simp [evalExpr, hl, (usable_iff _).2 ⟨hi, ht⟩, hv, selValue]
+  | param hp hd => simp [evalExpr, paramValue_complete hp, hd]
+  | add _ _ hd iha ihb => simp [evalExpr, iha, ihb, hd]
+  | sub _ _ hd iha ihb => simp [evalExpr, iha, ihb, hd]
+  | mul _ _ iha ihb => simp [evalExpr, iha, ihb]
+  | neg _ ih => simp [evalExpr, ih]
+
+/-- A capability that is not installed (or not trusted) can never feed a coupled calculation. -/
+theorem cap_not_usable_missing {cfg : Configuration} {e : Experiment} {key : String} {s : Sel}
+    {c : Capability} (hl : lookup cfg key = some c) (hu : usable c = false) :
+    evalExpr cfg e (.cap key s) = .missing key := by
+  simp [evalExpr, hl, hu]
+
+theorem checkLe_pass_iff {cfg : Configuration} {e : Experiment} {a b : Expr} :
+    checkLe cfg e a b = .pass ↔ LeHolds cfg e a b := by
+  constructor
+  · intro h
+    unfold checkLe at h
+    split at h
+    · rename_i x y hx hy
+      split at h
+      · rename_i hd
+        split at h
+        · rename_i hle; exact ⟨x, y, evalExpr_sound hx, evalExpr_sound hy, hd, hle⟩
+        · cases h
+      · cases h
+    all_goals cases h
+  · rintro ⟨x, y, hx, hy, hd, hle⟩
+    simp [checkLe, evalExpr_complete hx, evalExpr_complete hy, hd, hle]
+
+theorem checkLe_fail_iff {cfg : Configuration} {e : Experiment} {a b : Expr} :
+    checkLe cfg e a b = .fail ↔ LeFails cfg e a b := by
+  constructor
+  · intro h
+    unfold checkLe at h
+    split at h
+    · rename_i x y hx hy
+      split at h
+      · rename_i hd
+        split at h
+        · cases h
+        · rename_i hle; exact ⟨x, y, evalExpr_sound hx, evalExpr_sound hy, hd, hle⟩
+      · cases h
+    all_goals cases h
+  · rintro ⟨x, y, hx, hy, hd, hle⟩
+    simp [checkLe, evalExpr_complete hx, evalExpr_complete hy, hd, hle]
+
+theorem checkLe_ne_notApplicable (cfg : Configuration) (e : Experiment) (a b : Expr) :
+    checkLe cfg e a b ≠ .notApplicable := by
+  unfold checkLe
+  split
+  · split
+    · split <;> simp
+    · simp
+  all_goals simp
+
+/-- A coupled comparison that passes was made in identical dimensions. -/
+theorem coupled_pass_dims_match {cfg : Configuration} {e : Experiment} {a b : Expr}
+    (h : checkLe cfg e a b = .pass) :
+    ∃ x y, evalExpr cfg e a = .ok x ∧ evalExpr cfg e b = .ok y ∧ x.dim = y.dim := by
+  obtain ⟨x, y, hx, hy, hd, _⟩ := checkLe_pass_iff.1 h
+  exact ⟨x, y, evalExpr_complete hx, evalExpr_complete hy, hd⟩
+
+theorem validityOutcome_pass_iff {cfg : Configuration} {e : Experiment} {vs : List (Expr × Expr)} :
+    validityOutcome cfg e vs = .pass ↔ ∀ p ∈ vs, LeHolds cfg e p.1 p.2 := by
+  unfold validityOutcome
+  constructor
+  · intro h
+    split at h
+    · rename_i hall
+      intro p hp; exact checkLe_pass_iff.1 (hall p hp)
+    · split at h <;> cases h
+  · intro h
+    have : ∀ p ∈ vs, checkLe cfg e p.1 p.2 = .pass := fun p hp => checkLe_pass_iff.2 (h p hp)
+    rw [if_pos this]
+
+theorem validityOutcome_ne_fail_na (cfg : Configuration) (e : Experiment) (vs : List (Expr × Expr)) :
+    validityOutcome cfg e vs ≠ .fail ∧ validityOutcome cfg e vs ≠ .notApplicable := by
+  unfold validityOutcome
+  split
+  · simp
+  · split <;> simp
+
+/-! ## Requirements -/
+
+theorem checkRequirement_pass_sound {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : checkRequirement cfg e r = .pass) : ReqPasses cfg e r := by
+  unfold checkRequirement at h
+  split at h
+  · cases h
+  · cases h
+  · rename_i hc
+    refine ⟨condsResult_holds_sound hc, ?_⟩
+    obtain ⟨o, ho, hpo⟩ := List.mem_map.1 ((combineAny_pass_iff _).1 h)
+    exact ⟨o, ho, keyOutcome_pass_sound hpo⟩
+
+theorem checkRequirement_na_sound {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : checkRequirement cfg e r = .notApplicable) : ∃ c ∈ r.conditions, CondFails cfg e c := by
+  unfold checkRequirement at h
+  split at h
+  · rename_i hc; exact condsResult_fails_iff.1 hc
+  · cases h
+  · exact absurd h (combineAny_ne_notApplicable _)
+
+theorem checkRequirement_fail_sound {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : checkRequirement cfg e r = .fail) : ReqViolated cfg e r := by
+  unfold checkRequirement at h
+  split at h
+  · cases h
+  · cases h
+  · rename_i hc
+    obtain ⟨hne, hall⟩ := combineAny_fail h
+    refine ⟨condsResult_holds_sound hc, ?_, ?_⟩
+    · intro hnil; apply hne; simp [hnil]
+    · intro key hk
+      exact keyOutcome_fail_sound (hall _ (List.mem_map.2 ⟨key, hk, rfl⟩))
+
+theorem condHolds_condFails_exclusive {cfg : Configuration} {e : Experiment} {c : Condition}
+    (h₁ : CondHolds cfg e c) (h₂ : CondFails cfg e c) : False := by
+  have a := evalCond_holds_complete h₁
+  have b := evalCond_fails_complete h₂
+  rw [a] at b; cases b
+
+theorem checkRequirement_pass_complete {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : ReqPasses cfg e r) : checkRequirement cfg e r = .pass := by
+  obtain ⟨hconds, key, hk, hs⟩ := h
+  unfold checkRequirement
+  rw [condsResult_holds_complete hconds]
+  exact (combineAny_pass_iff _).2 (List.mem_map.2 ⟨key, hk, keyOutcome_pass_complete hs⟩)
+
+theorem checkRequirement_ok_complete {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : ReqOK cfg e r) :
+    checkRequirement cfg e r = .pass ∨ checkRequirement cfg e r = .notApplicable := by
+  rcases h with hf | hp
+  · right
+    unfold checkRequirement
+    rw [condsResult_fails_iff.2 hf]
+  · exact .inl (checkRequirement_pass_complete hp)
+
+theorem checkRequirement_fail_complete {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : ReqViolated cfg e r) : checkRequirement cfg e r = .fail := by
+  obtain ⟨hconds, hne, hall⟩ := h
+  unfold checkRequirement
+  rw [condsResult_holds_complete hconds]
+  have hf : ∀ o ∈ r.keys.map (keyOutcome cfg r.constraint), o = .fail := by
+    intro o ho
+    obtain ⟨key, hk, rfl⟩ := List.mem_map.1 ho
+    exact keyOutcome_fail_complete (hall key hk)
+  have hnp : Outcome.pass ∉ r.keys.map (keyOutcome cfg r.constraint) := by
+    intro hp; have := hf _ hp; cases this
+  have hne' : r.keys.map (keyOutcome cfg r.constraint) ≠ [] := by simpa using hne
+  unfold combineAny
+  rw [if_neg hnp, if_pos ⟨hne', hf⟩]
+
+/-- A requirement whose condition is definitely false is not applicable — never a failure. -/
+theorem condition_false_not_applicable {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (h : ∃ c ∈ r.conditions, CondFails cfg e c) : checkRequirement cfg e r = .notApplicable := by
+  unfold checkRequirement
+  rw [condsResult_fails_iff.2 h]
+
+/-! ## Coupled constraints -/
+
+theorem checkCoupled_pass_sound {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : checkCoupled cfg e c = .pass) : CoupledPasses cfg e c := by
+  unfold checkCoupled at h
+  split at h
+  · cases h
+  · cases h
+  · rename_i hc
+    split at h
+    · rename_i hv
+      exact ⟨condsResult_holds_sound hc, validityOutcome_pass_iff.1 hv, checkLe_pass_iff.1 h⟩
+    · rename_i _ hne
+      exact absurd h hne
+
+theorem checkCoupled_na_sound {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : checkCoupled cfg e c = .notApplicable) : ∃ d ∈ c.conditions, CondFails cfg e d := by
+  unfold checkCoupled at h
+  split at h
+  · rename_i hc; exact condsResult_fails_iff.1 hc
+  · cases h
+  · split at h
+    · exact absurd h (checkLe_ne_notApplicable _ _ _ _)
+    · exact absurd h (validityOutcome_ne_fail_na _ _ _).2
+
+theorem checkCoupled_fail_sound {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : checkCoupled cfg e c = .fail) : CoupledViolated cfg e c := by
+  unfold checkCoupled at h
+  split at h
+  · cases h
+  · cases h
+  · rename_i hc
+    split at h
+    · rename_i hv
+      exact ⟨condsResult_holds_sound hc, validityOutcome_pass_iff.1 hv, checkLe_fail_iff.1 h⟩
+    · exact absurd h (validityOutcome_ne_fail_na _ _ _).1
+
+theorem checkCoupled_pass_complete {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : CoupledPasses cfg e c) : checkCoupled cfg e c = .pass := by
+  obtain ⟨hconds, hval, hle⟩ := h
+  unfold checkCoupled
+  rw [condsResult_holds_complete hconds, validityOutcome_pass_iff.2 hval]
+  exact checkLe_pass_iff.2 hle
+
+theorem checkCoupled_ok_complete {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : CoupledOK cfg e c) :
+    checkCoupled cfg e c = .pass ∨ checkCoupled cfg e c = .notApplicable := by
+  rcases h with hf | hp
+  · right
+    unfold checkCoupled
+    rw [condsResult_fails_iff.2 hf]
+  · exact .inl (checkCoupled_pass_complete hp)
+
+theorem checkCoupled_fail_complete {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (h : CoupledViolated cfg e c) : checkCoupled cfg e c = .fail := by
+  obtain ⟨hconds, hval, hf⟩ := h
+  unfold checkCoupled
+  rw [condsResult_holds_complete hconds, validityOutcome_pass_iff.2 hval]
+  exact checkLe_fail_iff.2 hf
+
+/-! ## Verdict level -/
+
+theorem mem_relevantReqs {e : Experiment} {r : Requirement} :
+    r ∈ relevantReqs e ↔ r ∈ e.requirements ∧ r.mandatory = true ∧ r.applicable = true := by
+  simp [relevantReqs, List.mem_filter, Bool.and_eq_true]
+
+theorem mem_relevantCoupled {e : Experiment} {c : Coupled} :
+    c ∈ relevantCoupled e ↔ c ∈ e.coupled ∧ c.mandatory = true ∧ c.applicable = true := by
+  simp [relevantCoupled, List.mem_filter, Bool.and_eq_true]
+
+theorem mem_outcomes {cfg : Configuration} {e : Experiment} {o : Outcome} :
+    o ∈ outcomes cfg e ↔
+      (∃ r ∈ relevantReqs e, checkRequirement cfg e r = o) ∨
+      (∃ c ∈ relevantCoupled e, checkCoupled cfg e c = o) := by
+  simp [outcomes, List.mem_append, List.mem_map]
+
+/-- Unpacking lemma: what ACCEPT says about the executable checks. -/
+theorem accept_iff_outcomes {cfg : Configuration} {e : Experiment} :
+    verdict cfg e = .accept ↔
+      e.confirmed = true ∧ (∀ o ∈ outcomes cfg e, o = .pass ∨ o = .notApplicable) ∧
+      .pass ∈ outcomes cfg e := by
+  unfold verdict
+  constructor
+  · intro h
+    split at h
     · cases h
     · split at h
       · cases h
       · split at h
-        · rename_i hconf hne _ hall
-          refine ⟨?_, ?_, ?_⟩
-          · cases hc : e.confirmed
-            · exact absurd hc hconf
-            · rfl
-          · intro hnil; simp [hnil] at hne
-          · intro r hr
-            have := List.all_eq_true.mp hall r hr
-            simpa using this
+        · rename_i hc _ hall
+          refine ⟨?_, hall.1, hall.2⟩
+          cases hcf : e.confirmed
+          · exact absurd hcf hc
+          · rfl
         · cases h
+  · rintro ⟨hc, hall, hp⟩
+    have hnf : Outcome.fail ∉ outcomes cfg e := by
+      intro hf; rcases hall _ hf with h | h <;> cases h
+    have hcf : ¬ e.confirmed = false := by simp [hc]
+    rw [if_neg hcf, if_neg hnf, if_pos ⟨hall, hp⟩]
 
-/-- **Main soundness theorem.** ACCEPT implies the independent specification. -/
+/-- **Main soundness theorem.** ACCEPT implies the independent specification: every
+applicable mandatory requirement and every applicable mandatory coupled constraint holds
+(or is excluded by a definitely-false condition), and at least one genuinely passes. -/
 theorem verdict_accept_sound {cfg : Configuration} {e : Experiment}
     (h : verdict cfg e = .accept) : AcceptSpec cfg e := by
-  obtain ⟨hc, hne, hall⟩ := accept_all_mandatory_pass h
-  exact ⟨hc, hne, fun r hr => checkRequirement_pass_sound (hall r hr)⟩
+  obtain ⟨hc, hall, hp⟩ := accept_iff_outcomes.1 h
+  refine ⟨hc, ?_, ?_, ?_⟩
+  · intro r hr hm ha
+    have hrel : r ∈ relevantReqs e := mem_relevantReqs.2 ⟨hr, hm, ha⟩
+    rcases hall _ (mem_outcomes.2 (.inl ⟨r, hrel, rfl⟩)) with h1 | h1
+    · exact .inr (checkRequirement_pass_sound h1)
+    · exact .inl (checkRequirement_na_sound h1)
+  · intro c hcm hm ha
+    have hrel : c ∈ relevantCoupled e := mem_relevantCoupled.2 ⟨hcm, hm, ha⟩
+    rcases hall _ (mem_outcomes.2 (.inr ⟨c, hrel, rfl⟩)) with h1 | h1
+    · exact .inr (checkCoupled_pass_sound h1)
+    · exact .inl (checkCoupled_na_sound h1)
+  · rcases mem_outcomes.1 hp with ⟨r, hr, hpr⟩ | ⟨c, hcm, hpc⟩
+    · obtain ⟨hr1, hm, ha⟩ := mem_relevantReqs.1 hr
+      exact .inl ⟨r, hr1, hm, ha, checkRequirement_pass_sound hpr⟩
+    · obtain ⟨hc1, hm, ha⟩ := mem_relevantCoupled.1 hcm
+      exact .inr ⟨c, hc1, hm, ha, checkCoupled_pass_sound hpc⟩
 
-/-- Missing or unsupported information on any mandatory requirement blocks ACCEPT. -/
-theorem accept_no_unknown {cfg : Configuration} {e : Experiment}
-    (h : verdict cfg e = .accept) :
-    ∀ r ∈ mandatoryReqs e,
-      checkRequirement cfg r ≠ .unknown ∧ checkRequirement cfg r ≠ .unsupported := by
-  intro r hr
-  have := (accept_all_mandatory_pass h).2.2 r hr
-  rw [this]
-  exact ⟨by decide, by decide⟩
-
-/-- A single mandatory requirement with a documented conflict forces REJECT. -/
-theorem fail_implies_reject {cfg : Configuration} {e : Experiment}
-    (hconf : e.confirmed = true)
-    (h : ∃ r ∈ mandatoryReqs e, checkRequirement cfg r = .fail) :
-    verdict cfg e = .reject := by
-  obtain ⟨r, hr, hf⟩ := h
-  unfold verdict
-  have hne : (mandatoryReqs e).isEmpty = false := by
-    cases hm : mandatoryReqs e
-    · rw [hm] at hr; cases hr
-    · rfl
-  have hany : (mandatoryReqs e).any (fun r => checkRequirement cfg r == .fail) = true :=
-    List.any_eq_true.mpr ⟨r, hr, by rw [hf]; decide⟩
-  simp [hconf, hne, hany]
-
-/-- REJECT implies a documented violation of a mandatory requirement. -/
-theorem verdict_reject_sound {cfg : Configuration} {e : Experiment}
-    (h : verdict cfg e = .reject) : RejectSpec cfg e := by
-  unfold verdict at h
-  split at h
-  · cases h
-  · split at h
-    · cases h
-    · split at h
-      · rename_i hconf _ hany
-        obtain ⟨r, hr, hf⟩ := List.any_eq_true.mp hany
-        refine ⟨?_, r, hr, checkRequirement_fail_sound (by simpa using hf)⟩
-        cases hc : e.confirmed
-        · exact absurd hc hconf
-        · rfl
-      · split at h <;> cases h
-
-/-- An experiment whose requirements the user has not confirmed is never accepted. -/
-theorem unconfirmed_not_accept {cfg : Configuration} {e : Experiment}
-    (h : e.confirmed = false) : verdict cfg e ≠ .accept := by
-  simp [verdict, h]
-
-/-- An experiment with no mandatory requirements is never accepted (no vacuous passes). -/
-theorem empty_not_accept {cfg : Configuration} {e : Experiment}
-    (h : mandatoryReqs e = []) : verdict cfg e ≠ .accept := by
-  intro hacc
-  exact (accept_all_mandatory_pass hacc).2.1 h
-
-/-- Completeness: if the specification holds, the checker accepts. -/
+/-- **Completeness.** If the specification holds, the checker accepts. -/
 theorem verdict_accept_complete {cfg : Configuration} {e : Experiment}
     (h : AcceptSpec cfg e) : verdict cfg e = .accept := by
-  obtain ⟨hconf, hne, hall⟩ := h
-  have hpass : ∀ r ∈ mandatoryReqs e, checkRequirement cfg r = .pass :=
-    fun r hr => checkRequirement_pass_complete (hall r hr)
-  have hnotempty : (mandatoryReqs e).isEmpty = false := by
-    cases hm : mandatoryReqs e
-    · exact absurd hm hne
-    · rfl
-  have hnoFail : (mandatoryReqs e).any (fun r => checkRequirement cfg r == .fail) = false := by
-    rw [Bool.eq_false_iff]
-    intro hany
-    obtain ⟨r, hr, hf⟩ := List.any_eq_true.mp hany
-    rw [hpass r hr] at hf
-    exact absurd hf (by decide)
-  have hallPass : (mandatoryReqs e).all (fun r => checkRequirement cfg r == .pass) = true :=
-    List.all_eq_true.mpr (fun r hr => by rw [hpass r hr]; decide)
-  simp [verdict, hconf, hnotempty, hnoFail, hallPass]
+  obtain ⟨hc, hreqs, hcoup, hex⟩ := h
+  refine accept_iff_outcomes.2 ⟨hc, ?_, ?_⟩
+  · intro o ho
+    rcases mem_outcomes.1 ho with ⟨r, hr, rfl⟩ | ⟨c, hcm, rfl⟩
+    · obtain ⟨hr1, hm, ha⟩ := mem_relevantReqs.1 hr
+      exact checkRequirement_ok_complete (hreqs r hr1 hm ha)
+    · obtain ⟨hc1, hm, ha⟩ := mem_relevantCoupled.1 hcm
+      exact checkCoupled_ok_complete (hcoup c hc1 hm ha)
+  · rcases hex with ⟨r, hr, hm, ha, hp⟩ | ⟨c, hcm, hm, ha, hp⟩
+    · exact mem_outcomes.2 (.inl ⟨r, mem_relevantReqs.2 ⟨hr, hm, ha⟩, checkRequirement_pass_complete hp⟩)
+    · exact mem_outcomes.2 (.inr ⟨c, mem_relevantCoupled.2 ⟨hcm, hm, ha⟩, checkCoupled_pass_complete hp⟩)
 
 /-- ACCEPT holds exactly when the independent specification holds. -/
 theorem verdict_accept_iff (cfg : Configuration) (e : Experiment) :
     verdict cfg e = .accept ↔ AcceptSpec cfg e :=
   ⟨verdict_accept_sound, verdict_accept_complete⟩
 
-/-! ## Binding and universality -/
+/-- Missing information (`unknown`) or an unsupported requirement or physical model on
+any applicable mandatory item blocks ACCEPT. -/
+theorem accept_no_unknown {cfg : Configuration} {e : Experiment}
+    (h : verdict cfg e = .accept) :
+    ∀ o ∈ outcomes cfg e, o ≠ .unknown ∧ o ≠ .unsupported := by
+  intro o ho
+  rcases (accept_iff_outcomes.1 h).2.1 o ho with rfl | rfl <;> simp
 
-/-- The verdict is a pure function of the exact configuration and experiment. -/
+/-- Every applicable mandatory coupled constraint passed (or is excluded by a false condition). -/
+theorem accept_all_coupled {cfg : Configuration} {e : Experiment}
+    (h : verdict cfg e = .accept) :
+    ∀ c ∈ e.coupled, c.mandatory = true → c.applicable = true → CoupledOK cfg e c :=
+  (verdict_accept_sound h).2.2.1
+
+/-- A demonstrable failure of an applicable mandatory requirement or coupled constraint forces REJECT. -/
+theorem fail_implies_reject {cfg : Configuration} {e : Experiment}
+    (hc : e.confirmed = true) (h : .fail ∈ outcomes cfg e) : verdict cfg e = .reject := by
+  unfold verdict
+  simp [hc, h]
+
+/-- REJECT implies a documented violation exists. -/
+theorem verdict_reject_sound {cfg : Configuration} {e : Experiment}
+    (h : verdict cfg e = .reject) : RejectSpec cfg e := by
+  unfold verdict at h
+  split at h
+  · cases h
+  · rename_i hc
+    split at h
+    · rename_i hf
+      refine ⟨by cases hcf : e.confirmed; exact absurd hcf hc; rfl, ?_⟩
+      rcases mem_outcomes.1 hf with ⟨r, hr, hfr⟩ | ⟨c, hcm, hfc⟩
+      · obtain ⟨hr1, hm, ha⟩ := mem_relevantReqs.1 hr
+        exact .inl ⟨r, hr1, hm, ha, checkRequirement_fail_sound hfr⟩
+      · obtain ⟨hc1, hm, ha⟩ := mem_relevantCoupled.1 hcm
+        exact .inr ⟨c, hc1, hm, ha, checkCoupled_fail_sound hfc⟩
+    · split at h <;> cases h
+
+/-- REJECT is complete: a documented violation (spec level) always yields REJECT. -/
+theorem verdict_reject_complete {cfg : Configuration} {e : Experiment}
+    (h : RejectSpec cfg e) : verdict cfg e = .reject := by
+  obtain ⟨hc, hv⟩ := h
+  apply fail_implies_reject hc
+  rcases hv with ⟨r, hr, hm, ha, hviol⟩ | ⟨c, hcm, hm, ha, hviol⟩
+  · exact mem_outcomes.2 (.inl ⟨r, mem_relevantReqs.2 ⟨hr, hm, ha⟩, checkRequirement_fail_complete hviol⟩)
+  · exact mem_outcomes.2 (.inr ⟨c, mem_relevantCoupled.2 ⟨hcm, hm, ha⟩, checkCoupled_fail_complete hviol⟩)
+
+/-- A confirmed incompatibility can never be accepted. -/
+theorem violation_prevents_accept {cfg : Configuration} {e : Experiment}
+    (h : RejectSpec cfg e) : verdict cfg e ≠ .accept := by
+  rw [verdict_reject_complete h]; simp
+
+/-- A requirement cannot both genuinely pass and be violated. -/
+theorem req_passes_violated_exclusive {cfg : Configuration} {e : Experiment} {r : Requirement}
+    (hp : ReqPasses cfg e r) (hv : ReqViolated cfg e r) : False := by
+  have h := checkRequirement_pass_complete hp
+  rw [checkRequirement_fail_complete hv] at h; cases h
+
+/-- A coupled constraint cannot both genuinely pass and be violated. -/
+theorem coupled_passes_violated_exclusive {cfg : Configuration} {e : Experiment} {c : Coupled}
+    (hp : CoupledPasses cfg e c) (hv : CoupledViolated cfg e c) : False := by
+  have h := checkCoupled_pass_complete hp
+  rw [checkCoupled_fail_complete hv] at h; cases h
+
+/-- The ACCEPT and REJECT specifications are mutually exclusive. -/
+theorem satisfies_spec_exclusive {cfg : Configuration} {e : Experiment}
+    (ha : AcceptSpec cfg e) (hr : RejectSpec cfg e) : False := by
+  have h := verdict_accept_complete ha
+  rw [verdict_reject_complete hr] at h; cases h
+
+/-- Unconfirmed profiles are never accepted. -/
+theorem unconfirmed_not_accept {cfg : Configuration} {e : Experiment}
+    (h : e.confirmed = false) : verdict cfg e ≠ .accept := by
+  simp [verdict, h]
+
+/-- No vacuous acceptance: with no applicable mandatory item there is nothing to pass. -/
+theorem empty_not_accept {cfg : Configuration} {e : Experiment}
+    (h : outcomes cfg e = []) : verdict cfg e ≠ .accept := by
+  intro hacc
+  have := (accept_iff_outcomes.1 hacc).2.2
+  rw [h] at this; cases this
+
+/-! ## Invariances: optional, non-applicable, labels -/
+
+theorem paramValue_congr {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    paramValue e₁ = paramValue e₂ := by
+  funext name; simp [paramValue, findParam, hp]
+
+theorem evalCond_congr {cfg : Configuration} {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    evalCond cfg e₁ = evalCond cfg e₂ := by
+  funext c; cases c <;> simp [evalCond, paramValue_congr hp]
+
+theorem condsResult_congr {cfg : Configuration} {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    condsResult cfg e₁ = condsResult cfg e₂ := by
+  funext cs; simp [condsResult, evalCond_congr hp]
+
+theorem evalExpr_congr {cfg : Configuration} {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    ∀ x, evalExpr cfg e₁ x = evalExpr cfg e₂ x := by
+  intro x
+  induction x with
+  | lit q => rfl
+  | cap key s => rfl
+  | param name => simp [evalExpr, paramValue_congr hp]
+  | add a b iha ihb => simp only [evalExpr, iha, ihb]
+  | sub a b iha ihb => simp only [evalExpr, iha, ihb]
+  | mul a b iha ihb => simp only [evalExpr, iha, ihb]
+  | neg a ih => simp only [evalExpr, ih]
+
+theorem checkRequirement_congr {cfg : Configuration} {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    checkRequirement cfg e₁ = checkRequirement cfg e₂ := by
+  funext r; simp [checkRequirement, condsResult_congr hp]
+
+theorem checkCoupled_congr {cfg : Configuration} {e₁ e₂ : Experiment} (hp : e₁.params = e₂.params) :
+    checkCoupled cfg e₁ = checkCoupled cfg e₂ := by
+  have hl : ∀ a b, checkLe cfg e₁ a b = checkLe cfg e₂ a b := by
+    intro a b; simp [checkLe, evalExpr_congr hp]
+  have hv : ∀ vs, validityOutcome cfg e₁ vs = validityOutcome cfg e₂ vs := by
+    intro vs; simp only [validityOutcome, hl]
+  funext c; simp only [checkCoupled, condsResult_congr hp, hv, hl]
+
+/-- The verdict depends only on the parameters, the applicable mandatory items and confirmation. -/
+theorem verdict_congr {cfg : Configuration} {e₁ e₂ : Experiment}
+    (hp : e₁.params = e₂.params) (hr : relevantReqs e₁ = relevantReqs e₂)
+    (hc : relevantCoupled e₁ = relevantCoupled e₂) (hk : e₁.confirmed = e₂.confirmed) :
+    verdict cfg e₁ = verdict cfg e₂ := by
+  have ho : outcomes cfg e₁ = outcomes cfg e₂ := by
+    simp [outcomes, hr, hc, checkRequirement_congr hp, checkCoupled_congr hp]
+  simp [verdict, ho, hk]
+
+/-- Remove every optional requirement and optional coupled constraint. -/
+def dropOptional (e : Experiment) : Experiment :=
+  { e with requirements := e.requirements.filter (·.mandatory),
+           coupled := e.coupled.filter (·.mandatory) }
+
+/-- Remove every requirement and coupled constraint flagged not applicable. -/
+def dropNonApplicable (e : Experiment) : Experiment :=
+  { e with requirements := e.requirements.filter (·.applicable),
+           coupled := e.coupled.filter (·.applicable) }
+
+/-- Optional requirements never influence the verdict (so they cannot block acceptance). -/
+theorem verdict_ignores_optional (cfg : Configuration) (e : Experiment) :
+    verdict cfg (dropOptional e) = verdict cfg e := by
+  refine verdict_congr (e₁ := dropOptional e) (e₂ := e) rfl ?_ ?_ ?_
+  · simp only [relevantReqs, dropOptional, List.filter_filter]
+    congr 1; funext r; cases r.mandatory <;> cases r.applicable <;> rfl
+  · simp only [relevantCoupled, dropOptional, List.filter_filter]
+    congr 1; funext c; cases c.mandatory <;> cases c.applicable <;> rfl
+  · rfl
+
+/-- Requirements flagged not applicable never influence the verdict (no false failures). -/
+theorem verdict_ignores_nonapplicable (cfg : Configuration) (e : Experiment) :
+    verdict cfg (dropNonApplicable e) = verdict cfg e := by
+  refine verdict_congr (e₁ := dropNonApplicable e) (e₂ := e) rfl ?_ ?_ ?_
+  · simp only [relevantReqs, dropNonApplicable, List.filter_filter]
+    congr 1; funext r; cases r.mandatory <;> cases r.applicable <;> rfl
+  · simp only [relevantCoupled, dropNonApplicable, List.filter_filter]
+    congr 1; funext c; cases c.mandatory <;> cases c.applicable <;> rfl
+  · rfl
+
+/-- The industry label is opaque: relabelling an experiment with ANY industry, including
+one never registered before, cannot change the verdict.  New industries cannot bypass the gate. -/
+theorem verdict_industry_irrelevant (cfg : Configuration) (e : Experiment) (s : String) :
+    verdict cfg { e with industry := s } = verdict cfg e :=
+  verdict_congr rfl rfl rfl rfl
+
+theorem verdict_name_irrelevant (cfg : Configuration) (e : Experiment) (s : String) :
+    verdict cfg { e with name := s } = verdict cfg e :=
+  verdict_congr rfl rfl rfl rfl
+
+/-! ## Binding, determinism, and untrusted candidates -/
+
 theorem verdict_deterministic {cfg cfg' : Configuration} {e e' : Experiment}
     (h₁ : cfg = cfg') (h₂ : e = e') : verdict cfg e = verdict cfg' e' := by
   subst h₁; subst h₂; rfl
 
-/-- The emitted result carries the ids of exactly the inputs it was computed from. -/
+/-- A result carries the ids of exactly the inputs it was computed from. -/
 theorem run_binds_inputs (cfg : Configuration) (e : Experiment) :
-    (run cfg e).configurationId = cfg.id ∧
-    (run cfg e).equipmentId = cfg.equipmentId ∧
-    (run cfg e).experimentId = e.id ∧
-    (run cfg e).verdict = verdict cfg e :=
+    (run cfg e).configurationId = cfg.id ∧ (run cfg e).equipmentId = cfg.equipmentId ∧
+    (run cfg e).experimentId = e.id ∧ (run cfg e).verdict = verdict cfg e :=
   ⟨rfl, rfl, rfl, rfl⟩
 
-/-- The industry label is opaque to the checker: relabelling an experiment with
-any industry (including one never seen before) cannot change the verdict.
-This is what "new industries cannot bypass the verification gate" means formally. -/
-theorem verdict_industry_irrelevant (cfg : Configuration) (e : Experiment) (s : String) :
-    verdict cfg { e with industry := s } = verdict cfg e := rfl
+/-- Every requirement and coupled constraint of the experiment is reported. -/
+theorem run_reports_everything (cfg : Configuration) (e : Experiment) :
+    (run cfg e).reqs.map (·.requirement) = e.requirements ∧
+    (run cfg e).coupled.map (·.coupled) = e.coupled := by
+  simp [run, reqResult, coupledResult, Function.comp_def]
 
-/-- Likewise the experiment's display name is irrelevant. -/
-theorem verdict_name_irrelevant (cfg : Configuration) (e : Experiment) (s : String) :
-    verdict cfg { e with name := s } = verdict cfg e := rfl
+/-- Candidates proposed by an untrusted search (Z3) are each re-checked: any candidate the
+Lean checker reports as accepted satisfies the specification, and its result names it. -/
+theorem candidates_accept_sound (cs : List Configuration) (e : Experiment) :
+    ∀ r ∈ checkCandidates cs e, r.verdict = .accept →
+      ∃ c ∈ cs, r.configurationId = c.id ∧ AcceptSpec c e := by
+  intro r hr hacc
+  obtain ⟨c, hc, rfl⟩ := List.mem_map.1 hr
+  exact ⟨c, hc, rfl, verdict_accept_sound hacc⟩
 
-/-- Every check reported in a result is the check of a requirement of the
-experiment, computed by the same `checkRequirement` the verdict used. -/
-theorem checks_cover_requirements (cfg : Configuration) (e : Experiment) :
-    (run cfg e).checks.map (·.requirement) = e.requirements := by
-  simp [run, checkAll, Function.comp_def]
+/-- Z3 cannot override a Lean rejection: the verdict reported for every candidate is the
+checker's own verdict on that exact configuration. -/
+theorem candidates_verdicts_are_lean (cs : List Configuration) (e : Experiment) :
+    (checkCandidates cs e).map (·.verdict) = cs.map (fun c => verdict c e) := by
+  simp [checkCandidates, run, Function.comp_def]
 
 end CryoLean

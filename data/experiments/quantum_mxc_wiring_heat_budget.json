@@ -1,0 +1,203 @@
+{
+  "id": "quantum_mxc_wiring_heat_budget",
+  "name": "Wiring heat budget at the mixing chamber for a 50-qubit superconducting processor",
+  "plain_name": "Check that the wiring for a superconducting qubit chip does not overheat the coldest stage",
+  "industry": "quantum_computing_and_sensing",
+  "description": "Krinner et al. engineered the wiring of a 50-qubit processor (50 drive, 50 flux and 8 output lines plus 8 readout-drive lines) and designed it so that the heat load stays at least about three times below the mixing-chamber cooling power. This profile checks that budget on a candidate dilution refrigerator.",
+  "keywords": [
+    "qubit",
+    "superconducting",
+    "wiring",
+    "heat load",
+    "coax",
+    "dilution refrigerator",
+    "mixing chamber",
+    "cooling power"
+  ],
+  "sources": [
+    {
+      "id": "src_krinner_2019",
+      "citation": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+      "doi": "10.1140/epjqt/s40507-019-0072-0",
+      "url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+      "accessed": "2026-10-31",
+      "doi_verified": true
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "cooling_power",
+      "as_printed": "XLD400: 19 µW at 20 mK",
+      "evidence_id": "hl_002"
+    },
+    {
+      "key": "lines",
+      "as_printed": "124 RF lines for a 50-qubit processor",
+      "evidence_id": "hl_033"
+    },
+    {
+      "key": "design_margin",
+      "as_printed": "heat load at least about a factor three smaller than cooling power",
+      "evidence_id": "hl_010"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.base",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": 20,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_002",
+        "hl_003"
+      ],
+      "rationale": "The heat budget is evaluated at 20 mK, the temperature at which Krinner et al. quote the mixing-chamber cooling power."
+    },
+    {
+      "key": "electrical.coax_lines",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 124
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_033"
+      ],
+      "rationale": "A 50-qubit processor with individual drive and flux control needs 124 RF lines."
+    }
+  ],
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 20,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_002"
+      ],
+      "description": "Mixing-chamber temperature at which the budget is evaluated"
+    },
+    {
+      "name": "n_drive_lines",
+      "value": {
+        "value": 58,
+        "unit": "count"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_033"
+      ],
+      "description": "50 qubit drive lines + 8 readout drive lines (stainless steel UT-085-SS-SS)"
+    },
+    {
+      "name": "n_flux_lines",
+      "value": {
+        "value": 50,
+        "unit": "count"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_033"
+      ],
+      "description": "50 flux lines"
+    },
+    {
+      "name": "n_output_lines",
+      "value": {
+        "value": 8,
+        "unit": "count"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_033"
+      ],
+      "description": "8 output lines (UT-085-NbTi)"
+    },
+    {
+      "name": "q_drive_line",
+      "value": {
+        "value": 13,
+        "unit": "nW"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_011"
+      ],
+      "description": "Measured passive load per drive line at the MXC, 0.013(6) µW"
+    },
+    {
+      "name": "q_flux_line",
+      "value": {
+        "value": 29,
+        "unit": "nW"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_017"
+      ],
+      "description": "Measured passive load per flux line at the MXC, 0.029(5) µW"
+    },
+    {
+      "name": "q_output_line",
+      "value": {
+        "value": 20,
+        "unit": "nW"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_019"
+      ],
+      "description": "Measured passive load per output line at the MXC, 0.020(16) µW"
+    },
+    {
+      "name": "p_flux_dc",
+      "value": {
+        "value": 50,
+        "unit": "nW"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_029"
+      ],
+      "description": "Average DC flux-bias dissipation per flux line at the MXC, 0.050(3) µW"
+    },
+    {
+      "name": "design_margin",
+      "value": {
+        "value": 3,
+        "unit": "count"
+      },
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "hl_010"
+      ],
+      "description": "Design rule: heat load at least about three times smaller than the cooling power"
+    }
+  ],
+  "coupled": [
+    {
+      "model": "mxc_wiring_heat_budget",
+      "mandatory": true,
+      "rationale": "Krinner et al.'s design rule applied to the documented cooling power of the candidate refrigerator."
+    }
+  ],
+  "missing_information": [
+    "active drive-line dissipation at operating power (paper estimates it separately)",
+    "TWPA pump-line passive load",
+    "uncertainties of the per-line loads are not propagated"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed the requirements on 2026-10-31; users must re-confirm edited values.",
+  "reported_equipment": [
+    "Bluefors"
+  ]
+}

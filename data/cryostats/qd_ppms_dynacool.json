@@ -48,36 +48,6 @@
       "accessed": "2026-10-31"
     }
   ],
-  "proposed_vocabulary": [
-    {
-      "key": "system_startup_time.max",
-      "shape": "max",
-      "unit": "s",
-      "description": "Documented time for full system startup / initial cool-down from room temperature (distinct from cooldown_time.max, which here records sample cool-down 300 K to 1.9 K)",
-      "status": "proposed"
-    },
-    {
-      "key": "magnetic_field.ramp_rate.max",
-      "shape": "max",
-      "unit": "uT_per_s",
-      "description": "Maximum documented magnetic-field charging rate (unit uT_per_s proposed: microtesla per second, si T/s, scale 1000000)",
-      "status": "proposed"
-    },
-    {
-      "key": "magnetic_field.uniformity",
-      "shape": "max",
-      "unit": "ppm",
-      "description": "Documented field homogeneity (± relative, in ppm) over a stated axial length; the length would need a companion key (magnetic_field.uniformity.length, um)",
-      "status": "proposed"
-    },
-    {
-      "key": "temperature.stability.relative",
-      "shape": "max",
-      "unit": "ppm",
-      "description": "Documented temperature stability expressed as ± relative value (ppm of T); manufacturer states stability as a percentage, so the mK value in temperature.stability is a derived worst case",
-      "status": "proposed"
-    }
-  ],
   "configurations": [
     {
       "id": "qd_dynacool_9T_eto_res",
@@ -121,7 +91,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 80,
               "unit": "mK"
@@ -237,7 +207,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 2400,
               "unit": "s"
@@ -433,13 +403,11 @@
           "evidence_ids": [
             "ev_qd_0031"
           ]
-        }
-      ],
-      "proposed_capabilities": [
+        },
         {
           "key": "system_startup_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 57600,
               "unit": "s"
@@ -472,16 +440,15 @@
             "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_qd_0040"
-          ],
-          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+          ]
         },
         {
           "key": "temperature.stability.relative",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 1000,
               "unit": "ppm"
@@ -491,8 +458,7 @@
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
             "ev_qd_0007"
-          ],
-          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+          ]
         }
       ],
       "notes": [
@@ -541,7 +507,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 80,
               "unit": "mK"
@@ -657,7 +623,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 2400,
               "unit": "s"
@@ -898,13 +864,11 @@
           "evidence_ids": [
             "ev_qd_0036"
           ]
-        }
-      ],
-      "proposed_capabilities": [
+        },
         {
           "key": "system_startup_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 144000,
               "unit": "s"
@@ -937,16 +901,15 @@
             "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_qd_0042"
-          ],
-          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+          ]
         },
         {
           "key": "temperature.stability.relative",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 1000,
               "unit": "ppm"
@@ -956,8 +919,22 @@
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
             "ev_qd_0007"
-          ],
-          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+          ]
+        },
+        {
+          "key": "sample.vsm.length.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 5000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_017"
+          ]
         }
       ],
       "notes": []
@@ -1004,7 +981,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 80,
               "unit": "mK"
@@ -1120,7 +1097,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 2400,
               "unit": "s"
@@ -1281,13 +1258,11 @@
           "evidence_ids": [
             "ev_qd_0035"
           ]
-        }
-      ],
-      "proposed_capabilities": [
+        },
         {
           "key": "system_startup_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 108000,
               "unit": "s"
@@ -1320,16 +1295,15 @@
             "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_qd_0041"
-          ],
-          "note": "relative value (±%) over a stated axial length; not normalizable with current units, see evidence quote"
+          ]
         },
         {
           "key": "temperature.stability.relative",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 1000,
               "unit": "ppm"
@@ -1339,8 +1313,22 @@
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
             "ev_qd_0007"
-          ],
-          "note": "±0.1% (=1000 ppm) for T<20 K; ±0.02% (=200 ppm) for T>20 K"
+          ]
+        },
+        {
+          "key": "sample.vsm.length.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 5000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "eg_017"
+          ]
         }
       ],
       "notes": []
@@ -1369,6 +1357,7 @@
     }
   ],
   "modeling_notes": [
-    "2026-10-31: VSM bore (6.3 mm) and heat-capacity platform (3 x 3 mm) limits are stored under module-specific keys (sample.vsm.*, sample.heat_capacity.*); they do not limit other modules. No documented sample-size limit was found for the electrical transport (ETO) or resistivity pucks, so general sample.* limits are absent (UNKNOWN) for transport."
+    "2026-10-31: VSM bore (6.3 mm) and heat-capacity platform (3 x 3 mm) limits are stored under module-specific keys (sample.vsm.*, sample.heat_capacity.*); they do not limit other modules. No documented sample-size limit was found for the electrical transport (ETO) or resistivity pucks, so general sample.* limits are absent (UNKNOWN) for transport.",
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json)."
   ]
 }

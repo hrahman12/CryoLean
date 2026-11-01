@@ -24,29 +24,6 @@
       "accessed": "2026-10-31"
     }
   ],
-  "proposed_vocabulary": [
-    {
-      "key": "magnetic_field.ramp_rate.max",
-      "shape": "max",
-      "unit": "uT_per_s",
-      "description": "Maximum documented magnetic-field charging rate (uT_per_s = microtesla per second)",
-      "status": "proposed"
-    },
-    {
-      "key": "magnetic_field.uniformity",
-      "shape": "max",
-      "unit": "ppm",
-      "description": "Documented field homogeneity (± relative, ppm) over a stated axial length",
-      "status": "proposed"
-    },
-    {
-      "key": "temperature.stability.relative",
-      "shape": "max",
-      "unit": "ppm",
-      "description": "Temperature stability as ± relative value (ppm of T)",
-      "status": "proposed"
-    }
-  ],
   "configurations": [
     {
       "id": "qd_ppms_classic_14T",
@@ -90,7 +67,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 80,
               "unit": "mK"
@@ -212,7 +189,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 2400,
               "unit": "s"
@@ -358,9 +335,7 @@
           "evidence_ids": [
             "ev_qd_0059"
           ]
-        }
-      ],
-      "proposed_capabilities": [
+        },
         {
           "key": "magnetic_field.ramp_rate.max",
           "value": {
@@ -382,11 +357,10 @@
             "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_qd_0057"
-          ],
-          "note": "±0.1% over 5.5 cm (14 T) / ±0.1% over 1.0 cm (16 T) on-axis; see evidence quote"
+          ]
         }
       ]
     },
@@ -432,7 +406,7 @@
         {
           "key": "temperature.stability",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 80,
               "unit": "mK"
@@ -554,7 +528,7 @@
         {
           "key": "cooldown_time.max",
           "value": {
-            "kind": "max",
+            "kind": "min",
             "q": {
               "value": 2400,
               "unit": "s"
@@ -700,9 +674,7 @@
           "evidence_ids": [
             "ev_qd_0059"
           ]
-        }
-      ],
-      "proposed_capabilities": [
+        },
         {
           "key": "magnetic_field.ramp_rate.max",
           "value": {
@@ -724,11 +696,10 @@
             "kind": "unknown"
           },
           "install": "installed",
-          "evidence_status": "manufacturer_specification",
+          "evidence_status": "unknown",
           "evidence_ids": [
             "ev_qd_0058"
-          ],
-          "note": "±0.1% over 5.5 cm (14 T) / ±0.1% over 1.0 cm (16 T) on-axis; see evidence quote"
+          ]
         }
       ]
     }
@@ -746,5 +717,8 @@
       "key": "cryogen consumption",
       "note": "liquid helium consumption rate not stated in 1070-002"
     }
+  ],
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json)."
   ]
 }

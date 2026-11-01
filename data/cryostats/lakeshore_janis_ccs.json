@@ -5,39 +5,293 @@
   "family": "cryogen-free closed-cycle-refrigerator optical cryostat, sample in vacuum, bottom-loading",
   "description": "Cryogen-free sample-in-vacuum optical cryostats. CCS-100 (<4 K to 325 K, optical), CCS-300S (<4 K to 325 K, subcompact optical), CCS-400 (<4 K to 500 K, optical high-temperature) and CCS-400H (<4 K to 800 K). The minimum temperature and cooling power depend on the cold head ordered (101: 0.2 W at 4.2 K; 408: 1 W at 4.2 K; 415: 1.5 W at 4.2 K; 418: 2 W at 4.2 K; 204N: 3 W at 10 K; 204: 7 W at 20 K, all bare-head ratings). Every cryostat ships with a Lake Shore temperature controller and calibrated sensor. CCS-300ST (non-optical) is documented but not profiled here.",
   "documents": [
-    {"id": "doc_ls_ccs_datasheet", "url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24", "title": "CCS-100 Cryogen-free Sample in vacuum cryostats <4 K to 800 K (CCR vacuum cryostats datasheet, code 102126)", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ccs_overview", "url": "http://www.lakeshore.com/products/product-detail/janis/4-k-cryocoolers-sample-in-vacuum-systems", "title": "Cryogen-free vacuum cryostats", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ccs100", "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-100-cryostat", "title": "CCS-100 optical cryostat", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ccs300", "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-300-series-cryostats", "title": "CCS-300 Series cryostats", "accessed": "2026-10-31"},
-    {"id": "doc_ls_ccs400", "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-400-series-cryostats", "title": "CCS-400 Series cryostats", "accessed": "2026-10-31"},
-    {"id": "doc_ls_windows", "url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13", "title": "Cryostat Windows (window selection guide)", "accessed": "2026-10-31"},
-    {"id": "doc_ls_feedthroughs", "url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatfeedthroughs.pdf?sfvrsn=d6b74e27_7", "title": "Cryostat Feedthroughs and Wiring", "accessed": "2026-10-31"}
+    {
+      "id": "doc_ls_ccs_datasheet",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+      "title": "CCS-100 Cryogen-free Sample in vacuum cryostats <4 K to 800 K (CCR vacuum cryostats datasheet, code 102126)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ccs_overview",
+      "url": "http://www.lakeshore.com/products/product-detail/janis/4-k-cryocoolers-sample-in-vacuum-systems",
+      "title": "Cryogen-free vacuum cryostats",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ccs100",
+      "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-100-cryostat",
+      "title": "CCS-100 optical cryostat",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ccs300",
+      "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-300-series-cryostats",
+      "title": "CCS-300 Series cryostats",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_ccs400",
+      "url": "https://www.lakeshore.com/products/product-detail/janis/ccs-400-series-cryostats",
+      "title": "CCS-400 Series cryostats",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_windows",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13",
+      "title": "Cryostat Windows (window selection guide)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ls_feedthroughs",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatfeedthroughs.pdf?sfvrsn=d6b74e27_7",
+      "title": "Cryostat Feedthroughs and Wiring",
+      "accessed": "2026-10-31"
+    }
   ],
-  "proposed_vocabulary": [],
   "configurations": [
     {
       "id": "lakeshore_ccs_100",
       "name": "CCS-100 optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
       "configuration_basis": "catalog combination of documented options; install status is a catalog assumption. The cold head is a required ordering choice with no documented default; this configuration assumes the 408 head (1 W at 4.2 K), the smallest 4 K head consistent with the '<4 K' lower bound. The 204N (3 W at 10 K) and 204 (7 W at 20 K) heads are 10 K-class options that would NOT reach <4 K. optical.clear_aperture is taken from the generic window guide ('standard 1.63 in clear view Environment by Janis window ports') and is therefore inferred_estimate. Cooldown time column mapping is from pdftotext layout and is inferred_estimate.",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 4000, "unit": "mK"}, "hi": {"value": 325000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0050", "ev_ls_0051"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0061"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0072"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0055"]},
-        {"key": "cooling_power.at_10000mK", "value": {"kind": "max", "q": {"value": 3000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0059"]},
-        {"key": "cooling_power.at_20000mK", "value": {"kind": "max", "q": {"value": 7000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0060"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 7200, "unit": "s"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0062"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0074"]},
-        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0069"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0068", "ev_ls_0066"]},
-        {"key": "optical.window_count", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0075"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 41402, "unit": "um"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0067", "ev_ls_0066"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0071"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 4000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 325000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0050",
+            "ev_ls_0051"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 50,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0061"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0072"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0055"
+          ]
+        },
+        {
+          "key": "cooling_power.at_10000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0059"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 7000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0060"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 7200,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0062"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0074"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0069"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0068",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0075"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 41402,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0067",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0071"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        }
       ]
     },
     {
@@ -45,24 +299,239 @@
       "name": "CCS-300S subcompact optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
       "configuration_basis": "catalog combination of documented options; install status is a catalog assumption. Cold head assumed 408 (1 W at 4.2 K) as for CCS-100. The CCS-300S window block is documented as '38 mm (1.5 in) square', smaller than the CCS-100/400 block, so the generic 1.63 in clear-view figure is NOT applied; optical.clear_aperture is unknown. Cooldown time column mapping is from pdftotext layout and is inferred_estimate.",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 4000, "unit": "mK"}, "hi": {"value": 325000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0052", "ev_ls_0050"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0061"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0072"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0055"]},
-        {"key": "cooling_power.at_10000mK", "value": {"kind": "max", "q": {"value": 3000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0059"]},
-        {"key": "cooling_power.at_20000mK", "value": {"kind": "max", "q": {"value": 7000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0060"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 9000, "unit": "s"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0065"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0074"]},
-        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0069"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0068", "ev_ls_0066"]},
-        {"key": "optical.window_count", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0075"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0066"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0071"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 4000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 325000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0052",
+            "ev_ls_0050"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 50,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0061"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0072"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0055"
+          ]
+        },
+        {
+          "key": "cooling_power.at_10000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0059"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 7000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0060"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 9000,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0065"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0074"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0069"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0068",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0075"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0071"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        }
       ]
     },
     {
@@ -70,24 +539,244 @@
       "name": "CCS-400 optical high-temperature (500 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
       "configuration_basis": "catalog combination of documented options; install status is a catalog assumption. Cold head assumed 408 (1 W at 4.2 K). optical.clear_aperture from the generic window guide (1.63 in clear view) is inferred_estimate; the CCS-400 window block is '83 mm to 85 mm square' like the CCS-100. Cooldown time column mapping is from pdftotext layout and is inferred_estimate.",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 4000, "unit": "mK"}, "hi": {"value": 500000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0053", "ev_ls_0050"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0061"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0072"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0055"]},
-        {"key": "cooling_power.at_10000mK", "value": {"kind": "max", "q": {"value": 3000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0059"]},
-        {"key": "cooling_power.at_20000mK", "value": {"kind": "max", "q": {"value": 7000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0060"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 10800, "unit": "s"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0063"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0074"]},
-        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0069"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0068", "ev_ls_0066"]},
-        {"key": "optical.window_count", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0075"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 41402, "unit": "um"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0067", "ev_ls_0066"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0071"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 4000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 500000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0053",
+            "ev_ls_0050"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 50,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0061"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0072"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0055"
+          ]
+        },
+        {
+          "key": "cooling_power.at_10000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0059"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 7000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0060"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10800,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0063"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0074"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0069"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0068",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0075"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 41402,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0067",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0071"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        }
       ]
     },
     {
@@ -95,35 +784,279 @@
       "name": "CCS-400H optical high-temperature (800 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
       "configuration_basis": "catalog combination of documented options; install status is a catalog assumption. Cold head assumed 408 (1 W at 4.2 K); the datasheet minimum-temperature table (read from pdftotext layout) suggests the 4 K heads reach only '<5 K' on the CCS-400H, so the 4000 mK lower bound is marked inferred_estimate for this model. optical.clear_aperture from the generic window guide is inferred_estimate. Cooldown time column mapping is inferred_estimate.",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 4000, "unit": "mK"}, "hi": {"value": 800000, "unit": "mK"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0054", "ev_ls_0050"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 50, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0061"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0072"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 1000000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0055"]},
-        {"key": "cooling_power.at_10000mK", "value": {"kind": "max", "q": {"value": 3000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0059"]},
-        {"key": "cooling_power.at_20000mK", "value": {"kind": "max", "q": {"value": 7000000000, "unit": "nW"}}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0060"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 9000, "unit": "s"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0064"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0074"]},
-        {"key": "sample.diameter.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0069"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0068", "ev_ls_0066"]},
-        {"key": "optical.window_count", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0075"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 41402, "unit": "um"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ls_0067", "ev_ls_0066"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "optional_not_installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0070"]},
-        {"key": "vibration.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown", "evidence_ids": ["ev_ls_0071"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]},
-        {"key": "cryogen.liquid_helium_required", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ls_0073"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 4000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 800000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0054",
+            "ev_ls_0050"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 50,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0061"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0072"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 1000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0055"
+          ]
+        },
+        {
+          "key": "cooling_power.at_10000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 3000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0059"
+          ]
+        },
+        {
+          "key": "cooling_power.at_20000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 7000000000,
+              "unit": "nW"
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0060"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 9000,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0064"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0074"
+          ]
+        },
+        {
+          "key": "sample.diameter.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0069"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0068",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0075"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 41402,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ls_0067",
+            "ev_ls_0066"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0070"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ls_0071"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ls_0073"
+          ]
+        }
       ]
     }
   ],
   "unknowns": [
-    {"key": "sample.diameter.max", "note": "Only sample-holder part numbers (SH-BLANK-1.5-STD etc.) are listed; no stage or sample diameter stated (ev_ls_0069)"},
-    {"key": "electrical.dc_lines", "note": "Feedthroughs are configured per order (10/19/26-pin options, e.g. WH-10P with 10 twisted-pair wires); no standard count (ev_ls_0070)"},
-    {"key": "electrical.coax_lines", "note": "BNC/SMA coax feedthrough options exist (2, 4 or 6 cables) but none is documented as standard (ev_ls_0070)"},
-    {"key": "vibration.max", "note": "Datasheet table has a 'Vibration' row but no numeric value appeared in the extracted text (ev_ls_0071)"},
-    {"key": "optical.window_count", "note": "Not stated; pages link only to 'Window options' (ev_ls_0075)"},
-    {"key": "magnetic_field.max", "note": "No magnet documented for the CCS series (ev_ls_0072)"},
-    {"key": "cryocooler_type", "note": "GM vs pulse tube and cold-head manufacturer not stated; only Lake Shore head numbers 101/204/204N/408/415/418 (ev_ls_0076); no vocabulary key, note only"}
+    {
+      "key": "sample.diameter.max",
+      "note": "Only sample-holder part numbers (SH-BLANK-1.5-STD etc.) are listed; no stage or sample diameter stated (ev_ls_0069)"
+    },
+    {
+      "key": "electrical.dc_lines",
+      "note": "Feedthroughs are configured per order (10/19/26-pin options, e.g. WH-10P with 10 twisted-pair wires); no standard count (ev_ls_0070)"
+    },
+    {
+      "key": "electrical.coax_lines",
+      "note": "BNC/SMA coax feedthrough options exist (2, 4 or 6 cables) but none is documented as standard (ev_ls_0070)"
+    },
+    {
+      "key": "vibration.max",
+      "note": "Datasheet table has a 'Vibration' row but no numeric value appeared in the extracted text (ev_ls_0071)"
+    },
+    {
+      "key": "optical.window_count",
+      "note": "Not stated; pages link only to 'Window options' (ev_ls_0075)"
+    },
+    {
+      "key": "magnetic_field.max",
+      "note": "No magnet documented for the CCS series (ev_ls_0072)"
+    },
+    {
+      "key": "cryocooler_type",
+      "note": "GM vs pulse tube and cold-head manufacturer not stated; only Lake Shore head numbers 101/204/204N/408/415/418 (ev_ls_0076); no vocabulary key, note only"
+    }
   ],
-  "notes": "CHECK REQUIRED: the CCS datasheet specification table (ccr-vacuum.pdf page 2) was read from pdftotext -layout output whose column alignment is imperfect. The cooldown-time values (ev_ls_0062 to ev_ls_0065), the per-cold-head minimum-temperature rows, and the CCS-400H '<5 K' lower bound are therefore marked inferred_estimate and must be verified against the rendered PDF before Lean accepts on them. The 4 K cold head choice (408 assumed) has no documented default; with the 101 head the cooling power is only 0.2 W at 4.2 K (ev_ls_0058), with 415/418 it is 1.5 W / 2 W (ev_ls_0056, ev_ls_0057). The 10 K-class heads (204, 204N) would raise the minimum temperature above 4 K. optical.clear_aperture 1.63 in (41402 um) comes from the generic Lake Shore window guide, which does not name the CCS models explicitly. Evidence file: data/evidence/lakeshore.json."
+  "notes": "CHECK REQUIRED: the CCS datasheet specification table (ccr-vacuum.pdf page 2) was read from pdftotext -layout output whose column alignment is imperfect. The cooldown-time values (ev_ls_0062 to ev_ls_0065), the per-cold-head minimum-temperature rows, and the CCS-400H '<5 K' lower bound are therefore marked inferred_estimate and must be verified against the rendered PDF before Lean accepts on them. The 4 K cold head choice (408 assumed) has no documented default; with the 101 head the cooling power is only 0.2 W at 4.2 K (ev_ls_0058), with 415/418 it is 1.5 W / 2 W (ev_ls_0056, ev_ls_0057). The 10 K-class heads (204, 204N) would raise the minimum temperature above 4 K. optical.clear_aperture 1.63 in (41402 um) comes from the generic Lake Shore window guide, which does not name the CCS models explicitly. Evidence file: data/evidence/lakeshore.json.",
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json)."
+  ]
 }

@@ -191,5 +191,42 @@
     "magnetic field (up to 14 T) was used in both papers but is not a requirement for zero-field resistance; recorded in reported_conditions only"
   ],
   "confirmed": true,
-  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used."
+  "confirmation_note": "Requirements reviewed and confirmed by the profile author on 2026-10-31 against the quoted evidence records. Any edited value must be re-confirmed by the user before the profile is used.",
+  "coupled": [
+    {
+      "model": "joule_heating_vs_cooling_power",
+      "mandatory": false,
+      "rationale": "Optional: the published procedures do not state sample resistance or a self-heating limit, and the PPMS documents no cooling power, so this check is reported but does not decide the verdict. Make it mandatory once the sample resistance and cooling power are known."
+    }
+  ],
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 2000,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "description": "Lowest temperature of the reported 2-300 K range",
+      "evidence_ids": [
+        "ev_exp_0041",
+        "ev_exp_0045"
+      ]
+    },
+    {
+      "name": "measurement_current",
+      "value": null,
+      "origin": "user_entered",
+      "description": "Excitation current you will use (not stated as a requirement by the papers)"
+    },
+    {
+      "name": "sample_resistance",
+      "value": null,
+      "origin": "user_entered",
+      "description": "Sample resistance at the operating temperature"
+    }
+  ],
+  "reported_equipment": [
+    "PPMS"
+  ]
 }

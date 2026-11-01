@@ -1,0 +1,702 @@
+{
+  "_comment": "Coupled multiphysics models. Each relation is lhs <= rhs, evaluated EXACTLY by the Lean checker over rationals with dimensional analysis. Templates reference experiment parameters ({op: param}) and capabilities ({op: cap}); '$slot' keys are resolved per configuration by the data layer and every resolution is re-checked by Lean through the 'validity' bounds. Only models with status 'validated' are evaluated; any other status is emitted as an UNSUPPORTED check and can never pass.",
+  "models": [
+    {
+      "id": "joule_heating_vs_cooling_power",
+      "name": "Joule heating of the measurement vs cooling power at the operating temperature",
+      "coupling": [
+        "thermal",
+        "electrical"
+      ],
+      "status": "validated",
+      "equation": "I^2 * R <= P_cool(T_doc)   valid when T_doc <= T_op",
+      "relations": [
+        {
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "mul",
+              "a": {
+                "op": "param",
+                "name": "measurement_current"
+              },
+              "b": {
+                "op": "param",
+                "name": "measurement_current"
+              }
+            },
+            "b": {
+              "op": "param",
+              "name": "sample_resistance"
+            }
+          },
+          "rhs": {
+            "op": "cap",
+            "key": "$cooling",
+            "sel": "max"
+          }
+        }
+      ],
+      "validity": [
+        {
+          "a": {
+            "op": "cap",
+            "key": "$cooling.temperature",
+            "sel": "max"
+          },
+          "b": {
+            "op": "param",
+            "name": "operating_temperature"
+          },
+          "meaning": "the cooling power used was documented at or below the operating temperature"
+        }
+      ],
+      "parameters": {
+        "measurement_current": {
+          "unit_dim": "A",
+          "description": "excitation current through the sample",
+          "adjustable": "decrease"
+        },
+        "sample_resistance": {
+          "unit_dim": "Ohm",
+          "description": "sample resistance at the operating temperature"
+        },
+        "operating_temperature": {
+          "unit_dim": "K",
+          "description": "temperature the stage must hold"
+        }
+      },
+      "slots": {
+        "cooling": {
+          "pattern": "cooling_power.at_*",
+          "choose": "highest documented temperature not above operating_temperature"
+        }
+      },
+      "assumptions": [
+        "steady state: all dissipated power ends up on the stage whose cooling power is used",
+        "cooling capacity does not decrease with temperature above the documented point (supported by pm_006, pm_009 and the catalog's own multi-point data)",
+        "only the Joule heating of the sample is counted; wiring, radiation and other loads are not included"
+      ],
+      "valid_range": "operating temperatures at or above the temperature at which the cooling power is documented",
+      "justification_evidence_ids": [
+        "pm_001",
+        "pm_002",
+        "pm_003",
+        "pm_006",
+        "pm_009"
+      ]
+    },
+    {
+      "id": "mxc_wiring_heat_budget",
+      "name": "Mixing-chamber wiring heat load (with design margin) vs cooling power",
+      "coupling": [
+        "thermal",
+        "electrical"
+      ],
+      "status": "validated",
+      "equation": "margin * (n_drive*q_drive + n_flux*(q_flux + p_flux_dc) + n_out*q_out) <= P_cool(T_doc)   valid when T_doc <= T_op",
+      "relations": [
+        {
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "param",
+              "name": "design_margin"
+            },
+            "b": {
+              "op": "add",
+              "a": {
+                "op": "add",
+                "a": {
+                  "op": "mul",
+                  "a": {
+                    "op": "param",
+                    "name": "n_drive_lines"
+                  },
+                  "b": {
+                    "op": "param",
+                    "name": "q_drive_line"
+                  }
+                },
+                "b": {
+                  "op": "mul",
+                  "a": {
+                    "op": "param",
+                    "name": "n_flux_lines"
+                  },
+                  "b": {
+                    "op": "add",
+                    "a": {
+                      "op": "param",
+                      "name": "q_flux_line"
+                    },
+                    "b": {
+                      "op": "param",
+                      "name": "p_flux_dc"
+                    }
+                  }
+                }
+              },
+              "b": {
+                "op": "mul",
+                "a": {
+                  "op": "param",
+                  "name": "n_output_lines"
+                },
+                "b": {
+                  "op": "param",
+                  "name": "q_output_line"
+                }
+              }
+            }
+          },
+          "rhs": {
+            "op": "cap",
+            "key": "$cooling",
+            "sel": "max"
+          }
+        }
+      ],
+      "validity": [
+        {
+          "a": {
+            "op": "cap",
+            "key": "$cooling.temperature",
+            "sel": "max"
+          },
+          "b": {
+            "op": "param",
+            "name": "operating_temperature"
+          },
+          "meaning": "the cooling power used was documented at or below the operating temperature"
+        }
+      ],
+      "parameters": {
+        "design_margin": {
+          "unit_dim": "1"
+        },
+        "n_drive_lines": {
+          "unit_dim": "1",
+          "adjustable": "decrease",
+          "integer": true
+        },
+        "n_flux_lines": {
+          "unit_dim": "1",
+          "adjustable": "decrease",
+          "integer": true
+        },
+        "n_output_lines": {
+          "unit_dim": "1",
+          "adjustable": "decrease",
+          "integer": true
+        },
+        "q_drive_line": {
+          "unit_dim": "W"
+        },
+        "q_flux_line": {
+          "unit_dim": "W"
+        },
+        "q_output_line": {
+          "unit_dim": "W"
+        },
+        "p_flux_dc": {
+          "unit_dim": "W"
+        },
+        "operating_temperature": {
+          "unit_dim": "K"
+        }
+      },
+      "slots": {
+        "cooling": {
+          "pattern": "cooling_power.at_*",
+          "choose": "highest documented temperature not above operating_temperature"
+        }
+      },
+      "assumptions": [
+        "per-line passive loads measured by Krinner et al. on their XLD400 transfer to the candidate refrigerator with the same cable types",
+        "measurement uncertainties of the per-line loads are not propagated (central values used)",
+        "active drive-line dissipation and TWPA pump lines are not included",
+        "cooling capacity does not decrease with temperature above the documented point"
+      ],
+      "valid_range": "mixing-chamber operating temperatures at or above the documented cooling-power temperature",
+      "justification_evidence_ids": [
+        "hl_010",
+        "hl_011",
+        "hl_017",
+        "hl_019",
+        "hl_029",
+        "pm_002",
+        "pm_003"
+      ]
+    },
+    {
+      "id": "magnet_ramp_time",
+      "name": "Target field reachable within the ramp-time budget at the documented maximum charging rate",
+      "coupling": [
+        "magnetic",
+        "time"
+      ],
+      "status": "validated",
+      "equation": "B_target <= (dB/dt)_max * t_budget   valid when B_target <= B_max",
+      "relations": [
+        {
+          "lhs": {
+            "op": "param",
+            "name": "target_field"
+          },
+          "rhs": {
+            "op": "mul",
+            "a": {
+              "op": "cap",
+              "key": "magnetic_field.ramp_rate.max",
+              "sel": "max"
+            },
+            "b": {
+              "op": "param",
+              "name": "field_ramp_time_budget"
+            }
+          }
+        }
+      ],
+      "validity": [
+        {
+          "a": {
+            "op": "param",
+            "name": "target_field"
+          },
+          "b": {
+            "op": "cap",
+            "key": "magnetic_field.max",
+            "sel": "max"
+          },
+          "meaning": "the target is within the installed magnet's documented range"
+        }
+      ],
+      "parameters": {
+        "target_field": {
+          "unit_dim": "T",
+          "adjustable": "decrease"
+        },
+        "field_ramp_time_budget": {
+          "unit_dim": "s",
+          "adjustable": "increase"
+        }
+      },
+      "slots": {},
+      "assumptions": [
+        "ramp starts from zero field and runs at the documented maximum charging rate the whole way (a lower bound on the real time)",
+        "Quantum Design's times to full field are consistent with field / maximum rate (pm_021-pm_025)"
+      ],
+      "valid_range": "target fields within the documented magnet range",
+      "justification_evidence_ids": [
+        "pm_021",
+        "pm_022",
+        "pm_023",
+        "pm_025"
+      ]
+    },
+    {
+      "id": "cooldown_time_budget",
+      "name": "Cooldown time plus run duration fits in the available time",
+      "coupling": [
+        "time",
+        "thermal"
+      ],
+      "status": "validated",
+      "equation": "t_cooldown + t_run <= t_available",
+      "relations": [
+        {
+          "lhs": {
+            "op": "add",
+            "a": {
+              "op": "cap",
+              "key": "cooldown_time.max",
+              "sel": "min"
+            },
+            "b": {
+              "op": "param",
+              "name": "run_duration"
+            }
+          },
+          "rhs": {
+            "op": "param",
+            "name": "available_time"
+          }
+        }
+      ],
+      "validity": [],
+      "parameters": {
+        "run_duration": {
+          "unit_dim": "s",
+          "adjustable": "decrease"
+        },
+        "available_time": {
+          "unit_dim": "s",
+          "adjustable": "increase"
+        }
+      },
+      "slots": {},
+      "assumptions": [
+        "cooldown and measurement run sequentially",
+        "documented cooldown time applies to the configuration as loaded"
+      ],
+      "valid_range": "any",
+      "justification_evidence_ids": []
+    },
+    {
+      "id": "differential_thermal_contraction",
+      "name": "Differential thermal contraction between sample and holder stays within the allowed mismatch",
+      "coupling": [
+        "thermal",
+        "mechanical"
+      ],
+      "status": "validated",
+      "equation": "|L * (eps_sample - eps_holder)| <= delta_allowed   (two relations)",
+      "relations": [
+        {
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "param",
+              "name": "sample_length"
+            },
+            "b": {
+              "op": "sub",
+              "a": {
+                "op": "param",
+                "name": "eps_sample"
+              },
+              "b": {
+                "op": "param",
+                "name": "eps_holder"
+              }
+            }
+          },
+          "rhs": {
+            "op": "param",
+            "name": "allowed_mismatch"
+          }
+        },
+        {
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "param",
+              "name": "sample_length"
+            },
+            "b": {
+              "op": "sub",
+              "a": {
+                "op": "param",
+                "name": "eps_holder"
+              },
+              "b": {
+                "op": "param",
+                "name": "eps_sample"
+              }
+            }
+          },
+          "rhs": {
+            "op": "param",
+            "name": "allowed_mismatch"
+          }
+        }
+      ],
+      "validity": [
+        {
+          "a": {
+            "op": "param",
+            "name": "contraction_data_temperature"
+          },
+          "b": {
+            "op": "param",
+            "name": "operating_temperature"
+          },
+          "meaning": "contraction data are for the operating temperature (lower bound)"
+        },
+        {
+          "a": {
+            "op": "param",
+            "name": "operating_temperature"
+          },
+          "b": {
+            "op": "param",
+            "name": "contraction_data_temperature"
+          },
+          "meaning": "contraction data are for the operating temperature (upper bound)"
+        }
+      ],
+      "parameters": {
+        "sample_length": {
+          "unit_dim": "m",
+          "adjustable": "decrease"
+        },
+        "eps_sample": {
+          "unit_dim": "1",
+          "signed": true
+        },
+        "eps_holder": {
+          "unit_dim": "1",
+          "signed": true
+        },
+        "allowed_mismatch": {
+          "unit_dim": "m"
+        },
+        "operating_temperature": {
+          "unit_dim": "K"
+        },
+        "contraction_data_temperature": {
+          "unit_dim": "K"
+        }
+      },
+      "slots": {},
+      "assumptions": [
+        "linear (one-dimensional) mismatch along the sample length",
+        "materials table values at exactly the operating temperature",
+        "no slip, adhesive compliance or stress relaxation modelled"
+      ],
+      "valid_range": "operating temperature equal to a tabulated contraction temperature (4 K or 80 K)",
+      "justification_evidence_ids": [
+        "tc_057",
+        "tc_058",
+        "tc_059"
+      ]
+    },
+    {
+      "id": "objective_working_distance_clearance",
+      "name": "Objective working distance covers the stage's required working distance plus spacers",
+      "coupling": [
+        "mechanical",
+        "optical"
+      ],
+      "status": "validated",
+      "equation": "WD_stage_min + spacer <= WD_objective",
+      "relations": [
+        {
+          "lhs": {
+            "op": "add",
+            "a": {
+              "op": "cap",
+              "key": "optical.objective_working_distance.min",
+              "sel": "min"
+            },
+            "b": {
+              "op": "param",
+              "name": "extra_spacer"
+            }
+          },
+          "rhs": {
+            "op": "param",
+            "name": "objective_working_distance"
+          }
+        }
+      ],
+      "validity": [],
+      "parameters": {
+        "extra_spacer": {
+          "unit_dim": "m",
+          "adjustable": "decrease"
+        },
+        "objective_working_distance": {
+          "unit_dim": "m",
+          "adjustable": "increase"
+        }
+      },
+      "slots": {},
+      "assumptions": [
+        "working distances measured along the same optical axis",
+        "spacer = any extra window, cover slip or holder thickness added by the user"
+      ],
+      "valid_range": "any",
+      "justification_evidence_ids": [
+        "eg_052"
+      ]
+    },
+    {
+      "id": "optical_na_vs_f_number",
+      "name": "Objective numerical aperture fits through the cryostat's optical cone (f-number)",
+      "coupling": [
+        "mechanical",
+        "optical"
+      ],
+      "status": "validated",
+      "equation": "NA^2 * (4 N^2 + 1) <= 1   (equivalent to NA <= sin(atan(1/(2N))) for NA, N >= 0, n = 1)",
+      "relations": [
+        {
+          "lhs": {
+            "op": "mul",
+            "a": {
+              "op": "mul",
+              "a": {
+                "op": "param",
+                "name": "objective_na"
+              },
+              "b": {
+                "op": "param",
+                "name": "objective_na"
+              }
+            },
+            "b": {
+              "op": "add",
+              "a": {
+                "op": "mul",
+                "a": {
+                  "op": "lit",
+                  "value": "4",
+                  "unit": "1"
+                },
+                "b": {
+                  "op": "mul",
+                  "a": {
+                    "op": "cap",
+                    "key": "optical.f_number",
+                    "sel": "min"
+                  },
+                  "b": {
+                    "op": "cap",
+                    "key": "optical.f_number",
+                    "sel": "min"
+                  }
+                }
+              },
+              "b": {
+                "op": "lit",
+                "value": "1",
+                "unit": "1"
+              }
+            }
+          },
+          "rhs": {
+            "op": "lit",
+            "value": "1",
+            "unit": "1"
+          }
+        }
+      ],
+      "validity": [
+        {
+          "a": {
+            "op": "lit",
+            "value": "0",
+            "unit": "1"
+          },
+          "b": {
+            "op": "param",
+            "name": "objective_na"
+          },
+          "meaning": "NA is non-negative"
+        },
+        {
+          "a": {
+            "op": "param",
+            "name": "objective_na"
+          },
+          "b": {
+            "op": "lit",
+            "value": "1",
+            "unit": "1"
+          },
+          "meaning": "dry objective in air (n = 1)"
+        }
+      ],
+      "parameters": {
+        "objective_na": {
+          "unit_dim": "1",
+          "adjustable": "decrease"
+        }
+      },
+      "slots": {},
+      "assumptions": [
+        "air between objective and window (n = 1)",
+        "thin-lens relation tan(theta) = 1/(2N) for the cryostat's optical cone",
+        "no vignetting by other apertures"
+      ],
+      "valid_range": "0 <= NA <= 1",
+      "justification_evidence_ids": [
+        "pm_011",
+        "pm_012",
+        "pm_013",
+        "pm_014"
+      ]
+    },
+    {
+      "id": "field_temperature_envelope",
+      "name": "Documented field-versus-temperature operating envelope",
+      "coupling": [
+        "thermal",
+        "magnetic"
+      ],
+      "status": "representable_only",
+      "equation": "B_required(T) <= B_max(T) from a documented envelope table",
+      "reason": "Envelope tables are not yet imported for any configuration; the check is reported as UNSUPPORTED.",
+      "justification_evidence_ids": []
+    },
+    {
+      "id": "temperature_stability_during_field_sweep",
+      "name": "Temperature stability while the field is ramped",
+      "coupling": [
+        "thermal",
+        "magnetic"
+      ],
+      "status": "unsupported",
+      "equation": "dT(dB/dt) <= dT_allowed",
+      "reason": "No manufacturer documents this dependence in the sources fetched.",
+      "justification_evidence_ids": []
+    },
+    {
+      "id": "cryogen_consumption",
+      "name": "Cryogen supply covers consumption over the run",
+      "coupling": [
+        "time",
+        "cryogens"
+      ],
+      "status": "representable_only",
+      "equation": "consumption_rate * duration <= dewar_volume",
+      "reason": "No documented consumption rate (pm_020, eg_071 not found).",
+      "justification_evidence_ids": [
+        "pm_018",
+        "pm_019"
+      ]
+    },
+    {
+      "id": "thermal_stress",
+      "name": "Thermal stress from differential contraction stays below the allowed stress",
+      "coupling": [
+        "thermal",
+        "mechanical"
+      ],
+      "status": "representable_only",
+      "equation": "E * |eps_s - eps_h| <= sigma_allowed",
+      "reason": "Elastic moduli and allowed stresses are not in the evidence database.",
+      "justification_evidence_ids": []
+    },
+    {
+      "id": "vacuum_at_temperature",
+      "name": "Required pressure at the intended temperature (cryopumping)",
+      "coupling": [
+        "vacuum",
+        "thermal"
+      ],
+      "status": "representable_only",
+      "equation": "p_base(T) <= p_required",
+      "reason": "No temperature-dependent base-pressure data documented.",
+      "justification_evidence_ids": []
+    },
+    {
+      "id": "condensation_frost",
+      "name": "Frost/condensation: vacuum or dry-gas purge below 0 °C",
+      "coupling": [
+        "vacuum",
+        "thermal"
+      ],
+      "status": "validated",
+      "implemented_as": "conditional any-of requirement (vacuum.available | purge.gas) applying when operating_temperature <= 273.15 K",
+      "equation": "T_op <= 273.15 K  =>  vacuum OR dry-gas purge",
+      "justification_evidence_ids": [
+        "pm_015",
+        "pm_016",
+        "pm_017"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1506 @@
+{
+  "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+  "headline": "Doesn't meet requirements",
+  "user_message": "'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Requirement not met.",
+  "next_step": "See why it fails and the suggested alternatives below.",
+  "summary": "Does not meet requirements. A documented limitation conflicts with: 'magnetic_field.max'.",
+  "equipment": {
+    "id": "qd_ppms_dynacool",
+    "manufacturer": "Quantum Design",
+    "model": "PPMS DynaCool",
+    "configuration_id": "qd_dynacool_9T_eto_res",
+    "configuration_name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
+    "catalog_configuration_id": "qd_dynacool_9T_eto_res",
+    "modifications_applied": []
+  },
+  "experiment": {
+    "id": "mat_magnetoresistance_10T",
+    "name": "Magnetoresistance of a bulk crystal at 2 K up to 10 T in a Quantum Design PPMS",
+    "plain_name": "Measure how a sample responds to a magnetic field",
+    "industry": "materials_and_nanotechnology",
+    "confirmed": true,
+    "parameters": []
+  },
+  "checks": [
+    {
+      "kind": "requirement",
+      "keys": [
+        "magnetic_field.max"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "fail",
+      "required": "needs at least 10 T",
+      "available": "a documented maximum of 9 T",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "den": 1,
+          "dim": {
+            "A": -1,
+            "K": 0,
+            "cd": 0,
+            "kg": 1,
+            "m": 0,
+            "mol": 0,
+            "s": -2
+          },
+          "num": 10
+        }
+      },
+      "conditions": [],
+      "explanation": "'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Requirement not met.",
+      "property": 19,
+      "per_key": [
+        {
+          "available_display": "a documented maximum of 9 T",
+          "capability": {
+            "evidence_ids": [
+              "ev_qd_0002",
+              "ev_qd_0001"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "magnetic_field.max",
+            "value": {
+              "kind": "max",
+              "q": {
+                "den": 1,
+                "dim": {
+                  "A": -1,
+                  "K": 0,
+                  "cd": 0,
+                  "kg": 1,
+                  "m": 0,
+                  "mol": 0,
+                  "s": -2
+                },
+                "num": 9
+              }
+            }
+          },
+          "key": "magnetic_field.max",
+          "outcome": "fail"
+        }
+      ],
+      "requirement_origin": "user_entered",
+      "requirement_rationale": "User-specified target field for this measurement (demo value); the papers report up to 14 T, see reported_conditions.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Quantum Design PPMS, DyBi / HoBi",
+          "claim": "Magnetic fields up to 14 T",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0042",
+          "location": "Methods, Electrical transport measurements",
+          "normalized": {
+            "unit": "mT",
+            "value": 14000
+          },
+          "quote": "Measurements were carried out in the temperature range 2-300 K and in the magnetic fields up to 14 T, with ac electrical current flowing along [100] crystallographic direction.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "up to 14 T"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "PPMS DynaCool, Gd5Pb3",
+          "claim": "Applied field up to 14 T along [120]",
+          "collected_by": "research agent",
+          "document_title": "A Strategy Toward Room Temperature Topological Hall Effect via Local Moment Magnetism",
+          "doi": "10.48550/arXiv.2609.03223",
+          "doi_verified": false,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0046",
+          "location": "Methods, Electrical transport measurements",
+          "normalized": {
+            "unit": "mT",
+            "value": 14000
+          },
+          "quote": "applied magnetic field of up to 14 T along [120].",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/html/2609.03223",
+          "value_as_printed": "up to 14 T"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "PPMS DynaCool with 9 T magnet option",
+          "claim": "DynaCool 9 T magnet option: maximum field 9 T (longitudinal)",
+          "collected_by": "research agent",
+          "document_title": "Product Description / Cryogen-Free Physical Property Measurement System / PPMS DynaCool (1307-010 Rev. G0)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_qd_0002",
+          "location": "PDF page 4, 'PPMS DynaCool Specifications', row 'Magnet Options / Range and Orientation'",
+          "normalized": {
+            "unit": "mT",
+            "value": 9000
+          },
+          "quote": "Longitudinal: ±9 T, ±12 T, ±14 T",
+          "review_status": "unreviewed",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "value_as_printed": "±9 T"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "PPMS DynaCool (all magnet options)",
+          "claim": "DynaCool is supplied with one of three magnet options: 9 T, 12 T or 14 T (mutually exclusive)",
+          "collected_by": "research agent",
+          "document_title": "Product Description / Cryogen-Free Physical Property Measurement System / PPMS DynaCool (1307-010 Rev. G0)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_qd_0001",
+          "location": "PDF page 1, section 'Magnet Control'",
+          "normalized": null,
+          "quote": "The PPMS DynaCool comes equipped with either a 9 T, 12 T or 14 T conduction-cooled superconducting switch-less magnet system.",
+          "review_status": "unreviewed",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "value_as_printed": "either a 9 T, 12 T or 14 T"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "temperature.range"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "must be able to operate at 2 K",
+      "available": "a documented range of 1.8 K to 400 K",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "den": 1,
+          "dim": {
+            "A": 0,
+            "K": 1,
+            "cd": 0,
+            "kg": 0,
+            "m": 0,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 2
+        }
+      },
+      "conditions": [],
+      "explanation": "'temperature.range' must be able to operate at 2 K; this configuration has a documented range of 1.8 K to 400 K (manufacturer specification). Requirement met.",
+      "property": 1,
+      "per_key": [
+        {
+          "available_display": "a documented range of 1.8 K to 400 K",
+          "capability": {
+            "evidence_ids": [
+              "ev_qd_0005"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "temperature.range",
+            "value": {
+              "hi": {
+                "den": 1,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 400
+              },
+              "kind": "range",
+              "lo": {
+                "den": 5,
+                "dim": {
+                  "A": 0,
+                  "K": 1,
+                  "cd": 0,
+                  "kg": 0,
+                  "m": 0,
+                  "mol": 0,
+                  "s": 0
+                },
+                "num": 9
+              }
+            }
+          },
+          "key": "temperature.range",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Nowakowska et al. (2023) report magnetoresistance at T = 2 K; this is the paper's operating point, confirmed by the user.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "DyBi / HoBi single crystals (line-broken in PDF text)",
+          "claim": "Magnetoresistance reported at 2 K and 14 T",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0044",
+          "location": "Abstract",
+          "normalized": {
+            "unit": "mK",
+            "value": 2000
+          },
+          "quote": "At T = 2 K and in B = 14 T for both com-",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "T = 2 K and in B = 14 T"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Quantum Design PPMS, DyBi / HoBi",
+          "claim": "Transport measured 2–300 K",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0041",
+          "location": "Methods, Electrical transport measurements",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 300000
+            },
+            "kind": "range",
+            "lo": {
+              "unit": "mK",
+              "value": 2000
+            }
+          },
+          "quote": "Measurements were carried out in the temperature range 2-300 K and in the magnetic fields up to 14 T, with ac electrical current flowing along [100] crystallographic direction.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "2-300 K"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "PPMS DynaCool base system, all magnet options (60 Hz mains)",
+          "claim": "DynaCool base-system temperature range 1.8 to 400 K (60 Hz line frequency; 1.85 K base at 50 Hz)",
+          "collected_by": "research agent",
+          "document_title": "Product Description / Cryogen-Free Physical Property Measurement System / PPMS DynaCool (1307-010 Rev. G0)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_qd_0005",
+          "location": "PDF page 4, 'PPMS DynaCool Specifications', row 'Temperature Control / Range'",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 400000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 1800
+            }
+          },
+          "quote": "1.8 to 400 K @ 60Hz; 1.85 to 400 K @ 50Hz (Continuous Low Temperature Control and Temperature Sweep modes)",
+          "review_status": "unreviewed",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "value_as_printed": "1.8 to 400 K @ 60Hz; 1.85 to 400 K @ 50Hz"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "module.electrical_transport"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "pass",
+      "required": "must be installed / available",
+      "available": "documented as present",
+      "constraint": {
+        "b": true,
+        "kind": "flag_is"
+      },
+      "conditions": [],
+      "explanation": "'module.electrical_transport' must be installed / available; this configuration has documented as present (manufacturer specification). Requirement met.",
+      "property": null,
+      "per_key": [
+        {
+          "available_display": "documented as present",
+          "capability": {
+            "evidence_ids": [
+              "ev_qd_0022"
+            ],
+            "evidence_status": "manufacturer_specification",
+            "install": "installed",
+            "key": "module.electrical_transport",
+            "value": {
+              "b": true,
+              "kind": "flag"
+            }
+          },
+          "key": "module.electrical_transport",
+          "outcome": "pass"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Rao et al. (2026) used the electrical transport option of a PPMS DynaCool for magnetotransport; Nowakowska et al. do not name the option. User confirms an AC transport module is required.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "Gd5Pb3 single crystals",
+          "claim": "Electrical transport option of a Quantum Design PPMS DynaCool",
+          "collected_by": "research agent",
+          "document_title": "A Strategy Toward Room Temperature Topological Hall Effect via Local Moment Magnetism",
+          "doi": "10.48550/arXiv.2609.03223",
+          "doi_verified": false,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0045",
+          "location": "Methods, Electrical transport measurements",
+          "normalized": null,
+          "quote": "electrical transport option in a Quantum Design (QD) Physical Property Measurement System (PPMS) DynaCool.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/html/2609.03223",
+          "value_as_printed": "electrical transport option; PPMS DynaCool"
+        },
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "DyBi / HoBi single crystals",
+          "claim": "Four-probe transport in a Quantum Design PPMS",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0040",
+          "location": "Methods, Electrical transport measurements",
+          "normalized": null,
+          "quote": "Electrical transport properties, including electrical resistivity, Hall effect and magnetoresistance, were measured using a four-probe method employing the Physical Property Measurement System (PPMS, Quantum Design).",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "four-probe; PPMS"
+        }
+      ],
+      "capability_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "PPMS DynaCool option catalog",
+          "claim": "ETO (AC Resistance) is an orderable DynaCool option, model D605",
+          "collected_by": "research agent",
+          "document_title": "Compatibility Table / Sub-Kelvin Compatibility Kits (1084-500 Rev. J0)",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_qd_0022",
+          "location": "PDF page 1, column 'PPMS DynaCool', row 'AC Resistance (ETO)'",
+          "normalized": null,
+          "quote": "AC Resistance (ETO) D605 V605",
+          "review_status": "unreviewed",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/PPMS_Options_Compatibility_Table.pdf",
+          "value_as_printed": "AC Resistance (ETO) D605"
+        }
+      ]
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "sample.width.max"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "unknown",
+      "required": "needs at least 3 mm",
+      "available": "not documented",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "den": 1000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 0,
+            "m": 1,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 3
+        }
+      },
+      "conditions": [],
+      "explanation": "'sample.width.max' needs at least 3 mm, but this configuration has no documented value for 'sample.width.max'. We need more information.",
+      "property": 11,
+      "per_key": [
+        {
+          "available_display": "not documented",
+          "capability": null,
+          "key": "sample.width.max",
+          "outcome": "unknown"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm wide sample. Crystal size is this paper's material, confirmed by the user.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "DyBi / HoBi single crystals",
+          "claim": "Largest single crystals 3 × 3 × 3 mm",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0043",
+          "location": "Methods, Sample synthesis and characterization",
+          "normalized": {
+            "unit": "um",
+            "value": 3000
+          },
+          "quote": "The largest among obtained single crystals had a size of 3 × 3 × 3 mm3.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "3 × 3 × 3 mm3"
+        }
+      ],
+      "capability_evidence": []
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "sample.length.max"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "unknown",
+      "required": "needs at least 3 mm",
+      "available": "not documented",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "den": 1000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 0,
+            "m": 1,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 3
+        }
+      },
+      "conditions": [],
+      "explanation": "'sample.length.max' needs at least 3 mm, but this configuration has no documented value for 'sample.length.max'. We need more information.",
+      "property": 11,
+      "per_key": [
+        {
+          "available_display": "not documented",
+          "capability": null,
+          "key": "sample.length.max",
+          "outcome": "unknown"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm long sample. This paper's material, confirmed by the user.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "DyBi / HoBi single crystals",
+          "claim": "Largest single crystals 3 × 3 × 3 mm",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0043",
+          "location": "Methods, Sample synthesis and characterization",
+          "normalized": {
+            "unit": "um",
+            "value": 3000
+          },
+          "quote": "The largest among obtained single crystals had a size of 3 × 3 × 3 mm3.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "3 × 3 × 3 mm3"
+        }
+      ],
+      "capability_evidence": []
+    },
+    {
+      "kind": "requirement",
+      "keys": [
+        "sample.height.max"
+      ],
+      "mandatory": true,
+      "applicable": true,
+      "outcome": "unknown",
+      "required": "needs at least 3 mm",
+      "available": "not documented",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "den": 1000,
+          "dim": {
+            "A": 0,
+            "K": 0,
+            "cd": 0,
+            "kg": 0,
+            "m": 1,
+            "mol": 0,
+            "s": 0
+          },
+          "num": 3
+        }
+      },
+      "conditions": [],
+      "explanation": "'sample.height.max' needs at least 3 mm, but this configuration has no documented value for 'sample.height.max'. We need more information.",
+      "property": 11,
+      "per_key": [
+        {
+          "available_display": "not documented",
+          "capability": null,
+          "key": "sample.height.max",
+          "outcome": "unknown"
+        }
+      ],
+      "requirement_origin": "experimental_observation",
+      "requirement_rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm tall sample. This paper's material, confirmed by the user.",
+      "requirement_evidence": [
+        {
+          "accessed": "2026-10-31",
+          "applies_to": "DyBi / HoBi single crystals",
+          "claim": "Largest single crystals 3 × 3 × 3 mm",
+          "collected_by": "research agent",
+          "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+          "doi": "10.1038/s41598-023-49941-1",
+          "doi_verified": true,
+          "evidence_status": "experimental_observation",
+          "id": "ev_exp_0043",
+          "location": "Methods, Sample synthesis and characterization",
+          "normalized": {
+            "unit": "um",
+            "value": 3000
+          },
+          "quote": "The largest among obtained single crystals had a size of 3 × 3 × 3 mm3.",
+          "review_status": "unreviewed",
+          "source_url": "https://arxiv.org/pdf/2401.02294",
+          "value_as_printed": "3 × 3 × 3 mm3"
+        }
+      ],
+      "capability_evidence": []
+    }
+  ],
+  "coupled_checks": [],
+  "missing_information": [
+    "sample.width.max",
+    "sample.length.max",
+    "sample.height.max"
+  ],
+  "failed_requirements": [
+    "magnetic_field.max"
+  ],
+  "verification": {
+    "generic_theorems": {
+      "status": "kernel-checked when the Lean project is built (`lake build`, `lean/Audit.lean`)",
+      "key_theorems": [
+        "verdict_accept_sound",
+        "verdict_accept_iff",
+        "accept_no_unknown",
+        "fail_implies_reject",
+        "violation_prevents_accept",
+        "verdict_ignores_optional",
+        "verdict_ignores_nonapplicable",
+        "not_installed_never_passes",
+        "run_binds_inputs",
+        "candidates_accept_sound",
+        "candidates_verdicts_are_lean",
+        "verdict_industry_irrelevant",
+        "coupled_pass_dims_match"
+      ]
+    },
+    "concrete_evaluation": {
+      "engine": "CryoLean Lean 4 compatibility checker v2",
+      "lean_version": "4.35.0",
+      "verified_by_lean": true,
+      "lean_input_hash": "4122767249582765024",
+      "verdict": "DOES_NOT_MEET_REQUIREMENTS"
+    },
+    "source_data_validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    "physical_model_assumptions": []
+  },
+  "references": [
+    {
+      "type": "experiment_source",
+      "citation": "Nowakowska, P., Pavlosiuk, O., Wiśniewski, P., Kaczorowski, D. (2023). Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi. Scientific Reports 13, 22776.",
+      "doi": "10.1038/s41598-023-49941-1",
+      "url": "https://arxiv.org/pdf/2401.02294",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experiment_source",
+      "citation": "Rao, K., Allen, K., Gao, Y., Arushi, Mishra, S., Singh, B., Burch, K. S., Deng, L., Saha, S. R., Paglione, J., Lee, M., Zapf, V., Morosan, E. (2026). A Strategy Toward Room Temperature Topological Hall Effect via Local Moment Magnetism. arXiv:2609.03223 [cond-mat.mtrl-sci].",
+      "doi": "10.48550/arXiv.2609.03223",
+      "url": "https://arxiv.org/html/2609.03223",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "Product Description / Cryogen-Free Physical Property Measurement System / PPMS DynaCool (1307-010 Rev. G0)",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+      "doi": null,
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "Temperature-dependent Fermi surface probed by Shubnikov-de Haas oscillations in topological semimetal candidates DyBi and HoBi",
+      "url": "https://arxiv.org/pdf/2401.02294",
+      "doi": "10.1038/s41598-023-49941-1",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "experimental_observation",
+      "document_title": "A Strategy Toward Room Temperature Topological Hall Effect via Local Moment Magnetism",
+      "url": "https://arxiv.org/html/2609.03223",
+      "doi": "10.48550/arXiv.2609.03223",
+      "accessed": "2026-10-31"
+    },
+    {
+      "type": "manufacturer_specification",
+      "document_title": "Compatibility Table / Sub-Kelvin Compatibility Kits (1084-500 Rev. J0)",
+      "url": "https://qdusa.com/siteDocs/productBrochures/PPMS_Options_Compatibility_Table.pdf",
+      "doi": null,
+      "accessed": "2026-10-31"
+    }
+  ],
+  "fingerprint": "d02aa4808e9d5f460eb08b6353080fed097cc8787fce54cf25dc7ba3fe7c94f2",
+  "catalog_version": "b69dd6affd4ff447",
+  "checked_at": "2026-11-01T01:02:19.466112+00:00",
+  "lean_input": {
+    "configuration": {
+      "id": "qd_dynacool_9T_eto_res",
+      "equipment_id": "qd_ppms_dynacool",
+      "name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "num": 9,
+              "den": 5,
+              "dim": {
+                "K": 1
+              }
+            },
+            "hi": {
+              "num": 400,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0005"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 9,
+              "den": 5,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0006"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 2,
+              "den": 25,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_qd_0008",
+            "ev_qd_0007"
+          ]
+        },
+        {
+          "key": "temperature.sweep_rate.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0021"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 9,
+              "den": 1,
+              "dim": {
+                "kg": 1,
+                "s": -2,
+                "A": -1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0002",
+            "ev_qd_0001"
+          ]
+        },
+        {
+          "key": "magnetic_field.vector",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0002"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 40,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0009"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0010"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK.temperature",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0010"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0011"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cryogen.liquid_helium_required",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0012"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 2400,
+              "den": 1,
+              "dim": {
+                "s": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0013"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0017"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 3333,
+              "den": 250000,
+              "dim": {
+                "m": -1,
+                "kg": 1,
+                "s": -2
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0018"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 12
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0019"
+          ]
+        },
+        {
+          "key": "module.electrical_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0022"
+          ]
+        },
+        {
+          "key": "module.dc_resistivity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0023"
+          ]
+        },
+        {
+          "key": "module.vsm",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0024"
+          ]
+        },
+        {
+          "key": "module.heat_capacity",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0025"
+          ]
+        },
+        {
+          "key": "module.acms",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0026"
+          ]
+        },
+        {
+          "key": "module.thermal_transport",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0027"
+          ]
+        },
+        {
+          "key": "module.helium3",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0028"
+          ]
+        },
+        {
+          "key": "electrical.channels",
+          "value": {
+            "kind": "count",
+            "n": 2
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0029"
+          ]
+        },
+        {
+          "key": "electrical.current.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "num": 1,
+              "den": 100000000,
+              "dim": {
+                "A": 1
+              }
+            },
+            "hi": {
+              "num": 1,
+              "den": 10,
+              "dim": {
+                "A": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0030"
+          ]
+        },
+        {
+          "key": "electrical.resistance.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "num": 1,
+              "den": 100000,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3,
+                "A": -2
+              }
+            },
+            "hi": {
+              "num": 10000000,
+              "den": 1,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3,
+                "A": -2
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0031"
+          ]
+        },
+        {
+          "key": "system_startup_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 57600,
+              "den": 1,
+              "dim": {
+                "s": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0014"
+          ]
+        },
+        {
+          "key": "magnetic_field.ramp_rate.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 50,
+              "dim": {
+                "kg": 1,
+                "s": -3,
+                "A": -1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0037"
+          ]
+        },
+        {
+          "key": "magnetic_field.uniformity",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "installed",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_qd_0040"
+          ]
+        },
+        {
+          "key": "temperature.stability.relative",
+          "value": {
+            "kind": "min",
+            "q": {
+              "num": 1,
+              "den": 1000,
+              "dim": {}
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_qd_0007"
+          ]
+        }
+      ]
+    },
+    "experiment": {
+      "id": "mat_magnetoresistance_10T",
+      "name": "Magnetoresistance of a bulk crystal at 2 K up to 10 T in a Quantum Design PPMS",
+      "industry": "materials_and_nanotechnology",
+      "params": [],
+      "requirements": [
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "num": 10,
+              "den": 1,
+              "dim": {
+                "kg": 1,
+                "s": -2,
+                "A": -1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "user_entered",
+          "rationale": "User-specified target field for this measurement (demo value); the papers report up to 14 T, see reported_conditions.",
+          "evidence_ids": [
+            "ev_exp_0042",
+            "ev_exp_0046"
+          ]
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "num": 2,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Nowakowska et al. (2023) report magnetoresistance at T = 2 K; this is the paper's operating point, confirmed by the user.",
+          "evidence_ids": [
+            "ev_exp_0044",
+            "ev_exp_0041"
+          ]
+        },
+        {
+          "keys": [
+            "module.electrical_transport"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Rao et al. (2026) used the electrical transport option of a PPMS DynaCool for magnetotransport; Nowakowska et al. do not name the option. User confirms an AC transport module is required.",
+          "evidence_ids": [
+            "ev_exp_0045",
+            "ev_exp_0040"
+          ]
+        },
+        {
+          "keys": [
+            "sample.width.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "num": 3,
+              "den": 1000,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm wide sample. Crystal size is this paper's material, confirmed by the user.",
+          "evidence_ids": [
+            "ev_exp_0043"
+          ]
+        },
+        {
+          "keys": [
+            "sample.length.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "num": 3,
+              "den": 1000,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm long sample. This paper's material, confirmed by the user.",
+          "evidence_ids": [
+            "ev_exp_0043"
+          ]
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "num": 3,
+              "den": 1000,
+              "dim": {
+                "m": 1
+              }
+            }
+          },
+          "mandatory": true,
+          "applicable": true,
+          "conditions": [],
+          "origin": "experimental_observation",
+          "rationale": "Nowakowska et al. (2023) report single crystals up to 3 × 3 × 3 mm; the sample space must accept a 3 mm tall sample. This paper's material, confirmed by the user.",
+          "evidence_ids": [
+            "ev_exp_0043"
+          ]
+        }
+      ],
+      "coupled": [],
+      "confirmed": true
+    }
+  },
+  "suggestions": {
+    "engine": "z3",
+    "note": "Suggestions come from the Z3 solver. A suggestion is marked verified only if the Lean checker accepted the exact suggested configuration and parameters.",
+    "conflicts": {
+      "engine": "z3 5.3.3",
+      "status": "unsat",
+      "conflicts": [
+        {
+          "requirements": [
+            {
+              "kind": "requirement",
+              "index": 0,
+              "keys": [
+                "magnetic_field.max"
+              ],
+              "constraint": {
+                "kind": "at_least",
+                "q": {
+                  "num": 10,
+                  "den": 1,
+                  "dim": {
+                    "kg": 1,
+                    "s": -2,
+                    "A": -1
+                  }
+                }
+              },
+              "origin": "user_entered",
+              "evidence_ids": [
+                "ev_exp_0042",
+                "ev_exp_0046"
+              ],
+              "label": "req#0:magnetic_field.max"
+            }
+          ],
+          "facts": [
+            {
+              "kind": "fact",
+              "key": "magnetic_field.max",
+              "text": "magnetic_field.max documented as max 9 T (manufacturer_specification)",
+              "evidence_ids": [
+                "ev_qd_0002",
+                "ev_qd_0001"
+              ],
+              "label": "fact:magnetic_field.max"
+            }
+          ],
+          "explanation": "magnetic_field.max at least 10 T cannot hold together with magnetic_field.max documented as max 9 T (manufacturer_specification)"
+        }
+      ],
+      "not_encoded": [
+        {
+          "item": "req#3:sample.width.max",
+          "reason": "sample.width.max: not documented"
+        },
+        {
+          "item": "req#4:sample.length.max",
+          "reason": "sample.length.max: not documented"
+        },
+        {
+          "item": "req#5:sample.height.max",
+          "reason": "sample.height.max: not documented"
+        }
+      ],
+      "note": "Each conflict is a minimal unsat core: the listed requirements cannot all hold given the listed documented facts. Items depending on missing information are listed under not_encoded (they are never treated as satisfied)."
+    },
+    "requirements_self_consistent": {
+      "consistent": true,
+      "conflicting_requirements": []
+    },
+    "parameter_changes": [],
+    "requirement_relaxations": [
+      {
+        "keys": [
+          "magnetic_field.max"
+        ],
+        "your_requirement": "needs at least 10 T",
+        "documented_limit": "a documented maximum of 9 T",
+        "note": "Only if your experiment can tolerate it: changing a requirement is your decision and resets confirmation."
+      }
+    ],
+    "alternatives": [
+      {
+        "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
+        "equipment_id": "qd_ppms_dynacool",
+        "name": "PPMS DynaCool, 14 T magnet, ETO + VSM + Heat Capacity",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#3:sample.width.max",
+          "req#4:sample.length.max",
+          "req#5:sample.height.max"
+        ],
+        "min_relative_margin": "0.4",
+        "named_in_sources": true,
+        "documented_passes": 3,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'sample.width.max', 'sample.length.max', 'sample.height.max'."
+      },
+      {
+        "configuration_id": "leica_cm1950_dualecotec_standard",
+        "equipment_id": "leica_cm1950",
+        "name": "Leica CM1950 with DualEcoTec cooling system (2026), STANDARD configuration (1491950STUS / STEU / STJP)",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#0:magnetic_field.max",
+          "req#1:temperature.range",
+          "req#2:module.electrical_transport"
+        ],
+        "min_relative_margin": "7.333",
+        "named_in_sources": false,
+        "documented_passes": 3,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport'."
+      },
+      {
+        "configuration_id": "leica_cm1950_genA_standard",
+        "equipment_id": "leica_cm1950",
+        "name": "Leica CM1950 (legacy generation, serial < 20000), STANDARD: no vacuum, no motor, no object head cooling",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#0:magnetic_field.max",
+          "req#1:temperature.range",
+          "req#2:module.electrical_transport",
+          "req#5:sample.height.max"
+        ],
+        "min_relative_margin": "15.67",
+        "named_in_sources": false,
+        "documented_passes": 2,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport', 'sample.height.max'."
+      },
+      {
+        "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
+        "equipment_id": "leica_cm1950",
+        "name": "Leica CM1950 (legacy generation, serial < 20000), VACUUM + MOTOR with object head cooling",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#0:magnetic_field.max",
+          "req#1:temperature.range",
+          "req#2:module.electrical_transport",
+          "req#5:sample.height.max"
+        ],
+        "min_relative_margin": "15.67",
+        "named_in_sources": false,
+        "documented_passes": 2,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport', 'sample.height.max'."
+      },
+      {
+        "configuration_id": "oxford_teslatronpt_14T",
+        "equipment_id": "oxford_teslatronpt",
+        "name": "TeslatronPT, 14 T solenoid magnet, standard VTI",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#2:module.electrical_transport",
+          "req#3:sample.width.max",
+          "req#4:sample.length.max",
+          "req#5:sample.height.max"
+        ],
+        "min_relative_margin": "0.4",
+        "named_in_sources": false,
+        "documented_passes": 2,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'module.electrical_transport', 'sample.width.max', 'sample.length.max', 'sample.height.max'."
+      }
+    ],
+    "ranking_criteria": [
+      "Z3 status tier: satisfiable < needs documented options < pending information",
+      "fewest added optional accessories",
+      "equipment model named in the experiment's sources",
+      "fewest unknown items",
+      "most mandatory items documented as passing",
+      "largest smallest relative margin over numeric requirements"
+    ]
+  },
+  "result_id": "res_3c371b557c1e"
+}

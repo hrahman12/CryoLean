@@ -1,0 +1,180 @@
+{
+  "id": "mat_magnetometry_vsm",
+  "name": "VSM magnetometry: M-T from 5 K to 300 K and M-H isotherms up to 9 T",
+  "plain_name": "Measure how a sample responds to a magnetic field",
+  "industry": "materials_and_nanotechnology",
+  "description": "Measure magnetization versus temperature (5-300 K) and versus field up to 9 T with a vibrating sample magnetometer, as in the Zintl-phase study on a PPMS DynaCool VSM.",
+  "keywords": [
+    "magnetometry",
+    "magnetization",
+    "VSM",
+    "vibrating sample magnetometer",
+    "M-H",
+    "M-T",
+    "susceptibility",
+    "hysteresis",
+    "magnetic property"
+  ],
+  "sources": [
+    {
+      "id": "src_zintl_inorgchem",
+      "citation": "Advancing Heteroanionicity in Zintl Phases: Crystal Structures, Thermoelectric and Magnetic Properties of Two Quaternary Semiconducting Arsenide Oxides, Eu8Zn2As6O and Eu14Zn5As12O",
+      "doi": "10.1021/acs.inorgchem.4c01580",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11523219/fullTextXML",
+      "accessed": "2026-10-31",
+      "doi_verified": true
+    },
+    {
+      "id": "src_bfo_frontiers",
+      "citation": "Rare-earth doped BiFe0.95Mn0.05O3 nanoparticles for potential hyperthermia applications",
+      "doi": "10.3389/fbioe.2022.965146",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9623096/fullTextXML",
+      "accessed": "2026-10-31",
+      "doi_verified": true
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "M-T 5-300 K",
+      "evidence_id": "ex2_B_003"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "M-H 0 to 90 kOe",
+      "evidence_id": "ex2_B_006"
+    },
+    {
+      "key": "magnetic_field",
+      "as_printed": "M-T field 1 kOe",
+      "evidence_id": "ex2_B_005"
+    },
+    {
+      "key": "sample",
+      "as_printed": "crushed crystals in a polyethylene capsule on a holder rod",
+      "evidence_id": "ex2_B_002"
+    },
+    {
+      "key": "temperature.sweep_rate",
+      "as_printed": "second procedure: 5 K/min M-T sweep",
+      "evidence_id": "ex2_B_014"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": 5000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 300000,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_B_003",
+        "ex2_B_004"
+      ],
+      "rationale": "The M-T measurement spanned 5-300 K (paper's range; user confirms)."
+    },
+    {
+      "key": "magnetic_field.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 9000,
+          "unit": "mT"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_B_006",
+        "ex2_B_010"
+      ],
+      "rationale": "M-H isotherms were swept to 90 kOe (9 T); both procedures reached 9 T."
+    },
+    {
+      "key": "module.vsm",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_B_001",
+        "ex2_B_010"
+      ],
+      "rationale": "Both procedures used the PPMS DynaCool VSM option."
+    },
+    {
+      "key": "temperature.sweep_rate.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 5000,
+          "unit": "mK_per_min"
+        }
+      },
+      "mandatory": false,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_B_014"
+      ],
+      "rationale": "Optional: the second procedure swept temperature at 5 K/min."
+    }
+  ],
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 5000,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "description": "Lowest measurement temperature",
+      "evidence_ids": [
+        "ex2_B_003"
+      ]
+    },
+    {
+      "name": "target_field",
+      "value": {
+        "value": 9000,
+        "unit": "mT"
+      },
+      "origin": "experimental_observation",
+      "description": "Highest field of the M-H isotherms",
+      "evidence_ids": [
+        "ex2_B_006"
+      ]
+    },
+    {
+      "name": "field_ramp_time_budget",
+      "value": null,
+      "origin": "user_entered",
+      "description": "Time you allow for ramping the magnet to the target field (optional check)"
+    }
+  ],
+  "coupled": [
+    {
+      "model": "magnet_ramp_time",
+      "mandatory": false,
+      "rationale": "Optional: reports whether the documented charging rate reaches the target field within your time budget."
+    }
+  ],
+  "missing_information": [
+    "sample mass and dimensions (not stated in either procedure)",
+    "field sweep rate"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed the requirements on 2026-10-31; users must re-confirm edited values.",
+  "reported_equipment": [
+    "PPMS DynaCool"
+  ]
+}

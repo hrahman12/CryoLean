@@ -5,26 +5,23 @@
   "family": "cryogen-free (Cryofree) optical cryostat for spectroscopy",
   "description": "Compact cryogen-free optical cryostat offered in two variants: BLV (bottom-loading, sample in vacuum, <3 K to 300 K, 28 mm f/1 clear view) and TLEX (top-loading, sample in static exchange gas, <4 K to 300 K, 15 mm f/1 clear view). Four radial Spectrosil WF windows plus one axial blank are fitted as standard; base temperature with four windows fitted is 6.5 K. Air- or water-cooled compressor. All nanoscience.oxinst.com product URLs redirect to qd-oxford.com.",
   "documents": [
-    {"id": "doc_ox_optistat_page", "url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html", "title": "Quantum Design Oxford - Optistat - Optical Cryostats for Spectroscopy", "accessed": "2026-10-31"},
-    {"id": "doc_ox_optistat_matrix", "url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf", "title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (OPTSS 0926 R5, 2026)", "accessed": "2026-10-31"},
-    {"id": "doc_ox_tlex_2018", "url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/4762_NS_OptistatDry%20TLEX_Brochure_2018_Web.pdf", "title": "OptistatDry TLEX - Sample-in-exchange-gas applications (Oxford Instruments Nanotechnology Tools Ltd, 2018, doc 4762)", "accessed": "2026-10-31"}
-  ],
-  "proposed_vocabulary": [
     {
-      "key": "cooling_power.at_5000mK",
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 5 K.",
-      "status": "proposed",
-      "rationale": "OptistatDry TLEX cooling power is stated only as '~ 0.2 W at 5 K'; no existing key covers 5 K."
+      "id": "doc_ox_optistat_page",
+      "url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+      "title": "Quantum Design Oxford - Optistat - Optical Cryostats for Spectroscopy",
+      "accessed": "2026-10-31"
     },
     {
-      "key": "cooldown_time.sample_exchange",
-      "shape": "max",
-      "unit": "s",
-      "description": "Documented time to cool a freshly loaded sample to base (or stated) temperature with the cryostat already cold (sample-exchange cooldown), as distinct from cooldown_time.max for the whole system from room temperature.",
-      "status": "proposed",
-      "rationale": "OptistatDry TLEX documents 'Sample change time 5 mins (45 mins to base T)'; same key is proposed in oxford_teslatronpt.json."
+      "id": "doc_ox_optistat_matrix",
+      "url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+      "title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (OPTSS 0926 R5, 2026)",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "doc_ox_tlex_2018",
+      "url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/4762_NS_OptistatDry%20TLEX_Brochure_2018_Web.pdf",
+      "title": "OptistatDry TLEX - Sample-in-exchange-gas applications (Oxford Instruments Nanotechnology Tools Ltd, 2018, doc 4762)",
+      "accessed": "2026-10-31"
     }
   ],
   "configurations": [
@@ -33,23 +30,244 @@
       "name": "OptistatDry BLV (bottom-loading, sample in vacuum), 4 Spectrosil WF windows, 12-pin DC wiring",
       "configuration_basis": "catalog standard configuration; capability values are manufacturer specifications. temperature.range lower bound uses the documented '<3 K' bound (window blanks fitted) recorded as 3000 mK; with four windows fitted the documented base is 6.5 K (temperature.base). electrical.dc_lines uses the lower of the two documented wiring variants (12 or 20).",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 3000, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0020", "ev_ox_0021"]},
-        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 6500, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0024"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 100, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0025"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0046"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 200000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0026", "ev_ox_0028"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 10800, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0041", "ev_ox_0040"]},
-        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 40000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0032"]},
-        {"key": "sample.height.max", "value": {"kind": "max", "q": {"value": 50000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0033"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0049", "ev_ox_0029"]},
-        {"key": "optical.window_count", "value": {"kind": "count", "n": 4}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0031"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 28000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0029"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0035"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "count", "n": 12}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0035", "ev_ox_0036"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0039"]},
-        {"key": "vibration.max", "value": {"kind": "max", "q": {"value": 10000, "unit": "nm"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0044"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0047"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0045"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 6500,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 300000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0024",
+            "ev_ox_0021"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 6500,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0024"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 100,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0025"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ox_0046"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 200000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0026",
+            "ev_ox_0028"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10800,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0041",
+            "ev_ox_0040"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 40000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0032"
+          ]
+        },
+        {
+          "key": "sample.height.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 50000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0033"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0049",
+            "ev_ox_0029"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "count",
+            "n": 4
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0031"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 28000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0029"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0035"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 12
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0035",
+            "ev_ox_0036"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ox_0039"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10000,
+              "unit": "nm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0044"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0047"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0045"
+          ]
+        }
       ]
     },
     {
@@ -57,32 +275,284 @@
       "name": "OptistatDry TLEX (top-loading, sample in exchange gas), 4 Spectrosil WF windows",
       "configuration_basis": "catalog standard configuration; capability values are manufacturer specifications. temperature.range lower bound uses the documented '<4 K' bound (window blanks fitted) recorded as 4000 mK; with four windows fitted the documented base is 6.5 K. cooling_power.at_4200mK is taken from the matrix 'Cold head cooling power' row whose column assignment is ambiguous, hence inferred_estimate; the TLEX-specific figure is '~ 0.2 W at 5 K' (proposed key). electrical.dc_lines uses the lower of two conflicting manufacturer figures (10 DC on the product-page chart vs 24 DC on the matrix ordering page).",
       "capabilities": [
-        {"key": "temperature.range", "value": {"kind": "range", "lo": {"value": 4000, "unit": "mK"}, "hi": {"value": 300000, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0022", "ev_ox_0023"]},
-        {"key": "temperature.base", "value": {"kind": "min", "q": {"value": 6500, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0024"]},
-        {"key": "temperature.stability", "value": {"kind": "max", "q": {"value": 100, "unit": "mK"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0025"]},
-        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0046"]},
-        {"key": "cooling_power.at_4200mK", "value": {"kind": "max", "q": {"value": 160000000, "unit": "nW"}}, "install": "installed", "evidence_status": "inferred_estimate", "evidence_ids": ["ev_ox_0028"]},
-        {"key": "cooling_power.at_5000mK", "value": {"kind": "max", "q": {"value": 200000000, "unit": "nW"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0027"]},
-        {"key": "cooldown_time.max", "value": {"kind": "max", "q": {"value": 21600, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0042", "ev_ox_0043"]},
-        {"key": "cooldown_time.sample_exchange", "value": {"kind": "max", "q": {"value": 2700, "unit": "s"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0050", "ev_ox_0043"]},
-        {"key": "sample.bore_diameter", "value": {"kind": "max", "q": {"value": 20000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0034"]},
-        {"key": "optical_access", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0049", "ev_ox_0030"]},
-        {"key": "optical.window_count", "value": {"kind": "count", "n": 4}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0031"]},
-        {"key": "optical.clear_aperture", "value": {"kind": "max", "q": {"value": 15000, "unit": "um"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0030"]},
-        {"key": "electrical.sample_connections", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0037", "ev_ox_0038"]},
-        {"key": "electrical.dc_lines", "value": {"kind": "count", "n": 10}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0037", "ev_ox_0038"]},
-        {"key": "electrical.coax_lines", "value": {"kind": "unknown"}, "install": "unknown", "evidence_status": "unknown", "evidence_ids": ["ev_ox_0039"]},
-        {"key": "vibration.max", "value": {"kind": "max", "q": {"value": 10000, "unit": "nm"}}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0044"]},
-        {"key": "vacuum.available", "value": {"kind": "flag", "b": false}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0048"]},
-        {"key": "cryogen.cryogen_free", "value": {"kind": "flag", "b": true}, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["ev_ox_0045"]}
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": 6500,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 300000,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0024",
+            "ev_ox_0023"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 6500,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0024"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 100,
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0025"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ox_0046"
+          ]
+        },
+        {
+          "key": "cooling_power.at_4200mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 160000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "inferred_estimate",
+          "evidence_ids": [
+            "ev_ox_0028"
+          ]
+        },
+        {
+          "key": "cooling_power.at_5000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 200000000,
+              "unit": "nW"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0027"
+          ]
+        },
+        {
+          "key": "cooldown_time.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 21600,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0042",
+            "ev_ox_0043"
+          ]
+        },
+        {
+          "key": "cooldown_time.sample_exchange",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 2700,
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0050",
+            "ev_ox_0043"
+          ]
+        },
+        {
+          "key": "sample.bore_diameter",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 20000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0034"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0049",
+            "ev_ox_0030"
+          ]
+        },
+        {
+          "key": "optical.window_count",
+          "value": {
+            "kind": "count",
+            "n": 4
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0031"
+          ]
+        },
+        {
+          "key": "optical.clear_aperture",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": 15000,
+              "unit": "um"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0030"
+          ]
+        },
+        {
+          "key": "electrical.sample_connections",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0037",
+            "ev_ox_0038"
+          ]
+        },
+        {
+          "key": "electrical.dc_lines",
+          "value": {
+            "kind": "count",
+            "n": 10
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0037",
+            "ev_ox_0038"
+          ]
+        },
+        {
+          "key": "electrical.coax_lines",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [
+            "ev_ox_0039"
+          ]
+        },
+        {
+          "key": "vibration.max",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": 10000,
+              "unit": "nm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0044"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": false
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0048"
+          ]
+        },
+        {
+          "key": "cryogen.cryogen_free",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_ox_0045"
+          ]
+        }
       ]
     }
   ],
   "unknowns": [
-    {"key": "magnetic_field.max", "note": "No magnet documented for OptistatDry (ev_ox_0046)"},
-    {"key": "electrical.coax_lines", "note": "'coax' does not appear in the OptistatDry sections; coax options are listed only for OptistatDN/CF (ev_ox_0039)"},
-    {"key": "cryocooler_type", "note": "Pulse-tube vs GM and cryocooler model not named; only 'Cryocooler and Compressor', air- or water-cooled (ev_ox_0051); no vocabulary key, note only"},
-    {"key": "numerical_aperture", "note": "Only f/1 is stated; NA not given; no vocabulary key, note only"}
+    {
+      "key": "magnetic_field.max",
+      "note": "No magnet documented for OptistatDry (ev_ox_0046)"
+    },
+    {
+      "key": "electrical.coax_lines",
+      "note": "'coax' does not appear in the OptistatDry sections; coax options are listed only for OptistatDN/CF (ev_ox_0039)"
+    },
+    {
+      "key": "cryocooler_type",
+      "note": "Pulse-tube vs GM and cryocooler model not named; only 'Cryocooler and Compressor', air- or water-cooled (ev_ox_0051); no vocabulary key, note only"
+    },
+    {
+      "key": "numerical_aperture",
+      "note": "Only f/1 is stated; NA not given; no vocabulary key, note only"
+    }
   ],
-  "notes": "Evidence file: data/evidence/oxford.json. Documented conflicts: TLEX DC wiring is '10 DC' on the product-page comparison chart (ev_ox_0037) but '24 DC wires (24 pin Fischer)' standard for X (TLEX) models on the matrix ordering page (ev_ox_0038); lower count used. BLV cooldown is '< 150 mins' on the product page (ev_ox_0040) and '2.5 hrs (200) 3.0 hrs (12P)' in the matrix (ev_ox_0041); the worse 3.0 h figure is used as the maximum. The matrix 'Cold head cooling power' row (0.2 W at 4.2 K at 60 Hz / 0.16 W at 50 Hz) spans both model columns in the extracted layout (ev_ox_0028)."
+  "notes": "Evidence file: data/evidence/oxford.json. Documented conflicts: TLEX DC wiring is '10 DC' on the product-page comparison chart (ev_ox_0037) but '24 DC wires (24 pin Fischer)' standard for X (TLEX) models on the matrix ordering page (ev_ox_0038); lower count used. BLV cooldown is '< 150 mins' on the product page (ev_ox_0040) and '2.5 hrs (200) 3.0 hrs (12P)' in the matrix (ev_ox_0041); the worse 3.0 h figure is used as the maximum. The matrix 'Cold head cooling power' row (0.2 W at 4.2 K at 60 Hz / 0.16 W at 50 Hz) spans both model columns in the extracted layout (ev_ox_0028).",
+  "modeling_notes": [
+    "2026-10-31 v2 import: lower-is-better bounds stored as 'min'; v2 research facts added (see data/evidence/v2_*.json).",
+    "Review fix DP-1: configurations with windows fitted use the documented 6.5 K (4 windows) lower bound; the <3 K / <4 K figures apply only with window blanks fitted (no optical access)."
+  ]
 }

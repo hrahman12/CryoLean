@@ -1,0 +1,173 @@
+{
+  "id": "chem_phase_transition_pom",
+  "name": "Polarized optical microscopy of a crystallization / phase transition from 203 K to 393 K",
+  "plain_name": "Observe a sample changing as its temperature changes",
+  "industry": "chemistry_and_pharmaceuticals",
+  "description": "Watch crystallization and melting of a synthetic wax under a polarized optical microscope while the temperature is scanned between 203 K and 393 K on a liquid-nitrogen-cooled hot-cold stage.",
+  "keywords": [
+    "phase transition",
+    "crystallization",
+    "melting",
+    "polarized microscopy",
+    "hot stage",
+    "cold stage",
+    "polymer",
+    "wax"
+  ],
+  "sources": [
+    {
+      "id": "src_wax_jpcb_2023",
+      "citation": "Design of Crystal Growth Dimensionality in Synthetic Wax: The Kinetics of Nonisothermal Crystallization Processes",
+      "doi": "10.1021/acs.jpcb.3c05158",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10578349/fullTextXML",
+      "accessed": "2026-10-31",
+      "doi_verified": true
+    },
+    {
+      "id": "src_pbs_polymers_2026",
+      "citation": "Investigating the Crystallization Kinetics and Mechanical Properties of Poly(Butylene Succinate): The Dual Role of Polyoxymethylene Blending and MWCNT Heterogeneous Nucleation",
+      "doi": "10.3390/polym18172125",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13568031/fullTextXML",
+      "accessed": "2026-10-31",
+      "doi_verified": true
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "203 K to 393 K",
+      "evidence_id": "ex2_A_002"
+    },
+    {
+      "key": "temperature.range",
+      "as_printed": "upper limit 393 K",
+      "evidence_id": "ex2_A_003"
+    },
+    {
+      "key": "equipment",
+      "as_printed": "Linkam THMS600 with liquid nitrogen pump",
+      "evidence_id": "ex2_A_001"
+    },
+    {
+      "key": "temperature.sweep_rate",
+      "as_printed": "DSC companion runs 1-30 K/min (POM ramp rates not stated)",
+      "evidence_id": "ex2_A_007"
+    },
+    {
+      "key": "temperature.sweep_rate",
+      "as_printed": "second procedure: heating 30 °C/min, cooling 1 °C/min",
+      "evidence_id": "ex2_A_016"
+    },
+    {
+      "key": "sample",
+      "as_printed": "second procedure: sample between two glass slides",
+      "evidence_id": "ex2_A_013"
+    }
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": 203000,
+          "unit": "mK"
+        },
+        "hi": {
+          "value": 393000,
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_A_002",
+        "ex2_A_003"
+      ],
+      "rationale": "The wax procedure scanned 203-393 K; this is the paper's range and the user should confirm it for their sample."
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_A_001",
+        "ex2_A_004"
+      ],
+      "rationale": "Observation through a polarized optical microscope needs optical access to the sample."
+    },
+    {
+      "key": "temperature.sweep_rate.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": 30000,
+          "unit": "mK_per_min"
+        }
+      },
+      "mandatory": false,
+      "origin": "experimental_observation",
+      "evidence_ids": [
+        "ex2_A_016"
+      ],
+      "rationale": "Optional: the second (PBS) procedure heated at 30 °C/min; the wax paper does not state POM ramp rates."
+    },
+    {
+      "keys": [
+        "vacuum.available",
+        "purge.gas"
+      ],
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "conditions": [
+        {
+          "kind": "param_at_most",
+          "name": "operating_temperature",
+          "q": {
+            "value": 273150,
+            "unit": "mK"
+          }
+        }
+      ],
+      "origin": "experimental_observation",
+      "rationale": "Condensation/frost: a cold specimen or window below the frost point collects ice unless the sample space is evacuated or purged with dry gas (pm_015, pm_016). Applies only when the operating temperature is at or below 0 °C.",
+      "evidence_ids": [
+        "pm_015",
+        "pm_016",
+        "pm_017"
+      ]
+    }
+  ],
+  "params": [
+    {
+      "name": "operating_temperature",
+      "value": {
+        "value": 203000,
+        "unit": "mK"
+      },
+      "origin": "experimental_observation",
+      "description": "Lowest temperature of the scan (203 K)",
+      "evidence_ids": [
+        "ex2_A_002"
+      ]
+    }
+  ],
+  "coupled": [],
+  "missing_information": [
+    "POM heating/cooling rates of the wax procedure",
+    "sample thickness / cover-slip format",
+    "purge gas actually used",
+    "objective working distance",
+    "controlled slow cooling (<= 10 K/min) is needed to observe the Cr1 phase (DSC observation, ex2_A_009); a stage's ability to hold a slow controlled rate is not modelled"
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed the requirements on 2026-10-31; users must re-confirm edited values.",
+  "reported_equipment": [
+    "THMS600"
+  ]
+}

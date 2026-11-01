@@ -1,74 +1,85 @@
 /-!
-# CryoLean trusted data model
+# CryoLean trusted data model (v2)
 
-This file defines the *universal* capability/requirement vocabulary that the
-Lean checker understands.  Nothing in this file mentions an industry, a
-manufacturer, or an experiment type: industries, equipment and experiments are
-*data* (JSON records) that are decoded into these types by `CryoLean.Json`.
+The *universal* vocabulary of the checker.  Nothing here mentions an industry,
+a manufacturer, an experiment type or a particular physical property: all of
+those are data (JSON records produced by the Python data layer from the SQLite
+evidence database) decoded into these types by `CryoLean.Json`.
 
-Design rules that the proofs in `CryoLean.Soundness` depend on:
+Design rules the proofs in `CryoLean.Soundness` rely on:
 
-* Every physical quantity is an integer in an explicitly named unit.  The data
-  layer normalises to canonical integer units (mK, mT, um, nW, uPa, kHz, s, ...).
-  The checker **never converts units**; it only compares two quantities whose
-  unit strings are identical.  A unit mismatch is reported as `unsupported`,
-  never as a pass.
-* A capability that is documented as unknown, is only an inferred estimate, or is
-  an optional accessory that is *not installed* in the configuration being
-  checked can never satisfy a requirement.
+* **Exact arithmetic.** Every physical number is an exact rational `num/den`
+  (`den > 0`, enforced by the decoder) in SI *coherent* units.  There is no
+  floating point anywhere in the trusted core.
+* **Dimensional analysis.** Every quantity carries a `Dim` vector of SI base
+  exponents (K, m, kg, s, A, mol, cd).  Comparisons, additions and
+  subtractions require equal dimensions; a mismatch is `unsupported`, never a
+  pass, and units are never silently converted.
+* **Provenance.** A capability that is UNKNOWN, an inferred estimate, without
+  provenance, or an optional accessory that is not installed can never
+  satisfy a requirement or feed a coupled calculation.
 -/
 
 namespace CryoLean
 
-/-- An integer value in an explicitly named unit (e.g. `⟨1800, "mK"⟩` = 1.8 K). -/
-structure Quantity where
-  value : Int
-  unit  : String
+/-- Exponents of the seven SI base dimensions. -/
+structure Dim where
+  K   : Int := 0
+  m   : Int := 0
+  kg  : Int := 0
+  s   : Int := 0
+  A   : Int := 0
+  mol : Int := 0
+  cd  : Int := 0
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- Provenance class of a fact.  Mirrors `evidence_status` in `data/evidence.json`. -/
+def Dim.one : Dim := {}
+
+def Dim.mul (a b : Dim) : Dim :=
+  ⟨a.K + b.K, a.m + b.m, a.kg + b.kg, a.s + b.s, a.A + b.A, a.mol + b.mol, a.cd + b.cd⟩
+
+/-- An exact rational `num / den`.  `den = 0` is rejected by the decoder. -/
+structure Q where
+  num : Int
+  den : Nat
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- A physical quantity: an exact rational value in SI coherent units with its dimension. -/
+structure Quantity where
+  val : Q
+  dim : Dim
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- Provenance class of a fact. -/
 inductive EvidenceStatus where
-  /-- Stated in manufacturer documentation (datasheet, manual, brochure). -/
   | manufacturerSpecification
-  /-- Measured/observed and reported in a publication or lab record. -/
   | experimentalObservation
-  /-- Entered by the user for their own instrument or experiment. -/
+  | referenceData
   | userEntered
-  /-- Estimated or inferred (by a person or an AI); never trusted by the checker. -/
   | inferredEstimate
-  /-- No provenance recorded. -/
   | unknown
 deriving Repr, DecidableEq, BEq, Inhabited
 
 /-- Whether a capability is physically present in *this* configuration. -/
 inductive InstallStatus where
-  /-- Documented as fitted to this configuration. -/
   | installed
-  /-- Exists as an option for the product family but is NOT fitted here. -/
   | optionalNotInstalled
-  /-- Documentation does not say whether it is fitted. -/
   | unknown
 deriving Repr, DecidableEq, BEq, Inhabited
 
 /-- The shape of a documented capability value. -/
 inductive CapValue where
-  /-- A documented operating interval `[lo, hi]` (e.g. a temperature range). -/
   | range (lo hi : Quantity)
-  /-- A documented maximum (e.g. maximum magnetic field). -/
   | max (q : Quantity)
-  /-- A documented minimum (e.g. base temperature, base pressure). -/
   | min (q : Quantity)
-  /-- A yes/no capability (e.g. optical access, a measurement module). -/
   | flag (b : Bool)
-  /-- A documented count (e.g. 24 DC wiring lines). -/
   | count (n : Nat)
-  /-- Explicitly recorded as UNKNOWN in the evidence database. -/
+  | enum (s : String)
+  | set (xs : List String)
   | unknown
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- One documented capability of a configuration.  `key` is a vocabulary string
-such as `"temperature.range"`, `"magnetic_field.max"`, `"module.vsm"`;
-the vocabulary is data (`data/capability_vocabulary.json`), not Lean code. -/
+/-- One documented capability of a configuration (`key` is a vocabulary string). -/
 structure Capability where
   key         : String
   value       : CapValue
@@ -77,7 +88,7 @@ structure Capability where
   evidenceIds : List String
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- An exact installed configuration of a piece of equipment. -/
+/-- An exact configuration of a piece of equipment. -/
 structure Configuration where
   id           : String
   equipmentId  : String
@@ -85,48 +96,110 @@ structure Configuration where
   capabilities : List Capability
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- How a requirement constrains the capability stored under the same key. -/
+/-- How a requirement constrains the capability value(s) stored under its key(s). -/
 inductive Constraint where
-  /-- The operating point `q` must lie inside the capability's `range`. -/
+  /-- the operating point `q` lies inside the documented `range` -/
   | pointWithin (q : Quantity)
-  /-- The whole interval `[lo, hi]` must lie inside the capability's `range`. -/
+  /-- the whole interval `[lo, hi]` lies inside the documented `range` -/
   | rangeWithin (lo hi : Quantity)
-  /-- The capability (`max`, or the upper end of a `range`) must be `≥ q`. -/
+  /-- the documented `max` (or upper end of a `range`) is at least `q` -/
   | atLeast (q : Quantity)
-  /-- The capability (`min`, or the lower end of a `range`) must be `≤ q`. -/
+  /-- the documented `min` (or lower end of a `range`) is at most `q` -/
   | atMost (q : Quantity)
-  /-- The flag capability must be installed and true. -/
-  | present
-  /-- The `count` capability must be `≥ n`. -/
+  /-- the documented flag equals `b` (`present` is `flagIs true`) -/
+  | flagIs (b : Bool)
+  /-- the documented count is at least `n` -/
   | countAtLeast (n : Nat)
+  /-- the documented count equals `n` (numeric equality) -/
+  | countEquals (n : Nat)
+  /-- the documented categorical value is one of `allowed` -/
+  | enumIn (allowed : List String)
+  /-- the documented set contains every element of `needed` -/
+  | setContains (needed : List String)
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- One requirement of an experiment profile. -/
+/-- Experiment parameters (operating conditions supplied by a profile or the user). -/
+structure Param where
+  name   : String
+  value  : Option Quantity
+  origin : EvidenceStatus
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- A condition that decides whether a conditional requirement applies. -/
+inductive Condition where
+  /-- the capability `key` is installed, trusted and its flag equals `b` -/
+  | capFlag (key : String) (b : Bool)
+  /-- the experiment parameter `name` is at most `q` -/
+  | paramAtMost (name : String) (q : Quantity)
+  /-- the experiment parameter `name` is at least `q` -/
+  | paramAtLeast (name : String) (q : Quantity)
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- One requirement.  `keys` is a disjunction: the requirement is met if the
+constraint holds for ANY listed capability (usually a single key). -/
 structure Requirement where
-  key         : String
+  keys        : List String
   constraint  : Constraint
   mandatory   : Bool
+  applicable  : Bool
+  conditions  : List Condition
   origin      : EvidenceStatus
   rationale   : String
   evidenceIds : List String
 deriving Repr, DecidableEq, BEq, Inhabited
 
-/-- An experiment profile.  `industry` is an opaque label: the checker never
-branches on it. `confirmed` records that the user reviewed the requirements. -/
+/-- Which number of a capability an expression reads. -/
+inductive Sel where
+  | lo | hi | max | min | count
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- Typed arithmetic expressions for coupled multiphysics constraints.
+No division: relations are written in multiplied-out form so evaluation is exact. -/
+inductive Expr where
+  | lit (q : Quantity)
+  | cap (key : String) (sel : Sel)
+  | param (name : String)
+  | add (a b : Expr)
+  | sub (a b : Expr)
+  | mul (a b : Expr)
+  | neg (a : Expr)
+deriving Repr, DecidableEq, BEq, Inhabited
+
+/-- A coupled constraint `lhs ≤ rhs`, valid only where every `validity` pair
+`(a, b)` satisfies `a ≤ b` (outside that region the model is `unsupported`). -/
+structure Coupled where
+  id          : String
+  name        : String
+  model       : String
+  lhs         : Expr
+  rhs         : Expr
+  validity    : List (Expr × Expr)
+  mandatory   : Bool
+  applicable  : Bool
+  conditions  : List Condition
+  origin      : EvidenceStatus
+  rationale   : String
+  evidenceIds : List String
+deriving Repr, Inhabited
+
+/-- An experiment profile.  `industry` is an opaque label the checker never reads. -/
 structure Experiment where
   id           : String
   name         : String
   industry     : String
+  params       : List Param
   requirements : List Requirement
+  coupled      : List Coupled
   confirmed    : Bool
-deriving Repr, DecidableEq, BEq, Inhabited
+deriving Repr, Inhabited
 
-/-- Outcome of checking a single requirement. -/
+/-- Outcome of one check. -/
 inductive Outcome where
   | pass
   | fail
   | unknown
   | unsupported
+  | notApplicable
 deriving Repr, DecidableEq, Inhabited
 
 /-- Overall verdict. -/

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-31T23:03:40.877280+00:00",
-  "catalog_version": "5826d524d3493642",
-  "disclaimer": "Coverage reflects only what has been researched and validated in this repository. A universal architecture does not mean every experiment or industry has been researched.",
+  "generated_at": "2026-11-01T01:02:22.932037+00:00",
+  "catalog_version": "b69dd6affd4ff447",
+  "disclaimer": "Coverage reflects only what has been researched and validated here. The architecture accepts any industry, but that does not mean every experiment or industry has been researched or verified.",
   "industries": {
-    "known": 20,
+    "registered_or_known": 20,
     "researched": 4,
     "researched_ids": [
       "biology_and_biotechnology",
@@ -37,7 +37,7 @@
         "id": "biology_and_biotechnology",
         "name": "Biology and biotechnology",
         "status": "researched",
-        "source": "curated",
+        "source": "seed",
         "experiment_ids": [
           "bio_cryo_fluorescence_vitrified",
           "bio_cryosection_frozen_tissue"
@@ -47,9 +47,10 @@
         "id": "chemistry_and_pharmaceuticals",
         "name": "Chemistry and pharmaceuticals",
         "status": "researched",
-        "source": "curated",
+        "source": "seed",
         "experiment_ids": [
           "chem_low_temperature_raman",
+          "chem_phase_transition_pom",
           "chem_temperature_dependent_photoluminescence"
         ]
       },
@@ -106,9 +107,10 @@
         "id": "materials_and_nanotechnology",
         "name": "Materials and nanotechnology",
         "status": "researched",
-        "source": "curated",
+        "source": "seed",
         "experiment_ids": [
           "mat_electrical_resistance_low_temperature",
+          "mat_magnetometry_vsm",
           "mat_magnetoresistance_10T"
         ]
       },
@@ -144,9 +146,10 @@
         "id": "quantum_computing_and_sensing",
         "name": "Quantum computing and sensing",
         "status": "researched",
-        "source": "curated",
+        "source": "seed",
         "experiment_ids": [
           "quantum_mk_vector_field_transport",
+          "quantum_mxc_wiring_heat_budget",
           "quantum_transmon_characterization"
         ]
       },
@@ -167,978 +170,1739 @@
     ]
   },
   "experiment_profiles": {
-    "verified": [
+    "available": 11,
+    "validated": [
       {
         "id": "bio_cryo_fluorescence_vitrified",
         "industry": "biology_and_biotechnology",
-        "mandatory_requirements": 2,
         "missing_information": [
           "EM grid diameter not stated (3 mm never given explicitly in either source); grids described only by mesh and film type",
           "cryo-stage window material and clear aperture not stated",
           "sample thermal load tolerated at 77 K stated only as illumination power densities (16–254 W/cm2 depending on grid film), not as a cooling-power figure",
           "humidity requirement during imaging/transfer not stated (only plunge-freezer chamber humidity is given)"
-        ]
+        ],
+        "review": null
       },
       {
         "id": "bio_cryosection_frozen_tissue",
         "industry": "biology_and_biotechnology",
-        "mandatory_requirements": 3,
         "missing_information": [
           "sample dimensions not stated (tissue block / OCT mold size not given in either source)",
           "blade (knife) temperature not stated",
           "cryostat chamber temperature range specification of the instrument not stated (only the set points used)"
-        ]
+        ],
+        "review": null
       },
       {
         "id": "chem_low_temperature_raman",
         "industry": "chemistry_and_pharmaceuticals",
-        "mandatory_requirements": 3,
         "missing_information": [
           "stage window material and thickness not stated",
           "objective used by Park et al. not stated",
           "purge gas / condensation control not stated",
           "THMS600 specified temperature range not stated in either paper (only ranges used)"
-        ]
+        ],
+        "review": null
+      },
+      {
+        "id": "chem_phase_transition_pom",
+        "industry": "chemistry_and_pharmaceuticals",
+        "missing_information": [
+          "POM heating/cooling rates of the wax procedure",
+          "sample thickness / cover-slip format",
+          "purge gas actually used",
+          "objective working distance",
+          "controlled slow cooling (<= 10 K/min) is needed to observe the Cr1 phase (DSC observation, ex2_A_009); a stage's ability to hold a slow controlled rate is not modelled"
+        ],
+        "review": null
       },
       {
         "id": "chem_temperature_dependent_photoluminescence",
         "industry": "chemistry_and_pharmaceuticals",
-        "mandatory_requirements": 5,
         "missing_information": [
           "cryostat make/model not stated by Swidinsky et al. (cites prior design); Shyam et al. name only 'Lakeshore closed-cycle cryostat'",
           "number of optical windows not stated",
           "lateral flake size not stated by Shyam et al.",
           "thermal load / cooling power not stated"
-        ]
+        ],
+        "review": null
       },
       {
         "id": "mat_electrical_resistance_low_temperature",
         "industry": "materials_and_nanotechnology",
-        "mandatory_requirements": 5,
         "missing_information": [
           "measurement option (ETO vs Resistivity) not named by Nowakowska et al.",
           "contact material and number of contacts beyond 'four-probe' not stated",
           "measured sample dimensions not stated separately from the maximum crystal size",
           "magnetic field (up to 14 T) was used in both papers but is not a requirement for zero-field resistance; recorded in reported_conditions only"
-        ]
+        ],
+        "review": null
+      },
+      {
+        "id": "mat_magnetometry_vsm",
+        "industry": "materials_and_nanotechnology",
+        "missing_information": [
+          "sample mass and dimensions (not stated in either procedure)",
+          "field sweep rate"
+        ],
+        "review": null
       },
       {
         "id": "mat_magnetoresistance_10T",
         "industry": "materials_and_nanotechnology",
-        "mandatory_requirements": 6,
         "missing_information": [
           "measurement option (ETO vs Resistivity) not named by Nowakowska et al.",
           "contact material and number of contacts beyond 'four-probe' not stated",
           "field orientation relative to current stated only as 'transverse' (Nowakowska) / 'along [120]' (Rao)"
-        ]
+        ],
+        "review": null
       },
       {
         "id": "quantum_mk_vector_field_transport",
         "industry": "quantum_computing_and_sensing",
-        "mandatory_requirements": 3,
         "missing_information": [
           "number of DC and coaxial lines not stated in either paper",
           "nanowire length/diameter not stated by van Zanten et al.",
           "minimum field or temperature required for the topological regime not stated as a general requirement",
           "thermal load / cooling power not stated"
-        ]
+        ],
+        "review": null
+      },
+      {
+        "id": "quantum_mxc_wiring_heat_budget",
+        "industry": "quantum_computing_and_sensing",
+        "missing_information": [
+          "active drive-line dissipation at operating power (paper estimates it separately)",
+          "TWPA pump-line passive load",
+          "uncertainties of the per-line loads are not propagated"
+        ],
+        "review": null
       },
       {
         "id": "quantum_transmon_characterization",
         "industry": "quantum_computing_and_sensing",
-        "mandatory_requirements": 5,
         "missing_information": [
           "number of coaxial lines not stated in either paper",
           "per-stage attenuation values and total attenuation not stated in the main texts",
           "final chip size not stated by Tuokkola et al. (only 25 mm × 30 mm fabrication coupons)",
           "dilution refrigerator make/model not stated by Place et al.; Tuokkola et al. main text says 'Bluefors' (model XLD400sl appears only in the arXiv v3 table)",
           "thermal load / cooling power at base not stated"
-        ]
+        ],
+        "review": null
       }
     ],
-    "unverified": []
+    "not_validated": []
   },
   "equipment_families": [
     {
       "equipment_id": "bluefors_ld",
       "manufacturer": "Bluefors",
       "model": "LD System (LD250 / LD400; renamed LD350 / LD450 in March 2026)",
+      "family": "cryogen-free dilution refrigerator measurement system",
       "configurations": [
         "bluefors_ld250_manual_v2",
         "bluefors_ld400_hdw",
         "bluefors_ld450_current"
-      ],
-      "documents": 17,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "lakeshore_crx",
       "manufacturer": "Lake Shore Cryotronics",
       "model": "CRX series cryogen-free cryogenic probe stations (CRX-VF, CRX-4K)",
+      "family": "closed-cycle-refrigerator (CCR) cryogenic probe station",
       "configurations": [
         "lakeshore_crx_vf",
         "lakeshore_crx_4k"
-      ],
-      "documents": 5,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "lakeshore_janis_ccs",
       "manufacturer": "Lake Shore Cryotronics (Environment by Janis)",
       "model": "CCS-series closed-cycle sample-in-vacuum cryostats (CCS-100, CCS-300S, CCS-400, CCS-400H)",
+      "family": "cryogen-free closed-cycle-refrigerator optical cryostat, sample in vacuum, bottom-loading",
       "configurations": [
         "lakeshore_ccs_100",
         "lakeshore_ccs_300s",
         "lakeshore_ccs_400",
         "lakeshore_ccs_400h"
-      ],
-      "documents": 7,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "leica_cm1950",
       "manufacturer": "Leica Biosystems",
       "model": "CM1950",
+      "family": "clinical cryostat for frozen sectioning (encapsulated rotary microtome in a refrigerated cryochamber)",
       "configurations": [
         "leica_cm1950_genA_standard",
         "leica_cm1950_genA_vacuum_motor_objcool",
         "leica_cm1950_dualecotec_standard"
-      ],
-      "documents": 8,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "linkam_thms600",
       "manufacturer": "Linkam Scientific Instruments",
       "model": "THMS600",
+      "family": "temperature-controlled microscope heating/freezing stage (liquid-nitrogen cooled)",
       "configurations": [
         "linkam_thms600_lnp96_t96",
         "linkam_thms600_heating_only",
         "linkam_thmsel600_lnp96"
-      ],
-      "documents": 12,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "oxford_optistatdry",
       "manufacturer": "Oxford Instruments NanoScience (Oxford NanoScience Ltd, trading as Quantum Design Oxford)",
       "model": "OptistatDry",
+      "family": "cryogen-free (Cryofree) optical cryostat for spectroscopy",
       "configurations": [
         "oxford_optistatdry_blv",
         "oxford_optistatdry_tlex"
-      ],
-      "documents": 3,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "oxford_teslatronpt",
       "manufacturer": "Oxford Instruments NanoScience (Oxford NanoScience Ltd, trading as Quantum Design Oxford)",
       "model": "TeslatronPT",
+      "family": "cryogen-free (Cryofree) superconducting magnet system with variable temperature insert",
       "configurations": [
         "oxford_teslatronpt_8T",
         "oxford_teslatronpt_12T",
         "oxford_teslatronpt_14T",
         "oxford_teslatronpt_6_1_1T_vector"
-      ],
-      "documents": 4,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "qd_ppms_classic",
       "manufacturer": "Quantum Design",
       "model": "PPMS (classic, liquid-helium)",
+      "family": "liquid-helium physical property measurement platform",
       "configurations": [
         "qd_ppms_classic_14T",
         "qd_ppms_classic_16T"
-      ],
-      "documents": 3,
-      "validation_ok": true
+      ]
     },
     {
       "equipment_id": "qd_ppms_dynacool",
       "manufacturer": "Quantum Design",
       "model": "PPMS DynaCool",
+      "family": "cryogen-free physical property measurement platform",
       "configurations": [
         "qd_dynacool_9T_eto_res",
         "qd_dynacool_14T_eto_vsm_hc",
         "qd_dynacool_12T_vsm"
-      ],
-      "documents": 7,
-      "validation_ok": true
+      ]
     }
   ],
   "manufacturer_evidence": {
-    "records": 394,
+    "records": 667,
     "by_status": {
-      "manufacturer_specification": 268,
+      "manufacturer_specification": 361,
       "inferred_estimate": 13,
-      "unknown": 45,
-      "experimental_observation": 68
-    },
-    "by_host": {
-      "bluefors.com": 46,
-      "infrabooking.aalto.fi": 19,
-      "www.ebi.ac.uk": 38,
-      "www.protocols.io": 3,
-      "arxiv.org": 27,
-      "www.lakeshore.com": 67,
-      "www.leicabiosystems.com": 47,
-      "www.triolab.no": 1,
-      "isnmedical.com": 3,
-      "www.linkam.co.uk": 21,
-      "drive.usercontent.google.com": 5,
-      "phavi.umcs.pl": 1,
-      "www.mccrone.com": 4,
-      "qd-oxford.com": 15,
-      "www.qd-oxford.com": 35,
-      "andor.oxinst.com": 1,
-      "qdusa.com": 58,
-      "www.nanophys.kth.se": 3
+      "unknown": 74,
+      "experimental_observation": 141,
+      "reference_data": 60,
+      "textbook_model": 18
     }
+  },
+  "physical_properties": {
+    "total": 40,
+    "by_status": {
+      "implemented_with_data": 25,
+      "representable_no_data": 14,
+      "representable_only": 1
+    },
+    "properties": [
+      {
+        "id": 1,
+        "category": "A. Thermal",
+        "name": "Operating temperature range",
+        "status": "implemented_with_data",
+        "keys": [
+          "temperature.range",
+          "temperature.base",
+          "temperature.chamber.range",
+          "temperature.specimen_head.range"
+        ],
+        "keys_with_documented_values": [
+          "temperature.base",
+          "temperature.chamber.range",
+          "temperature.range",
+          "temperature.specimen_head.range"
+        ],
+        "used_by_experiments": [
+          "temperature.base",
+          "temperature.chamber.range",
+          "temperature.range",
+          "temperature.specimen_head.range"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 2,
+        "category": "A. Thermal",
+        "name": "Cooling power at the required temperature",
+        "status": "implemented_with_data",
+        "keys": [
+          "cooling_power.at_20mK",
+          "cooling_power.at_100mK",
+          "cooling_power.at_4200mK",
+          "cooling_power.at_5000mK",
+          "cooling_power.at_10000mK",
+          "cooling_power.at_20000mK"
+        ],
+        "keys_with_documented_values": [
+          "cooling_power.at_10000mK",
+          "cooling_power.at_100mK",
+          "cooling_power.at_20000mK",
+          "cooling_power.at_20mK",
+          "cooling_power.at_4200mK",
+          "cooling_power.at_5000mK"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [
+          "joule_heating_vs_cooling_power",
+          "mxc_wiring_heat_budget"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 3,
+        "category": "A. Thermal",
+        "name": "Temperature stability",
+        "status": "implemented_with_data",
+        "keys": [
+          "temperature.stability",
+          "temperature.stability.relative"
+        ],
+        "keys_with_documented_values": [
+          "temperature.stability",
+          "temperature.stability.relative"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 4,
+        "category": "A. Thermal",
+        "name": "Cooling rate",
+        "status": "implemented_with_data",
+        "keys": [
+          "temperature.cooling_rate.max"
+        ],
+        "keys_with_documented_values": [
+          "temperature.cooling_rate.max"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 5,
+        "category": "A. Thermal",
+        "name": "Heating rate",
+        "status": "implemented_with_data",
+        "keys": [
+          "temperature.sweep_rate.max"
+        ],
+        "keys_with_documented_values": [
+          "temperature.sweep_rate.max"
+        ],
+        "used_by_experiments": [
+          "temperature.sweep_rate.max"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 6,
+        "category": "A. Thermal",
+        "name": "Thermal gradients across the sample",
+        "status": "representable_no_data",
+        "keys": [
+          "temperature.gradient"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 7,
+        "category": "A. Thermal",
+        "name": "Thermal conductivity",
+        "status": "representable_only",
+        "keys": [],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": "material property; no validated conduction model yet"
+      },
+      {
+        "id": 8,
+        "category": "A. Thermal",
+        "name": "Thermal contact resistance",
+        "status": "representable_no_data",
+        "keys": [
+          "thermal.contact_resistance"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 9,
+        "category": "A. Thermal",
+        "name": "Thermal expansion and contraction",
+        "status": "representable_no_data",
+        "keys": [],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [
+          "differential_thermal_contraction"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 10,
+        "category": "A. Thermal",
+        "name": "Thermal cycling tolerance",
+        "status": "representable_no_data",
+        "keys": [
+          "thermal_cycles.max"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 11,
+        "category": "B. Mechanical",
+        "name": "Sample dimensions",
+        "status": "implemented_with_data",
+        "keys": [
+          "sample.diameter.max",
+          "sample.length.max",
+          "sample.width.max",
+          "sample.height.max",
+          "sample.vsm.diameter.max",
+          "sample.vsm.length.max",
+          "sample.heat_capacity.width.max",
+          "sample.heat_capacity.length.max"
+        ],
+        "keys_with_documented_values": [
+          "sample.diameter.max",
+          "sample.heat_capacity.length.max",
+          "sample.heat_capacity.width.max",
+          "sample.height.max",
+          "sample.length.max",
+          "sample.vsm.diameter.max",
+          "sample.vsm.length.max",
+          "sample.width.max"
+        ],
+        "used_by_experiments": [
+          "sample.diameter.max",
+          "sample.height.max",
+          "sample.length.max",
+          "sample.width.max"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 12,
+        "category": "B. Mechanical",
+        "name": "Sample mass",
+        "status": "representable_no_data",
+        "keys": [
+          "sample.mass.max"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 13,
+        "category": "B. Mechanical",
+        "name": "Sample orientation",
+        "status": "implemented_with_data",
+        "keys": [
+          "sample.orientation",
+          "specimen.orientation.max"
+        ],
+        "keys_with_documented_values": [
+          "specimen.orientation.max"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 14,
+        "category": "B. Mechanical",
+        "name": "Mechanical clearance",
+        "status": "implemented_with_data",
+        "keys": [
+          "sample.bore_diameter",
+          "experimental_space.height",
+          "plate.diameter"
+        ],
+        "keys_with_documented_values": [
+          "sample.bore_diameter"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 15,
+        "category": "B. Mechanical",
+        "name": "Vibration amplitude and frequency",
+        "status": "implemented_with_data",
+        "keys": [
+          "vibration.max",
+          "vibration.frequency"
+        ],
+        "keys_with_documented_values": [
+          "vibration.max"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 16,
+        "category": "B. Mechanical",
+        "name": "Mechanical resonance",
+        "status": "representable_no_data",
+        "keys": [
+          "mechanical.resonance.min_frequency"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 17,
+        "category": "B. Mechanical",
+        "name": "Mechanical stress limits",
+        "status": "representable_no_data",
+        "keys": [
+          "mechanical.stress.max"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [
+          "thermal_stress"
+        ],
+        "note": ""
+      },
+      {
+        "id": 18,
+        "category": "B. Mechanical",
+        "name": "Positioning precision",
+        "status": "representable_no_data",
+        "keys": [
+          "positioning.resolution"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 19,
+        "category": "C. Electromagnetic",
+        "name": "Magnetic field strength",
+        "status": "implemented_with_data",
+        "keys": [
+          "magnetic_field.max"
+        ],
+        "keys_with_documented_values": [
+          "magnetic_field.max"
+        ],
+        "used_by_experiments": [
+          "magnetic_field.max"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [
+          "field_temperature_envelope"
+        ],
+        "note": ""
+      },
+      {
+        "id": 20,
+        "category": "C. Electromagnetic",
+        "name": "Magnetic field uniformity",
+        "status": "representable_no_data",
+        "keys": [
+          "magnetic_field.uniformity"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 21,
+        "category": "C. Electromagnetic",
+        "name": "Magnetic field direction",
+        "status": "implemented_with_data",
+        "keys": [
+          "magnetic_field.direction",
+          "magnetic_field.vector"
+        ],
+        "keys_with_documented_values": [
+          "magnetic_field.vector"
+        ],
+        "used_by_experiments": [
+          "magnetic_field.vector"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 22,
+        "category": "C. Electromagnetic",
+        "name": "Magnetic field ramp rate",
+        "status": "implemented_with_data",
+        "keys": [
+          "magnetic_field.ramp_rate.max"
+        ],
+        "keys_with_documented_values": [
+          "magnetic_field.ramp_rate.max"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [
+          "magnet_ramp_time"
+        ],
+        "unvalidated_models": [
+          "temperature_stability_during_field_sweep"
+        ],
+        "note": ""
+      },
+      {
+        "id": 23,
+        "category": "C. Electromagnetic",
+        "name": "Electrical current limits",
+        "status": "implemented_with_data",
+        "keys": [
+          "electrical.current.range",
+          "electrical.current.max"
+        ],
+        "keys_with_documented_values": [
+          "electrical.current.range"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [
+          "joule_heating_vs_cooling_power"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 24,
+        "category": "C. Electromagnetic",
+        "name": "Electrical noise",
+        "status": "representable_no_data",
+        "keys": [
+          "electrical.noise_rms"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": "noise densities (V/sqrt(Hz)) need fractional exponents and are not representable; RMS noise over a stated bandwidth is"
+      },
+      {
+        "id": 25,
+        "category": "C. Electromagnetic",
+        "name": "Electromagnetic interference",
+        "status": "implemented_with_data",
+        "keys": [
+          "emi.shielding",
+          "module.magnetic_shielding"
+        ],
+        "keys_with_documented_values": [
+          "module.magnetic_shielding"
+        ],
+        "used_by_experiments": [
+          "module.magnetic_shielding"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 26,
+        "category": "C. Electromagnetic",
+        "name": "RF/microwave frequency and power compatibility",
+        "status": "implemented_with_data",
+        "keys": [
+          "electrical.coax_bandwidth.max",
+          "rf.power.max"
+        ],
+        "keys_with_documented_values": [
+          "electrical.coax_bandwidth.max"
+        ],
+        "used_by_experiments": [
+          "electrical.coax_bandwidth.max"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 27,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Vacuum pressure",
+        "status": "implemented_with_data",
+        "keys": [
+          "pressure.base",
+          "vacuum.available"
+        ],
+        "keys_with_documented_values": [
+          "pressure.base",
+          "vacuum.available"
+        ],
+        "used_by_experiments": [
+          "pressure.base",
+          "vacuum.available"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [
+          "vacuum_at_temperature"
+        ],
+        "note": ""
+      },
+      {
+        "id": 28,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Leak rate",
+        "status": "representable_no_data",
+        "keys": [
+          "vacuum.leak_rate"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 29,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Gas compatibility",
+        "status": "representable_no_data",
+        "keys": [
+          "gas.compatible"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 30,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Cryogen compatibility",
+        "status": "implemented_with_data",
+        "keys": [
+          "cryogen.cryogen_free",
+          "cryogen.liquid_helium_required",
+          "cryogen.liquid_nitrogen_required",
+          "cryogen.type"
+        ],
+        "keys_with_documented_values": [
+          "cryogen.cryogen_free",
+          "cryogen.liquid_helium_required",
+          "cryogen.liquid_nitrogen_required"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 31,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Gas flow rate",
+        "status": "representable_no_data",
+        "keys": [
+          "gas.flow_rate.max"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 32,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Pressure stability",
+        "status": "representable_no_data",
+        "keys": [
+          "pressure.stability"
+        ],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 33,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Condensation and frost constraints",
+        "status": "implemented_with_data",
+        "keys": [
+          "vacuum.available",
+          "purge.gas"
+        ],
+        "keys_with_documented_values": [
+          "purge.gas",
+          "vacuum.available"
+        ],
+        "used_by_experiments": [
+          "purge.gas",
+          "vacuum.available"
+        ],
+        "validated_models": [
+          "condensation_frost"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 34,
+        "category": "D. Vacuum, fluids and cryogens",
+        "name": "Cryogen consumption and availability",
+        "status": "implemented_with_data",
+        "keys": [
+          "cryogen.dewar_volume",
+          "cryogen.consumption_rate",
+          "module.ln2_pump"
+        ],
+        "keys_with_documented_values": [
+          "module.ln2_pump"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [],
+        "unvalidated_models": [
+          "cryogen_consumption"
+        ],
+        "note": ""
+      },
+      {
+        "id": 35,
+        "category": "E. Experimental integration",
+        "name": "Optical wavelength transmission",
+        "status": "implemented_with_data",
+        "keys": [
+          "optical.transmission_range",
+          "optical_access"
+        ],
+        "keys_with_documented_values": [
+          "optical_access"
+        ],
+        "used_by_experiments": [
+          "optical_access"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 36,
+        "category": "E. Experimental integration",
+        "name": "Optical geometry, working distance and numerical aperture",
+        "status": "implemented_with_data",
+        "keys": [
+          "optical.objective_working_distance.min",
+          "optical.clear_aperture",
+          "optical.f_number",
+          "optical.numerical_aperture",
+          "optical.window_count"
+        ],
+        "keys_with_documented_values": [
+          "optical.clear_aperture",
+          "optical.objective_working_distance.min",
+          "optical.window_count"
+        ],
+        "used_by_experiments": [
+          "optical.objective_working_distance.min"
+        ],
+        "validated_models": [
+          "objective_working_distance_clearance",
+          "optical_na_vs_f_number"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 37,
+        "category": "E. Experimental integration",
+        "name": "Electrical feedthrough capacity",
+        "status": "implemented_with_data",
+        "keys": [
+          "electrical.dc_lines",
+          "electrical.coax_lines",
+          "electrical.probe_arms",
+          "electrical.channels",
+          "electrical.sample_connections"
+        ],
+        "keys_with_documented_values": [
+          "electrical.channels",
+          "electrical.coax_lines",
+          "electrical.dc_lines",
+          "electrical.probe_arms",
+          "electrical.sample_connections"
+        ],
+        "used_by_experiments": [
+          "electrical.channels",
+          "electrical.coax_lines",
+          "electrical.dc_lines"
+        ],
+        "validated_models": [
+          "mxc_wiring_heat_budget"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 38,
+        "category": "E. Experimental integration",
+        "name": "Measurement bandwidth",
+        "status": "implemented_with_data",
+        "keys": [
+          "measurement.bandwidth",
+          "electrical.coax_bandwidth.max"
+        ],
+        "keys_with_documented_values": [
+          "electrical.coax_bandwidth.max"
+        ],
+        "used_by_experiments": [
+          "electrical.coax_bandwidth.max"
+        ],
+        "validated_models": [],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 39,
+        "category": "E. Experimental integration",
+        "name": "Operating duration",
+        "status": "implemented_with_data",
+        "keys": [
+          "operating_duration.max",
+          "cooldown_time.max",
+          "cooldown_time.sample_exchange"
+        ],
+        "keys_with_documented_values": [
+          "cooldown_time.max",
+          "cooldown_time.sample_exchange"
+        ],
+        "used_by_experiments": [],
+        "validated_models": [
+          "cooldown_time_budget"
+        ],
+        "unvalidated_models": [],
+        "note": ""
+      },
+      {
+        "id": 40,
+        "category": "E. Experimental integration",
+        "name": "Simultaneous operating-condition compatibility",
+        "status": "implemented_with_data",
+        "keys": [],
+        "keys_with_documented_values": [],
+        "used_by_experiments": [],
+        "validated_models": [
+          "joule_heating_vs_cooling_power",
+          "mxc_wiring_heat_budget"
+        ],
+        "unvalidated_models": [
+          "field_temperature_envelope"
+        ],
+        "note": "all requirements of a profile are checked conjunctively on ONE exact configuration; documented envelopes are only partly available"
+      }
+    ]
+  },
+  "coupled_constraints": {
+    "models": [
+      {
+        "id": "joule_heating_vs_cooling_power",
+        "name": "Joule heating of the measurement vs cooling power at the operating temperature",
+        "status": "validated",
+        "coupling": [
+          "thermal",
+          "electrical"
+        ]
+      },
+      {
+        "id": "mxc_wiring_heat_budget",
+        "name": "Mixing-chamber wiring heat load (with design margin) vs cooling power",
+        "status": "validated",
+        "coupling": [
+          "thermal",
+          "electrical"
+        ]
+      },
+      {
+        "id": "magnet_ramp_time",
+        "name": "Target field reachable within the ramp-time budget at the documented maximum charging rate",
+        "status": "validated",
+        "coupling": [
+          "magnetic",
+          "time"
+        ]
+      },
+      {
+        "id": "cooldown_time_budget",
+        "name": "Cooldown time plus run duration fits in the available time",
+        "status": "validated",
+        "coupling": [
+          "time",
+          "thermal"
+        ]
+      },
+      {
+        "id": "differential_thermal_contraction",
+        "name": "Differential thermal contraction between sample and holder stays within the allowed mismatch",
+        "status": "validated",
+        "coupling": [
+          "thermal",
+          "mechanical"
+        ]
+      },
+      {
+        "id": "objective_working_distance_clearance",
+        "name": "Objective working distance covers the stage's required working distance plus spacers",
+        "status": "validated",
+        "coupling": [
+          "mechanical",
+          "optical"
+        ]
+      },
+      {
+        "id": "optical_na_vs_f_number",
+        "name": "Objective numerical aperture fits through the cryostat's optical cone (f-number)",
+        "status": "validated",
+        "coupling": [
+          "mechanical",
+          "optical"
+        ]
+      },
+      {
+        "id": "field_temperature_envelope",
+        "name": "Documented field-versus-temperature operating envelope",
+        "status": "representable_only",
+        "coupling": [
+          "thermal",
+          "magnetic"
+        ]
+      },
+      {
+        "id": "temperature_stability_during_field_sweep",
+        "name": "Temperature stability while the field is ramped",
+        "status": "unsupported",
+        "coupling": [
+          "thermal",
+          "magnetic"
+        ]
+      },
+      {
+        "id": "cryogen_consumption",
+        "name": "Cryogen supply covers consumption over the run",
+        "status": "representable_only",
+        "coupling": [
+          "time",
+          "cryogens"
+        ]
+      },
+      {
+        "id": "thermal_stress",
+        "name": "Thermal stress from differential contraction stays below the allowed stress",
+        "status": "representable_only",
+        "coupling": [
+          "thermal",
+          "mechanical"
+        ]
+      },
+      {
+        "id": "vacuum_at_temperature",
+        "name": "Required pressure at the intended temperature (cryopumping)",
+        "status": "representable_only",
+        "coupling": [
+          "vacuum",
+          "thermal"
+        ]
+      },
+      {
+        "id": "condensation_frost",
+        "name": "Frost/condensation: vacuum or dry-gas purge below 0 °C",
+        "status": "validated",
+        "coupling": [
+          "vacuum",
+          "thermal"
+        ]
+      }
+    ]
   },
   "missing_scientific_data": {
     "unknown_capabilities": [
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "temperature.stability",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "pressure.base",
-        "note": "UNKNOWN in documentation"
+        "key": "pressure.base"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "sample.bore_diameter",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.bore_diameter"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "sample.height.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "module.magnetic_shielding",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.vector"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "temperature.stability",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "pressure.base",
-        "note": "UNKNOWN in documentation"
+        "key": "pressure.base"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "sample.bore_diameter",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.bore_diameter"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "sample.height.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "module.magnetic_shielding",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.vector"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "temperature.range",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.range"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "temperature.stability",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "pressure.base",
-        "note": "UNKNOWN in documentation"
+        "key": "pressure.base"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "sample.bore_diameter",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.bore_diameter"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "sample.height.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "module.magnetic_shielding",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.vector"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "lakeshore_crx_vf",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_crx_vf",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_crx_4k",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_crx_4k",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "optical.window_count",
-        "note": "UNKNOWN in documentation"
+        "key": "optical.window_count"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "optical.window_count",
-        "note": "UNKNOWN in documentation"
+        "key": "optical.window_count"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "optical.clear_aperture",
-        "note": "UNKNOWN in documentation"
+        "key": "optical.clear_aperture"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "optical.window_count",
-        "note": "UNKNOWN in documentation"
+        "key": "optical.window_count"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "sample.diameter.max",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.diameter.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "optical.window_count",
-        "note": "UNKNOWN in documentation"
+        "key": "optical.window_count"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "vibration.max",
-        "note": "UNKNOWN in documentation"
+        "key": "vibration.max"
       },
       {
         "configuration_id": "leica_cm1950_genA_standard",
-        "key": "sample.height.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "leica_cm1950_genA_standard",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "leica_cm1950_genA_standard",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "leica_cm1950_genA_standard",
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
-        "key": "sample.height.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "leica_cm1950_dualecotec_standard",
-        "key": "specimen.orientation.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "leica_cm1950_dualecotec_standard",
-        "key": "defrost.cycle_duration",
-        "note": "UNKNOWN in documentation"
+        "key": "specimen.orientation.max"
       },
       {
         "configuration_id": "leica_cm1950_dualecotec_standard",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "defrost.cycle_duration"
       },
       {
         "configuration_id": "leica_cm1950_dualecotec_standard",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "leica_cm1950_dualecotec_standard",
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "linkam_thms600_lnp96_t96",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "temperature.range",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.range"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "linkam_thmsel600_lnp96",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "linkam_thmsel600_lnp96",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "oxford_optistatdry_blv",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "oxford_optistatdry_blv",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_optistatdry_tlex",
-        "key": "magnetic_field.max",
-        "note": "UNKNOWN in documentation"
+        "key": "magnetic_field.max"
       },
       {
         "configuration_id": "oxford_optistatdry_tlex",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_8T",
-        "key": "cooldown_time.max",
-        "note": "UNKNOWN in documentation"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "oxford_teslatronpt_8T",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "oxford_teslatronpt_8T",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_8T",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_8T",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
       },
       {
         "configuration_id": "oxford_teslatronpt_12T",
-        "key": "cooldown_time.max",
-        "note": "UNKNOWN in documentation"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "oxford_teslatronpt_12T",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "oxford_teslatronpt_12T",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_12T",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_12T",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
       },
       {
         "configuration_id": "oxford_teslatronpt_14T",
-        "key": "cooldown_time.max",
-        "note": "UNKNOWN in documentation"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "oxford_teslatronpt_14T",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "oxford_teslatronpt_14T",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_14T",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_14T",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
       },
       {
         "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
-        "key": "cooldown_time.max",
-        "note": "UNKNOWN in documentation"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
-        "key": "electrical.dc_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.dc_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
-        "key": "electrical.coax_lines",
-        "note": "UNKNOWN in documentation"
+        "key": "electrical.coax_lines"
       },
       {
         "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
       },
       {
         "configuration_id": "qd_ppms_classic_14T",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_ppms_classic_14T",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "qd_ppms_classic_14T",
+        "key": "magnetic_field.uniformity"
       },
       {
         "configuration_id": "qd_ppms_classic_16T",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_ppms_classic_16T",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "qd_ppms_classic_16T",
+        "key": "magnetic_field.uniformity"
       },
       {
         "configuration_id": "qd_dynacool_9T_eto_res",
-        "key": "temperature.sweep_rate.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.sweep_rate.max"
       },
       {
         "configuration_id": "qd_dynacool_9T_eto_res",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_dynacool_9T_eto_res",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "qd_dynacool_9T_eto_res",
+        "key": "magnetic_field.uniformity"
       },
       {
         "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
-        "key": "temperature.sweep_rate.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.sweep_rate.max"
       },
       {
         "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
+        "key": "magnetic_field.uniformity"
       },
       {
         "configuration_id": "qd_dynacool_12T_vsm",
-        "key": "temperature.sweep_rate.max",
-        "note": "UNKNOWN in documentation"
+        "key": "temperature.sweep_rate.max"
       },
       {
         "configuration_id": "qd_dynacool_12T_vsm",
-        "key": "cooling_power.at_4200mK",
-        "note": "UNKNOWN in documentation"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_dynacool_12T_vsm",
-        "key": "optical_access",
-        "note": "UNKNOWN in documentation"
+        "key": "optical_access"
+      },
+      {
+        "configuration_id": "qd_dynacool_12T_vsm",
+        "key": "magnetic_field.uniformity"
       }
     ],
     "inferred_estimates": [
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "bluefors_ld250_manual_v2",
-        "key": "cryogen.liquid_nitrogen_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_nitrogen_required"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "bluefors_ld400_hdw",
-        "key": "cryogen.liquid_nitrogen_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_nitrogen_required"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "bluefors_ld450_current",
-        "key": "cryogen.liquid_nitrogen_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_nitrogen_required"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "cooldown_time.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "lakeshore_ccs_100",
-        "key": "optical.clear_aperture",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "optical.clear_aperture"
       },
       {
         "configuration_id": "lakeshore_ccs_300s",
-        "key": "cooldown_time.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "cooldown_time.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400",
-        "key": "optical.clear_aperture",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "optical.clear_aperture"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "temperature.range",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.range"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "cooldown_time.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cooldown_time.max"
       },
       {
         "configuration_id": "lakeshore_ccs_400h",
-        "key": "optical.clear_aperture",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "optical.clear_aperture"
       },
       {
         "configuration_id": "leica_cm1950_genA_standard",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "leica_cm1950_dualecotec_standard",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "linkam_thms600_lnp96_t96",
-        "key": "sample.height.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "linkam_thms600_lnp96_t96",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "sample.height.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "cryogen.liquid_nitrogen_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_nitrogen_required"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "linkam_thms600_heating_only",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "linkam_thmsel600_lnp96",
-        "key": "sample.height.max",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "sample.height.max"
       },
       {
         "configuration_id": "linkam_thmsel600_lnp96",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "oxford_optistatdry_tlex",
-        "key": "cooling_power.at_4200mK",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cooling_power.at_4200mK"
       },
       {
         "configuration_id": "qd_ppms_classic_14T",
-        "key": "temperature.stability",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "qd_ppms_classic_14T",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "qd_ppms_classic_14T",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "qd_ppms_classic_16T",
-        "key": "temperature.stability",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "qd_ppms_classic_16T",
-        "key": "cryogen.cryogen_free",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.cryogen_free"
       },
       {
         "configuration_id": "qd_ppms_classic_16T",
-        "key": "cryogen.liquid_helium_required",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "cryogen.liquid_helium_required"
       },
       {
         "configuration_id": "qd_dynacool_9T_eto_res",
-        "key": "temperature.stability",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
-        "key": "temperature.stability",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.stability"
       },
       {
         "configuration_id": "qd_dynacool_12T_vsm",
-        "key": "temperature.stability",
-        "note": "inferred estimate; cannot support ACCEPT"
+        "key": "temperature.stability"
       }
     ],
     "experiment_missing_information": [
@@ -1169,6 +1933,16 @@
         ]
       },
       {
+        "experiment_id": "chem_phase_transition_pom",
+        "missing": [
+          "POM heating/cooling rates of the wax procedure",
+          "sample thickness / cover-slip format",
+          "purge gas actually used",
+          "objective working distance",
+          "controlled slow cooling (<= 10 K/min) is needed to observe the Cr1 phase (DSC observation, ex2_A_009); a stage's ability to hold a slow controlled rate is not modelled"
+        ]
+      },
+      {
         "experiment_id": "chem_temperature_dependent_photoluminescence",
         "missing": [
           "cryostat make/model not stated by Swidinsky et al. (cites prior design); Shyam et al. name only 'Lakeshore closed-cycle cryostat'",
@@ -1184,6 +1958,13 @@
           "contact material and number of contacts beyond 'four-probe' not stated",
           "measured sample dimensions not stated separately from the maximum crystal size",
           "magnetic field (up to 14 T) was used in both papers but is not a requirement for zero-field resistance; recorded in reported_conditions only"
+        ]
+      },
+      {
+        "experiment_id": "mat_magnetometry_vsm",
+        "missing": [
+          "sample mass and dimensions (not stated in either procedure)",
+          "field sweep rate"
         ]
       },
       {
@@ -1204,6 +1985,14 @@
         ]
       },
       {
+        "experiment_id": "quantum_mxc_wiring_heat_budget",
+        "missing": [
+          "active drive-line dissipation at operating power (paper estimates it separately)",
+          "TWPA pump-line passive load",
+          "uncertainties of the per-line loads are not propagated"
+        ]
+      },
+      {
         "experiment_id": "quantum_transmon_characterization",
         "missing": [
           "number of coaxial lines not stated in either paper",
@@ -1215,31 +2004,13 @@
       }
     ]
   },
-  "unsupported_requirement_types": [],
-  "vocabulary": {
-    "established_keys": 58,
-    "proposed_keys": [
-      "plate.diameter",
-      "experimental_space.height",
-      "facility.electrical_power.max",
-      "trimming_thickness.range",
-      "temperature.peltier_delta.max",
-      "temperature.quick_freeze_shelf.min",
-      "defrost.cycle_duration",
-      "electrical.apparent_power.max",
-      "equipment.mass.max",
-      "specimen.feed.horizontal.max",
-      "temperature.cooling_rate.max",
-      "cooling_power.at_5000mK",
-      "cooldown_time.sample_exchange",
-      "magnetic_field.ramp_rate.max",
-      "magnetic_field.uniformity",
-      "temperature.stability.relative",
-      "system_startup_time.max"
-    ]
+  "unsupported_physical_requirements": [],
+  "research_pipeline": {
+    "open_candidates": 0,
+    "requests": 0
   },
-  "validation": {
+  "source_validation": {
     "errors": 0,
-    "warnings": 15
+    "warnings": 0
   }
 }
