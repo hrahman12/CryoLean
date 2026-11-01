@@ -238,17 +238,19 @@
     for (let i = 0; i < 6; i++) ring(s, [-0.14 + i * 0.056, 0, 0], 0.115, STEEL, [0, Math.PI / 2, 0], 0.008);
     box(s, [0, -0.13, 0], [0.42, 0.04, 0.22], NAVY); cyl(s, [0.05, 0.16, 0], 0.045, 0.12, STEEL); cyl(s, [0.05, 0.23, 0], 0.07, 0.02, STEEL);
   }
-  function decorate(g, v, top) {
-    const r = v.r, x0 = v.side * 0.85;
-    for (let i = 0; i < v.gauges; i++) gauge(g, [x0 * 0.55 + i * 0.16 * v.side, top + 0.12, 0.35 + r() * 0.2], v.side * 0.4, v.trim);
-    for (let i = 0; i < v.valves; i++) valve(g, [-x0 * 0.4 + i * 0.18 * -v.side, top + 0.06, -0.3 - r() * 0.15], v.trim);
-    if (v.rack) feedRack(g, [0.05 * v.side, top + 0.03, -0.12 + r() * 0.1], v.ports, v.trim);
-    if (v.compressor) { compressor(g, [-v.side * 1.45, -0.92, -0.65], v.trim, [0x6fe08a, 0x7cc4ff, 0xffd66b][Math.floor(r() * 3)]);
-      for (let h = 0; h < v.hoses; h++) wire(g, [[-v.side * 1.45 + (h - 1) * 0.1, -0.5, -0.55], [-v.side * 1.2, 0.2 + h * 0.1, -0.6],
-        [-v.side * 0.5, top + 0.3, -0.4], [-v.side * 0.15, top + 0.05, -0.1 + h * 0.06]], h % 2 ? 0x9aa7b4 : 0x5d6b78, 0.022); }
-    if (v.pump) { pump(g, [v.side * 1.25, -1.08, -0.55], v.trim); wire(g, [[v.side * 1.25, -0.88, -0.55], [v.side * 1.0, -0.3, -0.5], [v.side * 0.5, top - 0.2, -0.35]], STEEL, 0.03); }
-    // nameplate stripe in the machine's trim colour
-    box(g, [0, -0.62 + v.plate * 0.3, 0.8 * (v.sx > 1 ? 1 : 0.9)], [0.34, 0.07, 0.01], v.trim);
+  function decorate(g, v, bb) {
+    // gauges / valves / feedthroughs stand ON the machine's top plate (inside its footprint); pump + compressor on the floor
+    const r = v.r, top = bb.max.y, cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
+    const rx = Math.min(0.32, (bb.max.x - bb.min.x) * 0.25), rz = Math.min(0.3, (bb.max.z - bb.min.z) * 0.25), FLOOR = -1.23;
+    for (let i = 0; i < v.gauges; i++) gauge(g, [cx + v.side * rx * (0.3 + 0.35 * i), top + 0.1, cz + rz * 0.6], v.side * 0.4, v.trim);
+    for (let i = 0; i < v.valves; i++) valve(g, [cx - v.side * rx * (0.2 + 0.4 * i), top + 0.04, cz - rz * 0.7], v.trim);
+    if (v.rack) feedRack(g, [cx, top + 0.035, cz - rz * 0.1], Math.min(v.ports, 4), v.trim);
+    if (v.compressor) { const px = cx - v.side * ((bb.max.x - bb.min.x) / 2 + 0.45), pz = cz - 0.55;
+      compressor(g, [px, FLOOR + 0.31, pz], v.trim, [0x6fe08a, 0x7cc4ff, 0xffd66b][Math.floor(r() * 3)]);
+      for (let h = 0; h < v.hoses; h++) wire(g, [[px + (h - 1) * 0.1, FLOOR + 0.72, pz + 0.1], [px * 0.8, top + 0.15 + h * 0.06, pz * 0.6],
+        [cx - v.side * rx * 0.5, top + 0.12, cz - rz * 0.3 + h * 0.05], [cx - v.side * rx * 0.3, top + 0.01, cz - rz * 0.3 + h * 0.05]], h % 2 ? 0x9aa7b4 : 0x5d6b78, 0.02); }
+    if (v.pump) { const px = cx + v.side * ((bb.max.x - bb.min.x) / 2 + 0.2), pz = cz - 0.6;
+      pump(g, [px, FLOOR + 0.15, pz], v.trim); wire(g, [[px, FLOOR + 0.35, pz], [px - v.side * 0.1, (FLOOR + top) / 2, pz * 0.8], [cx + v.side * rx, top - 0.05, cz - rz]], STEEL, 0.025); }
   }
 
   // ---------------------------------------------------------------- experiment sample rig (spins)
@@ -365,24 +367,9 @@
     root = new THREE.Group(); scene.add(root);
     const target = assemble(root, state.kind, state.inside, state.verdict, state.id);
     rig = null;
-    if (state.exp) {   // the experiment's own sample on a spinning turntable beside the machine, linked to the sample position
-      const at = state.inside ? [target[0], target[1] + 0.28, target[2]] : [-1.2, 0.35, 0.75];
-      rigPivot = new THREE.Group(); rigPivot.position.set(at[0], at[1], at[2]);
-      const col = VERDICT[state.verdict] || GOLD;
-      rig = new THREE.Group(); const body = buildRig(rigKind(state.exp), col); body.position.y = 0.03; rig.add(body);
-      if (!state.inside) {
-        rig.add(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.025, 48), mat(0x33415a, 1, 0.6, 0.3)));
-        const glow = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.008, 8, 64), new THREE.MeshBasicMaterial({ color: col }));
-        glow.rotation.x = Math.PI / 2; rig.add(glow);
-        const pts = [new THREE.Vector3(...at), new THREE.Vector3((at[0] + target[0]) / 2, at[1] + 0.35, (at[2] + target[2]) / 2), new THREE.Vector3(...target)];
-        const link = new THREE.Mesh(new THREE.TubeGeometry(new THREE.QuadraticBezierCurve3(...pts), 40, 0.006, 6),
-          new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.55, depthTest: false }));
-        root.add(link);
-      }
-      rig.scale.setScalar(state.inside ? 0.8 : 1.15);
-      rigPivot.add(rig); root.add(rigPivot);
-    }
-    controls.target.set(0, state.inside ? target[1] * 0.6 : 0, 0); controls.update();
+    const bb = new THREE.Box3().setFromObject(root), c = bb.getCenter(new THREE.Vector3());
+    root.position.x = -c.x; root.position.z = -c.z;
+    controls.target.set(0, state.inside ? target[1] * 0.6 : c.y, 0); controls.update();
   }
 
   function assemble(g, kind, inside, verdict, id) {
@@ -396,7 +383,9 @@
       else if (hx === NAVY) o.material.color.setHex(v.trim); });
     inner.scale.set(v.sx, v.sy, v.sx);
     const t = [target[0] * v.sx, target[1] * v.sy, target[2] * v.sx];
-    decorate(g, v, 0.95 * v.sy);
+    inner.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(inner);
+    decorate(g, v, bb);
     return t;
   }
   let thumbR, thumbScene, thumbCam;
@@ -411,7 +400,13 @@
       thumbCam = new THREE.PerspectiveCamera(34, 4 / 3, 0.05, 50); thumbCam.position.set(3.1, 1.6, 4.4); thumbCam.lookAt(0, -0.05, 0);
     }
     const keep = halo, g = new THREE.Group(); thumbScene.add(g);
-    assemble(g, kind, false, verdict, id); thumbR.render(thumbScene, thumbCam);
+    assemble(g, kind, false, verdict, id);
+    // centre and fit every machine in its tile (decorations make footprints differ)
+    const bb = new THREE.Box3().setFromObject(g), c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
+    g.position.set(-c.x, -c.y, -c.z);
+    const r = Math.max(sz.x, sz.y * 1.25, sz.z) * 0.62, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
+    thumbCam.position.set(d * 0.55, d * 0.32, d * 0.78); thumbCam.lookAt(0, 0, 0);
+    thumbR.render(thumbScene, thumbCam);
     const url = thumbR.domElement.toDataURL("image/png");
     thumbScene.remove(g); g.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
     halo = keep;

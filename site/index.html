@@ -138,7 +138,12 @@ header.top { text-align: center; height: 172px }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
-.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 520px; gap: 16px; height: 748px }
+.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 420px; gap: 14px; height: 300px; margin-top: 8px }
+.demo .viz { overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: 4px; min-height: 0 }
+.demo .viz #viz { min-height: 0 } .demo .viz #viz svg { width: 100%; height: 100%; max-height: 190px }
+.demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
+.demo .list > p { display: none }
+.demo .term { height: 300px; overflow: auto }
 .demo .list { display: grid; gap: 10px; align-content: start }
 .demo .di { text-align: left; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: var(--ink) }
 .demo .di b { font: 800 19px var(--display); display: block } .demo .di span { font: 500 13.5px/1.3 var(--body); color: var(--ink-2) }
@@ -178,7 +183,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
-.fallback[hidden] { display: none !important }
+.fallback[hidden], .demo[hidden] { display: none !important }
 </style>
 
 <div class="viewport" id="viewport">
@@ -541,17 +546,19 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     for (let i = 0; i < 6; i++) ring(s, [-0.14 + i * 0.056, 0, 0], 0.115, STEEL, [0, Math.PI / 2, 0], 0.008);
     box(s, [0, -0.13, 0], [0.42, 0.04, 0.22], NAVY); cyl(s, [0.05, 0.16, 0], 0.045, 0.12, STEEL); cyl(s, [0.05, 0.23, 0], 0.07, 0.02, STEEL);
   }
-  function decorate(g, v, top) {
-    const r = v.r, x0 = v.side * 0.85;
-    for (let i = 0; i < v.gauges; i++) gauge(g, [x0 * 0.55 + i * 0.16 * v.side, top + 0.12, 0.35 + r() * 0.2], v.side * 0.4, v.trim);
-    for (let i = 0; i < v.valves; i++) valve(g, [-x0 * 0.4 + i * 0.18 * -v.side, top + 0.06, -0.3 - r() * 0.15], v.trim);
-    if (v.rack) feedRack(g, [0.05 * v.side, top + 0.03, -0.12 + r() * 0.1], v.ports, v.trim);
-    if (v.compressor) { compressor(g, [-v.side * 1.45, -0.92, -0.65], v.trim, [0x6fe08a, 0x7cc4ff, 0xffd66b][Math.floor(r() * 3)]);
-      for (let h = 0; h < v.hoses; h++) wire(g, [[-v.side * 1.45 + (h - 1) * 0.1, -0.5, -0.55], [-v.side * 1.2, 0.2 + h * 0.1, -0.6],
-        [-v.side * 0.5, top + 0.3, -0.4], [-v.side * 0.15, top + 0.05, -0.1 + h * 0.06]], h % 2 ? 0x9aa7b4 : 0x5d6b78, 0.022); }
-    if (v.pump) { pump(g, [v.side * 1.25, -1.08, -0.55], v.trim); wire(g, [[v.side * 1.25, -0.88, -0.55], [v.side * 1.0, -0.3, -0.5], [v.side * 0.5, top - 0.2, -0.35]], STEEL, 0.03); }
-    // nameplate stripe in the machine's trim colour
-    box(g, [0, -0.62 + v.plate * 0.3, 0.8 * (v.sx > 1 ? 1 : 0.9)], [0.34, 0.07, 0.01], v.trim);
+  function decorate(g, v, bb) {
+    // gauges / valves / feedthroughs stand ON the machine's top plate (inside its footprint); pump + compressor on the floor
+    const r = v.r, top = bb.max.y, cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
+    const rx = Math.min(0.32, (bb.max.x - bb.min.x) * 0.25), rz = Math.min(0.3, (bb.max.z - bb.min.z) * 0.25), FLOOR = -1.23;
+    for (let i = 0; i < v.gauges; i++) gauge(g, [cx + v.side * rx * (0.3 + 0.35 * i), top + 0.1, cz + rz * 0.6], v.side * 0.4, v.trim);
+    for (let i = 0; i < v.valves; i++) valve(g, [cx - v.side * rx * (0.2 + 0.4 * i), top + 0.04, cz - rz * 0.7], v.trim);
+    if (v.rack) feedRack(g, [cx, top + 0.035, cz - rz * 0.1], Math.min(v.ports, 4), v.trim);
+    if (v.compressor) { const px = cx - v.side * ((bb.max.x - bb.min.x) / 2 + 0.45), pz = cz - 0.55;
+      compressor(g, [px, FLOOR + 0.31, pz], v.trim, [0x6fe08a, 0x7cc4ff, 0xffd66b][Math.floor(r() * 3)]);
+      for (let h = 0; h < v.hoses; h++) wire(g, [[px + (h - 1) * 0.1, FLOOR + 0.72, pz + 0.1], [px * 0.8, top + 0.15 + h * 0.06, pz * 0.6],
+        [cx - v.side * rx * 0.5, top + 0.12, cz - rz * 0.3 + h * 0.05], [cx - v.side * rx * 0.3, top + 0.01, cz - rz * 0.3 + h * 0.05]], h % 2 ? 0x9aa7b4 : 0x5d6b78, 0.02); }
+    if (v.pump) { const px = cx + v.side * ((bb.max.x - bb.min.x) / 2 + 0.2), pz = cz - 0.6;
+      pump(g, [px, FLOOR + 0.15, pz], v.trim); wire(g, [[px, FLOOR + 0.35, pz], [px - v.side * 0.1, (FLOOR + top) / 2, pz * 0.8], [cx + v.side * rx, top - 0.05, cz - rz]], STEEL, 0.025); }
   }
 
   // ---------------------------------------------------------------- experiment sample rig (spins)
@@ -668,24 +675,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     root = new THREE.Group(); scene.add(root);
     const target = assemble(root, state.kind, state.inside, state.verdict, state.id);
     rig = null;
-    if (state.exp) {   // the experiment's own sample on a spinning turntable beside the machine, linked to the sample position
-      const at = state.inside ? [target[0], target[1] + 0.28, target[2]] : [-1.2, 0.35, 0.75];
-      rigPivot = new THREE.Group(); rigPivot.position.set(at[0], at[1], at[2]);
-      const col = VERDICT[state.verdict] || GOLD;
-      rig = new THREE.Group(); const body = buildRig(rigKind(state.exp), col); body.position.y = 0.03; rig.add(body);
-      if (!state.inside) {
-        rig.add(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.025, 48), mat(0x33415a, 1, 0.6, 0.3)));
-        const glow = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.008, 8, 64), new THREE.MeshBasicMaterial({ color: col }));
-        glow.rotation.x = Math.PI / 2; rig.add(glow);
-        const pts = [new THREE.Vector3(...at), new THREE.Vector3((at[0] + target[0]) / 2, at[1] + 0.35, (at[2] + target[2]) / 2), new THREE.Vector3(...target)];
-        const link = new THREE.Mesh(new THREE.TubeGeometry(new THREE.QuadraticBezierCurve3(...pts), 40, 0.006, 6),
-          new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.55, depthTest: false }));
-        root.add(link);
-      }
-      rig.scale.setScalar(state.inside ? 0.8 : 1.15);
-      rigPivot.add(rig); root.add(rigPivot);
-    }
-    controls.target.set(0, state.inside ? target[1] * 0.6 : 0, 0); controls.update();
+    const bb = new THREE.Box3().setFromObject(root), c = bb.getCenter(new THREE.Vector3());
+    root.position.x = -c.x; root.position.z = -c.z;
+    controls.target.set(0, state.inside ? target[1] * 0.6 : c.y, 0); controls.update();
   }
 
   function assemble(g, kind, inside, verdict, id) {
@@ -699,7 +691,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       else if (hx === NAVY) o.material.color.setHex(v.trim); });
     inner.scale.set(v.sx, v.sy, v.sx);
     const t = [target[0] * v.sx, target[1] * v.sy, target[2] * v.sx];
-    decorate(g, v, 0.95 * v.sy);
+    inner.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(inner);
+    decorate(g, v, bb);
     return t;
   }
   let thumbR, thumbScene, thumbCam;
@@ -714,7 +708,13 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       thumbCam = new THREE.PerspectiveCamera(34, 4 / 3, 0.05, 50); thumbCam.position.set(3.1, 1.6, 4.4); thumbCam.lookAt(0, -0.05, 0);
     }
     const keep = halo, g = new THREE.Group(); thumbScene.add(g);
-    assemble(g, kind, false, verdict, id); thumbR.render(thumbScene, thumbCam);
+    assemble(g, kind, false, verdict, id);
+    // centre and fit every machine in its tile (decorations make footprints differ)
+    const bb = new THREE.Box3().setFromObject(g), c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
+    g.position.set(-c.x, -c.y, -c.z);
+    const r = Math.max(sz.x, sz.y * 1.25, sz.z) * 0.62, d = r / Math.tan(THREE.MathUtils.degToRad(34 / 2)) * 1.05;
+    thumbCam.position.set(d * 0.55, d * 0.32, d * 0.78); thumbCam.lookAt(0, 0, 0);
+    thumbR.render(thumbScene, thumbCam);
     const url = thumbR.domElement.toDataURL("image/png");
     thumbScene.remove(g); g.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
     halo = keep;
@@ -1175,7 +1175,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     R.domElement.style.cssText = "position:absolute;inset:0;width:100%;height:100%;cursor:grab"; el.appendChild(R.domElement);
     S = new T.Scene();
     if (T.RoomEnvironment) S.environment = new T.PMREMGenerator(R).fromScene(new T.RoomEnvironment(), 0.04).texture;
-    Cam = new T.PerspectiveCamera(32, 1, 0.02, 30); Cam.position.set(1.35, 1.05, 1.6);
+    Cam = new T.PerspectiveCamera(30, 1, 0.02, 30); Cam.position.set(1.35, 1.05, 1.6);
     S.add(new T.HemisphereLight(0xeaf2ff, 0x8a7a66, 0.45));
     const k = new T.DirectionalLight(0xffffff, 1.0); k.position.set(2, 4, 3); k.castShadow = true; k.shadow.mapSize.set(1024, 1024);
     Object.assign(k.shadow.camera, { left: -1.2, right: 1.2, top: 1.2, bottom: -1.2 }); k.shadow.bias = -0.0004; S.add(k);
@@ -1209,7 +1209,8 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     const bb = new T.Box3().setFromObject(G), sz = bb.getSize(new T.Vector3()), s = Math.min(1.15 / Math.max(sz.x, sz.z, 0.01), 0.9 / Math.max(sz.y, 0.01), 1.6);
     G.scale.setScalar(s); const bb2 = new T.Box3().setFromObject(G), c = bb2.getCenter(new T.Vector3());
     G.position.set(-c.x, -bb2.min.y, -c.z); stage.add(G);
-    Ctl.target.set(0, Math.min((bb2.max.y - bb2.min.y) * 0.45, 0.45), 0); Cam.position.set(1.35, 0.85 + (bb2.max.y - bb2.min.y) * 0.4, 1.6);
+    const hgt = bb2.max.y - bb2.min.y; Ctl.target.set(0, hgt * 0.35, 0);
+    const d = 2.35 + hgt * 0.6; Cam.position.set(d * 0.62, 0.95 + hgt * 0.5, d * 0.78); Ctl.update();
   }
   window.Sample3D = { mount, show, pick, kinds: Object.keys(B).filter((k) => k[0] !== "_") };
 })();
@@ -1229,10 +1230,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   // scale the 1536 x 1024 landscape stage to the window (whole stage on screen on desktops, full width on phones)
   const stage = $("stage"), vp = $("viewport");
+  let stageH = 1024;
   function fit() {
     const w = document.documentElement.clientWidth, h = window.innerHeight;
-    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / 1024) : w / 1536;
-    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(1024 * s) + "px";
+    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / stageH) : w / 1536;
+    stage.style.height = stageH + "px";
+    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(stageH * s) + "px";
     stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
   }
   addEventListener("resize", fit); fit();
@@ -1432,7 +1435,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
-    demoCur = id; clearInterval(demoTimer);
+    demoCur = id; clearInterval(demoTimer); demoSelect(id);
     const d = DEMOS.find((x) => x.id === id), lines = demoLines(d.h);
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
@@ -1447,9 +1450,19 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
   $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
   $("replay").onclick = () => playDemo(demoCur);
+  // Demo tab = the same three live cards, set to each demo's industry/experiment/machine, plus the recorded run below
+  const DEMOSEL = { A: ["scientific_research", 1, "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"], B: ["quantum_computing_and_sensing", 1, "bluefors_xldhehp_3section"],
+    C: ["astronomy_and_astrophysics", 0, "lakeshore_crx_4k"], D: ["chemistry_and_pharmaceuticals", 1, "linkam_thms600_lnp96_t96"] };
+  function demoSelect(id) {
+    const m = DEMOSEL[id]; if (!m) return;
+    const i = D.industries.findIndex((x) => x.id === m[0]); if (i < 0) return;
+    st.ind = i; st.exp = Math.min(m[1], D.industries[i].experiments.length - 1);
+    const j = D.industries[i].configurations.findIndex((c) => c.id === m[2]); st.cfg = j >= 0 ? j : 0; st.alt = null; render();
+  }
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
-    $("liverow").hidden = demo; $("demo").hidden = !demo;
+    $("liverow").hidden = false; $("demo").hidden = !demo;
+    stageH = demo ? 1420 : 1024; fit();
     if (demo) playDemo(demoCur); else clearInterval(demoTimer);
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);

@@ -138,7 +138,12 @@ header.top { text-align: center; height: 172px }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
-.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 520px; gap: 16px; height: 748px }
+.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 420px; gap: 14px; height: 300px; margin-top: 8px }
+.demo .viz { overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: 4px; min-height: 0 }
+.demo .viz #viz { min-height: 0 } .demo .viz #viz svg { width: 100%; height: 100%; max-height: 190px }
+.demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
+.demo .list > p { display: none }
+.demo .term { height: 300px; overflow: auto }
 .demo .list { display: grid; gap: 10px; align-content: start }
 .demo .di { text-align: left; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: var(--ink) }
 .demo .di b { font: 800 19px var(--display); display: block } .demo .di span { font: 500 13.5px/1.3 var(--body); color: var(--ink-2) }
@@ -178,7 +183,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
-.fallback[hidden] { display: none !important }
+.fallback[hidden], .demo[hidden] { display: none !important }
 </style>
 
 <div class="viewport" id="viewport">
@@ -318,10 +323,12 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   // scale the 1536 x 1024 landscape stage to the window (whole stage on screen on desktops, full width on phones)
   const stage = $("stage"), vp = $("viewport");
+  let stageH = 1024;
   function fit() {
     const w = document.documentElement.clientWidth, h = window.innerHeight;
-    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / 1024) : w / 1536;
-    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(1024 * s) + "px";
+    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / stageH) : w / 1536;
+    stage.style.height = stageH + "px";
+    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(stageH * s) + "px";
     stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
   }
   addEventListener("resize", fit); fit();
@@ -521,7 +528,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
-    demoCur = id; clearInterval(demoTimer);
+    demoCur = id; clearInterval(demoTimer); demoSelect(id);
     const d = DEMOS.find((x) => x.id === id), lines = demoLines(d.h);
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
@@ -536,9 +543,19 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
   $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
   $("replay").onclick = () => playDemo(demoCur);
+  // Demo tab = the same three live cards, set to each demo's industry/experiment/machine, plus the recorded run below
+  const DEMOSEL = { A: ["scientific_research", 1, "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"], B: ["quantum_computing_and_sensing", 1, "bluefors_xldhehp_3section"],
+    C: ["astronomy_and_astrophysics", 0, "lakeshore_crx_4k"], D: ["chemistry_and_pharmaceuticals", 1, "linkam_thms600_lnp96_t96"] };
+  function demoSelect(id) {
+    const m = DEMOSEL[id]; if (!m) return;
+    const i = D.industries.findIndex((x) => x.id === m[0]); if (i < 0) return;
+    st.ind = i; st.exp = Math.min(m[1], D.industries[i].experiments.length - 1);
+    const j = D.industries[i].configurations.findIndex((c) => c.id === m[2]); st.cfg = j >= 0 ? j : 0; st.alt = null; render();
+  }
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
-    $("liverow").hidden = demo; $("demo").hidden = !demo;
+    $("liverow").hidden = false; $("demo").hidden = !demo;
+    stageH = demo ? 1420 : 1024; fit();
     if (demo) playDemo(demoCur); else clearInterval(demoTimer);
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);

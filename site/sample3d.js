@@ -439,7 +439,7 @@
     R.domElement.style.cssText = "position:absolute;inset:0;width:100%;height:100%;cursor:grab"; el.appendChild(R.domElement);
     S = new T.Scene();
     if (T.RoomEnvironment) S.environment = new T.PMREMGenerator(R).fromScene(new T.RoomEnvironment(), 0.04).texture;
-    Cam = new T.PerspectiveCamera(32, 1, 0.02, 30); Cam.position.set(1.35, 1.05, 1.6);
+    Cam = new T.PerspectiveCamera(30, 1, 0.02, 30); Cam.position.set(1.35, 1.05, 1.6);
     S.add(new T.HemisphereLight(0xeaf2ff, 0x8a7a66, 0.45));
     const k = new T.DirectionalLight(0xffffff, 1.0); k.position.set(2, 4, 3); k.castShadow = true; k.shadow.mapSize.set(1024, 1024);
     Object.assign(k.shadow.camera, { left: -1.2, right: 1.2, top: 1.2, bottom: -1.2 }); k.shadow.bias = -0.0004; S.add(k);
@@ -473,7 +473,8 @@
     const bb = new T.Box3().setFromObject(G), sz = bb.getSize(new T.Vector3()), s = Math.min(1.15 / Math.max(sz.x, sz.z, 0.01), 0.9 / Math.max(sz.y, 0.01), 1.6);
     G.scale.setScalar(s); const bb2 = new T.Box3().setFromObject(G), c = bb2.getCenter(new T.Vector3());
     G.position.set(-c.x, -bb2.min.y, -c.z); stage.add(G);
-    Ctl.target.set(0, Math.min((bb2.max.y - bb2.min.y) * 0.45, 0.45), 0); Cam.position.set(1.35, 0.85 + (bb2.max.y - bb2.min.y) * 0.4, 1.6);
+    const hgt = bb2.max.y - bb2.min.y; Ctl.target.set(0, hgt * 0.35, 0);
+    const d = 2.35 + hgt * 0.6; Cam.position.set(d * 0.62, 0.95 + hgt * 0.5, d * 0.78); Ctl.update();
   }
   window.Sample3D = { mount, show, pick, kinds: Object.keys(B).filter((k) => k[0] !== "_") };
 })();
