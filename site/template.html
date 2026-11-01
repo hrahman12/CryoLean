@@ -292,6 +292,17 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .fxgap { display: grid; gap: 10px; align-content: start } .ba { display: grid; gap: 4px } .ba p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.45 }
 .ba .tag { position: static; transform: none; justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px }
 .ba .tag.bad { background: color-mix(in srgb, var(--fail) 20%, transparent); color: var(--fail) } .ba .tag.good { background: color-mix(in srgb, var(--met) 20%, transparent); color: var(--met) }
+.fxrun, .fxcode { background: #0a0f1a; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; align-content: start; min-width: 0 }
+.fxbar2 { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: #8b9bb4 } .fxbar2 b { color: #e8eef8; font: 800 15px var(--display) }
+.fxbar2 button { margin-left: auto; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 4px 10px; font: 700 12px var(--body); cursor: pointer }
+.fxlog { margin: 0; height: 420px; overflow: hidden; font: 12px/1.55 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre }
+.fxlog .ok { color: #3ddc84 } .fxlog .k { color: #c792ea } .fxlog .n { color: #82aaff } .fxlog .ax { color: #7f8ea6 } .fxlog .w { color: #ffcb6b } .fxlog .bad { color: #ff6b6b }
+.fxjudges { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px }
+.fxjudges div { border: 1px solid #24324a; border-radius: 8px; padding: 5px 6px; font-size: 10.5px; color: #8b9bb4; line-height: 1.25; transition: all .3s }
+.fxjudges div b { display: block; font: 800 14px var(--display); color: #8b9bb4 } .fxjudges div.done b { color: #3ddc84 } .fxjudges div.hot { border-color: #ffcb6b } .fxjudges div.hot b { color: #ffcb6b }
+.cd { display: grid; gap: 4px } .fxtag { justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px } .fxtag.bad { background: rgba(255,107,107,.18); color: #ff6b6b } .fxtag.good { background: rgba(61,220,132,.16); color: #3ddc84 } .cd pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; white-space: pre-wrap; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px }
+.cd pre .kw { color: #c792ea } .cd pre .cm { color: #697a94; font-style: italic } .cd pre .ct { color: #f78c6c } .cd pre .fn { color: #82aaff } .cd pre .hl { background: rgba(255,107,107,.18); outline: 1px solid rgba(255,107,107,.5); border-radius: 3px }
+.cd pre .hg { background: rgba(61,220,132,.16); outline: 1px solid rgba(61,220,132,.45); border-radius: 3px }
 .fallback[hidden], .demo[hidden], .chatf[hidden], [hidden] { display: none !important }
 </style>
 
@@ -411,19 +422,13 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <div class="warn"><b>1</b><span>real soundness gap found and fixed</span></div>
     </div>
     <div class="fxrow">
-      <div class="fxtbl"><h3>The seven judges</h3>
-        <table><thead><tr><th>Check</th><th>Judged</th><th>Flagged</th><th>Outcome</th></tr></thead><tbody>
-          <tr><td>Unnecessary hypotheses</td><td>40 theorems</td><td>0</td><td>Every hypothesis is needed</td></tr>
-          <tr><td>Duplicate dependencies</td><td>40 theorems</td><td>2</td><td>Cleaned up</td></tr>
-          <tr><td>Definition fidelity</td><td>49 definitions</td><td>16</td><td>Missing docstrings, added</td></tr>
-          <tr class="hot"><td>Vacuity &amp; misstatement</td><td>4 files</td><td>3</td><td><b>Real soundness gap, fixed</b></td></tr>
-          <tr><td>Statement generality</td><td>4 files</td><td>2</td><td>General theorems added</td></tr>
-          <tr><td>Repeated proof machinery</td><td>4 files</td><td>2</td><td>Noted, left as is</td></tr>
-          <tr><td>Readable proofs</td><td>2 files</td><td>2</td><td>Simplified</td></tr>
-        </tbody></table></div>
-      <div class="fxgap"><h3>The slop it caught</h3>
-        <div class="ba"><span class="tag bad">Before</span><p>An accessory recorded as "not installed" made a requirement <b>fail</b>, even when that record had no source at all. A guess could produce "Does not meet requirements". The judge proved it in Lean.</p></div>
-        <div class="ba"><span class="tag good">After</span><p>Every rejection now needs trusted evidence. Unsourced records can only give "Need more information". Proved by <code>fail_needs_trusted</code>, <code>untrusted_never_passes</code> and <code>untrusted_never_fails</code>.</p></div>
+      <div class="fxrun"><div class="fxbar2"><b>Live run</b><span id="fxprog">replaying the recorded audit</span><button type="button" id="fxplay">Run again</button></div>
+        <pre class="fxlog" id="fxlog" aria-live="off"></pre>
+        <div class="fxjudges" id="fxjudges"></div></div>
+      <div class="fxcode"><div class="fxbar2"><b>The slop it caught</b><span>lean/CryoLean/Checker.lean · checkCapability</span></div>
+        <div class="cd"><span class="fxtag bad">Before</span><pre id="fxbefore"></pre></div>
+        <div class="cd"><span class="fxtag good">After</span><pre id="fxafter"></pre></div>
+        <div class="cd"><span class="fxtag good">New proof</span><pre id="fxthm"></pre></div>
       </div>
     </div>
   </section>
@@ -807,12 +812,69 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   }
   $("mx-best").onclick = () => { mxMode = "best"; renderMx(); }; $("mx-old").onclick = () => { mxMode = "old"; renderMx(); };
   renderMx();
+  // ---- Forensics live run: replays the recorded audit over the REAL 839 declarations (docs/forensics/cryolean-forensics.json)
+  const FX = __FXDECLS__;
+  const BEFORE = `def checkCapability (k : Constraint) (c : Capability) : Outcome :=
+  match c.install with
+  | .optionalNotInstalled =>
+      -- a documented option that is NOT fitted: absent.
+      if k = .flagIs false then (if trustedB c.evidence then .pass else .unknown) ⟦else .fail⟧
+  | .unknown => .unknown
+  | .installed => if trustedB c.evidence then checkValue k c.value else .unknown`;
+  const AFTER = `def checkCapability (k : Constraint) (c : Capability) : Outcome :=
+  match c.install with
+  | .optionalNotInstalled =>
+      -- the "not fitted" claim needs trusted provenance, for pass AND for fail
+      ⟪if trustedB c.evidence then⟫ (if k = .flagIs false then .pass else .fail) ⟪else .unknown⟫
+  | .unknown => .unknown
+  | .installed => if trustedB c.evidence then checkValue k c.value else .unknown`;
+  const THM = `theorem fail_needs_trusted {k : Constraint} {c : Capability}
+    (h : checkCapability k c = .fail) : TrustedEvidence c.evidence := by
+  rcases checkCapability_fail_sound h with ⟨_, ht, _⟩ | ⟨_, ht, _⟩ <;> exact ht
+
+theorem untrusted_never_fails {k : Constraint} {c : Capability}
+    (h : ¬ TrustedEvidence c.evidence) : checkCapability k c ≠ .fail :=
+  fun hf => h (fail_needs_trusted hf)`;
+  function leanHL(src) {
+    let h = esc(src);
+    h = h.replace(/(--[^\n]*)/g, '<span class="cm">$1</span>');
+    h = h.replace(/\b(def|theorem|match|with|if|then|else|fun|by|exact|rcases)\b(?![^<]*<\/span>)/g, '<span class="kw">$1</span>');
+    h = h.replace(/(\.[a-z][A-Za-z]+)\b(?![^<]*<\/span>)/g, '<span class="ct">$1</span>');
+    h = h.replace(/\b(checkCapability|checkValue|trustedB|TrustedEvidence|checkCapability_fail_sound|fail_needs_trusted|untrusted_never_fails)\b(?![^<]*<\/span>)/g, '<span class="fn">$1</span>');
+    return h.replace(/⟦(.*?)⟧/g, '<span class="hl">$1</span>').replace(/⟪(.*?)⟫/g, '<span class="hg">$1</span>');
+  }
+  $("fxbefore").innerHTML = leanHL(BEFORE); $("fxafter").innerHTML = leanHL(AFTER); $("fxthm").innerHTML = leanHL(THM);
+  const JUDGES = [["Unnecessary hyps", 0], ["Duplicates", 2], ["Def. fidelity", 16], ["Vacuity", 3, true], ["Generality", 2], ["Repeated proofs", 2], ["Readability", 2]];
+  let fxT = 0;
+  function fxRun() {
+    clearInterval(fxT); const log = $("fxlog"), lines = []; let i = 0, ph = 0, j = 0;
+    $("fxjudges").innerHTML = JUDGES.map(([n]) => `<div><b>…</b>${esc(n)}</div>`).join("");
+    const push = (h) => { lines.push(h); if (lines.length > 25) lines.shift(); log.innerHTML = lines.join("\n"); };
+    push('<span class="ax">$ python scripts/run_forensics.py   # replay of the recorded run, forensics e5b80ca2</span>');
+    const fast = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    fxT = setInterval(() => {
+      if (ph === 0) {
+        for (let s = 0; s < (fast ? 839 : 11) && i < FX.length; s++, i++) { const [n, k, ax, sm, fl] = FX[i];
+          const UNSAFE = ["partial", "opaque", "implemented_by", "extern", "unsafe"];
+          const bad = sm || fl.some((f) => UNSAFE.includes(f)) || ax.some((a) => !["propext", "Classical.choice", "Quot.sound"].includes(a));
+          push(`<span class="${bad ? "bad" : "ok"}">${bad ? "✕" : "✓"}</span> <span class="k">${esc(k.padEnd(12))}</span><span class="n">${esc(n.length > 52 ? n.slice(0, 51) + "…" : n)}</span> <span class="ax">${ax.length ? "axioms: " + esc(ax.join(", ")) : "no axioms"}${fl.length ? " · " + esc(fl.join(", ")) : ""}</span>`); }
+        $("fxprog").textContent = `${i} / ${FX.length} declarations`;
+        if (i >= FX.length) { ph = 1; push('<span class="ok">✓ 839 declarations · 0 non-standard axioms · 0 sorry · 0 smells · 0 unsafe flags</span>'); push('<span class="ax">running the seven judge indicators…</span>'); }
+      } else if (ph === 1) {
+        const d = $("fxjudges").children[j], [n, f, hot] = JUDGES[j];
+        d.classList.add(hot ? "hot" : "done"); d.querySelector("b").textContent = f ? f + " flagged" : "clean";
+        push(`<span class="${hot ? "w" : "ok"}">${hot ? "!" : "✓"}</span> judge <span class="n">${esc(n)}</span>: ${f ? f + " flagged" : "nothing flagged"}${hot ? ' <span class="w">→ untrusted "not installed" record can REJECT · soundness gap</span>' : ""}`);
+        if (++j >= JUDGES.length) { ph = 2; push('<span class="ok">✓ gap fixed in checkCapability · proved fail_needs_trusted, untrusted_never_passes, untrusted_never_fails</span>'); $("fxprog").textContent = "audit complete · clean"; clearInterval(fxT); }
+      }
+    }, fast ? 1 : (ph === 0 ? 45 : 520));
+  }
+  $("fxplay").onclick = fxRun;
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
     isDemo = demo;
-    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("fx").hidden = !demo;
+    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("fx").hidden = !demo; if (demo) fxRun();
     $("demo").classList.toggle("islive", !demo); $("demolist").hidden = !demo; $("replay").hidden = !demo; $("explain").textContent = demo ? "Explain this run" : "Explain my check";
-    stageH = demo ? 2500 : 1400; fit();
+    stageH = demo ? 2700 : 1400; fit();
     if (demo) playDemo(demoCur === "L" ? "A" : demoCur); else { clearInterval(demoTimer); render(); }
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
