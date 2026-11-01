@@ -884,10 +884,10 @@ def checkValue : Constraint → CapValue → Outcome
       const cold = coolAt >= 0 && (i > coolAt || (i === coolAt && end && !R.stop));
       if (has3d) Cryo3D.stage({ i: s.k, n: STAGES.length, status, cold });
       tag.hidden = false; tag.className = "runtag " + ({ f: "no", u: "maybe", s: "maybe", p: "ok", run: "" }[status] || "");
-      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here" : " ? stops here");
+      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here (flashing part)" : " ? stops here (flashing part)");
     };
     show();
-    run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
+    run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (R.stop) clearInterval(run3dT); else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
   }
   function demoVerdict(d) {   // Lean verdict of an example with its fixed, ticked values (the colored dot in step 1)
     const conf = {}; (L.requirements[d.pair[1]] || []).forEach((r) => conf[r.index] = !(d.open || []).includes(r.index));
