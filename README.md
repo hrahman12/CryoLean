@@ -77,26 +77,25 @@ python -m cryolean.desktop --frontend frontend\dist\index.html
 Verification is fully offline once the database is built. Optional: `CRYOLEAN_AI_PROVIDER=claude` (with Anthropic API credentials) for
 Claude-based matching and research drafting; the default matcher is offline.
 
-## The four examples on the website (Demos tab)
+## The three examples on the website (Demos tab)
 
-A cryostat is a machine that gets things extremely cold, often with a strong magnet or special wiring inside. Each example
-picks an experiment and a machine, fills in the experiment's requirements, ticks them, and lets Lean decide, one step at a
-time. Every color is read from the same Lean results as the Live checker, so the demos can never disagree with it.
+A cryostat is a machine that gets things extremely cold, often with a strong magnet or special wiring inside. The Demos tab
+is the same three-step checker as the Live tab. The only differences: step 1 offers three fixed examples, and their values
+in step 3 are filled in and ticked for you. Every color is read from the same Lean results as the Live checker, so the
+examples can never disagree with it. You can still switch cryostats in step 2 and watch the answer change.
 
-* **A — The magnet is too weak.** A graphene experiment only works in a magnetic field of at least 12 tesla (a fridge magnet
-  is about 0.01 T). On the Cryogenic Ltd machine, whose magnet tops out at 9 T, Lean says **not compatible**. Switch to the
-  Quantum Design PPMS DynaCool (14 T) and Lean says **compatible**.
-* **B — Lean won't guess.** Measuring heat leaking through a liquid-nitrogen tank's insulation on the Lake Shore VPF-100.
-  The cold side is fine, but the datasheet never says the warm side can be held at room temperature or that a boil-off
-  measuring kit exists. Lean answers **need more information** instead of guessing.
-* **C — A clean yes.** Testing a tiny computer chip, ice-cold, on a Lake Shore probe station. Temperature, vacuum, probe arms
-  and wiring are all documented, so Lean says **compatible**. One optional wish (needing no liquid cryogen at all) isn't met, which doesn't
-  change the answer.
-* **D — Change the plan, not the machine.** The same graphene experiment and 9 T machine as A. If the effect also shows up at
-  9 T, you lower the requirement from 12 T to 9 T in step 3, and Lean re-checks: **compatible** on the same machine.
+* 🟢 **Test a computer chip, ice-cold.** A tiny chip tested on a Lake Shore probe station. Temperature, vacuum, probe arms and
+  wiring are all documented, so Lean says **compatible**. One optional wish (needing no liquid cryogen at all) isn't met,
+  which doesn't change the answer.
+* 🟡 **Measure heat leaking from a nitrogen tank.** On the Lake Shore VPF-100, the cold side is fine, but the datasheet never
+  says the warm side can be held at room temperature or that a boil-off measuring kit exists. Lean answers
+  **need more information** instead of guessing.
+* 🔴 **See a quantum effect in graphene.** The effect only appears in a magnetic field of at least 12 tesla (a fridge magnet
+  is about 0.01 T). The Cryogenic Ltd machine's magnet tops out at 9 T, so Lean says **not compatible**. Switch to the
+  14 T Quantum Design PPMS DynaCool in step 2 and it turns green.
 
-In the Live checker every value starts at 0 and every box unticked. Until you type your values and tick every requirement,
-Lean answers *need more information* and the arrow into step 3 points back. Step 3 then gives two answers: whether the
+In the Live checker every value starts at 0 and every box unticked. No verdict color shows until you tick the temperature
+requirement; until every requirement is ticked, Lean answers *need more information* and the arrow into step 3 points back. Step 3 then gives two answers: whether the
 experiment is (or might be, or is not) compatible, and whether it runs, might run, or won't run on that machine.
 
 ## The command-line demonstrations (`python -m cryolean demo`)
