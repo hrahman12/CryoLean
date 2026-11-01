@@ -155,7 +155,30 @@ header.top { text-align: center; height: 172px }
 .demo .di { padding: 7px 12px !important } .demo .di b { font-size: 15px !important } .demo .di span { font-size: 12px !important }
 .demo .list > p { display: none }
 .demo .term { height: 300px; overflow: auto }
-.flow { --hl: color-mix(in srgb, var(--ink) 28%, transparent); --hl2: color-mix(in srgb, var(--ink) 12%, transparent);
+.uni { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); height: 300px; border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent); border-radius: 2px; overflow: hidden;
+  background: radial-gradient(120% 120% at 30% 40%, color-mix(in srgb, #7a4fe0 10%, transparent), transparent 60%) }
+.uni svg { width: 100%; height: 100%; display: block }
+.uni .orb { fill: none; stroke: color-mix(in srgb, var(--ink) 22%, transparent); stroke-width: .6 }
+.uni .link { fill: none; stroke: var(--ink); stroke-width: .7; opacity: .55; stroke-dasharray: 1 0 }
+.uni .link.draw { stroke-dasharray: 400; stroke-dashoffset: 400; animation: udraw 1.1s ease forwards }
+@keyframes udraw { to { stroke-dashoffset: 0 } }
+.uni .body { fill: var(--bg, #0b1220); stroke: var(--ink); stroke-width: .8 } .uni .body.on { stroke-width: 1.4 }
+.uni .body.lean { stroke: var(--met) } .uni .body.lanyon { stroke: #a77bff } .uni .body.z3 { stroke-dasharray: 2 2 }
+.uni .lbl { font: 600 10.5px var(--body); fill: var(--ink); text-anchor: middle } .uni .sub { font: 500 8.5px var(--body); fill: var(--muted); text-anchor: middle }
+.uni .star { fill: var(--ink); opacity: .35 } .uni .pulse { fill: #fff; filter: drop-shadow(0 0 4px #a77bff) }
+.uni .halo { fill: none; stroke: currentColor; stroke-width: .6; opacity: 0; transform-box: fill-box; transform-origin: center }
+.uni .halo.go { animation: uhalo 1.6s ease-out infinite }
+@keyframes uhalo { 0% { opacity: .7; transform: scale(1) } 100% { opacity: 0; transform: scale(2.4) } }
+.uni .cap { padding: 16px 18px; display: grid; align-content: center; gap: 8px; border-left: 1px solid color-mix(in srgb, var(--ink) 15%, transparent) }
+.uni .cap .k { font: 600 12px var(--body); color: var(--muted) } .uni .cap .k b { color: var(--ink) }
+.uni .cap h4 { margin: 0; font: 800 19px/1.2 var(--display); color: var(--ink) }
+.uni .cap p { margin: 0; font: 400 14.5px/1.5 var(--body); color: var(--ink-2) }
+.uni .cap .res { justify-self: start; font: 700 14px var(--display); padding: 3px 12px; border: 1px solid currentColor; border-radius: 99px }
+.uni .cap .res.met { color: var(--met) } .uni .cap .res.fail { color: var(--fail) } .uni .cap .res.info { color: var(--info) } .uni .cap .res.neutral { color: var(--ink) }
+.uni .cap .dots { display: flex; gap: 6px } .uni .cap .dots i { width: 18px; height: 2px; background: color-mix(in srgb, var(--ink) 20%, transparent) } .uni .cap .dots i.on { background: var(--ink) }
+.uni .cap small { font: 500 11.5px var(--body); color: var(--muted) }
+@media (prefers-reduced-motion: reduce) { .uni .halo.go, .uni .link.draw { animation: none; stroke-dashoffset: 0 } }
+.flow.u { border: 0; padding: 0; overflow: visible } .flow { --hl: color-mix(in srgb, var(--ink) 28%, transparent); --hl2: color-mix(in srgb, var(--ink) 12%, transparent);
   height: 300px; display: flex; flex-direction: column; gap: 0; overflow: auto; padding: 0 16px 12px; border: 1px solid var(--hl); border-radius: 2px;
   background: transparent; position: relative; scroll-behavior: smooth }
 .flow .hdr { display: flex; align-items: baseline; gap: 10px; position: sticky; top: 0; z-index: 2; padding: 10px 0 8px; background: var(--bg, #0b1220);
@@ -329,7 +352,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   <div class="demo" id="demo" hidden>
     <div class="list" id="demolist"></div>
-    <div class="flow" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
+    <div class="flow u" id="flow" aria-live="polite"></div><pre class="term" id="term" hidden></pre>
     <div class="viz ai"><h3 style="display:grid;gap:4px;font-size:16px"><span id="viztitle"></span><span class="aitag" style="justify-self:start">Chat with Lanyon AI · Lean decides</span></h3>
       <div id="chatlog" class="chatlog" aria-live="polite"></div>
       <form id="chatf" class="chatf"><input id="chatq" autocomplete="off" placeholder="Ask Lanyon, e.g. why 39 lines?"><button type="submit" class="replay">Ask</button></form>
@@ -607,23 +630,29 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         ["z3", "If you only had 20 h", "Z3 proves it can't fit: 18 h of runs, but only 15 h left after cooldown.", "can't fit (proved)", "fail"]],
   };
   const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
-  // Lanyon session view: the run as a conversation (Lanyon AI hosts; Lean decides; Z3 computes exact values)
-  const AV = { lanyon: ["✦", "Lanyon AI", "suggests ideas"], lean: ["✓", "Lean", "the judge: makes the final call"], z3: ["∑", "Z3", "does the exact maths"], data: ["▤", "CryoLean data", "from datasheets"], you: ["☺", "You", ""] };
-  function flowHTML(id, n, typing) {
-    const st = STEPS[id] || [];
-    const hdr = `<span class="scan"></span><div class="hdr"><span class="dot"></span>${esc(DEMOS.find((x) => x.id === id).d)}<small>A replay of a real run. Lanyon was switched off here, so the numbers come from Z3.</small></div>`;
-    return hdr + st.slice(0, n).map(([w, t, p, big, tone], i) => { const a = AV[w] || AV.data; const last = i === n - 1 && typing;
-      return `<div class="msg"><span class="av ${w}">${a[0]}</span><div><div class="who2">${a[1]}<span>${a[2]} · ${esc(t)}</span></div><div class="bub${last ? " typing" : ""}" data-full="${esc(p)}">${last ? "" : esc(p)}</div>${last ? "" : `<span class="chip ${tone}">${esc(big)}</span>`}</div></div>`; }).join("");
+  // "Computational universe" view: each participant is a body on a hairline orbit; a light pulse travels to whoever acts next.
+  const AV = { lanyon: ["Lanyon AI", "suggests ideas"], lean: ["Lean", "the judge"], z3: ["Z3", "exact maths"], data: ["Datasheets", "the facts"], you: ["You", "the plan"] };
+  const POS = { you: [70, 150], data: [120, 64], lanyon: [250, 70], z3: [330, 170], lean: [200, 205] };
+  const STARS = Array.from({ length: 70 }, (_, i) => [(i * 97.3) % 420, (i * 53.7) % 300, ((i * 7) % 3) * 0.35 + 0.35]);
+  function flowHTML(id, n) {
+    const st = STEPS[id] || [], cur = st[Math.max(0, n - 1)], who = new Set(st.map((x) => x[0]));
+    const used = [...who];
+    let svgc = STARS.map(([x, y, r]) => `<circle class="star" cx="${x}" cy="${y}" r="${r}"/>`).join("");
+    svgc += [70, 115, 160].map((r) => `<ellipse class="orb" cx="210" cy="140" rx="${r * 1.35}" ry="${r * 0.62}"/>`).join("");
+    for (let i = 1; i < n; i++) { const [a, b] = [POS[st[i - 1][0]], POS[st[i][0]]]; if (!a || !b) continue;
+      const mx = (a[0] + b[0]) / 2, my = Math.min(a[1], b[1]) - 30;
+      svgc += `<path class="link${i === n - 1 ? " draw" : ""}" d="M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}" id="lk${i}"/>`; }
+    used.forEach((w) => { const [x, y] = POS[w] || POS.data, on = cur && cur[0] === w;
+      svgc += `<g style="color:${w === "lean" ? "var(--met)" : w === "lanyon" ? "#a77bff" : "var(--ink)"}"><circle class="halo${on ? " go" : ""}" cx="${x}" cy="${y}" r="15"/>` +
+        `<circle class="body ${w}${on ? " on" : ""}" cx="${x}" cy="${y}" r="${w === "lean" || w === "lanyon" ? 15 : 11}"/>` +
+        `<text class="lbl" x="${x}" y="${y + (w === "lean" ? 31 : 27)}">${AV[w][0]}</text><text class="sub" x="${x}" y="${y + (w === "lean" ? 42 : 38)}">${AV[w][1]}</text></g>`; });
+    if (n > 1) { const p = `lk${n - 1}`; svgc += `<circle class="pulse" r="2.6"><animateMotion dur="1.1s" fill="freeze"><mpath href="#${p}"/></animateMotion></circle>`; }
+    const cap = cur && n ? `<div class="k"><b>${esc(AV[cur[0]][0])}</b> · step ${n} of ${st.length}</div><h4>${esc(cur[1])}</h4><p>${esc(cur[2])}</p><span class="res ${cur[4]}">${esc(cur[3])}</span>`
+      : `<div class="k">${esc(DEMOS.find((x) => x.id === id).d)}</div><h4>Starting the run…</h4>`;
+    return `<div class="uni"><svg viewBox="0 0 420 280" role="img" aria-label="Diagram of who acts in each step">${svgc}</svg><div class="cap">${cap}` +
+      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>Replay of a real run · Lanyon and Z3 suggest, Lean decides. Lanyon was off in this recording, so suggested numbers are Z3's.</small></div></div>`;
   }
-  let typeT = 0, flowN = 0;
-  function streamLast(id, n) {   // type the newest message like a live model, then show its result chip
-    clearInterval(typeT);
-    const b = $("flow").querySelector(".bub.typing"); if (!b) return;
-    const full = b.dataset.full.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'"); let k = 0;
-    typeT = setInterval(() => { k += 3; b.textContent = full.slice(0, k); $("flow").scrollTop = 1e9;
-      if (k >= full.length) { clearInterval(typeT); b.classList.remove("typing"); const [, , , big, tone] = STEPS[id][n - 1];
-        b.insertAdjacentHTML("afterend", `<span class="chip ${tone}">${esc(big)}</span>`); $("flow").scrollTop = 1e9; } }, 18);
-  }
+  let typeT = 0, flowN = 0; function streamLast() {}
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
     demoCur = id; clearInterval(demoTimer); demoSelect(id); resetChat(id);
