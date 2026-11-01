@@ -65,8 +65,10 @@ def main():
     industries, scenes = [], {}
     for f in MANIFESTS:
         m = json.loads((ROOT / "research/expansion" / f).read_text(encoding="utf-8"))
-        industries += m["industries"]
         scenes.update(m.get("experiment_scenes", {}))
+    # featured set: 3 experiments x 3 machines per industry, no machine used twice (scripts/select note in the file)
+    sel = json.loads((ROOT / "research/v4/site_selection.json").read_text(encoding="utf-8"))
+    industries = [{"id": k, "experiment_ids": v["experiment_ids"], "configuration_ids": v["configuration_ids"]} for k, v in sel.items()]
     order = list(NAMES)
     industries.sort(key=lambda i: order.index(i["id"]))
     cfg_ids = sorted({c for i in industries for c in i["configuration_ids"]})

@@ -44,14 +44,14 @@ header.top { text-align: center; height: 172px }
 .row { display: grid; grid-template-columns: 455px 44px 516px 44px minmax(0, 1fr); gap: 0 4px; height: 748px }
 .arrow { display: grid; place-items: center; color: var(--accent) } .arrow svg { width: 52px; height: 52px }
 .card { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
-  padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 13px; min-width: 0; position: relative }
+  padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; overflow: hidden }
 .card h2 { margin: 0; display: flex; align-items: center; gap: 16px; font: 800 33px/1 var(--display); color: var(--ink) }
 .num { width: 58px; height: 58px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
   font: 800 32px var(--display); flex: none; box-shadow: 0 4px 10px rgba(20,104,232,.3) }
 .tag { position: absolute; z-index: 3; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 10px;
   font: 700 20px/1.15 var(--display); padding: 9px 16px; color: var(--ink); box-shadow: var(--shadow) }
 
-.sample { height: 290px; border-radius: 14px; overflow: hidden; position: relative; background: radial-gradient(90% 90% at 50% 35%, var(--stage-hi), var(--sample-lo)) }
+.sample { height: 236px; border-radius: 14px; overflow: hidden; position: relative; background: radial-gradient(90% 90% at 50% 35%, var(--stage-hi), var(--sample-lo)) }
 .sample svg { position: absolute; inset: 0; width: 100%; height: 100% }
 .sample .tag { left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
 .field { display: grid; gap: 6px }
@@ -63,15 +63,15 @@ header.top { text-align: center; height: 172px }
 .selectwrap::after { content: ""; position: absolute; right: 20px; top: 50%; width: 12px; height: 12px; margin-top: -9px;
   border-right: 3px solid var(--accent-ink); border-bottom: 3px solid var(--accent-ink); transform: rotate(45deg); pointer-events: none }
 .exps { display: grid; gap: 9px }
-.exp { text-align: left; background: var(--chip); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 14px; cursor: pointer;
-  color: var(--ink); font: 700 18px/1.2 var(--display); min-height: 66px; display: grid; align-content: center; gap: 2px }
+.exp { text-align: left; background: var(--chip); border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 13px; cursor: pointer;
+  color: var(--ink); font: 700 16.5px/1.2 var(--display); min-height: 60px; display: grid; align-content: center; gap: 2px }
 .exp .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
 .exp small { font: 500 13px/1.25 var(--body); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden }
 .exp:hover { border-color: var(--accent) }
 .exp[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
 .exp[aria-pressed="true"] small { color: var(--accent-ink); opacity: .85 }
 
-.machine { height: 455px; border-radius: 14px; position: relative; overflow: hidden; background: radial-gradient(80% 70% at 50% 40%, var(--stage-hi), var(--stage-lo)) }
+.machine { height: 432px; border-radius: 14px; position: relative; overflow: hidden; background: radial-gradient(80% 70% at 50% 40%, var(--stage-hi), var(--stage-lo)) }
 .machine .gl { position: absolute; inset: 0; cursor: grab } .machine .gl:active { cursor: grabbing } .machine canvas { display: block; touch-action: none }
 .machine .tag { right: 16px; top: 150px; font-size: 18px }
 .machine .kind { position: absolute; left: 14px; bottom: 54px; font: 700 12px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); z-index: 2; max-width: 60% }
@@ -95,8 +95,8 @@ header.top { text-align: center; height: 172px }
 
 .laptop { display: grid; justify-items: center; padding: 0 14px }
 .lid { width: 100%; background: var(--bezel); border-radius: 18px 18px 6px 6px; padding: 14px 14px 18px }
-.screen { background: var(--screen); border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px }
-.screen .brand { font: 800 27px var(--display); color: var(--accent) }
+.screen { background: var(--screen); border-radius: 6px; padding: 12px 14px; display: grid; gap: 8px }
+.screen .brand { font: 800 24px var(--display); color: var(--accent) }
 .screen .claim { margin: 0; font: 800 25px/1.18 var(--display); color: var(--ink) }
 .qs { list-style: none; margin: 0; padding: 12px; display: grid; gap: 9px; background: var(--chip); border-radius: 10px }
 .q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start }
@@ -108,15 +108,48 @@ header.top { text-align: center; height: 172px }
 .base { width: 104%; height: 22px; background: linear-gradient(#a9b7c8, #5d6f86); border-radius: 0 0 26px 26px; margin-top: -2px }
 .base::before { content: ""; display: block; width: 18%; height: 7px; margin: 0 auto; background: #4a5a70; border-radius: 0 0 8px 8px }
 .verdicts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
-.v { border-radius: 12px; padding: 12px 6px; display: grid; justify-items: center; gap: 7px; text-align: center; font: 600 16px/1.2 var(--body);
+.v { border-radius: 12px; padding: 7px 8px; display: flex; align-items: center; gap: 8px; text-align: left; font: 700 13.5px/1.15 var(--body);
   border: 2.5px solid transparent; opacity: .42; color: var(--ink) }
-.v .c { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 900 24px var(--display) }
+.v .c { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 900 24px var(--display) }
 .v.met { background: var(--met-soft) } .v.met .c { background: var(--met) }
 .v.fail { background: var(--fail-soft) } .v.fail .c { background: var(--fail) }
 .v.info { background: var(--info-soft) } .v.info .c { background: var(--info) }
 .v.on { opacity: 1 } .v.met.on { border-color: var(--met) } .v.fail.on { border-color: var(--fail) } .v.info.on { border-color: var(--info) }
 .why { align-self: center; border: 0; background: none; color: var(--accent); font: 700 15px var(--body); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; margin-top: auto }
 
+.tabs { position: absolute; right: 22px; top: 22px; display: inline-flex; background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; z-index: 5 }
+.tabs button { border: 0; background: transparent; color: var(--ink-2); font: 800 16px var(--display); padding: 10px 18px; cursor: pointer }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink) }
+.live { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; max-height: 236px; overflow: auto }
+.lr { display: grid; grid-template-columns: 24px minmax(0, 1fr) 74px; gap: 9px; align-items: center; background: var(--chip); border-radius: 9px; padding: 7px 9px; border: 1.5px solid transparent }
+.lr.first { border-color: var(--fail) } .lr.firstu { border-color: var(--info) }
+.lr input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; margin: 0 }
+.lr .nm { font: 700 14.5px/1.15 var(--display); color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
+.lr .ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 5px; margin-top: 3px; font: 600 13px var(--body); color: var(--ink-2) }
+.lr input[type=number] { width: 78px; font: 600 14px var(--mono); color: var(--ink); background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 6px; padding: 3px 5px }
+.lr input[type=number]:focus { outline: 2px solid var(--accent); border-color: var(--accent) }
+.lr .fixed { font: 500 12.5px var(--body); color: var(--ink-2) }
+.badge { font: 800 11px/1.15 var(--body); border-radius: 8px; padding: 4px 6px; text-align: center }
+.badge.p { background: var(--met-soft); color: var(--met) } .badge.f { background: var(--fail-soft); color: var(--fail) } .badge.u { background: var(--info-soft); color: var(--info) } .badge.s { background: var(--chip); color: var(--muted) }
+.suggest { background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 12px; display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); min-height: 0; overflow: auto; flex: 1 }
+.suggest b.h { font: 800 15px var(--display); color: var(--ink) }
+.suggest .alts { display: flex; flex-wrap: wrap; gap: 6px }
+.suggest button.alt, .suggest button.fix { border: 1.5px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 8px; padding: 4px 9px; font: 700 12.5px var(--body); cursor: pointer; text-align: left }
+.suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
+.suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
+.suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
+.demo { display: grid; grid-template-columns: 300px minmax(0, 1fr) 520px; gap: 16px; height: 748px }
+.demo .list { display: grid; gap: 10px; align-content: start }
+.demo .di { text-align: left; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; cursor: pointer; color: var(--ink) }
+.demo .di b { font: 800 19px var(--display); display: block } .demo .di span { font: 500 13.5px/1.3 var(--body); color: var(--ink-2) }
+.demo .di[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset }
+.term { background: #0a1220; color: #cfe1ff; border-radius: 16px; padding: 16px 18px; font: 13px/1.5 var(--mono); overflow: auto; white-space: pre-wrap; box-shadow: var(--shadow); border: 1px solid #1d2b44 }
+.term .ok { color: #6be39a } .term .bad { color: #ff8d8d } .term .warn { color: #ffd16b } .term .dim { color: #7f93b5 } .term .hd { color: #8fb8ff; font-weight: 600 }
+.term .cursor { display: inline-block; width: 8px; height: 15px; background: #8fb8ff; vertical-align: -2px; animation: blink 1s steps(1) infinite }
+@keyframes blink { 50% { opacity: 0 } }
+.viz { background: var(--panel); border: 2px solid var(--line); border-radius: 16px; padding: 14px; display: grid; grid-template-rows: auto 1fr auto; gap: 10px }
+.viz h3 { margin: 0; font: 800 20px var(--display) } .viz svg { width: 100%; height: 100% } .viz .cap { font-size: 13.5px; color: var(--ink-2) }
+.replay { border: 0; background: var(--accent); color: var(--accent-ink); font: 800 14px var(--display); border-radius: 10px; padding: 8px 14px; cursor: pointer; justify-self: start }
 footer.bottom { display: grid; justify-items: center; align-content: center; gap: 2px; height: 74px }
 footer.bottom .tl { font: 800 32px/1.1 var(--display); color: var(--ink) }
 footer.bottom .small { justify-self: end; font: 500 13px var(--body); color: var(--ink-2) }
@@ -149,12 +182,13 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
 <div class="viewport" id="viewport">
 <div class="stage" id="stage">
+  <div class="tabs" role="tablist"><button role="tab" id="tab-live" aria-selected="true">Live checker</button><button role="tab" id="tab-demo" aria-selected="false">Demos · recorded runs</button></div>
   <header class="top">
     <h1 class="wordmark">CryoLean</h1>
     <p class="question">Can this cryostat do my experiment?</p>
   </header>
 
-  <div class="row">
+  <div class="row" id="liverow">
     <section class="card" aria-labelledby="h1">
       <h2 id="h1"><span class="num">1</span>Choose an industry</h2>
       <div class="sample" aria-hidden="true">
@@ -215,9 +249,8 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <h2 id="h3"><span class="num">3</span>Check the setup</h2>
       <div class="laptop">
         <div class="lid"><div class="screen">
-          <span class="brand">CryoLean</span>
-          <p class="claim">Z3 suggests a setup.<br>Lean checks the proof.</p>
-          <ul class="qs" id="questions"></ul>
+          <span class="brand">CryoLean <small style="font:600 13px var(--body);color:var(--ink-2)">· tick each requirement, type your values</small></span>
+          <ul class="live" id="live"></ul>
         </div></div>
         <div class="base"></div>
       </div>
@@ -226,10 +259,16 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         <div class="v fail" id="v-fail"><span class="c">&#10005;</span>Does not meet requirements</div>
         <div class="v info" id="v-info"><span class="c">?</span>Need more information</div>
       </div>
-      <button class="why" id="whybtn">Why this verdict? See every requirement and source</button>
+      <div class="suggest" id="suggest" aria-live="polite"></div>
+      <button class="why" id="whybtn" style="margin-top:0;font-size:13.5px">Why this verdict? Every requirement and source</button>
     </section>
   </div>
 
+  <div class="demo" id="demo" hidden>
+    <div class="list" id="demolist"></div>
+    <pre class="term" id="term" aria-live="polite"></pre>
+    <div class="viz"><h3 id="viztitle"></h3><div id="viz"></div><div style="display:grid;gap:8px"><span class="cap" id="vizcap"></span><button class="replay" id="replay">Replay run</button></div></div>
+  </div>
   <footer class="bottom">
     <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
     <span class="small" id="stamp">Verdicts decided by the Lean 4 checker</span>
@@ -256,6 +295,8 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>__CRYO3D__</script>
 <script type="application/json" id="cryolean-data">__DATA__</script>
+<script type="application/json" id="cryolean-lattice">__LATTICE__</script>
+<script>window.DEMO_LOG = __DEMOLOG__;</script>
 <script>
 (function () {
   const D = JSON.parse(document.getElementById("cryolean-data").textContent);
@@ -285,7 +326,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 
   const sel = $("industry");
   D.industries.forEach((ind, i) => { const o = document.createElement("option"); o.value = i; o.textContent = ind.name; sel.appendChild(o) });
-  sel.addEventListener("change", () => { Object.assign(st, { ind: +sel.value, exp: 0, cfg: 0 }); render() });
+  sel.addEventListener("change", () => { Object.assign(st, { ind: +sel.value, exp: 0, cfg: 0, alt: null }); render() });
   const verdictOf = (e, c) => D.verdicts[e.id + "|" + c.id];
 
   const has3d = !!(window.Cryo3D && Cryo3D.mount($("gl")));
@@ -296,39 +337,229 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   const thumbs = {};
   const thumbOf = (kind, verdict) => { const k = kind + "|" + verdict; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
 
+  // ---------------------------------------------------------------- live step 3 (Lean outcome lattice)
+  // Every outcome below comes from site/lattice.json: Lean decided each requirement at every documented limit of every
+  // machine and inside every interval between them, so a typed value is answered by the Lean outcome of its interval.
+  const L = JSON.parse(document.getElementById("cryolean-lattice").textContent);
+  const VCLS = { R: "met", D: "fail", N: "info" };
+  const OUTW = { p: "Met", f: "Not met", u: "Not documented", s: "Not confirmed" };
+  const LIVE = {};
+  const fnum = (x) => { if (x == null || !isFinite(x)) return ""; const a = Math.abs(x); return String(+(a >= 1e4 || (a > 0 && a < 1e-3) ? x.toPrecision(4) : x.toPrecision(6))) };
+  const human = (k) => k.replace(/^module\./, "").replace(/[._]/g, " ").replace(/\bmax\b/, "(max)").replace(/\bmin\b/, "(min)").replace(/^./, (c) => c.toUpperCase());
+  function factor(r) { const v = r.kind === "range_within" ? +r.lo : +r.value, si = r.kind === "range_within" ? r.si_lo : r.si; return v && si ? si / v : 1 }
+  function liveState(eid) {
+    if (!LIVE[eid]) {
+      const vals = {}, conf = {};
+      (L.requirements[eid] || []).forEach((r) => { conf[r.index] = false;
+        if (r.editable) vals[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value });
+      LIVE[eid] = { vals, conf };
+    }
+    return LIVE[eid];
+  }
+  function interval(e, x) {
+    const Ls = e.limits, s = e.outcomes;
+    if (!Ls.length) return s[0];
+    for (let j = 0; j < Ls.length; j++) if (Math.abs(x - Ls[j]) <= 1e-9 * Math.max(1, Math.abs(Ls[j]))) return s[2 * j + 1];
+    return s[2 * Ls.filter((b) => b < x).length];
+  }
+  function reqOutcome(eid, cid, r, lv) {
+    const o = L.lattice[eid] && L.lattice[eid][cid]; if (!o) return "u";
+    const e = o.edits[r.index];
+    if (!r.editable || !e) return o.checks[r.index];
+    const f = factor(r), v = lv.vals[r.index];
+    if (r.kind === "range_within") { const lo = Math.min(v[0], v[1]) * f, hi = Math.max(v[0], v[1]) * f, a = interval(e, lo), b = interval(e, hi);
+      return a === "f" || b === "f" ? "f" : a === "u" || b === "u" ? "u" : "p" }
+    return interval(e, v * f);
+  }
+  function liveVerdict(eid, cid, lv) {
+    const rs = L.requirements[eid] || [], o = L.lattice[eid] && L.lattice[eid][cid];
+    if (!o) return "N";
+    if (rs.some((r) => !lv.conf[r.index])) return L.unconfirmed_verdict[0];   // Lean: unconfirmed requirements -> NEED_MORE_INFORMATION
+    const outs = rs.filter((r) => r.mandatory).map((r) => reqOutcome(eid, cid, r, lv)).concat([...(o.coupled || "")]);
+    return outs.includes("f") ? "D" : outs.includes("u") ? "N" : "R";
+  }
+  function nearestPass(e, x) {      // nearest value whose Lean outcome is "met" for this machine
+    const Ls = e.limits, s = e.outcomes, c = [];
+    if (!Ls.length) return null;
+    Ls.forEach((b, j) => { if (s[2 * j + 1] === "p") c.push(b) });
+    for (let k = 0; k <= Ls.length; k++) if (s[2 * k] === "p") {
+      const lo = k ? Ls[k - 1] : -Infinity, hi = k < Ls.length ? Ls[k] : Infinity;
+      let y = x;
+      if (y <= lo) y = (isFinite(hi) ? (lo + hi) / 2 : lo * 1.001 + (lo === 0 ? 1e-9 : 0));
+      if (y >= hi) y = (isFinite(lo) ? (lo + hi) / 2 : hi * 0.999);
+      c.push(y);
+    }
+    return c.length ? c.sort((p, q) => Math.abs(p - x) - Math.abs(q - x))[0] : null;
+  }
+  function renderLive(ex, mc, lv, vcode, ind) {
+    const rs = L.requirements[ex.id] || [];
+    const outs = rs.map((r) => lv.conf[r.index] ? reqOutcome(ex.id, mc.id, r, lv) : "s");
+    const first = rs.findIndex((r, i) => r.mandatory && outs[i] === "f"), firstU = rs.findIndex((r, i) => r.mandatory && outs[i] === "u");
+    $("live").innerHTML = rs.map((r, i) => {
+      const u = esc(r.unit || ""), v = lv.vals[r.index];
+      const ctl = !r.editable ? `<span class="fixed">${esc(r.kind.replace(/_/g, " "))} · fixed by the procedure</span>`
+        : r.kind === "range_within" ? `from <input type="number" step="any" data-i="${r.index}" data-e="0" value="${v[0]}"> to <input type="number" step="any" data-i="${r.index}" data-e="1" value="${v[1]}"> ${u}`
+        : `${{ at_least: "at least", at_most: "at most", point_within: "at" }[r.kind]} <input type="number" step="any" data-i="${r.index}" value="${v}"> ${u}`;
+      return `<li class="lr${i === first ? " first" : i === firstU && first < 0 ? " firstu" : ""}"><input type="checkbox" data-c="${r.index}" ${lv.conf[r.index] ? "checked" : ""} aria-label="Confirm ${esc(human(r.keys[0]))}">` +
+        `<span style="min-width:0"><span class="nm" title="${esc(r.rationale)}">${i + 1}. ${esc(r.keys.map(human).join(" or "))}${r.mandatory ? "" : " (optional)"}</span><span class="ctl">${ctl}</span></span>` +
+        `<span class="badge ${outs[i]}">${OUTW[outs[i]]}</span></li>`;
+    }).join("");
+    $("live").querySelectorAll("input[type=checkbox]").forEach((b) => b.onchange = () => { lv.conf[b.dataset.c] = b.checked; render() });
+    $("live").querySelectorAll("input[type=number]").forEach((b) => b.oninput = () => {
+      const x = parseFloat(b.value); if (!isFinite(x)) return;
+      if (b.dataset.e != null) lv.vals[b.dataset.i][+b.dataset.e] = x; else lv.vals[b.dataset.i] = x;
+      clearTimeout(window._lt); window._lt = setTimeout(() => {
+        const sel = `input[data-i="${b.dataset.i}"]` + (b.dataset.e != null ? `[data-e="${b.dataset.e}"]` : "");
+        render(); const nb = $("live").querySelector(sel); if (nb) nb.focus();
+      }, 150);
+    });
+    const name = (cid) => (L.configurations[cid] || {}).m ? `${L.configurations[cid].m.split("(")[0].trim()} · ${L.configurations[cid].n}` : cid;
+    const passing = Object.keys(L.configurations).filter((cid) => cid !== mc.id && liveVerdict(ex.id, cid, lv) === "R");
+    const featured = new Set(ind.configurations.map((c) => c.id));
+    passing.sort((a, b) => (featured.has(b) - featured.has(a)) || name(a).localeCompare(name(b)));
+    const alts = passing.slice(0, 4).map((cid) => `<button class="alt" data-cid="${cid}">${featured.has(cid) ? "Featured · " : ""}${esc(name(cid))}</button>`).join("");
+    let h = "";
+    if (outs.includes("s")) {
+      h = `<b class="h">Confirm your requirements</b><span>Tick each requirement once its value matches your experiment. Until all are confirmed, Lean answers Need more information for every machine.</span>`;
+    } else if (vcode === "R") {
+      h = `<b class="h">All ${rs.length} requirements met, decided by Lean</b><span>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these exact values.</span>`;
+    } else {
+      const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
+      const steps = [];
+      if (first >= 0 && r.editable && e) {
+        const f = factor(r), v = lv.vals[r.index];
+        const end = r.kind === "range_within" ? (interval(e, Math.min(v[0], v[1]) * f) === "f" ? 0 : 1) : null;
+        const cur = r.kind === "range_within" ? v[end] : v, np = nearestPass(e, cur * f);
+        if (np != null) steps.push(`<button class="fix" data-i="${r.index}" data-e="${end ?? ""}" data-v="${fnum(np / f)}">Change ${r.kind === "range_within" ? (end ? "the upper end" : "the lower end") : "the value"} to ${fnum(np / f)} ${esc(r.unit || "")}</button> <span>Lean passes this machine there.</span>`);
+      }
+      steps.push(passing.length ? `<span>Or switch to a machine that meets every value you typed (${passing.length} found by Lean):</span><div class="alts">${alts}</div>`
+        : `<span>No catalog machine meets all of these values. Relax the failing value.</span>`);
+      h = `<b class="h">Requirement ${k + 1} ${first >= 0 ? "fails" : "is not documented"} on this machine: ${esc(human(r.keys[0]))}</b>` +
+        steps.map((t, j) => `<div class="step"><span class="k">${j + 1}</span><span>${t}</span></div>`).join("");
+    }
+    $("suggest").innerHTML = h;
+    $("suggest").querySelectorAll("button.alt").forEach((b) => b.onclick = () => {
+      const j = ind.configurations.findIndex((c) => c.id === b.dataset.cid);
+      if (j >= 0) { st.cfg = j; st.alt = null } else st.alt = b.dataset.cid;
+      render();
+    });
+    $("suggest").querySelectorAll("button.fix").forEach((b) => b.onclick = () => {
+      const x = +b.dataset.v; if (b.dataset.e !== "") lv.vals[b.dataset.i][+b.dataset.e] = x; else lv.vals[b.dataset.i] = x; render();
+    });
+  }
+
+  // ---------------------------------------------------------------- demos: the recorded `python -m cryolean demo` run
+  const DEMOS = [
+    { id: "A", t: "A · Confirmed incompatibility", d: "10 T magnetoresistance on a 9 T PPMS DynaCool", h: "Demo A" },
+    { id: "B", t: "B · Coupled multiphysics", d: "50-qubit wiring heat budget on a Bluefors LD400", h: "Demo B" },
+    { id: "C", t: "C · New industry", d: "Semiconductors through the research pipeline", h: "Demo C" },
+    { id: "D", t: "D · Campaign scheduling", d: "Three experiments in one 48 h cooldown", h: "Demo D" },
+  ];
+  const LOG = String(window.DEMO_LOG || "").split("\n");
+  function demoLines(h) {
+    const i = LOG.findIndex((l) => l.startsWith(h + " ")); if (i < 0) return [];
+    const out = [LOG[i]];
+    for (let j = i + 2; j < LOG.length && !/^={20}/.test(LOG[j]); j++) if (LOG[j].trim()) out.push(LOG[j]);
+    return out;
+  }
+  const paint = (l) => { const e = esc(l);
+    if (/^Demo /.test(l)) return `<span class="hd">${e}</span>`;
+    if (/\[fail|DOES_NOT_MEET|unsat|excluded/.test(l)) return `<span class="bad">${e}</span>`;
+    if (/\[pass|REQUIREMENTS_MET|: True|unchanged=True|sat\b/.test(l)) return `<span class="ok">${e}</span>`;
+    if (/\[unknown|NEED_MORE/.test(l)) return `<span class="warn">${e}</span>`;
+    if (/^\s+(assumption|evidence|manufacturer evidence|equation)/.test(l)) return `<span class="dim">${e}</span>`;
+    return e };
+  const NS = "http://www.w3.org/2000/svg";
+  function svg(w, h, body) { return `<svg viewBox="0 0 ${w} ${h}" xmlns="${NS}" role="img">${body}</svg>` }
+  const T = (x, y, s, a = "start", c = "var(--ink)", z = 14, w = 600) => `<text x="${x}" y="${y}" text-anchor="${a}" fill="${c}" style="font:${w} ${z}px var(--body)">${esc(s)}</text>`;
+  function vizA(p) {   // field the experiment needs vs the field each DynaCool magnet provides (QD brochure: 9, 12, 14 T)
+    const H = 360, y0 = 320, sc = 20, bars = [["9 T DynaCool", 9, p > .25], ["12 T option", 12, p > .75], ["14 T option", 14, p > .85]];
+    let b = `<line x1="40" x2="500" y1="${y0 - 10 * sc}" y2="${y0 - 10 * sc}" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>` + T(44, y0 - 10 * sc - 8, "experiment needs 10 T", "start", "var(--accent)", 14, 800);
+    bars.forEach(([n, t, on], i) => { const x = 70 + i * 145, h = on ? t * sc : 0, c = t < 10 ? "var(--fail)" : "var(--met)";
+      b += `<rect x="${x}" y="${y0 - h}" width="90" height="${h}" rx="8" fill="${c}" style="transition:all .6s"/>` + T(x + 45, y0 + 22, n, "middle", "var(--ink-2)", 13) + (on ? T(x + 45, y0 - h - 8, t + " T", "middle", "var(--ink)", 16, 800) : "") });
+    return svg(540, H + 10, `<line x1="40" x2="500" y1="${y0}" y2="${y0}" stroke="var(--line)" stroke-width="2"/>` + b);
+  }
+  function vizB(p) {   // Krinner et al. budget: 3 x (58*13 nW + n_flux*(29+50) nW + 8*20 nW) vs 12 uW at 20 mK
+    const flux = p > .8 ? 39 : 50, drive = 3 * 58 * 13 / 1000, fl = 3 * flux * 79 / 1000, out = 3 * 8 * 20 / 1000, tot = drive + fl + out, sc = 22, y0 = 330, x = 150;
+    const seg = (v, y, c, n) => `<rect x="${x}" y="${y - v * sc}" width="150" height="${v * sc}" fill="${c}" style="transition:all .8s"/>` + T(x + 165, y - v * sc / 2 + 5, `${n} ${v.toFixed(3)} µW`, "start", "var(--ink-2)", 13);
+    let b = `<line x1="60" x2="520" y1="${y0 - 12 * sc}" y2="${y0 - 12 * sc}" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 6"/>` + T(70, y0 - 12 * sc - 8, "cooling power 12 µW @ 20 mK", "start", "var(--accent)", 14, 800);
+    b += seg(drive, y0, "#7c8fb3", "drive") + seg(fl, y0 - drive * sc, flux === 50 ? "var(--fail)" : "var(--met)", `flux (${flux} lines)`) + seg(out, y0 - (drive + fl) * sc, "#a58569", "output");
+    b += T(x + 75, y0 + 24, `total ${tot.toFixed(3)} µW · ${tot <= 12 ? "Lean: REQUIREMENTS_MET" : "Lean: DOES_NOT_MEET"}`, "middle", tot <= 12 ? "var(--met)" : "var(--fail)", 15, 800);
+    return svg(540, 370, b);
+  }
+  function vizC(p) {
+    const st = [["Register industry", .1], ["Research request", .2], ["Validate candidate", .35], ["Z3 searches configurations", .55], ["Lean verifies CRX-VF", .75], ["Lean core hash unchanged", .92]];
+    return svg(540, 370, st.map(([n, at], i) => { const on = p >= at, y = 24 + i * 56;
+      return `<rect x="70" y="${y}" width="400" height="42" rx="21" fill="${on ? "var(--accent)" : "var(--chip)"}" style="transition:fill .4s"/>` + T(270, y + 27, n, "middle", on ? "var(--accent-ink)" : "var(--muted)", 15, 800) +
+        (i < st.length - 1 ? `<line x1="270" x2="270" y1="${y + 42}" y2="${y + 56}" stroke="var(--line)" stroke-width="3"/>` : "") }).join(""));
+  }
+  function vizD(p) {   // 48 h run: cooldown 5 h, Z3 slots 5-9, 9-17, 17-23 h; Lean validSchedule accepts; 20 h run is unsat
+    const sx = (h) => 30 + h * 10, rows = [["Cooldown", 0, 5, "var(--steel)"], ["Phase transition (POM)", 5, 9, "var(--met)"], ["Low-temperature Raman", 9, 17, "var(--met)"], ["Cryo-fluorescence", 17, 23, "var(--met)"]];
+    let b = `<line x1="${sx(0)}" x2="${sx(48)}" y1="250" y2="250" stroke="var(--line)" stroke-width="2"/>`;
+    for (let h = 0; h <= 48; h += 6) b += T(sx(h), 270, h + " h", "middle", "var(--muted)", 12);
+    rows.forEach(([n, a, z, c], i) => { const on = p > .2 + i * .15, y = 40 + i * 48;
+      b += `<rect x="${sx(a)}" y="${y}" width="${on ? (z - a) * 10 : 0}" height="34" rx="8" fill="${c}" style="transition:width .6s"/>` + (on ? T(sx(z) + 8, y + 22, `${n} · ${a}-${z} h`, "start", "var(--ink)", 13) : "") });
+    if (p > .55) b += T(30, 300, "Excluded by Lean: 10 T magnetoresistance (DOES_NOT_MEET)", "start", "var(--fail)", 13, 700);
+    if (p > .9) b += `<rect x="${sx(20)}" y="30" width="3" height="215" fill="var(--fail)"/>` + T(sx(20) + 8, 335, "20 h run: Z3 unsat, 18 h needed, 15 h left", "start", "var(--fail)", 13, 800);
+    return svg(540, 350, b);
+  }
+  const VIZ = { A: vizA, B: vizB, C: vizC, D: vizD };
+  const CAP = { A: "Lean rejects magnetic_field.max (10 T needed, 9 T documented). Z3's unsat core cites the Quantum Design brochure quote; the 14 T configuration is proposed and Lean re-checks it.",
+    B: "Temperature and line count pass, but Lean's coupled heat budget gives 14.592 µW > 12 µW. Z3 proposes 39 flux lines; Lean re-checks: 11.985 µW, REQUIREMENTS_MET.",
+    C: "A new industry goes through registration, validation and review; Z3 searches every configuration and the same Lean binary verifies the Lake Shore CRX-VF. The Lean core hash does not change.",
+    D: "Lean excludes the 10 T run, Z3 packs the other three after the 5 h cooldown (done at 23 h) and Lean validSchedule accepts the slots. A 20 h run is unsat." };
+  let demoTimer = 0, demoCur = "A";
+  function playDemo(id) {
+    demoCur = id; clearInterval(demoTimer);
+    const d = DEMOS.find((x) => x.id === id), lines = demoLines(d.h);
+    $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
+    $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
+    let n = 0; const step = () => { n++; const p = n / lines.length;
+      $("term").innerHTML = "$ python -m cryolean demo\n" + lines.slice(0, n).map(paint).join("\n") + (n < lines.length ? ' <span class="cursor"></span>' : "");
+      $("term").scrollTop = $("term").scrollHeight; $("viz").innerHTML = VIZ[id](p);
+      if (n >= lines.length) clearInterval(demoTimer) };
+    $("viz").innerHTML = VIZ[id](0); step();
+    demoTimer = setInterval(step, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 420);
+  }
+  $("demolist").innerHTML = DEMOS.map((d) => `<button class="di" data-id="${d.id}" aria-pressed="false"><b>${d.t}</b><span>${d.d}</span></button>`).join("") +
+    `<p class="cap" style="font-size:13px;color:var(--ink-2)">These are the real outputs of <code>python -m cryolean demo</code> on this catalog, replayed line by line. The Live checker tab answers your own values.</p>`;
+  $("demolist").querySelectorAll("button").forEach((b) => b.onclick = () => playDemo(b.dataset.id));
+  $("replay").onclick = () => playDemo(demoCur);
+  function tab(demo) {
+    $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
+    $("liverow").hidden = demo; $("demo").hidden = !demo;
+    if (demo) playDemo(demoCur); else clearInterval(demoTimer);
+  }
+  $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
+  if (location.hash === "#demo") setTimeout(() => tab(true), 0);
+
   function render() {
     save();
     const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
     sel.value = st.ind;
     $("experiments").innerHTML = ind.experiments.map((e, i) =>
       `<button class="exp" aria-pressed="${i === st.exp}" data-i="${i}" title="${esc(e.name)}"><span class="t">${esc(e.plain_name)}</span>${e.name && e.name !== e.plain_name ? `<small>${esc(e.name)}</small>` : ""}</button>`).join("");
-    $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; render() });
+    $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; st.alt = null; render() });
     $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : "Your sample";
 
+    const lv = liveState(ex.id);
     $("configs").innerHTML = ind.configurations.map((c, i) => {
-      const v = verdictOf(ex, c), kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, CLS[v.verdict]);
-      return `<button class="tile" aria-pressed="${i === st.cfg}" data-i="${i}" title="${esc((c.manufacturer || "") + " " + c.name)}">` +
+      const vc = VCLS[liveVerdict(ex.id, c.id, lv)], kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, vc);
+      return `<button class="tile" aria-pressed="${!st.alt && i === st.cfg}" data-i="${i}" title="${esc((c.manufacturer || "") + " " + c.name)}">` +
         (img ? `<img alt="" src="${img}">` : `<span></span>`) +
-        `<span class="lab"><span class="dot" style="background:var(--${CLS[v.verdict]})"></span><span class="n">${esc(c.manufacturer || ("Cryostat " + "ABC"[i]))}</span></span></button>`;
+        `<span class="lab"><span class="dot" style="background:var(--${vc})"></span><span class="n">${esc(c.manufacturer || ("Cryostat " + "ABC"[i]))}</span></span></button>`;
     }).join("");
-    $("configs").querySelectorAll("button").forEach((b) => b.onclick = () => { st.cfg = +b.dataset.i; render() });
+    $("configs").querySelectorAll("button").forEach((b) => b.onclick = () => { st.cfg = +b.dataset.i; st.alt = null; render() });
 
-    const v = verdictOf(ex, cfg), kind = has3d ? Cryo3D.archetype(cfg) : "";
-    $("kind").textContent = has3d ? Cryo3D.label(kind) + " · illustrative" : "";
-    $("kind").title = `${cfg.manufacturer || ""} · ${cfg.name}`;
-    $("stagetag").textContent = "Sample goes here";
-    if (has3d) Cryo3D.show(kind, CLS[v.verdict]);
-
-    $("questions").innerHTML = GROUPS.map(([g, label]) => {
-      const cs = v.checks.filter((c) => c.group === g && c.mandatory);
-      const s = cs.some((c) => c.outcome === "fail") ? "fail" : cs.some((c) => c.outcome === "unknown") ? "unknown" : cs.length ? "pass" : "none";
-      const mark = { pass: "&#10003;", fail: "&#10005;", unknown: "?", none: "" }[s];
-      const f = cs.find((c) => c.outcome === s) || cs[0];
-      const req = f ? f.required.charAt(0).toUpperCase() + f.required.slice(1) : "";
-      const d = s === "none" ? "Not a requirement of this experiment" : `${req} · machine: ${f.available || "nothing documented"}`;
-      return `<li class="q"><span class="box ${s}">${mark}</span><span><b>${label}</b><span class="d">${esc(d)}</span></span></li>`;
-    }).join("");
-    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", CLS[v.verdict] === k));
+    const altC = st.alt && L.configurations[st.alt] ? { id: st.alt, manufacturer: L.configurations[st.alt].m, name: L.configurations[st.alt].n, model: "", family: "" } : null;
+    const mc = altC || cfg;
+    const vcode = liveVerdict(ex.id, mc.id, lv), v = verdictOf(ex, cfg), kind = has3d ? Cryo3D.archetype(mc) : "";
+    $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
+    $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
+    $("stagetag").textContent = altC ? `${(mc.manufacturer || "").split("(")[0]} · ${mc.name}`.slice(0, 48) : "Sample goes here";
+    if (has3d) Cryo3D.show(kind, VCLS[vcode]);
+    renderLive(ex, mc, lv, vcode, ind);
+    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
 
     $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
       (ex.sources || []).filter((s) => s.citation && s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">Experiment source: ${esc(s.citation)}</a>`).join("") +

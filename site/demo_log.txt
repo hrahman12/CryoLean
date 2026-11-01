@@ -1,0 +1,71 @@
+
+====================================================================================================
+Lean checker
+====================================================================================================
+   available=True version=cryolean v2 (Lean 4.35.0) selftest=True theorems=128 unsafe=[]
+
+====================================================================================================
+Demo A — confirmed incompatibility: 10 T magnetoresistance on the PPMS DynaCool 9 T
+====================================================================================================
+   VERDICT: DOES_NOT_MEET_REQUIREMENTS — 'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Requirement not met.
+   [fail          ] M magnetic_field.max                   'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Req
+   [pass          ] M temperature.range                    'temperature.range' must be able to operate at 2 K; this configuration has a documented range of 1.85 K to 400 K (manufacturer spe
+   [pass          ] M module.electrical_transport          'module.electrical_transport' must be installed / available; this configuration has documented as present (manufacturer specificat
+   [unknown       ] M sample.width.max                     'sample.width.max' needs at least 3 mm, but this configuration has no documented value for 'sample.width.max'. We need more inform
+   [unknown       ] M sample.length.max                    'sample.length.max' needs at least 3 mm, but this configuration has no documented value for 'sample.length.max'. We need more info
+   [unknown       ] M sample.height.max                    'sample.height.max' needs at least 3 mm, but this configuration has no documented value for 'sample.height.max'. We need more info
+   Z3 unsat core: magnetic_field.max at least 10 T cannot hold together with magnetic_field.max documented as max 9 T (manufacturer_specification)
+      evidence: ['ev_qd_0002', 'ev_qd_0001']
+   manufacturer evidence ev_qd_0002: "Longitudinal: ±9 T, ±12 T, ±14 T" — Product Description / Cryogen-Free Physical Property Measurement Syste (PDF page 4, 'PPMS DynaCool Specifications', row 'M)
+   manufacturer evidence ev_qd_0001: "The PPMS DynaCool comes equipped with either a 9 T, 12 T or 14 T conduction-cooled superconducting s" — Product Description / Cryogen-Free Physical Property Measurement Syste (PDF page 1, section 'Magnet Control')
+   Z3 alternative qd_dynacool_14T_eto_vsm_hc               z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Z3 alternative bluefors_ld250_manual_v2                 z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Z3 alternative bluefors_ld400_hdw                       z3=pending_information  Lean=NEED_MORE_INFORMATION
+
+====================================================================================================
+Demo B — coupled multiphysics: qubit wiring heat budget on a Bluefors LD400 with high-density wiring
+====================================================================================================
+   VERDICT: DOES_NOT_MEET_REQUIREMENTS — Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.
+   [pass          ] M temperature.base                     'temperature.base' needs 20 mK or lower; this configuration has a documented minimum of 10 mK (manufacturer specification). Requir
+   [pass          ] M electrical.coax_lines                'electrical.coax_lines' needs at least 124; this configuration has a documented count of 168 (manufacturer specification). Require
+   [fail          ] C Mixing-chamber wiring heat load (with design margin) vs cool
+        lhs = 14.592 µW   rhs = 12 µW
+        Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.
+   equation: margin * (n_drive*q_drive + n_flux*(q_flux + p_flux_dc) + n_out*q_out) <= P_cool(T_doc)   valid when T_doc <= T_op
+   assumption: per-line passive loads measured by Krinner et al. on their XLD400 transfer to the candidate refrigerator with the same cable types
+   assumption: measurement uncertainties of the per-line loads are not propagated (central values used)
+   assumption: active drive-line dissipation and TWPA pump lines are not included
+   assumption: cooling capacity does not decrease with temperature above the documented point
+   cooling-power slot: {'cooling': 'cooling_power.at_20mK'}
+   Z3 parameter change: n_flux_lines 50 -> 39  | Lean re-check: REQUIREMENTS_MET (verified=True)
+
+====================================================================================================
+Demo C — new industry (semiconductors) through the research pipeline, same Lean core
+====================================================================================================
+   registered industry: semiconductors_and_electronics status: registered
+   research request: rr_f2f4a83bf5 -> NEED_MORE_INFORMATION | closest prepared profiles: ['mat_electrical_resistance_low_temperature', 'chem_phase_transition_pom', 'quantum_mk_vector_field_transport']
+   candidate: cand_ae98973069 validation ok: True | warnings: 1
+   verify before approval -> not_found
+   Z3 candidate lakeshore_crx_vf               z3=satisfiable          Lean=REQUIREMENTS_MET
+   Z3 candidate lakeshore_ccs_100              z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Z3 candidate lakeshore_ccs_300s             z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Z3 candidate lakeshore_ccs_400              z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Z3 candidate lakeshore_ccs_400h             z3=pending_information  Lean=NEED_MORE_INFORMATION
+   Lean check of the top candidate: REQUIREMENTS_MET (industry=semiconductors_and_electronics)
+   [pass          ] M temperature.range                    'temperature.range' must cover the whole range 10 K to 296 K; this configuration has a documented range of 10 K to 420 K (manufact
+   [pass          ]   temperature.range                    'temperature.range' must be able to operate at 420 K; this configuration has a documented range of 10 K to 420 K (manufacturer spe
+   [pass          ] M electrical.probe_arms                'electrical.probe_arms' needs at least 3; this configuration has a documented count of 6 (manufacturer specification). Requirement
+   [pass          ] M vacuum.available                     'vacuum.available' must be installed / available; this configuration has documented as present (manufacturer specification). Requi
+   [fail          ]   pressure.base                        'pressure.base' needs 100 µPa or lower, but this configuration has a documented minimum of 1.333 mPa (manufacturer specification).
+   Lean core hash before=3cf2d6e8e5a8784d after=3cf2d6e8e5a8784d unchanged=True
+
+====================================================================================================
+Demo D — campaign: three experiments in one cooldown of the Lake Shore CRX-VF (Z3 packs, Lean validSchedule decides)
+====================================================================================================
+   excluded by Lean: mat_magnetoresistance_10T (DOES_NOT_MEET_REQUIREMENTS)
+   cooldown 5 h, Z3 makespan 23 h
+      5 h -    9 h  chem_phase_transition_pom
+      9 h -   17 h  chem_low_temperature_raman
+     17 h -   23 h  bio_cryo_fluorescence_vitrified
+   Lean validSchedule: True  theorems: validSchedule_sound, validSchedule_bounds, validSchedule_disjoint, validSchedule_only_accepted
+   20 h run instead: Z3 unsat: the experiments ['bio_cryo_fluorescence_vitrified', 'chem_low_temperature_raman', 'chem_phase_transition_pom'] cannot all fit between the end of cooldown (5 h) and the end of the run (20 h): 15 h available, 18 h needed
