@@ -157,24 +157,24 @@ header.top { text-align: center; height: 172px }
 .demo .term { height: 300px; overflow: auto }
 .flow { --hl: color-mix(in srgb, var(--ink) 28%, transparent); --hl2: color-mix(in srgb, var(--ink) 12%, transparent);
   height: 300px; display: flex; flex-direction: column; gap: 0; overflow: auto; padding: 0 16px 12px; border: 1px solid var(--hl); border-radius: 2px;
-  background: transparent; position: relative; scroll-behavior: smooth; font-family: ui-monospace, "SF Mono", Menlo, monospace }
+  background: transparent; position: relative; scroll-behavior: smooth }
 .flow .hdr { display: flex; align-items: baseline; gap: 10px; position: sticky; top: 0; z-index: 2; padding: 10px 0 8px; background: var(--bg, #0b1220);
-  border-bottom: 1px solid var(--hl); font: 500 11px ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--ink) }
+  border-bottom: 1px solid var(--hl); font: 700 15px var(--display); color: var(--ink) }
 .flow .hdr .dot { width: 6px; height: 6px; border: 1px solid var(--ink); border-radius: 50%; animation: lp 1.6s infinite }
 @keyframes lp { 50% { opacity: .15 } }
-.flow .hdr small { margin-left: auto; letter-spacing: .04em; text-transform: none; color: var(--muted); font-size: 10.5px }
-.flow .msg { display: grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hl2); position: relative; animation: mi .5s ease }
+.flow .hdr small { margin-left: auto; font: 500 12px var(--body); color: var(--muted) }
+.flow .msg { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hl2); position: relative; animation: mi .5s ease }
 @keyframes mi { from { opacity: 0 } }
-.flow .msg::before { content: ""; position: absolute; left: 10.5px; top: 32px; bottom: -10px; width: 1px; background: var(--hl);
+.flow .msg::before { content: ""; position: absolute; left: 16.5px; top: 44px; bottom: -10px; width: 1px; background: var(--hl);
   transform-origin: top; animation: draw .7s ease forwards; transform: scaleY(0) }
 .flow .msg:last-child::before { display: none }
 @keyframes draw { to { transform: scaleY(1) } }
-.flow .av { width: 22px; height: 22px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font: 500 8.5px ui-monospace, Menlo, monospace; color: var(--ink); background: transparent; letter-spacing: .02em }
+.flow .av { width: 34px; height: 34px; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 17px; background: transparent }
 .flow .av.lean { border-color: var(--met); color: var(--met) } .flow .av.z3 { border-style: dashed }
-.flow .who2 { font: 500 10.5px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--ink) }
-.flow .who2 span { letter-spacing: .02em; text-transform: none; color: var(--muted); margin-left: 8px }
-.flow .bub { font: 400 13px/1.55 var(--body); color: var(--ink-2); margin-top: 3px }
-.flow .chip { display: inline-block; margin-top: 6px; font: 500 11.5px ui-monospace, Menlo, monospace; letter-spacing: .04em; padding: 2px 8px; border: 1px solid currentColor; border-radius: 2px; background: transparent !important }
+.flow .who2 { font: 700 14px var(--display); color: var(--ink) }
+.flow .who2 span { font: 500 12.5px var(--body); color: var(--muted); margin-left: 8px }
+.flow .bub { font: 400 14.5px/1.5 var(--body); color: var(--ink-2); margin-top: 3px }
+.flow .chip { display: inline-block; margin-top: 6px; font: 700 13.5px var(--display); padding: 3px 10px; border: 1px solid currentColor; border-radius: 99px; background: transparent !important }
 .flow .chip.met { color: var(--met) } .flow .chip.fail { color: var(--fail) } .flow .chip.info { color: var(--info) } .flow .chip.neutral { color: var(--ink) }
 .flow .typing::after { content: ""; display: inline-block; width: 7px; height: 1px; margin-left: 2px; background: var(--ink); vertical-align: middle; animation: lp .7s infinite }
 .flow .scan { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--ink), transparent); opacity: .35; animation: scan 3.2s linear infinite; pointer-events: none }
@@ -608,10 +608,10 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   };
   const WHO = { data: "Data", you: "You", lean: "Lean 4 · decides", z3: "Z3 · suggests", lanyon: "Lanyon AI · proposes" };
   // Lanyon session view: the run as a conversation (Lanyon AI hosts; Lean decides; Z3 computes exact values)
-  const AV = { lanyon: ["LA", "Lanyon AI", "proposes"], lean: ["L4", "Lean 4", "decides"], z3: ["Z3", "Z3 solver", "suggests"], data: ["DB", "CryoLean data", "sourced"], you: ["You", "You", ""] };
+  const AV = { lanyon: ["✦", "Lanyon AI", "suggests ideas"], lean: ["✓", "Lean", "the judge: makes the final call"], z3: ["∑", "Z3", "does the exact maths"], data: ["▤", "CryoLean data", "from datasheets"], you: ["☺", "You", ""] };
   function flowHTML(id, n, typing) {
     const st = STEPS[id] || [];
-    const hdr = `<span class="scan"></span><div class="hdr"><span class="dot"></span>Lanyon · session ${esc(id)}<small>recorded run · proposer off, Z3 values shown</small></div>`;
+    const hdr = `<span class="scan"></span><div class="hdr"><span class="dot"></span>${esc(DEMOS.find((x) => x.id === id).d)}<small>A replay of a real run. Lanyon was switched off here, so the numbers come from Z3.</small></div>`;
     return hdr + st.slice(0, n).map(([w, t, p, big, tone], i) => { const a = AV[w] || AV.data; const last = i === n - 1 && typing;
       return `<div class="msg"><span class="av ${w}">${a[0]}</span><div><div class="who2">${a[1]}<span>${a[2]} · ${esc(t)}</span></div><div class="bub${last ? " typing" : ""}" data-full="${esc(p)}">${last ? "" : esc(p)}</div>${last ? "" : `<span class="chip ${tone}">${esc(big)}</span>`}</div></div>`; }).join("");
   }
