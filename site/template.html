@@ -139,7 +139,7 @@ header.top { text-align: center; height: 172px }
 .suggest button.alt:hover, .suggest button.fix:hover { border-color: var(--accent) }
 .suggest .step { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start }
 .suggest .k { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 11px var(--display); display: grid; place-items: center }
-.demo { display: grid; grid-template-columns: 260px minmax(0, 1fr) 360px; gap: 14px; height: 300px; margin-top: 8px }
+.demo { flex: none; display: grid; grid-template-columns: 260px minmax(0, 1fr) 360px; gap: 14px; height: 300px; margin-top: 8px }
 .demo .viz { min-width: 0 } .chatlog .m { overflow-wrap: anywhere }
 .chatlog { overflow: auto; display: flex; flex-direction: column; gap: 8px; min-height: 0; padding-right: 4px }
 .chatlog .m { font: 500 13px/1.4 var(--body); padding: 8px 10px; border-radius: 12px; max-width: 95%; white-space: pre-wrap }
@@ -149,6 +149,7 @@ header.top { text-align: center; height: 172px }
 .chatf { display: grid; grid-template-columns: 1fr auto; gap: 6px }
 .chatf input { background: var(--panel-solid); border: 1.5px solid var(--line); color: var(--ink); border-radius: 10px; padding: 7px 10px; font: 500 13px var(--body); min-width: 0 }
 .aitag { font: 800 10.5px var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: color-mix(in srgb, var(--accent) 15%, transparent); padding: 3px 8px; border-radius: 99px; white-space: nowrap }
+.demo.islive { grid-template-columns: minmax(0, 1fr) 360px }
 .demo .viz.ai { grid-template-rows: auto minmax(0, 1fr) auto auto !important }
 .demo .viz { overflow: hidden; display: grid; grid-template-rows: auto 1fr auto; gap: 4px; min-height: 0 }
 .demo .viz #viz { min-height: 0 } .demo .viz #viz svg { width: 100%; height: 100%; max-height: 190px }
@@ -259,7 +260,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
 .totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
 @media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
-.mx180 { margin-top: 14px; display: grid; gap: 12px }
+.mx180 { flex: none; margin-top: 14px; display: grid; gap: 12px }
 .mxtop { display: grid; grid-template-columns: minmax(0, 1fr) 460px auto; gap: 18px; align-items: center }
 .mxtop h2 { margin: 0; font: 800 26px var(--display); color: var(--ink) } .mxtop p { margin: 2px 0 0; color: var(--ink-2); font-size: 14px }
 .mxsum { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center } .mxsum b { font: 800 34px var(--display); color: var(--met); grid-row: span 2 }
@@ -671,15 +672,32 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
         `<text class="lbl" x="${x}" y="${y + (w === "lean" ? 31 : 27)}">${AV[w][0]}</text><text class="sub" x="${x}" y="${y + (w === "lean" ? 42 : 38)}">${AV[w][1]}</text></g>`; });
     if (n > 1) { const p = `lk${n - 1}`; svgc += `<circle class="pulse" r="2.6"><animateMotion dur="1.1s" fill="freeze"><mpath href="#${p}"/></animateMotion></circle>`; }
     const cap = cur && n ? `<div class="k"><b>${esc(AV[cur[0]][0])}</b> · step ${n} of ${st.length}</div><h4>${esc(cur[1])}</h4><p>${esc(cur[2])}</p><span class="res ${cur[4]}">${esc(cur[3])}</span>`
-      : `<div class="k">${esc(DEMOS.find((x) => x.id === id).d)}</div><h4>Starting the run…</h4>`;
+      : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
     return `<div class="uni"><svg viewBox="0 0 420 280" role="img" aria-label="Diagram of who acts in each step">${svgc}</svg><div class="cap">${cap}` +
-      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>Replay of a real run · Lanyon and Z3 suggest, Lean decides. Lanyon was off in this recording, so suggested numbers are Z3's.</small></div></div>`;
+      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Replay of a real run · Lanyon and Z3 suggest, Lean decides. Lanyon was off in this recording, so suggested numbers are Z3's."}</small></div></div>`;
   }
   let typeT = 0, flowN = 0; function streamLast() {}
+  // Live checker uses the same Lanyon panel, built from the pairing you picked (id "L")
+  let LIVEINFO = { id: "L", t: "Your check", d: "Your experiment on your machine" }, isDemo = false;
+  const dinfo = (id) => (id === "L" ? LIVEINFO : DEMOS.find((x) => x.id === id));
+  function updateLiveFlow(ex, mc, vcode) {
+    const m = ((mc.manufacturer || "").split("(")[0].trim() + " " + (mc.name || "")).trim();
+    const V = { R: ["Requirements met", "met", "Every mandatory requirement is covered by this machine's documented specs."],
+                D: ["Does not meet", "fail", "A documented limit of this machine conflicts with one of your requirements."],
+                N: ["Need more info", "info", "A required spec isn't published, or your requirements aren't confirmed yet, so Lean won't guess."] }[vcode] || ["Need more info", "info", ""];
+    LIVEINFO = { id: "L", t: "Your check", d: (ex.plain_name || ex.name) + " on " + m };
+    STEPS.L = [["data", "Your experiment", ex.plain_name || ex.name, "your requirements", "neutral"],
+               ["data", "The machine", m + ": specs from the manufacturer's datasheets.", "documented specs", "neutral"],
+               ["lean", "Lean checks", V[2], V[0], V[1]]];
+    if (vcode !== "R") STEPS.L.push(["lanyon", "Lanyon + Z3 look for a fix", "Press “Check my setup”: Lanyon AI and Z3 propose changes or other machines. These are only suggestions.", "suggestions", "neutral"],
+                                    ["lean", "Lean verifies every fix", "Only fixes Lean passes on the exact setup are shown. If none pass, you'll see “No verified solution found”.", "verified fixes only", "met"]);
+    CAP.L = `${LIVEINFO.d}: Lean says ${V[0]}. ${V[2]}`;
+    if (!isDemo) { $("flow").innerHTML = flowHTML("L", STEPS.L.length); $("viztitle").textContent = "Your check"; demoCur = "L"; resetChat("L"); }
+  }
   let demoTimer = 0, demoCur = "A";
   function playDemo(id) {
     demoCur = id; clearInterval(demoTimer); demoSelect(id); resetChat(id);
-    const d = DEMOS.find((x) => x.id === id), lines = demoLines(d.h);
+    const d = dinfo(id), lines = demoLines(d.h);
     $("demolist").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.id === id));
     $("viztitle").textContent = d.t; $("vizcap").textContent = CAP[id];
     let n = 0; const step = () => { n++; const p = n / lines.length;
@@ -708,7 +726,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   let lanBusy = false;
   function addMsg(cls, text) { const d = document.createElement("div"); d.className = "m " + cls; d.textContent = text; $("chatlog").appendChild(d); $("chatlog").scrollTop = 1e9; return d; }
   function runFacts(id) {
-    const d = DEMOS.find((x) => x.id === id);
+    const d = dinfo(id);
     return `Demo: ${d.t} (${d.d}).\n` + (STEPS[id] || []).map(([w, t, p, big]) => `- ${WHO[w]}: ${t}. ${p} Result: ${big}.`).join("\n") + `\nSummary: ${CAP[id]}`;
   }
   async function askLanyon(q, show) {
@@ -747,12 +765,14 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   renderMx();
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
-    $("liverow").hidden = false; $("demo").hidden = !demo; $("mx180").hidden = !demo;
-    stageH = demo ? 2060 : 1024; fit();
-    if (demo) playDemo(demoCur); else clearInterval(demoTimer);
+    isDemo = demo;
+    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo;
+    $("demo").classList.toggle("islive", !demo); $("demolist").hidden = !demo; $("replay").hidden = !demo; $("explain").textContent = demo ? "Explain this run" : "Explain my check";
+    stageH = demo ? 2060 : 1400; fit();
+    if (demo) playDemo(demoCur === "L" ? "A" : demoCur); else { clearInterval(demoTimer); render(); }
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
-  if (location.hash === "#demo") setTimeout(() => tab(true), 0);
+  setTimeout(() => tab(location.hash === "#demo"), 0);
 
   // ---------------------------------------------------------------- real backend (python -m cryolean serve)
   // When the page is served by the CryoLean API, "Check my setup" runs the compiled Lean checker on the server with the
@@ -879,6 +899,7 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
     $("stagetag").hidden = true;
     if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
     renderLive(ex, mc, lv, vcode, ind);
+    updateLiveFlow(ex, mc, vcode);
     ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", VCLS[vcode] === k));
 
     $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
