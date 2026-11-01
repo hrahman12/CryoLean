@@ -679,7 +679,7 @@ def checkValue : Constraint → CapValue → Outcome
       : ["maybe", "Might run for the full time", `${need}; the machine's run time isn't documented${opt}.`];
     const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
     if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
-    const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? "<small>Tick each requirement to let Lean decide.</small>" : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
+    const tv = `<div class="tv"><div class="tvr ${cmp[0]}"><i></i><span><b>${cmp[1]}</b>${unconf ? (isDemo ? "<small>One need isn't confirmed yet, so Lean won't decide.</small>" : "<small>Tick each requirement to let Lean decide.</small>") : vcode === "R" ? `<small>${passing.length + 1} of ${Object.keys(L.configurations).length} catalog machines meet these values.</small>` : ""}</span></div>` +
       `<div class="tvr ${run[0]}"><i></i><span><b>${run[1]}</b><small>${run[2]}</small></span></div></div>`;
     let h = started ? tv : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
     if (started && !unconf && vcode !== "R") {
@@ -711,12 +711,12 @@ def checkValue : Constraint → CapValue → Outcome
   // Demos tab = the live checker with three fixed examples, one per verdict color. Each uses its procedure's own
   // values, all ticked, and the verdict is read from the same Lean lattice as everything else on the page.
   const DEMOS = [
-    { id: "G", t: "Test a computer chip, ice-cold", d: "Lake Shore probe station · every required spec is documented",
-      pair: ["semiconductors_and_electronics", "semi_finfet_5nm_cryo_probe", "lakeshore_fwpx_6arm_standard"] },
-    { id: "Y", t: "Measure heat leaking from a nitrogen tank", d: "Lake Shore VPF-100 · two needed specs aren't in the datasheet",
-      pair: ["energy_and_hydrogen", "expc_energy_insulation_boiloff", "lake_shore_vpf_100_standard_optical"] },
-    { id: "R", t: "See a quantum effect in graphene", d: "Cryogenic Ltd 9 T magnet · the experiment needs at least 12 T",
-      pair: ["scientific_research", "sci_graphene_yig_quantum_hall", "cryogenic_ltd_cfms_9t_ivti25_vsm_transport"] },
+    { id: "G", t: "Aerospace · Test Mars-rover parts in Mars-like cold", d: "A test chamber that goes from −150 °C to +600 °C covers Mars nights and days",
+      pair: ["aerospace_and_space_exploration", "aero_mars_prt_thermal_cycling", "tinius_olsen_environmental_chamber_m150_600_ln2"] },
+    { id: "Y", t: "Quantum · Test quantum-computer chips at −271 °C", d: "One need (whole 300 mm wafers) isn't confirmed yet, so Lean won't answer",
+      pair: ["quantum_computing_and_sensing", "quantum_spin_qubit_wafer_cryoprobing", "bluefors_xldhehp_3section"], open: [1] },
+    { id: "R", t: "Biology · Freeze a protein crystal to X-ray it", d: "It must be plunged into liquid nitrogen, but this machine has none",
+      pair: ["biology_and_biotechnology", "bio_mx_cryocrystallography_100k", "lake_shore_ccs_800_205_standard"] },
   ];
   const CAP = {};
   const STEPS = {};
@@ -742,7 +742,7 @@ def checkValue : Constraint → CapValue → Outcome
       : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
     const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
     return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Cymatic pattern: the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
-      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Live: from Lean's verdict for your pairing. Lanyon and Z3 suggest, Lean decides." : "Guided example · each color is Lean's verdict for exactly the values shown in step 3."}</small></div></div>`;
+      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Lean decides every answer. Lanyon AI only suggests ideas, and Lean checks each one." : "Lean decides · Lanyon AI only suggests."}</small></div></div>`;
   }
   // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
   function lanyonIcon(x, y, on) {
@@ -807,26 +807,37 @@ def checkValue : Constraint → CapValue → Outcome
   // Live checker uses the same Lanyon panel, built from the pairing you picked (id "L")
   let LIVEINFO = { id: "L", t: "Your check", d: "Your experiment on your machine" }, isDemo = false;
   const dinfo = (id) => (id === "L" ? LIVEINFO : DEMOS.find((x) => x.id === id));
+  // The step panel plays the check on a loop (experiment -> machine -> Lean -> Lanyon AI -> Lean), one step every few
+  // seconds, so the pattern keeps re-forming. It restarts whenever the steps change (new pairing or new verdict).
+  let flowLoop = 0, flowKey = "";
+  function startFlowLoop() {
+    const key = JSON.stringify(STEPS.L); if (key === flowKey && flowLoop) return;
+    flowKey = key; clearInterval(flowLoop);
+    const n = STEPS.L.length, slow = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let k = 1; $("flow").innerHTML = flowHTML("L", k);
+    flowLoop = setInterval(() => { k = k % n + 1; $("flow").innerHTML = flowHTML("L", k) }, slow ? 6000 : 3200);
+  }
   function updateLiveFlow(ex, mc, vcode) {
     const m = ((mc.manufacturer || "").split("(")[0].trim() + " " + (mc.name || "")).trim();
     const V = { R: ["Requirements met", "met", "Every mandatory requirement is covered by this machine's documented specs."],
                 D: ["Does not meet", "fail", "A documented limit of this machine conflicts with one of your requirements."],
                 N: ["Need more info", "info", "A required spec isn't published, or your requirements aren't confirmed yet, so Lean won't guess."] }[vcode] || ["Need more info", "info", ""];
     LIVEINFO = { id: "L", t: "Your check", d: (ex.plain_name || ex.name) + " on " + m };
-    STEPS.L = [["data", "Your experiment", ex.plain_name || ex.name, "your requirements", "neutral"],
-               ["data", "The machine", m + ": specs from the manufacturer's datasheets.", "documented specs", "neutral"],
-               ["lean", "Lean checks", V[2], V[0], V[1]]];
-    if (vcode !== "R") STEPS.L.push(["lanyon", "Lanyon + Z3 look for a fix", "Press “Check my setup”: Lanyon AI and Z3 propose changes or other machines. These are only suggestions.", "suggestions", "neutral"],
-                                    ["lean", "Lean verifies every fix", "Only fixes Lean passes on the exact setup are shown. If none pass, you'll see “No verified solution found”.", "verified fixes only", "met"]);
+    STEPS.L = [["you", "Your experiment", (ex.plain_name || ex.name) + ". Step 3 lists what it needs: how cold, how strong a magnet, which parts.", "what it needs", "neutral"],
+               ["data", "The machine", m + ". Its makers publish what it can do in documents called datasheets.", "what it can do", "neutral"],
+               ["lean", "Lean checks", "Lean is a math checker. It compares every need with the datasheet, exactly, and never guesses. " + V[2], V[0], V[1]]];
+    if (vcode !== "R") STEPS.L.push(["lanyon", "Lanyon AI suggests a fix", "Lanyon AI is an assistant that comes up with ideas, like a different machine or a smaller number. It can be wrong, so its ideas are only suggestions.", "ideas, not answers", "neutral"],
+                                    ["lean", "Lean checks every idea", "Each idea goes back to Lean. You only see the ideas Lean proves will work. If none pass, it says “No verified solution found”.", "only proven ideas", "met"]);
+    else STEPS.L.push(["lanyon", "Lanyon AI has nothing to fix", "Lanyon AI is an assistant that suggests fixes when something fails. Here everything passed, so it stays quiet.", "nothing to fix", "neutral"]);
     CAP.L = `${LIVEINFO.d}: Lean says ${V[0]}. ${V[2]}`;
-    $("flow").innerHTML = flowHTML("L", STEPS.L.length); $("viztitle").textContent = isDemo ? "Example check" : "Your check"; demoCur = "L";
+    startFlowLoop(); $("viztitle").textContent = isDemo ? "Example check" : "Your check"; demoCur = "L";
     if (LIVEINFO.d !== lastChatKey) { lastChatKey = LIVEINFO.d; resetChat("L") }
   }
   const VWORD = { R: "Compatible", D: "Not compatible", N: "Need more info" }, VDOT = { R: "ok", D: "no", N: "maybe" };
   const procVals = (eid) => { const v = {}; (L.requirements[eid] || []).forEach((r) => { if (r.editable) v[r.index] = r.kind === "range_within" ? [+r.lo, +r.hi] : +r.value }); return v };
   let demoCur = "L", demoPick = "G", lastChatKey = "";
   function demoVerdict(d) {   // Lean verdict of an example with its fixed, ticked values (the colored dot in step 1)
-    const conf = {}; (L.requirements[d.pair[1]] || []).forEach((r) => conf[r.index] = true);
+    const conf = {}; (L.requirements[d.pair[1]] || []).forEach((r) => conf[r.index] = !(d.open || []).includes(r.index));
     return liveVerdict(d.pair[1], d.pair[2], { vals: procVals(d.pair[1]), conf });
   }
   function demoSelect(id) {
@@ -834,7 +845,7 @@ def checkValue : Constraint → CapValue → Outcome
     demoPick = d.id; st.ind = i;
     st.exp = Math.max(0, D.industries[i].experiments.findIndex((e) => e.id === d.pair[1]));
     st.cfg = Math.max(0, D.industries[i].configurations.findIndex((c) => c.id === d.pair[2])); st.alt = null;
-    const lv = liveState(d.pair[1]); lv.vals = procVals(d.pair[1]); Object.keys(lv.conf).forEach((k) => lv.conf[k] = true);
+    const lv = liveState(d.pair[1]); lv.vals = procVals(d.pair[1]); Object.keys(lv.conf).forEach((k) => lv.conf[k] = !(d.open || []).includes(+k));
     render();
   }
   // ---- Lanyon assistant: the chat goes to Lanyon AI through the CryoLean server (POST /api/lanyon).
