@@ -276,6 +276,22 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
 .mxm .q { height: 24px; border-radius: 6px; display: grid; place-items: center; font: 800 11px var(--body); color: #fff }
 .mxm .q.R { background: var(--met) } .mxm .q.N { background: var(--info) } .mxm .q.D { background: var(--fail) }
 .mxnote { margin: 0; font-size: 12.5px; color: var(--muted) }
+.fx { flex: none; margin-top: 16px; display: grid; gap: 12px }
+.fxtop { display: flex; justify-content: space-between; gap: 16px; align-items: start }
+.fxtop h2 { margin: 0; font: 800 26px var(--display); color: var(--ink) } .fxtop p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; max-width: 980px }
+.fxsrc { color: var(--accent); font: 700 14px var(--body); white-space: nowrap; text-decoration: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px }
+.fxstats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px }
+.fxstats div { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; display: grid }
+.fxstats b { font: 800 30px var(--display); color: var(--ink) } .fxstats span { font-size: 12.5px; color: var(--ink-2) }
+.fxstats .ok b { color: var(--met) } .fxstats .warn b { color: var(--info) }
+.fxrow { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 12px }
+.fxtbl, .fxgap { background: var(--panel); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px }
+.fx h3 { margin: 0 0 8px; font: 800 16px var(--display); color: var(--ink) }
+.fxtbl table { width: 100%; border-collapse: collapse; font-size: 13px } .fxtbl th { text-align: left; color: var(--muted); font-weight: 700; padding: 4px 6px; border-bottom: 1px solid var(--line) }
+.fxtbl td { padding: 5px 6px; color: var(--ink-2); border-bottom: 1px solid color-mix(in srgb, var(--line) 50%, transparent) } .fxtbl tr.hot td { color: var(--ink); background: color-mix(in srgb, var(--info) 12%, transparent) }
+.fxgap { display: grid; gap: 10px; align-content: start } .ba { display: grid; gap: 4px } .ba p { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.45 }
+.ba .tag { position: static; transform: none; justify-self: start; font: 800 11px var(--body); padding: 2px 9px; border-radius: 99px }
+.ba .tag.bad { background: color-mix(in srgb, var(--fail) 20%, transparent); color: var(--fail) } .ba .tag.good { background: color-mix(in srgb, var(--met) 20%, transparent); color: var(--met) }
 .fallback[hidden], .demo[hidden], .chatf[hidden], [hidden] { display: none !important }
 </style>
 
@@ -382,6 +398,34 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
       <div class="seg" role="group" aria-label="Machine selection"><button id="mx-best" aria-pressed="true">Best-match machines</button><button id="mx-old" aria-pressed="false">Original selection</button></div></div>
     <div class="mxgrid" id="mxgrid"></div>
     <p class="mxnote">Best-match = the 3 machines (of 220) Lean passes most often for each industry's experiments. Some experiments pass on no machine in the catalog, so a few squares can't turn green without new machines or sourced specs.</p>
+  </section>
+  <section class="fx" id="fx" hidden aria-labelledby="fxh">
+    <div class="fxtop"><div><h2 id="fxh">Proof-slop forensics: auditing the Lean core</h2>
+      <p>A green <code>lake build</code> only says Lean accepted the proofs. The forensics audit checks whether the proofs actually mean what they claim, and whether any of them lean on a shortcut. AI-written proofs can look fine and still be hollow.</p></div>
+      <a class="fxsrc" href="https://github.com/emberian/forensics" target="_blank" rel="noopener">forensics ↗</a></div>
+    <div class="fxstats">
+      <div><b>839</b><span>declarations scanned</span></div>
+      <div class="ok"><b>0</b><span>sorry / native_decide / extra axioms</span></div>
+      <div class="ok"><b>0</b><span>statement smells (trivial or vacuous)</span></div>
+      <div class="ok"><b>0</b><span>unsafe / partial / opaque flags</span></div>
+      <div class="warn"><b>1</b><span>real soundness gap found and fixed</span></div>
+    </div>
+    <div class="fxrow">
+      <div class="fxtbl"><h3>The seven judges</h3>
+        <table><thead><tr><th>Check</th><th>Judged</th><th>Flagged</th><th>Outcome</th></tr></thead><tbody>
+          <tr><td>Unnecessary hypotheses</td><td>40 theorems</td><td>0</td><td>Every hypothesis is needed</td></tr>
+          <tr><td>Duplicate dependencies</td><td>40 theorems</td><td>2</td><td>Cleaned up</td></tr>
+          <tr><td>Definition fidelity</td><td>49 definitions</td><td>16</td><td>Missing docstrings, added</td></tr>
+          <tr class="hot"><td>Vacuity &amp; misstatement</td><td>4 files</td><td>3</td><td><b>Real soundness gap, fixed</b></td></tr>
+          <tr><td>Statement generality</td><td>4 files</td><td>2</td><td>General theorems added</td></tr>
+          <tr><td>Repeated proof machinery</td><td>4 files</td><td>2</td><td>Noted, left as is</td></tr>
+          <tr><td>Readable proofs</td><td>2 files</td><td>2</td><td>Simplified</td></tr>
+        </tbody></table></div>
+      <div class="fxgap"><h3>The slop it caught</h3>
+        <div class="ba"><span class="tag bad">Before</span><p>An accessory recorded as "not installed" made a requirement <b>fail</b>, even when that record had no source at all. A guess could produce "Does not meet requirements". The judge proved it in Lean.</p></div>
+        <div class="ba"><span class="tag good">After</span><p>Every rejection now needs trusted evidence. Unsourced records can only give "Need more information". Proved by <code>fail_needs_trusted</code>, <code>untrusted_never_passes</code> and <code>untrusted_never_fails</code>.</p></div>
+      </div>
+    </div>
   </section>
   <footer class="bottom">
     <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
@@ -1677,9 +1721,9 @@ td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
   function tab(demo) {
     $("tab-live").setAttribute("aria-selected", !demo); $("tab-demo").setAttribute("aria-selected", demo);
     isDemo = demo;
-    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo;
+    $("liverow").hidden = false; $("demo").hidden = false; $("mx180").hidden = !demo; $("fx").hidden = !demo;
     $("demo").classList.toggle("islive", !demo); $("demolist").hidden = !demo; $("replay").hidden = !demo; $("explain").textContent = demo ? "Explain this run" : "Explain my check";
-    stageH = demo ? 2060 : 1400; fit();
+    stageH = demo ? 2500 : 1400; fit();
     if (demo) playDemo(demoCur === "L" ? "A" : demoCur); else { clearInterval(demoTimer); render(); }
   }
   $("tab-live").onclick = () => tab(false); $("tab-demo").onclick = () => tab(true);
