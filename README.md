@@ -2,6 +2,9 @@
 
 <img width="2172" height="724" alt="image" src="https://github.com/user-attachments/assets/4146799a-ab36-4f0b-9fb0-6504607d04bd" />
 
+<img width="1367" height="1151" alt="image" src="https://github.com/user-attachments/assets/bb935f35-00bc-4041-b6b5-0fdeae6fdd94" />
+
+
 Cyrostat Digital Twin Lean Proved
 
 **Cryo, made simple.** CryoLean answers one question: *can this cryogenic machine physically perform my
