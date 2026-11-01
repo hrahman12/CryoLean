@@ -2,9 +2,6 @@
 
 <img width="2172" height="724" alt="image" src="https://github.com/user-attachments/assets/4146799a-ab36-4f0b-9fb0-6504607d04bd" />
 
-<img width="1367" height="1151" alt="image" src="https://github.com/user-attachments/assets/bb935f35-00bc-4041-b6b5-0fdeae6fdd94" />
-
-
 Cyrostat Digital Twin Lean Proved
 
 **Cryo, made simple.** CryoLean answers one question: *can this cryogenic machine physically perform my
@@ -14,6 +11,8 @@ Built for the [VibeCheck FM + AI Hackathon](https://fmxai.org/vibecheck/).
 ## Pipeline
 
 ![CryoLean pipeline: inputs, untrusted proposers (Z3, Claude, Lanyon), the trusted Lean 4 kernel, outputs, and the verdict card](docs/images/pipeline.svg)
+<img width="1367" height="1151" alt="image" src="https://github.com/user-attachments/assets/e794af72-bfc0-4c0c-8ad8-067f1c71943c" />
+
 
 <sub>Regenerate with `python scripts/make_pipeline_svg.py`.</sub>
 
