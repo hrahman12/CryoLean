@@ -11,6 +11,8 @@ Built for the [VibeCheck FM + AI Hackathon](https://fmxai.org/vibecheck/).
 ## Pipeline
 
 ![CryoLean pipeline: inputs, untrusted proposers (Z3, Claude, Lanyon), the trusted Lean 4 kernel, outputs, and the verdict card](docs/images/pipeline.svg)
+<img width="1367" height="1151" alt="image" src="https://github.com/user-attachments/assets/e794af72-bfc0-4c0c-8ad8-067f1c71943c" />
+
 
 <sub>Regenerate with `python scripts/make_pipeline_svg.py`.</sub>
 
