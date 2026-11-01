@@ -43,6 +43,18 @@ The architecture sketch is implemented as drawn. These are the places where the 
 | LLM proposes Lean code or data | Claude (matching/drafting), and Lanyon, whose exported proofs go through the same Gatekeeper. |
 | Verdict card: verdict · reason · theorem names · axioms · source hash | `verdict_card` on every result. Axioms come from `lean/audit-axioms.json`, written by `python scripts/audit_axioms.py`, and are marked stale if the Lean sources change. |
 
+## Quick start (macOS and Linux)
+
+```bash
+make install && make run
+```
+
+`make install` installs what is missing (Python ≥ 3.11 and Node.js via Homebrew on macOS, elan for Lean), creates `.venv`, builds the
+Lean checker, builds the catalog database and builds the GUI in `frontend/dist`. `make run` opens the desktop app.
+`make dev` runs the GUI with hot reload in a browser against the real backend; `make test` runs the fast backend tests and
+the GUI end-to-end tests. The full GUI walkthrough is in [docs/GUI_TESTING.md](docs/GUI_TESTING.md).
+On Linux, PyWebView also needs GTK or Qt (see the [PyWebView installation notes](https://pywebview.flowrl.com/guide/installation.html)).
+
 ## Setup on Windows
 
 Requirements: Python ≥ 3.11 and [elan](https://github.com/leanprover/elan) (Lean 4.35.0 is pinned in `lean/lean-toolchain`).
@@ -67,7 +79,7 @@ python -m cryolean demo
 python -m pytest
 ```
 
-Launch with the Codex-built frontend (PyWebView; build it once with `npm ci --prefix frontend` and `npm run build`):
+Launch with the frontend (PyWebView; build it once with `npm ci --prefix frontend` and `npm run build --prefix frontend`):
 
 ```powershell
 python -m cryolean.desktop --frontend frontend\dist\index.html

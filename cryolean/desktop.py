@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
 
 from .bridge import CryoLeanAPI
 
@@ -32,12 +33,24 @@ def main(argv=None) -> int:
     except ImportError:
         print("PyWebView is not installed: pip install pywebview")
         return 1
+    frontend = a.frontend
+    if frontend and "://" not in frontend:
+        # PyWebView resolves relative paths against the entry script, not the working directory
+        p = Path(frontend).expanduser().resolve()
+        if not p.is_file():
+            print(f"Frontend not found at {p}. Build it first: npm ci --prefix frontend && npm run build --prefix frontend")
+            return 1
+        frontend = str(p)
     api = CryoLeanAPI()
-    if a.frontend:
-        webview.create_window("CryoLean", a.frontend, js_api=api, width=1280, height=840)
+    # "Save report" in the GUI downloads a PDF/JSON file; PyWebView blocks downloads unless this is on.
+    webview.settings["ALLOW_DOWNLOADS"] = True
+    if frontend:
+        webview.create_window("CryoLean", frontend, js_api=api, width=1360, height=900, min_size=(960, 640))
     else:
         webview.create_window("CryoLean", html=STATUS_PAGE, js_api=api, width=900, height=700)
-    webview.start(debug=a.debug)
+    # Serve local files over PyWebView's built-in HTTP server so the built frontend (ES modules) loads
+    # from absolute and relative paths alike, on macOS (WebKit) and Windows (WebView2).
+    webview.start(debug=a.debug, http_server=True)
     return 0
 
 
