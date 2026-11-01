@@ -1,0 +1,96 @@
+{
+ "id": "auto_iec62660_low_temp_capacity",
+ "name": "IEC 62660-1:2018 capacity test of EV propulsion lithium-ion cells at 23 +/- 2 C and at low temperature (-20 C option)",
+ "plain_name": "Measure how much charge an electric-car battery cell delivers at -20 C",
+ "industry": "automotive_and_transportation",
+ "description": "Performance test of secondary lithium-ion cells for BEV/HEV propulsion: discharge capacity measured at standard conditions (23 +/- 2 C) and optionally at low temperature (-10 C or -20 C); the -20 C option is used here. Cells are charged/discharged by a cycler while held in a temperature chamber.",
+ "keywords": [
+  "Measure how much charge an electric-car battery cell delivers at -20 C",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "Battery Design, 'IEC 62660-1' (summary of IEC 62660-1:2018 Ed. 2.0, Secondary lithium-ion cells for the propulsion of electric road vehicles - Part 1: Performance testing)",
+   "url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 253150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Low-temperature capacity option at -20 C (253.15 K).",
+   "evidence_ids": [
+    "v4e_auto_iec62660_low_temp_capacity_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 296150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reference capacity at the standard condition 23 C (296.15 K).",
+   "evidence_ids": [
+    "v4e_auto_iec62660_low_temp_capacity_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Discharge capacity is measured electrically, so the cell must be connected to the cycler inside the chamber.",
+   "evidence_ids": [
+    "v4e_auto_iec62660_low_temp_capacity_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 2000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the standard condition tolerance is +/-2 C, so the chamber should hold the set point within 2 K.",
+   "evidence_ids": [
+    "v4e_auto_iec62660_low_temp_capacity_3"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

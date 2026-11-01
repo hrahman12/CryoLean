@@ -1,0 +1,102 @@
+{
+  "id": "expc_photonics_snspd_characterization",
+  "name": "1550 nm SNSPD system detection-efficiency and timing characterization at 2.5 K (NASA 2018)",
+  "plain_name": "Measure the efficiency and timing of a cryogenic photon detector",
+  "industry": "photonics_and_telecommunications",
+  "description": "Measure the efficiency and timing of a cryogenic photon detector. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "optical_detector",
+    "photonics_and_telecommunications"
+  ],
+  "sources": [
+    {
+      "id": "src_snspd",
+      "citation": "Vyhnalek, Tedder and Nappier (2018), Performance and characterization of a modular superconducting nanowire single photon detector system for space-to-Earth optical communications links",
+      "url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "2.5 K",
+      "normalized": {
+        "value": "2500",
+        "unit": "mK"
+      },
+      "evidence_id": "expc_snspd_2p5k"
+    },
+    {
+      "key": "optical_input",
+      "as_printed": "1550 nm calibrated optical path",
+      "normalized": null,
+      "evidence_id": "expc_snspd_calibration"
+    }
+  ],
+  "reported_equipment": [
+    "Opus One",
+    "TCSPC card"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "2500",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Use the published2.5 K detector operating point. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_snspd_2p5k"
+      ]
+    },
+    {
+      "key": "module.snspd_detection",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The cold instrument must contain functional superconducting nanowires and bias/readout. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_snspd_two_detector"
+      ]
+    },
+    {
+      "key": "module.photon_timing",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Output pulses require external time-correlated counting. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_snspd_tcspc"
+      ]
+    },
+    {
+      "key": "module.calibrated_photon_flux",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Efficiency measurement needs a calibrated incident photon flux, not an uncalibrated animation. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_snspd_calibration"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Bias-current limits, polarization, dark/background counts, input attenuation and detector-specific calibration must be reviewed. Efficiency and jitter are measured results, not guaranteed compatibility outputs."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

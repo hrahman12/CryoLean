@@ -1,0 +1,78 @@
+{
+  "id": "expansion_b_geo_permafrost_complex_resistivity",
+  "name": "Complex-resistivity monitoring of Arctic-soil freeze–thaw",
+  "plain_name": "Track frozen soil using electrical response",
+  "industry": "geology_and_oceanography",
+  "description": "A geophysical soil-core measurement with electrodes,not optical cloud-droplet imaging.",
+  "keywords": [
+    "Track frozen soil using electrical response",
+    "permafrost_resistivity",
+    "geology_and_oceanography"
+  ],
+  "sources": [
+    {
+      "citation": "Wu et al.2013,VadoseZoneJournal,DOI10.2136/vzj2012.0062",
+      "url": "https://www.ornl.gov/publication/remote-sensing-freeze-thaw-transitions-arctic-soils-using-complex-resistivity-method",
+      "accessed": "2026-10-31",
+      "doi": "10.2136/vzj2012.0062"
+    }
+  ],
+  "reported_equipment": [
+    "Temperature-controlled soil-column environment and complex-resistivity system; exact chamber model unspecified in institutional abstract"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "253.15",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "277.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported soil-column environments alternate between-20 and+4 C.",
+      "evidence_ids": [
+        "expb_permafrost"
+      ]
+    },
+    {
+      "key": "process.temperature_cycling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The procedure must induce repeatable freeze–thaw transitions.",
+      "evidence_ids": [
+        "expb_permafrost"
+      ]
+    },
+    {
+      "key": "module.complex_resistivity",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The sample needs electrodes and complex-resistivity instrumentation; a temperature chamber alone cannot establish the measurement.",
+      "evidence_ids": [
+        "expb_permafrost"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "ESPEC is a real thermal-environment candidate; its brochure does not document the study's electrodes or impedance spectrometer.",
+    "Environmental air range is not proof of a particular soil core's equilibration time; no invented freeze front or measured conductivity is displayed."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

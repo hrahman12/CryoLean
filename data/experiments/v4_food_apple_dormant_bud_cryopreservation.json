@@ -1,0 +1,121 @@
+{
+ "id": "food_apple_dormant_bud_cryopreservation",
+ "name": "Dormant-bud cryopreservation of Malus and Pyrus germplasm: 35 mm single-bud stem sections dehydrated to 30% moisture, cooled at 1 °C/h to -30 °C in a Kryo 360-3.3, held 24 h, stored in LN2 vapour",
+ "plain_name": "Back up apple and pear tree varieties by slowly freezing their winter buds",
+ "industry": "food_and_agriculture",
+ "description": "Fruit Genebank Dresden-Pillnitz (JKI) duplicate-collection method: winter-dormant budwood is cut into 35 mm single-bud sections, dehydrated to 30% moisture at -5 °C, placed in 4.5 mL cryovials, cooled at 1 °C/h to -30 °C in a controlled-rate freezer, held at -30 °C for 24 h, transferred to the vapour phase over liquid nitrogen, and later rewarmed at +4 °C for 24 h before grafting.",
+ "keywords": [
+  "Back up apple and pear tree varieties by slowly freezing their winter buds",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Kryo 360-3.3 (Messer Cryotherm, Euteneuen, Germany)",
+  "Biosafe (Messer Cryotherm, Euteneuen, Germany)",
+  "4.5-mL cryovials (Nunc, Thermo Fisher Scientific)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 243150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The controlled-rate freezer must reach and hold -30 °C (243.15 K) for 24 h.",
+   "evidence_ids": [
+    "v4e_food_apple_dormant_bud_cryopreservation_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 16,
+     "unit": "mK_per_min"
+    },
+    "hi": {
+     "value": 17,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The slow-cooling rate is 1 °C/h = 16.67 mK/min, which has no exact decimal form in mK/min; the machine's controllable rate range must cover 16-17 mK/min, an interval containing 1 °C/h.",
+   "evidence_ids": [
+    "v4e_food_apple_dormant_bud_cryopreservation_1"
+   ],
+   "conditions": [],
+   "key": "temperature.cooling_rate.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "After the -30 °C hold the vials are stored in the vapour phase over liquid nitrogen in a separate Biosafe tank; optional for the freezing machine itself.",
+   "evidence_ids": [
+    "v4e_food_apple_dormant_bud_cryopreservation_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "A programmed controlled-rate freezer is used; supporting flag only.",
+   "evidence_ids": [
+    "v4e_food_apple_dormant_bud_cryopreservation_3"
+   ],
+   "conditions": [],
+   "key": "process.controlled_rate_freezing"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 35,
+     "unit": "mm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each sample is a 35 mm stem section (two or three per 4.5 mL cryovial); the sample space must accept at least that length. Optional because vial dimensions are not given.",
+   "evidence_ids": [
+    "v4e_food_apple_dormant_bud_cryopreservation_4"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

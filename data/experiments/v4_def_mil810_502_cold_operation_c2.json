@@ -1,0 +1,96 @@
+{
+ "id": "def_mil810_502_cold_operation_c2",
+ "name": "MIL-STD-810H Method 502.7 Procedure II low-temperature operation test at the Cold (C2) design extreme, -46 C, with at least 2 h soak after stabilization",
+ "plain_name": "Prove military equipment still switches on and works after soaking at -46 C",
+ "industry": "defense_and_security",
+ "description": "Procedure II (Operation) of MIL-STD-810H Method 502.7: the test item, in its operational configuration and installed in the chamber, is brought to its low operating temperature at no more than 3 C/min, held for at least two hours after temperature stabilization, and then given an operational checkout. The operating point used here is the Cold (C2) climatic design type of Table 502.7-I, whose ambient-air cycle reaches -46 C (Canada, Alaska excluding the interior).",
+ "keywords": [
+  "Prove military equipment still switches on and works after soaking at -46 C",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+   "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 227150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber air must be held at the C2 low extreme of -46 C (227.15 K) for the operating soak.",
+   "evidence_ids": [
+    "v4e_def_mil810_502_cold_operation_c2_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 227150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The machine's lowest temperature must be -46 C (227.15 K) or colder; lets machines documented by a base temperature decide.",
+   "evidence_ids": [
+    "v4e_def_mil810_502_cold_operation_c2_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 2,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The low temperature is held for at least two hours after the test item stabilizes (plus the stabilization time).",
+   "evidence_ids": [
+    "v4e_def_mil810_502_cold_operation_c2_2"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The item is checked out operating inside the chamber; mains- or bench-powered items need a cable port, battery items do not, so this is optional.",
+   "evidence_ids": [
+    "v4e_def_mil810_502_cold_operation_c2_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

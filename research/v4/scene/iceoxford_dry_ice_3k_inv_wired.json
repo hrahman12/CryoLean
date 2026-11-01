@@ -1,0 +1,100 @@
+{
+  "configuration_id": "iceoxford_dry_ice_3k_inv_wired",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 0,
+      "unit": "mm",
+      "location": "NOT PUBLISHED - sentinel 0; see not_found",
+      "quote": "Top loading via removable can",
+      "source_url": "https://www.iceoxford.com/files/image/files/DRY%20ICE%203K-10K%20INV%20Brochure%20reduced(1).pdf"
+    },
+    "width_or_diameter": {
+      "value": 134,
+      "unit": "mm",
+      "location": "inner sample-space diameter without wiring (OVC outer diameter NOT published; this is the only documented diameter)",
+      "quote": "Sample space | 81mm diameter with wiring, 134mm diameter without wiring",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    },
+    "color_note": "Brochure photo shows a polished stainless/aluminium removable top can on a black 3D-printed vibration-isolation frame; no colour spec published."
+  },
+  "stages": [
+    {
+      "name": "50K stage (first stage of inverted GM cold head, radiation-shield plate)",
+      "temperature_K": 50,
+      "quote": "The modular design includes interchangeable plates attached to the sample and 50K stages, simplifying wiring customisation.",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    },
+    {
+      "name": "Sample stage / sample platform (second stage, base <3 K)",
+      "temperature_K": 3,
+      "quote": "Base temperature | <3K (8K and 10K options available)",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    }
+  ],
+  "sample_space": {
+    "position": "top_plate",
+    "description": "Sample in vacuum on the sample platform at the top of the inverted cold head, reached by lifting off the removable top can (OVC) and radiation shield. 81 mm diameter when the DC/RF wiring kit occupies the wiring ports.",
+    "shape": "cylinder",
+    "diameter_or_width": {
+      "value": 81,
+      "unit": "mm",
+      "location": "sample space with wiring installed",
+      "quote": "Sample space | 81mm diameter with wiring, 134mm diameter without wiring",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 24,
+      "from": "24-way Fischer connector on top plate (one per wiring port, up to 8 ports)",
+      "to": "sample stage (Lemo / Micro D at cold end)",
+      "quote": "24-way Fischer as standard on the top plate. Lemo or Micro D are used within the cryogenic environment.",
+      "source_url": "https://www.iceoxford.com/DC-Wiring.htm"
+    },
+    {
+      "kind": "coax",
+      "count": 0,
+      "from": "hermetic SMA on top plate",
+      "to": "SMPM at sample",
+      "quote": "Hermetically sealed SMA at room temperature and SMPM at the sample.",
+      "source_url": "https://www.iceoxford.com/COAX-Wiring.htm"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Optical access | A variety of optical access options are available ( see window materials )",
+    "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+  },
+  "moving_parts": [
+    {
+      "part": "gm_displacer",
+      "rate": "not published for this model (GM displacer ~1 Hz class); vibration at sample ±1.3 um",
+      "quote": "Vibrations of the system are reduced by a 3D printed vibration isolation frame and edge-welded bellows to hold the cold head in position.",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    },
+    {
+      "part": "compressor",
+      "quote": "Compressor | Air or water cooled options available",
+      "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.height",
+    "outer.width_or_diameter (OVC outer diameter; only sample-space diameter published)",
+    "outer.depth",
+    "stages[].diameter_mm (50K and sample plate diameters)",
+    "wiring.coax.count (number of coax per RF kit)",
+    "wiring.dc.count per cryostat (number of 24-way looms installed)",
+    "windows.diameter_mm",
+    "moving_parts.gm_displacer.rate (Hz)",
+    "cold head manufacturer/model",
+    "compressor model / dimensions",
+    "weight"
+  ],
+  "notes": "ICEoxford publishes no outer dimensions for the DRY ICE 3K INV (product page, brochure, 3K&10K overview page all checked; GoPhotonics has no INV listing). outer.height is a 0 sentinel and outer.width_or_diameter is the 134 mm sample-space bore, NOT the vacuum can - renderer must treat both as unknown. Architecture from sources: inverted GM cold head (cold stages point UP), 50K stage carrying the radiation shield, sample platform above it, removable top can OVC, 'Up to 8 custom wiring ports' on the top plate, 3D-printed low-vibration frame with edge-welded bellows holding the cold head. Catalog family says GM; ICEoxford pages do not name the cooler type or vendor. This configuration: DC/RF wiring kit installed (sample space 81 mm), no windows fitted (optical access optional), Magnetic Field N/A. Other spec: 50 mW @ 3 K, 100 mW @ 3.25 K; cooldown 3 h to 4 K, 4 h to 3 K; stability +/-10 mK at/below 4 K; vibration at sample +/-1.3 um; Lakeshore 335 controller. The coax entry count=0 means 'count not published', not 'no coax'."
+}

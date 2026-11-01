@@ -1,0 +1,1335 @@
+{
+  "industry": "physics_and_particle_accelerators",
+  "experiments": [
+    {
+      "id": "phys_srf_vertical_q0_eacc",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Vertical-dewar Q0 versus accelerating-gradient qualification of bare 1.3 GHz niobium SRF cavities in a 2 K helium bath",
+      "plain_name": "Check how well a bare accelerator cavity stores energy as its field is raised, in a 2 K helium bath",
+      "description": "Acceptance test of bare (undressed) superconducting RF cavities in a below-grade vertical dewar: the cavity is immersed in liquid helium pumped to 2 K inside a magnetically shielded cryostat and driven with low-power CW RF while the unloaded quality factor Q0 is mapped against accelerating gradient (and against temperature down to ~1.5 K), as done at the Fermilab VTS.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 2000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Cavities are tested in a nominal 2 K liquid-helium bath.",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Introduction & Facility Requirements, p. 2283",
+          "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The cavity is immersed in (pumped) liquid helium; Q0 is measured in the LHe bath.",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Introduction & Facility Requirements, p. 2283",
+          "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "rf.frequency.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "1.3",
+              "unit": "GHz"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The RF system must drive and phase-lock to the 1.3 GHz cavity resonance.",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Introduction & Facility Requirements, p. 2283",
+          "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "module.magnetic_shielding"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Trapped flux degrades Q0, so the cryostat must shield the cavity from ambient field during cool-down (design goal <10 mG).",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Magnetic Shielding, p. 2284",
+          "quote": "To avoid trapping magnetic flux thereby degrading the cavity quality factor, the cavity must be shielded from magnetic fields during cool down.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "RF input/pickup cables and instrumentation must pass into the dewar to the cavity.",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Test Stand Insert, p. 2284",
+          "quote": "It consists of a 1.25” thick stainless steel top plate with several penetrations for RF and instrumentation cable feedthroughs.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "rf.power.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 500,
+              "unit": "W"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Full high-power test of a 9-cell cavity used a 500 W CW RF amplifier (needed only for high-gradient runs).",
+          "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+          "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "location": "Status & Future Plans, p. 2285",
+          "quote": "An integrated system commissioning, consisting of a full high power (500W) test of a 9-cell ILC cavity will follow.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "1.5",
+              "unit": "K"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Q versus T sweeps extend below 2 K; the facility operates down to 1.5 K.",
+          "source_url": "https://proceedings.jacow.org/srf2007/PAPERS/WEP15.pdf",
+          "document_title": "Initial Results from Fermilab's Vertical Test Stand for SRF Cavities (Ozelis et al., SRF2007, WEP15)",
+          "location": "Introduction, p. 472",
+          "quote": "The VCTF facility includes RF and DAQ systems, radiation shielding, a system of interlocks for personnel protection, and is connected to an existing cryoplant and vacuum system allowing VCTF operations down to 1.5K.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+          "url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF"
+        },
+        {
+          "citation": "Initial Results from Fermilab's Vertical Test Stand for SRF Cavities (Ozelis et al., SRF2007, WEP15)",
+          "url": "https://proceedings.jacow.org/srf2007/PAPERS/WEP15.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Fermilab Vertical Test Stand (VTS) cryostat",
+        "Vertical Cavity Test Facility (VCTF)",
+        "Lakeshore Cernox CX-1030-SD",
+        "American Magnetics Model 135-2K"
+      ]
+    },
+    {
+      "id": "phys_srf_horizontal_dressed_cavity",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Horizontal high-power pulsed test of dressed 1.3 GHz nine-cell SRF cavities at 2 K with calorimetric Q0 measurement",
+      "plain_name": "Run a fully equipped accelerator cavity with high-power radio pulses at 2 K before it goes into a cryomodule",
+      "description": "Dressed cavities (helium vessel, high-power input coupler, HOM couplers, magnetic shielding and tuner) are cooled to 2 K in a single-cavity horizontal test cryostat and driven by a klystron-based pulsed RF system; gradient, field emission and Q0 (from the heat dissipated to the helium bath, measured calorimetrically) are recorded, as at the Fermilab Horizontal Test Stand.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 2000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Dressed cavities are operated at 2 K in the test cryostat.",
+          "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+          "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "location": "Introduction, p. 522",
+          "quote": "These dressed cavity packages are then cooled to 2 K in a test cryostat and are operated strongly overcoupled to a klystron-based 300 kW pulsed RF system.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "rf.power.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 300000,
+              "unit": "W"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Coupler conditioning and gradient runs use pulses up to 300 kW from the klystron system.",
+          "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+          "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "location": "Introduction, p. 522",
+          "quote": "These dressed cavity packages are then cooled to 2 K in a test cryostat and are operated strongly overcoupled to a klystron-based 300 kW pulsed RF system.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "rf.frequency.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "1.3",
+              "unit": "GHz"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Nine-cell TESLA-style cavities resonate at 1.3 GHz.",
+          "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+          "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "location": "Abstract, p. 522",
+          "quote": "The latest results from extensive testing of nine-cell 1.3 GHz cavities are presented here, along with a discussion of future extensions of the horizontal test program to include 650 MHz cavities and continuous wave testing.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Q0 is obtained calorimetrically from the heat dissipated into the helium bath.",
+          "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+          "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "location": "Test Procedure, p. 522",
+          "quote": "the cavity Q0 can only be determined from the heat dissipated by the cavity walls to the helium bath.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The cryostat must connect the cavity's input coupler, HOM couplers and tuner to outside RF and controls.",
+          "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+          "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "location": "Introduction, p. 522",
+          "quote": "the cavities are welded inside helium vessels and outfitted with high power input couplers, higher-order mode (HOM) couplers, magnetic shielding, and a mechanical tuning system.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+          "url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Fermilab Horizontal Test Stand (HTS)",
+        "klystron-based 300 kW pulsed RF system"
+      ]
+    },
+    {
+      "id": "phys_lhc_dipole_cold_training",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Cold acceptance test and quench training of 15 m LHC main dipoles in superfluid helium at 1.9 K",
+      "plain_name": "Power a 15-metre collider magnet at 1.9 K until it reaches full field without losing superconductivity",
+      "description": "Series acceptance of LHC twin-aperture dipoles on the CERN SM18 test benches: cool-down to 1.9 K in superfluid helium, high-voltage insulation checks, quench-heater verification and training quenches up to 9 T (12850 A), followed by magnetic measurements and warm-up.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "1.9",
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "All main dipoles must be tested in 1.9 K conditions.",
+          "source_url": "https://proceedings.jacow.org/e04/PAPERS/MOPLT014.PDF",
+          "document_title": "Testing of the LHC Magnets in Cryogenic Conditions: Current Experience and Near Future Outlook (Chohan et al., EPAC 2004, MOPLT014)",
+          "location": "Abstract, p. 560",
+          "quote": "a necessary and primordial condition prior to its installation is that all the main twin-aperture dipole and quadrupole magnets are tested in the 1.9 K cryogenic conditions.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The magnets are cooled by superfluid helium (HeII) at 1.9 K.",
+          "source_url": "https://arxiv.org/pdf/1501.07164",
+          "document_title": "Manufacturing and Testing of Accelerator Superconducting Magnets (L. Rossi, CERN; arXiv:1501.07164)",
+          "location": "Section 3 (LHC design innovations)",
+          "quote": "a coolant temperature of 1.9 K by using HeII to boost Nb–Ti performance and make use of the superior conductivity and heat",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.current_leads.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 12850,
+              "unit": "A"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Training proceeds to 9 T, which requires 12850 A through the test-bench current leads.",
+          "source_url": "https://proceedings.jacow.org/e04/PAPERS/MOPLT014.PDF",
+          "document_title": "Testing of the LHC Magnets in Cryogenic Conditions: Current Experience and Near Future Outlook (Chohan et al., EPAC 2004, MOPLT014)",
+          "location": "The Cold Tests Programme, pp. 560-561",
+          "quote": "They required an average of 3.2 quenches to reach 9 T (12850 A). For series production, it was foreseen to arrive at 9 T in 2 quenches.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 600,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The dipole cold mass is a 600 mm diameter cylinder.",
+          "source_url": "https://arxiv.org/pdf/1501.07164",
+          "document_title": "Manufacturing and Testing of Accelerator Superconducting Magnets (L. Rossi, CERN; arXiv:1501.07164)",
+          "location": "Section 4.2 Cold mass completion",
+          "quote": "A sagitta of 9 mm is generated on the 15 m long, 600 mm diameter cylinder.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 15,
+              "unit": "m"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The dipole cold mass is 15 m long along the loading axis.",
+          "source_url": "https://arxiv.org/pdf/1501.07164",
+          "document_title": "Manufacturing and Testing of Accelerator Superconducting Magnets (L. Rossi, CERN; arXiv:1501.07164)",
+          "location": "Section 4.2 Cold mass completion",
+          "quote": "A sagitta of 9 mm is generated on the 15 m long, 600 mm diameter cylinder.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Voltage taps, quench-heater circuits and instrumentation must be brought out of the cryostat.",
+          "source_url": "https://proceedings.jacow.org/e04/PAPERS/MOPLT014.PDF",
+          "document_title": "Testing of the LHC Magnets in Cryogenic Conditions: Current Experience and Near Future Outlook (Chohan et al., EPAC 2004, MOPLT014)",
+          "location": "The Cold Tests Programme, p. 561",
+          "quote": "in the instrumentation feed box (IFS) bringing the instrumentation and the protection heaters taps outside the cryostat.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Testing of the LHC Magnets in Cryogenic Conditions: Current Experience and Near Future Outlook (Chohan et al., EPAC 2004, MOPLT014)",
+          "url": "https://proceedings.jacow.org/e04/PAPERS/MOPLT014.PDF"
+        },
+        {
+          "citation": "Manufacturing and Testing of Accelerator Superconducting Magnets (L. Rossi, CERN; arXiv:1501.07164)",
+          "url": "https://arxiv.org/pdf/1501.07164"
+        }
+      ],
+      "reported_equipment": [
+        "CERN SM18 LHC magnet test benches (12 purpose-built test benches)",
+        "Cryogenic Feed Boxes (CFB)",
+        "instrumentation feed box (IFS)",
+        "Cooling-Warming-Unit (CWU)"
+      ]
+    },
+    {
+      "id": "phys_dnp_polarized_ammonia_target",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Dynamic nuclear polarization of frozen NH3/ND3 targets at 1 K and 5 T with 140 GHz microwaves for electron scattering",
+      "plain_name": "Line up the nuclear spins of a frozen ammonia target with microwaves at 1 K and 5 T",
+      "description": "Polarized solid-target operation for CLAS12: 16 cm3 frozen ammonia samples are moved into a horizontal helium evaporation refrigerator inside a 5 T solenoid, held at about 1 K in superfluid helium, polarized by ~1 W of 140 GHz microwaves and monitored by NMR coils.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 1000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Samples are polarized at 1 K.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Abstract",
+          "quote": "At this location they are cooled with superfluid helium and polarized via dynamic nuclear polarization at 1 K and 5 T.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 1000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The refrigerator must reach 1 K (0.93 K with no heat load) for DNP.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 1 Introduction",
+          "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 5,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "DNP is done at 5 T (ESR at 140 GHz).",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Abstract",
+          "quote": "At this location they are cooled with superfluid helium and polarized via dynamic nuclear polarization at 1 K and 5 T.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "rf.power.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 1,
+              "unit": "W"
+            }
+          },
+          "mandatory": true,
+          "rationale": "About 1 W of 140 GHz microwave power must reach the samples.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 1 Introduction",
+          "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Samples are immersed in a superfluid helium bath.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 1 Introduction",
+          "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 20,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Target samples are 2 cm in diameter.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 4.7 (field uniformity / correction coils)",
+          "quote": "Although the CLAS12 solenoid was designed to provide a field uniformity of ΔB/B≤10−4 over the volume the target samples (2 cm diameter x 5 cm long), initial field maps indicated the actual uniformity could be up to three times worse.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 50,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Target samples are 5 cm long along the beam/loading axis.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 4.7 (field uniformity / correction coils)",
+          "quote": "the target samples (2 cm diameter x 5 cm long)",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "NMR coils at the sample measure the polarization.",
+          "source_url": "https://arxiv.org/html/2504.17933",
+          "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "location": "Section 5.2 (NMR)",
+          "quote": "One coil is tuned to the 5 T resonance frequency of protons (213 MHz), and the second to that of deuterons (32 MHz).",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+          "url": "https://arxiv.org/html/2504.17933"
+        }
+      ],
+      "reported_equipment": [
+        "JLab horizontal 1 K helium evaporation refrigerator (CLAS12 polarized target)",
+        "CLAS12 5 T superconducting solenoid"
+      ]
+    },
+    {
+      "id": "phys_rebco_cable_ic_12t",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Critical-current measurement of REBCO (CORC and stacked-tape) cables at 4.2 K up to 12 T with a superconducting transformer",
+      "plain_name": "Find how much current a high-temperature-superconductor cable can carry in liquid helium at up to 12 T",
+      "description": "V-I characterization of 20-kA-class REBCO cables for future accelerator and fusion magnets: the cable is soldered to a superconducting transformer, inserted into the 15 cm bore of a 12 T split solenoid giving transverse field, immersed in liquid helium at 4.2 K and ramped to quench while voltage taps record the transition.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 4200,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Critical currents were measured at 4.2 K.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section IV Conclusion",
+          "quote": "The critical current of a simple-stacked REBCO cable and a CORC cable were measured using a SCT at 4.2 K in magnetic field up to 12 T.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 12,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Ic was mapped in transverse background field up to 12 T.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section IV Conclusion",
+          "quote": "The critical current of a simple-stacked REBCO cable and a CORC cable were measured using a SCT at 4.2 K in magnetic field up to 12 T.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.current_leads.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 23700,
+              "unit": "A"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The CORC cable reached Ic = 23.7 kA at 5 T, so the current source/leads must supply at least that.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section III Results (CORC cable)",
+          "quote": "The E-I curve at applied field of 5 T is fitted by equation (1) with Ic = 23.7 kA, n = 9.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Measurements were done with the sample in liquid helium.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section II.C Critical Current Measurement",
+          "quote": "The measurements were performed in LHe.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "76.2",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 30 x 70 mm2 probe cross-section has a circumscribed diameter of 76.2 mm that must fit the sample space.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section II.C Critical Current Measurement",
+          "quote": "The test probes with a cross-section of 30 × 70 mm2 were inserted into the magnet vertically.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Voltage taps on the cable legs and joints must be read out.",
+          "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+          "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "location": "Section II.B The CORC Cable Sample",
+          "quote": "A few voltage taps were soldered as shown in Fig. 3(b). V1 and V2 are for leg A; V3 and V4 are for leg B.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+          "url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "NHMFL Oxford 12 T split magnet (15 cm horizontal bore)",
+        "NHMFL superconducting transformer (SCT, up to 45 kA)",
+        "Cryomagnetics model 4G magnet power supply",
+        "National Instruments SCXI-1000 with NI SCXI-1125 modules"
+      ]
+    },
+    {
+      "id": "phys_axion_haloscope_cavity",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Axion haloscope search with a 136 L tunable copper microwave cavity at ~150 mK in a 6.8 T superconducting magnet",
+      "plain_name": "Listen for dark-matter axions with a large copper microwave cavity cooled to 150 mK inside a strong magnet",
+      "description": "ADMX Generation 2 dark-matter axion search: a 136 L tunable TM010 cavity sits in the bore of a superconducting magnet at 6.8 T and is cooled with a dilution refrigerator to ~150 mK; cavity power is read out by a Microstrip SQUID Amplifier and cryogenic HFETs while tuning rods step the frequency.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The cavity was operated at ~150 mK.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "p. 2 (cavity and MSA cooling)",
+          "quote": "The cavity temperature, as measured by ruthenium oxide thermometers throughout the run, was typically 150 mK, with the MSA temperature measured to be about 300 mK due to additional heat in the vicinity of the MSA.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The cold space must reach at least the 150 mK cavity temperature.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "p. 2 (cavity and MSA cooling)",
+          "quote": "The cavity temperature, as measured by ruthenium oxide thermometers throughout the run, was typically 150 mK, with the MSA temperature measured to be about 300 mK due to additional heat in the vicinity of the MSA.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "6.8",
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Results were taken at a typical field of 6.8 T.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "Outlook paragraph",
+          "quote": "while the magnet in earlier ADMX runs[24] was operated at 7.6 T compared to the typical field of 6.8 T for the results reported here.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "chamber.volume"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 136,
+              "unit": "L"
+            }
+          },
+          "mandatory": true,
+          "rationale": "A 136 L cavity must fit inside the cold, high-field volume.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "p. 1 (experiment description)",
+          "quote": "The Generation 2 ADMX experiment consists of an 136-liter cylindrical, copper-plated microwave cavity, placed inside a superconducting magnet.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cooling_power.at_100mK"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 800,
+              "unit": "uW"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Reported dilution-refrigerator capacity; indicates the heat budget of the cavity, rods and amplifiers.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "p. 2 (cavity and MSA cooling)",
+          "quote": "The refrigerator has a cooling power of 800 µW at 100 mK.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "RF lines from the cavity antenna to the SQUID amplifier and HFETs are required.",
+          "source_url": "https://arxiv.org/pdf/1804.05750",
+          "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "location": "p. 2 (RF chain)",
+          "quote": "Power in the the TM010 mode of the cavity is extracted with a critically coupled antenna, passed through the RF chain shown in Fig. 1, and amplified by a voltage-tunable Microstrip SQUID Amplifier (MSA)",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+          "url": "https://arxiv.org/pdf/1804.05750"
+        }
+      ],
+      "reported_equipment": [
+        "ADMX Generation 2 dilution refrigerator",
+        "ADMX superconducting magnet",
+        "Microstrip SQUID Amplifier (MSA)",
+        "cryogenic Heterostructure Field-Effect Transistor (HFET) amplifiers"
+      ]
+    },
+    {
+      "id": "phys_niobium_rrr",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Residual resistivity ratio (RRR) of SRF-grade niobium by four-point resistance at room temperature and ~10 K",
+      "plain_name": "Measure how pure a niobium sheet is by comparing its electrical resistance warm and just above 9 K",
+      "description": "Quality control of niobium sheet and welds for SRF cavities: strip samples are clamped in a four-point fixture, cooled in a liquid-helium dewar and slowly warmed; resistance just above the ~9.3 K superconducting transition (~10 K) is divided into the room-temperature resistance to give RRR.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 10000,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 300000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "RRR uses resistivity at 300 K and at 10 K in the same fixture.",
+          "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+          "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+          "location": "Introduction, p. 726",
+          "quote": "The RRR for Nb is determined according to equation 1 by dividing the averaged measured values of resistivity at 300 +/- 0.1 K and at 10 +/- 0.1 K to create a unitless figure of merit",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Four-point probe leads and thermometer wiring must reach the samples.",
+          "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+          "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+          "location": "Measurement System, p. 727",
+          "quote": "The card edge connectors pass electrical connections to the sample boards for the four point probe and Cernox temperature sensors.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.height.max",
+            "sample.length.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 75,
+              "unit": "mm"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Fermilab samples are ~75 mm long strips (~2x2 mm2).",
+          "source_url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf",
+          "document_title": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+          "location": "Introduction, p. 352",
+          "quote": "The sample-holder consists of a G10 plate to which twelve ~75 mm long (~2x2mm2 cross-section) samples (cut from sheets with electroerosion machining) are affixed with copper clamps and brass screws.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.current.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 100,
+              "unit": "mA"
+            }
+          },
+          "mandatory": false,
+          "rationale": "The series-connected samples are driven with 100 mA.",
+          "source_url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf",
+          "document_title": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+          "location": "Introduction, p. 352",
+          "quote": "The clamps also conduct the 100 mA current to the samples, all samples being connected in series.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "0.4",
+              "unit": "T"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Only for the NIST-style 4.2 K definition: a field above ~0.4 T suppresses superconductivity before extrapolating to zero field.",
+          "source_url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf",
+          "document_title": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+          "location": "Footnote 1, p. 352",
+          "quote": "the superconducting state is suppressed applying different magnetic fields above ~0.4 T and extrapolation to zero magnetic field such as to eliminate the magneto-resistive component",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Both reported systems cool the samples with liquid helium.",
+          "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+          "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+          "location": "Abstract, p. 726",
+          "quote": "The samples are measured inside of an isothermal setup in a liquid helium (LHe) dewar.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+          "url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf"
+        },
+        {
+          "citation": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+          "url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Fermilab Technical Division temperature sensor calibration facility",
+        "JLab multi-sample RRR system (liquid helium dewar, JLab vertical test area)",
+        "Cernox temperature sensors"
+      ]
+    },
+    {
+      "id": "phys_lar_sipm_ln2_qualification",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Cryogenic I-V, dark-count-rate and thermal-cycling qualification of 6x6 mm2 SiPMs at 77 K for a liquid-argon neutrino detector",
+      "plain_name": "Qualify light sensors for a liquid-argon neutrino detector by dunking them in liquid nitrogen",
+      "description": "DUNE photon-detection-system SiPM validation: sensors are lowered into a liquid-nitrogen dewar on a linear stage with a PT100 nearby, I-V curves are taken with a source-measure unit over triaxial cables, dark count rate, gain and correlated noise are recorded in the dark with a cryogenic amplifier, and the sensors undergo 20 room-temperature/LN2 thermal cycles.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 77000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "DCR and noise specifications are verified at 77 K.",
+          "source_url": "https://arxiv.org/html/2511.19095v1",
+          "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+          "location": "Table 1 (SiPM requirements)",
+          "quote": "Cryogenic reliable DCR < 200 mHz/mm² at Vop @ 77 K",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Sensors are immersed (dived) in liquid nitrogen.",
+          "source_url": "https://arxiv.org/html/2511.19095v1",
+          "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+          "location": "Section 3.1 Experimental apparatus and procedure",
+          "quote": "The setup consists of a liquid nitrogen (LN2) dewar where the sensors are placed in order to perform tests at cryogenic temperatures.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Bias and signal leads (triaxial cables to the SMU, cryogenic amplifier) must reach the sensor.",
+          "source_url": "https://arxiv.org/html/2511.19095v1",
+          "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+          "location": "Section 3.1 Experimental apparatus and procedure",
+          "quote": "The SiPMs current-voltage characteristic curve (IV) measurements were performed by a commercial source meter unit (SMU) directly connected to the SiPM through triaxial cables",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "8.5",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "A 6x6 mm2 sensor has a circumscribed diameter of 8.5 mm.",
+          "source_url": "https://arxiv.org/html/2511.19095v1",
+          "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+          "location": "Table 1 (SiPM requirements)",
+          "quote": "SiPM dimensions 6x6 mm 2 Compatible with the PDS modules",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+          "url": "https://arxiv.org/html/2511.19095v1"
+        }
+      ],
+      "reported_equipment": [
+        "liquid nitrogen (LN2) dewar with mechanical linear stage",
+        "PT100 temperature sensor",
+        "source meter unit (SMU)",
+        "cryogenic amplification (CA) stage",
+        "digital oscilloscope"
+      ]
+    },
+    {
+      "id": "phys_nb3sn_wire_mqe",
+      "industry": "physics_and_particle_accelerators",
+      "name": "Minimum quench energy of HL-LHC RRP Nb3Sn wires with high-heat-capacity tape at 4.2 K and 15 T",
+      "plain_name": "Measure the smallest heat pulse that makes an accelerator-magnet wire stop superconducting at 15 T",
+      "description": "Strand test for Nb3Sn accelerator-magnet conductor: a reacted wire on a Ti-6Al-4V barrel is cooled in boiling helium at 4.2 K in transverse field, its Ic is measured with a voltage-tap pair, then at a fixed fraction of Ic heat pulses from strain-gauge heaters are increased until the wire quenches (MQE).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 4200,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Ic and MQE are measured at 4.2 K.",
+          "source_url": "https://arxiv.org/pdf/2204.05378",
+          "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+          "location": "Section II.B Strand Ic and MQE Tests",
+          "quote": "Voltage–current (V–I) characteristics are measured in boiling He at 4.2 K, in a transverse magnetic field.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The wire is cooled by a boiling helium bath, which sets the heat removal relevant to MQE.",
+          "source_url": "https://arxiv.org/pdf/2204.05378",
+          "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+          "location": "Section II.B Strand Ic and MQE Tests",
+          "quote": "Voltage–current (V–I) characteristics are measured in boiling He at 4.2 K, in a transverse magnetic field.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 15,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "MQE results are reported at 15 T (and 14 T).",
+          "source_url": "https://arxiv.org/pdf/2204.05378",
+          "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+          "location": "Abstract",
+          "quote": "At 90%Ic and 15 T, the average gain of MQE of the Nb3Sn wire soldered to the Cu/Gd2O2S 55 µm thick ribbon was 2.5, and further increased at larger transport currents.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Transport current, voltage taps and heater leads must reach the sample.",
+          "source_url": "https://arxiv.org/pdf/2204.05378",
+          "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+          "location": "Section II.B Strand Ic and MQE Tests",
+          "quote": "In the wire critical current, or Ic, measurement, one pair of voltage taps is used. The pair is placed along the center of the spiral sample 50 cm apart.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+          "url": "https://arxiv.org/pdf/2204.05378"
+        }
+      ],
+      "reported_equipment": [
+        "FNAL strand test facility (boiling He, transverse field)",
+        "Ti-6Al-4V barrels",
+        "Micro-Measurements WK-09-125BT350 strain gauges (heaters)",
+        "BPO KEPCO 200-1 power supply"
+      ]
+    },
+    {
+      "id": "phys_cupid_mo_scintillating_bolometers",
+      "industry": "physics_and_particle_accelerators",
+      "name": "CUPID-Mo neutrinoless double-beta decay search with Li2(100)MoO4 scintillating bolometers and Ge light detectors at 20.7 mK",
+      "plain_name": "Search for neutrinoless double-beta decay with lithium molybdate crystals read out by heat and light at 20 mK",
+      "description": "Underground rare-event search: 20 enriched Li2100MoO4 crystals (~44 mm diameter, ~45 mm high, 4.158 kg total) each paired with a Ge-wafer light detector and NTD Ge thermistors are suspended in towers inside the EDELWEISS-III dilution refrigerator and operated at 20.7 mK, recording heat and scintillation signals for particle identification.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "20.7",
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Detectors were operated at a stable 20.7 mK.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 3.3 Performance of bolometric Ge light detectors",
+          "quote": "With a stable operating temperature of 20.7 mK and a strong NTD polarization for the Ge LDs, negligible nonlinearity is expected.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "20.7",
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The cryostat must reach the 20.7 mK working temperature.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 3 (operation)",
+          "quote": "we could stably operate at 20.7 mK with a few µW of regulation power.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 44,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Each crystal is ~44 mm in diameter.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 2.1 Li2100MoO4 crystals",
+          "quote": "All crystals have a cylindrical shape with ∼ 44 mm diameter and ∼ 45 mm height, and a mass of ∼ 0.2 kg.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 45,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Each crystal is ~45 mm high.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 2.1 Li2100MoO4 crystals",
+          "quote": "All crystals have a cylindrical shape with ∼ 44 mm diameter and ∼ 45 mm height, and a mass of ∼ 0.2 kg.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "NTD thermistors and heaters on every crystal and light detector must be wired out.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 2.7 Wiring",
+          "quote": "We bonded gold wires from the NTDs to flat Kapton pads with gold contacts to provide the electrical readout connection as well as the weak thermal link to the heat bath.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        },
+        {
+          "keys": [
+            "sample.mass.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "4.158",
+              "unit": "kg"
+            }
+          },
+          "mandatory": false,
+          "rationale": "The full array of 20 crystals has 4.158 kg to be cooled.",
+          "source_url": "https://arxiv.org/pdf/1909.02994",
+          "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "location": "Section 2.1 Li2100MoO4 crystals",
+          "quote": "The total mass of the 20 Li2100MoO4 crystals used in CUPIDMo is 4.158 kg, corresponding to 2.264 kg of 100Mo.",
+          "accessed": "2026-11-01",
+          "evidence_status": "experimental_observation"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+          "url": "https://arxiv.org/pdf/1909.02994"
+        }
+      ],
+      "reported_equipment": [
+        "EDELWEISS-III dilution refrigerator (reversed geometry) at LSM",
+        "NTD Ge thermistors (LBNL)",
+        "Ge light detectors (Umicore wafers)"
+      ]
+    }
+  ]
+}

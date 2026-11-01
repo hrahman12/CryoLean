@@ -1,0 +1,89 @@
+{
+ "id": "geo_57fe_ferrihydrite_soil_mossbauer",
+ "name": "Variable-temperature 57Fe Mossbauer spectroscopy (140 K to <=5 K) of 57Fe-labelled ferrihydrite transformation in anoxic paddy-soil incubations",
+ "plain_name": "Track how iron rust minerals change in soil by cooling them toward 5 K for gamma-ray spectra",
+ "industry": "geology_and_oceanography",
+ "description": "57Fe-ferrihydrite (65 mg) is mixed into 15 g of soil and incubated anoxically; solids are frozen in liquid nitrogen, freeze-dried and measured by 57Fe Mossbauer spectroscopy at 140, 77, 45, 25, 15, 10 and <=5 K, because magnetic ordering of ferrihydrite and secondary Fe(II)/Fe(III) phases only appears at the lowest temperatures.",
+ "keywords": [
+  "Track how iron rust minerals change in soil by cooling them toward 5 K for gamma-ray spectra",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Notini et al. (2023) A New Approach for Investigating Iron Mineral Transformations in Soils and Sediments Using 57Fe-Labeled Minerals and 57Fe Mossbauer Spectroscopy, Environ. Sci. Technol. 57, 10008-10018, doi:10.1021/acs.est.3c00434",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339716/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "MBraun anoxic glovebox (N2 atmosphere, <5 ppm O2)",
+  "57Fe Mossbauer spectrometer and cryostat (models given only in the Supporting Information, not in the main text)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 5,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 140,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The temperature profile runs from 140 K down to 5 K; the cryostat must cover this whole window.",
+   "evidence_ids": [
+    "v4e_geo_57fe_ferrihydrite_soil_mossbauer_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 5,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Fe(II) octet only forms below 15 K and the decisive spectra were taken at <=5 K.",
+   "evidence_ids": [
+    "v4e_geo_57fe_ferrihydrite_soil_mossbauer_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Routine incubation-series spectra were collected at 77 K.",
+   "evidence_ids": [
+    "v4e_geo_57fe_ferrihydrite_soil_mossbauer_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

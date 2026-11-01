@@ -1,0 +1,2144 @@
+[
+ {
+  "id": "v4e_semi_mil883_tc_condition_c_0",
+  "claim": "Condition C cold step is -65 C (+0/-10), so the working zone must reach -65 C = 208.15 K or colder (third column of the cold row; columns are conditions A-F).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 208150, \"unit\": \"mK\"}}",
+  "quote": "1 >10 -55 +0 -55 +0 -65 +0 -65 +0 -65 +0 -65 +0",
+  "source_url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+  "document_title": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+  "location": "p. 2, Table I 'Temperature-cycling test conditions', step 1 (Cold), condition C column (text as extracted, columns A to F)",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_mil883_tc_condition_c",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded q-tech PDF (MIL-STD-883G Method 1010.8, 18 June 2004). Table I cold row, whitespace-normalized from the layout text, reads '1 >10 -55 +0 -55 +0 -65 +0 -65 +0 -65 +0 -65 +0' (tolerance -10 on the next line). Condition C is the third column: -65 C (+0/-10) = 208.15 K. Section 3 makes condition C the default with at least 10 cycles. On a range key, at_most bounds the low end, which is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_mil883_tc_condition_c_1",
+  "claim": "Condition C hot step is +150 C (+15/-0), so the chamber must reach +150 C = 423.15 K or hotter (third column of the hot row).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 423150, \"unit\": \"mK\"}}",
+  "quote": "2 >10 85 +10 125 +15 150 +15 200 +15 300 +15 175 +15",
+  "source_url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+  "document_title": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+  "location": "p. 2, Table I, step 2 (Hot), condition C column (text as extracted, columns A to F)",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_mil883_tc_condition_c",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Hot row reads '2 >10 85 +10 125 +15 150 +15 200 +15 300 +15 175 +15'. Condition C is +150 C (+15/-0) = 423.15 K. at_least on temperature.range is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_aecq100_grade0_tc_ptc_0",
+  "claim": "Grade 0 TC (test A4) cold extreme is -55 C = 218.15 K.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 218150, \"unit\": \"mK\"}}",
+  "quote": "Grade 0: -55°C to +150°C for 2000 cycles or equivalent.",
+  "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+  "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+  "location": "Page 11 of 42, Table 2 Qualification Test Methods (continued), Test Group A, A4 TC, Additional Requirements",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_aecq100_grade0_tc_ptc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded AEC-Q100 Rev-H. The page-11 Table 2 entry for A4 TC reads 'Grade 0: -55°C to +150°C for 2000 cycles or equivalent.' -55 C = 218.15 K. The legacy -65 C/500-cycle option is colder, so this bound still holds."
+  }
+ },
+ {
+  "id": "v4e_semi_aecq100_grade0_tc_ptc_1",
+  "claim": "Grade 0 TC hot extreme is +150 C = 423.15 K.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 423150, \"unit\": \"mK\"}}",
+  "quote": "Grade 0: -55°C to +150°C for 2000 cycles or equivalent.",
+  "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+  "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+  "location": "Page 11 of 42, Table 2 (continued), Test Group A, A4 TC, Additional Requirements",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_aecq100_grade0_tc_ptc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same A4 passage: +150 C = 423.15 K. Correct."
+  }
+ },
+ {
+  "id": "v4e_semi_aecq100_grade0_tc_ptc_2",
+  "claim": "Grade 0 PTC (test A5, JESD22-A105) cycles the ambient from -40 C (233.15 K) to +150 C (423.15 K).",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 233150, \"unit\": \"mK\"}, \"hi\": {\"value\": 423150, \"unit\": \"mK\"}}",
+  "quote": "Grade 0: Ta of -40°C to +150°C for 1000 cycles.",
+  "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+  "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+  "location": "Page 11 of 42, Table 2 (continued), Test Group A, A5 PTC, Additional Requirements",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_aecq100_grade0_tc_ptc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The A5 PTC entry reads 'Grade 0: Ta of -40°C to +150°C for 1000 cycles.' range_within 233.15-423.15 K is correct. Caveat: the same cell says PTC is 'required only on devices with maximum rated power >= 1 watt or ΔTJ >= 40°C or devices designed to drive inductive loads'. Mandatory holds only because this profile explicitly includes PTC; the description should say PTC is conditional."
+  }
+ },
+ {
+  "id": "v4e_semi_aecq100_grade0_tc_ptc_3",
+  "claim": "Power temperature cycling runs the parts powered during the cycling (thermal shut-down must not occur), so bias wiring into the chamber is needed.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Thermal shut-down shall not occur during this test. TEST before and after PTC at room and hot temperature.",
+  "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+  "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+  "location": "Page 11 of 42, Table 2 (continued), A5 PTC, Additional Requirements",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_aecq100_grade0_tc_ptc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Quote verified on page 11 ('Thermal shut-down shall not occur during this test. TEST before and after PTC at room and hot temperature.'). PTC per JESD22-A105 cycles the device while powered, so bias wiring into the chamber is needed. The same PTC-only-for-power-devices caveat applies."
+  }
+ },
+ {
+  "id": "v4e_semi_finfet_5nm_cryo_probe_0",
+  "claim": "Transistors were measured over the whole span from 300 K down to 10 K (10 K was the lowest stable temperature with probes landed).",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 10000, \"unit\": \"mK\"}, \"hi\": {\"value\": 300000, \"unit\": \"mK\"}}",
+  "quote": "The heat flux from the probes introduces thermal fluctuations in the range of 3.5 K to 8.5 K. Therefore, the temperature 10 K is chosen as the lower limit because it is the smallest stable temperature.",
+  "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+  "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+  "location": "Section II.B 'Measuring 5 nm FinFET Transistors for the Temperature Range'",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_finfet_5nm_cryo_probe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded the TUM DAC 2023 PDF. Section II.B 'Measuring 5 nm FinFET Transistors for the Temperature Range' contains the quote verbatim, and the paper measures 'from 300 K down to 10 K'. range_within 10-300 K is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_finfet_5nm_cryo_probe_1",
+  "claim": "The probed die sits in the evacuated sample space of the probe station.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The cryogenic probe station features a 51 mm diameter sample stage, a vacuum pump, a twostage closed-cycle refrigerator unit, and a probe handler/positioner.",
+  "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+  "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+  "location": "Section II.B",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_finfet_5nm_cryo_probe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in II.B ('...features a 51 mm diameter sample stage, a vacuum pump, a twostage closed-cycle refrigerator unit...'). vacuum.available present is justified."
+  }
+ },
+ {
+  "id": "v4e_semi_finfet_5nm_cryo_probe_2",
+  "claim": "Each transistor terminal (gate, source, drain, bulk) is contacted by its own probe, so four probe arms are needed.",
+  "value_as_printed": "{\"kind\": \"count_at_least\", \"n\": 2}",
+  "quote": "in which the probes are placed on top of the measurement pads for each transistor terminal (i.e., gate, source, drain, bulk).",
+  "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+  "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+  "location": "Section II.B",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_finfet_5nm_cryo_probe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The text quote is verbatim. However, the paper's own setup figure, Fig. 1(a), labels only 'Probe 1' and 'Probe 2', so four terminals were contacted with two (multi-tip) probe arms. Requiring 4 arms overstates the need. Corrected to count_at_least 2."
+  }
+ },
+ {
+  "id": "v4e_semi_finfet_5nm_cryo_probe_3",
+  "claim": "The DUT is biased and measured by the B1500A through the probes.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "a semiconductor measurement station \"Keysight's B1500A\" is utilized to stimulate each transistor under measurement (i.e., apply the required voltage biases) and, then, measure its electrical response.",
+  "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+  "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+  "location": "Section II.B",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_finfet_5nm_cryo_probe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The B1500A quote is verbatim in II.B. The DUT is biased and measured through the probes."
+  }
+ },
+ {
+  "id": "v4e_semi_finfet_5nm_cryo_probe_4",
+  "claim": "Optional: the source used a two-stage closed-cycle refrigerator rather than a liquid cryogen.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "It consists of a cryogenic probe station \"Lakeshore CRX-VF\", a closed-cycle refrigerator, and a semiconductor measurement station \"Keysight's B1500A\".",
+  "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+  "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+  "location": "Fig. 1 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_finfet_5nm_cryo_probe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Fig. 1 caption ('a cryogenic probe station \"Lakeshore CRX-VF\", a closed-cycle refrigerator...'). Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_0",
+  "claim": "The measurement temperature range was 77 K to 400 K.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 77000, \"unit\": \"mK\"}, \"hi\": {\"value\": 400000, \"unit\": \"mK\"}}",
+  "quote": "The actual measurement temperature range was set from 77 K to 400 K and the frequency range from 2 GHz to 30 GHz in this work.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III (measurement system), p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded the Glasgow eprint (Wang et al.). Section III reads 'The actual measurement temperature range was set from 77 K to 400 K and the frequency range from 2 GHz to 30 GHz in this work.' range_within 77-400 K is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_1",
+  "claim": "RF probes and cabling must carry signals up to 30 GHz.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 30, \"unit\": \"GHz\"}}",
+  "quote": "The actual measurement temperature range was set from 77 K to 400 K and the frequency range from 2 GHz to 30 GHz in this work.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III, p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same passage: 30 GHz. GHz is a valid unit in units.py, so it converts to the key's canonical kHz. Probes and cables must carry 30 GHz."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_2",
+  "claim": "Two-port S-parameter and noise measurement lands a GSG probe on the gate port and one on the drain port.",
+  "value_as_printed": "{\"kind\": \"count_at_least\", \"n\": 2}",
+  "quote": "The DC/RF measurement was executed using 40A-GSG-100 probes connected to a Keysight PNA-X N5245B.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III, p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'The DC/RF measurement was executed using 40A-GSG-100 probes connected to a Keysight PNA-X N5245B.' A two-port S-parameter and noise-parameter measurement needs two GSG probes, so >= 2 is justified."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_3",
+  "claim": "The probe-station sample space is evacuated by a vacuum pump.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The system consists of a LakeShore manual probe station, a Model 336 Temperature Controller, a Wessington Cryogenics 60 L liquid nitrogen Dewar, and an Agilent Technologies TPS-compact vacuum pump, supporting operations from 77 K to 475 K.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III, p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Section III (LakeShore manual probe station, Model 336, 60 L LN2 dewar, Agilent TPS-compact vacuum pump, 77 K to 475 K). The sample space is evacuated."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_4",
+  "claim": "The HEMT is DC biased and RF measured through the probes.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The DC/RF measurement was executed using 40A-GSG-100 probes connected to a Keysight PNA-X N5245B.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III, p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same probe/PNA-X quote. The device is DC biased (VDS 5 V, VGS -2 V per the Fig. 5 caption) and RF-measured through the probes."
+  }
+ },
+ {
+  "id": "v4e_semi_gan_hemt_noise_77_400k_5",
+  "claim": "Optional: the source cooled the station with liquid nitrogen from a 60 L dewar.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "a Wessington Cryogenics 60 L liquid nitrogen Dewar, and an Agilent Technologies TPS-compact vacuum pump, supporting operations from 77 K to 475 K.",
+  "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+  "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+  "location": "Section III, p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_gan_hemt_noise_77_400k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The LN2 dewar is verbatim. Optional set_contains liquid_nitrogen matches the vocabulary usage in other research/v4 equipment."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_laplace_dlts_0",
+  "claim": "The DLTS temperature scan covered 100-420 K.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 100000, \"unit\": \"mK\"}, \"hi\": {\"value\": 420000, \"unit\": \"mK\"}}",
+  "quote": "The DLTS measurements were performed in the temperature range 100-420 K at a ramp rate 3 K/min, reverse bias Vr = -10 V, pulse bias Vp = 0 V, pulse width tp = 1 ms and using a rate window of 50 s-1.",
+  "source_url": "https://arxiv.org/abs/1812.06462",
+  "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+  "location": "Section II (Experimental details)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_laplace_dlts",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded arXiv:1812.06462 (Capan et al.). Section II reads 'The DLTS measurements were performed in the temperature range 100-420 K at a ramp rate 3 K/min, reverse bias Vr = -10 V...'. Correct."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_laplace_dlts_1",
+  "claim": "Optional: the published scan ramped at 3 K/min.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 3000, \"unit\": \"mK_per_min\"}}",
+  "quote": "The DLTS measurements were performed in the temperature range 100-420 K at a ramp rate 3 K/min, reverse bias Vr = -10 V",
+  "source_url": "https://arxiv.org/abs/1812.06462",
+  "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+  "location": "Section II (Experimental details)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_laplace_dlts",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same passage: 3 K/min = 3000 mK_per_min. Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_laplace_dlts_3",
+  "claim": "The diode is reverse biased and pulsed while its capacitance transient is recorded.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Reverse and pulse biases were respectively Vr = -5 V and Vp = 0 V. Pulse widths were tp = 1 ms and 100 ns for the (= /0) and (-/0) transitions, respectively.",
+  "source_url": "https://arxiv.org/abs/1812.06462",
+  "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+  "location": "Section II (Experimental details)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_laplace_dlts",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Section II: 'Reverse and pulse biases were respectively Vr = -5 V and Vp = 0 V. Pulse widths were tp = 1 ms and 100 ns...'. The diode must be biased and its capacitance read."
+  }
+ },
+ {
+  "id": "v4e_semi_si_nanowire_cryo_icp_etch_0",
+  "claim": "The default recipe runs the substrate holder at -95 C = 178.15 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 178150, \"unit\": \"mK\"}}",
+  "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm, SF6 flow = 118 sccm, ICP power = 500 W",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+  "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+  "location": "Methods, 'Cryogenic dry etching'",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_si_nanowire_cryo_icp_etch",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "PMC8492725 Methods 'Cryogenic dry etching' contains the quote verbatim: temperature = −95 °C, i.e. 178.15 K. point_within is correct for the default recipe."
+  }
+ },
+ {
+  "id": "v4e_semi_si_nanowire_cryo_icp_etch_1",
+  "claim": "The plasma etch runs in an evacuated chamber at 1.0 Pa.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+  "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+  "location": "Methods, 'Cryogenic dry etching'",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_si_nanowire_cryo_icp_etch",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same passage (pressure = 1.0 Pa). The plasma etch needs an evacuated chamber."
+  }
+ },
+ {
+  "id": "v4e_semi_si_nanowire_cryo_icp_etch_2",
+  "claim": "The chamber must be able to reach and hold the 1.0 Pa process pressure.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 1, \"unit\": \"Pa\"}}",
+  "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+  "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+  "location": "Methods, 'Cryogenic dry etching'",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_si_nanowire_cryo_icp_etch",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Pa is a valid unit, and 1.0 Pa is verified. Caveat: 1.0 Pa is the process (operating) pressure, not a base pressure. Base <= 1 Pa is only a necessary condition, which this constraint correctly encodes. Holding the gas-flow process pressure is not captured."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_0",
+  "claim": "The niobium SFQ circuit is operated at 4.2 K.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 4200, \"unit\": \"mK\"}}",
+  "quote": "a two-stage closed-cycle cryogenic system was employed, capable of achieving a base temperature of 4.2 K after an initial precooling stage at approximately 35 K.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded arXiv:2510.14191. Section 4.1 reads '...a two-stage closed-cycle cryogenic system was employed, capable of achieving a base temperature of 4.2 K after an initial precooling stage at approximately 35 K.' The Nb (AIST HSTP) circuit needs 4.2 K, so the bound is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_1",
+  "claim": "Bias currents, clock and output signals are wired to the chip.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Separate DC bias lines were provided for the DC/SFQ, SFQ/DC, and main power rails to isolate functional blocks and minimize cross-interference.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in 4.1: 'Separate DC bias lines were provided for the DC/SFQ, SFQ/DC, and main power rails...'."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_2",
+  "claim": "High-frequency inputs and the clock are delivered on RF-shielded coaxial lines.",
+  "value_as_printed": "{\"kind\": \"count_at_least\", \"n\": 1}",
+  "quote": "RF-shielded coaxial lines were employed for signal transmission, particularly for high-frequency inputs.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in 4.1: 'RF-shielded coaxial lines were employed for signal transmission, particularly for high-frequency inputs.' >= 1 coax line is justified."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_3",
+  "claim": "Optional: at least three separate DC bias rails (DC/SFQ, SFQ/DC, main power) were used.",
+  "value_as_printed": "{\"kind\": \"count_at_least\", \"n\": 3}",
+  "quote": "Separate DC bias lines were provided for the DC/SFQ, SFQ/DC, and main power rails to isolate functional blocks and minimize cross-interference.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Three named separate bias rails, so >= 3 DC lines is a conservative lower bound. Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_4",
+  "claim": "Optional: the cryocooler sample space is under vacuum (vacuum level monitored); a liquid-helium dip test would not need it.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The system is equipped with a LabVIEW-based control interface that enables realtime monitoring and adjustment of temperature, vacuum level, and compressor parameters.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in 4.1 ('...realtime monitoring and adjustment of temperature, vacuum level, and compressor parameters'). Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_sfq_adc_cryocooler_test_5",
+  "claim": "Optional: the source chose a closed-cycle system instead of liquid-helium immersion.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "Although liquid helium cooling at 4.2 K has traditionally been used, its high cost and limited availability make it less practical for repeated experiments.",
+  "source_url": "https://arxiv.org/abs/2510.14191",
+  "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+  "location": "Section 4.1 Experimental Setup",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sfq_adc_cryocooler_test",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in 4.1 ('Although liquid helium cooling at 4.2 K has traditionally been used, its high cost and limited availability...'). Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_power_mosfet_subkelvin_0",
+  "claim": "The lowest measurement temperature was 650 mK.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 650, \"unit\": \"mK\"}}",
+  "quote": "We perform a statistical study of threshold voltage and subthreshold swing from 300 K down to 650 mK, focusing on reproducibility and variability.",
+  "source_url": "https://arxiv.org/abs/2507.23109",
+  "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_power_mosfet_subkelvin",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded arXiv:2507.23109 (Powell et al.). The abstract quote is verbatim, and Methods says the plate is set at 0.65 K <= T <= 25 K. at_most 650 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_power_mosfet_subkelvin_1",
+  "claim": "Devices were characterized across the span from 650 mK to 300 K.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 650, \"unit\": \"mK\"}, \"hi\": {\"value\": 25000, \"unit\": \"mK\"}}",
+  "quote": "We perform a statistical study of threshold voltage and subthreshold swing from 300 K down to 650 mK, focusing on reproducibility and variability.",
+  "source_url": "https://arxiv.org/abs/2507.23109",
+  "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_power_mosfet_subkelvin",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The abstract quote is verbatim, but Methods shows the controlled measurements were on the dilution-fridge mixing-chamber plate with 'we set 0.65 K <= T <= 25 K'. 300 K was only a room-temperature reference, not a controlled set point. Requiring one system to control 0.65-300 K overstates the need. Corrected to 650 mK - 25 K, supported by the Section II plate-temperature sentence."
+  }
+ },
+ {
+  "id": "v4e_semi_sic_power_mosfet_subkelvin_2",
+  "claim": "Drain and gate are driven and sensed by two SMUs in four-wire mode.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "All output and transfer characteristics are acquired in Kelvin (four wire) mode to minimise voltage drop contributions from the set-up wiring.",
+  "source_url": "https://arxiv.org/abs/2507.23109",
+  "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+  "location": "Section II (methods)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_sic_power_mosfet_subkelvin",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Section II: 'All output and transfer characteristics are acquired in Kelvin (four wire) mode...'. Two SMUs on drain-source and gate are confirmed, so sample connections are needed."
+  }
+ },
+ {
+  "id": "v4e_semi_cmos_multiplexed_lhe_dip_0",
+  "claim": "All devices are characterized isothermally at the liquid-helium temperature of 4.2 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 4200, \"unit\": \"mK\"}}",
+  "quote": "We use a dipping probe for immersion of test samples into a liquid helium bath (T = 4.2 K).",
+  "source_url": "https://arxiv.org/abs/2404.11451",
+  "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+  "location": "Section III (measurement system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_cmos_multiplexed_lhe_dip",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-downloaded arXiv:2404.11451 (Eastoe et al., NPL/Quantum Motion). Section III reads 'We use a dipping probe for immersion of test samples into a liquid helium bath (T = 4.2 K).' point_within 4200 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_semi_cmos_multiplexed_lhe_dip_1",
+  "claim": "The die is connected through a multi-pin socket for bias, digital and analog lines.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "A corresponding multi-pin socket mounted to a liquid helium dipping probe provides an interface to the digital circuitry necessary to configure the state of the multiplexer as well as the analog circuity used to conduct the measurements",
+  "source_url": "https://arxiv.org/abs/2404.11451",
+  "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+  "location": "Fig. 1 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_cmos_multiplexed_lhe_dip",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The Fig. 1 caption quote is verbatim. The die connects through a multi-pin socket on the dipping probe."
+  }
+ },
+ {
+  "id": "v4e_semi_cmos_multiplexed_lhe_dip_2",
+  "claim": "Optional: the reported wiring was two looms of 12 twisted pairs (48 conductors) for force/sense, bias and digital lines.",
+  "value_as_printed": "{\"kind\": \"count_at_least\", \"n\": 48}",
+  "quote": "Two looms of 12 pairs each provide enough wiring for several sets of force/sense lines along with biasing voltages and digital control lines.",
+  "source_url": "https://arxiv.org/abs/2404.11451",
+  "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+  "location": "Section III (measurement system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_cmos_multiplexed_lhe_dip",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in III.C: 'Two looms of 12 pairs each provide enough wiring...'. 2 x 12 pairs = 48 conductors. Correctly optional."
+  }
+ },
+ {
+  "id": "v4e_semi_cmos_multiplexed_lhe_dip_3",
+  "claim": "Optional: the source immersed the sample in a liquid-helium bath; a 4 K stage of another cryostat can substitute.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "We use a dipping probe for immersion of test samples into a liquid helium bath (T = 4.2 K).",
+  "source_url": "https://arxiv.org/abs/2404.11451",
+  "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+  "location": "Section III (measurement system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "semi_cmos_multiplexed_lhe_dip",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The LHe bath is verbatim. Optional set_contains liquid_helium is appropriate."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_temperature.range",
+  "claim": "Air-stream temperature range at the DUT is -80 C to +225 C (no LN2/LCO2).",
+  "value_as_printed": "-80 to +225°C",
+  "quote": "Temperature Range* -80 to +225°C No LN2 or LCO2 Required",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE: Temperature Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-fetched datasheet SL10940A p.1: 'Temperature Range* -80 to +225°C' and 'No LN2 or LCO2 Required'. This is the air-stream temperature under nominal conditions. 193.15 to 498.15 K is correct."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_temperature.base",
+  "claim": "Lowest air temperature is -80 C.",
+  "value_as_printed": "-80°C",
+  "quote": "Temperature Range* -80 to +225°C",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE: Temperature Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-80 °C (193.15 K) appears in the datasheet. The footnote says ultimate low temperatures are reached at 12 scfm, nominal conditions."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_magnetic_field.max",
+  "claim": "The complete two-page datasheet (performance, temperature control, features, options, dimensions, service, facility requirements) describes a refrigerated hot/cold air source only; there is no magnet.",
+  "value_as_printed": "(no magnet in complete specification)",
+  "quote": "this Advanced Temperature Source is for fast and precise thermal conditioning of components, parts, hybrids, modules, subassemblies, and printed circuit boards.",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "pp.1-2, complete datasheet",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "I read the full 2-page datasheet (performance, control, features, options, dimensions, service, facility). It describes a hot/cold air source with no magnet anywhere. The quoted sentence is verbatim."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_vacuum.available",
+  "claim": "The DUT is conditioned by a continuous stream of temperature-controlled air at atmospheric pressure under a thermal cap; there is no evacuated sample space.",
+  "value_as_printed": "System Airflow Output 4 to 18 scfm Continuous",
+  "quote": "System Airflow Output* 4 to 18scfm (1.9 to 8.5 l/s) Continuous",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE: System Airflow Output",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The full specification describes a continuous 4-18 scfm air stream over a DUT under a thermal cap. There is no evacuated space. The quote is verbatim (PDF text reads 'Airrow' because of a ligature)."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_pressure.base",
+  "claim": "No vacuum: the system blows conditioned air over the DUT, so no base pressure exists or is specified.",
+  "value_as_printed": "(air stream, no vacuum)",
+  "quote": "System Airflow Output* 4 to 18scfm (1.9 to 8.5 l/s) Continuous",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE: System Airflow Output",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The full datasheet describes an air-stream system with no vacuum, so no base pressure exists."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_sample.diameter.max",
+  "claim": "Configuration uses the 4.5 inch ID thermal cap, which bounds the DUT footprint (5.5 inch cap is the alternative option).",
+  "value_as_printed": "4.5 inch ID Thermal Cap",
+  "quote": "Thermal Cap or FlexExtender Hose 4.5 or 5.5 inch ID Thermal Cap or optional FlexExtender Hose for connection to external Thermal Chambers or enclosures",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, APPLICATION OPTIONS",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 'Thermal Cap or FlexExtender Hose 4.5 or 5.5 inch ID Thermal Cap ...' option text is present. 4.5 in = 114.3 mm, and choosing the 4.5 in cap is the conservative choice for this configuration."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_cryogen.cryogen_free",
+  "claim": "Reaches -80 C mechanically, without liquid nitrogen or liquid CO2.",
+  "value_as_printed": "No LN2 or LCO2 Required",
+  "quote": "Capable of ultra-low temperatures without the use of Liquid Nitrogen (LN2) or Liquid Carbon Dioxide (LCO2).",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, description and PERFORMANCE",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The sentence 'Capable of ultra-low temperatures without the use of Liquid Nitrogen (LN2) or Liquid Carbon Dioxide (LCO2).' appears verbatim on p.1."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_cryogen.type",
+  "claim": "Uses no liquid cryogen (mechanical refrigeration with HCFC/CFC-free refrigerants).",
+  "value_as_printed": "No LN2 or LCO2 Required",
+  "quote": "Temperature Range* -80 to +225°C No LN2 or LCO2 Required",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No liquid cryogen is used. Refrigerants are listed as HCFC- and CFC-free."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_temperature.sweep_rate.max",
+  "claim": "Air transition -55 C to +125 C (180 K) in approximately 10 s or less, i.e. about 18 K/s = 1080 K/min (nominal operating conditions).",
+  "value_as_printed": "-55 to +125°C, approx. 10 seconds or less",
+  "quote": "Transition Rate* -55 to +125°C, approx. 10 seconds or less 125 to -55°C, approx. 10 seconds or less",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, PERFORMANCE: Transition Rate",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'-55 to +125°C, approx. 10 seconds or less' is present in both directions. 180 K in 10 s = 18 K/s = 1080 K/min. This is the air-stream transition under nominal conditions, consistent with how temperature.range is defined, not the DUT ramp rate."
+  }
+ },
+ {
+  "id": "v4c_intest_ats_645_m_4_5in_cap_purge.gas",
+  "claim": "Dry-air purge of the tester interface prevents condensation.",
+  "value_as_printed": "dry air purge ... 0.5 to 3scfm",
+  "quote": "Frost Free Feature dry air purge for tester interface, prevents condensation: 0.5 to 3scfm (0.25 to 1.5 l/s)",
+  "source_url": "https://atecorp.com/getmedia/42f65989-02b4-4ca4-9cfb-bf9bc506cd20/temp-ats-645-m-4-datasheet_1.pdf",
+  "document_title": "ATS-645-M ThermoStream Advanced Temperature Source - Datasheet and Specifications (inTEST Thermal Solutions part number SL10940A)",
+  "location": "p.1, FEATURES: Frost Free Feature",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "intest_ats_645_m_4_5in_cap",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Frost Free Feature dry air purge for tester interface, prevents condensation: 0.5 to 3scfm' is present."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_temperature.range",
+  "claim": "With the full-range ERS thermal chuck and integrated AirCool chiller the wafer chuck covers -60 C to 300 C.",
+  "value_as_printed": "-60 °C to 300 °C",
+  "quote": "fA low-leakage capabilities Ready for temperature range -60 °C to 300 °C",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.1, FEATURES / BENEFITS (MPI ShielDEnvironment)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.1 states 'Ready for temperature range -60 °C to 300 °C'. The full-range triaxial thermal chuck table (p.10) lists -60 °C to 200 °C/300 °C. 213.15 to 573.15 K matches the 300 °C variant named in the configuration."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_temperature.base",
+  "claim": "Lowest chuck temperature is -60 C.",
+  "value_as_printed": "-60 °C",
+  "quote": "Ready for temperature range -60 °C to 300 °C",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.1 and p.12 (ERS AirCool Controller Integrated Chiller -40 °C / -60 °C)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-60 °C is confirmed on p.1. p.12 states 'ERS AirCool (patented) Controller Integrated Chiller -40°C / -60°C'."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_magnetic_field.max",
+  "claim": "The complete 12-page data sheet (stages, cameras, microscope, platen, ShielDEnvironment, NoiseShield, chucks, thermal chucks, controller) contains no magnet; the NoiseShield option only suppresses external magnetic fields.",
+  "value_as_printed": "(no magnet in complete specification)",
+  "quote": "It reduces external magnetic field influences on the measurement results and makes the 1/f, RTN Setup more robust and test lab location less independent.",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.4, MPI NoiseShield option",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "I read the full 14-page data sheet (stages, cameras, microscope, platen, ShielDEnvironment, NoiseShield, chucks, thermal chucks, controller, facility, dimensions). There is no magnet. The NoiseShield quote is verbatim and only concerns reducing external fields."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_vacuum.available",
+  "claim": "The ShielDEnvironment is a local EMI/light-tight enclosure purged with CDA or nitrogen at atmospheric pressure; it is not evacuated (vacuum is used only to hold the wafer on the chuck).",
+  "value_as_printed": "CDA or Nitrogen flow",
+  "quote": "The system automatically monitors the flow of CDA or Nitrogen. If the flow is interrupted or insufficient, the STM automatically turns the chuck into a safe mode",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.5, Safety Test Management STM option",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The full specification describes ShielDEnvironment as a 'local environmental chamber' purged with CDA or nitrogen. The only vacuum is the -0.9 bar facility vacuum that holds the wafer on the chuck. The STM quote is verbatim."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_pressure.base",
+  "claim": "Purged atmospheric enclosure, no base vacuum specified.",
+  "value_as_printed": "(purged enclosure, no vacuum)",
+  "quote": "using the chiller for purging the ShielDEnvironment, the CDA consumption is reduced by as much as 50%. Nitrogen purging is still possible by using separate valve.",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.6, Minimized CDA Consumption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The enclosure is a purged atmospheric one and the full datasheet gives no base pressure. The quote 'Nitrogen purging is still possible by using separate valve.' is verbatim on the Minimized CDA Consumption panel."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_optical_access",
+  "claim": "Probing area observed by the top microscope/video camera and through the Vertical Control Environment side view.",
+  "value_as_printed": "observation of the probing area",
+  "quote": "Vertical Control Environment (VCE) with observation of the probing area from the side for safe operation",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.1, Ergonomic Design and Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The VCE quote is verbatim on p.1. The system also has microscope and video camera specifications."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_electrical.sample_connections",
+  "claim": "ShielDEnvironment supports up to 4 RF ports or up to 8 DC/Kelvin ports to probes landed on the wafer.",
+  "value_as_printed": "up to 4-port RF or up to 8-ports DC/Kelvin",
+  "quote": "MPI ShielDEnvironment allows up to 4-port RF or up to 8-ports DC/Kelvin or a combination of those configurations.",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.3, ShielDEnvironment",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'MPI ShielDEnvironment allows up to 4-port RF or up to 8-ports DC/Kelvin or a combination of those configurations.' is verbatim on p.3."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_electrical.probe_arms",
+  "claim": "Up to 8 MicroPositioners (8x DC).",
+  "value_as_printed": "Max. No of MicroPositioners 8x DC",
+  "quote": "8x DC or 4x DC + 2x RF or 2x DC + 4x RF or 4x DC + 4x RF Setup",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.3, PROBE PLATEN",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The PROBE PLATEN table, Max. No of MicroPositioners, reads '8x DC or 4x DC + 2x RF or 2x DC + 4x RF or 4x DC + 4x RF Setup'. Maximum is 8."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_sample.diameter.max",
+  "claim": "Wafers 50 mm to 200 mm (standard chuck 210 mm diameter).",
+  "value_as_printed": "wafers 50 mm (2 in) thru 200 mm (8 in)",
+  "quote": "Supported DUT sizes Single DUTs down to 4 x 4 mm size or wafers 50 mm (2 in) thru 200 mm (8 in)*",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.8, NON-THERMAL CHUCKS, Supported DUT sizes",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The quote comes from the non-thermal standard chuck section (p.8). The system is a 200 mm prober throughout: the loader handles 100/150/200 mm wafers and the thermal transition curves are labelled 'AC3 200 mm'. 200 mm holds for the thermal-chuck configuration."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_cryogen.cryogen_free",
+  "claim": "Sub-ambient chuck temperatures come from the ERS AirCool controller with integrated chiller cooling user-supplied air; no liquid cryogen.",
+  "value_as_printed": "ERS AirCool Controller Integrated Chiller -40°C / -60°C",
+  "quote": "ERS AirCool (patented) Controller Integrated Chiller -40°C / -60°C",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.12, ERS AirCool controller",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The ERS AirCool integrated-chiller text is present on p.12. Cooling is by air or chiller, with no liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_cryogen.type",
+  "claim": "Coolant is user-supplied air chilled by the integrated chiller; no liquid cryogen.",
+  "value_as_printed": "Coolant Air (user supplied)",
+  "quote": "Coolant Air (user supplied)",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "pp.9-11, thermal chuck tables (Coolant)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Coolant Air (user supplied)' appears in the thermal chuck tables."
+  }
+ },
+ {
+  "id": "v4c_mpi_ts2000_se_ers_minus60_300_purge.gas",
+  "claim": "Enclosure purged with CDA or nitrogen with automatic dew-point control.",
+  "value_as_printed": "Nitrogen purging is still possible",
+  "quote": "Nitrogen purging is still possible by using separate valve.",
+  "source_url": "https://cdn.storehippo.com/s/5a8d617f1b2c123877c8de7d/60800c67670ed3190b62c3f5/mpi-ts2000-se-automated-probe-system-data-sheet.pdf",
+  "document_title": "MPI TS2000-SE 200 mm Automated Probe System - Data Sheet (QMS-C-AS-044-07, 12-2020, MPI Corporation)",
+  "location": "p.6, Minimized CDA Consumption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mpi_ts2000_se_ers_minus60_300",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CDA/nitrogen purging and STM dew-point control are confirmed."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_temperature.base",
+  "claim": "Lowest specimen exposure temperature -65 C.",
+  "value_as_printed": "-65 °C",
+  "quote": "Cold exposure range -65 to 0 (-85 to 32)",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Test area",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cold exposure range -65 to 0 (-85 to 32)' is in the TSE-12-A specification table (catalog p.9/10)."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_magnetic_field.max",
+  "claim": "The complete specification table (system, exposure ranges, pre-heat/pre-cool, recovery, transfer, heater, cascade refrigeration, fittings, dimensions, utilities) contains no magnet.",
+  "value_as_printed": "(no magnet in complete specification)",
+  "quote": "System 2-zone transition by vertical transfer of specimen",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A (complete table)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "I read the full TSE-12-A specification table (system, ranges, performance, construction, fittings, dimensions, utilities). There is no magnet."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_vacuum.available",
+  "claim": "Air-filled test area at ambient pressure; the cable-port plug exists to prevent air leakage.",
+  "value_as_printed": "Prevents air leakage from the cable port",
+  "quote": "Cable port rubber plug Prevents air leakage from the cable port.",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.11, OPTIONS: Cable port rubber plug",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "This is an air-circulating thermal shock chamber, and the full specification has no evacuated volume. The cable-port rubber plug text ('Prevents air leakage from the cable port') is verbatim in the OPTIONS list."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_pressure.base",
+  "claim": "Air-atmosphere chamber; no base vacuum exists or is specified.",
+  "value_as_printed": "(air chamber, no vacuum)",
+  "quote": "Cable port rubber plug Prevents air leakage from the cable port.",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.11, OPTIONS: Cable port rubber plug",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The full specification describes an air chamber with no vacuum, so no base pressure exists."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_electrical.sample_connections",
+  "claim": "Specimen power-supply control terminal and a 50 mm cable port allow powered/monitored specimens.",
+  "value_as_printed": "specimen power supply control terminal ... cable port 50 mm",
+  "quote": "USB flash drive port, Ethernet port (LAN port), specimen power supply control terminal, time signal output terminal (2), cable port 50 mm, (right side)",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Fittings",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The TSE-12-A Fittings text is verbatim: 'specimen power supply control terminal, time signal output terminal (2), cable port 50 mm, (right side)'."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_sample.diameter.max",
+  "claim": "Inside test area W320 x D230 mm footprint; smaller horizontal dimension 230 mm.",
+  "value_as_printed": "W320×H148×D230mm",
+  "quote": "Inside dimensions W320×H148×D230mm (12.6×5.8×9 inch)",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Inside dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Inside dimensions are W320×H148×D230 mm, and the specimen basket is W320×H35×D230 mm. 230 mm is the limiting footprint dimension."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_chamber.volume",
+  "claim": "Inner volume of the test area 10.9 L.",
+  "value_as_printed": "10.9 L",
+  "quote": "Inner volume of test area 10.9 L",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Inner volume of test area 10.9 L' is verbatim."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_sample.mass.max",
+  "claim": "Load capacity of the test area 8 kg (2 kg per basket).",
+  "value_as_printed": "8 kg",
+  "quote": "Load capacity of test area 8 kg",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Load capacity of test area 8 kg' is verbatim, alongside 2 kg per basket."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_temperature.stability",
+  "claim": "Temperature fluctuation +/-0.5 C (IEC 60068-3-5).",
+  "value_as_printed": "±0.5",
+  "quote": "Temperature fluctuation *2 ±0.5",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Test area",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Temperature fluctuation *2 ±0.5' is verbatim, and footnote *2 refers to IEC 60068-3-5:2001."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_cryogen.cryogen_free",
+  "claim": "Cold chamber cooled by a mechanical cascade refrigeration system (rotary compressors, R508A/R404A), no liquid cryogen.",
+  "value_as_printed": "Mechanical cascade refrigeration system",
+  "quote": "System Mechanical cascade refrigeration system Refrigeration Compressor Rotary 1.5 kW ×2",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Refrigeration unit",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Mechanical cascade refrigeration system', 'Rotary 1.5 kW ×2' and the R508A/R404A refrigerants are verbatim in the TSE-12-A table."
+  }
+ },
+ {
+  "id": "v4c_espec_tse_12_a_standard_cryogen.type",
+  "claim": "No liquid cryogen; refrigerants R508A and R404A in a cascade refrigerator.",
+  "value_as_printed": "Refrigerant R508A R404A",
+  "quote": "Rotary 1.5 kW ×2 R508A R404A Refrigerant",
+  "source_url": "https://www.transcat.ca/media/pdf/ESPEC-TSE-12-A-Datasheet.pdf",
+  "document_title": "Thermal Shock Chamber TSD-101-W / TSE-12-A (ESPEC Corp. catalog CAT.No.E16133-Z1609, September 2016)",
+  "location": "p.10, SPECIFICATIONS TSE-12-A, Refrigeration unit",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "espec_tse_12_a_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No liquid cryogen. The R508A and R404A refrigerants are confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_temperature.range",
+  "claim": "Control range 5 K to 475 K with up to 6 probe arms (standard, no PS-LT).",
+  "value_as_printed": "5 K to 475 K",
+  "quote": "4.5 K 5 K to 475 K Up to 6 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Specification page: 4.5 K base, 5 K to 475 K control range, up to 6 probe arms installed (PS-LT gives 3.5 K / 4-475 K and is excluded)."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_temperature.base",
+  "claim": "Base temperature 4.5 K with up to 6 probe arms (LHe).",
+  "value_as_printed": "4.5 K",
+  "quote": "Base temperature Control range Configuration 4.5 K 5 K to 475 K Up to 6 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "4.5 K for up to 6 probe arms is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_magnetic_field.max",
+  "claim": "No magnet can be fitted to the FWPX.",
+  "value_as_printed": "Magnetic field: Not an option",
+  "quote": "Magnetic field: Not an option",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Magnetic field",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The page states explicitly 'Magnetic field: Not an option'."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_vacuum.available",
+  "claim": "Sample in an evacuated vacuum chamber (standard TPS-FRG pumping).",
+  "value_as_printed": "Pump down time 30 min (to reach <1 × 10-3 Torr)",
+  "quote": "Pump down time 30 min (to reach <1 × 10-3 Torr)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Standard TPS-FRG: pump-down time 30 min to reach <1 × 10-3 Torr is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_pressure.base",
+  "claim": "Chamber pressure <1e-5 Torr at helium base temperature.",
+  "value_as_printed": "<1 × 10-5 Torr",
+  "quote": "Helium base temperature <1 × 10-5 Torr",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum, Helium base temperature",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Helium base temperature <1 × 10-5 Torr' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_optical_access",
+  "claim": "Top fused-quartz viewport (91 mm viewing area) and 159 mm IR-absorbing shield window.",
+  "value_as_printed": "Viewport: 102 mm (4.0 in) diameter fused quartz",
+  "quote": "Viewport: 102 mm (4.0 in) diameter fused quartz Viewing area: 91 mm (3.6 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum chamber, Viewport",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Viewport: 102 mm (4.0 in) diameter fused quartz, viewing area 91 mm, is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_optical.clear_aperture",
+  "claim": "Limiting viewing area is the 91 mm chamber viewport (shield viewing area 152 mm).",
+  "value_as_printed": "91 mm (3.6 in) diameter",
+  "quote": "Viewing area: 91 mm (3.6 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum chamber, Viewing area",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The chamber viewing area is 91 mm and the shield viewing area is 152 mm. 91 mm is the limiting value."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_electrical.sample_connections",
+  "claim": "Up to 6 DC/RF probes land on the wafer.",
+  "value_as_printed": "Maximum probes: 6",
+  "quote": "Maximum probes: 6 ... DC/RF probes and DC/RF flexible probes: Electrical isolation >100 GΩ for low leakage measurements",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Maximum probes: 6, and DC/RF probes with electrical isolation >100 GΩ, are confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_electrical.probe_arms",
+  "claim": "Maximum 6 probe arms.",
+  "value_as_printed": "6",
+  "quote": "Maximum probes: 6",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Maximum probes: 6."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_sample.diameter.max",
+  "claim": "Maximum sample 102 mm (4 in) diameter wafer with full x-y translation.",
+  "value_as_printed": "102 mm (4 in) diameter",
+  "quote": "Maximum sample size: 102 mm (4 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Maximum sample size: 102 mm (4 in) diameter' is confirmed, with x-y translation for full 4 in wafer probing."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_temperature.stability",
+  "claim": "Worst documented control stability over the standard range (nitrogen, 251-475 K) is +/-100 mK; helium +/-20 to +/-50 mK.",
+  "value_as_printed": "±100 mK",
+  "quote": "351 K to 475 K ±50 mK ±100 mK",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Control stability table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The stability table row '351 K to 475 K ±50 mK ±100 mK' (helium, nitrogen) is confirmed. ±100 mK is the worst case over the range."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_vibration.max",
+  "claim": "Vibration at sample <30 nm standard.",
+  "value_as_printed": "<30 nm standard",
+  "quote": "Vibration at sample: <30 nm standard",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vibration at sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Vibration at sample: <30 nm standard' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_cryogen.cryogen_free",
+  "claim": "Flow cryostat cooled by liquid helium or liquid nitrogen.",
+  "value_as_printed": "Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "quote": "Cooling source: Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Cooling source",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cooling source: Liquid helium (LHe) or liquid nitrogen (LN 2 )' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_fwpx_6arm_standard_cryogen.type",
+  "claim": "Uses liquid helium or liquid nitrogen.",
+  "value_as_printed": "LHe or LN2",
+  "quote": "Cooling source: Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-fwpx-cryogenic-probe-station",
+  "document_title": "FWPX cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Cooling source",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_fwpx_6arm_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LHe or LN2 is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_temperature.range",
+  "claim": "Control range 10.5 K to 350 K with 6 probe arms installed (no PS-HTSTAGE).",
+  "value_as_printed": "10.5 K to 350 K",
+  "quote": "10 K 10.5 K to 350 K 6 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The row '10 K / 10.5 K to 350 K / 6 probe arms installed' is confirmed (PS-HTSTAGE 20-675 K is excluded)."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_temperature.base",
+  "claim": "Base temperature 10 K with 6 probe arms installed (8 K with 2 arms).",
+  "value_as_printed": "10 K",
+  "quote": "10 K 10.5 K to 350 K 6 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "10 K with 6 arms is confirmed (8 K with 2 arms, 9 K with 4)."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_magnetic_field.max",
+  "claim": "Only a ring magnet kit is offered; this configuration has no magnet fitted (no field value is specified for the kit).",
+  "value_as_printed": "Magnetic field: Ring magnet kit",
+  "quote": "Magnetic field: Ring magnet kit",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Magnetic field",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Magnetic field: Ring magnet kit' is listed with no field value. optional_not_installed with an unknown value is correct."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_vacuum.available",
+  "claim": "Sample in an evacuated vacuum chamber.",
+  "value_as_printed": "<1 × 10-5 Torr at base",
+  "quote": "Room temperature: <5 × 10-4 Torr Base temperature: <1 × 10-5 Torr",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Room temperature <5 × 10-4 Torr and base temperature <1 × 10-5 Torr are confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_pressure.base",
+  "claim": "Chamber pressure <1e-5 Torr at base temperature.",
+  "value_as_printed": "<1 × 10-5 Torr",
+  "quote": "Base temperature: <1 × 10-5 Torr",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum, Base temperature",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "<1 × 10-5 Torr at base temperature is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_optical_access",
+  "claim": "Top fused-quartz viewport and 50 mm IR-absorbing shield window.",
+  "value_as_printed": "Viewport: 63.5 mm (2.50 in) diameter fused quartz",
+  "quote": "Viewport: 63.5 mm (2.50 in) diameter fused quartz Viewing area: 54.0 mm (2.13 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum chamber, Viewport",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Viewport 63.5 mm fused quartz with a 54.0 mm viewing area is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_optical.clear_aperture",
+  "claim": "Limiting aperture is the 50 mm radiation-shield viewing area.",
+  "value_as_printed": "50 mm (1.97 in) diameter",
+  "quote": "Viewport: 50 mm (1.97 in) diameter IR absorbing window Viewing area: 50 mm (1.97 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Radiation shielding, Viewing area",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The radiation-shield viewport is 50 mm IR absorbing with a 50 mm viewing area, which is the limiting value (chamber is 54 mm)."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_electrical.sample_connections",
+  "claim": "Up to 6 DC/RF probes land on the sample.",
+  "value_as_printed": "Maximum probes: 6",
+  "quote": "Maximum probes: 6 ... DC/RF probes and DC/RF flexible probes: Electrical isolation >100 GΩ for low leakage measurements",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Maximum probes 6, with DC/RF isolation >100 GΩ, is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_electrical.probe_arms",
+  "claim": "Maximum 6 probe arms.",
+  "value_as_printed": "6",
+  "quote": "Maximum probes: 6",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Maximum probes: 6."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_sample.diameter.max",
+  "claim": "Maximum sample size 51 mm (2 in) diameter.",
+  "value_as_printed": "51 mm (2 in) diameter",
+  "quote": "Maximum sample size: 51 mm (2 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Maximum sample size: 51 mm (2 in) diameter' is confirmed. The included holder SH-1.25-G is only 31.8 mm, so a 51 mm sample needs a larger holder."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_temperature.stability",
+  "claim": "Worst documented stability over the controlled range: +/-25 mK below 10 K (+/-10 mK from 11 K to 350 K).",
+  "value_as_printed": "±25 mK",
+  "quote": "<10 K ±25 mK 11 K to 350 K ±10 mK",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Control stability",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'<10 K ±25 mK; 11 K to 350 K ±10 mK' is confirmed. Taking ±25 mK is conservative."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_vibration.max",
+  "claim": "Vibration at sample <2 um.",
+  "value_as_printed": "<2 µm",
+  "quote": "Vibration at sample: <2 µm",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vibration at sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Vibration at sample: <2 µm' (2000 nm) is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_cryogen.cryogen_free",
+  "claim": "Cooled by a 2-stage closed-cycle refrigerator; no helium or transfer line required.",
+  "value_as_printed": "Helium at 5 K: Not required",
+  "quote": "Cooling source: 2-stage closed cycle refrigerator (CCR) with 3 W cooling power at 10 K",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Cooling source and Cryogen consumption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CCR cooling with 3 W at 10 K is confirmed. Cryogen consumption and the helium transfer line are both 'Not required'."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_crx_6_5k_6arm_cryogen.type",
+  "claim": "No liquid cryogen consumed.",
+  "value_as_printed": "Room to base temperature (total): Not required",
+  "quote": "Room to base temperature (total): Not required Helium at 5 K: Not required",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-6-5k-cryogenic-probe-station",
+  "document_title": "CRX-6.5K cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Cryogen consumption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_crx_6_5k_6arm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Room to base temperature (total): Not required; Helium at 5 K: Not required' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_temperature.range",
+  "claim": "Control range 5 K to 420 K with up to 4 probe arms (no PS-LT).",
+  "value_as_printed": "5 K to 420 K",
+  "quote": "4.5 K 5 K to 420 K Up to 4 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The row '4.5 K / 5 K to 420 K / Up to 4 probe arms installed' is confirmed (PS-LT is excluded)."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_temperature.base",
+  "claim": "Base temperature 4.5 K (LHe).",
+  "value_as_printed": "4.5 K",
+  "quote": "Base temperature Control range Configuration 4.5 K 5 K to 420 K Up to 4 probe arms installed",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Temperature table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "4.5 K is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_magnetic_field.max",
+  "claim": "Horizontal electromagnet, field capability +/-0.6 T, closed-loop Hall-probe control.",
+  "value_as_printed": "±6.0 kOe (±0.6 T)",
+  "quote": "Magnet type: Electromagnet Field orientation: Horizontal (parallel to the sample plane) ... Field capability: ±6.0 kOe (±0.6 T)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Magnetic field",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Electromagnet, horizontal (parallel to the sample plane), closed-loop Hall probe control, '±6.0 kOe (±0.6 T)' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_magnetic_field.uniformity",
+  "claim": "Field homogeneity 2.6% over the 25 mm diameter (maximum sample size); 0.6% over 10 mm.",
+  "value_as_printed": "2.6% over 25 mm diameter",
+  "quote": "Field homogeneity: 0.6% over 10 mm diameter; 2.6% over 25 mm diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Magnetic field, Field homogeneity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'0.6% over 10 mm diameter; 2.6% over 25 mm diameter' is confirmed. 2.6% = 26000 ppm over the maximum sample size, which is conservative."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_vacuum.available",
+  "claim": "Sample in an evacuated vacuum chamber.",
+  "value_as_printed": "Pump down time 30 min (to reach <1 × 10-3 Torr)",
+  "quote": "Pump down time 30 min (to reach <1 × 10-3 Torr)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "TPS-FRG pump-down to <1 × 10-3 Torr in 30 min is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_pressure.base",
+  "claim": "Chamber pressure <1e-5 Torr at helium base temperature.",
+  "value_as_printed": "<1 × 10-5 Torr",
+  "quote": "Helium base temperature <1 × 10-5 Torr",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum, Helium base temperature",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Helium base temperature <1 × 10-5 Torr is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_optical_access",
+  "claim": "Top fused-quartz viewport and 50 mm IR-absorbing shield window.",
+  "value_as_printed": "Viewport: 63.5 mm (2.50 in) diameter fused quartz",
+  "quote": "Viewport: 63.5 mm (2.50 in) diameter fused quartz Viewing area: 54.0 mm (2.13 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vacuum chamber, Viewport",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "63.5 mm fused-quartz viewport with a 54.0 mm viewing area is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_optical.clear_aperture",
+  "claim": "Limiting aperture is the 50 mm radiation-shield viewing area.",
+  "value_as_printed": "50 mm (1.97 in) diameter",
+  "quote": "Viewport: 50 mm (1.97 in) diameter IR absorbing window Viewing area: 50 mm (1.97 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Radiation shielding, Viewing area",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Shield viewport 50 mm IR absorbing with a 50 mm viewing area is confirmed as the limiting aperture."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_electrical.sample_connections",
+  "claim": "Up to 4 DC/RF probes land on the sample.",
+  "value_as_printed": "Maximum probes: 4",
+  "quote": "Maximum probes: 4 (see orientation diagram) ... DC/RF probes and DC/RF flexible probes: Electrical isolation >100 GΩ for low leakage measurements",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Maximum probes: 4 (see orientation diagram)', with DC/RF isolation >100 GΩ, is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_electrical.probe_arms",
+  "claim": "Maximum 4 probe arms.",
+  "value_as_printed": "4",
+  "quote": "Maximum probes: 4 (see orientation diagram)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Probing configurations",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Maximum probes: 4."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_sample.diameter.max",
+  "claim": "Maximum sample size 25.4 mm (1 in) diameter.",
+  "value_as_printed": "25.4 mm (1 in) diameter",
+  "quote": "Maximum sample size: 25.4 mm (1 in) diameter",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Maximum sample size: 25.4 mm (1 in) diameter' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_temperature.stability",
+  "claim": "Worst documented control stability (nitrogen, 10-420 K) +/-100 mK; helium +/-50 mK.",
+  "value_as_printed": "±100 mK",
+  "quote": "251 K to 420 K ±50 mK ±100 mK",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Control stability table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The row '251 K to 420 K ±50 mK ±100 mK' is confirmed. ±100 mK (nitrogen) is the worst case."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_vibration.max",
+  "claim": "Vibration at sample <300 nm standard.",
+  "value_as_printed": "<300 nm standard",
+  "quote": "Vibration at sample: <300 nm standard",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Vibration at sample",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Vibration at sample: <300 nm standard' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_cryogen.cryogen_free",
+  "claim": "Flow cryostat cooled by liquid helium or liquid nitrogen.",
+  "value_as_printed": "Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "quote": "Cooling source: Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Cooling source",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LHe or LN2 cooling source is confirmed."
+  }
+ },
+ {
+  "id": "v4c_lakeshore_empx_h2_standard_cryogen.type",
+  "claim": "Uses liquid helium or liquid nitrogen.",
+  "value_as_printed": "LHe or LN2",
+  "quote": "Cooling source: Liquid helium (LHe) or liquid nitrogen (LN2)",
+  "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station",
+  "document_title": "EMPX-H2 cryogenic probe station - technical specifications (Lake Shore Cryotronics)",
+  "location": "Sample cooling assembly, Cooling source",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lakeshore_empx_h2_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LHe or LN2 is confirmed."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_temperature.range",
+  "claim": "Wide-temperature-range electrode from -150 C (LN2 cooled) to +400 C (resistively heated).",
+  "value_as_printed": "-150 °C to 400 °C",
+  "quote": "Wide temperature range electrode, that can either be cooled by a fluid re-circulating chiller to 20 °C* and liquid nitrogen to -150 °C, or resistively heated to 400 °C",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The Key features text is verbatim: 'Wide temperature range electrode, that can either be cooled by a fluid re-circulating chiller to 20 °C* and liquid nitrogen to -150 °C, or resistively heated to 400 °C'. Also 'Temperature range - From -150 °C up to 400 °C'. This is the electrode temperature, and switching between the LN2 and heated modes is a mode change (the blow-out/fluid exchange unit is not fitted). The span itself is supported."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_temperature.base",
+  "claim": "Lowest electrode temperature -150 C with liquid nitrogen.",
+  "value_as_printed": "-150 °C",
+  "quote": "Temperature range - From -150 °C up to 400 °C",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-150 °C with LN2 is confirmed."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_vacuum.available",
+  "claim": "Low-pressure plasma process chamber with single-wafer load lock.",
+  "value_as_printed": "maintaining low chamber pressure",
+  "quote": "Allows a high gas flow to be used while maintaining low chamber pressure, which provides wide process windows for advanced application development",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Allows a high gas flow to be used while maintaining low chamber pressure...' is verbatim. Cobra ICP sources 'operate effectively under low-pressure conditions'. The load-locked plasma chamber is evacuated."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_sample.diameter.max",
+  "claim": "Compatible with all wafer sizes up to 200 mm.",
+  "value_as_printed": "up to 200 mm",
+  "quote": "Compatible with all wafer sizes up to 200 mm",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, product bullets",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Compatible with all wafer sizes up to 200 mm' and 'Wafer size - up to 200 mm' are confirmed."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_cryogen.cryogen_free",
+  "claim": "Cryogenic operation of the electrode uses liquid nitrogen.",
+  "value_as_printed": "liquid nitrogen to -150 °C",
+  "quote": "cooled by a fluid re-circulating chiller to 20 °C* and liquid nitrogen to -150 °C",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Liquid nitrogen is used for the -150 °C mode. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_plasmapro_100_cobra_cryo_electrode_cryogen.type",
+  "claim": "Liquid nitrogen cools the wide-range electrode below the chiller range.",
+  "value_as_printed": "liquid nitrogen",
+  "quote": "cooled by a fluid re-circulating chiller to 20 °C* and liquid nitrogen to -150 °C",
+  "source_url": "https://plasma.oxinst.com/technologies/icp-rie",
+  "document_title": "ICP Etching - PlasmaPro 100 Cobra ICP RIE (Oxford Instruments Plasma Technology product/technology page)",
+  "location": "PlasmaPro 100 Cobra ICP RIE, Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Liquid nitrogen is confirmed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_temperature.base",
+  "claim": "Wafer base temperature below 2 K measured at the wafer surface.",
+  "value_as_printed": "< 2 K",
+  "quote": "Wafer base temperature < 2 K",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wafer base temperature",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The Technical Specifications row 'Wafer base temperature < 2 K' and the note 'Base temperature is measured from the surface of the wafer' are confirmed. Taking 2 K is conservative."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_temperature.range",
+  "claim": "Only the wafer base temperature (<2 K) is documented; per the shared rule a single stated temperature gives lo = hi = 2 K. The upper end of the controllable range is not documented.",
+  "value_as_printed": "< 2 K",
+  "quote": "Note: Base temperature is measured from the surface of the wafer. ... Wafer base temperature < 2 K",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications (note: Base temperature is measured from the surface of the wafer)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Only the <2 K base is documented. lo = hi = 2 K follows the project's single-stated-temperature rule, and the upper controllable limit is correctly left undocumented. The quote is verbatim."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_vacuum.available",
+  "claim": "The wafer is measured inside a vacuum chamber loaded through a load lock.",
+  "value_as_printed": "Vacuum Chamber; load lock",
+  "quote": "Wafer loading From FOUP / magazine or manually to load lock",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Layout and Facility Requirements; Technical Specifications (Wafer loading)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The layout lists '8. Vacuum Chamber'. 'Wafer loading From FOUP / magazine or manually to load lock' is confirmed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_electrical.sample_connections",
+  "claim": "Probe cards connect up to 768 DC lines and 48 RF lines to the wafer.",
+  "value_as_printed": "Up to 768 single DC lines; Up to 48 RF lines",
+  "quote": "Wiring capacity Up to 768 single DC lines Up to 48 RF lines (either 18 GHz or 40 GHz operation)",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wiring capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Up to 768 single DC lines; Up to 48 RF lines (either 18 GHz or 40 GHz operation)' is confirmed, along with custom probe cards."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_electrical.dc_lines",
+  "claim": "Up to 768 single DC lines.",
+  "value_as_printed": "Up to 768 single DC lines",
+  "quote": "Wiring capacity Up to 768 single DC lines",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wiring capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Up to 768 single DC lines is confirmed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_electrical.coax_lines",
+  "claim": "Up to 48 RF lines.",
+  "value_as_printed": "Up to 48 RF lines",
+  "quote": "Up to 48 RF lines (either 18 GHz or 40 GHz operation)",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wiring capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Up to 48 RF lines is confirmed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_electrical.coax_bandwidth.max",
+  "claim": "RF lines are offered for 18 GHz or 40 GHz operation; the conservative 18 GHz variant is recorded.",
+  "value_as_printed": "18 GHz or 40 GHz operation",
+  "quote": "Up to 48 RF lines (either 18 GHz or 40 GHz operation)",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wiring capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "RF lines are offered for either 18 GHz or 40 GHz operation. This configuration is defined as the 18 GHz variant, which is conservative."
+  }
+ },
+ {
+  "id": "v4c_bluefors_cryogenic_wafer_prober_300mm_18ghz_sample.diameter.max",
+  "claim": "Wafers of 300, 200 and 150 mm.",
+  "value_as_printed": "300 mm, 200 mm, and 150 mm",
+  "quote": "Wafer size 300 mm, 200 mm, and 150 mm",
+  "source_url": "https://bluefors.com/products/cryogenic-wafer-prober/",
+  "document_title": "Cryogenic Wafer Prober - High Throughput Characterization System (Bluefors product page, Technical Specifications and Layout)",
+  "location": "Technical Specifications, Wafer size",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Wafer size 300 mm, 200 mm, and 150 mm' is confirmed, and the configuration is set for 300 mm."
+  }
+ }
+]

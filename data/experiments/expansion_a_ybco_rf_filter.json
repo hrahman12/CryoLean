@@ -1,0 +1,85 @@
+{
+  "id": "expa_ybco_rf_filter",
+  "name": "77 K microwave insertion-loss measurement of a 4 GHz YBCO filter",
+  "plain_name": "77 K microwave insertion-loss measurement of a 4 GHz YBCO filter",
+  "industry": "defense_and_security",
+  "description": "Measure cryogenic bandpass transmission of a superconducting sapphire microstrip filter for low-loss microwave receiver technology; this is distinct from IR/THz photometry.",
+  "keywords": [
+    "ybco rf filter",
+    "cryogenic rf fixture"
+  ],
+  "sources": [
+    {
+      "citation": "Sabataitis et al., YBCO High-Temperature Superconducting Filters on M-Plane Sapphire Substrates",
+      "url": "https://ntrs.nasa.gov/citations/19970019925",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "rf.frequency.range",
+      "as_printed": "4.0 GHz",
+      "evidence_id": "expa_ybco_filter"
+    }
+  ],
+  "reported_equipment": [
+    "NASA/CWRU reported 77 K filter transmission setup"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "77",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported filter characterization is at 77 K.",
+      "evidence_ids": [
+        "expa_ybco_filter"
+      ]
+    },
+    {
+      "key": "rf.frequency.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "4",
+          "unit": "GHz"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The documented bandpass center is 4.0 GHz.",
+      "evidence_ids": [
+        "expa_ybco_filter"
+      ]
+    },
+    {
+      "key": "module.cryogenic_microwave_transmission",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "RF transmission launches, coax and measurement readout are indispensable.",
+      "evidence_ids": [
+        "expa_ybco_filter"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Network-analyzer bandwidth around the center frequency, de-embedding, connector power handling and the exact cryostat model are not given in the inspected abstract. The source's measured insertion loss is an observation, not a guarantee."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

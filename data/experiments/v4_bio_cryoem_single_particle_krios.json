@@ -1,0 +1,112 @@
+{
+ "id": "bio_cryoem_single_particle_krios",
+ "name": "Single-particle cryo-EM data collection on vitrified 3 mm grids in a Titan Krios at 300 kV with the specimen held near 80 K in vacuum",
+ "plain_name": "Photograph frozen protein molecules with a 300 kV electron microscope",
+ "industry": "biology_and_biotechnology",
+ "description": "Autoloaded, vitrified 3 mm grids are imaged in a Titan Krios cryo-TEM operated at 300 kV with a direct electron detector; the specimen is kept at about 80 K inside the microscope vacuum to preserve vitreous ice and limit radiation damage.",
+ "keywords": [
+  "Photograph frozen protein molecules with a 300 kV electron microscope",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Dickerson JL, Leahy E, Peet MJ, Naydenova K, Russo CJ (2024). Accurate magnification determination for cryoEM using gold. Ultramicroscopy. doi:10.1016/j.ultramic.2023.113883",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10782223/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "FEI Titan Krios G3i electron cryomicroscope",
+  "FEI Titan Krios G2",
+  "Titan Krios G3",
+  "Titan Krios G4",
+  "K3 direct electron detector (Gatan)",
+  "Falcon 4i camera"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 80000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The specimen is imaged at about 80 K to keep the ice vitreous.",
+   "evidence_ids": [
+    "v4e_bio_cryoem_single_particle_krios_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Electron imaging requires the specimen to be presented in vacuum.",
+   "evidence_ids": [
+    "v4e_bio_cryoem_single_particle_krios_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The specimen is a standard 3 mm EM grid (clipped into an AutoGrid for the autoloader).",
+   "evidence_ids": [
+    "v4e_bio_cryoem_single_particle_krios_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Vitrified grids are kept in liquid nitrogen until they are loaded into the microscope.",
+   "evidence_ids": [
+    "v4e_bio_cryoem_single_particle_krios_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

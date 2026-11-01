@@ -1,0 +1,501 @@
+{
+  "family": "cryogen-free (Cryofree) superconducting magnet system with variable temperature insert",
+  "records": [
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "temperature.base",
+      "kind": "value",
+      "value": {
+        "kind": "min",
+        "q": {
+          "value": 1500,
+          "unit": "mK"
+        }
+      },
+      "install": "installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "TeslatronPT with the standard integrated VTI: lowest documented sample temperature 1.5 K.",
+      "value_as_printed": "1.5 K (lower end of 1.5 to 300 K)",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, Features / Benefits bullet list",
+      "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet",
+      "accessed": "2026-11-01",
+      "reasoning": "temperature.base (shape min, unit mK) is the documented lowest temperature; the standard VTI included in every configuration bottoms out at 1.5 K = 1500 mK. Same figure as ev_ox_0001 (temperature.range lower bound) but recorded under the separate temperature.base key that the experiments query.",
+      "found_via": "tavily_extract of brochure PDF",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "temperature.base",
+      "kind": "value",
+      "value": {
+        "kind": "min",
+        "q": {
+          "value": 25,
+          "unit": "mK"
+        }
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "TeslatronPT optional KelvinoxJT dilution-refrigerator insert reaches below 25 mK; not part of the standard-VTI configurations.",
+      "value_as_printed": "< 25 mK",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, Insert features and options",
+      "quote": "< 25 mK with the cryogen free KelvinoxJT dilution refrigerator system",
+      "accessed": "2026-11-01",
+      "reasoning": "The brochure lists KelvinoxJT as an insert option; the configurations are 'standard VTI' only, so this lower base temperature is optional_not_installed. 25 mK is the printed bound (conservative). Not sufficient for <= 20 mK requirements (transmon, MXC budget); would satisfy the <= 50 mK requirement of quantum_mk_vector_field_transport if fitted (KelvinoxJT compatibility with the 6/1/1 T vector magnet is not stated in the sources).",
+      "found_via": "tavily_extract of brochure PDF; corroborated by oxinst.com quantum-measurement page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "temperature.base",
+      "kind": "value",
+      "value": {
+        "kind": "min",
+        "q": {
+          "value": 300,
+          "unit": "mK"
+        }
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "TeslatronPT optional HelioxVT He-3 insert reaches below 300 mK; not part of the standard-VTI configurations.",
+      "value_as_printed": "< 300 mK",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, Insert features and options",
+      "quote": "< 300 mK with the HelioxVT ³He refrigerator",
+      "accessed": "2026-11-01",
+      "reasoning": "HelioxVT is an optional insert (same source as ev_ox_0017 for module.helium3); recorded here under temperature.base as optional_not_installed.",
+      "found_via": "tavily_extract of brochure PDF",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "electrical.coax_lines",
+      "kind": "value",
+      "value": {
+        "kind": "count",
+        "n": 4
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Universal Measurement Probe (TeslatronPT option) can be pre-wired with 4 RF lines (UMP US wiring option TSTP-UMP-US-SIG).",
+      "value_as_printed": "4 RF lines",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Why Choose Universal Measurement Probe bullet list; Specifications table row 'UMP US Wiring (TSTP-UMP-US-SIG)', column RF Wiring = 4",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring",
+      "accessed": "2026-11-01",
+      "reasoning": "Vocabulary electrical.coax_lines = number of coaxial/RF lines to the sample; the UMP specification table gives RF Wiring = 4 for the US wiring option and 'No' for the DG wiring option. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed. Does not meet the 124-line requirement of quantum_mxc_wiring_heat_budget; meets the optional >= 2 of quantum_transmon_characterization.",
+      "found_via": "tavily_search -> tavily_extract (advanced) of UMP page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "electrical.dc_lines",
+      "kind": "value",
+      "value": {
+        "kind": "count",
+        "n": 38
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Universal Measurement Probe (TeslatronPT option) can be pre-wired with up to 38 DC lines (19 twisted pairs, US wiring option).",
+      "value_as_printed": "up to 38 DC lines (19 twisted pairs)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Why Choose Universal Measurement Probe bullet list; Specifications table row 'UMP US Wiring', DC Wiring = 19 unshielded twisted pairs",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring",
+      "accessed": "2026-11-01",
+      "reasoning": "Fills the existing unknown electrical.dc_lines (ev_ox_0012). The DG wiring alternative has 6 shielded + 12 unshielded twisted pairs (36 lines); 38 is the US wiring maximum. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed.",
+      "found_via": "tavily_extract (advanced) of UMP page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "optical_access",
+      "kind": "value",
+      "value": {
+        "kind": "flag",
+        "b": true
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Optical access to the sample is available only as optical-fibre wiring on the optional Universal Measurement Probe (US wiring, fibres optional); no cryostat windows are documented.",
+      "value_as_printed": "optical fibres (optional)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Introduction paragraph; Specifications table row 'UMP US Wiring', column Optical Fibres = Optional",
+      "quote": "Various wiring options are available, including DC, RF, driven guard and optical fibres, allowing configurations to be tailored to specific experimental requirements.",
+      "accessed": "2026-11-01",
+      "reasoning": "The only documented optical path to the sample is fibre wiring on the optional UMP (Specifications: Optical Fibres 'Optional' for US wiring, 'No' for DG wiring; comparison table: UMP best for 'Electrical transport/RF/Optical measurements'). This is fibre access, not free-space windows; experiments needing a free-space objective should treat it with care. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed.",
+      "found_via": "tavily_extract (advanced) of UMP page",
+      "confidence": "medium"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "vacuum.available",
+      "kind": "value",
+      "value": {
+        "kind": "flag",
+        "b": true
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Sample-in-vacuum environment is available with the optional Universal Measurement Probe (sample in helium exchange gas or vacuum); the standard VTI uses static exchange gas.",
+      "value_as_printed": "helium exchange gas or vacuum",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Features bullet list ('Sample Environment'); Specifications table column Sample Environment = Gas / Vacuum",
+      "quote": "Sample Environment: helium exchange gas or vacuum",
+      "accessed": "2026-11-01",
+      "reasoning": "The standard VTI places the sample in static exchange gas; vacuum around the sample requires the optional UMP (or the optional sample-in-vacuum HelioxVT insert; TeslatronPT Plus page: 'Sample-in-gas and sample-in vacuum options'). Hence flag true, optional_not_installed. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed.",
+      "found_via": "tavily_extract of UMP page; corroborated by TeslatronPT Plus page and brochure",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "module.electrical_transport",
+      "kind": "value",
+      "value": {
+        "kind": "flag",
+        "b": true
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Electrical transport measurement (DC and AC lock-in up to 100 kHz via Lake Shore M81, Hall via M91) is offered through the TeslatronPT Plus upgrade; not part of the plain TeslatronPT configurations.",
+      "value_as_printed": "low and high resistance, Hall effect, I-V; AC up to 100 kHz",
+      "source_url": "https://www.qd-oxford.com/siteDocs/TeslatronPT_Plus_Brochure.pdf",
+      "document_title": "TeslatronPT Plus - Made Simple (brochure)",
+      "location": "Introducing TeslatronPT Plus, page 1 paragraph 3; Measurement Hardware section (Lake Shore M81)",
+      "quote": "TeslatronPT Plus measurement capabilities include low and high resistance, Hall effect in Hall bar and van der Pauw geometries, and I-V characterisation.",
+      "accessed": "2026-11-01",
+      "reasoning": "The TeslatronPT product page says the system can be upgraded 'by adding the enhanced measurement and control capabilities to bring up to our TeslatronPT Plus open architecture measurement standard'; the Plus brochure lists the M81 with 'the lock-in detection sensitivity of AC up to 100 kHz'. The configurations are plain TeslatronPT, so the transport module is optional_not_installed.",
+      "found_via": "tavily_extract of TeslatronPT Plus brochure and TeslatronPT page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "sample.length.max",
+      "kind": "value",
+      "value": {
+        "kind": "max",
+        "q": {
+          "value": 12000,
+          "unit": "um"
+        }
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Largest documented sample area on the Universal Measurement Probe sample carriers: 12 x 12 mm (LCC44 carrier).",
+      "value_as_printed": "12 x 12 mm",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Specifications, Sample Carriers table, row Sample Area, column LCC44 (TSTP-LCC44-5)",
+      "quote": "Sample Area | 12 x 12 mm | 4.0 x 4.0 mm | 8.2 x 4.3 mm",
+      "accessed": "2026-11-01",
+      "reasoning": "Largest of the documented carrier sample areas (LCC44 12 x 12 mm; LCC20 4.0 x 4.0 mm; DIL16 8.2 x 4.3 mm) -> 12 mm = 12000 um. Carriers belong to the optional UMP; the Basic probe allows user adaptation but documents no sample size, so 12 mm is the only documented limit. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed.",
+      "found_via": "tavily_extract (advanced) of UMP page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "sample.width.max",
+      "kind": "value",
+      "value": {
+        "kind": "max",
+        "q": {
+          "value": 12000,
+          "unit": "um"
+        }
+      },
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "claim": "Largest documented sample area on the Universal Measurement Probe sample carriers: 12 x 12 mm (LCC44 carrier).",
+      "value_as_printed": "12 x 12 mm",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+      "location": "Specifications, Sample Carriers table, row Sample Area, column LCC44 (TSTP-LCC44-5)",
+      "quote": "Sample Area | 12 x 12 mm | 4.0 x 4.0 mm | 8.2 x 4.3 mm",
+      "accessed": "2026-11-01",
+      "reasoning": "Largest of the documented carrier sample areas (LCC44 12 x 12 mm; LCC20 4.0 x 4.0 mm; DIL16 8.2 x 4.3 mm) -> 12 mm = 12000 um. Carriers belong to the optional UMP; the Basic probe allows user adaptation but documents no sample size, so 12 mm is the only documented limit. The configurations are named 'TeslatronPT, <magnet>, standard VTI' with a catalog-assumption basis; the TeslatronPT product page lists the Universal Measurement Probe under 'Options / Accessories', so the probe-dependent value is recorded as optional_not_installed.",
+      "found_via": "tavily_extract (advanced) of UMP page",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "section_thickness.range",
+      "kind": "absence",
+      "value": {
+        "kind": "unknown"
+      },
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI, measurement probes and He-3/dilution inserts; it has no microtome or sectioning cryochamber, so a section-thickness (microtome) setting does not exist on this instrument.",
+      "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+      "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+      "accessed": "2026-11-01",
+      "reasoning": "Vocabulary key section_thickness.range applies to microtome (sectioning) cryostats. The brochure's complete key-specification and insert/options list (magnet options, VTI temperature range/stability, 50 mm sample space, DC/RF wiring, HelioxVT, KelvinoxJT, LCC carriers) shows a magnet/VTI measurement cryostat; sectioning hardware is physically outside the instrument category.",
+      "found_via": "tavily_extract of brochure PDF",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "temperature.chamber.range",
+      "kind": "absence",
+      "value": {
+        "kind": "unknown"
+      },
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI, measurement probes and He-3/dilution inserts; it has no microtome or sectioning cryochamber, so a sectioning-cryostat cryochamber temperature does not exist on this instrument.",
+      "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+      "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+      "accessed": "2026-11-01",
+      "reasoning": "Vocabulary key temperature.chamber.range applies to microtome (sectioning) cryostats. The brochure's complete key-specification and insert/options list (magnet options, VTI temperature range/stability, 50 mm sample space, DC/RF wiring, HelioxVT, KelvinoxJT, LCC carriers) shows a magnet/VTI measurement cryostat; sectioning hardware is physically outside the instrument category.",
+      "found_via": "tavily_extract of brochure PDF",
+      "confidence": "high"
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "temperature.specimen_head.range",
+      "kind": "absence",
+      "value": {
+        "kind": "unknown"
+      },
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI, measurement probes and He-3/dilution inserts; it has no microtome or sectioning cryochamber, so a sectioning-cryostat specimen/object-head temperature does not exist on this instrument.",
+      "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+      "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+      "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+      "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+      "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+      "accessed": "2026-11-01",
+      "reasoning": "Vocabulary key temperature.specimen_head.range applies to microtome (sectioning) cryostats. The brochure's complete key-specification and insert/options list (magnet options, VTI temperature range/stability, 50 mm sample space, DC/RF wiring, HelioxVT, KelvinoxJT, LCC carriers) shows a magnet/VTI measurement cryostat; sectioning hardware is physically outside the instrument category.",
+      "found_via": "tavily_extract of brochure PDF",
+      "confidence": "high"
+    }
+  ],
+  "not_found": [
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "purge.gas (any-of partner of vacuum.available)",
+      "searched": "TeslatronPT product page, TeslatronPT brochure (2026) and 2018 brochure (antpedia mirror), TeslatronPT Plus page and brochure, UMP page (qd-oxford.com); no dry-gas purge of the sample chamber documented. vacuum.available is covered by a record (optional UMP sample-in-vacuum)."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "sample.diameter.max",
+      "searched": "UMP page (carriers give rectangular sample areas only), TeslatronPT/Plus pages and brochures; only the 50 mm VTI sample-space diameter (already recorded as sample.bore_diameter) is given, which is a bore, not a documented maximum sample diameter."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "sample.height.max",
+      "searched": "UMP page sample-holder and carrier tables (pins, material, sample area only), TeslatronPT/Plus pages and brochures; no sample height/thickness limit documented."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T"
+      ],
+      "key": "module.vsm",
+      "searched": "Tavily web search 'TeslatronPT vibrating sample magnetometer VSM option' (only Quantum Design PPMS VSM results), qd-oxford.com TeslatronPT/Plus options lists; no VSM option found. Not recorded as absence because the options lists are marketing pages, not a complete technical specification."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "electrical.coax_bandwidth.max",
+      "searched": "UMP page (4 RF lines, no frequency rating), HelioxVT text on TeslatronPT page ('flexible DC and coaxial wiring options', no bandwidth), TeslatronPT/Plus brochures (breakout boxes DC up to 100 kHz are room-temperature signal chain, not coax), qd-oxford coaxial_wiring page (generic 'majority of our systems ... up to 40 GHz', not TeslatronPT-specific). A third-party InstrumentHive page claiming 'RF (up to 40 GHz)' was rejected as unverifiable."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "module.magnetic_shielding",
+      "searched": "TeslatronPT/Plus pages and brochures, UMP page; no magnetic shielding of the sample space documented."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "mxc_wiring_heat_budget",
+      "searched": "Not a vocabulary key. Standard-VTI configurations have no mixing chamber; the optional KelvinoxJT is documented only as '< 25 mK' with no cooling power or wiring heat-load data on qd-oxford.com pages or brochures (guessed KelvinoxJT/HelioxVT product URLs did not resolve)."
+    },
+    {
+      "configuration_ids": [
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "key": "peer-reviewed measurements (all gap keys)",
+      "searched": "Lune search_papers (corpus returned only unrelated CS papers), Consensus search 'TeslatronPT cryostat optical fiber photoluminescence', alphaXiv discover_papers keyword 'TeslatronPT'; papers use TeslatronPT for transport but none report the gap properties of the stock instrument."
+    }
+  ],
+  "corrections": [
+    {
+      "configuration_id": "oxford_teslatronpt_8T",
+      "key": "electrical.dc_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0012: not found in sources fetched)",
+      "proposed": "{\"kind\":\"count\",\"n\":38} install optional_not_installed (Universal Measurement Probe US wiring option)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_12T",
+      "key": "electrical.dc_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0012: not found in sources fetched)",
+      "proposed": "{\"kind\":\"count\",\"n\":38} install optional_not_installed (Universal Measurement Probe US wiring option)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_14T",
+      "key": "electrical.dc_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0012: not found in sources fetched)",
+      "proposed": "{\"kind\":\"count\",\"n\":38} install optional_not_installed (Universal Measurement Probe US wiring option)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
+      "key": "electrical.dc_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0012: not found in sources fetched)",
+      "proposed": "{\"kind\":\"count\",\"n\":38} install optional_not_installed (Universal Measurement Probe US wiring option)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_8T",
+      "key": "electrical.coax_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0013)",
+      "proposed": "{\"kind\":\"count\",\"n\":4} install optional_not_installed (UMP US wiring, 4 RF lines)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_12T",
+      "key": "electrical.coax_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0013)",
+      "proposed": "{\"kind\":\"count\",\"n\":4} install optional_not_installed (UMP US wiring, 4 RF lines)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_14T",
+      "key": "electrical.coax_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0013)",
+      "proposed": "{\"kind\":\"count\",\"n\":4} install optional_not_installed (UMP US wiring, 4 RF lines)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_6_1_1T_vector",
+      "key": "electrical.coax_lines",
+      "current": "{\"kind\":\"unknown\"} install installed (ev_ox_0013)",
+      "proposed": "{\"kind\":\"count\",\"n\":4} install optional_not_installed (UMP US wiring, 4 RF lines)",
+      "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+      "quote": "Pre-wired with configurable options of up to 38 DC lines (19 twisted pairs), 4 RF lines, optical fibres or driven guard wiring"
+    }
+  ]
+}

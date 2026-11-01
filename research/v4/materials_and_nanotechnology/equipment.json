@@ -1,0 +1,2013 @@
+{
+  "industry": "materials_and_nanotechnology",
+  "accessed": "2026-11-01",
+  "equipment": [
+    {
+      "id": "quantum_design_mpms3",
+      "manufacturer": "Quantum Design",
+      "model": "MPMS 3 (SQUID magnetometer, liquid-helium dewar, non-EverCool base configuration)",
+      "family": "SQUID magnetometer (DC scan / SQUID-VSM) with 7 T superconducting magnet",
+      "description": "SQUID magnetometer with a 7 T helium-vapour-cooled superconducting magnet and a helium-gas-flow temperature control insert (1.8-400 K) with a 9 mm sample chamber bore. Base configuration uses a 70 L liquid-helium dewar and a liquid-nitrogen jacket; EverCool (cryocooler reliquefier), oven, FOSH optical holder, ETO electrical transport, iQuantum He3 and pressure cell are options.",
+      "documents": [
+        {
+          "title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+          "url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "quantum_design_mpms3_standard_lhe",
+          "name": "MPMS 3 base configuration (LHe dewar, no EverCool, no optional holders/inserts)",
+          "configuration_basis": "Quantum Design base (non-EverCool) MPMS 3 as specified in brochure 1500-103: 7 T magnet, 1.8-400 K temperature control insert, 9 mm sample chamber, 70 L LHe / 60 L LN2 dewar. Options NOT fitted: EverCool, oven (to 1000 K), Fiber Optic Sample Holder (FOSH), Electrical Transport Option (ETO), iQuantum He3, high pressure cell, ULF.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 1800,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 400000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Standard temperature control insert operating range is 1.8 K to 400 K.",
+              "value_as_printed": "Operating Range: 1.8 K to 400 K",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control specifications table",
+              "quote": "Operating Range: 1.8 K to 400 K"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 1800,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest operating temperature of the standard insert is 1.8 K (continuous operation at 1.8 K).",
+              "value_as_printed": "1.8 K",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control text",
+              "quote": "A finely tuned flow impedance and sophisticated control software allow continuous operation at 1.8 K"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 7000,
+                  "unit": "mT"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Superconducting magnet field range is -70 kOe to +70 kOe (7 T).",
+              "value_as_printed": "-70 kOe to +70 kOe (7 T)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 5, Magnet specifications (Magnetic Field Range)",
+              "quote": "The MPMS 3 utilizes a 7 T, superconducting, helium vapor-cooled magnet ... -70 kOe to +70 kOe"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The sample chamber is not an evacuated sample space: cold helium gas is drawn through the chamber by a variable flow valve to control the sample temperature (sample sits in helium gas).",
+              "value_as_printed": "cold helium is drawn through a variable flow valve",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control text",
+              "quote": "The temperature control insert utilizes a vacuum-insulated chamber into which cold helium is drawn through a variable flow valve."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No base vacuum is specified for the sample space because the sample is cooled in flowing helium gas; a high-vacuum sample environment is not offered in this configuration.",
+              "value_as_printed": "(helium-gas sample chamber; no vacuum specification)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control text",
+              "quote": "The temperature control insert utilizes a vacuum-insulated chamber into which cold helium is drawn through a variable flow valve."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Optical access to the sample exists only through the optional Fiber Optic Sample Holder (FOSH, M320), not fitted in this configuration.",
+              "value_as_printed": "Fiber Optic Sample Holder (FOSH) (M320)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 11, Magneto-Optic Measurement Capabilities",
+              "quote": "Quantum Design provides a specialized Fiber Optic Sample Holder (FOSH) optimized for either the UV or IR bands."
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Electrical connections to the sample are provided by the optional Electrical Transport Option (ETO, M605) sample holders, not fitted in this configuration.",
+              "value_as_printed": "Electrical Transport Option (ETO)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 13, Electrical Transport (ETO)",
+              "quote": "The Electrical Transport Option (ETO) leverages a digital lock-in technique to measure resistance in a traditional Kelvin sensing (4-probe) configuration"
+            },
+            {
+              "key": "module.electrical_transport",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "ETO (AC lock-in resistance) is an option, not fitted.",
+              "value_as_printed": "Electrical Transport Option (ETO)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 13, Electrical Transport (ETO)",
+              "quote": "The Electrical Transport Option (ETO) leverages a digital lock-in technique to measure resistance"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 9000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample chamber inner diameter (bore) is 9 mm; samples and holders must fit inside it.",
+              "value_as_printed": "Sample Chamber I.D.: 9 mm",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control specifications table",
+              "quote": "The 9 mm diameter sample chamber bore enables the smallest diameter pickup coils possible"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The base (non-EverCool) configuration consumes liquid helium and liquid nitrogen from its dewar.",
+              "value_as_printed": "Liquid Helium Usage: 4 liters/day (typical)",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 3, System specifications (non-EverCool base configuration)",
+              "quote": "Liquid Helium Usage: 4 liters/day (typical)** Liquid Helium Capacity: 70 liters ... * Specifications apply to non-EverCool base configuration."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_helium",
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The dewar holds liquid helium (70 L) and liquid nitrogen (60 L).",
+              "value_as_printed": "Liquid Helium Capacity: 70 liters; Liquid Nitrogen Capacity: 60 liters",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 3, System specifications",
+              "quote": "Liquid Helium Capacity: 70 liters ... Liquid Nitrogen Usage: 5 liters/day (typical) Liquid Nitrogen Capacity: 60 liters"
+            },
+            {
+              "key": "temperature.sweep_rate.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 30000,
+                  "unit": "mK_per_min"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cooling rate 30 K/min from 300 K to 10 K (typical).",
+              "value_as_printed": "30 K/min",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 6, Temperature Control specifications table (Cooling Rate)",
+              "quote": "Cooling Rate: 30 K/min (300 K to 10 K stable in 15 min., typical)"
+            },
+            {
+              "key": "magnetic_field.uniformity",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 100,
+                  "unit": "ppm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Field uniformity 0.01% (100 ppm) over 4 cm.",
+              "value_as_printed": "0.01% over 4 cm",
+              "source_url": "https://qdusa.com/siteDocs/productBrochures/1500-103.pdf",
+              "document_title": "MPMS 3 Magnetic Property Measurement System (Quantum Design product brochure 1500-103)",
+              "location": "PDF p. 5, Magnet specifications (Field Uniformity)",
+              "quote": "-70 kOe to +70 kOe 0.01% over 4 cm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anton_paar_ttk600",
+      "manufacturer": "Anton Paar",
+      "model": "TTK 600 Low-Temperature Chamber (part number 159900)",
+      "family": "low-temperature non-ambient chamber for powder X-ray diffraction",
+      "description": "Non-ambient XRD attachment for reflection and transmission powder diffraction from -190 C to 600 C with liquid-nitrogen cooling (-20 C with compressed-air cooling); vacuum (1e-2 mbar), air or inert gas; nickel sample holder for 14 x 10 mm samples; fits common powder diffractometers.",
+      "documents": [
+        {
+          "title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+          "url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/"
+        },
+        {
+          "title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (PANalytical/Anton Paar leaflet, 2009)",
+          "url": "https://malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "anton_paar_ttk600_ln2_vacuum",
+          "name": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+          "configuration_basis": "Standard TTK 600 with the liquid-nitrogen cooling option, standard (reflection) nickel sample holder, operated in vacuum (10^-2 mbar), which is the condition for the full -190 C to 600 C range (in dry air/inert gas the LN2 range is -150 C to 450 C). Antechamber and in-operando battery holders not fitted.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 83150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 873150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "With liquid-nitrogen cooling the chamber operates from -190 C to 600 C (in vacuum 10^-2 mbar).",
+              "value_as_printed": "-190 °C to 600 °C with liquid nitrogen cooling",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Operating temperature",
+              "quote": "Operating temperature -190 °C to 600 °C with liquid nitrogen cooling"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 83150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest temperature -190 C, reached with LN2 cooling under vacuum.",
+              "value_as_printed": "-190 °C (vacuum 10-2 mbar)",
+              "source_url": "https://malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+              "document_title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (PANalytical/Anton Paar leaflet, 2009)",
+              "location": "p. 2, Features table, Heating/cooling plate, With liquid nitrogen cooling",
+              "quote": "-190 °C to +600 °C (vacuum10-2 mbar)"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification of the chamber (temperature, atmosphere, angle range, pressure, sample holder, sample size) contains no magnet; it is a heating/cooling chamber for XRD with no magnetic-field capability.",
+              "value_as_printed": "(no magnet in specification)",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table (complete)",
+              "quote": "Operating temperature -190 °C to 600 °C with liquid nitrogen cooling ... Atmosphere Vacuum (10-2 mbar), air, inert gas ... Max. operating pressure 2 bar above atmospheric pressure"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Samples can be measured in vacuum (10^-2 mbar), air or inert gas.",
+              "value_as_printed": "Vacuum (10-2 mbar)",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Atmosphere",
+              "quote": "Atmosphere Vacuum (10-2 mbar), air, inert gas"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": "0.01",
+                  "unit": "mbar"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Vacuum atmosphere specified at 10^-2 mbar.",
+              "value_as_printed": "10-2 mbar",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Atmosphere",
+              "quote": "Atmosphere Vacuum (10-2 mbar), air, inert gas"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Electrically contacted samples (in-operando battery studies) need a dedicated battery sample holder that is not part of this standard-holder configuration.",
+              "value_as_printed": "in-operando studies on batteries",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Product page header",
+              "quote": "Also for air-sensitive samples and in-operando studies on batteries"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 10000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample size 14 x 10 mm; the smaller lateral dimension (10 mm) is used as the clear diameter.",
+              "value_as_printed": "14 x 10 mm",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Sample size",
+              "quote": "Sample size 14 x 10 mm"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The sub-ambient range of this configuration requires liquid-nitrogen cooling.",
+              "value_as_printed": "with liquid nitrogen cooling",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Operating temperature",
+              "quote": "-190 °C to 600 °C with liquid nitrogen cooling -20 °C to 600 °C with compressed-air cooling"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cooling medium for the low-temperature range is liquid nitrogen.",
+              "value_as_printed": "liquid nitrogen cooling",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Operating temperature",
+              "quote": "Operating temperature -190 °C to 600 °C with liquid nitrogen cooling"
+            },
+            {
+              "key": "pressure.max_working",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 200000,
+                  "unit": "Pa"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum operating pressure 2 bar above atmospheric (stored as 2 bar = 200000 Pa, the conservative gauge value).",
+              "value_as_printed": "2 bar above atmospheric pressure",
+              "source_url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+              "document_title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+              "location": "Specifications table, Max. operating pressure",
+              "quote": "Max. operating pressure 2 bar above atmospheric pressure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "montana_instruments_cryoadvance50",
+      "manufacturer": "Montana Instruments",
+      "model": "CryoAdvance 50 (successor of Cryostation s50)",
+      "family": "closed-cycle sample-in-vacuum optical cryostat",
+      "description": "Cryogen-free GM-cooled optical cryostat, 3.2-350 K platform, 53 mm x 63 mm sample chamber in vacuum, five 50 mm windows (4 radial + 1 top) with 30 mm cold windows, 20 DC lines and 2 x 20 GHz RF lines as standard, <5 nm platform vibration, 130 mW at 4.2 K.",
+      "documents": [
+        {
+          "title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+          "url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf"
+        },
+        {
+          "title": "4 K optical cryostat (CryoAdvance, Quantum Design Europe product page)",
+          "url": "https://qd-europe.com/at/en/product/4-k-optical-cryostat/"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "montana_instruments_cryoadvance50_standard",
+          "name": "CryoAdvance 50 standard configuration (standard I/O, 5 optical ports, no magneto-optic module, no 1.2 K option)",
+          "configuration_basis": "Datasheet standard configuration: platform with ATSM 3.2-350 K, standard I/O (20-line DC + 2x 20 GHz RF), 5x 50 mm vacuum windows with AR-coated fused silica. Options NOT fitted: magnet / magneto-optic module, high-NA objective, 1.2 K base-temperature extension, nanopositioners.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 3200,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 350000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Platform temperature range (with ATSM) <3.2 K to 350 K; the conservative lower bound 3.2 K is stored.",
+              "value_as_printed": "<3.2 K - 350 K",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Platform temperature range (with ATSM)",
+              "quote": "Platform temperature range (with ATSM) <3.2 K - 350 K"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 3200,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Base temperature 3.2 K.",
+              "value_as_printed": "3.2 K base temperature",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 1, Key features",
+              "quote": "3.2 K base temperature"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "A magnet is only available as an option; this standard configuration has none.",
+              "value_as_printed": "options ... magnet",
+              "source_url": "https://qd-europe.com/at/en/product/4-k-optical-cryostat/",
+              "document_title": "4 K optical cryostat (CryoAdvance, Quantum Design Europe product page)",
+              "location": "Features",
+              "quote": "Numerous options incl. high NA objective and magnet"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample-in-vacuum environment with integrated roughing pump and valves.",
+              "value_as_printed": "Sample-in-vacuum",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Environment",
+              "quote": "Environment Sample-in-vacuum"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Five 50 mm vacuum windows (4 radial + 1 top) with 30 mm internal cold windows.",
+              "value_as_printed": "5x 50 mm vacuum windows",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Optical ports",
+              "quote": "5x 50 mm vacuum windows (4 radial + 1 top) with corresponding 30 mm internal \"cold windows\" on radiation shield"
+            },
+            {
+              "key": "optical.window_count",
+              "value": {
+                "kind": "count",
+                "n": 5
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Five optical ports.",
+              "value_as_printed": "5x 50 mm vacuum windows",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Optical ports",
+              "quote": "5x 50 mm vacuum windows (4 radial + 1 top)"
+            },
+            {
+              "key": "optical.clear_aperture",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 30000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Limiting aperture is the 30 mm internal cold window on the radiation shield.",
+              "value_as_printed": "30 mm internal \"cold windows\"",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Optical ports",
+              "quote": "with corresponding 30 mm internal \"cold windows\" on radiation shield"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Standard I/O includes 20 DC lines and 2 RF lines routed to the sample chamber.",
+              "value_as_printed": "Standard I/O included: 2x RF, 20x DC channels",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 2, Housing & chamber",
+              "quote": "Standard I/O included: 2x RF 20x DC channels in vacuum chamber"
+            },
+            {
+              "key": "electrical.dc_lines",
+              "value": {
+                "kind": "count",
+                "n": 20
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "20-line DC wiring on PCB in the vacuum chamber.",
+              "value_as_printed": "20-line DC",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Standard I/O (included)",
+              "quote": "20-line DC on PCB in vacuum chamber"
+            },
+            {
+              "key": "electrical.coax_lines",
+              "value": {
+                "kind": "count",
+                "n": 2
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Two 20 GHz RF channels to the sample chamber.",
+              "value_as_printed": "2x 20 GHz RF channels",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Standard I/O (included)",
+              "quote": "2x 20 GHz RF channels with lagged flex-coax routed to sample chamber"
+            },
+            {
+              "key": "electrical.coax_bandwidth.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 20000000,
+                  "unit": "kHz"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "RF channels rated 20 GHz.",
+              "value_as_printed": "20 GHz",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Standard I/O (included)",
+              "quote": "2x 20 GHz RF channels with lagged flex-coax routed to sample chamber"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 53000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample chamber 53 mm diameter inside the radiation shield.",
+              "value_as_printed": "53 mm diameter",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Sample chamber dimensions",
+              "quote": "53 mm diameter x 63 mm height (inside radiation shield)"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 63000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample chamber 63 mm height inside the radiation shield.",
+              "value_as_printed": "63 mm height",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Sample chamber dimensions",
+              "quote": "53 mm diameter x 63 mm height (inside radiation shield)"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Closed-cycle, cryogen-free cryostat.",
+              "value_as_printed": "cryogen-free",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 1, Key features",
+              "quote": "Sample-in-vacuum, cryogen-free"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen is used (closed-cycle cryostat).",
+              "value_as_printed": "closed-cycle ... cryogen-free",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 1, title and Key features",
+              "quote": "Fully automated, closed-cycle optical cryostat ... Sample-in-vacuum, cryogen-free"
+            },
+            {
+              "key": "cooling_power.at_4200mK",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 130000000,
+                  "unit": "nW"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cooling power 130 mW at 4.2 K.",
+              "value_as_printed": "130 mW @ 4.2 K",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Cooling power",
+              "quote": "Cooling power 130 mW @ 4.2 K"
+            },
+            {
+              "key": "vibration.max",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 5,
+                  "unit": "nm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Platform vibrational stability <5 nm peak-to-peak at base temperature.",
+              "value_as_printed": "<5 nm ptp",
+              "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/Montana/pdf/CryoAdvance-50.pdf",
+              "document_title": "CryoAdvance-50 Fully automated, closed-cycle optical cryostat (Montana Instruments datasheet, Quantum Design GmbH)",
+              "location": "p. 3, Specification table, Platform vibrational stability",
+              "quote": "Platform vibrational stability <5 nm ptp at base temperature"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "netzsch_dil402_expedis_supreme",
+      "manufacturer": "NETZSCH Analyzing & Testing",
+      "model": "DIL 402 Expedis Supreme (horizontal pushrod dilatometer)",
+      "family": "low-temperature pushrod dilatometer",
+      "description": "Horizontal pushrod dilatometer (NanoEye displacement, 0.1 nm resolution, +/-25 mm range) with interchangeable furnaces from -180 C (copper furnace with LN2 cooling) to 2000 C; vacuum-tight, inert/oxidizing/reducing/vacuum atmospheres; samples up to 52 mm long and 12 mm (optional 19 mm) diameter. Works to DIN 51045, ASTM E228, ASTM D696.",
+      "documents": [
+        {
+          "title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+          "url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf"
+        },
+        {
+          "title": "DIL 402 Expedis Select, Supreme and Supreme HT (NETZSCH brochure)",
+          "url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/9/6/f/6/96f6975440143aca656d74d71abdb68fcc61e4ad/DIL_Select_Supreme_en_web.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "netzsch_dil402_expedis_supreme_copper_ln2",
+          "name": "DIL 402 Expedis Supreme, single pushrod, copper furnace with LN2 cooling device (-180 C to 500 C)",
+          "configuration_basis": "DIL 402 Expedis Supreme single system with the copper furnace (-180 C to 500 C) and LN2 cooling device, standard 12 mm diameter fused-silica/Al2O3 sample holder, vacuum-tight design. Other furnaces (steel, SiO2, SiC, graphite), 19 mm holder, dual/differential pushrods, tension holder and OTS not included.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 93150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 773150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Copper furnace maximum temperature range -180 C to 500 C.",
+              "value_as_printed": "Copper -180°C ... 500°C",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/9/6/f/6/96f6975440143aca656d74d71abdb68fcc61e4ad/DIL_Select_Supreme_en_web.pdf",
+              "document_title": "DIL 402 Expedis Select, Supreme and Supreme HT (NETZSCH brochure)",
+              "location": "p. 9, Furnace Type/Heating Element - Max. Temperature Range table",
+              "quote": "Copper -180°C ... 500°C"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 93150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest temperature -180 C (copper furnace with LN2).",
+              "value_as_printed": "-180°C",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/9/6/f/6/96f6975440143aca656d74d71abdb68fcc61e4ad/DIL_Select_Supreme_en_web.pdf",
+              "document_title": "DIL 402 Expedis Select, Supreme and Supreme HT (NETZSCH brochure)",
+              "location": "p. 9, Furnace table",
+              "quote": "Copper -180°C ... 500°C"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical specification (design, furnaces, cooling systems, sample holders, displacement system, force, atmosphere) lists no magnet; the pushrod dilatometer has no magnetic-field capability.",
+              "value_as_printed": "(no magnet in complete technical specification)",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications (complete one-page data sheet)",
+              "quote": "Design Pushrod dilatometer, single or dual system ... Gas atmosphere Inert, oxidizing**, reducing, vacuum"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Measurements can be made under vacuum (vacuum-tight design).",
+              "value_as_printed": "vacuum",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Gas atmosphere",
+              "quote": "Gas atmosphere Inert, oxidizing**, reducing, vacuum"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical specification describes a closed furnace with a pushrod and optical encoder (NanoEye) outside the sample; no window/viewport onto the sample is part of the copper-furnace configuration.",
+              "value_as_printed": "(no sample window in complete technical specification)",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications (complete one-page data sheet)",
+              "quote": "Design Pushrod dilatometer, single or dual system ... Displacement system NanoEye"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical specification lists no electrical sample wiring; length change is measured mechanically through the pushrod.",
+              "value_as_printed": "(no sample wiring in complete technical specification)",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications (complete one-page data sheet)",
+              "quote": "Design Pushrod dilatometer, single or dual system ... Displacement system NanoEye"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 12000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Standard single-system sample holder accepts 12 mm diameter (19 mm optional, not fitted).",
+              "value_as_printed": "Diameter (single): standard 12 mm",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Sample dimensions",
+              "quote": "Max. length: 52 mm (graphite furnace: 25 mm) Diameter (single): standard 12 mm, optional 19 mm"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 52000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum sample length along the (horizontal) pushrod/loading axis 52 mm.",
+              "value_as_printed": "Max. length: 52 mm",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Sample dimensions",
+              "quote": "Max. length: 52 mm (graphite furnace: 25 mm)"
+            },
+            {
+              "key": "sample.length.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 52000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum sample length 52 mm.",
+              "value_as_printed": "Max. length: 52 mm",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Sample dimensions",
+              "quote": "Max. length: 52 mm (graphite furnace: 25 mm)"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sub-ambient operation to -180 C uses the LN2 cooling device.",
+              "value_as_printed": "LN2-device",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Cooling systems",
+              "quote": "Cooling systems Depending on furnace: Vortex, LN2-device, air compressor"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cooling medium for the -180 C copper furnace is liquid nitrogen (LN2 device).",
+              "value_as_printed": "LN2",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Configurations table, Available Cooling Devices",
+              "quote": "Available Cooling Devices Vortex, LN2"
+            },
+            {
+              "key": "temperature.sweep_rate.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 50000,
+                  "unit": "mK_per_min"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Heating rates for steel, copper, fused-silica and SiC furnaces 0.001 to 50 K/min.",
+              "value_as_printed": "0.001 ... 50 K/min",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Heating rates",
+              "quote": "Steel, copper, fused silica, silicon carbide: 0.001 ... 50 K/min"
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 20,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Isothermal thermal stability +/-0.02 K.",
+              "value_as_printed": "± 0.02 K",
+              "source_url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/e/0/f/7/e0f7a47620ddace0373698a684af7bfce75c0d58/Key_Technical_Data_en%20DIL%20402%20Expedis%20Supreme%20and%20Select.pdf",
+              "document_title": "Technical Specifications DIL 402 Expedis Supreme, Supreme HT and Select (NETZSCH data sheet NGB 1022)",
+              "location": "Technical Specifications, Thermal stability (isothermal)",
+              "quote": "Thermal stability (isothermal) ± 0.02 K"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oxford_cryosystems_phenix",
+      "manufacturer": "Oxford Cryosystems",
+      "model": "PheniX closed-cycle helium cryostat for powder XRD",
+      "family": "low-temperature non-ambient chamber for powder X-ray diffraction (closed-cycle GM)",
+      "description": "Two-stage Gifford-McMahon closed-cycle helium cryostat for flat-plate reflection powder XRD from 12 K to 290 K in vacuum (1e-4 mbar), +/-0.1 K stability, 20 mm diameter chromium-plated copper sample mounts, Kapton/mylar X-ray windows, K450 helium compressor.",
+      "documents": [
+        {
+          "title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+          "url": "https://www.oxcryo.com/products/phenix"
+        },
+        {
+          "title": "PheniX - low-temperature cryostat, Non-ambient attachment for XRD (PANalytical leaflet, 2009)",
+          "url": "https://www.malvernpanalytical.com/de/assets/PheniX_leaflet_tcm57-52135.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "oxford_cryosystems_phenix_standard",
+          "name": "PheniX standard (top-loading) cryostat with K450 compressor and included 20 mm flat/recessed sample mounts",
+          "configuration_basis": "Standard PheniX chamber (not the PheniX FL front loader) with K450 helium compressor and the included 2 flat + 2 recessed 20 mm chromium-plated copper sample stages; water chiller not included.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 12000,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 290000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature range 12-290 K.",
+              "value_as_printed": "12-290 K",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Benefits, Temperature Range",
+              "quote": "Temperature Range: 12-290 K"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 12000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest temperature 12 K.",
+              "value_as_printed": "12 K",
+              "source_url": "https://www.malvernpanalytical.com/de/assets/PheniX_leaflet_tcm57-52135.pdf",
+              "document_title": "PheniX - low-temperature cryostat, Non-ambient attachment for XRD (PANalytical leaflet, 2009)",
+              "location": "p. 1, introduction",
+              "quote": "temperature range from 25 °C (298 K) down to - 261 °C (12 K)"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete chamber and compressor specification (window material, sample mounts, compressor, cooling) contains no magnet; the PheniX has no magnetic-field capability.",
+              "value_as_printed": "(no magnet in complete specification)",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Specs table (Phenix Chamber, K450 Helium Compressor)",
+              "quote": "Phenix Chamber Window Material Kapton Sample Mounts ⌀ 20 mm chromium-plated copper* K450 Helium Compressor"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample operates in vacuum.",
+              "value_as_printed": "12 K - 290 K (vacuum)",
+              "source_url": "https://www.malvernpanalytical.com/de/assets/PheniX_leaflet_tcm57-52135.pdf",
+              "document_title": "PheniX - low-temperature cryostat, Non-ambient attachment for XRD (PANalytical leaflet, 2009)",
+              "location": "p. 2, Features, Heating/cooling (plate) and Atmospheres",
+              "quote": "12 K – 290 K (vacuum)"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": "0.0001",
+                  "unit": "mbar"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Vacuum atmosphere 10^-4 mbar.",
+              "value_as_printed": "Vacuum 10-4 mbar",
+              "source_url": "https://www.malvernpanalytical.com/de/assets/PheniX_leaflet_tcm57-52135.pdf",
+              "document_title": "PheniX - low-temperature cryostat, Non-ambient attachment for XRD (PANalytical leaflet, 2009)",
+              "location": "p. 2, Features, Atmospheres",
+              "quote": "Vacuum 10-4 mbar"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification lists only passive copper sample stages cooled by conduction; no electrical sample wiring is offered.",
+              "value_as_printed": "(no sample wiring in complete specification)",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Specs table and Mechanical Cooling text",
+              "quote": "Cooling occurs via heat conduction between the sample stage and the cryocooler's cold stages, with sample temperature measured at the stage itself."
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 20000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample stages are 20 mm diameter.",
+              "value_as_printed": "⌀ 20 mm",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Specs table, Sample Mounts",
+              "quote": "Sample Mounts ⌀ 20 mm chromium-plated copper*"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Closed helium circuit GM cryocooler; consumes no helium in operation.",
+              "value_as_printed": "Helium (Closed-Cycle)",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Mechanical Cooling",
+              "quote": "Operating in a closed helium circuit, it consumes no helium gas to achieve the desired temperature."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen is used (closed-cycle helium gas).",
+              "value_as_printed": "Cryogen: Helium (Closed-Cycle)",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Benefits, Cryogen",
+              "quote": "Cryogen: Helium (Closed-Cycle)"
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 100,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature stability +/-0.1 K.",
+              "value_as_printed": "+/- 0.1 K",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Benefits, Stability",
+              "quote": "Stability: +/- 0.1 K"
+            },
+            {
+              "key": "cooldown_time.max",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 3600,
+                  "unit": "s"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cool-down to 12 K in 60 min.",
+              "value_as_printed": "12 K in 60 mins",
+              "source_url": "https://www.oxcryo.com/products/phenix",
+              "document_title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+              "location": "Benefits, Fast Cooldown",
+              "quote": "Fast Cooldown: 20K in 40 mins 12 K in 60 mins"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attocube_attodry2100",
+      "manufacturer": "attocube systems",
+      "model": "attoDRY2100 closed-cycle magneto-optical cryostat",
+      "family": "pulse-tube cryogen-free cryostat with superconducting magnet and helium exchange-gas sample space",
+      "description": "Low-vibration pulse-tube closed-cycle cryostat for magneto-optics and transport, top-loading 49/48 mm sample space in helium exchange gas, 1.65-300 K automated control, optional superconducting solenoids (9 T, 12 T) or vector magnets; compatible with attoCFM confocal, cryoRAMAN and transport inserts.",
+      "documents": [
+        {
+          "title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+          "url": "https://www.attocube.com/downloads/attodry2100.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "attocube_attodry2100_9t_solenoid",
+          "name": "attoDRY2100 with optional 9 T superconducting solenoid and bipolar magnet supply, standard insert (no confocal/transport insert)",
+          "configuration_basis": "attoDRY2100 cryostat plus the optional 9 T solenoid and bipolar magnet power supply (datasheet options list); standard inserts give 1.65-1.8 K base. Measurement inserts (attoCFM I/IV confocal microscopes, cryoRAMAN, transport inserts) and pumping kit are NOT included.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 1800,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 300000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Automated control 1.65-300 K; base for standard inserts 1.65-1.8 K, so the conservative lower bound 1.8 K is stored.",
+              "value_as_printed": "1.65 .. 300 K (automated control); 1.65 .. 1.8 K (for standard inserts)",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "Performance Data, temperature range / base temperature",
+              "quote": "1.65 .. 300 K (automated control) 1.65 .. 1.8 K (for standard inserts)"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 1800,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Base temperature 1.65-1.8 K for standard inserts; conservative 1.8 K stored.",
+              "value_as_printed": "1.65 .. 1.8 K (for standard inserts)",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "Performance Data, base temperature",
+              "quote": "1.65 .. 1.8 K (for standard inserts)"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 9000,
+                  "unit": "mT"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Configuration includes the optional 9 T solenoid (solenoids offered: 9 T, 12 T).",
+              "value_as_printed": "solenoids: 9 T",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "Options and Upgrades, superconducting magnet",
+              "quote": "solenoids: 9 T, 12 T, vector magnets: e.g.: 9/3 T, 9/1/1 T, ..."
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample environment is helium exchange gas, not vacuum.",
+              "value_as_printed": "He exchange gas",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications, sample environment",
+              "quote": "He exchange gas"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The sample space is filled with helium exchange gas; no evacuated sample environment is specified.",
+              "value_as_printed": "He exchange gas",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications, sample environment",
+              "quote": "He exchange gas"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Optical access is provided through optional confocal microscope / Raman inserts (attoCFM I, attoCFM IV, cryoRAMAN), not included.",
+              "value_as_printed": "designed for magneto-optical applications; confocal microscopes attoCFM I, attoCFM IV",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications and Compatibility",
+              "quote": "low vibration, pulse-tube based closed-cycle cryostat, designed for magneto-optical applications ... confocal microscopes attoCFM I, attoCFM IV"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Electrical sample wiring comes with transport-measurement inserts, not included in this configuration.",
+              "value_as_printed": "transport measurements",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "Compatibility",
+              "quote": "Compatibility confocal microscopes confocal Raman microscopes transport measurements"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 48000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Sample space 49 mm for components with circular segments, 48 mm for cylindrical components; 48 mm stored.",
+              "value_as_printed": "Ø 48 mm for cylindrical components",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications, sample space",
+              "quote": "Ø 49 mm for components with circular segments (e.g. cage plates), Ø 48 mm for cylindrical components"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Pulse-tube closed-cycle cryostat.",
+              "value_as_printed": "pulse-tube based closed-cycle cryostat",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications, technology",
+              "quote": "low vibration, pulse-tube based closed-cycle cryostat, designed for magneto-optical applications"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen (closed-cycle pulse tube).",
+              "value_as_printed": "closed-cycle",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "General Specifications, technology",
+              "quote": "low vibration, pulse-tube based closed-cycle cryostat"
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 10,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Guaranteed stability < +/-10 mK between 1.5 and 10 K (only specified range).",
+              "value_as_printed": "< ± 10 mK guaranteed (1.5 .. 10 K)",
+              "source_url": "https://www.attocube.com/downloads/attodry2100.pdf",
+              "document_title": "attoDRY2100 Technical Specifications (attocube systems datasheet 1009389)",
+              "location": "Performance Data, temperature stability",
+              "quote": "< ± 5 mK expected (1.5 .. 10 K), < ± 10 mK guaranteed (1.5 .. 10 K)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cryogenic_ltd_cfms_9t",
+      "manufacturer": "Cryogenic Ltd",
+      "model": "Cryogen Free Measurement System CFM-9T-H3-IVTI-25",
+      "family": "cryogen-free superconducting magnet system with integrated variable temperature insert (PPMS-type platform)",
+      "description": "Cryogen-free 9 T superconducting magnet (persistent switch, 0.1% over 10 mm dsv) with a 25 mm integrated VTI (1.6-400 K, continuous helium gas flow) cooled by one cryocooler; modular VSM, AC susceptibility, electrical transport, heat capacity, thermal transport and He-3 inserts.",
+      "documents": [
+        {
+          "title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+          "url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"
+        },
+        {
+          "title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+          "url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"
+        },
+        {
+          "title": "High Field CFMS (9-18 Tesla) (Cryogenic Ltd product page)",
+          "url": "https://www.cryogenic.co.uk/products/high-field-cfms-9-18-tesla"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "cryogenic_ltd_cfms_9t_ivti25_vsm_transport",
+          "name": "CFM-9T-H3-IVTI-25 with VSM and electrical transport (resistivity/Hall) modules",
+          "configuration_basis": "Model CFM-9T-H3-IVTI-25 (9.0 T guaranteed, 25 mm CFVTI, 1.6 K base) with the VSM module and the DC Electrical Transport (resistivity and Hall) module installed. NOT fitted: optional optical access in the VTI base, He-3 insert, heat capacity and thermal transport probes, 700/1000 K VSM probes.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 1600,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 400000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "VTI temperature range 1.6-400 K with continuous gas flow.",
+              "value_as_printed": "1.6 to 400K",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, VTI Specifications, Temperature range",
+              "quote": "1.6 to 400K with continuous gas flow in VTI"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 1600,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "CFVTI sample base temperature 1.6 K.",
+              "value_as_printed": "1.6K",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, Nominal Specifications table, CFVTI Sample Base Temperature (CFM-9T-H3-IVTI-25)",
+              "quote": "CFVTI Sample Base Temperature 1.6K"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 9000,
+                  "unit": "mT"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Central field guarantee 9.0 T for model CFM-9T-H3-IVTI-25.",
+              "value_as_printed": "9.0 Tesla",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, Nominal Specifications table, Central field (guarantee)",
+              "quote": "Central field (guarantee) 9.0 Tesla"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "In this configuration the sample sits in the VTI with continuous helium gas flow (not an evacuated sample space).",
+              "value_as_printed": "continuous gas flow in VTI",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, VTI Specifications",
+              "quote": "1.6 to 400K with continuous gas flow in VTI"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The sample space of the VTI is cooled by flowing helium gas; no vacuum level is specified for the sample environment in this configuration.",
+              "value_as_printed": "continuous gas flow in VTI",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, VTI Specifications",
+              "quote": "Only Helium gas (supplied) is required to operate the CFVTI. ... 1.6 to 400K with continuous gas flow in VTI"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Optical access through the VTI base is an option, not fitted.",
+              "value_as_printed": "may, as an option, include optical access",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "p. 3, Cryogen-Free Platform",
+              "quote": "The VTI base may, as an option, include optical access in line with the sample column axis to allow for sample illumination from below the cryostat."
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The installed Electrical Transport module provides sample platforms with sample connections (twisted pairs, coax or triax wiring).",
+              "value_as_printed": "sample platforms with different numbers of sample connections",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "Resistivity and Hall Effect (DC & AC)",
+              "quote": "Cryogenic offers a selection of sample platforms with different numbers of sample connections and suitable for different sample sizes."
+            },
+            {
+              "key": "module.dc_resistivity",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "DC resistance and Hall measurements 100 nOhm to 1 GOhm (installed module).",
+              "value_as_printed": "100 nOhm to 1 GOhm",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "Resistivity and Hall Effect (DC & AC)",
+              "quote": "The Electrical Transport module provides a capability to perform DC resistance measurements and Hall voltage measurements in samples with resistance in the range from 100 n to 1 G."
+            },
+            {
+              "key": "module.vsm",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Vibrating sample magnetometer installed (pick-up coils inside the IVTI).",
+              "value_as_printed": "VSM",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "Vibrating Sample Magnetometer (VSM)",
+              "quote": "The Cryogenic VSM is designed to measure DC magnetic moment."
+            },
+            {
+              "key": "sample.vsm.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 5000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "VSM sample size <5 mm.",
+              "value_as_printed": "Sample size <5 mm",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "VSM Performance table",
+              "quote": "VSM frequency VSM amplitude Measurement Range Sample size ... 20 Hz typical 2 mm ... <5 mm"
+            },
+            {
+              "key": "module.heat_capacity",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Heat capacity probes are offered but not fitted.",
+              "value_as_printed": "probes for measurements of heat capacity",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf",
+              "document_title": "Cryogen-Free System Platforms, CFMS brochure v5.2 May 2020 (Cryogenic Ltd)",
+              "location": "Heat capacity",
+              "quote": "Cryogenic offers sensitive probes for measurements of heat capacity"
+            },
+            {
+              "key": "module.helium3",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "optional_not_installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "He-3 insert to 300 mK is an option, not fitted.",
+              "value_as_printed": "Helium 3 insert for temperatures down to 300mK",
+              "source_url": "https://www.cryogenic.co.uk/products/high-field-cfms-9-18-tesla",
+              "document_title": "High Field CFMS (9-18 Tesla) (Cryogenic Ltd product page)",
+              "location": "Extensions",
+              "quote": "Helium 3 insert for temperatures down to 300mK"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 25000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "VTI sample space 25 mm as standard.",
+              "value_as_printed": "25mm as standard",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, VTI Specifications, Sample Space",
+              "quote": "Sample Space 25mm as standard"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid helium or nitrogen required to operate; only helium gas for the VTI.",
+              "value_as_printed": "No liquid helium or nitrogen is required",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1",
+              "quote": "No liquid helium or nitrogen is required to operate the magnet. Only Helium gas (supplied) is required to operate the CFVTI."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen used.",
+              "value_as_printed": "No liquid helium or nitrogen required",
+              "source_url": "https://www.cryogenic.co.uk/products/high-field-cfms-9-18-tesla",
+              "document_title": "High Field CFMS (9-18 Tesla) (Cryogenic Ltd product page)",
+              "location": "Key features",
+              "quote": "No liquid helium or nitrogen required for cool down or operation."
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 50,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature control 5 mK at 10 K, 10 mK at 100 K, 50 mK at 300 K; worst case 50 mK stored.",
+              "value_as_printed": "50mK @ 300K",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, VTI Specifications, Temperature control (with Lakeshore series unit)",
+              "quote": "Temperature control: (with Lakeshore series unit) 5mK @ 10K 10mK @100K 50mK @ 300K"
+            },
+            {
+              "key": "magnetic_field.uniformity",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 1000,
+                  "unit": "ppm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Homogeneity 0.1% in 10 mm dsv.",
+              "value_as_printed": "0.1%",
+              "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+              "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd)",
+              "location": "p. 1, Nominal Specifications table, Homogeneity in 10mm dsv",
+              "quote": "Homogeneity in 10mm dsv 0.1%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp_industries_charpycool",
+      "manufacturer": "SP Industries (SP Scientific / FTS)",
+      "model": "SP FTS CharpyCool CC880 (8 L)",
+      "family": "mechanically refrigerated low-temperature Charpy specimen bath",
+      "description": "Bench-top mechanically refrigerated liquid bath for conditioning Charpy impact specimens, -80 C to 30 C, +/-0.1 C, magnetic stirrer, 4 L (CC480) or 8 L (CC880) reservoir holding up to 65/91 specimens on racks; methanol-type bath fluid.",
+      "documents": [
+        {
+          "title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+          "url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf"
+        },
+        {
+          "title": "SP Scientific - CharpyCool (LabWrench equipment page)",
+          "url": "https://www.labwrench.com/equipment/14290/sp-scientific-charpycool"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "sp_industries_charpycool_cc880",
+          "name": "CharpyCool CC880 8 L bath (cylindrical chamber 19.8 cm diameter) with built-in magnetic stirrer",
+          "configuration_basis": "Model CC880 (8 L reservoir, cylindrical chamber 19.8 cm diameter x 22.9 cm deep, reduced 1.9 cm by the stirrer assembly), built-in magnetic stirrer, performance per SP test data with methanol at ~22 C ambient. Optional CRA-8 Charpy racks, vortex breaker, tongs and COMMKIT not counted.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 193150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 303150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature control range -80 C to 30 C.",
+              "value_as_printed": "-80 °C to 30 °C",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Performance Specifications, Temperature Control Range",
+              "quote": "Temperature Control Range -80 °C to 30 °C"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 193150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum low temperature -80 C.",
+              "value_as_printed": "-80 °C",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Performance Specifications, Maximum Low Temperature",
+              "quote": "Maximum Low Temperature -80 °C"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete performance, electrical and dimensional specification of the bath contains no magnet (the only magnetic component is the magnetic stirrer).",
+              "value_as_printed": "(no magnet in complete specification)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "pp. 1-2, Performance Specifications, Electrical Requirements, Dimensional Data",
+              "quote": "Temperature Control Range -80 °C to 30 °C Temperature Control Stability* ± 0.1 °C ... Compressor 2 @ 0.25 hp Available Bath Volumes 4L (CC480) or 8L (CC880) Magnetic Stirrer Included"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Specimens are immersed in a stirred liquid bath at atmospheric pressure; no evacuated sample space.",
+              "value_as_printed": "Liquid medium",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Features & Benefits",
+              "quote": "Liquid medium enhances temperature stability and uniformity and exceeds ASTM-E23 temperature stability requirements"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Open liquid bath; no vacuum capability or base pressure is specified.",
+              "value_as_printed": "(liquid bath, no vacuum)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Features & Benefits",
+              "quote": "Built-in magnetic stirrer maintains isothermal bath conditions"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification lists no window or viewport onto the specimens (immersed in the bath fluid).",
+              "value_as_printed": "(no window in complete specification)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 2, Dimensional Data (complete)",
+              "quote": "Chamber Diameter 16.5 cm (6.5 in) 19.8 cm (7.8 in) Chamber Depth3 18.5 cm (7.3 in) 22.9 cm (9 in)"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification lists only racks, tongs and a vortex breaker as specimen accessories; no electrical connections to specimens.",
+              "value_as_printed": "(no sample wiring in complete specification)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 2, Optional Accessories",
+              "quote": "Charpy Rack For 4-liter baths (CRA-4) For 8-liter baths (CRA-8) ... Tongs Centering tongs with V-notch (CC-T)"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 198000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "CC880 chamber diameter 19.8 cm.",
+              "value_as_printed": "19.8 cm (7.8 in)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 2, Dimensional Data, Chamber Diameter (CC880)",
+              "quote": "Chamber Diameter 16.5 cm (6.5 in) 19.8 cm (7.8 in)"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 210000,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "CC880 chamber depth 22.9 cm, reduced by 1.9 cm by the stirrer assembly: 21.0 cm usable.",
+              "value_as_printed": "22.9 cm (9 in); stirrer reduces depth by 1.9 cm",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 2, Dimensional Data, Chamber Depth (CC880) and footnote 3",
+              "quote": "Chamber Depth3 18.5 cm (7.3 in) 22.9 cm (9 in) ... 3 Stirrer assembly reduces chamber depth by 1.9 cm (0.75 in) in cylindrical chambers"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Mechanical refrigeration; no expendable refrigerants.",
+              "value_as_printed": "Mechanical refrigeration",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Features & Benefits",
+              "quote": "Mechanical refrigeration eliminates costs and hazards associated with expendable refrigerants"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen or dry ice is used (mechanical refrigeration).",
+              "value_as_printed": "Mechanical refrigeration",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Features & Benefits",
+              "quote": "Mechanical refrigeration eliminates costs and hazards associated with expendable refrigerants"
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 100,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature control stability +/-0.1 C.",
+              "value_as_printed": "± 0.1 °C",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Performance Specifications, Temperature Control Stability",
+              "quote": "Temperature Control Stability* ± 0.1 °C"
+            },
+            {
+              "key": "chamber.volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 8,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "CC880 bath volume 8 L.",
+              "value_as_printed": "8L (CC880)",
+              "source_url": "https://making.com/wp-content/uploads/2024/09/SP_FTS_8395_brochure.pdf",
+              "document_title": "SP FTS CharpyCool Low Temperature Bath For Charpy Impact Testing (SP Industries datasheet, Part Number 100006329 Rev 001, 01/22)",
+              "location": "p. 1, Performance Specifications, Available Bath Volumes",
+              "quote": "Available Bath Volumes 4L (CC480) or 8L (CC880)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "not_found": [
+    {
+      "configuration_id": "quantum_design_mpms3_standard_lhe",
+      "key": "sample.height.max",
+      "searched": "MPMS 3 brochure 1500-103 (all 16 pages), Quantum Design MPMS3 manual (qdusa 1500-100 returns 404), university MPMS3 quick references (OMU, Shimane: only the 66 mm mounting position, no maximum sample length)"
+    },
+    {
+      "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+      "key": "optical_access",
+      "searched": "Anton Paar TTK 600 product page specifications and PANalytical TTK 600 leaflet: only X-ray transmission windows/foils are described; no visible-light viewport statement either way (Anton Paar brochure download returns 403)"
+    },
+    {
+      "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+      "key": "sample.height.max",
+      "searched": "Anton Paar TTK 600 product page and PANalytical leaflet: only the 14 x 10 mm sample size is stated, no sample thickness/height"
+    },
+    {
+      "configuration_id": "montana_instruments_cryoadvance50_standard",
+      "key": "pressure.base",
+      "searched": "CryoAdvance-50 datasheet (QD Europe PDF), QD Europe 4 K optical cryostat page, web search for Montana Cryostation/CryoAdvance vacuum level in Torr: sample-in-vacuum stated, no base pressure value"
+    },
+    {
+      "configuration_id": "netzsch_dil402_expedis_supreme_copper_ln2",
+      "key": "pressure.base",
+      "searched": "NETZSCH DIL 402 Expedis key technical data sheet and brochure: vacuum atmosphere and vacuum-tight design stated, no vacuum level"
+    },
+    {
+      "configuration_id": "oxford_cryosystems_phenix_standard",
+      "key": "optical_access",
+      "searched": "Oxford Cryosystems PheniX page and PANalytical PheniX leaflet: Kapton chamber window and 0.005 mm mylar shield window are X-ray windows (120 deg X-ray transparent view); no statement on visible optical access"
+    },
+    {
+      "configuration_id": "oxford_cryosystems_phenix_standard",
+      "key": "sample.height.max",
+      "searched": "Oxford Cryosystems PheniX page and leaflet: 20 mm diameter flat/recessed sample mounts only, no height/thickness limit"
+    },
+    {
+      "configuration_id": "attocube_attodry2100_9t_solenoid",
+      "key": "sample.height.max",
+      "searched": "attoDRY2100 technical specifications (attocube datasheet 1009389): sample space diameter only, no usable length of the top-loading sample space"
+    },
+    {
+      "configuration_id": "cryogenic_ltd_cfms_9t_ivti25_vsm_transport",
+      "key": "sample.height.max",
+      "searched": "Cryogenic Ltd CFM 10-18 T specification sheet, CFMS brochure v5.2 and High Field CFMS page: 25 mm VTI bore only, no axial sample-space length"
+    }
+  ],
+  "notes": "8 configurations from 8 manufacturers (Quantum Design, Anton Paar, Montana Instruments, NETZSCH, Oxford Cryosystems, attocube, Cryogenic Ltd, SP Industries), none duplicating data/cryostats. Accessed 2026-11-01. All values are manufacturer specifications quoted from datasheets/product pages; PDF tables extracted with pdftotext, quotes keep the printed label-value text. Conservative choices: CryoAdvance '<3.2 K' stored as 3.2 K; attoDRY2100 base '1.65 .. 1.8 K (standard inserts)' stored as 1.8 K for both range lo and base; CFMS stability stored as the worst value (50 mK at 300 K); TTK 600 '2 bar above atmospheric' stored as 200000 Pa; CharpyCool usable depth = 22.9 cm - 1.9 cm stirrer = 21.0 cm. Sample spaces filled with helium exchange/flow gas (MPMS 3, attoDRY2100, CFMS VTI) are recorded as vacuum.available=false and pressure.base=not_available citing the sample-environment statement. Magnet / wiring / window absences for the XRD chamber, dilatometer and Charpy bath cite the complete specification table of each product (no magnet, no sample feedthroughs listed); XRD chambers (TTK 600, PheniX) have only X-ray windows, so optical_access is left in not_found rather than guessed. Options present in the family but not fitted are optional_not_installed (MPMS 3 FOSH/ETO, CryoAdvance magnet, TTK 600 battery holder, attoDRY2100 optical/transport inserts, CFMS optical base, heat capacity, He-3). Uses proposed v4 key chamber.volume (CharpyCool) in addition to existing keys. Tavily quota was exhausted; sources were read with WebFetch/WebSearch and the built-in browser (read-only)."
+}

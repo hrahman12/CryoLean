@@ -1,0 +1,90 @@
+{
+  "id": "expansion_b_health_intercostal_nerve_cryoneurolysis",
+  "name": "Intercostal-nerve cryoneurolysis for postoperative analgesia research",
+  "plain_name": "Study nerve cryoanalgesia",
+  "industry": "healthcare_and_medicine",
+  "description": "Cryogenic nerve-conduction intervention research is distinct from oocyte vitrification and the in-vitro cancer-cell bath experiment.",
+  "keywords": [
+    "Study nerve cryoanalgesia",
+    "nerve_cryoanalgesia",
+    "healthcare_and_medicine"
+  ],
+  "sources": [
+    {
+      "citation": "Graves et al.2019,randomized Nuss-procedure clinical trial",
+      "url": "https://escholarship.org/content/qt9qv3x483/qt9qv3x483_noSplash_14462970dec59270c3a1dc7d725b12cd.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "AtriCure cryosurgical system;thoracoscopy;exact historical probe model not established here"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.nerve_cryoneurolysis",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The procedure requires a nerve-contact cryoprobe; a cold tissue bath or freezing carrier is not equivalent.",
+      "evidence_ids": [
+        "expb_nerve_trial"
+      ]
+    },
+    {
+      "key": "probe.temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "213.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The selected study reports-60 C cryoprobe operation; this is never mapped to console ambient or uniform tissue temperature.",
+      "evidence_ids": [
+        "expb_nerve_trial"
+      ]
+    },
+    {
+      "key": "probe.freeze_duration.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "120",
+          "unit": "s"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported application lasts2min=120s.",
+      "evidence_ids": [
+        "expb_nerve_trial"
+      ]
+    },
+    {
+      "key": "module.direct_visualization",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The primary study performs the procedure under thoracoscopic visualization; a console alone does not establish this installed chain.",
+      "evidence_ids": [
+        "expb_nerve_trial"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "This scientific equipment profile is not a clinical eligibility check or instructions for performing surgery.",
+    "The study predates the consulted cryoSPHERE IFU; the selected probe is a documented modern candidate,not falsely identified as the exact historical probe.",
+    "Typical probe temperature does not establish tissue temperature or a nerve's response;direct visualization remains UNKNOWN for the bare candidate configuration."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

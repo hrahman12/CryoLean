@@ -1,0 +1,44 @@
+{
+  "configuration_id": "expc_leiden_cf1k_si5_2020",
+  "rows": [
+    {
+      "key": "module.snspd_detection",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Cryogenic breadboard detectors are a quadrant photodetector, a high-bandwidth photodetector and a transmission photodiode (plus an external InGaAs camera); no superconducting nanowire detector",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The reflected light is detected by a high-bandwidth photodetector PD. The signal can be used for a Pound-Drever-Hall-type lock (PDH), not implemented here. The light transmitted by the resonator is split by a beam splitter. One part is detected by a photodiode installed below the experimental plate",
+      "document_title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112 (arXiv:2004.01552v3)",
+      "source_url": "https://arxiv.org/html/2004.01552v3",
+      "location": "Section III.2 'Cryogenic optical setup', paragraph describing the breadboard beam path and Fig. 5 legend (cached research/v5/cache/7fcceddad2c0642d.txt, lines ~370-401)",
+      "reasoning": "The record's configuration is defined as exactly this published apparatus. Section III.2 enumerates every detector on the 116 mm x 140 mm cryogenic breadboard (QPD for beam position, high-bandwidth PD for reflection, photodiode for transmission) and the room-temperature InGaAs camera outside the cryostat; Fig. 5 legend lists the same parts. The apparatus is an optical frequency reference (abstract: 'A system providing an optical frequency with an instability comparable to that of a hydrogen maser'), interrogated at 100 nW-1 uW with analog photodiodes. No superconducting nanowire single-photon detector, bias or readout electronics is part of it; a full-text search of the paper for 'nanowire', 'single-photon', 'SNSPD' found nothing. This is scope-based absence from the positive component description, not silence."
+    },
+    {
+      "key": "module.photon_timing",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Detector signal sampled by a 14-bit DAQ card at 40 kS/s; no time-correlated photon counting / time tagger",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "In the linescan technique, each center frequency determination is carried out by sweeping the frequency of the laser light over the resonance line with an AOM. The light transmitted through the resonator was detected by the cryogenic detector and the signal sampled by a 14-bit DAQ card with 40 kS/s.",
+      "document_title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112 (arXiv:2004.01552v3)",
+      "source_url": "https://arxiv.org/html/2004.01552v3",
+      "location": "Section III.3 'Optical frequency stabilization system and procedures', linescan paragraph (cached research/v5/cache/7fcceddad2c0642d.txt, lines ~460-470); Fig. 6 legend lists PD, A/D converter, PC, frequency comb, AOM, DDS",
+      "reasoning": "Section III.3 and Fig. 6 describe the full readout and measurement chain: analog photodiode signals digitized by a 14-bit, 40 kS/s DAQ card, an AOM driven by a DDS, a frequency comb referenced to a hydrogen maser and a frequency counter for the comb repetition rate. Timing here is optical-frequency metrology, not photon arrival-time measurement; a 40 kS/s analog sampler is not a TCSPC or time-tagging instrument. The paper's own description of the apparatus therefore positively establishes there is no photon-timing module. (Quote cleaned of duplicated LaTeX rendering in the HTML: '1414-bit' / '4040 kS/s' render as 14-bit / 40 kS/s.)"
+    },
+    {
+      "key": "module.calibrated_photon_flux",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Optical frequency reference interrogated at 100 nW - 1.3 uW; no calibrated attenuation path or detector-under-test characterization setup",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "A system providing an optical frequency with an instability comparable to that of a hydrogen maser is presented. It consists of a 5 cm long, vertically oriented silicon optical resonator operated at temperatures between 1.5 K and 3.6 K in a closed-cycle cryostat with low-temperature Joule-Thomson stage.",
+      "document_title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112 (arXiv:2004.01552v3)",
+      "source_url": "https://arxiv.org/html/2004.01552v3",
+      "location": "Abstract (cached research/v5/cache/7fcceddad2c0642d.txt, line 109); optical chain in Sections III.2-III.3 and Figs. 5-6",
+      "reasoning": "The vocabulary defines this key as an installed calibrated optical power measurement and attenuation path for detector characterization. The paper positively describes the apparatus as an optical frequency reference (silicon resonator interrogated by a ULE-prestabilized laser through a fiber, AOM and free-space breadboard) and enumerates its full optical chain; there is no detector under test and no calibrated attenuator chain to deliver a known single-photon-level flux. The paper does report incident interrogation powers (200 nW, 1.3 uW, 520 nW, 550-100 nW, about 1 mW during PDH alignment), so laser power was monitored, but that is resonator-interrogation power, not a calibrated photon-flux source for detector characterization. Scope-based absence; the quote is cleaned of duplicated LaTeX rendering ('55 cm', '1.51.5 K' render as 5 cm, 1.5 K)."
+    }
+  ]
+}

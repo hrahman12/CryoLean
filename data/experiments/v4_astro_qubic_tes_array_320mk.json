@@ -1,0 +1,131 @@
+{
+ "id": "astro_qubic_tes_array_320mk",
+ "name": "Characterization of a 256-pixel NbSi TES bolometer array (CMB, 150 GHz) at ~320 mK with 128:1 SQUID time-domain multiplexing (QUBIC)",
+ "plain_name": "Characterize an array of ultra-sensitive heat detectors for measuring the Big Bang's afterglow",
+ "industry": "astronomy_and_astrophysics",
+ "description": "QUBIC TES focal-plane tests: 256 NbSi transition-edge sensors (Tc ~410 mK) cooled to ~320 mK by a He-3 fridge in a pulse-tube cryostat, read out by 128 SQUIDs at 1 K inside a magnetic shield and a cryogenic SiGe ASIC at ~40 K; Tc, I-V, P-T and NEP are measured, with dark-pixel Tc first measured in an Oxford Instruments dilution fridge. The focal plane is 110 mm in diameter.",
+ "keywords": [
+  "Characterize an array of ultra-sensitive heat detectors for measuring the Big Bang's afterglow",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "M. Piat, G. Stankowiak, E. S. Battistelli et al., 'QUBIC IV: Performance of TES Bolometers and Readout Electronics', arXiv:2101.06787v2 (2021), JCAP 2022",
+   "url": "https://arxiv.org/html/2101.06787v2",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "QUBIC cryostat (pulse tubes + 3He fridge)",
+  "Oxford Instruments dilution fridge (dark-pixel test bed)",
+  "NbSi TES array P87",
+  "SQMUX128evo SiGe ASIC",
+  "Cryophy magnetic shield"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 320,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The TES bath must reach ~320 mK, below the ~410 mK critical temperature, for the sensors to operate in electro-thermal feedback.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 110,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The TES focal plane is 110 mm in diameter and must fit on the sub-K stage.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_1"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "TES bias and SQUID multiplexer lines run from the cold stages to the warm FPGA readout.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the SQUID boxes at 1 K are surrounded by a Cryophy magnetic shield; a test cryostat needs equivalent shielding for the SQUIDs.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_3"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 412,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: dark-pixel critical temperature (~412 mK) is mapped by slowly raising the temperature through the transition, so the stage must regulate around 412 mK.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_4"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the QUBIC cryostat is pulse-tube cooled (dry); pulse-tube microphonics were the dominant excess noise.",
+   "evidence_ids": [
+    "v4e_astro_qubic_tes_array_320mk_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

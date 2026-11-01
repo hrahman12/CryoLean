@@ -1,0 +1,151 @@
+{
+ "records": [
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "optical_access",
+   "kind": "value",
+   "value": {
+    "kind": "flag",
+    "b": true
+   },
+   "install": "optional_not_installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Optical access to the DynaCool sample space is a purchasable option, the Optical Multi-Function Probe (OMFP, DynaCool model D725A/B), with an axial free-beam optical window (SM1, 1 in.). None of the three configurations includes the OMFP, so optical access is optional_not_installed.",
+   "value_as_printed": "affording the user optical access to experiments within the variable temperature and magnetic field environment",
+   "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+   "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+   "location": "PDF page 27 (printed 25), section 'Multi-Function Probes / Optical Multi-Function Probe (OMFP)', PPMS DynaCool (D725A/B)",
+   "quote": "The Optical Multi-Function Probe (OMFP) offers unprecedented versatility in affording the user optical access to experiments within the variable temperature and magnetic field environment of the PPMS® family of instruments.",
+   "accessed": "2026-11-01",
+   "reasoning": "The options brochure lists the OMFP under 'PPMS DynaCool (D725A/B)', so it is an orderable DynaCool option that provides optical access. The configuration names (ETO+Resistivity; ETO+VSM+HC; VSM only) do not include it. The standard sample chamber is closed by a KF-40 blank flange and baffle set (DynaCool User's Manual 1307-110 Rev. D1, section 2.3.3), so the base system has no window. Caveat: the same page gives the OMFP temperature range as 350 to 5 K (DynaCool), not 1.8 to 400 K. Its 5 K base 'represents the minimum achievable stable temperature under 10 mW of radiant flux'. An optical experiment needing T < 5 K would still fail with the OMFP fitted. Other optical routes in the same brochure: Photoconductivity MFP (D790A/B, 1 mm core optical fibers, PDF p. 25/printed 23) and VSM Fiber Optic Sample Holder (D320, max sample 1.6 mm x 1.6 mm, PDF p. 13). This record replaces the current 'unknown' value (ev_qd_0011).",
+   "found_via": "curl download of qdusa.com 1084-500.pdf + pdftotext (page 27 extracted on its own); confirmed via Tavily search and qdusa.com/products/dynacool.html",
+   "confidence": "high"
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "section_thickness.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "The PPMS DynaCool has no section-thickness setting range (a microtome function). Quantum Design defines the PPMS family as an open-architecture, variable-temperature and magnetic-field measurement platform. Its complete specification (1307-010 PDF p. 4: temperature control, magnet options, 2.5 cm clear-bore sample space) and its full options list (1084-500: electrical transport, magnetometry, thermal, sub-Kelvin, multi-function/optical probes) contain no microtome, sectioning blade, cryochamber or specimen head. The capability is outside the instrument category.",
+   "value_as_printed": "",
+   "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+   "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+   "location": "PDF page 3 (printed 1), introductory section 'PPMS Family'; complete option list in Table of Contents (PDF page 2)",
+   "quote": "The Quantum Design Physical Property Measurement System (PPMS) family of instruments represents a unique concept in laboratory equipment: an open architecture, variable temperature and magnetic field system, designed to perform a variety of automated measurements.",
+   "accessed": "2026-11-01",
+   "reasoning": "The key is defined in capability_vocabulary.json for microtome/sectioning cryostats. This is an inference from the instrument category plus a complete spec and options list, not an explicit 'no microtome' sentence. For temperature.chamber.range and temperature.specimen_head.range, the DynaCool sample chamber itself spans 1.8 to 400 K, already captured under temperature.range (ev_qd_0005). The absence refers only to the sectioning-cryostat chamber/specimen-head meaning of these keys. bio_cryosection_frozen_tissue is blocked regardless by the absent section_thickness.range.",
+   "found_via": "curl download of qdusa.com 1084-500.pdf and 1307-010.pdf + pdftotext; full option list and spec table reviewed",
+   "confidence": "high"
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "temperature.chamber.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "The PPMS DynaCool has no sectioning-cryostat cryochamber temperature range. Quantum Design defines the PPMS family as an open-architecture, variable-temperature and magnetic-field measurement platform. Its complete specification (1307-010 PDF p. 4: temperature control, magnet options, 2.5 cm clear-bore sample space) and its full options list (1084-500: electrical transport, magnetometry, thermal, sub-Kelvin, multi-function/optical probes) contain no microtome, sectioning blade, cryochamber or specimen head. The capability is outside the instrument category.",
+   "value_as_printed": "",
+   "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+   "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+   "location": "PDF page 3 (printed 1), introductory section 'PPMS Family'; complete option list in Table of Contents (PDF page 2)",
+   "quote": "The Quantum Design Physical Property Measurement System (PPMS) family of instruments represents a unique concept in laboratory equipment: an open architecture, variable temperature and magnetic field system, designed to perform a variety of automated measurements.",
+   "accessed": "2026-11-01",
+   "reasoning": "The key is defined in capability_vocabulary.json for microtome/sectioning cryostats. This is an inference from the instrument category plus a complete spec and options list, not an explicit 'no microtome' sentence. For temperature.chamber.range and temperature.specimen_head.range, the DynaCool sample chamber itself spans 1.8 to 400 K, already captured under temperature.range (ev_qd_0005). The absence refers only to the sectioning-cryostat chamber/specimen-head meaning of these keys. bio_cryosection_frozen_tissue is blocked regardless by the absent section_thickness.range.",
+   "found_via": "curl download of qdusa.com 1084-500.pdf and 1307-010.pdf + pdftotext; full option list and spec table reviewed",
+   "confidence": "medium"
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "temperature.specimen_head.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "The PPMS DynaCool has no sectioning-cryostat specimen/object-head temperature range. Quantum Design defines the PPMS family as an open-architecture, variable-temperature and magnetic-field measurement platform. Its complete specification (1307-010 PDF p. 4: temperature control, magnet options, 2.5 cm clear-bore sample space) and its full options list (1084-500: electrical transport, magnetometry, thermal, sub-Kelvin, multi-function/optical probes) contain no microtome, sectioning blade, cryochamber or specimen head. The capability is outside the instrument category.",
+   "value_as_printed": "",
+   "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+   "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+   "location": "PDF page 3 (printed 1), introductory section 'PPMS Family'; complete option list in Table of Contents (PDF page 2)",
+   "quote": "The Quantum Design Physical Property Measurement System (PPMS) family of instruments represents a unique concept in laboratory equipment: an open architecture, variable temperature and magnetic field system, designed to perform a variety of automated measurements.",
+   "accessed": "2026-11-01",
+   "reasoning": "The key is defined in capability_vocabulary.json for microtome/sectioning cryostats. This is an inference from the instrument category plus a complete spec and options list, not an explicit 'no microtome' sentence. For temperature.chamber.range and temperature.specimen_head.range, the DynaCool sample chamber itself spans 1.8 to 400 K, already captured under temperature.range (ev_qd_0005). The absence refers only to the sectioning-cryostat chamber/specimen-head meaning of these keys. bio_cryosection_frozen_tissue is blocked regardless by the absent section_thickness.range.",
+   "found_via": "curl download of qdusa.com 1084-500.pdf and 1307-010.pdf + pdftotext; full option list and spec table reviewed",
+   "confidence": "medium"
+  }
+ ],
+ "not_found": [
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc"
+   ],
+   "key": "sample.length.max",
+   "searched": "ETO User's Manual 1084-700 Rev B2 (KTH mirror) sec. 3.4 and 5.2: only 'There is a space in the center of the puck for physically mounting your sample substrate' and 'more exotic mounting methods may be necessary for larger samples', no number. Resistivity Option User's Manual 1076-100 Rev A0 (NJIT mirror) sec. 3.2: 'position the sample near the center of the puck', no number. DynaCool User's Manual 1307-110 Rev D1 sec. 2.3.1: puck is a '2.3 cm (0.91 inch) diameter disk', the overall puck size (already ev_qd_0020), not a stated sample limit. Brochures 1084-500 Rev J0 (ETO p.4, DC Resistance p.5) and 1307-010; QD app note 'Recommended Materials for Electrical Transport Sample Mounting' (siteDocs/appNotes/Transport_Supplies.pdf); app notes 1076-304, 1084-752, 1085-156; QD consumables listing (P102 DC Resistivity/ETO puck, no dimensions); Lune paper search (nothing relevant). Only non-manufacturer facility web pages give informal figures: Technion QMR Center ('~1cm by ~1.5cm' for the DC resistivity holder) and Texas State CRO ('Up to 1 in diameter (standard: 0.4 in x 0.5 in)'). Neither is an admissible evidence class, so neither is recorded."
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc"
+   ],
+   "key": "sample.width.max",
+   "searched": "Same sources as sample.length.max (ETO manual 1084-700, Resistivity manual 1076-100, DynaCool manual 1307-110, brochures 1084-500/1307-010, QD transport-mounting app note, QD consumables page, Lune). No manufacturer-stated transport puck sample width."
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc"
+   ],
+   "key": "sample.height.max",
+   "searched": "ETO manual 1084-700, Resistivity manual 1076-100, DynaCool manual 1307-110 (sec. 2.3.3 baffle set, 1.5.2 puck installation), brochures 1084-500/1307-010: no stated maximum sample height or thickness above the transport puck. The field-uniformity rows put the magnet centre 4 cm above the puck surface; that is not a sample-height limit."
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "sample.diameter.max",
+   "searched": "No general sample-diameter limit is stated for the transport pucks (sources as for sample.length.max). Documented values: chamber clear bore 2.5 cm (ev_qd_0009, stored as sample.bore_diameter), puck disk 2.3 cm, VSM coil bore 6.3 mm (stored as sample.vsm.diameter.max), FOSH holder 1.6 mm (option not installed). Mapping any of these to sample.diameter.max would be an inference, so none is recorded."
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "sample.length.max",
+   "searched": "VSM-only configuration: the documented limits are module-specific (sample.vsm.diameter.max 6.3 mm and sample.vsm.length.max 5 mm already present). No general sample.length.max applies. The 1084-500 VSM page and FOSH page (max length 1.6 mm, option not installed) were checked."
+  },
+  {
+   "configuration_ids": [
+    "qd_dynacool_12T_vsm"
+   ],
+   "key": "sample.width.max",
+   "searched": "Same as sample.length.max for the VSM-only configuration: only the VSM coil-bore (6.3 mm) and holder limits exist, and they are already stored under sample.vsm.* keys."
+  }
+ ],
+ "corrections": []
+}

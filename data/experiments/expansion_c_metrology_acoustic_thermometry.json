@@ -1,0 +1,93 @@
+{
+  "id": "expc_metrology_acoustic_thermometry",
+  "name": "Primary helium acoustic thermometry near the neon triple point (Pan et al.2019 runs)",
+  "plain_name": "Calibrate a resistance thermometer using the speed of sound in helium",
+  "industry": "metrology_and_calibration",
+  "description": "Calibrate a resistance thermometer using the speed of sound in helium. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "cryogenic_calibration",
+    "metrology_and_calibration"
+  ],
+  "sources": [
+    {
+      "id": "src_agt",
+      "citation": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "reported_neon_triple_point_result",
+      "as_printed": "24.55515 ±0.00024 K (result, not control range)",
+      "normalized": null,
+      "evidence_id": "expc_agt_neon_result"
+    },
+    {
+      "key": "pressure.operating.range",
+      "as_printed": "30–120 kPa",
+      "normalized": null,
+      "evidence_id": "expc_agt_pressure"
+    }
+  ],
+  "reported_equipment": [
+    "Cryomech PT405",
+    "F18 bridge",
+    "helium-filled quasi-spherical resonator"
+  ],
+  "requirements": [
+    {
+      "key": "module.acoustic_gas_thermometry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A purpose-built acoustic primary thermometer is essential, rather than an arbitrary cold sample chamber. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_agt_resonator"
+      ]
+    },
+    {
+      "key": "module.resistance_thermometry_bridge",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The transfer-thermometer bridge is part of the published calibration apparatus. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_agt_bridge"
+      ]
+    },
+    {
+      "key": "pressure.operating.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "30000",
+          "unit": "Pa"
+        },
+        "hi": {
+          "value": "120000",
+          "unit": "Pa"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Reproduce the documented helium pressure series. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_agt_pressure"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The exact T* control setpoint, gas purity, acoustic boundary-layer corrections and complete uncertainty budget must be reviewed from the paper. The neon result is deliberately not a temperature capability.",
+    "This profile checks the documented apparatus function and pressure series; it does not certify traceability, uncertainty or a new thermodynamic temperature."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

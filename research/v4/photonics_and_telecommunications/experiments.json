@@ -1,0 +1,821 @@
+{
+ "industry": "photonics_and_telecommunications",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "photon_mosi_heralded_qubit_amplifier",
+   "name": "Heralded amplification of telecom time-bin and Fock-state qubits with 70%-efficient MoSi SNSPDs at 2.5 K in a closed-cycle cryocooler",
+   "plain_name": "Boost a fragile light-based quantum bit sent through lossy fibre using super-cold photon counters",
+   "industry": "photonics_and_telecommunications",
+   "description": "All-fibre heralded qubit amplifier at 1550 nm (Bruno et al., Geneva/NIST/JPL): four MoSi superconducting nanowire single-photon detectors (D1-D4) with 70% system detection efficiency, operated at 2.5 K in a two-stage closed-cycle cryocooler, register the 3- and 4-fold coincidences that herald the teleportation-based amplification.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 2500,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The MoSi SNSPDs reach their 70% efficiency only at T < 2.5 K, so the detector stage must reach 2.5 K or below.",
+     "source_url": "https://arxiv.org/pdf/1507.03210",
+     "document_title": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210, 2015)",
+     "location": "p. 2, Fig. 2 caption",
+     "quote": "We use MoSi SNSPDs with 70% detection efficiency at 1550 nm, at a temperature T < 2.5 K [27].",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Each of the four nanowire detectors (D1-D4) must be current-biased and read out electrically to record the 3- and 4-fold heralding coincidences.",
+     "source_url": "https://arxiv.org/pdf/1507.03210",
+     "document_title": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210, 2015)",
+     "location": "p. 2, Fig. 2 caption",
+     "quote": "The amplification is heralded by a 3-fold coincidence given by a click in the detector D1, which heralds the input photon, followed by D2 and D3, heralding its teleportation.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the detectors were designed for and operated in a two-stage closed-cycle cryocooler (no liquid-helium bath).",
+     "source_url": "https://arxiv.org/pdf/1507.03210",
+     "document_title": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210, 2015)",
+     "location": "Methods, 'Detectors'",
+     "quote": "The MoSi detectors were fabricated to obtain maximum efficiency at a wavelength of 1550 nm and for operation at 2.5 K in a two-stage closed-cycle cryocooler.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210, 2015)",
+     "url": "https://arxiv.org/pdf/1507.03210",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "MoSi SNSPDs",
+    "two-stage closed-cycle cryocooler"
+   ]
+  },
+  {
+   "id": "photon_microstrip_snspd_sub_kelvin",
+   "name": "System detection efficiency of a NbN superconducting microstrip single-photon detector at 1550 nm at 0.84 K (adsorption refrigerator), with a 2.1 K G-M cryocooler cross-check",
+   "plain_name": "Test a wide-strip superconducting photon counter below 1 kelvin so it catches over 90% of telecom photons",
+   "industry": "photonics_and_telecommunications",
+   "description": "Xu et al. (SIMIT) characterise a fibre-coupled NbN microstrip detector (50 um active diameter) at two base temperatures: 0.84 K in an adsorption refrigerator, where the SDE reaches ~92.2% at 1550 nm, and 2.1 K in a compact closed-cycle G-M cryocooler (SDE > 70%). The detector is biased and read out through a cryogenic coaxial cable and a room-temperature bias tee.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 840,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The >90% system detection efficiency (near-saturated internal efficiency) was obtained at 0.84 K; reaching that temperature is needed to reproduce the headline result.",
+     "source_url": "https://arxiv.org/pdf/2101.05407",
+     "document_title": "Superconducting microstrip single-photon detector with system detection efficiency over 90% at 1550 nm (Xu et al., arXiv:2101.05407)",
+     "location": "Section 3 (Measurements and results), first paragraph",
+     "quote": "The SMSPDs are characterized at two different base temperatures: (1) 0.84 K in an adsorption refrigerator and (2) 2.1 K in a compact closed-cycle G-M cryocooler.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The detector is DC-biased and its RF pulses are read out through a cryogenic coaxial line to the bias tee.",
+     "source_url": "https://arxiv.org/pdf/2101.05407",
+     "document_title": "Superconducting microstrip single-photon detector with system detection efficiency over 90% at 1550 nm (Xu et al., arXiv:2101.05407)",
+     "location": "Section 3, first paragraph",
+     "quote": "The detector was then biased and read out through a cryogenic coaxial cable, connecting to a DC and RF output port of a bias tee (ZX85-12G-S+, Mini Circuit Inc.) placed at room temperature.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the paper also qualifies the detector (SDE > 70%) in a 2.1 K closed-cycle cryocooler, the practical deployment configuration.",
+     "source_url": "https://arxiv.org/pdf/2101.05407",
+     "document_title": "Superconducting microstrip single-photon detector with system detection efficiency over 90% at 1550 nm (Xu et al., arXiv:2101.05407)",
+     "location": "Abstract",
+     "quote": "Furthermore, the detector's SDE is over 70% when operated at a 2.1-K closed-cycle cryocooler.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Superconducting microstrip single-photon detector with system detection efficiency over 90% at 1550 nm (Xu et al., arXiv:2101.05407)",
+     "url": "https://arxiv.org/pdf/2101.05407",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "adsorption refrigerator",
+    "compact closed-cycle G-M cryocooler",
+    "bias tee (ZX85-12G-S+, Mini Circuit Inc.)",
+    "LNA-650, RF Bay Inc.",
+    "SR400, SRS Inc.",
+    "81624B, Keysight Inc."
+   ]
+  },
+  {
+   "id": "photon_qkd_250km_sspd",
+   "name": "Coherent-one-way quantum key distribution over 250 km of ultra-low-loss fibre with NbN SSPDs at 2.5 K in a cryogen-free closed-cycle cryostat",
+   "plain_name": "Send secret quantum encryption keys over 250 km of optical fibre using cold superconducting detectors",
+   "industry": "photonics_and_telecommunications",
+   "description": "Stucki et al. (Geneva/Corning) run a 625 MHz COW QKD prototype over 250 km of SMF-28 ULL fibre; Bob uses two fibre-coupled NbN meander SSPDs operated at 2.5 K in a cryogen-free pulse-tube cryostat, biased at 26.5 uA for 2.65% efficiency at a 5 Hz dark-count rate.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 2500,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The detector efficiency/dark-count trade-off used for the 250 km key exchange was characterised and operated at 2.5 K.",
+     "source_url": "https://arxiv.org/pdf/0903.3907",
+     "document_title": "High rate, long-distance quantum key distribution over 250km of ultra low loss fibres (Stucki et al., arXiv:0903.3907, New J. Phys. 2009)",
+     "location": "Section 2, Figure 3 caption",
+     "quote": "Figure 3. Dark count rate vs detection efficiency at 1550 nm and 2.5 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Two SSPDs (data line and monitoring line) must be current-biased and read out electrically.",
+     "source_url": "https://arxiv.org/pdf/0903.3907",
+     "document_title": "High rate, long-distance quantum key distribution over 250km of ultra low loss fibres (Stucki et al., arXiv:0903.3907, New J. Phys. 2009)",
+     "location": "Section 2, SSPD detectors",
+     "quote": "In our experiment, over 250 km, we used this detector for the data line, with a bias current of 26.5 µA, leading to quantum efficiency of 2.65% at a very low noise rate of 5 Hz.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the prototype deliberately used a cryogen-free closed-cycle cryostat instead of the usual liquid-helium cooling for practical field integration.",
+     "source_url": "https://arxiv.org/pdf/0903.3907",
+     "document_title": "High rate, long-distance quantum key distribution over 250km of ultra low loss fibres (Stucki et al., arXiv:0903.3907, New J. Phys. 2009)",
+     "location": "Section 2, SSPD detectors",
+     "quote": "As part of the EU project SINPHONIA [11] we took a step towards their more practical integration and implemented these detectors in a cryogen-free, closed cycle, cryostat system (figure 2b).",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "High rate, long-distance quantum key distribution over 250km of ultra low loss fibres (Stucki et al., arXiv:0903.3907, New J. Phys. 2009)",
+     "url": "https://arxiv.org/pdf/0903.3907",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Closed cycle pulse tube cryostat",
+    "fibre-coupled superconducting single photon detectors (SSPDs)"
+   ]
+  },
+  {
+   "id": "photon_gr468_temperature_cycling",
+   "name": "Telcordia GR-468-CORE test 5.20 temperature cycling of optoelectronic devices (-40 to 70 C or 85 C, >= 10 C/min, 100-1,000 cycles)",
+   "plain_name": "Repeatedly swing laser and optical-network modules between -40 C and +70 C to prove they survive",
+   "industry": "photonics_and_telecommunications",
+   "description": "Reliability qualification of laser modules and other optoelectronic devices per Telcordia GR-468-CORE paragraph 5.20: air temperature cycling from -40 C to +70 C (or +85 C) per MIL-STD-883 Method 1010 for 100 to 1,000 cycles with a minimum ramp rate of 10 C/min, in a thermal-cycling chamber.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 343150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Test 5.20 cycles between -40 C (233.15 K) and +70 C (343.15 K).",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-468",
+     "document_title": "Telecordia GR-468-CORE for optoelectronic systems (ESPEC North America application page)",
+     "location": "Table, paragraph 5.20 row (cells joined in reading order)",
+     "quote": "Temperature cycling -40 to 70°C (or 85°C) per Mil-Std 883, method 1010 100 to 1,000 cycles",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 358150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the alternative upper limit of +85 C (358.15 K).",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-468",
+     "document_title": "Telecordia GR-468-CORE for optoelectronic systems (ESPEC North America application page)",
+     "location": "Table, paragraph 5.20 row (cells joined in reading order)",
+     "quote": "Temperature cycling -40 to 70°C (or 85°C) per Mil-Std 883, method 1010 100 to 1,000 cycles",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 10000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "GR-468 5.20 requires a minimum temperature ramp rate of 10 C/min (10 K/min).",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-468",
+     "document_title": "Telecordia GR-468-CORE for optoelectronic systems (ESPEC North America application page)",
+     "location": "Introductory paragraph quoting GR-468 5.20",
+     "quote": "5.20 states: The procedure should agree with Method 1010 of MIL-STD 883C, with a minimum temperature ramp rate of 10°C/min.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Telecordia GR-468-CORE for optoelectronic systems (ESPEC North America application page)",
+     "url": "https://espec.com/na/applications/family/telecordia_gr-468",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "TSE-12-A",
+    "Platinum",
+    "TSA",
+    "ETS"
+   ]
+  },
+  {
+   "id": "photon_gr1221_cyclic_moisture",
+   "name": "Telcordia GR-1221-CORE 6.2.8 cyclic moisture resistance of passive fibre-optic components (25-75 C at 85-95% RH with a -40 C excursion every 5 sub-cycles)",
+   "plain_name": "Expose passive fibre-optic parts to humid hot-cold cycles with a -40 C freeze every fifth cycle",
+   "industry": "photonics_and_telecommunications",
+   "description": "Reliability test for passive fibre-optic components (couplers, WDMs, isolators) per Telcordia GR-1221-CORE paragraph 6.2.8: temperature cycling between 25 and 75 C at 85-95% relative humidity, with one -40 C cycle per 5 sub-cycles (MIL-STD-883 Method 1004), in a humidity chamber with -40 C capability.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 348150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The chamber must reach the -40 C (233.15 K) excursion and the 75 C (348.15 K) upper sub-cycle temperature.",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-1221",
+     "document_title": "Telecordia GR-1221-CORE for passive fiber optic component reliability (ESPEC North America application page)",
+     "location": "Table, paragraph 6.2.8 row (cells joined in reading order)",
+     "quote": "Cyclic Moisture Resistance Test 25 to 75°C cycling with 85-95%RH. One -40°C cycle per 5 sub-cycles (Mil-Std 883, method 1004)",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "humidity.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 85,
+       "unit": "percent"
+      },
+      "hi": {
+       "value": 95,
+       "unit": "percent"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The humid sub-cycles run at 85-95% relative humidity, so controlled humidity over that band is required.",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-1221",
+     "document_title": "Telecordia GR-1221-CORE for passive fiber optic component reliability (ESPEC North America application page)",
+     "location": "Table, paragraph 6.2.8 row (cells joined in reading order)",
+     "quote": "Cyclic Moisture Resistance Test 25 to 75°C cycling with 85-95%RH. One -40°C cycle per 5 sub-cycles (Mil-Std 883, method 1004)",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "absent"
+     },
+     "mandatory": false,
+     "rationale": "Optional: the test is an atmospheric humidity exposure in a humidity chamber; an evacuated sample space cannot hold 85-95% RH air.",
+     "source_url": "https://espec.com/na/applications/family/telecordia_gr-1221",
+     "document_title": "Telecordia GR-1221-CORE for passive fiber optic component reliability (ESPEC North America application page)",
+     "location": "Table, paragraph 6.2.8 row, recommended reach-in chambers",
+     "quote": "Any humidity model with -40 capability",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Telecordia GR-1221-CORE for passive fiber optic component reliability (ESPEC North America application page)",
+     "url": "https://espec.com/na/applications/family/telecordia_gr-1221",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "SH-241",
+    "SH-261",
+    "SH-641",
+    "SH-661"
+   ]
+  },
+  {
+   "id": "photon_cryo_ybyag_kw_amplifier",
+   "name": "Joule-class picosecond CPA with cryogenically cooled (77 K) Yb:YAG active-mirror amplifiers at 0.5-1 kW average power",
+   "plain_name": "Amplify a kilowatt-class picosecond laser using crystals chilled by liquid nitrogen",
+   "industry": "photonics_and_telecommunications",
+   "description": "Reagan et al. (Colorado State) amplify stretched pulses in Yb:YAG active mirrors cooled to 77 K by flowing cryogenic liquid; the 100-mJ stage sits on a cryogenic cooling manifold inside a vacuum chamber, and the joule-level stage uses 30 mm x 30 mm x 2 mm composite active mirrors, giving 1.5 J at 500 Hz and 1 J at 1 kHz.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The active mirrors are cooled to 77 K, where Yb:YAG becomes four-level with higher cross-section and thermal conductivity.",
+     "source_url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "document_title": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "location": "Section 2, 100-mJ-level amplifier",
+     "quote": "The highly reflective face of the active mirror is cooled by direct contact with flowing cryogenic liquid cooled to 77 K[37].",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cryogenic cooling manifold carrying the gain medium is enclosed in a vacuum chamber.",
+     "source_url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "document_title": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "location": "Section 2, 100-mJ-level amplifier",
+     "quote": "A 5 mm thick, 2 at. % Yb:YAG active mirror is mounted on a cryogenic cooling manifold enclosed in a vacuum chamber.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Free-space pump and seed beams must reach the cooled active mirrors and exit after each pass, so the cold enclosure needs optical windows.",
+     "source_url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "document_title": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "location": "Section 2, Joule-level amplifier",
+     "quote": "Seed pulses are injected into the amplifier though a thin film polarizer (TFP) and are directed to pass through each active mirror twice.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 42427,
+       "unit": "um"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Joule-level active mirrors are 30 mm x 30 mm; the circumscribing diameter is 42.43 mm (rounded up to 42427 um).",
+     "source_url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "document_title": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "location": "Section 2, Joule-level amplifier",
+     "quote": "The active mirrors are composites, consisting of a 30 mm × 30 mm × 2 mm thick 3 at. % Yb:YAG section optically bonded on the four lateral faces to an absorbing Cr4+:YAG cladding",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source cools the Yb:YAG disks with liquid nitrogen; a cryocooler with sufficient lift at 77 K could substitute.",
+     "source_url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "document_title": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "location": "Section 2, laser front end",
+     "quote": "For the 1 kHz operation we report here, the disk assembly was cooled by liquid nitrogen to 77 K.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+     "url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "cryogenic cooling manifold enclosed in a vacuum chamber",
+    "single cryogenic cooling head",
+    "Yb:YAG active mirror regenerative amplifier",
+    "Yb:KYW oscillator"
+   ]
+  },
+  {
+   "id": "photon_ybyag_gain_spectroscopy_80_300k",
+   "name": "Gain cross-section and thermo-optic constants of Yb:YAG measured from 80 to 300 K in an LN2-cooled vacuum cryostat",
+   "plain_name": "Measure how a laser crystal's light amplification changes as it is cooled from room temperature to 80 K",
+   "industry": "photonics_and_telecommunications",
+   "description": "Mukhin et al. (IAP RAS) braze a 0.3 mm Yb:YAG crystal to a copper plate in a vacuum cryostat with a liquid-nitrogen-cooled vessel, pump it at ~938 nm through an optical window and record luminescence spectra and thermo-optic constants between 80 and 300 K.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 80000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 300000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Spectral and thermo-optical characteristics were measured across 80-300 K.",
+     "source_url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+     "document_title": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+     "location": "Abstract",
+     "quote": "The spectral and thermooptical characteristics of an Yb:YAG crystal were measured in the 80–300 K temperature range.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cryostat was a vacuum chamber in which the crystal is conductively cooled.",
+     "source_url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+     "document_title": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+     "location": "Section 2, measurement setup (Fig. 1a)",
+     "quote": "The cryostat was a vacuum chamber with a liquid nitrogen-cooled vessel, which was in direct thermal contact with the specimen under investigation.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The pump beam enters and the luminescence leaves through an optical window.",
+     "source_url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+     "document_title": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+     "location": "Section 2, measurement setup (Fig. 1a)",
+     "quote": "pump radiation was directed onto the crystal through an optical window.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source cryostat used a liquid-nitrogen-cooled vessel.",
+     "source_url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+     "document_title": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+     "location": "Section 2, measurement setup (Fig. 1a)",
+     "quote": "The cryostat was a vacuum chamber with a liquid nitrogen-cooled vessel, which was in direct thermal contact with the specimen under investigation.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+     "url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "vacuum chamber with a liquid nitrogen-cooled vessel"
+   ]
+  },
+  {
+   "id": "photon_fibre_pigtailed_qd_source",
+   "name": "Operation of a fibre-pigtailed, bias-tuned quantum-dot micropillar single-photon source in a compact 2.4 K two-stage G-M cryocooler",
+   "plain_name": "Run a plug-and-play fibre-connected quantum-dot light source inside a compact 2.4 K cooler",
+   "industry": "photonics_and_telecommunications",
+   "description": "Margaria et al. (C2N/Quandela) directly attach a single-mode fibre to a deterministic QD micropillar whose p-i-n junction is bias-tuned through electrical contact ridges, then operate it in a rack-mounted compact two-stage Gifford-McMahon cryocooler at 2.4 K for ten-hour stability runs (fibre brightness 20.8%, indistinguishability 97.5%).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 2400,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The pigtailed source was operated at the cryocooler base temperature of 2.4 K (the 5 K free-space setup gave lower indistinguishability).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354681/",
+     "document_title": "Efficient fibre-pigtailed source of indistinguishable single photons (Margaria et al., Nature Communications 16:7553, 2025)",
+     "location": "Results, 'Fibre pigtailing'",
+     "quote": "After completion of the direct coupling process, the fibre-pigtailed source is installed in a compact two-stage Gifford-McMahon cryocooler operating at a base temperature of 2.4 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The QD charge state and emission wavelength are set by a bias voltage through electrical contacts on the chip.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354681/",
+     "document_title": "Efficient fibre-pigtailed source of indistinguishable single photons (Margaria et al., Nature Communications 16:7553, 2025)",
+     "location": "Results, device fabrication",
+     "quote": "For bias voltage tuning, each micropillar on the chip is connected to electrical contacts by four narrow ridges37 (Fig. 1a).",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the deployable source runs in a closed-cycle G-M cryocooler without liquid cryogens.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354681/",
+     "document_title": "Efficient fibre-pigtailed source of indistinguishable single photons (Margaria et al., Nature Communications 16:7553, 2025)",
+     "location": "Introduction",
+     "quote": "We demonstrate the successful integration of our source in a compact two-stage Gifford-McMahon cryocooler operating at a base temperature of 2.4 K.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Efficient fibre-pigtailed source of indistinguishable single photons (Margaria et al., Nature Communications 16:7553, 2025)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354681/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "compact two-stage Gifford-McMahon cryocooler",
+    "Single Quantum superconducting nanowires single-photon detectors",
+    "Excelitas single-photon avalanche diodes",
+    "Swabian Instruments time tagger"
+   ]
+  },
+  {
+   "id": "photon_er_linbo3_afc_memory",
+   "name": "Atomic-frequency-comb preparation on Zeeman sub-levels of an Er:Ti:LiNbO3 waveguide at ~0.7 K and 3 kG (telecom quantum memory)",
+   "plain_name": "Prepare a telecom-wavelength quantum memory in an erbium-doped crystal chip at 0.7 K inside a magnetic field",
+   "industry": "photonics_and_telecommunications",
+   "description": "Askarani et al. (Calgary/Delft) cool a fibre-butt-coupled Er3+:Ti4+:LiNbO3 waveguide to about 0.7 K in an adiabatic demagnetization refrigerator, apply up to 5 kG along the c-axis, measure Zeeman-level lifetimes by spectral hole burning (350-800 G) and prepare 0.2-6.4 GHz atomic frequency combs at 1532 nm under 3 kG.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 700,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Long-lived Zeeman population storage requires spin-polarised Er ions at about 0.7 K.",
+     "source_url": "https://arxiv.org/pdf/1907.07780",
+     "document_title": "Persistent atomic frequency comb based on Zeeman sub-levels of an erbium-doped crystal waveguide (Askarani et al., arXiv:1907.07780, 2019)",
+     "location": "Section II, experimental setup",
+     "quote": "which is cooled to a temperature of around 0.7 K using an adiabatic demagnetization refrigerator.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300,
+       "unit": "mT"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All AFCs were prepared under a 3 kG (300 mT) field along the crystal c-axis.",
+     "source_url": "https://arxiv.org/pdf/1907.07780",
+     "document_title": "Persistent atomic frequency comb based on Zeeman sub-levels of an erbium-doped crystal waveguide (Askarani et al., arXiv:1907.07780, 2019)",
+     "location": "Section III, AFC preparation",
+     "quote": "are created under the application of a 3 kG magnetic field (oriented along the crystal c-axis), and feature peak spacings of 50 MHz.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 500,
+       "unit": "mT"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the setup exposed the waveguide to fields up to 5 kG (500 mT).",
+     "source_url": "https://arxiv.org/pdf/1907.07780",
+     "document_title": "Persistent atomic frequency comb based on Zeeman sub-levels of an erbium-doped crystal waveguide (Askarani et al., arXiv:1907.07780, 2019)",
+     "location": "Section II, experimental setup",
+     "quote": "The waveguide is exposed to magnetic fields up to 5 kG oriented parallel to the c-axis of the crystal.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Persistent atomic frequency comb based on Zeeman sub-levels of an erbium-doped crystal waveguide (Askarani et al., arXiv:1907.07780, 2019)",
+     "url": "https://arxiv.org/pdf/1907.07780",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "adiabatic demagnetization refrigerator"
+   ]
+  },
+  {
+   "id": "photon_hts_receiver_frontend_72k",
+   "name": "Miniaturised HTS bandpass-filter + cryogenic LNA receiver front-end operated at 71.8 K on a mini Stirling cryocooler (925 MHz)",
+   "plain_name": "Cool a superconducting radio filter and amplifier to about 72 K for a compact telecom or radar receiver",
+   "industry": "photonics_and_telecommunications",
+   "description": "Bian et al. integrate a YBCO-on-LAO HTS filter (925.2 MHz, 2.7 MHz bandwidth) and a cryogenic low-noise amplifier in a vacuum chamber cooled by a mini Stirling cryocooler of the type used for IR detectors; the microwave devices operate at 71.8 K using 0.325 W of cooling power.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 71800,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The HTS filter and LNA were operated at 71.8 K.",
+     "source_url": "https://consensus.app/papers/details/e75b1157c9505ad9857e7e021c19d3a3/",
+     "document_title": "A miniaturized HTS microwave receiver front-end subsystem for radar and communication applications (Bian et al., Physica C 2010), abstract",
+     "location": "Abstract",
+     "quote": "The microwave devices inside the subsystem are working at 71.8 K with a consumed cooling power of 0.325 W.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cold filter and LNA sit in an evacuated chamber on the cryocooler cold finger.",
+     "source_url": "https://consensus.app/papers/details/e75b1157c9505ad9857e7e021c19d3a3/",
+     "document_title": "A miniaturized HTS microwave receiver front-end subsystem for radar and communication applications (Bian et al., Physica C 2010), abstract",
+     "location": "Abstract",
+     "quote": "The whole front-end subsystem, including a HTS filter, a LNA, a cryocooler and the vacuum chamber, has a size of only φ 120 mm × 175 mm and a weight of only 3.3 kg.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "RF input/output and LNA supply lines must reach the cold filter-amplifier chain to measure gain and return loss.",
+     "source_url": "https://consensus.app/papers/details/e75b1157c9505ad9857e7e021c19d3a3/",
+     "document_title": "A miniaturized HTS microwave receiver front-end subsystem for radar and communication applications (Bian et al., Physica C 2010), abstract",
+     "location": "Abstract",
+     "quote": "The center frequency of this subsystem is 925.2 MHz and the bandwidth is 2.7 MHz (which is a fractional bandwidth of 0.2%), with the gain of 19.75 dB at center frequency",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the front end is cooled by a mini Stirling cryocooler, with no liquid cryogen, for field deployment.",
+     "source_url": "https://consensus.app/papers/details/e75b1157c9505ad9857e7e021c19d3a3/",
+     "document_title": "A miniaturized HTS microwave receiver front-end subsystem for radar and communication applications (Bian et al., Physica C 2010), abstract",
+     "location": "Abstract",
+     "quote": "This paper presents a miniaturized high performance high temperature superconducting (HTS) microwave receiver front-end subsystem, which uses a mini stirling cryocooler to cool a high selective HTS filter and a low noise amplifier (LNA).",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "A miniaturized HTS microwave receiver front-end subsystem for radar and communication applications (Bian et al., Physica C 2010), abstract",
+     "url": "https://consensus.app/papers/details/e75b1157c9505ad9857e7e021c19d3a3/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "mini stirling cryocooler"
+   ]
+  }
+ ],
+ "notes": "Tavily quota was exhausted and the web-search budget ran out mid-task, so sources were read via direct PDF/HTML downloads (pdftotext) and WebFetch. The Thorlabs WDM qualification report could not be retrieved (page gated), so GR-1221 cyclic moisture (ESPEC GR-1221 page) replaces it; ESPEC table quotes are the table-cell texts joined in reading order. The JCU/Cryoelectra HTS cryogenic-receiver paper states no operating temperature, so the Bian et al. Physica C 2010 abstract (Consensus record URL; DOI not retrieved) is used instead. Fibre-coupled detector/source/memory profiles deliberately carry no optical_access requirement (optical_access = a window onto the sample; their light arrives by fibre). Minor glyphs (en dash, micro sign, multiplication sign, phi) were restored where pdftotext rendered replacement characters; the arXiv:1507.03210 'Detectors' quote is de-hyphenated across a line break."
+}

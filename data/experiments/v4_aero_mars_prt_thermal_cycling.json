@@ -1,0 +1,87 @@
+{
+ "id": "aero_mars_prt_thermal_cycling",
+ "name": "Mars surface thermal-cycle qualification of bonded Honeywell PRTs for MSL (-135 to 70 C qual cycles, +125 C planetary-protection bake)",
+ "plain_name": "Cycle Mars-rover temperature sensors through Martian day-night temperature swings",
+ "industry": "aerospace_and_space_exploration",
+ "description": "JPL qualification of Honeywell platinum resistance thermometers bonded to six substrates with four adhesives for the Mars Science Laboratory: planetary-protection cycle to +125 C for 2 h, three protoflight/qualification cycles -135 to 70 C, 1,384 summer cycles (-105 to 40 C) and 599 winter cycles (-130 to 15 C), with resistance checks.",
+ "keywords": [
+  "Cycle Mars-rover temperature sensors through Martian day-night temperature swings",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+   "url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "NTRS record 20120009249",
+   "url": "https://ntrs.nasa.gov/citations/20120009249",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 138150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 343150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Protoflight/qualification cycles -135 C to 70 C (138.15 K to 343.15 K).",
+   "evidence_ids": [
+    "v4e_aero_mars_prt_thermal_cycling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 398150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Planetary-protection cycle to +125 C (398.15 K) for two hours.",
+   "evidence_ids": [
+    "v4e_aero_mars_prt_thermal_cycling_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: PRT resistances are monitored to detect bond failures.",
+   "evidence_ids": [
+    "v4e_aero_mars_prt_thermal_cycling_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

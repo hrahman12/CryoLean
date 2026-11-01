@@ -1,0 +1,81 @@
+{
+ "id": "auto_li_plating_subzero_cycling",
+ "name": "Lithium-plating aging study: C/2 charge / D/2 discharge cycling of NCA/SiOx-graphite 18650 cells at -10 C versus 25 C with ICA/DVA/EIS check-ups and post-mortem validation",
+ "plain_name": "Charge and discharge battery cells over and over at -10 C to see metal lithium build up",
+ "industry": "automotive_and_transportation",
+ "description": "Commercial Sanyo NCR 18650GA cells (3.35 Ah, 2.5-4.2 V) are cycled at C/2 charge and D/2 discharge at -10 C (to promote lithium plating) and at 25 C (baseline), three cells per condition, with check-ups every 100 cycles to 80 % SoH and post-mortem CT/SEM/XRD/7Li NMR; motivated by fast, safe charging for electrified transportation.",
+ "keywords": [
+  "Charge and discharge battery cells over and over at -10 C to see metal lithium build up",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "Herran A. et al., Advanced Electrochemical Diagnostics Validation for Early Detection of Lithium Plating in Lithium-Ion Batteries, ACS Omega (2026), doi:10.1021/acsomega.5c06081, PMC13150617",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13150617/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Binder KB53 climate chamber",
+  "NEWARE CT4000 series battery cycler"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 263150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Aging temperature -10 C (263.15 K) chosen to promote lithium plating.",
+   "evidence_ids": [
+    "v4e_auto_li_plating_subzero_cycling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 298150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Baseline aging and check-up temperature 25 C (298.15 K).",
+   "evidence_ids": [
+    "v4e_auto_li_plating_subzero_cycling_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cells are continuously charged and discharged by a battery cycler while at temperature.",
+   "evidence_ids": [
+    "v4e_auto_li_plating_subzero_cycling_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,85 @@
+{
+ "id": "semi_sic_power_mosfet_subkelvin",
+ "name": "Statistical IV characterization (threshold voltage, subthreshold swing, hysteresis) of commercial 1.2 kV 4H-SiC power MOSFETs from 300 K to 650 mK",
+ "plain_name": "Check whether a commercial silicon-carbide power transistor still switches reliably below 1 K",
+ "industry": "semiconductors_and_electronics",
+ "description": "Bare-die Wolfspeed CPM3-1200-0013A SiC MOSFETs are bonded to a sample holder on the mixing-chamber plate of a dilution refrigerator; the plate is set between 0.65 K and 25 K (plus a 300 K reference) and output/transfer curves are acquired at least 50 times per temperature with two SMUs in Kelvin (four-wire) mode.",
+ "keywords": [
+  "Check whether a commercial silicon-carbide power transistor still switches reliably below 1 K",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+   "url": "https://arxiv.org/abs/2507.23109",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "dilution refrigerator",
+  "two source-measure units (SMUs)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 650,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The lowest measurement temperature was 650 mK.",
+   "evidence_ids": [
+    "v4e_semi_sic_power_mosfet_subkelvin_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 650,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 25000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Devices were characterized across the span from 650 mK to 300 K.",
+   "evidence_ids": [
+    "v4e_semi_sic_power_mosfet_subkelvin_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Drain and gate are driven and sensed by two SMUs in four-wire mode.",
+   "evidence_ids": [
+    "v4e_semi_sic_power_mosfet_subkelvin_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,2348 @@
+[
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_0",
+  "claim": "The array is held at a constant 35 K during all cryogenic tests; the sample stage must reach and regulate at 35 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 35, \"unit\": \"K\"}}",
+  "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test, with a bench temperature of approximately 80 K. The detector was held at a constant temperature during testing, typically 35 K.",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.3 Cryogenic Testing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:2508.21168v1 Sec 4.3: the detector was held at a constant temperature during testing, typically 35 K. point_within 35 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_1",
+  "claim": "Optional: performance was equivalent anywhere from 35 to 39 K, so the full 35-39 K window is useful but not required.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 35, \"unit\": \"K\"}, \"hi\": {\"value\": 39, \"unit\": \"K\"}}",
+  "quote": "we hold the detector itself at a steady temperature, typically 35 K (although operational performance was equivalent at temperatures between 35 and 39 K).",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.2 Thermal Control Validation",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Sec 4.2: performance was equivalent between 35 and 39 K. An optional range_within 35-39 K fits."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_2",
+  "claim": "The detector operates inside an evacuated cryostat (typical pressure ~10 microTorr).",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.3 Cryogenic Testing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the cryostat interior reached about 10 microTorr. vacuum.available is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_3",
+  "claim": "Cryostat pressure during the tests was about 10 microTorr (1e-5 Torr); the machine must reach at least this vacuum to avoid condensation on the cold array.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.00001\", \"unit\": \"Torr\"}}",
+  "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.3 Cryogenic Testing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: about 10 microTorr, which is 1e-5 Torr. at_most 0.00001 Torr matches. The paper reports this as the typical value reached, not a stated requirement, so mandatory is somewhat strict but defensible."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_4",
+  "claim": "The array is clocked and read out through 4 outputs via a cryogenic SIDECAR ASIC and a buffered cable to the warm MACIE card; cold-to-warm wiring feedthroughs are required.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "These pixels are read out via 4 separate outputs.",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 2.1 H2RG Detectors",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Sec 2.1: the pixels are read out through 4 outputs. The sample needs cold-to-warm wiring, so a mandatory flag is justified."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_5",
+  "claim": "Optional size gate: the array side is 2048 x 18 um = 36.864 mm, so the cold stage must clear at least that width (the packaged detector head is larger; its size is not stated).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 36864, \"unit\": \"um\"}}",
+  "quote": "These HgCdTe (MCT) arrays feature 2048x2048 pixels (2040x2040 photosensitive, with 4 reference pixels on each external edge) at an 18 μ \\mu m pitch",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 2.1 H2RG Detectors",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 2048x2048 pixels at 18 um pitch. 2048 x 18 = 36864 um, so the arithmetic is correct. It is optional and conservative because the package is larger."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_6",
+  "claim": "Optional: the detector head was cooled and warmed under control at 0.5 K per minute.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 500, \"unit\": \"mK_per_min\"}}",
+  "quote": "Using the heater and temperature sensors, we are able to stably cool and warm the detector head at a rate of 0.5 K per minute.",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.2 Thermal Control Validation",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the head is cooled and warmed at 0.5 K per minute, which equals 500 mK_per_min. Optional is appropriate."
+  }
+ },
+ {
+  "id": "v4e_astro_h2rg_ir_array_35k_7",
+  "claim": "Optional: the test cryostat used was a closed-cycle refrigerator system (no liquid cryogen).",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "Multiple cooldowns of each detector head were performed in the UCLA test cryostat, cooled by a closed-cycle refrigerator system.",
+  "source_url": "https://arxiv.org/html/2508.21168v1",
+  "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+  "location": "Section 4.3 Cryogenic Testing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_h2rg_ir_array_35k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the UCLA test cryostat is cooled by a closed-cycle refrigerator system. Optional cryogen_free is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_megara_ccd_ln2_153k_0",
+  "claim": "The CCD must be regulated at its 153 K operating temperature (low dark current).",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 153, \"unit\": \"K\"}}",
+  "quote": "CCD operating temperature at 153K.",
+  "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+  "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+  "location": "Table 3.1 (Main characteristics and requirements of MEGARA cryostat), p. 40",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_megara_ccd_ln2_153k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 3.1 contains 'CCD operating temperature at 153K'. point_within 153 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_0",
+  "claim": "The TES bath must reach ~320 mK, below the ~410 mK critical temperature, for the sensors to operate in electro-thermal feedback.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 320, \"unit\": \"mK\"}}",
+  "quote": "The detection chain is currently made of 256 NbSi transition edge sensors (TES) cooled to 320 mK.",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the abstract of arXiv:2101.06787v2: 256 NbSi TES cooled to 320 mK. at_most 320 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_1",
+  "claim": "The TES focal plane is 110 mm in diameter and must fit on the sub-K stage.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 110, \"unit\": \"mm\"}}",
+  "quote": "QUBIC cryo-mechanical structure which supports one TES focal plane at 350 mK on top and the SQUID boxes at 1 K below. The focal plane diameter is 110 mm.",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Section 2 QUBIC detection chain, Figure 1 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Fig 1 caption: the focal plane diameter is 110 mm. at_least 110 mm is correct and mandatory for this focal plane."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_2",
+  "claim": "TES bias and SQUID multiplexer lines run from the cold stages to the warm FPGA readout.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The readout system is a 128:1 time domain multiplexing scheme based on 128 SQUIDs cooled at 1 K that are controlled and amplified by an SiGe application specific integrated circuit at 40 K.",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the abstract: 128:1 TDM with 128 SQUIDs at 1 K and a SiGe ASIC at 40 K. The electrical requirement is justified."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_3",
+  "claim": "Optional: the SQUID boxes at 1 K are surrounded by a Cryophy magnetic shield; a test cryostat needs equivalent shielding for the SQUIDs.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "As shown in Figure 1 , 4 stack of 8 SQUID boxes is installed at 1 K below the TESs in the cryo-mechanical structure, surrounded with a Cryophy",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Section 2.2 (SQUID readout)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the SQUID boxes at 1 K are surrounded with a Cryophy shield. Optional magnetic shielding fits."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_4",
+  "claim": "Optional: dark-pixel critical temperature (~412 mK) is mapped by slowly raising the temperature through the transition, so the stage must regulate around 412 mK.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 412, \"unit\": \"mK\"}}",
+  "quote": "The critical temperature is about 412 mK and some temperature dependence is still present above the transition",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Section 4.2 Critical Temperature",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Sec 4.2: the critical temperature is about 412 mK, measured on dark pixels in a dilution-fridge test bed by slowly raising the temperature. An optional point_within 412 mK is fine."
+  }
+ },
+ {
+  "id": "v4e_astro_qubic_tes_array_320mk_5",
+  "claim": "Optional: the QUBIC cryostat is pulse-tube cooled (dry); pulse-tube microphonics were the dominant excess noise.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "While still limited by microphonics from the pulse tubes and noise aliasing from readout system",
+  "source_url": "https://arxiv.org/html/2101.06787v2",
+  "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_qubic_tes_array_320mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the abstract: excess noise is limited by pulse-tube microphonics, which shows the cryostat is pulse-tube cooled. Optional cryogen_free is acceptable."
+  }
+ },
+ {
+  "id": "v4e_astro_mkid_uvoir_photon_counting_90mk_0",
+  "claim": "MKIDs are operated at 90 mK.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 90, \"unit\": \"mK\"}}",
+  "quote": "MKIDs (not shown) are housed at 90 mK inside the dilution refrigerator. Light is passed through the window on the dilution refrigerator front plate.",
+  "source_url": "https://arxiv.org/html/2406.09764v1",
+  "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+  "location": "Section III.4.4, Figure 4 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_mkid_uvoir_photon_counting_90mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:2406.09764v1, Fig 4 caption: MKIDs housed at 90 mK in the dilution refrigerator. at_most 90 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_mkid_uvoir_photon_counting_90mk_1",
+  "claim": "Photons (lasers at 405.9-808 nm in the lab, the telescope beam at the observatory) reach the array through a cryostat window.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Lasers at 405.9 nm, 663.1 nm, and 808.0 nm illuminated the MKID through windows in the the dilution refrigerator.",
+  "source_url": "https://arxiv.org/html/2406.09764v1",
+  "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+  "location": "Section V (lab measurement setup)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_mkid_uvoir_photon_counting_90mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the 405.9, 663.1 and 808.0 nm lasers illuminated the MKID through windows. optical_access is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_mkid_uvoir_photon_counting_90mk_2",
+  "claim": "The microwave feedline carries the 4-8 GHz readout comb, so the coaxial wiring must pass at least 8 GHz.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 8, \"unit\": \"GHz\"}}",
+  "quote": "the system must be able to generate a 4-8 GHz readout waveform with up to 2048 run-time-programmable frequencies and powers.",
+  "source_url": "https://arxiv.org/html/2406.09764v1",
+  "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+  "location": "Section III.2 Functional Requirements",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_mkid_uvoir_photon_counting_90mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the system must generate a 4-8 GHz readout waveform. Requiring coax to at least 8 GHz is justified."
+  }
+ },
+ {
+  "id": "v4e_astro_mkid_uvoir_photon_counting_90mk_3",
+  "claim": "The feedline input/output and the cryogenic amplifier chain require cold RF connections to the array.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The UVOIR MKIDs are designed with resonance frequencies in the 4-8 GHz band because this is where cryogenic low-noise amplifiers and other specialized components are commercially available.",
+  "source_url": "https://arxiv.org/html/2406.09764v1",
+  "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+  "location": "Section III.4.1 Cryogenic Interface and MKID Bandwidth",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_mkid_uvoir_photon_counting_90mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: UVOIR MKIDs resonate in the 4-8 GHz band. Cold RF connections are required."
+  }
+ },
+ {
+  "id": "v4e_astro_mkid_uvoir_photon_counting_90mk_4",
+  "claim": "Optional: observing requires continuous cold operation for a typical night of at least eight hours (a limitation for single-shot ADRs, not for continuous dilution refrigerators).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 8, \"unit\": \"h\"}}",
+  "quote": "the readout must be stable and able to continuously observe and record photons for a typical observing night (at least eight hours).",
+  "source_url": "https://arxiv.org/html/2406.09764v1",
+  "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+  "location": "Section III.4.4 Setup Time and Stability",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_mkid_uvoir_photon_counting_90mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the system must observe continuously for a typical night of at least eight hours. Optional operating_duration at_least 8 h fits."
+  }
+ },
+ {
+  "id": "v4e_astro_alma_sis_mixer_4k_yfactor_0",
+  "claim": "The cartridge cold stage holding the SIS mixer is maintained at 4 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 4, \"unit\": \"K\"}}",
+  "quote": "The cryostat cold stage was maintained at 4K, like for all ALMA performance tests.",
+  "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+  "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+  "location": "Section 3.2.1 Heterodyne tests, p. 19",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_alma_sis_mixer_4k_yfactor",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the ESO/GARD report, Sec 3.2.1: the cold stage was maintained at 4K, as for all ALMA performance tests. point_within 4 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_alma_sis_mixer_4k_yfactor_1",
+  "claim": "The IF chain (cryogenic isolator, IF amplifier, coax) covers 4-12 GHz.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 12, \"unit\": \"GHz\"}}",
+  "quote": "The IF configuration is the same as it is used in ALMA band 9, i.e. we use cryogenic isolator in 4-12 GHz band to match the SIS mixer and the IF amplifier.",
+  "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+  "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+  "location": "Section 3.2.1 Heterodyne tests, p. 19",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_alma_sis_mixer_4k_yfactor",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: cryogenic isolator in the 4-12 GHz band. Requiring coax to at least 12 GHz is justified."
+  }
+ },
+ {
+  "id": "v4e_astro_xray_microcalorimeter_42mk_0",
+  "claim": "The UHR array had to be characterized at a 42 mK bath temperature (nominal 50 mK).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 42, \"unit\": \"mK\"}}",
+  "quote": "The transition temperature under bias was about 10 mK lower than the target of 65 mK, and so, this array need to be characterized with a thermal bath temperature of 42 mK instead of 50 mK.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+  "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+  "location": "Section 3.3 Preliminary Test Results on the UHR Array",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_xray_microcalorimeter_42mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the PMC7802767 Sec 3.3 text: the array had to be characterized at a 42 mK bath instead of 50 mK. at_most 42 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_xray_microcalorimeter_42mk_1",
+  "claim": "TES microcalorimeters are sensitive to magnetic fields; the focal plane needs magnetic shielding.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Particular care is needed for shielding magnetic fields for TESs as compared with the silicon thermistor sensors used on the Hitomi SXS.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+  "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+  "location": "Section 1.2 Heritage",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_xray_microcalorimeter_42mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: particular care is needed to shield TESs from magnetic fields. Mandatory shielding is justified."
+  }
+ },
+ {
+  "id": "v4e_astro_xray_microcalorimeter_42mk_2",
+  "claim": "TES bias and SQUID readout lines must reach the array.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The baseline multiplexed read-out technology for the LXM uses series SQUID microresonator circuits in the GHz frequency range attached to the input feed line to a HEMT",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+  "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+  "location": "Section 4.1 Basic Circuits and Readout Design",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_xray_microcalorimeter_42mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: series SQUID microresonator readout into a HEMT. Electrical connections are required."
+  }
+ },
+ {
+  "id": "v4e_astro_xray_microcalorimeter_42mk_3",
+  "claim": "Optional: the microwave SQUID multiplexer is amplified by a 4-8 GHz HEMT at ~4 K, so coax lines rated to 8 GHz are needed for this readout (a DC-SQUID TDM readout would not need them).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 8, \"unit\": \"GHz\"}}",
+  "quote": "HEMT amplifiers exist with input noise temperatures as low as 1.8 K over the 4 to 8 GHz band.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+  "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+  "location": "Section 4.2 High-Electron Mobility Transistors",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_xray_microcalorimeter_42mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: HEMTs with 1.8 K noise over the 4 to 8 GHz band. Optional coax to at least 8 GHz is reasonable for the microwave-SQUID readout."
+  }
+ },
+ {
+  "id": "v4e_astro_xray_microcalorimeter_42mk_4",
+  "claim": "Optional: the nominal operating bath is 50 mK, provided by an ADR below a 4.5 K cryocooler stage.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 50, \"unit\": \"mK\"}}",
+  "quote": "both for the cryocooler for cooling down to 4.5 K and the adiabatic demagnetization refrigerator (ADR) for cooling from 4.5 K to 50 mK.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+  "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_xray_microcalorimeter_42mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the abstract: ADR cooling from 4.5 K to 50 mK. Optional point_within 50 mK fits."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_0",
+  "claim": "Ices are deposited and processed at 14 K to simulate dark-cloud grain mantles.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 14, \"unit\": \"K\"}}",
+  "quote": "The CH 4 ice was deposited at 14 K on IR transparent KBr substrates through the so-called background deposition method",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section IV (Results: UV processing of CH4 ice)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the PMC7116743 text: CH4 ice deposited at 14 K on KBr. point_within 14 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_1",
+  "claim": "The ice must be grown and processed in UHV to avoid contamination by residual gas.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The INFRA-ICE module (base pressure: 1 × 10 -10 mbar; at low temperature: 5 × 10 -11 mbar) is depicted in Figure 2a-c",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section II (INFRA-ICE description)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: base pressure 1e-10 mbar. vacuum.available is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_2",
+  "claim": "UHV base pressure of 1e-10 mbar keeps background water accretion negligible during long irradiations.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.0000000001\", \"unit\": \"mbar\"}}",
+  "quote": "The INFRA-ICE module (base pressure: 1 × 10 -10 mbar; at low temperature: 5 × 10 -11 mbar)",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section II (INFRA-ICE description)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: base pressure 1 x 10-10 mbar. at_most 1e-10 mbar matches. Mandatory follows the UHV ice-growth rationale, though it is strict."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_3",
+  "claim": "FTIR transmission and reflection-absorption spectra are recorded through IR windows (wedged ZnSe) into the UHV chamber.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "To isolate the spectrometer and coupling optics from the UHV of the chambers, we used ZnSe windows (wedged: 5.8 mrad) bonded to double-sided CF flanges.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section II.B (IR spectroscopy)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: wedged ZnSe windows on CF flanges isolate the FTIR from the UHV. optical_access is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_4",
+  "claim": "Optional: the KBr substrate sits behind a 9 mm diameter aperture in the sample holder.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 9, \"unit\": \"mm\"}}",
+  "quote": "In particular, a sample holder with a 9 mm diameter hole is used",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section II (sample holder)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: a sample holder with a 9 mm diameter hole. Optional at_least 9 mm fits."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_5",
+  "claim": "Optional: the cryostat regulates the sample with 0.1 K stability.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 100, \"unit\": \"mK\"}}",
+  "quote": "The cryostat operates in the temperature range 13-300 K at the sample position with a temperature stability of 0.1 K.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Section II (cryostat)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 13-300 K range with 0.1 K stability. at_most 100 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_interstellar_ice_uhv_14k_6",
+  "claim": "Optional: cooling is by a UHV closed-cycle helium cryostat.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "6.- UHV close-cycle helium cryostat",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+  "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+  "location": "Figure 2 key",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_interstellar_ice_uhv_14k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Fig 2 key: UHV closed-cycle helium cryostat. Optional cryogen_free is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_0",
+  "claim": "Dark current and x-ray response are measured at 94.69 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": \"94.69\", \"unit\": \"K\"}}",
+  "quote": "Dark frames were taken at exposure times between 1 and 20 s, at a CCD temperature of 94.69 ± 0.04 94.69\\pm 0.04 K, with a readout time of 3.25 s per frame.",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 3.1 Dark current",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:2610.22785v1 (S. C. Herrmann, 16 Oct 2026): dark frames at 94.69 +/- 0.04 K. point_within 94.69 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_1",
+  "claim": "The packaged device sits on a cold plate inside a vacuum chamber.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The packaged device is mounted on a cold plate inside a vacuum chamber as shown in Fig. 2 .",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 2.2 Cryogenic test system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: mounted on a cold plate inside a vacuum chamber. vacuum.available is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_2",
+  "claim": "The chamber pressure was kept below 5e-5 torr during the measurements.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.00005\", \"unit\": \"Torr\"}}",
+  "quote": "The chamber pressure was below 5 × 10 − 5 5\\times 10^{-5} torr.",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 2.2 Cryogenic test system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: chamber pressure below 5 x 10-5 torr. at_most 0.00005 Torr matches."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_3",
+  "claim": "CCD clocks, biases and video output pass through the chamber to the Archon controller.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The CCD clocks and biases are supplied, and the video signal is digitized, by an Archon CCD controller",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 2.2 Cryogenic test system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: clocks, biases and video go through an Archon controller. Electrical connections are justified."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_4",
+  "claim": "Optional: temperature was stable within +/-0.03 K during the dark-current measurements.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 30, \"unit\": \"mK\"}}",
+  "quote": "The CCD reaches a base temperature of about 95 K, and its temperature was stable to within ± 0.03 \\pm 0.03 K during the dark-current measurements.",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 2.2 Cryogenic test system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: stable to within +/-0.03 K, which is 30 mK. Optional is fine."
+  }
+ },
+ {
+  "id": "v4e_astro_ge_ccd_nir_95k_5",
+  "claim": "Optional: this test system cools the cold plate with liquid nitrogen.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "The cold plate is cooled with liquid nitrogen through copper thermal links",
+  "source_url": "https://arxiv.org/html/2610.22785v1",
+  "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+  "location": "Section 2.2 Cryogenic test system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_ge_ccd_nir_95k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the cold plate is cooled with liquid nitrogen through copper links. Optional cryogen.type is fine."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_0",
+  "claim": "The Coupling-LNAs must operate at a physical temperature of 15 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 15, \"unit\": \"K\"}}",
+  "quote": "Amplification and coupling function circuits are integrated as a single Coupling-LNA with full noise temperature of 4 K at the physical temperature of 15 K.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "In the arXiv:2103.10677v1 abstract (ligature artifact only): Coupling-LNA noise of 4 K at a physical temperature of 15 K. point_within 15 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_1",
+  "claim": "The dewar reaches a vacuum of 1e-5 Pa to suppress gas conduction and convection to the cold parts.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.00001\", \"unit\": \"Pa\"}}",
+  "quote": "The heat insulation gap, vacuum degree of 10-5 Pa and thermal radiation shield will effectively eliminate the effects of conduction, convection and radiation of heats from dewar walls to cryogenic parts.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Section 2.3 (cryogenic cooling unit)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim, with the PDF showing the exponent as 10−5 Pa. at_most 0.00001 Pa matches. The paper states the design vacuum, so mandatory is acceptable."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_2",
+  "claim": "The OMT and LNAs sit inside a vacuum dewar.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The cryogenic cooling unit basing on GM cycle (Thirumaleshwar & Subramanyam 1986) is built to provide vacuum and cryogenic environment for low noise microwave parts in the frontend of receiver.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Section 2.3 (cryogenic cooling unit)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: the GM cooling unit provides vacuum and cryogenic environment. vacuum.available is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_3",
+  "claim": "The sky signal enters the dewar through a large film vacuum window in front of the OMT.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Polyimide and Teflon bilayers films with Fluorine rubber sealing rings are used to seal vacuum window in view of rather large window diameter corresponding to OMT in L-band",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Section 2.3 (cryogenic cooling unit)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Present apart from ligature artifacts: polyimide/Teflon film vacuum window. optical_access is the closest vocabulary key for an RF entrance window. It is acceptable, with the caveat that the window is RF, not optical."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_4",
+  "claim": "The 728.3 mm long OMT must fit inside the cold space.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"728.3\", \"unit\": \"mm\"}}",
+  "quote": "The length and internal receiving aperture of OMT are 728.3 mm and 189 mm, respectively.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Figure 4-2 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Fig 4-2 caption: the OMT length is 728.3 mm. sample.height.max at_least 728.3 mm is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_5",
+  "claim": "The OMT has a 189 mm internal receiving aperture (its outer envelope is larger), which sets the minimum clear diameter.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 189, \"unit\": \"mm\"}}",
+  "quote": "The length and internal receiving aperture of OMT are 728.3 mm and 189 mm, respectively.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Figure 4-2 caption",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: internal receiving aperture of 189 mm. A lower bound of 189 mm is conservative, since the outer envelope is larger. Acceptable."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_6",
+  "claim": "The cryogenic RF chain carries 1.2-1.8 GHz.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"1.8\", \"unit\": \"GHz\"}}",
+  "quote": "It covers the frequency range of 1.2 GHz to 1.8 GHz.",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the abstract: 1.2 GHz to 1.8 GHz. Coax to at least 1.8 GHz is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_fast_lband_receiver_15k_7",
+  "claim": "Optional: cooling is by a Gifford-McMahon cold head and helium compressor (no liquid cryogen), as required for a telescope-mounted receiver.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "A Gifford-McMahon (GM) Helium cooling system, including vacuum dewar, Helium cold head and compressor, is developed to cool receiver frontend low noise microwave components",
+  "source_url": "https://arxiv.org/pdf/2103.10677v1",
+  "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+  "location": "Section 2 (system design)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_fast_lband_receiver_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: GM helium cooling system with cold head and compressor. Optional cryogen_free is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_0",
+  "claim": "The horn, filter, coupler and LNA are cooled to 15 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 15, \"unit\": \"K\"}}",
+  "quote": "The QRHF, highpass filter, noise coupler and LNA are located inside a cryostat and are cooled to 15 K.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the arXiv:2308.05826v1 abstract: horn, filter, coupler and LNA are cooled to 15 K. point_within 15 K is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_1",
+  "claim": "Sky and hot-load radiation reach the cold horn through the cryostat RF window (Mylar).",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Due to the relatively high humidity at Arecibo, we built a radome with Mylar material in front of the cryostat radio frequency window.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Section 3 (receiver system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: Mylar radome in front of the cryostat RF window. The next sentence confirms the window itself is also Mylar. optical_access is the closest key for an RF window."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_2",
+  "claim": "The cold RF chain must carry 2.5-14 GHz.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 14, \"unit\": \"GHz\"}}",
+  "quote": "The cryogenic receiver works in the 2.5-14 GHz frequency range.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 2.5-14 GHz. Coax to at least 14 GHz is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_3",
+  "claim": "The cold components are in an evacuated cryostat monitored by a vacuum gauge.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "A vacuum gauge was used to report the pressure inside the cryostat.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Section 3 (receiver system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: a vacuum gauge reports the cryostat pressure. vacuum.available is correct."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_4",
+  "claim": "LNA gate/drain bias and monitoring wiring must reach the cold amplifiers.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "we have installed diode temperature sensors inside the cryostat to monitor the temperature of the two stages, and sensors to monitor the gate, drain, supply voltages and the drain current of the LNAs.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Section 3 (receiver system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: sensors monitor LNA gate, drain and supply voltages. Cold bias wiring is required."
+  }
+ },
+ {
+  "id": "v4e_astro_arecibo_wideband_feed_15k_5",
+  "claim": "Optional: the cryostat uses a two-stage GM cryocooler (no liquid cryogen), suited to a telescope-mounted receiver.",
+  "value_as_printed": "{\"kind\": \"flag_is\", \"b\": true}",
+  "quote": "The cryostat was built around a two stage Gifford-MacMohan (GM) cryocooler.",
+  "source_url": "https://arxiv.org/pdf/2308.05826v1",
+  "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+  "location": "Section 3 (receiver system)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "astro_arecibo_wideband_feed_15k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: built around a two-stage Gifford-MacMohan (sic) GM cryocooler. Optional cryogen_free is correct."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_temperature.range",
+  "claim": "Sample temperature range of the OptistatDN-V nitrogen bath cryostat is 77.2 K to 500 K (manual states 77 K - 500 K; the conservative 77.2 K brochure value is used).",
+  "value_as_printed": "77.2 – 500 K",
+  "quote": "Specifications Temperature range 77.2 – 500 K Temperature stability ± 0.1 K (measured over 10 min period) Maximum sample space 20 mm diameter",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure p.7 DN-V spec table (pypdf): 'Temperature range 77.2 – 500 K'; manual 7.1 gives 77 K - 500 K. 77.2 K lower bound is conservative. Side note: the brochure footnote about needing sapphire windows for 500 K belongs to the OptistatDN (non-V) table. The DN-V entry instead says 'No cold windows enabling the use of any window material above 300 K', so the configuration_basis wording is slightly off."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_temperature.base",
+  "claim": "Base temperature is 77.2 K, set by liquid nitrogen at atmospheric pressure.",
+  "value_as_printed": "77.2 K base temperature",
+  "quote": "This nitrogen cryostat is ideal for experiments which require 77.2 K base temperature, a large sample space and a minimum number of windows in the optical beam path",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The quote is verbatim in the brochure DN-V description. Manual 7.4 says the base depends on the LN2 boiling point at local atmospheric pressure, so 77.2 K is the nominal figure."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_magnetic_field.max",
+  "claim": "The complete DN-V system (cryostat, MercuryiTC controller, cables, customer LN2 and pump) contains no magnet; the main-feature list of the cryostat likewise lists none.",
+  "value_as_printed": "no magnet among the system components",
+  "quote": "To run this system, the following components are required: The Optistat DN-V cryostat. MercuryiTC temperature controller. Sensor & heater cable - CQB0090. Sorb heater cable with adaptor - CWA0123. A supply of liquid nitrogen (customer provided). High vacuum pumping system and lines (customer provided).",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 4.1 Unpacking the system, p. 19",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual 4.1 required-components list quoted verbatim. Section 3.1, the complete main-features list, also has no magnet. Together these describe the whole system in a manual, not a marketing page. The generic magnet wording in the manual's safety boilerplate does not mean a magnet is offered."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_vacuum.available",
+  "claim": "The sample holder sits in the evacuated outer vacuum chamber (sample in vacuum).",
+  "value_as_printed": "Nitrogen bath cryostat, sample in vacuum",
+  "quote": "The reservoir and sample holder are thermally isolated from the room temperature surroundings by the outer vacuum chamber (OVC). This space is pumped to a high vacuum before the cryostat is cooled down",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 3 System description, p. 14",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 3 quote verified verbatim (p.14). The sample holder is in the OVC."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_pressure.base",
+  "claim": "The OVC (sample space) is pumped below 1e-4 mbar before cooldown and then maintained by the internal charcoal sorb.",
+  "value_as_printed": "lower than 10-4 mbar",
+  "quote": "You can then begin pumping the cryostat vacuum space to a high vacuum (lower than 10-4 mbar).",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 4.4 Evacuating the OVC, p. 19-20",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 4.4 says 'pumping the cryostat vacuum space to a high vacuum (lower than 10-4 mbar)', verbatim. A sorb then maintains the vacuum. 1e-4 mbar is a conservative upper bound on the sample-space pressure."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_optical_access",
+  "claim": "Up to five windows (four radial optical windows fitted as standard plus a blank axial window) give f/1 optical access to the sample.",
+  "value_as_printed": "Up to five windows ... optical f number of 1.0",
+  "quote": "Up to five windows can be fitted to the Optistat DN-V providing optical access to the sample holder with an optical f number of 1.0.",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 3 System description, p. 14",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 3 quote verified verbatim: up to five windows, f number 1.0."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_optical.window_count",
+  "claim": "Standard cryostat is fitted with four optical radial windows (the axial window is blank).",
+  "value_as_printed": "four optical radial windows and one blank axial window",
+  "quote": "The standard cryostat is fitted with four optical radial windows and one blank axial window.",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 7.4 Technical exclusions and assumptions, p. 32",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 7.4 says 'The standard cryostat is fitted with four optical radial windows and one blank axial window.' Verbatim."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_optical.clear_aperture",
+  "claim": "Clear beam aperture is 35 mm diameter.",
+  "value_as_printed": "35 mm diameter aperture",
+  "quote": "Optimised clear beam throughput (35 mm diameter aperture)",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V feature list",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure DN-V feature list: 'Optimised clear beam throughput (35 mm diameter aperture)'."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_electrical.sample_connections",
+  "claim": "An experimental 10-pin connector wired to a Harwin pin ring above the sample holder is fitted for sample measurements.",
+  "value_as_printed": "An experimental 10-pin connector for experimental measurements",
+  "quote": "A diagnostic 10-pin connector for temperature control. An experimental 10-pin connector for experimental measurements. An experimental harwin pin ring above the sample holder.",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 3.1 The Optistat DN-V cryostat, p. 14",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 3.1 lists the experimental 10-pin connector and the Harwin pin ring verbatim. The pin ring is 16-pin per Fig 3-4."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_sample.diameter.max",
+  "claim": "Maximum sample space is 20 mm diameter.",
+  "value_as_printed": "Maximum sample space 20 mm diameter",
+  "quote": "Maximum sample space 20 mm diameter Sample holder dimensions 20 mm wide x 50 mm long",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure DN-V spec table: 'Maximum sample space 20 mm diameter'."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_cryogen.cryogen_free",
+  "claim": "The cryostat is cooled by liquid nitrogen from its own reservoir.",
+  "value_as_printed": "liquid nitrogen cryostat",
+  "quote": "The Optistat DN-V is a liquid nitrogen cryostat and can be held at temperatures between 77 K and 500 K using a MercuryiTC temperature controller.",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 3 System description, p. 14",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual section 3: 'The Optistat DN-V is a liquid nitrogen cryostat...'. Verbatim."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_cryogen.type",
+  "claim": "Liquid cryogen used: liquid nitrogen only.",
+  "value_as_printed": "Nitrogen only",
+  "quote": "OptistatDN-V 77.2 – 500 K Nitrogen only Vacuum",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 1, Optistat selection table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure p.1 selection table row (pypdf extraction): 'OptistatDN-V 77.2 – 500 K Nitrogen only Vacuum'."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_holding_time.static",
+  "claim": "One 1.2 L LN2 fill lasts 15 hours at 77 K.",
+  "value_as_printed": "Liquid nitrogen hold time (at 77 K) 15 hours",
+  "quote": "Liquid nitrogen hold time (at 77 K) 15 hours System cooldown time 20 minutes",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 7.1 Performance, p. 32",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual 7.1: 'Liquid nitrogen hold time (at 77 K) 15 hours'. The brochure says ≥ 15 hours, so 15 h is conservative."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_cryogen.dewar_volume",
+  "claim": "Liquid nitrogen reservoir capacity is 1.2 L.",
+  "value_as_printed": "Liquid nitrogen capacity 1.2 L",
+  "quote": "Liquid nitrogen capacity 1.2 L Hold time at 77 K ≥ 15 hours",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure p.7 (pypdf): 'Liquid nitrogen capacity 1.2 L / Hold time at 77 K ≥ 15 hours'. Verbatim."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_temperature.stability",
+  "claim": "Temperature control stability is +/-0.1 K.",
+  "value_as_printed": "± 0.1 K",
+  "quote": "Temperature control stability ± 0.1 K Liquid nitrogen hold time (at 77 K) 15 hours",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 7.1 Performance, p. 32",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual 7.1 says ± 0.1 K. The brochure adds 'measured over 10 min period'."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_cooldown_time.max",
+  "claim": "System cooldown time is 20 minutes.",
+  "value_as_printed": "System cooldown time 20 minutes",
+  "quote": "System cooldown time 20 minutes",
+  "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf",
+  "document_title": "Optistat DN-V Operators Manual, System Manual Issue 2.0, December 2020 (Oxford Instruments NanoScience)",
+  "location": "Section 7.1 Performance, p. 32",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual 7.1: 'System cooldown time 20 minutes'. The brochure says 'Cool down from ambient to 77 K (mins) 20'."
+  }
+ },
+ {
+  "id": "v4c_oxford_instruments_optistatdn_v_standard_optical.f_number",
+  "claim": "Optical access is f/1.",
+  "value_as_printed": "Superb optical access (f/1)",
+  "quote": "Superb optical access (f/1) for measurements requiring light collection",
+  "source_url": "https://andor.oxinst.com/assets/uploads/products/andor/documents/Optistat-family-of-wet-cryostat.pdf",
+  "document_title": "Optistat liquid cryogen optical cryostats for spectroscopy (Oxford Instruments Optistat family brochure)",
+  "location": "PDF p. 7, OptistatDN-V feature list",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "oxford_instruments_optistatdn_v_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure: 'Superb optical access (f/1)'. Manual: 'optical f number of 1.0'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_temperature.range",
+  "claim": "VPF-100 range is 65 K to 500 K, but operation below 77 K requires the optional VPF-PM pumping manifold, which this configuration does not include; usable range is therefore 77 K to 500 K.",
+  "value_as_printed": "65 K to 500 K; Operation below 77 K requires pumping manifold",
+  "quote": "Temperature range1 65 K to 500 K 65 K to 800 K Typical temperature stability2 ±50 mK",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table and footnote 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet p.2 gives VPF-100 65 K to 500 K, with footnote 1: 'Operation below 77 K requires pumping manifold'. The manifold is not fitted, so 77-500 K is correct and conservative. The web spec table matches."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_temperature.base",
+  "claim": "Without the pumping manifold the lowest temperature is 77 K (LN2 at atmospheric pressure).",
+  "value_as_printed": "Operation below 77 K requires pumping manifold",
+  "quote": "1 Operation below 77 K requires pumping manifold",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications, footnote 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Footnote 1 verified. Without VPF-PM the floor is LN2 at 77 K."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_magnetic_field.max",
+  "claim": "The complete VPF-100 configurator (variant, sample holders, windows, mounting flange, pumping manifold, pumps, wiring, instrumentation, software, sensors) offers no magnet.",
+  "value_as_printed": "no magnet in the 7-step configurator",
+  "quote": "Pumping manifold VPF-PM Pumping manifold (for operation to 65 K) 3. Select pump (optional) Each cryostat requires a pump to operate.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 4 Configure your cryostat",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet p.4 seven-step configurator lists every orderable item: variant, holders, windows, flange, manifold, pumps, wiring, instruments, software and sensors. No magnet appears in it. That is a complete order specification, not marketing silence. The quoted line itself does not show the absence; the full configurator does."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_vacuum.available",
+  "claim": "The sample is located in vacuum.",
+  "value_as_printed": "Sample environment Vacuum",
+  "quote": "VPF-100 Series cryostats are liquid-nitrogen-cooled with the sample located in vacuum.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 1 description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The p.1 description sentence is verbatim. The web table says 'Sample environment Vacuum'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_pressure.base",
+  "claim": "Initial vacuum level requirement ~1e-3 Torr, measured at room temperature before adding cryogen (cryopumping improves it when cold).",
+  "value_as_printed": "~10-3 Torr",
+  "quote": "Initial vacuum level requirement3 ~10-3 Torr",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table, footnote 3",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet: 'Initial vacuum level requirement ~10-3 Torr' (footnote 3: measured at room temperature before cryogen). The web spec page says ~10-4 Torr, so the 1e-3 Torr datasheet value is the conservative one. This is a pump-down requirement, not a guaranteed cold base pressure."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_optical_access",
+  "claim": "The VPF-100 variant is the optical version (windows: fused silica, UV fused silica, sapphire, ZnSe, CaF2, KBr).",
+  "value_as_printed": "VPF-100 Optical, 65 K to 500 K",
+  "quote": "VPF-100 Optical, 65 K to 500 K, calibrated temperature sensor",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 4 Configure your cryostat, step 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Configurator step 1: 'VPF-100 Optical, 65 K to 500 K, calibrated temperature sensor'. The web table marks Optical ✔."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_electrical.sample_connections",
+  "claim": "Configuration includes a wired feedthrough selected in configurator step 4.",
+  "value_as_printed": "wired feedthroughs",
+  "quote": "4. Select cryostat wiring We offer a variety of both unwired and wired feedthroughs to complete your measurement setup.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 4 Configure your cryostat, step 4",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Step 4 wording verified. Wired feedthroughs are an orderable choice, and this configuration states one is selected."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_sample.diameter.max",
+  "claim": "Sample mount diameter is 31.75 mm (1.25 in).",
+  "value_as_printed": "Sample mount diameter 31.75 mm (1.25 in)",
+  "quote": "Sample mount diameter 31.75 mm (1.25 in)",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet and web: 'Sample mount diameter 31.75 mm (1.25 in)'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_cryogen.cryogen_free",
+  "claim": "Cooled by liquid nitrogen.",
+  "value_as_printed": "liquid-nitrogen-cooled",
+  "quote": "VPF-100 Series cryostats are liquid-nitrogen-cooled with the sample located in vacuum.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 1 description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'liquid-nitrogen-cooled with the sample located in vacuum'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_cryogen.type",
+  "claim": "Liquid cryogen used: liquid nitrogen.",
+  "value_as_printed": "liquid-nitrogen-cooled",
+  "quote": "Simple to use and refill, the VPF Series use a refill-style displacer assembly that enables refilling of the LN2 reservoir without affecting the controlled temperature.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 1 description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The refill-style LN2 reservoir sentence is verbatim. The web table gives Cooling type LN2."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_holding_time.static",
+  "claim": "LN2 hold time at 77 K is 8 h (VPF-100).",
+  "value_as_printed": "LN2 hold time (77 K) 8 h",
+  "quote": "LN2 hold time (77 K) 8 h 5 h LN2 hold time (100 K) 4.5 h",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The web table confirms the column mapping: LN2 hold time (77 K) is 8 h for VPF-100 and 5 h for VPF-100-H."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_temperature.stability",
+  "claim": "Typical temperature stability +/-50 mK.",
+  "value_as_printed": "±50 mK",
+  "quote": "Typical temperature stability2 ±50 mK",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Typical temperature stability ±50 mK (measured with temperature controller)."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_vpf_100_standard_optical_cooldown_time.max",
+  "claim": "Initial cooldown to 77 K takes 15 min.",
+  "value_as_printed": "15 min",
+  "quote": "Initial cooldown time (to 77 K) 15 min",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/vpf-100-seriese4e7b274-1a6c-48ed-a716-a9ad77a41d0e.pdf?sfvrsn=656f2f10_14",
+  "document_title": "VPF-100 Series nitrogen-cooled cryostats 65 K to 800 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_vpf_100_standard_optical",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'15 min (to 77 K)' and 'Fast cooldown--15 min to 77 K' both verified."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_temperature.range",
+  "claim": "Cold plate operates from <4 K to 300 K; 4 K used as the conservative lower bound.",
+  "value_as_printed": "<4 K to 300 K",
+  "quote": "CCS-CP specifications CCS-CP Cooling type CCR Temperature range <4 K to 300 K",
+  "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats",
+  "document_title": "CCS-CP large sample space cryostats (Lake Shore Cryotronics product page)",
+  "location": "CCS-CP specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product-page spec table quote is verbatim. 4 K is a conservative reading of <4 K."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_temperature.base",
+  "claim": "Minimum temperature <4 K (408/415/418 cold-head options); 4 K stored.",
+  "value_as_printed": "Minimum temperature options 408 <4 K 415 418",
+  "quote": "Minimum temperature options 408 <4 K 415 418 Maximum temperature 300 K",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet p.2 gives a minimum temperature of <4 K for cold heads 408/415/418. The quote is reconstructed from the column layout, but the content is correct."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_magnetic_field.max",
+  "claim": "The complete CCS-CP configurator (cryostat, wiring, windows, compressor type, pump, instrumentation, software, sensors) offers no magnet.",
+  "value_as_printed": "no magnet in the 7-step configurator",
+  "quote": "1. Select cryostat CCS-CP Non-optical, vacuum, 200 mm (8 in) cold plate large sample space CUSTOM Custom configurations are available to fit your experiment needs — contact Sales for details 2. Select cryostat wiring",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 4 Configure your cryostat",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet p.4 seven-step configurator (cryostat, wiring, windows, compressor, pump, instruments, software, sensors) is a complete order list, and none of its options is a magnet. The quoted text is verbatim."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_vacuum.available",
+  "claim": "Sample environment is vacuum.",
+  "value_as_printed": "Sample environment Vacuum",
+  "quote": "Sample environment Vacuum Cold head location Bottom",
+  "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats",
+  "document_title": "CCS-CP large sample space cryostats (Lake Shore Cryotronics product page)",
+  "location": "CCS-CP specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product-page table: 'Sample environment Vacuum Cold head location Bottom'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_optical_access",
+  "claim": "Standard CCS-CP is non-optical; top or side windows are an option not fitted in this configuration.",
+  "value_as_printed": "Optical ✖ (Optional top or side windows)",
+  "quote": "Optical ✖ (Optional top or side windows)",
+  "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats",
+  "document_title": "CCS-CP large sample space cryostats (Lake Shore Cryotronics product page)",
+  "location": "CCS-CP specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product-page table: 'Optical ✖ (Optional top or side windows)'. Correctly marked optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_electrical.sample_connections",
+  "claim": "Configuration includes DC wiring anchored to the cold plate and RF feedthroughs selected in configurator step 2.",
+  "value_as_printed": "DC and high-density RF feedthrough options, with thermally anchored wiring installed to the cold plate",
+  "quote": "DC and high-density RF feedthrough options, with thermally anchored wiring installed to the cold plate",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 1 Featured components",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The featured-components line is verbatim. Configurator step 2 says DC and RF are specified at order, and this configuration selects them."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_electrical.dc_lines",
+  "claim": "Configuration is wired with the maximum 100 PhBr DC wires.",
+  "value_as_printed": "Up to 100 PhBr wires (twisted pairs)",
+  "quote": "Up to 100 PhBr wires (twisted pairs), thermally anchored at the first stage and terminated in D-sub connectors at the cold plate.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 2 Wiring options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Up to 100 PhBr wires' and step 2 'DC -- specify number required (up to 100)' both verified. The configuration selects 100."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_electrical.coax_bandwidth.max",
+  "claim": "Configuration uses the 67 GHz RF option.",
+  "value_as_printed": "40 GHz and 67 GHz options also available",
+  "quote": "Standard SMA or high-density feedthroughs with 0 dB attenuators at the first stage and SMA connectors at the cold plate. 40 GHz and 67 GHz options also available.",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 2 Wiring options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'40 GHz and 67 GHz options also available' is verbatim. This configuration selects the 67 GHz option. The number of RF lines is unspecified, as the claim says."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_sample.diameter.max",
+  "claim": "Standard cold plate is 200 mm diameter.",
+  "value_as_printed": "200 mm (8 in) diameter standard",
+  "quote": "Cold plate size 200 mm (8 in) diameter standard; other sizes up to 300 mm (12 in) available",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 2 Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cold plate size 200 mm (8 in) diameter standard' is verified. The cold plate is the sample mount in vacuum (the product cools 'a large cold plate in vacuum'), so the plate diameter is a valid upper bound. The D-sub wiring terminations also sit on the plate."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_cryogen.cryogen_free",
+  "claim": "Closed-cycle refrigerator cryostat; no liquid cryogen.",
+  "value_as_printed": "Cryogen-free",
+  "quote": "Standard 200 mm (8 in) diameter cold plate (other sizes available) <4 K to 300 K Cryogen-free Sample in vacuum",
+  "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6",
+  "document_title": "CCS-CP Cryogen-free large sample space cryostats <4 K to 300 K (Lake Shore datasheet)",
+  "location": "p. 1 Key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Key features verified: '<4 K to 300 K Cryogen-free Sample in vacuum'."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_cryogen.type",
+  "claim": "Cryogen-free CCR: no liquid cryogen is used (empty set).",
+  "value_as_printed": "Cryogen-free",
+  "quote": "<4 K to 300 K Cryogen-free Sample in vacuum Split design for easy access to the sample area",
+  "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats",
+  "document_title": "CCS-CP large sample space cryostats (Lake Shore Cryotronics product page)",
+  "location": "Product page key features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product page key features are verbatim. It is a CCR, so no liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_lake_shore_ccs_cp_200mm_wired_temperature.stability",
+  "claim": "Typical temperature stability +/-50 mK.",
+  "value_as_printed": "±50 mK",
+  "quote": "Typical temperature stability 1 ±50 mK Sample environment Vacuum",
+  "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats",
+  "document_title": "CCS-CP large sample space cryostats (Lake Shore Cryotronics product page)",
+  "location": "CCS-CP specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "lake_shore_ccs_cp_200mm_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product-page table: 'Typical temperature stability 1 ±50 mK'."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_temperature.range",
+  "claim": "Temperature range <3 K to 300 K; 3 K stored as conservative lower bound.",
+  "value_as_printed": "<3K to 300K",
+  "quote": "SPECIFICATION Temperature range <3K to 300K Cooling power 50mW @ 3K, 100mW@ 3.25K",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The SPECIFICATION table quote is verbatim. 3 K is a conservative reading of <3K."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_temperature.base",
+  "claim": "Base temperature <3 K (3 K stored).",
+  "value_as_printed": "Base temperature <3K",
+  "quote": "Base temperature <3K (8K and 10K options available)",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Base temperature <3K (8K and 10K options available)' is verbatim."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_magnetic_field.max",
+  "claim": "The specification table states Magnetic Field N/A for the DRY ICE 3K INV.",
+  "value_as_printed": "Magnetic Field N/A",
+  "quote": "Hold time N/A Temperature controller Lakeshore 335 as standard (Other controllers available on request) Magnetic Field N/A",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The spec table has an explicit 'Magnetic Field N/A' entry, which is an explicit statement and not silence."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_vacuum.available",
+  "claim": "Sample environment is vacuum.",
+  "value_as_printed": "Sample environment Vacuum",
+  "quote": "Sample environment Vacuum Sample space 81mm diameter with wiring, 134mm diameter without wiring",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Sample environment Vacuum' is verified."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_optical_access",
+  "claim": "Optical access (window) options exist but are not fitted in this configuration.",
+  "value_as_printed": "Optical access options available",
+  "quote": "Optical access and up to 8 electrical access ports are available.",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "FEATURES and SPECIFICATION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The page description has 'Optical access and up to 8 electrical access ports are available.' verbatim. Correctly marked optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_electrical.sample_connections",
+  "claim": "Configuration includes a DC/RF wiring kit on the electrical access ports (81 mm usable diameter with wiring).",
+  "value_as_printed": "DC, RF and fiber optic wiring options available",
+  "quote": "Wiring DC, RF and fiber optic wiring options available",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Wiring DC, RF and fiber optic wiring options available' is verified. The configuration states a wiring kit is installed."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_sample.diameter.max",
+  "claim": "Sample space is 81 mm diameter with wiring fitted (134 mm without wiring).",
+  "value_as_printed": "81mm diameter with wiring, 134mm diameter without wiring",
+  "quote": "Sample space 81mm diameter with wiring, 134mm diameter without wiring",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'81mm diameter with wiring, 134mm diameter without wiring' is verbatim. 81 mm is correct for the wired configuration."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_cryogen.cryogen_free",
+  "claim": "Cryogen-free closed-cycle (GM cold head) cryostat.",
+  "value_as_printed": "A cryogen free cryostat",
+  "quote": "A cryogen free cryostat offering quick and easy sample changes between 3K and 300K.",
+  "source_url": "https://www.iceoxford.com/files/image/files/DRY%20ICE%203K-10K%20INV%20Brochure%20reduced(1).pdf",
+  "document_title": "DRY ICE 3K INV brochure (ICEoxford)",
+  "location": "Brochure p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The brochure p.1 sentence is verified."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_cryogen.type",
+  "claim": "Cryogen-free: no liquid cryogen used (empty set).",
+  "value_as_printed": "A cryogen free cryostat",
+  "quote": "A cryogen free cryostat offering quick and easy sample changes between 3K and 300K.",
+  "source_url": "https://www.iceoxford.com/files/image/files/DRY%20ICE%203K-10K%20INV%20Brochure%20reduced(1).pdf",
+  "document_title": "DRY ICE 3K INV brochure (ICEoxford)",
+  "location": "Brochure p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The brochure sentence is verified. It is a GM closed cycle, so no liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_3k_inv_wired_cooldown_time.max",
+  "claim": "Cool down time 4 hours to 3 K.",
+  "value_as_printed": "4 hours to 3K",
+  "quote": "Cool down time 3 hours to 4K, 4 hours to 3K",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+  "document_title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_3k_inv_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cool down time 3 hours to 4K, 4 hours to 3K' is verbatim. 4 h to base is used."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_temperature.range",
+  "claim": "Temperature range 290 mK to 425 K (single-shot He-3 at base, continuous above 1.5 K).",
+  "value_as_printed": "290mK to 425K",
+  "quote": "SPECIFICATION Temperature Range 290mK to 425K Cooling Power 50µW at 324mK",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Temperature Range 290mK to 425K' is verified. Between 290 mK and 1.5 K the system runs single-shot only."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_temperature.base",
+  "claim": "Single-shot base temperature 290 mK.",
+  "value_as_printed": "Single shot: 290mK",
+  "quote": "Base Temperature Single shot: 290mK Continuous: 1.5K",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Single shot: 290mK Continuous: 1.5K' is verified, and the brochure table agrees (Benchtop 290 mK)."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_magnetic_field.max",
+  "claim": "Solenoid, split-pair and vector magnets are available as options; none fitted in this configuration (no field value documented).",
+  "value_as_printed": "Solenoid, Split pair and Vector magnets available",
+  "quote": "Magnetic Field Solenoid , Split pair and Vector magnets available",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Solenoid, Split pair and Vector magnets available' is verified. Correctly optional_not_installed with no field value."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_vacuum.available",
+  "claim": "Sample environment is vacuum.",
+  "value_as_printed": "Sample Environment Vacuum",
+  "quote": "Sample Environment Vacuum Sample Space D. 200mm L. 200mm as standard (custom sizes available)",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the page and in the brochure."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_optical_access",
+  "claim": "Windows (sapphire, quartz, Spectrosil) are available but not fitted in this configuration.",
+  "value_as_printed": "Multiple windows available",
+  "quote": "Optical access Multiple windows available e.g. Sapphire, Quartz and Spectrosil",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Multiple windows available e.g. Sapphire, Quartz and Spectrosil' is verified, and the windows are optional."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_electrical.sample_connections",
+  "claim": "Configuration includes customer DC wiring looms (constantan/manganin/copper) fitted on request.",
+  "value_as_printed": "24-way Fischer, Constantan, Manganin or copper looms fitted on request",
+  "quote": "Wiring 24-way Fischer, Constantan, Manganin or copper looms fitted on request DC, RF and fiber optic options available",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'24-way Fischer, Constantan, Manganin or copper looms fitted on request' is verified. The configuration states they are fitted."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_sample.diameter.max",
+  "claim": "Standard sample space 200 mm diameter.",
+  "value_as_printed": "D. 200mm L. 200mm",
+  "quote": "Sample Space D. 200mm L. 200mm as standard (custom sizes available)",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'D. 200mm L. 200mm as standard' is verified. The brochure gives Ø 200 mm."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_sample.height.max",
+  "claim": "Standard sample space 200 mm long.",
+  "value_as_printed": "D. 200mm L. 200mm",
+  "quote": "Sample Space D. 200mm L. 200mm as standard (custom sizes available)",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'L. 200mm as standard' is verified."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_cryogen.cryogen_free",
+  "claim": "Compact cryogen-free system.",
+  "value_as_printed": "compact cryogen-free system",
+  "quote": "This compact cryogen-free system allows for a fast turnaround and is perfect for detector work at ultra-low temperatures.",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product description sentence is verbatim."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_cryogen.type",
+  "claim": "Cryogen-free: no liquid cryogen consumed (sealed He-3 charge is the refrigerant, not a supplied cryogen); empty set.",
+  "value_as_printed": "compact cryogen-free system",
+  "quote": "This compact cryogen-free system allows for a fast turnaround and is perfect for detector work at ultra-low temperatures.",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Cryogen-free; the sealed He-3 charge is internal refrigerant, not a consumed cryogen."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_operating_duration.max",
+  "claim": "Hold time at 290 mK base is 50 hours with 5 L of He-3.",
+  "value_as_printed": "50 hours with 5 litres of He3",
+  "quote": "Hold Time 50 hours with 5 litres of He 3",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Hold Time 50 hours with 5 litres of He3' and '...hold time at a base temperature of 290mK for up to 50 hours' are both verified. 180000 s is correct."
+  }
+ },
+ {
+  "id": "v4c_iceoxford_dry_ice_300mk_benchtop_wired_cooldown_time.max",
+  "claim": "Cool down to 300 mK in under 10 hours.",
+  "value_as_printed": "<10 hours to 300mK",
+  "quote": "Cool Down Time <10 hours to 300mK",
+  "source_url": "https://www.iceoxford.com/DRY-ICE-300mK-Benchtop-.htm",
+  "document_title": "DRY ICE 300mK Benchtop (ICEoxford product page, SPECIFICATION table)",
+  "location": "SPECIFICATION table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "iceoxford_dry_ice_300mk_benchtop_wired",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cool Down Time <10 hours to 300mK' is verified. The brochure says < 10 hours."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_temperature.base",
+  "claim": "DE-204AB base temperature <9 K (bare cold head, closed radiation shield, no load).",
+  "value_as_printed": "Base Temperature <9K",
+  "quote": "Cryocooler Model DE-204AB DE-204A(T)B DE-204PB DE-204SB Frequency 60 Hz 50 Hz 60 Hz 50 Hz 60 Hz 50 Hz 60 Hz 50 Hz Base Temperature <9K",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, cryocooler table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The cryocooler table gives DE-204AB base <9K at both 60 and 50 Hz (bare cold head, no load). Confirmed on the datasheet and the product-page table."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_vacuum.available",
+  "claim": "True UHV cold head operated inside the user UHV chamber; sample sits in the chamber vacuum.",
+  "value_as_printed": "True UHV (10-11 Torr)",
+  "quote": "is a medium cooling power, true UHV cold head (10-11 Torr) where all of the rubber o-ring seals have been replaced with welded joints and metal seals.",
+  "source_url": "https://www.arscryo.com/cs204b",
+  "document_title": "CS204B Ultra High Vacuum UHV Cryostat (Advanced Research Systems product page)",
+  "location": "Product page description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product-page sentence is verbatim. The sample on the cold tip operates in vacuum, inside the user's chamber."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_optical_access",
+  "claim": "The radiation shield is open-ended, leaving the sample optically accessible (through the chamber viewports).",
+  "value_as_printed": "Optical Access Open End",
+  "quote": "Optical Access Open End Radiation shield terminates 0.125” short of cold tip (customer specified)",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, Radiation Shield",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet p.2: 'Optical Access Open End', radiation shield terminating 0.125\" short of the cold tip. A manufacturer-stated open-end optical access."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_electrical.sample_connections",
+  "claim": "10-pin hermetic feedthrough with 4 copper wires for electrical experiments is part of the typical configuration.",
+  "value_as_printed": "10 pin hermetic feed through, 4 copper wires",
+  "quote": "Wiring for electrical experiments: 10 pin hermetic feed through 4 copper wires",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 1, Typical Configuration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The typical-configuration wiring for electrical experiments (10 pin hermetic feedthrough, 4 copper wires) is verified."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_electrical.dc_lines",
+  "claim": "Four copper wires for electrical experiments.",
+  "value_as_printed": "4 copper wires",
+  "quote": "Wiring for electrical experiments: 10 pin hermetic feed through 4 copper wires",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 1, Typical Configuration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'4 copper wires' is verified on the datasheet and the product page."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cryogen.cryogen_free",
+  "claim": "Closed-cycle GM cryocooler; no liquid cryogen.",
+  "value_as_printed": "Liquid Cryogen Usage None, Cryogen Free",
+  "quote": "Liquid Cryogen Usage None, Cryogen Free",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, Cooling Technology",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Liquid Cryogen Usage None, Cryogen Free' is verified."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cryogen.type",
+  "claim": "No liquid cryogen used (empty set).",
+  "value_as_printed": "Liquid Cryogen Usage None, Cryogen Free",
+  "quote": "Liquid Cryogen Usage None, Cryogen Free",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, Cooling Technology",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified line."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_temperature.stability",
+  "claim": "Temperature stability 0.1 K.",
+  "value_as_printed": "Stability 0.1K",
+  "quote": "Stability 0.1K",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Stability 0.1K' is verified on datasheet p.2."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cooling_power.at_10000mK",
+  "claim": "DE-204AB cooling capacity at 10 K: 2 W at 60 Hz, 1.6 W at 50 Hz; conservative 50 Hz value stored.",
+  "value_as_printed": "10K 2W 1.6W",
+  "quote": "Cooling Capacity 4.2K - - - - - - 0.2W 0.16W 10K 2W 1.6W",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, cryocooler table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product-page table confirms the column: DE-204AB at 10K is 2W (60 Hz) and 1.6W (50 Hz). The conservative 50 Hz value is used."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cooling_power.at_20000mK",
+  "claim": "DE-204AB cooling capacity at 20 K: 9 W (60 Hz), 7.2 W (50 Hz); 50 Hz value stored.",
+  "value_as_printed": "20K 9W 7.2W",
+  "quote": "20K 9W 7.2W 12W 9.6W 8W 6.4W 8W 6.4W",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, cryocooler table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "DE-204AB at 20K is 9W/7.2W, confirmed. The 50 Hz value 7.2 W is used."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cooling_power.at_77000mK",
+  "claim": "DE-204AB cooling capacity at 77 K: 17 W (60 Hz), 14 W (50 Hz); 50 Hz value stored.",
+  "value_as_printed": "77K 17W 14W",
+  "quote": "77K 17W 14W 23W 18.4W 14W 11W 14W 11W",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, cryocooler table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The product-page table confirms the 77K row is 17W/14W for DE-204AB, distinct from the radiation-shield row of 18W/14W. 14 W at 50 Hz is used."
+  }
+ },
+ {
+  "id": "v4c_advanced_research_systems_cs204ab_uhv_standard_cooldown_time.max",
+  "claim": "DE-204AB cooldown to base: 60 min (60 Hz), 72 min (50 Hz); 72 min stored.",
+  "value_as_printed": "Base Temperature 60 min 72 min",
+  "quote": "Base Temperature 60 min 72 min 50 min 60 min 80 min 102 min 90 min 108 min",
+  "source_url": "https://www.arscryo.com/s/DS-CS204AB.pdf",
+  "document_title": "CS204*B True UHV -- Moderate Power data sheet (Advanced Research Systems)",
+  "location": "Data sheet p. 2, Cooldown Time",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "advanced_research_systems_cs204ab_uhv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "DE-204AB cooldown to base is 60 min (60 Hz) and 72 min (50 Hz), confirmed. 72 min = 4320 s."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_temperature.base",
+  "claim": "Base temperature <3.2 K with the PT415-ENH pulse tube.",
+  "value_as_printed": "< 3.2 K",
+  "quote": "LD-4K PT415-ENH PT425-ENH PT310-ENH Base temperature < 3.2 K < 3.2 K < 3.0 K",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Technical Specifications table, PT415-ENH column",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The spec table HTML confirms the PT415-ENH column: < 3.2 K."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_magnetic_field.max",
+  "claim": "Superconducting magnets can be integrated as an option; none fitted in this configuration.",
+  "value_as_printed": "Superconducting magnets can be easily integrated",
+  "quote": "Superconducting magnets can be easily integrated into the measurement system, and the system can be upgraded to a Dilution Refrigerator Measurement System at a later stage.",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Overview",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 'Superconducting magnets can be easily integrated...' sentence is verbatim. Correctly optional_not_installed with no value."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_module.magnetic_shielding",
+  "claim": "Magnetic shielding is a listed shield option, not fitted here.",
+  "value_as_printed": "Magnetic Shielding",
+  "quote": "Shield options Magnetic Shielding Magnetic Shielding Magnetic shielding provides protection for samples from interference caused by magnetic fields.",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Options, Shield options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Magnetic Shielding is listed under the 'Shield options' heading, verified."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_optical_access",
+  "claim": "Optical Access Ports (typ. 12 mm clear view) are an available option, not fitted here.",
+  "value_as_printed": "Optical Access Ports offer direct line-of-sight access to the experimental space",
+  "quote": "Optical Access Ports Optical Access Ports Optical Access Ports offer direct line-of-sight access to the experimental space.",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Options, Other options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Optical Access Ports are listed under 'Other options', verified. Optional and not installed. The 12 mm clear-view figure in the claim was not checked, but no value is stored."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_electrical.sample_connections",
+  "claim": "Wiring access ports (2 x ISO-K63, 5 x KF40) are provided; experimental wiring itself is ordered separately from Bluefors Measurement Infrastructure and is not part of this configuration.",
+  "value_as_printed": "several access ports for experimental wiring",
+  "quote": "The system has several access ports for experimental wiring between the Room Temperature and the Base Flanges. • 2 x ISO-K63 slotted in all flanges • 5 x KF40 including central port",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Product Highlights: Extensive Capabilities for Experimental Wiring",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The access-port sentence is verbatim. Experimental wiring is sold separately as Measurement Infrastructure (a related product), so optional_not_installed is appropriate."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_cryogen.cryogen_free",
+  "claim": "Pulse-tube cooled; cooled from room temperature to base simply by starting the pulse tube compressors (no liquid cryogen).",
+  "value_as_printed": "simply by starting the pulse tube compressors",
+  "quote": "The system can be cooled from room temperature to base temperature simply by starting the pulse tube compressors.",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Product Highlights: Simple Operation",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 'simply by starting the pulse tube compressors' sentence is verbatim."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_cryogen.type",
+  "claim": "No liquid cryogen used (empty set); cooling is entirely by the pulse tube cryocooler.",
+  "value_as_printed": "simply by starting the pulse tube compressors",
+  "quote": "The system can be cooled from room temperature to base temperature simply by starting the pulse tube compressors.",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Product Highlights: Simple Operation",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified sentence. It is a pulse tube, so no liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_bluefors_ld_4k_pt415_cooldown_time.max",
+  "claim": "Cooling time <8 h (PT415-ENH, empty system).",
+  "value_as_printed": "< 8 hrs",
+  "quote": "Cooling time < 8 hrs < 7 hrs < 7 hrs",
+  "source_url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+  "document_title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+  "location": "Technical Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_ld_4k_pt415",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cooling time < 8 hrs' is verified for the PT415-ENH column (empty system, standard shield set)."
+  }
+ }
+]

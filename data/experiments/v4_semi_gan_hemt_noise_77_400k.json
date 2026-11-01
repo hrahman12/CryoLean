@@ -1,0 +1,135 @@
+{
+ "id": "semi_gan_hemt_noise_77_400k",
+ "name": "On-wafer S-parameter and noise-parameter characterization of GaN HEMTs from 77 K to 400 K, 2-30 GHz",
+ "plain_name": "Measure how much electronic noise a gallium-nitride radio transistor adds between 77 K and 400 K",
+ "industry": "semiconductors_and_electronics",
+ "description": "Two-finger AlGaN/GaN HEMTs on SiC are probed on-wafer with GSG RF probes in an LN2-cooled, evacuated Lake Shore probe station with a Model 336 controller; a Keysight PNA-X with built-in source tuner and noise receiver extracts NFmin, gain and optimum source reflection from 77 K to 400 K over 2-30 GHz (VDS 5 V, VGS -2 V).",
+ "keywords": [
+  "Measure how much electronic noise a gallium-nitride radio transistor adds between 77 K and 400 K",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+   "url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "LakeShore manual probe station",
+  "Model 336 Temperature Controller",
+  "Wessington Cryogenics 60 L liquid nitrogen Dewar",
+  "Agilent Technologies TPS-compact vacuum pump",
+  "40A-GSG-100 probes",
+  "Keysight PNA-X N5245B"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 77000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 400000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The measurement temperature range was 77 K to 400 K.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 30,
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "RF probes and cabling must carry signals up to 30 GHz.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_1"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 2
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Two-port S-parameter and noise measurement lands a GSG probe on the gate port and one on the drain port.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_2"
+   ],
+   "conditions": [],
+   "key": "electrical.probe_arms"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The probe-station sample space is evacuated by a vacuum pump.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_3"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The HEMT is DC biased and RF measured through the probes.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source cooled the station with liquid nitrogen from a 60 L dewar.",
+   "evidence_ids": [
+    "v4e_semi_gan_hemt_noise_77_400k_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

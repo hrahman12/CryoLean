@@ -1,0 +1,103 @@
+{
+ "id": "metro_helium_vapour_pressure_scale",
+ "name": "Realization of the ITS-90 from 0.65 K to 5.0 K by 3He/4He vapour-pressure thermometry in a vacuum-isolated copper block",
+ "plain_name": "Set the temperature scale near absolute zero from the boiling pressure of liquid helium",
+ "industry": "metrology_and_calibration",
+ "description": "Vapour-pressure bulbs sit in a copper block inside a vacuum jacket. Cooling comes from a 4He bath with a 1 K pot and dilution refrigerator, or from a closed-cycle cryostat.",
+ "keywords": [
+  "Set the temperature scale near absolute zero from the boiling pressure of liquid helium",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "BIPM CCT Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (2018)",
+   "url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Rusby and Swenson (1980) combined 3He/4He vapour-pressure cryostat",
+  "Engert et al. (2003, 2007) 3He vapour-pressure thermometer on a dilution refrigerator"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 650,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 5000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The scale covers 0.65 K to 5.0 K.",
+   "evidence_ids": [
+    "v4e_metro_helium_vapour_pressure_scale_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 650,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 3He range starts at 0.65 K.",
+   "evidence_ids": [
+    "v4e_metro_helium_vapour_pressure_scale_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The bulbs are suspended inside a vacuum jacket.",
+   "evidence_ids": [
+    "v4e_metro_helium_vapour_pressure_scale_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The reference systems use a liquid 4He bath; cryocoolers are an alternative.",
+   "evidence_ids": [
+    "v4e_metro_helium_vapour_pressure_scale_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

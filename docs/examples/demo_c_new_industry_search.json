@@ -1,10 +1,36 @@
 {
   "experiment_id": "semi_cryo_probe_station_device_iv",
+  "checked": 26,
+  "counts": {
+    "DOES_NOT_MEET_REQUIREMENTS": 17,
+    "NEED_MORE_INFORMATION": 8,
+    "REQUIREMENTS_MET": 1
+  },
+  "verified_total": 1,
+  "offset": 0,
+  "verified_compatible": [
+    {
+      "configuration_id": "lakeshore_crx_vf",
+      "equipment_id": "lakeshore_crx",
+      "name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
+      "manufacturer": "Lake Shore Cryotronics",
+      "z3_status": "satisfiable",
+      "added_options": [],
+      "hypothetical": false,
+      "z3_unknown_items": [],
+      "named_in_sources": false,
+      "min_relative_margin": null,
+      "lean_verdict": "REQUIREMENTS_MET",
+      "verified": true,
+      "lean_summary": "Requirements met. All 3 applicable mandatory requirements and 0 coupled constraints are satisfied by the documented capabilities of this configuration."
+    }
+  ],
   "candidates": [
     {
       "configuration_id": "lakeshore_crx_vf",
       "equipment_id": "lakeshore_crx",
       "name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
+      "manufacturer": "Lake Shore Cryotronics",
       "z3_status": "satisfiable",
       "added_options": [],
       "hypothetical": false,
@@ -19,6 +45,7 @@
       "configuration_id": "lakeshore_ccs_100",
       "equipment_id": "lakeshore_janis_ccs",
       "name": "CCS-100 optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "manufacturer": "Lake Shore Cryotronics (Environment by Janis)",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
@@ -35,6 +62,7 @@
       "configuration_id": "lakeshore_ccs_300s",
       "equipment_id": "lakeshore_janis_ccs",
       "name": "CCS-300S subcompact optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "manufacturer": "Lake Shore Cryotronics (Environment by Janis)",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
@@ -51,6 +79,24 @@
       "configuration_id": "lakeshore_ccs_400",
       "equipment_id": "lakeshore_janis_ccs",
       "name": "CCS-400 optical high-temperature (500 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "manufacturer": "Lake Shore Cryotronics (Environment by Janis)",
+      "z3_status": "pending_information",
+      "added_options": [],
+      "hypothetical": false,
+      "z3_unknown_items": [
+        "req#2:electrical.probe_arms"
+      ],
+      "named_in_sources": false,
+      "min_relative_margin": null,
+      "lean_verdict": "NEED_MORE_INFORMATION",
+      "verified": false,
+      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
+    },
+    {
+      "configuration_id": "lakeshore_ccs_400h",
+      "equipment_id": "lakeshore_janis_ccs",
+      "name": "CCS-400H optical high-temperature (800 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "manufacturer": "Lake Shore Cryotronics (Environment by Janis)",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
@@ -67,38 +113,7 @@
       "configuration_id": "oxford_optistatdry_blv",
       "equipment_id": "oxford_optistatdry",
       "name": "OptistatDry BLV (bottom-loading, sample in vacuum), 4 Spectrosil WF windows, 12-pin DC wiring",
-      "z3_status": "pending_information",
-      "added_options": [],
-      "hypothetical": false,
-      "z3_unknown_items": [
-        "req#2:electrical.probe_arms"
-      ],
-      "named_in_sources": false,
-      "min_relative_margin": null,
-      "lean_verdict": "NEED_MORE_INFORMATION",
-      "verified": false,
-      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
-    },
-    {
-      "configuration_id": "qd_dynacool_9T_eto_res",
-      "equipment_id": "qd_ppms_dynacool",
-      "name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
-      "z3_status": "pending_information",
-      "added_options": [],
-      "hypothetical": false,
-      "z3_unknown_items": [
-        "req#2:electrical.probe_arms"
-      ],
-      "named_in_sources": false,
-      "min_relative_margin": null,
-      "lean_verdict": "NEED_MORE_INFORMATION",
-      "verified": false,
-      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
-    },
-    {
-      "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
-      "equipment_id": "qd_ppms_dynacool",
-      "name": "PPMS DynaCool, 14 T magnet, ETO + VSM + Heat Capacity",
+      "manufacturer": "Oxford Instruments NanoScience (Oxford NanoScience Ltd, trading as Quantum Design Oxford)",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
@@ -115,6 +130,7 @@
       "configuration_id": "qd_dynacool_12T_vsm",
       "equipment_id": "qd_ppms_dynacool",
       "name": "PPMS DynaCool, 12 T magnet, VSM only",
+      "manufacturer": "Quantum Design",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
@@ -128,109 +144,146 @@
       "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
     },
     {
-      "configuration_id": "bluefors_ld450_current",
-      "equipment_id": "bluefors_ld",
-      "name": "Bluefors LD450 (formerly LD400), current bluefors.com guaranteed specification (2026), no options installed",
+      "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
+      "equipment_id": "qd_ppms_dynacool",
+      "name": "PPMS DynaCool, 14 T magnet, ETO + VSM + Heat Capacity",
+      "manufacturer": "Quantum Design",
       "z3_status": "pending_information",
       "added_options": [],
       "hypothetical": false,
       "z3_unknown_items": [
-        "req#0:temperature.range",
         "req#2:electrical.probe_arms"
       ],
       "named_in_sources": false,
       "min_relative_margin": null,
       "lean_verdict": "NEED_MORE_INFORMATION",
       "verified": false,
-      "lean_summary": "Need more information. The available evidence does not establish: 'temperature.range', 'electrical.probe_arms'."
+      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
+    },
+    {
+      "configuration_id": "qd_dynacool_9T_eto_res",
+      "equipment_id": "qd_ppms_dynacool",
+      "name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
+      "manufacturer": "Quantum Design",
+      "z3_status": "pending_information",
+      "added_options": [],
+      "hypothetical": false,
+      "z3_unknown_items": [
+        "req#2:electrical.probe_arms"
+      ],
+      "named_in_sources": false,
+      "min_relative_margin": null,
+      "lean_verdict": "NEED_MORE_INFORMATION",
+      "verified": false,
+      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
+    },
+    {
+      "configuration_id": "oxford_teslatronpt_12T+vacuum.available",
+      "equipment_id": "oxford_teslatronpt",
+      "name": "TeslatronPT, 12 T solenoid magnet, standard VTI (hypothetical: with vacuum.available installed)",
+      "manufacturer": "Oxford Instruments NanoScience (Oxford NanoScience Ltd, trading as Quantum Design Oxford)",
+      "z3_status": "pending_information",
+      "added_options": [
+        "vacuum.available"
+      ],
+      "hypothetical": true,
+      "z3_unknown_items": [
+        "req#2:electrical.probe_arms"
+      ],
+      "named_in_sources": false,
+      "min_relative_margin": null,
+      "lean_verdict": "NEED_MORE_INFORMATION",
+      "verified": false,
+      "lean_summary": "Need more information. The available evidence does not establish: 'electrical.probe_arms'."
+    }
+  ],
+  "need_more_information": [
+    {
+      "configuration_id": "lakeshore_ccs_100",
+      "name": "CCS-100 optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "lakeshore_ccs_300s",
+      "name": "CCS-300S subcompact optical sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "lakeshore_ccs_400",
+      "name": "CCS-400 optical high-temperature (500 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
     },
     {
       "configuration_id": "lakeshore_ccs_400h",
-      "equipment_id": "lakeshore_janis_ccs",
       "name": "CCS-400H optical high-temperature (800 K) sample-in-vacuum cryostat, 4 K-class cold head (408)",
-      "z3_status": "pending_information",
-      "added_options": [],
-      "hypothetical": false,
-      "z3_unknown_items": [
-        "req#0:temperature.range",
-        "req#2:electrical.probe_arms"
+      "missing": [
+        "electrical.probe_arms"
       ],
-      "named_in_sources": false,
-      "min_relative_margin": null,
-      "lean_verdict": "NEED_MORE_INFORMATION",
-      "verified": false,
-      "lean_summary": "Need more information. The available evidence does not establish: 'temperature.range', 'electrical.probe_arms'."
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "oxford_optistatdry_blv",
+      "name": "OptistatDry BLV (bottom-loading, sample in vacuum), 4 Spectrosil WF windows, 12-pin DC wiring",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "qd_dynacool_12T_vsm",
+      "name": "PPMS DynaCool, 12 T magnet, VSM only",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
+      "name": "PPMS DynaCool, 14 T magnet, ETO + VSM + Heat Capacity",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
+    },
+    {
+      "configuration_id": "qd_dynacool_9T_eto_res",
+      "name": "PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity",
+      "missing": [
+        "electrical.probe_arms"
+      ],
+      "documented_passes": 2
     }
   ],
-  "verified_compatible": [
+  "top_failures": [
     {
-      "configuration_id": "lakeshore_crx_vf",
-      "equipment_id": "lakeshore_crx",
-      "name": "CRX-VF cryogen-free vertical-field (±2.5 T) probe station, standard vacuum, up to 6 probe arms",
-      "z3_status": "satisfiable",
-      "added_options": [],
-      "hypothetical": false,
-      "z3_unknown_items": [],
-      "named_in_sources": false,
-      "min_relative_margin": null,
-      "lean_verdict": "REQUIREMENTS_MET",
-      "verified": true,
-      "lean_summary": "Requirements met. All 3 applicable mandatory requirements and 0 coupled constraints are satisfied by the documented capabilities of this configuration."
+      "requirement": "vacuum.available",
+      "configurations": 12
+    },
+    {
+      "requirement": "temperature.range",
+      "configurations": 8
+    },
+    {
+      "requirement": "electrical.probe_arms",
+      "configurations": 1
     }
   ],
-  "rejected_by_z3": [
-    {
-      "configuration_id": "lakeshore_crx_4k",
-      "failing": [
-        "req#2:electrical.probe_arms"
-      ]
-    },
-    {
-      "configuration_id": "bluefors_ld250_manual_v2",
-      "failing": [
-        "req#0:temperature.range"
-      ]
-    },
-    {
-      "configuration_id": "bluefors_ld400_hdw",
-      "failing": [
-        "req#0:temperature.range"
-      ]
-    },
-    {
-      "configuration_id": "oxford_optistatdry_tlex",
-      "failing": [
-        "req#3:vacuum.available"
-      ]
-    },
-    {
-      "configuration_id": "linkam_thms600_lnp96_t96",
-      "failing": [
-        "req#0:temperature.range",
-        "req#3:vacuum.available"
-      ]
-    },
-    {
-      "configuration_id": "linkam_thmsel600_lnp96",
-      "failing": [
-        "req#0:temperature.range",
-        "req#3:vacuum.available"
-      ]
-    },
-    {
-      "configuration_id": "linkam_thms600_heating_only",
-      "failing": [
-        "req#3:vacuum.available"
-      ]
-    }
-  ],
+  "z3_evaluated": 26,
   "ranking_criteria": [
-    "status tier",
-    "fewest added options",
+    "Lean verdict (REQUIREMENTS_MET first)",
     "named in the experiment's sources",
-    "fewest unknowns",
     "most documented passes",
-    "largest smallest relative margin"
+    "largest smallest relative margin (Z3)",
+    "then Z3 alternatives: fewest added options, fewest unknowns"
   ],
-  "note": "Only entries with verified=true passed the Lean checker on the exact document shown."
+  "note": "Every configuration was decided by the Lean checker; only entries with verified=true passed it on the exact document shown."
 }

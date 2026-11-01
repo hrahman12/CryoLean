@@ -1,0 +1,91 @@
+{
+  "id": "expc_thomas_qd_setup",
+  "manufacturer": "attocube / Thomas et al. published apparatus",
+  "model": "attoDRY800 telecom quantum-dot source with HBT detector chain",
+  "family": "optical_emitter",
+  "description": "Thomas 2024 attoDRY800, 4 K QD source, excitation optics and two-detector HBT chain. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_thomas_qd_setup",
+      "title": "Thomas et al. (2024), Deterministic storage and retrieval of telecom light from a quantum dot single-photon source interfaced with an atomic quantum memory, Science Advances 10, eadi7346",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11014446/fullTextXML",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_attodry800_qd_hbt_2024",
+      "name": "Thomas 2024 attoDRY800, 4 K QD source, excitation optics and two-detector HBT chain",
+      "configuration_basis": "Exact published4 K source configuration: attoDRY800,3-axis piezo stack, in-cryostat objective, OPO excitation, fibre collection,50:50 splitter, two SNSPD inputs and time tagger. The SNSPDs are external detection equipment; this does not say the4 K sample cryostat cools the detectors. The warm rubidium quantum memory is excluded from the selected source-only experiment.",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "4000",
+              "unit": "mK"
+            },
+            "hi": {
+              "value": "4000",
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_qd_4k"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_qd_excitation"
+          ]
+        },
+        {
+          "key": "module.quantum_dot_excitation",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_qd_excitation"
+          ]
+        },
+        {
+          "key": "module.hbt_correlation",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_qd_hbt"
+          ]
+        },
+        {
+          "key": "module.photon_timing",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_qd_time_tagger"
+          ]
+        }
+      ]
+    }
+  ]
+}

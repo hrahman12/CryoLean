@@ -1,0 +1,82 @@
+{
+ "id": "aero_lox_mechanical_impact",
+ "name": "Ambient-pressure liquid-oxygen mechanical impact test (NHB 8060.1C / NASA-STD-6001 Test 13A, ASTM D2512, 98 J)",
+ "plain_name": "Drop a heavy weight on material soaked in liquid oxygen to check that it does not ignite",
+ "industry": "aerospace_and_space_exploration",
+ "description": "Oxygen-compatibility screening at NASA MSFC: samples in 0.625 in cups are frozen in liquid nitrogen, immersed in ambient-pressure LOX and struck with 72 ft-lb (98 J) by a 20 lb plummet dropped 43.3 in; pass is fewer than 2 reactions in 20 drops.",
+ "keywords": [
+  "Drop a heavy weight on material soaked in liquid oxygen to check that it does not ignite",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+   "url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "ambient pressure LOX impact test unit (MSFC Materials Combustion Research Facility)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_oxygen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Test 13A impacts samples immersed in ambient-pressure liquid oxygen.",
+   "evidence_ids": [
+    "v4e_aero_lox_mechanical_impact_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: liquid samples are pre-frozen in a liquid-nitrogen container before impact in LOX.",
+   "evidence_ids": [
+    "v4e_aero_lox_mechanical_impact_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "0.625",
+     "unit": "inch"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: sample cups are about 0.625 in inside diameter.",
+   "evidence_ids": [
+    "v4e_aero_lox_mechanical_impact_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

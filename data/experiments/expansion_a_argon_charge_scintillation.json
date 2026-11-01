@@ -1,0 +1,74 @@
+{
+  "id": "expa_argon_charge_scintillation",
+  "name": "Two-phase liquid-argon ionization and scintillation detection at 87 K",
+  "plain_name": "Two-phase liquid-argon ionization and scintillation detection at 87 K",
+  "industry": "physics_and_particle_accelerators",
+  "description": "Detect particle interactions through prompt VUV scintillation and an electron signal extracted across a liquid-gas argon boundary, as in the 2.3 litre WARP prototype.",
+  "keywords": [
+    "argon charge scintillation",
+    "noble liquid detector"
+  ],
+  "sources": [
+    {
+      "citation": "Benetti et al., First results from a Dark Matter search with liquid Argon at 87 K",
+      "url": "https://arxiv.org/abs/astro-ph/0701286",
+      "accessed": "2026-10-31",
+      "doi": "10.1016/j.astropartphys.2007.08.002"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "87 K",
+      "evidence_id": "expa_warp"
+    },
+    {
+      "key": "target_volume",
+      "as_printed": "2.3 litre test chamber",
+      "evidence_id": "expa_warp"
+    }
+  ],
+  "reported_equipment": [
+    "WARP 2.3 litre prototype"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "87",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported liquid-argon target is at 87 K.",
+      "evidence_ids": [
+        "expa_warp"
+      ]
+    },
+    {
+      "key": "module.dual_phase_argon_charge_light",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The detector needs drift/extraction electrodes and VUV readout, not simply liquid argon cooling.",
+      "evidence_ids": [
+        "expa_warp"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Argon purity, electron lifetime, HV field, extraction efficiency and backgrounds are not quantified in this bounded profile; no dark-matter discrimination or sensitivity claim follows from passing it."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

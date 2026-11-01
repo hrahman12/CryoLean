@@ -1,0 +1,62 @@
+{
+ "id": "auto_pemfc_system_minus30_cold_start",
+ "name": "Cold start of a 100 kW automotive PEM fuel-cell system from -30 C in an environment cabin (normal operation, on-load shutdown purge at 30 A, cold start with auxiliary heat)",
+ "plain_name": "Start a full-size car fuel-cell power system after it has been frozen to -30 C",
+ "industry": "automotive_and_transportation",
+ "description": "A full-power automotive PEMFC system (stack rated 100 kW at 1.4 A/cm2, up to 120 kW) is operated, purged on load at 30 A at shutdown, soaked and restarted from -30 C inside an environment cabin with auxiliary heating; cold start was achieved within 110 s.",
+ "keywords": [
+  "Start a full-size car fuel-cell power system after it has been frozen to -30 C",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "Liu P., Xu S., Experimental Analysis of -30C Cold Start Process for an Automotive PEM Fuel Cell System, SAE Technical Paper 2022-01-0694 (2022), doi:10.4271/2022-01-0694",
+   "url": "https://doi.org/10.4271/2022-01-0694",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "environment cabin with auxiliary heat"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 243150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The system is cold-soaked and started from -30 C (243.15 K).",
+   "evidence_ids": [
+    "v4e_auto_pemfc_system_minus30_cold_start_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The system delivers electrical load (100 kW rated stack) during operation and start-up, so load cabling into the cabin is required.",
+   "evidence_ids": [
+    "v4e_auto_pemfc_system_minus30_cold_start_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

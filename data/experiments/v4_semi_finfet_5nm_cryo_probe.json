@@ -1,0 +1,111 @@
+{
+ "id": "semi_finfet_5nm_cryo_probe",
+ "name": "DC transfer characterization of commercial 5 nm n/p-FinFETs from 300 K down to 10 K on a closed-cycle cryogenic probe station",
+ "plain_name": "Measure how the tiniest commercial transistors behave when cooled to 10 K",
+ "industry": "semiconductors_and_electronics",
+ "description": "Ids-Vgs transfer curves (Vds 50 mV and 750 mV) of minimum-length multi-fin 5 nm FinFETs probed directly on their gate, source, drain and bulk pads in a Lake Shore CRX-VF closed-cycle cryogenic probe station from 300 K to 10 K with a Keysight B1500A; the data calibrate a cryogenic-aware BSIM-CMG compact model.",
+ "keywords": [
+  "Measure how the tiniest commercial transistors behave when cooled to 10 K",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+   "url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Lakeshore CRX-VF",
+  "Keysight's B1500A"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 10000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 300000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Transistors were measured over the whole span from 300 K down to 10 K (10 K was the lowest stable temperature with probes landed).",
+   "evidence_ids": [
+    "v4e_semi_finfet_5nm_cryo_probe_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The probed die sits in the evacuated sample space of the probe station.",
+   "evidence_ids": [
+    "v4e_semi_finfet_5nm_cryo_probe_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 2
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each transistor terminal (gate, source, drain, bulk) is contacted by its own probe, so four probe arms are needed.",
+   "evidence_ids": [
+    "v4e_semi_finfet_5nm_cryo_probe_2"
+   ],
+   "conditions": [],
+   "key": "electrical.probe_arms"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The DUT is biased and measured by the B1500A through the probes.",
+   "evidence_ids": [
+    "v4e_semi_finfet_5nm_cryo_probe_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source used a two-stage closed-cycle refrigerator rather than a liquid cryogen.",
+   "evidence_ids": [
+    "v4e_semi_finfet_5nm_cryo_probe_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

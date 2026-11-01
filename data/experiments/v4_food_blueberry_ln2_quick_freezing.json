@@ -1,0 +1,120 @@
+{
+ "id": "food_blueberry_ln2_quick_freezing",
+ "name": "Liquid-nitrogen quick freezing of 'Northcountry' blueberries at -80, -100 and -120 °C to below Tg' (-52.55 °C), compared with a -80 °C ultra-low freezer",
+ "plain_name": "Flash-freeze blueberries in liquid nitrogen to keep them firm and juicy",
+ "industry": "food_and_agriculture",
+ "description": "Blueberries were frozen to their glass-transition end point (Tg' = -52.55 °C) either in an ultra-low temperature freezer at -80 °C or by direct immersion in liquid nitrogen at set points of -80, -100 and -120 °C; LN-120 °C gave the least quality loss (juice loss, hardness, anthocyanin, membrane integrity, microstructure).",
+ "keywords": [
+  "Flash-freeze blueberries in liquid nitrogen to keep them firm and juicy",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+   "url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "ultra-low temperature freezer (RF−80 ℃)",
+  "liquid nitrogen direct-immersion quick freezing (LN−80/−100/−120 ℃)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 153150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The best-performing treatment, LN-120 °C, needs the freezing space at -120 °C (153.15 K).",
+   "evidence_ids": [
+    "v4e_food_blueberry_ln2_quick_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Freezing is done by direct immersion in liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_food_blueberry_ln2_quick_freezing_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 220600,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Tg' (-52.55 °C = 220.6 K) is the freezing end point, so the machine must reach below it.",
+   "evidence_ids": [
+    "v4e_food_blueberry_ln2_quick_freezing_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 153150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 193150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reproducing the full comparison needs set points from -120 °C to -80 °C (153.15-193.15 K); optional beyond the -120 °C operating point.",
+   "evidence_ids": [
+    "v4e_food_blueberry_ln2_quick_freezing_3"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The fruit is immersed directly in liquid nitrogen; supporting flag only.",
+   "evidence_ids": [
+    "v4e_food_blueberry_ln2_quick_freezing_4"
+   ],
+   "conditions": [],
+   "key": "process.ln2_immersion"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

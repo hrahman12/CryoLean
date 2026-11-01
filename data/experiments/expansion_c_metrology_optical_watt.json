@@ -1,0 +1,86 @@
+{
+  "id": "expc_metrology_optical_watt",
+  "name": "Silicon photodiode-trap responsivity transfer using NIST LOCR at approximately5.4 K",
+  "plain_name": "Calibrate an optical detector by electrical-substitution radiometry",
+  "industry": "metrology_and_calibration",
+  "description": "Calibrate an optical detector by electrical-substitution radiometry. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "cryogenic_radiometer",
+    "metrology_and_calibration"
+  ],
+  "sources": [
+    {
+      "id": "src_locr",
+      "citation": "Houston and Livigni (2001), Comparison of Two Cryogenic Radiometers at NIST, J. Res. NIST 106, 641-647",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4862825/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "approximately5.4 K (absorbing cavity)",
+      "normalized": null,
+      "evidence_id": "expc_locr_5p4k"
+    },
+    {
+      "key": "measurement",
+      "as_printed": "electrical substitution",
+      "normalized": null,
+      "evidence_id": "expc_locr_esr"
+    }
+  ],
+  "reported_equipment": [
+    "NIST LOCR"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "5400",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the paper's approximate absorbing-cavity operating condition; this point is not a required tolerance. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_locr_5p4k"
+      ]
+    },
+    {
+      "key": "module.electrical_substitution_radiometry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A calibrated heater, absorber and constant-temperature substitution readout are essential. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_locr_esr"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The calibrated laser must reach the receiving cavity and transfer detector. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_locr_path"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Laser wavelength, beam power, underfilling aperture, window transmission and electrical/optical nonequivalence require separate review; the published uncertainty and responsivity are not predicted by this verdict."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

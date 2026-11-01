@@ -1,0 +1,155 @@
+{
+ "id": "aero_cubesat_tvac_lsp",
+ "name": "CubeSat thermal-vacuum cycling qualification per NASA LSP-REQ-317.01 Rev B (-14 to +71 C, 1e-4 torr)",
+ "plain_name": "Space-qualify a small CubeSat satellite by cycling it hot and cold in a vacuum chamber",
+ "industry": "aerospace_and_space_exploration",
+ "description": "Qualification thermal-vacuum cycling of a 3U CubeSat for a NASA Launch Services Program ride: the satellite is cycled over at least -14 C to +71 C at a chamber pressure of 13.3e-3 Pa (1e-4 torr) with functional tests at the soaks, as summarised from LSP-REQ-317.01 Rev B in the INPE ICES-2017 test-specification method; the article envelope is the CubeSat Design Specification 3U size.",
+ "keywords": [
+  "Space-qualify a small CubeSat satellite by cycling it hot and cold in a vacuum chamber",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+   "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+   "url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 259150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 344150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "LSP-REQ-317.01 qualification requires at least the -14 C to +71 C range (-14 C = 259.15 K, +71 C = 344.15 K).",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The test is a thermal-vacuum cycling test; an evacuated chamber is required.",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.0001",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Table 1, NASA LSP-REQ-317.01 Rev.B column (last of five columns: GSFC-STD-7000, MIL-HDBK-340A, ECSS-E-ST-10-03C, TR-2004(8583)-1, LSP-REQ-317.01): qualification chamber pressure 13.3x10-3 Pa (1e-4 torr).",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Functional/performance tests of the powered satellite are run during the cycling, so harness feedthroughs to the article are needed.",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "141.6",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "A 3U CubeSat is 100.0 +/- 0.1 mm square; circumscribed diameter of a 100.1 mm square = 141.56 mm, rounded up.",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_4"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "340.8",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "3U CubeSat rail height 340.5 +/- 0.3 mm; upper bound 340.8 mm along the loading axis.",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_5"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "4",
+     "unit": "kg"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "Optional: the platen/fixture must carry a CubeSat of up to 4.00 kg.",
+   "evidence_ids": [
+    "v4e_aero_cubesat_tvac_lsp_6"
+   ],
+   "conditions": [],
+   "key": "sample.mass.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,2127 @@
+[
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_0",
+  "claim": "Cavities are tested in a nominal 2 K liquid-helium bath.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 2000, \"unit\": \"mK\"}}",
+  "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Introduction & Facility Requirements, p. 2283",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in WEPMN106 p.2283 Introduction: 'test ... SRF cavities at a nominal frequency of 1.3GHz in a 2K LHe bath'. 2000 mK point is correct."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_1",
+  "claim": "The cavity is immersed in (pumped) liquid helium; Q0 is measured in the LHe bath.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Introduction & Facility Requirements, p. 2283",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified quote ('2K LHe bath'); the test insert 'supports the cavity in the LHe bath'. liquid_helium is right. No cryostat seed documents cryogen.type values yet, so this check will come out UNKNOWN until one does."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_2",
+  "claim": "The RF system must drive and phase-lock to the 1.3 GHz cavity resonance.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": \"1.3\", \"unit\": \"GHz\"}}",
+  "quote": "The Vertical Test Stand (VTS) at Fermilab is designed to test superconducting RF (SRF) cavities at a nominal frequency of 1.3GHz in a 2K LHe bath",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Introduction & Facility Requirements, p. 2283",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'nominal frequency of 1.3GHz'. rf.frequency.range is a range key in GHz, so point_within 1.3 GHz fits."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_3",
+  "claim": "Trapped flux degrades Q0, so the cryostat must shield the cavity from ambient field during cool-down (design goal <10 mG).",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "To avoid trapping magnetic flux thereby degrading the cavity quality factor, the cavity must be shielded from magnetic fields during cool down.",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Magnetic Shielding, p. 2284",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Magnetic Shielding section: 'the cavity must be shielded from magnetic fields during cool down' (two-layer shield, <10 mG). The procedure requires it, so mandatory is justified."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_4",
+  "claim": "RF input/pickup cables and instrumentation must pass into the dewar to the cavity.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "It consists of a 1.25” thick stainless steel top plate with several penetrations for RF and instrumentation cable feedthroughs.",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Test Stand Insert, p. 2284",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in the Test Stand Insert section: '1.25\" thick stainless steel top plate with several penetrations for RF and instrumentation cable feedthroughs'. electrical.sample_connections is an acceptable flag for this."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_5",
+  "claim": "Full high-power test of a 9-cell cavity used a 500 W CW RF amplifier (needed only for high-gradient runs).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 500, \"unit\": \"W\"}}",
+  "quote": "An integrated system commissioning, consisting of a full high power (500W) test of a 9-cell ILC cavity will follow.",
+  "source_url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+  "document_title": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+  "location": "Status & Future Plans, p. 2285",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Status & Future Plans: 'full high power (500W) test of a 9-cell ILC cavity'. 500 W is correct, and non-mandatory is appropriate."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_vertical_q0_eacc_6",
+  "claim": "Q versus T sweeps extend below 2 K; the facility operates down to 1.5 K.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"1.5\", \"unit\": \"K\"}}",
+  "quote": "The VCTF facility includes RF and DAQ systems, radiation shielding, a system of interlocks for personnel protection, and is connected to an existing cryoplant and vacuum system allowing VCTF operations down to 1.5K.",
+  "source_url": "https://proceedings.jacow.org/srf2007/PAPERS/WEP15.pdf",
+  "document_title": "Initial Results from Fermilab's Vertical Test Stand for SRF Cavities (Ozelis et al., SRF2007, WEP15)",
+  "location": "Introduction, p. 472",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_vertical_q0_eacc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in SRF2007 WEP15 Introduction: 'allowing VCTF operations down to 1.5K'. This is a facility capability rather than a procedural need, so non-mandatory is the right setting."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_horizontal_dressed_cavity_0",
+  "claim": "Dressed cavities are operated at 2 K in the test cryostat.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 2000, \"unit\": \"mK\"}}",
+  "quote": "These dressed cavity packages are then cooled to 2 K in a test cryostat and are operated strongly overcoupled to a klystron-based 300 kW pulsed RF system.",
+  "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+  "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+  "location": "Introduction, p. 522",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_horizontal_dressed_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in TUPO055 Introduction: 'cooled to 2 K in a test cryostat'. Also 'After cooling down to 2 K' in Test Procedure."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_horizontal_dressed_cavity_1",
+  "claim": "Coupler conditioning and gradient runs use pulses up to 300 kW from the klystron system.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 300000, \"unit\": \"W\"}}",
+  "quote": "These dressed cavity packages are then cooled to 2 K in a test cryostat and are operated strongly overcoupled to a klystron-based 300 kW pulsed RF system.",
+  "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+  "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+  "location": "Introduction, p. 522",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_horizontal_dressed_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'klystron-based 300 kW pulsed RF system'. Test Procedure confirms coupler conditioning 'up to a ≈300 kW pulse with a length of 1.3 ms'. Mandatory is justified because conditioning is a procedure step."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_horizontal_dressed_cavity_2",
+  "claim": "Nine-cell TESLA-style cavities resonate at 1.3 GHz.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": \"1.3\", \"unit\": \"GHz\"}}",
+  "quote": "The latest results from extensive testing of nine-cell 1.3 GHz cavities are presented here, along with a discussion of future extensions of the horizontal test program to include 650 MHz cavities and continuous wave testing.",
+  "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+  "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+  "location": "Abstract, p. 522",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_horizontal_dressed_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Abstract is verbatim: 'testing of nine-cell 1.3 GHz cavities'. The procedure tunes the 'cavity resonance to 1.3 GHz'."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_horizontal_dressed_cavity_3",
+  "claim": "Q0 is obtained calorimetrically from the heat dissipated into the helium bath.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "the cavity Q0 can only be determined from the heat dissipated by the cavity walls to the helium bath.",
+  "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+  "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+  "location": "Test Procedure, p. 522",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_horizontal_dressed_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Test Procedure: 'the cavity Q0 can only be determined from the heat dissipated by the cavity walls to the helium bath.' A helium bath is required."
+  }
+ },
+ {
+  "id": "v4e_phys_srf_horizontal_dressed_cavity_4",
+  "claim": "The cryostat must connect the cavity's input coupler, HOM couplers and tuner to outside RF and controls.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "the cavities are welded inside helium vessels and outfitted with high power input couplers, higher-order mode (HOM) couplers, magnetic shielding, and a mechanical tuning system.",
+  "source_url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+  "document_title": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+  "location": "Introduction, p. 522",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_srf_horizontal_dressed_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Introduction: 'outfitted with high power input couplers, higher-order mode (HOM) couplers, magnetic shielding, and a mechanical tuning system.' The flag is a reasonable proxy for coupler, HOM and tuner connections."
+  }
+ },
+ {
+  "id": "v4e_phys_lhc_dipole_cold_training_0",
+  "claim": "All main dipoles must be tested in 1.9 K conditions.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": \"1.9\", \"unit\": \"K\"}}",
+  "quote": "a necessary and primordial condition prior to its installation is that all the main twin-aperture dipole and quadrupole magnets are tested in the 1.9 K cryogenic conditions.",
+  "source_url": "https://proceedings.jacow.org/e04/PAPERS/MOPLT014.PDF",
+  "document_title": "Testing of the LHC Magnets in Cryogenic Conditions: Current Experience and Near Future Outlook (Chohan et al., EPAC 2004, MOPLT014)",
+  "location": "Abstract, p. 560",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lhc_dipole_cold_training",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in MOPLT014 Abstract: 'all the main twin-aperture dipole and quadrupole magnets are tested in the 1.9 K cryogenic conditions.'"
+  }
+ },
+ {
+  "id": "v4e_phys_lhc_dipole_cold_training_1",
+  "claim": "The magnets are cooled by superfluid helium (HeII) at 1.9 K.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "a coolant temperature of 1.9 K by using HeII to boost Nb–Ti performance and make use of the superior conductivity and heat",
+  "source_url": "https://arxiv.org/pdf/1501.07164",
+  "document_title": "Manufacturing and Testing of Accelerator Superconducting Magnets (L. Rossi, CERN; arXiv:1501.07164)",
+  "location": "Section 3 (LHC design innovations)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lhc_dipole_cold_training",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Rossi arXiv:1501.07164: 'a coolant temperature of 1.9 K by using HeII ... superfluid helium'. This describes the LHC design generally, but the SM18 tests are done under the same 1.9 K HeII conditions."
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_0",
+  "claim": "Samples are polarized at 1 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 1000, \"unit\": \"mK\"}}",
+  "quote": "At this location they are cooled with superfluid helium and polarized via dynamic nuclear polarization at 1 K and 5 T.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Abstract is verbatim: 'polarized via dynamic nuclear polarization at 1 K and 5 T.'"
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_1",
+  "claim": "The refrigerator must reach 1 K (0.93 K with no heat load) for DNP.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 1000, \"unit\": \"mK\"}}",
+  "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Section 1 Introduction",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Introduction: 'cooled to 1 K by immersion in a shallow bath of superfluid helium'. The paper also gives 'A base temperature of 0.93 K is achieved with no applied heat load', and the sample warms to 1.08 K under about 1 W, so at_most 1 K for base is justified."
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_2",
+  "claim": "DNP is done at 5 T (ESR at 140 GHz).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 5, \"unit\": \"T\"}}",
+  "quote": "At this location they are cooled with superfluid helium and polarized via dynamic nuclear polarization at 1 K and 5 T.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: '1 K and 5 T'. The 'CLAS12 solenoid is energized to 5 T'."
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_3",
+  "claim": "About 1 W of 140 GHz microwave power must reach the samples.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 1, \"unit\": \"W\"}}",
+  "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Section 1 Introduction",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'exposed to approximately 1 W of 140 GHz microwaves'. at_least 1 W is fine."
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_4",
+  "claim": "Samples are immersed in a superfluid helium bath.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "The ammonia target samples are cooled to 1 K by immersion in a shallow bath of superfluid helium and exposed to approximately 1 W of 140 GHz microwaves to drive the dynamic nuclear polarization process.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Section 1 Introduction",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'immersion in a shallow bath of superfluid helium'."
+  }
+ },
+ {
+  "id": "v4e_phys_dnp_polarized_ammonia_target_5",
+  "claim": "Target samples are 2 cm in diameter.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 20, \"unit\": \"mm\"}}",
+  "quote": "Although the CLAS12 solenoid was designed to provide a field uniformity of ΔB/B≤10−4 over the volume the target samples (2 cm diameter x 5 cm long), initial field maps indicated the actual uniformity could be up to three times worse.",
+  "source_url": "https://arxiv.org/html/2504.17933",
+  "document_title": "Horizontal 1 K refrigerator with novel loading mechanism for polarized solid targets (Brock et al., arXiv:2504.17933)",
+  "location": "Section 4.7 (field uniformity / correction coils)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_dnp_polarized_ammonia_target",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in section 4.7 (Shim Coils): 'the target samples (2 cm diameter x 5 cm long)'. 20 mm is correct."
+  }
+ },
+ {
+  "id": "v4e_phys_rebco_cable_ic_12t_0",
+  "claim": "Critical currents were measured at 4.2 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 4200, \"unit\": \"mK\"}}",
+  "quote": "The critical current of a simple-stacked REBCO cable and a CORC cable were measured using a SCT at 4.2 K in magnetic field up to 12 T.",
+  "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+  "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+  "location": "Section IV Conclusion",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_rebco_cable_ic_12t",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Conclusion: 'measured using a SCT at 4.2 K in magnetic field up to 12 T.'"
+  }
+ },
+ {
+  "id": "v4e_phys_rebco_cable_ic_12t_1",
+  "claim": "Ic was mapped in transverse background field up to 12 T.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 12, \"unit\": \"T\"}}",
+  "quote": "The critical current of a simple-stacked REBCO cable and a CORC cable were measured using a SCT at 4.2 K in magnetic field up to 12 T.",
+  "source_url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf",
+  "document_title": "Critical Current Measurement of REBCO Cables by Using a Superconducting Transformer (Yu, Lu, Weiss, van der Laan, IEEE Trans. Appl. Supercond. 32, 4800605, 2022)",
+  "location": "Section IV Conclusion",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_rebco_cable_ic_12t",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified quote. The facility is '12 T split solenoid magnet with 15 cm bore providing transverse field'."
+  }
+ },
+ {
+  "id": "v4e_phys_axion_haloscope_cavity_0",
+  "claim": "The cavity was operated at ~150 mK.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 150, \"unit\": \"mK\"}}",
+  "quote": "The cavity temperature, as measured by ruthenium oxide thermometers throughout the run, was typically 150 mK, with the MSA temperature measured to be about 300 mK due to additional heat in the vicinity of the MSA.",
+  "source_url": "https://arxiv.org/pdf/1804.05750",
+  "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+  "location": "p. 2 (cavity and MSA cooling)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_axion_haloscope_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:1804.05750: 'The cavity temperature, as measured by ruthenium oxide thermometers throughout the run, was typically 150 mK'."
+  }
+ },
+ {
+  "id": "v4e_phys_axion_haloscope_cavity_1",
+  "claim": "The cold space must reach at least the 150 mK cavity temperature.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 150, \"unit\": \"mK\"}}",
+  "quote": "The cavity temperature, as measured by ruthenium oxide thermometers throughout the run, was typically 150 mK, with the MSA temperature measured to be about 300 mK due to additional heat in the vicinity of the MSA.",
+  "source_url": "https://arxiv.org/pdf/1804.05750",
+  "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+  "location": "p. 2 (cavity and MSA cooling)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_axion_haloscope_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified quote. The cold space must reach the 150 mK cavity temperature."
+  }
+ },
+ {
+  "id": "v4e_phys_axion_haloscope_cavity_2",
+  "claim": "Results were taken at a typical field of 6.8 T.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"6.8\", \"unit\": \"T\"}}",
+  "quote": "while the magnet in earlier ADMX runs[24] was operated at 7.6 T compared to the typical field of 6.8 T for the results reported here.",
+  "source_url": "https://arxiv.org/pdf/1804.05750",
+  "document_title": "A Search for Invisible Axion Dark Matter with the Axion Dark Matter Experiment (Du et al., ADMX Collaboration, arXiv:1804.05750)",
+  "location": "Outlook paragraph",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_axion_haloscope_cavity",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in Outlook: 'compared to the typical field of 6.8 T for the results reported here.' Equation 1 is also normalised to 6.8 T."
+  }
+ },
+ {
+  "id": "v4e_phys_niobium_rrr_0",
+  "claim": "RRR uses resistivity at 300 K and at 10 K in the same fixture.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 10000, \"unit\": \"mK\"}, \"hi\": {\"value\": 300000, \"unit\": \"mK\"}}",
+  "quote": "The RRR for Nb is determined according to equation 1 by dividing the averaged measured values of resistivity at 300 +/- 0.1 K and at 10 +/- 0.1 K to create a unitless figure of merit",
+  "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+  "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+  "location": "Introduction, p. 726",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_niobium_rrr",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in SRF2015 TUPB063 Introduction: 'dividing the averaged measured values of resistivity at 300 +/- 0.1 K and at 10 +/- 0.1 K'. range_within 10–300 K is correct."
+  }
+ },
+ {
+  "id": "v4e_phys_niobium_rrr_1",
+  "claim": "Four-point probe leads and thermometer wiring must reach the samples.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The card edge connectors pass electrical connections to the sample boards for the four point probe and Cernox temperature sensors.",
+  "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+  "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+  "location": "Measurement System, p. 727",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_niobium_rrr",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'The card edge connectors pass electrical connections to the sample boards for the four point probe and Cernox temperature sensors.'"
+  }
+ },
+ {
+  "id": "v4e_phys_niobium_rrr_2",
+  "claim": "Fermilab samples are ~75 mm long strips (~2x2 mm2).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 75, \"unit\": \"mm\"}}",
+  "quote": "The sample-holder consists of a G10 plate to which twelve ~75 mm long (~2x2mm2 cross-section) samples (cut from sheets with electroerosion machining) are affixed with copper clamps and brass screws.",
+  "source_url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf",
+  "document_title": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+  "location": "Introduction, p. 352",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_niobium_rrr",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in SRF2005 TUP47: 'twelve ~75 mm long (~2x2mm2 cross-section) samples'. The any-of keys include sample.length.max, so 75 mm is correct."
+  }
+ },
+ {
+  "id": "v4e_phys_niobium_rrr_3",
+  "claim": "The series-connected samples are driven with 100 mA.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 100, \"unit\": \"mA\"}}",
+  "quote": "The clamps also conduct the 100 mA current to the samples, all samples being connected in series.",
+  "source_url": "https://proceedings.jacow.org/SRF2005/papers/tup47.pdf",
+  "document_title": "Recent RRR Measurements on Niobium for Superconducting RF Cavities at Fermilab (Bauer et al., SRF2005, TUP47)",
+  "location": "Introduction, p. 352",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_niobium_rrr",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'The clamps also conduct the 100 mA current to the samples, all samples being connected in series.'"
+  }
+ },
+ {
+  "id": "v4e_phys_niobium_rrr_5",
+  "claim": "Both reported systems cool the samples with liquid helium.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "The samples are measured inside of an isothermal setup in a liquid helium (LHe) dewar.",
+  "source_url": "https://proceedings.jacow.org/SRF2015/papers/tupb063.pdf",
+  "document_title": "A Multi-Sample Residual Resistivity Ratio System for High Quality Superconductor Measurements (Spradlin, Valente-Feliciano, Reece, SRF2015, TUPB063)",
+  "location": "Abstract, p. 726",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_niobium_rrr",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in TUPB063 Abstract: 'The samples are measured inside of an isothermal setup in a liquid helium (LHe) dewar.' TUP47 also uses in-situ evaporation of liquid helium. Non-mandatory is fine."
+  }
+ },
+ {
+  "id": "v4e_phys_lar_sipm_ln2_qualification_0",
+  "claim": "DCR and noise specifications are verified at 77 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 77000, \"unit\": \"mK\"}}",
+  "quote": "Cryogenic reliable DCR < 200 mHz/mm² at Vop @ 77 K",
+  "source_url": "https://arxiv.org/html/2511.19095v1",
+  "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+  "location": "Table 1 (SiPM requirements)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lar_sipm_ln2_qualification",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "An equivalent passage is in Table 1 of arXiv:2511.19095v1, which flattens as 'DCR ... <200 mHz/mm² at Vop ... Cryogenic reliable @ 77 K'. The quote is the table row put back together, not contiguous text. 77 K is correct, and Table 2 reports IV results at 77 K."
+  }
+ },
+ {
+  "id": "v4e_phys_lar_sipm_ln2_qualification_1",
+  "claim": "Sensors are immersed (dived) in liquid nitrogen.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "The setup consists of a liquid nitrogen (LN2) dewar where the sensors are placed in order to perform tests at cryogenic temperatures.",
+  "source_url": "https://arxiv.org/html/2511.19095v1",
+  "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+  "location": "Section 3.1 Experimental apparatus and procedure",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lar_sipm_ln2_qualification",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in section 3.1: 'The setup consists of a liquid nitrogen (LN2) dewar where the sensors are placed in order to perform tests at cryogenic temperatures.'"
+  }
+ },
+ {
+  "id": "v4e_phys_lar_sipm_ln2_qualification_2",
+  "claim": "Bias and signal leads (triaxial cables to the SMU, cryogenic amplifier) must reach the sensor.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The SiPMs current-voltage characteristic curve (IV) measurements were performed by a commercial source meter unit (SMU) directly connected to the SiPM through triaxial cables",
+  "source_url": "https://arxiv.org/html/2511.19095v1",
+  "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+  "location": "Section 3.1 Experimental apparatus and procedure",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lar_sipm_ln2_qualification",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'performed by a commercial source meter unit (SMU) directly connected to the SiPM through triaxial cables'."
+  }
+ },
+ {
+  "id": "v4e_phys_lar_sipm_ln2_qualification_3",
+  "claim": "A 6x6 mm2 sensor has a circumscribed diameter of 8.5 mm.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"8.5\", \"unit\": \"mm\"}}",
+  "quote": "SiPM dimensions 6x6 mm 2 Compatible with the PDS modules",
+  "source_url": "https://arxiv.org/html/2511.19095v1",
+  "document_title": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+  "location": "Table 1 (SiPM requirements)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_lar_sipm_ln2_qualification",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 1 gives 'SiPM dimensions ... 6x6 mm2 ... Compatible with the PDS modules' (quote put back together from the table). The diagonal is sqrt(72) = 8.49 mm, so 8.5 is correct. This is a derived value."
+  }
+ },
+ {
+  "id": "v4e_phys_nb3sn_wire_mqe_0",
+  "claim": "Ic and MQE are measured at 4.2 K.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 4200, \"unit\": \"mK\"}}",
+  "quote": "Voltage–current (V–I) characteristics are measured in boiling He at 4.2 K, in a transverse magnetic field.",
+  "source_url": "https://arxiv.org/pdf/2204.05378",
+  "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+  "location": "Section II.B Strand Ic and MQE Tests",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_nb3sn_wire_mqe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:2204.05378 II.B: 'Voltage–current (V–I) characteristics are measured in boiling He at 4.2 K, in a transverse magnetic field.'"
+  }
+ },
+ {
+  "id": "v4e_phys_nb3sn_wire_mqe_1",
+  "claim": "The wire is cooled by a boiling helium bath, which sets the heat removal relevant to MQE.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "Voltage–current (V–I) characteristics are measured in boiling He at 4.2 K, in a transverse magnetic field.",
+  "source_url": "https://arxiv.org/pdf/2204.05378",
+  "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+  "location": "Section II.B Strand Ic and MQE Tests",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_nb3sn_wire_mqe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified quote: 'boiling He at 4.2 K'."
+  }
+ },
+ {
+  "id": "v4e_phys_nb3sn_wire_mqe_2",
+  "claim": "MQE results are reported at 15 T (and 14 T).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 15, \"unit\": \"T\"}}",
+  "quote": "At 90%Ic and 15 T, the average gain of MQE of the Nb3Sn wire soldered to the Cu/Gd2O2S 55 µm thick ribbon was 2.5, and further increased at larger transport currents.",
+  "source_url": "https://arxiv.org/pdf/2204.05378",
+  "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_nb3sn_wire_mqe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Abstract is verbatim: 'At 90%Ic and 15 T, the average gain of MQE ... was 2.5'. All MQE results in Fig. 6 are at 15 T."
+  }
+ },
+ {
+  "id": "v4e_phys_nb3sn_wire_mqe_3",
+  "claim": "Transport current, voltage taps and heater leads must reach the sample.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "In the wire critical current, or Ic, measurement, one pair of voltage taps is used. The pair is placed along the center of the spiral sample 50 cm apart.",
+  "source_url": "https://arxiv.org/pdf/2204.05378",
+  "document_title": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+  "location": "Section II.B Strand Ic and MQE Tests",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_nb3sn_wire_mqe",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'In the wire critical current, or Ic, measurement, one pair of voltage taps is used. The pair is placed along the center of the spiral sample 50 cm apart.'"
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_0",
+  "claim": "Detectors were operated at a stable 20.7 mK.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": \"20.7\", \"unit\": \"mK\"}}",
+  "quote": "With a stable operating temperature of 20.7 mK and a strong NTD polarization for the Ge LDs, negligible nonlinearity is expected.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 3.3 Performance of bolometric Ge light detectors",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim in arXiv:1909.02994 (light detector calibration): 'With a stable operating temperature of 20.7 mK and a strong NTD polarization for the Ge LDs, negligible nonlinearity is expected.'"
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_1",
+  "claim": "The cryostat must reach the 20.7 mK working temperature.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"20.7\", \"unit\": \"mK\"}}",
+  "quote": "we could stably operate at 20.7 mK with a few µW of regulation power.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 3 (operation)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'we could stably operate at 20.7 mK with a few µW of regulation power.' The loaded base is about 20 mK and the empty-cryostat base is 11.5 mK, so at_most 20.7 mK is justified."
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_2",
+  "claim": "Each crystal is ~44 mm in diameter.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 44, \"unit\": \"mm\"}}",
+  "quote": "All crystals have a cylindrical shape with ∼ 44 mm diameter and ∼ 45 mm height, and a mass of ∼ 0.2 kg.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 2.1 Li2100MoO4 crystals",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'All crystals have a cylindrical shape with ∼ 44 mm diameter and ∼ 45 mm height'. The paired Ge wafer is 44.5 mm in diameter, so 44 mm slightly understates the module size. Accepted as minimal."
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_3",
+  "claim": "Each crystal is ~45 mm high.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 45, \"unit\": \"mm\"}}",
+  "quote": "All crystals have a cylindrical shape with ∼ 44 mm diameter and ∼ 45 mm height, and a mass of ∼ 0.2 kg.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 2.1 Li2100MoO4 crystals",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified quote: '∼ 45 mm height'. Crystals are stacked vertically in towers, so height is the right key."
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_4",
+  "claim": "NTD thermistors and heaters on every crystal and light detector must be wired out.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "We bonded gold wires from the NTDs to flat Kapton pads with gold contacts to provide the electrical readout connection as well as the weak thermal link to the heat bath.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 2.7 Wiring",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'We bonded gold wires from the NTDs to flat Kapton pads with gold contacts to provide the electrical readout connection'."
+  }
+ },
+ {
+  "id": "v4e_phys_cupid_mo_scintillating_bolometers_5",
+  "claim": "The full array of 20 crystals has 4.158 kg to be cooled.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"4.158\", \"unit\": \"kg\"}}",
+  "quote": "The total mass of the 20 Li2100MoO4 crystals used in CUPIDMo is 4.158 kg, corresponding to 2.264 kg of 100Mo.",
+  "source_url": "https://arxiv.org/pdf/1909.02994",
+  "document_title": "The CUPID-Mo experiment for neutrinoless double-beta decay: performance and prospects (Armengaud et al., arXiv:1909.02994)",
+  "location": "Section 2.1 Li2100MoO4 crystals",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "phys_cupid_mo_scintillating_bolometers",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'The total mass of the 20 Li2100MoO4 crystals used in CUPIDMo is 4.158 kg'. This is the total for the array, not one sample. Acceptable only because it is non-mandatory."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_temperature.range",
+  "claim": "Mixing-chamber temperature is controllable from 7 mK to 30 K, also with a magnet at full field.",
+  "value_as_printed": "Temperature Control Range: 7 mK to 30 K with magnet at full field",
+  "quote": "Temperature Control Range: 7 mK to 30 K with magnet at full field",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the proteoxLX.html Key Specifications: 'Temperature control range: 7 mK to 30 K with magnet at full field'."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_temperature.base",
+  "claim": "Guaranteed base temperature below 7 mK.",
+  "value_as_printed": "Base Temperature: < 7 mK",
+  "quote": "Base Temperature: < 7 mK",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Base temperature: < 7 mK'."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_cooling_power.at_20mK",
+  "claim": "Cooling power at 20 mK greater than 25 uW.",
+  "value_as_printed": "Cooling Power at 20 mK: > 25 μW",
+  "quote": "Cooling Power at 20 mK: > 25 μW",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '> 25 μW' at 20 mK. 25000 nW is the guaranteed lower bound, which is conservative."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_cooling_power.at_100mK",
+  "claim": "Cooling power at 100 mK greater than 850 uW.",
+  "value_as_printed": "Cooling Power at 100 mK: > 850 μW",
+  "quote": "Cooling Power at 100 mK: > 850 μW",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '> 850 μW' at 100 mK. 850000 nW is correct."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_magnetic_field.max",
+  "claim": "Integrated superconducting solenoid magnets up to 14 T are an option; this configuration has no magnet fitted.",
+  "value_as_printed": "Solenoid: up to 14 T",
+  "quote": "Magnet Options: Solenoid: up to 14 T Vector rotate: up to 9,1,1 T Field cancellation: < 10 mT",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified magnet options on the LX page: solenoid up to 14 T, vector rotate 9,1,1 T, field cancellation < 10 mT. Correctly marked optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_vacuum.available",
+  "claim": "The dilution insert (stages down to the mixing-chamber plate that carries the sample) sits below the top plate inside the vacuum enclosure of the Proteox platform.",
+  "value_as_printed": "vacuum enclosure",
+  "quote": "There is a stainless steel `top plate' which forms part of the vacuum enclosure. Below this are the PT1 and PT2 stages, both coupled to the PTR, and the still plate, cold plate and mixing chamber plate, all coupled to the dilution unit.",
+  "source_url": "https://qd-oxford.com/siteDocs/appNotes/Proteox_High_temperature_operation.pdf",
+  "document_title": "Proteox high-temperature operation: continuous temperature control across four orders of magnitude (Application Note, June 2026)",
+  "location": "Section 2.1, Figure 1 caption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the PDF text of the June 2026 app note. The quote is the Figure 1 caption ('stainless steel top plate which forms part of the vacuum enclosure... mixing chamber plate'), not Section 2.1 text, so correct the location to 'Figure 1 caption'. The note covers the Proteox platform."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_optical_access",
+  "claim": "Optical windows onto the sample space are an option (not fitted in this configuration); fibres via non-line-of-sight ports are also possible.",
+  "value_as_printed": "optional windows",
+  "quote": "Integrate multiple optical fibres on numerous non line of site ports and choose to access the sample space via optional windows.",
+  "source_url": "https://qd-oxford.com/siteDocs/ProteoxLX_brochure.pdf",
+  "document_title": "ProteoxLX Cryofree dilution refrigerator for quantum computing scale-up (brochure)",
+  "location": "p. 1, Applications - Optical quantum applications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the extracted PDF text of the ProteoxLX brochure p.2, Optical quantum applications: 'Integrate multiple optical fibres on numerous non line of site ports and choose to access the sample space via optional windows.' It applies to LX, and optional_not_installed is correct."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_electrical.sample_connections",
+  "claim": "Configuration includes the standard ISO100-2 Secondary Insert, whose ISO100 ports carry experimental DC/coaxial wiring to the sample.",
+  "value_as_printed": "2 x ISO100 ports ... experimental wiring; Up to 37 UT85 coax per ISO100 port",
+  "quote": "A standard configuration of 2 x ISO100 ports, with multiple ISO100 options to provide experimental wiring. Up to 37 UT85 coax per ISO100 port",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Options / Accessories - Secondary Insert - Standard Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the LX page: 'A standard configuration of 2 x ISO100 ports, with multiple ISO100 options to provide experimental wiring' and 'Up to 37 UT85 coax per ISO100 port'. The configuration basis explicitly includes the wired ISO100-2 insert."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_sample.diameter.max",
+  "claim": "Sample space diameter given as the 530 mm mixing-chamber plate.",
+  "value_as_printed": "Sample Space Diameter: 530 mm plate",
+  "quote": "Sample Space Diameter: 530 mm plate",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Sample space diameter: 530 mm plate'. This is the plate diameter as the manufacturer prints it, not a measured clear bore."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_cryogen.cryogen_free",
+  "claim": "Cryofree system: pulse-tube refrigerators provide the 4 K stage, no cryogenic liquids needed.",
+  "value_as_printed": "Dry systems do not require the use of cryogenic liquids",
+  "quote": "Dry systems do not require the use of cryogenic liquids to provide the 4 K environment. Instead, pulse tube refrigerators are used.",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Dry systems do not require the use of cryogenic liquids to provide the 4 K environment.'"
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_lx_iso100_cryogen.type",
+  "claim": "No liquid cryogen is used or held (pulse-tube cooled).",
+  "value_as_printed": "Dry systems do not require the use of cryogenic liquids",
+  "quote": "Dry systems do not require the use of cryogenic liquids to provide the 4 K environment. Instead, pulse tube refrigerators are used.",
+  "source_url": "https://qd-oxford.com/products/proteoxLX.html",
+  "document_title": "Proteox LX - Cryofree Dilution Refrigerator for Quantum Computing Scale-Up (product page)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_lx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified dry-system sentence. An empty set is correct."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_temperature.range",
+  "claim": "Mixing-chamber temperature is controllable from 10 mK to 30 K, also with a magnet at full field.",
+  "value_as_printed": "Temperature Control Range: 10 mK to 30 K with magnet at full field",
+  "quote": "Temperature Control Range: 10 mK to 30 K with magnet at full field",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on proteoxMX.html and the MX brochure Key Specifications: '10 mK to 30 K with magnet at full field'."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_temperature.base",
+  "claim": "Guaranteed base temperature below 10 mK.",
+  "value_as_printed": "Base Temperature: < 10 mK",
+  "quote": "Base Temperature: < 10 mK",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '< 10 mK' on the MX page and MX brochure."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_cooling_power.at_20mK",
+  "claim": "Cooling power at 20 mK greater than 12 uW.",
+  "value_as_printed": "Cooling Power at 20 mK: > 12 μW",
+  "quote": "Cooling Power at 20 mK: > 12 μW",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '> 12 μW' at 20 mK."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_cooling_power.at_100mK",
+  "claim": "Cooling power at 100 mK greater than 450 uW.",
+  "value_as_printed": "Cooling Power at 100 mK: > 450 μW",
+  "quote": "Cooling Power at 100 mK: > 450 μW",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '> 450 μW' at 100 mK."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_magnetic_field.max",
+  "claim": "Integrated superconducting solenoid magnets up to 14 T are an option; this configuration has no magnet fitted.",
+  "value_as_printed": "Solenoid: up to 14 T",
+  "quote": "Magnet Options: Solenoid: up to 14 T Vector rotate: up to 9,1,1 T Field cancellation: < 10 mT",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the MX page and MX brochure: 'Solenoid: up to 14 T, Vector rotate: up to 9,1,1 T, Field cancellation: < 10 mT'. Correctly optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_vacuum.available",
+  "claim": "The dilution insert (stages down to the mixing-chamber plate that carries the sample) sits below the top plate inside the vacuum enclosure of the Proteox platform.",
+  "value_as_printed": "vacuum enclosure",
+  "quote": "There is a stainless steel `top plate' which forms part of the vacuum enclosure. Below this are the PT1 and PT2 stages, both coupled to the PTR, and the still plate, cold plate and mixing chamber plate, all coupled to the dilution unit.",
+  "source_url": "https://qd-oxford.com/siteDocs/appNotes/Proteox_High_temperature_operation.pdf",
+  "document_title": "Proteox high-temperature operation: continuous temperature control across four orders of magnitude (Application Note, June 2026)",
+  "location": "Section 2.1, Figure 1 caption",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The app note is a Proteox platform document and lists ProteoxMX in its 'About Proteox' section. The vacuum-enclosure statement is the Figure 1 caption, so correct the location. A sample on the mixing-chamber plate inside the OVC is inherent to the platform."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_electrical.sample_connections",
+  "claim": "Configuration includes the standard ISO100-2 Secondary Insert, whose ISO100 ports carry experimental DC/coaxial wiring to the sample.",
+  "value_as_printed": "2 x ISO100 ports ... experimental wiring; Up to 37 UT85 coax per ISO100 port",
+  "quote": "A standard configuration of 2 x ISO100 ports, with multiple ISO100 options to provide experimental wiring. Up to 37 UT85 coax per ISO100 port",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Options / Accessories - Secondary Insert - Standard Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the MX page: 'A standard configuration of 2 x ISO100 ports, with multiple ISO100 options to provide experimental wiring'. Up to 37 UT85 coax per ISO100 port."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_sample.diameter.max",
+  "claim": "Sample space diameter given as the 360 mm mixing-chamber plate.",
+  "value_as_printed": "Sample Space Diameter: 360 mm plate",
+  "quote": "Sample Space Diameter: 360 mm plate",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Key Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: '360 mm plate' on the MX page and MX brochure."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_cryogen.cryogen_free",
+  "claim": "Cryofree system: pulse-tube refrigerators provide the 4 K stage, no cryogenic liquids needed.",
+  "value_as_printed": "Dry systems do not require the use of cryogenic liquids",
+  "quote": "Dry systems do not require the use of cryogenic liquids to provide the 4 K environment. Instead, pulse tube refrigerators are used.",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified dry-system sentence on the MX page."
+  }
+ },
+ {
+  "id": "v4c_quantum_design_oxford_proteox_mx_iso100_cryogen.type",
+  "claim": "No liquid cryogen is used or held (pulse-tube cooled).",
+  "value_as_printed": "Dry systems do not require the use of cryogenic liquids",
+  "quote": "Dry systems do not require the use of cryogenic liquids to provide the 4 K environment. Instead, pulse tube refrigerators are used.",
+  "source_url": "https://qd-oxford.com/products/proteoxMX.html",
+  "document_title": "Proteox MX - Modular Cryofree Dilution Refrigerator (product page)",
+  "location": "Product description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "quantum_design_oxford_proteox_mx_iso100",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified dry-system sentence. An empty set is correct."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_temperature.range",
+  "claim": "Documented operating window of the evaporator (experimental) flange: base below 900 mK, rated cooling power specified between 1 K and 1.2 K. The upper bound is the highest specified operating point, not a documented maximum.",
+  "value_as_printed": "200-700 mW between 1-1.2 K; base temperature of <900 mK",
+  "quote": "This combination delivers excellent cooling power with 200-700 mW between 1-1.2 K on the experimental flange. The system reaches a typical base temperature of <900 mK in 12-16 hours, depending on the configuration.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Product Highlights - Ultimate Cooling for 1 K Experiments",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Quote verified verbatim on the Bluefors XLDHehp page. 0.9-1.2 K is a conservative window: guaranteed base below 900 mK, and the highest rated point is 700 mW at 1.2 K."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_temperature.base",
+  "claim": "Guaranteed base temperature below 900 mK.",
+  "value_as_printed": "Guaranteed Base temperature <900 mK",
+  "quote": "XLDHehp Guaranteed Base temperature <900 mK Cooling power at 1 K 200 mW Cooling power at 1.1 K 400 mW Cooling power at 1.2 K 700 mW",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Technical Specifications table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the tech-spec table: 'Guaranteed Base temperature <900 mK'. The 200/400/700 mW figures at 1/1.1/1.2 K are also confirmed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_magnetic_field.max",
+  "claim": "Integrated superconducting magnets are an option for the 3-section-can model; not fitted in this configuration, and the maximum field for XLDHehp is not stated.",
+  "value_as_printed": "configuration with integrated superconducting magnets ... also available",
+  "quote": "A configuration with integrated superconducting magnets and additional payload space is also available.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'A configuration with integrated superconducting magnets and additional payload space is also available.' The page gives no field value, so unknown with optional_not_installed is correct. The page ties magnet compatibility to the 3-section can, which matches this configuration."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_vacuum.available",
+  "claim": "Experimental space is enclosed in vacuum cans (2- or 3-section).",
+  "value_as_printed": "2- or 3-section vacuum cans",
+  "quote": "The XLDHehp is available in configurations with either 2- or 3-section vacuum cans:",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Vast Experimental Space",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'The XLDHehp is available in configurations with either 2- or 3-section vacuum cans'."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_optical_access",
+  "claim": "Optical Access Ports are a listed option (not fitted).",
+  "value_as_printed": "Optical Access Ports",
+  "quote": "Optical Access Ports offer direct line-of-sight access to the experimental space.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Options - Other options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified under Options: 'Optical Access Ports offer direct line-of-sight access to the experimental space.' Correctly optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_electrical.sample_connections",
+  "claim": "Configuration includes coaxial experimental wiring through the side-loading ports (up to 32 SMA 18 GHz lines per port).",
+  "value_as_printed": "up to 32 standard SMA 18 GHz coaxial cable lines each",
+  "quote": "Side-loading ports (six ports in double pulse tube configuration and five ports in triple pulse tube configuration) can accommodate up to 32 standard SMA 18 GHz coaxial cable lines each.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Unique Wiring Capabilities",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: side-loading ports (six in the double pulse tube configuration) 'can accommodate up to 32 standard SMA 18 GHz coaxial cable lines each'. The configuration basis states that coax wiring is fitted."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_sample.diameter.max",
+  "claim": "Experimental space diameter 520 mm.",
+  "value_as_printed": "Experimental space Ø520mm",
+  "quote": "Both versions offer a very large experimental flange diameter of 520 mm.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Vast Experimental Space",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Both versions offer a very large experimental flange diameter of 520 mm.' This is a flange diameter."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_sample.height.max",
+  "claim": "Vertical experimental space 776 mm with 3-section vacuum cans (this configuration).",
+  "value_as_printed": "Vertical experiment space 776 mm (3-section)",
+  "quote": "A model with 3-section vacuum cans expands the vertical experimental space to 776 mm, and adds a 2-section still shield, making it ideal for use with magnets.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Vast Experimental Space",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: the 3-section vacuum cans expand the vertical experimental space to 776 mm. This applies to the 3-section configuration."
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_cryogen.cryogen_free",
+  "claim": "Cryogen-free system (pulse-tube cooled helium-4 circuit).",
+  "value_as_printed": "cryogen-free measurement system",
+  "quote": "The XLDHehp is a cryogen-free measurement system that utilizes helium-4 to deliver extremely high cooling power between 200-700 mW at 1–1.2 K.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'The XLDHehp is a cryogen-free measurement system that utilizes helium-4...'"
+  }
+ },
+ {
+  "id": "v4c_bluefors_xldhehp_3section_cryogen.type",
+  "claim": "No liquid cryogen supply is used in this configuration (the LN2 pre-cooling loop is an option not included).",
+  "value_as_printed": "cryogen-free measurement system",
+  "quote": "The XLDHehp is a cryogen-free measurement system that utilizes helium-4 to deliver extremely high cooling power between 200-700 mW at 1–1.2 K.",
+  "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+  "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page",
+  "location": "Introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_xldhehp_3section",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified cryogen-free statement. The LN2 pre-cooling loop is confirmed as optional and is excluded from this configuration, so an empty set is correct."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_magnetic_field.max",
+  "claim": "Complete specification sheet (dewar, PT415 cold head, CPA1110 compressor, controls, utilities) contains no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Cold head PT415 cold head mounted on dewar Helium compressor package CPA1110 (available as water cooled only)",
+  "source_url": "https://cdn.bluefors.com/wp-content/uploads/2024/11/15142437/Integrated-LHeP22-CPA1110-Specification-Sheet.pdf",
+  "document_title": "Integrated LHeP22 Liquid Helium Plant Specification Sheet (Bluefors Cryocooler Technologies, 13 Nov 2024)",
+  "location": "p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 13 Nov 2024 one-page spec sheet is a complete system specification: dewar, control system, PT415 cold head, CPA1110 compressor, utilities and helium gas requirement. Neither it nor the product-page custom options list a magnet, so not_available is justified for a liquefier."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_vacuum.available",
+  "claim": "The product space is the liquid-helium dewar held at positive pressure (3 psig standard); there is no evacuated sample space.",
+  "value_as_printed": "Dewar Standard Operating Pressure 3 psig (0.2 bar)",
+  "quote": "Dewar Standard Operating Pressure 3 psig (0.2 bar) Dewar Maximum Operating Pressure 6 psig (0.4 bar)",
+  "source_url": "https://bluefors.com/products/liquid-helium-management-products/liquid-helium-plants/lhep22-liquid-helium-plant/",
+  "document_title": "LHeP22 Liquid Helium Plant - Bluefors (Cryomech) product page",
+  "location": "Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the product page and spec sheet: 'Dewar Standard Operating Pressure 3 psig (0.2 bar) Dewar Maximum Operating Pressure 6 psig (0.4 bar)'. The product space is at positive pressure."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_pressure.base",
+  "claim": "No evacuated sample space; the dewar operates above atmospheric pressure.",
+  "value_as_printed": "3 psig (0.2 bar)",
+  "quote": "Dewar Standard Operating Pressure 3 psig (0.2 bar) Dewar Maximum Operating Pressure 6 psig (0.4 bar)",
+  "source_url": "https://bluefors.com/products/liquid-helium-management-products/liquid-helium-plants/lhep22-liquid-helium-plant/",
+  "document_title": "LHeP22 Liquid Helium Plant - Bluefors (Cryomech) product page",
+  "location": "Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified pressure rows. There is no evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_optical_access",
+  "claim": "Complete specification sheet lists no window or viewport onto the dewar contents.",
+  "value_as_printed": "no viewport in specification",
+  "quote": "Cold head PT415 cold head mounted on dewar Helium compressor package CPA1110 (available as water cooled only)",
+  "source_url": "https://cdn.bluefors.com/wp-content/uploads/2024/11/15142437/Integrated-LHeP22-CPA1110-Specification-Sheet.pdf",
+  "document_title": "Integrated LHeP22 Liquid Helium Plant Specification Sheet (Bluefors Cryocooler Technologies, 13 Nov 2024)",
+  "location": "p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete spec sheet lists no viewport, and the custom-options list has none either. Accepted for the standard, no-options configuration."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_electrical.sample_connections",
+  "claim": "Electrical feedthroughs into the plant are a custom option only; the standard plant has none.",
+  "value_as_printed": "Electrical Feed Throughs (custom option)",
+  "quote": "Commonly provided customizations include: Conflat Flanges ISO Flanges Gas Feed Throughs Electrical Feed Throughs Recondensing Heat Exchangers Gas Pre-Cooling Tube",
+  "source_url": "https://bluefors.com/products/liquid-helium-management-products/liquid-helium-plants/lhep22-liquid-helium-plant/",
+  "document_title": "LHeP22 Liquid Helium Plant - Bluefors (Cryomech) product page",
+  "location": "Options - Custom Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified verbatim: 'Commonly provided customizations include: Conflat Flanges ISO Flanges Gas Feed Throughs Electrical Feed Throughs Recondensing Heat Exchangers Gas Pre-Cooling Tube'. Correctly optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_cryogen.cryogen_free",
+  "claim": "Plant is cooled by an electrically driven PT415 pulse tube; the only consumable listed is room-temperature helium gas (no LN2 pre-cooling).",
+  "value_as_printed": "PT415 cold head; gaseous helium requirement 10.7 SLPM",
+  "quote": "Gaseous helium requirement 10.7 SLPM (0.38 SCFM) Flow rate 99.99% Minimum purity 150 psig (10.3 bar) Maximum inlet pressure",
+  "source_url": "https://cdn.bluefors.com/wp-content/uploads/2024/11/15142437/Integrated-LHeP22-CPA1110-Specification-Sheet.pdf",
+  "document_title": "Integrated LHeP22 Liquid Helium Plant Specification Sheet (Bluefors Cryocooler Technologies, 13 Nov 2024)",
+  "location": "p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The spec sheet confirms the PT415/CPA1110 cooling, a gaseous helium feed of 10.7 SLPM at 99.99% purity, and no LN2. The quote's word order follows the PDF column layout. This is accepted under 'needs no liquid cryogen supply', but the dewar holds the LHe it produces; keep the semantics consistent with how the catalog treats liquefiers and dewars."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_cryogen.type",
+  "claim": "The plant produces and stores liquid helium in its 150 L dewar.",
+  "value_as_printed": "Liquid helium production rate 22 L/day",
+  "quote": "Liquid helium production rate 22 L/day (0.92 L/hour) Initial system cool down 30 hours from initial start up to full production rate",
+  "source_url": "https://cdn.bluefors.com/wp-content/uploads/2024/11/15142437/Integrated-LHeP22-CPA1110-Specification-Sheet.pdf",
+  "document_title": "Integrated LHeP22 Liquid Helium Plant Specification Sheet (Bluefors Cryocooler Technologies, 13 Nov 2024)",
+  "location": "p. 1",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Liquid helium production rate ≥ 22 L/day (0.92 L/hour)'. The PDF prints '≥', which the quote omits. A 150 L LHe dewar is stated."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_chamber.volume",
+  "claim": "Liquid helium dewar capacity 150 L.",
+  "value_as_printed": "Dewar Capacity 150 L (39.6 gal)",
+  "quote": "Dewar Capacity 150 L (39.6 gal)",
+  "source_url": "https://bluefors.com/products/liquid-helium-management-products/liquid-helium-plants/lhep22-liquid-helium-plant/",
+  "document_title": "LHeP22 Liquid Helium Plant - Bluefors (Cryomech) product page",
+  "location": "Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Value verified: 'Dewar Capacity 150 L (39.6 gal)'. However, chamber.volume is not in data/capability_vocabulary.json. The established equivalent is cryogen.dewar_volume (max, L), so re-key it before ingest."
+  }
+ },
+ {
+  "id": "v4c_bluefors_lhep22_standard_pressure.max_working",
+  "claim": "Dewar maximum operating pressure 0.4 bar gauge (6 psig).",
+  "value_as_printed": "6 psig (0.4 bar)",
+  "quote": "Dewar Maximum Operating Pressure 6 psig (0.4 bar)",
+  "source_url": "https://bluefors.com/products/liquid-helium-management-products/liquid-helium-plants/lhep22-liquid-helium-plant/",
+  "document_title": "LHeP22 Liquid Helium Plant - Bluefors (Cryomech) product page",
+  "location": "Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "bluefors_lhep22_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Dewar Maximum Operating Pressure 6 psig (0.4 bar)'. 40000 Pa is gauge pressure and the conservative of the two printed values (6 psig = 41.4 kPa). However, pressure.max_working is not in capability_vocabulary.json; re-key it or add it to the vocabulary, and record that it is gauge."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_temperature.range",
+  "claim": "Liquid helium is produced at 4.4 K (Linde marks the performance figures as expected performance).",
+  "value_as_printed": "L70 liquefaction performance at 4.4 K*",
+  "quote": "Technical specification L70/LR70 L70 liquefaction performance at 4.4 K*",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Technical specification L70/LR70",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet (66103_LCS_1124) actually prints 'L70 liquefaction performance at ≤ 4.4 K*', with '*expected performance'. The quote drops the '≤'; fix the quote. A 4.4 K point is conservative."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_temperature.base",
+  "claim": "Lowest documented product temperature 4.4 K.",
+  "value_as_printed": "4.4 K*",
+  "quote": "Technical specification L70/LR70 L70 liquefaction performance at 4.4 K*",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Technical specification L70/LR70",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet prints '≤ 4.4 K*', so 4.4 K is conservative. Add the '≤' to the quote."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_magnetic_field.max",
+  "claim": "Standard scope of supply (coldbox, control cabinet, heat exchangers, turbo expanders, compressor, oil removal, transfer line) contains no magnet.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: the datasheet gives an explicit itemised standard scope of supply (coldbox, control cabinet, plate-fin HX with LN2 pre-cooling, two TED turbines, compressor, oil removal, transfer line) plus an options list. Neither contains a magnet."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_vacuum.available",
+  "claim": "The coldbox vacuum is insulation only; the supply has no evacuated sample space (the product is liquid helium delivered to a dewar).",
+  "value_as_printed": "Vacuum insulated coldbox",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified scope-of-supply quote. The vacuum is coldbox insulation only, and there is no sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_pressure.base",
+  "claim": "No evacuated sample space in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Rests on the complete scope of supply. There is no evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_optical_access",
+  "claim": "No window or viewport in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Rests on the complete itemised scope and options list. No viewport."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_electrical.sample_connections",
+  "claim": "No sample wiring/feedthroughs in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Rests on the complete itemised scope and options list. No sample wiring."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_sample.diameter.max",
+  "claim": "The liquefier has no sample space (an LHe storage dewar is a separate option).",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The liquefier has no sample space. The LHe storage dewar is listed under Options and is excluded."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_sample.height.max",
+  "claim": "The liquefier has no sample space (an LHe storage dewar is a separate option).",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same as sample.diameter.max: no sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_cryogen.cryogen_free",
+  "claim": "This configuration uses the LN2 pre-cooling facility (70 l/h with LN pre-cooling on CSD/75 kW).",
+  "value_as_printed": "LN2 pre-cooling facility",
+  "quote": "All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity.",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 1, introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity.' This configuration uses it (70 l/h on CSD/75 kW confirmed)."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_ln2_csd75_cryogen.type",
+  "claim": "Consumes liquid nitrogen for pre-cooling and produces liquid helium delivered through the coaxial transfer line to the dewar.",
+  "value_as_printed": "LN2 pre-cooling facility; coaxial transfer line from liquefier to dewar",
+  "quote": "All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity.",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 1, introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_ln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified LN2 pre-cooling sentence. The coaxial transfer line from liquefier to dewar is in the standard scope."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_temperature.range",
+  "claim": "Liquid helium is produced at 4.4 K (Linde marks the performance figures as expected performance).",
+  "value_as_printed": "L70 liquefaction performance at 4.4 K*",
+  "quote": "Technical specification L70/LR70 L70 liquefaction performance at 4.4 K*",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Technical specification L70/LR70",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet prints '≤ 4.4 K*' (expected performance). Fix the quote to include '≤'. The value is conservative."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_temperature.base",
+  "claim": "Lowest documented product temperature 4.4 K.",
+  "value_as_printed": "4.4 K*",
+  "quote": "Technical specification L70/LR70 L70 liquefaction performance at 4.4 K*",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Technical specification L70/LR70",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet prints '≤ 4.4 K*'. Fix the quote to include '≤'."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_magnetic_field.max",
+  "claim": "Standard scope of supply (coldbox, control cabinet, heat exchangers, turbo expanders, compressor, oil removal, transfer line) contains no magnet.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Complete itemised scope of supply and options list; no magnet."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_vacuum.available",
+  "claim": "The coldbox vacuum is insulation only; the supply has no evacuated sample space (the product is liquid helium delivered to a dewar).",
+  "value_as_printed": "Vacuum insulated coldbox",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The vacuum is coldbox insulation only. No sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_pressure.base",
+  "claim": "No evacuated sample space in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space in the complete scope."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_optical_access",
+  "claim": "No window or viewport in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Complete itemised scope; no viewport."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_electrical.sample_connections",
+  "claim": "No sample wiring/feedthroughs in the standard scope of supply.",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Complete itemised scope; no sample wiring."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_sample.diameter.max",
+  "claim": "The liquefier has no sample space (an LHe storage dewar is a separate option).",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_sample.height.max",
+  "claim": "The liquefier has no sample space (an LHe storage dewar is a separate option).",
+  "value_as_printed": "standard scope of supply",
+  "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L70) or transfer line connection to/from the cryostat (LR70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No sample space."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_cryogen.cryogen_free",
+  "claim": "Operated without LN2 pre-cooling (35 l/h on CSD/75 kW); the integrated purifier also needs no external cryogens.",
+  "value_as_printed": "without LN pre-cooling 35 l/h, CSD/75 kW",
+  "quote": "without LN pre-cooling with LN pre-cooling compressor/power rating 20 l/h 40 l/h CSD/45 kW 27 l/h 55 l/h CSD/55 kW 35 l/h 70 l/h CSD/75 kW",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Technical specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified table row: 35 l/h without LN2 pre-cooling on CSD/75 kW (the PDF prints 'LN₂'). The datasheet also says purifier cooling comes from the helium cycle, 'so no external cryogens are required'."
+  }
+ },
+ {
+  "id": "v4c_linde_kryotechnik_l70_noln2_csd75_cryogen.type",
+  "claim": "Produces liquid helium delivered through the coaxial transfer line to the dewar; no LN2 used in this configuration.",
+  "value_as_printed": "Coaxial transfer line from liquefier to dewar (only L70)",
+  "quote": "Coaxial transfer line from liquefier to dewar (only L70)",
+  "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l70-lr70-en.pdf",
+  "document_title": "Standard helium liquefier/refrigerator L70/LR70 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+  "location": "p. 2, Standard scope of supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "linde_kryotechnik_l70_noln2_csd75",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Coaxial transfer line from liquefier to dewar (only L70)'. The configuration uses no LN2."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_magnetic_field.max",
+  "claim": "Complete specification sheet and its full option list contain no magnet.",
+  "value_as_printed": "no magnet in specification or options",
+  "quote": "Available Options: Differential Pressure Liquid Level Gauges Super Conducting Liquid Level Systems Flow Meters Electric Pressure Building Systems Absolute Relief Valve For Air Transport Larger Neck Openings Auxiliary Side Neck Removable Dollies",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the PDF text of the CMSH 100 spec sheet U24.02.12. It gives the full specification table plus a complete options list (level gauges, superconducting level systems, flow meters, pressure building, air-transport relief valve, larger necks, side neck, dollies, casters). There is no magnet, and the spec sheet is a complete specification."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_vacuum.available",
+  "claim": "Inner vessel holds liquid helium at positive pressure (operating pressure 69 kPa / 10 PSI); not an evacuated sample space.",
+  "value_as_printed": "Operating Pressure 69 kPa 10 PSI",
+  "quote": "Operating Pressure 69 kPa 10 PSI Design Pressure2 310.3 kPa 45 PSI Neck ID 37 mm 1.45\"",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Operating Pressure 69 kPa 10 PSI ... Design Pressure 310.3 kPa 45 PSI ... Neck ID 37 mm'. The vessel holds LHe at positive pressure, and the vacuum is insulation only."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_pressure.base",
+  "claim": "No evacuated sample space; the vessel operates above atmospheric pressure.",
+  "value_as_printed": "Operating Pressure 69 kPa",
+  "quote": "Operating Pressure 69 kPa 10 PSI Design Pressure2 310.3 kPa 45 PSI Neck ID 37 mm 1.45\"",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space; the vessel runs at positive pressure."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_optical_access",
+  "claim": "No window or viewport in the specification or option list.",
+  "value_as_printed": "no viewport in specification or options",
+  "quote": "Available Options: Differential Pressure Liquid Level Gauges Super Conducting Liquid Level Systems Flow Meters Electric Pressure Building Systems Absolute Relief Valve For Air Transport Larger Neck Openings Auxiliary Side Neck Removable Dollies",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete spec sheet and full options list have no viewport."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_electrical.sample_connections",
+  "claim": "No sample wiring/feedthroughs in the specification or option list (liquid-level gauge options only).",
+  "value_as_printed": "no sample feedthroughs in options",
+  "quote": "Available Options: Differential Pressure Liquid Level Gauges Super Conducting Liquid Level Systems Flow Meters Electric Pressure Building Systems Absolute Relief Valve For Air Transport Larger Neck Openings Auxiliary Side Neck Removable Dollies",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The options list has only liquid-level instrumentation and no sample feedthroughs, so false is right for the dewar itself. Note: the machine description cites RRR dip-probe use, where wiring comes with the user's probe, not the dewar."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_sample.diameter.max",
+  "claim": "Neck inner diameter 37 mm limits what can be inserted into the liquid.",
+  "value_as_printed": "Neck ID 37 mm 1.45\"",
+  "quote": "Neck ID 37 mm 1.45\" Depth (Flange to Bottom) 1171 mm 46\"",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Neck ID 37 mm 1.45\"' on the standard neck. Larger necks are a separate option."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_sample.height.max",
+  "claim": "Depth from neck flange to bottom 1171 mm.",
+  "value_as_printed": "Depth (Flange to Bottom) 1171 mm 46\"",
+  "quote": "Neck ID 37 mm 1.45\" Depth (Flange to Bottom) 1171 mm 46\"",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Depth (Flange to Bottom) 1171 mm 46\"'."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_cryogen.cryogen_free",
+  "claim": "Liquid-helium container; holds liquid helium.",
+  "value_as_printed": "CMSH 100 LHe Container",
+  "quote": "CMSH 100 LHe Container No liquid nitrogen shielding or helium gas circulation required",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'CMSH 100 LHe Container' and 'No liquid nitrogen shielding or helium gas circulation required'."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_cryogen.type",
+  "claim": "Holds liquid helium only; no liquid nitrogen shield.",
+  "value_as_printed": "CMSH 100 LHe Container; No liquid nitrogen shielding",
+  "quote": "CMSH 100 LHe Container No liquid nitrogen shielding or helium gas circulation required",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: an LHe container with no LN2 shield."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_chamber.volume",
+  "claim": "Net liquid capacity 100 L.",
+  "value_as_printed": "Net Capacity 100 L",
+  "quote": "Net Capacity 100 L 100 L Gross Capacity 110 L 110 L",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Value verified: 'Net Capacity 100 L' (gross 110 L), and 100 L is conservative. However, chamber.volume is not in capability_vocabulary.json; re-key to cryogen.dewar_volume."
+  }
+ },
+ {
+  "id": "v4c_cryofab_cmsh100_vented_bath_pressure.max_working",
+  "claim": "Design pressure 310.3 kPa (45 PSI).",
+  "value_as_printed": "Design Pressure 310.3 kPa 45 PSI",
+  "quote": "Operating Pressure 69 kPa 10 PSI Design Pressure2 310.3 kPa 45 PSI Neck ID 37 mm 1.45\"",
+  "source_url": "https://www.cryofab.com/wp-content/uploads/2019/08/Cryofab_CMSH_Series_Specs_100.pdf",
+  "document_title": "CMSH 100 LHe Container (Cryofab specification sheet U24.02.12)",
+  "location": "Specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "cryofab_cmsh100_vented_bath",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Corrected to 69000 Pa. 310.3 kPa (45 PSI) is the vessel design pressure, not a working limit. The documented operating pressure is 69 kPa (10 PSI), and the manual lists relief valves at 10 and 15 PSI, so 69 kPa gauge is the conservative working maximum, and it is in the same quote. pressure.max_working is also not in capability_vocabulary.json; re-key it or add it to the vocabulary, and record that it is gauge."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_temperature.range",
+  "claim": "Sample temperature range 1.5-320 K for the Ø100 Orange cryostat 82ILHV100.",
+  "value_as_printed": "1.5 - 320 (K)",
+  "quote": "82ILHV100 1.5 - 320 A5 - AG3 Ø100 x 265 Quad-exchanger, top loading for HP meas",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/",
+  "document_title": "Orange & Cryogen-Free Cryostats - Institut Laue-Langevin sample environment",
+  "location": "Table 'Cryostats available from the pool', row 82ILHV100",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the ILL pool table row: '82ILHV100 1.5 - 320 A5 - AG3 Ø100 x 265 Quad-exchanger, top loading for HP meas'. The equipment card gives Tmin 1.5K and Tmax 320K. Caveat: AS Scientific as builder of this specific unit is not documented. The history page only says AS Scientific builds Orange cryostats under a non-exclusive ILL licence, so keep the manufacturer field hedged."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_temperature.base",
+  "claim": "Tmin 1.5 K (with the helium pumping system).",
+  "value_as_printed": "Tmin 1.5K",
+  "quote": "Cryostat 82ILHV100 Quad-exchanger Type Orange Ø100 Tmin 1.5K Tmax 320K Instrument Pool",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/cryostat-82ilhv100/",
+  "document_title": "Cryostat 82ILHV100 - Institut Laue-Langevin equipment card",
+  "location": "Equipment card",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on the equipment card: 'Type Orange Ø100 Tmin 1.5K Tmax 320K Instrument Pool'."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_magnetic_field.max",
+  "claim": "The complete equipment card of this cryostat (type, Tmin, Tmax, thermometry) lists no magnet; ILL field magnets are separate pool items with their own cryostats.",
+  "value_as_printed": "no magnet on equipment card",
+  "quote": "Cryostat 82ILHV100 Quad-exchanger Type Orange Ø100 Tmin 1.5K Tmax 320K Instrument Pool Sensor Regul. Cernox CX1050",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/cryostat-82ilhv100/",
+  "document_title": "Cryostat 82ILHV100 - Institut Laue-Langevin equipment card",
+  "location": "Equipment card",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The equipment card (type, Tmin, Tmax, regulation and sample Cernox sensors) and the pool table row list no magnet. ILL handles field magnets as separate pool cryomagnets, and the pool table explicitly notes magnet pairing where it exists (e.g. 105ILHV42 'for the 268HTCC81 magnet')."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_optical_access",
+  "claim": "The beam passes through A5-AG3 aluminium-alloy tails; in the ILL pool only unit 107ILHV49 has sapphire windows, this Ø100 unit has none.",
+  "value_as_printed": "Material in the beam A5 - AG3",
+  "quote": "82ILHV100 1.5 - 320 A5 - AG3 Ø100 x 265 Quad-exchanger, top loading for HP meas",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/",
+  "document_title": "Orange & Cryogen-Free Cryostats - Institut Laue-Langevin sample environment",
+  "location": "Table 'Cryostats available from the pool', row 82ILHV100",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: the pool table 'Material in the beam' column reads A5 - AG3 (aluminium) for 82ILHV100. The table explicitly flags windowed units where they exist (107ILHV49 'Al2O3 ... Sapphire windows'; instrument-assigned 175ILHV99 'sapphire windows'), so this row's lack of windows is a parallel explicit entry. Minor: the claim's 'only unit 107ILHV49' holds for the pool list only."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_sample.diameter.max",
+  "claim": "Sample dimensions Ø100 mm.",
+  "value_as_printed": "Ø100 x 265",
+  "quote": "82ILHV100 1.5 - 320 A5 - AG3 Ø100 x 265 Quad-exchanger, top loading for HP meas",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/",
+  "document_title": "Orange & Cryogen-Free Cryostats - Institut Laue-Langevin sample environment",
+  "location": "Table 'Cryostats available from the pool', row 82ILHV100",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Ø100 x 265' in the pool table row for 82ILHV100."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_sample.height.max",
+  "claim": "Sample height up to 265 mm.",
+  "value_as_printed": "Ø100 x 265",
+  "quote": "82ILHV100 1.5 - 320 A5 - AG3 Ø100 x 265 Quad-exchanger, top loading for HP meas",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/",
+  "document_title": "Orange & Cryogen-Free Cryostats - Institut Laue-Langevin sample environment",
+  "location": "Table 'Cryostats available from the pool', row 82ILHV100",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Ø100 x 265' (diameter x length in mm)."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_cryogen.cryogen_free",
+  "claim": "Wet cryostat with liquid nitrogen and liquid helium baths.",
+  "value_as_printed": "LN2 and LHe baths",
+  "quote": "Once the LN2 and LHe baths are filled, check that the pressure in the vacuum vessel does not increase.",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/instruction-manual/",
+  "document_title": "Instruction Manual (Orange cryostats) - Institut Laue-Langevin",
+  "location": "Procedure for preparing a wet cryostat or cryofurnace",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the ILL instruction manual: 'Once the LN2 and LHe baths are filled, check that the pressure in the vacuum vessel does not increase.' This is the wet Orange cryostat procedure."
+  }
+ },
+ {
+  "id": "v4c_as_scientific_ill_orange_cryostat_100mm_cryogen.type",
+  "claim": "Uses a liquid-helium bath and a liquid-nitrogen bath.",
+  "value_as_printed": "LN2 and LHe baths",
+  "quote": "Once the LN2 and LHe baths are filled, check that the pressure in the vacuum vessel does not increase.",
+  "source_url": "https://www.ill.eu/en/for-ill-users/sample-environments/equipment/low-temperature/orange-cryogen-free-cryostats/instruction-manual/",
+  "document_title": "Instruction Manual (Orange cryostats) - Institut Laue-Langevin",
+  "location": "Procedure for preparing a wet cryostat or cryofurnace",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "as_scientific_ill_orange_cryostat_100mm",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: the manual describes filling LN2 and LHe baths."
+  }
+ }
+]

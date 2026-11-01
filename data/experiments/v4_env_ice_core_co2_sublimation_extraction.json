@@ -1,0 +1,174 @@
+{
+ "id": "env_ice_core_co2_sublimation_extraction",
+ "name": "Vacuum sublimation extraction of air from ice-core samples for d13CO2, CO2 and N2O (-34 C vessel, -150 C water trap, LN2 CO2 trap, <2e-7 mbar)",
+ "plain_name": "Release ancient air from ice-core pieces to measure past CO2",
+ "industry": "environmental_science",
+ "description": "A 30 g ice cylinder (3.2 cm diameter, 4.5 cm long) is held at about -34 C in an evacuated glass sublimation vessel and sublimated by infrared halogen lamps; water is removed in traps down to -150 C, CO2/N2O are frozen in a liquid-nitrogen trap and sealed in a glass capillary for GC-IRMS, reconstructing past atmospheric CO2 and its carbon isotopes.",
+ "keywords": [
+  "Release ancient air from ice-core pieces to measure past CO2",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+   "url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "AMT article landing page",
+   "url": "https://amt.copernicus.org/articles/4/1445/2011/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Leybold turbo molecular pump backed by a rotary vane vacuum pump",
+  "Caburn CF sublimation vessel (33 mm o.d., 121 mm length)",
+  "West 2300 PID controller",
+  "infrared source of 18 halogen bulbs",
+  "tube cracker-GC-IRMS"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 239150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ice sample is held near -34 C (239.15 K) during sublimation, keeping it well below -20 C.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 123150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The external water trap must reach -150 C (123.15 K) to reach the required H2O vapour pressure.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Extraction is done in a high-vacuum sublimation line.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.0000002",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "A leak-free line reaches below 2e-7 mbar on the high-vacuum side before sampling.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "CO2 and N2O are frozen out in a trap immersed in liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 32,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ice is trimmed to a 3.2 cm cylinder to fit the 3.3 cm vessel.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_5"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 45,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ice piece is 4.5 cm long along the vessel axis.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_6"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ice is sublimated by infrared light from halogen bulbs shining through the glass vessel.",
+   "evidence_ids": [
+    "v4e_env_ice_core_co2_sublimation_extraction_7"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

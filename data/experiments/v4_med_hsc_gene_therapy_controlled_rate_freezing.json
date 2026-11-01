@@ -1,0 +1,112 @@
+{
+ "id": "med_hsc_gene_therapy_controlled_rate_freezing",
+ "name": "GMP controlled-rate cryopreservation of a gene-modified CD34+ HSC drug product (Kryo 560-16 three-ramp program: 4 C hold, -1/-2/-20 C/min to -180 C) before vapour-phase LN2 storage",
+ "plain_name": "Freeze a gene-therapy stem-cell bag with a programmed three-step cooling recipe",
+ "industry": "healthcare_and_medicine",
+ "description": "Clinical-grade freezing of a lentivirally corrected hematopoietic stem cell product (MPSII gene therapy) in cryobags: the controlled-rate freezer holds 4 C, cools at -1 C/min to -30 C, -2 C/min to -60 C and -20 C/min to -180 C; the product then goes to vapour-phase liquid nitrogen at -130 C or colder.",
+ "keywords": [
+  "Freeze a gene-therapy stem-cell bag with a programmed three-step cooling recipe",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024). DOI 10.1016/j.omtm.2024.101271",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Planer Kryo 560-16 controlled rate freezer",
+  "KryoSure 20-F cryobag (Saint-Gobain)",
+  "vapor phase of LN2 (VPLN) storage"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 93150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 277150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The freezing program starts with a 4 C hold and ends with a hold at -180 C, so the chamber must cover -180 C to +4 C.",
+   "evidence_ids": [
+    "v4e_med_hsc_gene_therapy_controlled_rate_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 1000,
+     "unit": "mK_per_min"
+    },
+    "hi": {
+     "value": 20000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The program imposes controlled cooling-rate magnitudes of 1, 2 and 20 C/min, so the freezer must control rates from 1 to 20 C/min.",
+   "evidence_ids": [
+    "v4e_med_hsc_gene_therapy_controlled_rate_freezing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.cooling_rate.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 93150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Lowest program temperature is -180 C (same information as temperature.range, for machines that only document a base temperature).",
+   "evidence_ids": [
+    "v4e_med_hsc_gene_therapy_controlled_rate_freezing_2"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 143150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Subsequent storage is in vapour-phase LN2 at -130 C or colder (a separate storage step; informative for the freezing machine).",
+   "evidence_ids": [
+    "v4e_med_hsc_gene_therapy_controlled_rate_freezing_3"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

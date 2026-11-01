@@ -1,0 +1,121 @@
+{
+ "id": "sci_hg1223_magnetization_loops",
+ "name": "ZFC/FC diamagnetic transition and isothermal magnetization hysteresis loops of HgBa2Ca2Cu3O8 crystals with a SQUID-VSM, 10-115 K",
+ "plain_name": "Measure how a high-temperature superconductor expels and traps magnetic field",
+ "industry": "scientific_research",
+ "description": "Measure zero-field-cooled and field-cooled magnetization of a 0.41 mg Hg-1223 crystal at 10 Oe through Tc = 129 K, then isothermal magnetization loops (field along c, 10-115 K, dH/dt = 50 and 200 Oe/s) and dynamic relaxation in a Quantum Design SQUID-VSM.",
+ "keywords": [
+  "Measure how a high-temperature superconductor expels and traps magnetic field",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "Y. Ye, Y. Liu, W. Hong, Y. Li, H.-H. Wen, 'Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals', arXiv:2502.10737 (2025)",
+   "url": "https://arxiv.org/pdf/2502.10737",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "SQUID-VSM, Quantum Design",
+  "PPMS 16T, Quantum Design"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The magnetization was measured with a SQUID vibrating-sample magnetometer.",
+   "evidence_ids": [
+    "v4e_sci_hg1223_magnetization_loops_0"
+   ],
+   "conditions": [],
+   "key": "module.vsm"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 10,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 115,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Magnetization loops were measured from 10 K to 115 K.",
+   "evidence_ids": [
+    "v4e_sci_hg1223_magnetization_loops_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 129,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ZFC/FC curves must pass through the onset Tc of 129 K, so the upper temperature must reach at least 129 K.",
+   "evidence_ids": [
+    "v4e_sci_hg1223_magnetization_loops_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1.78",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 1.66 mm x 0.64 mm crystal has a circumscribed diameter of 1.78 mm (sqrt(1.66^2+0.64^2) = 1.779 mm, rounded up).",
+   "evidence_ids": [
+    "v4e_sci_hg1223_magnetization_loops_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 200,
+     "unit": "Oe_per_s"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: dynamic relaxation used sweep rates of 50 and 200 Oe/s.",
+   "evidence_ids": [
+    "v4e_sci_hg1223_magnetization_loops_4"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.ramp_rate.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,157 @@
+{
+ "id": "sci_pdga_quantum_oscillations_18t",
+ "name": "Angle-resolved Shubnikov-de Haas and cantilever dHvA quantum oscillations of PdGa, 1.5-30 K up to 18 T",
+ "plain_name": "Map a metal's electron orbits from resistance wiggles in an 18 T magnet",
+ "industry": "scientific_research",
+ "description": "Record transverse magnetoresistance (4 mA rms, 22.08 Hz lock-in, Al wire bonds) and capacitive cantilever torque of a 4 x 1 x 0.2 mm3 PdGa platelet at constant temperatures 1.5-30 K in a helium-flow cryostat in fields up to 18 T, rotating the sample in 4 degree steps over 90 degrees; extend to 0.1 K in a dilution refrigerator.",
+ "keywords": [
+  "Map a metal's electron orbits from resistance wiggles in an 18 T magnet",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "N. Huber, I. Volkau, A. Engelhardt, I. Sheikin, A. Bauer, C. Pfleiderer, M.A. Wilde, 'Fermi surface and magnetic breakdown in PdGa', arXiv:2504.12379 (2025)",
+   "url": "https://arxiv.org/pdf/2504.12379",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Helium flow cryostat",
+  "dilution refrigerator",
+  "cantilever-based torque magnetometer with capacitive readout"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 18,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Both SdH and dHvA data were recorded up to 18 T.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_0"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": "1.5",
+     "unit": "K"
+    },
+    "hi": {
+     "value": 30,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Effective masses come from constant-temperature data between 1.5 and 30 K.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "AC magnetoresistance requires wired sample contacts.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "4.13",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 4 mm x 1 mm platelet footprint has a circumscribed diameter of 4.13 mm (sqrt(17) = 4.123 mm, rounded up).",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 4,
+     "unit": "mA"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the excitation current was 4 mA rms.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_4"
+   ],
+   "conditions": [],
+   "key": "electrical.current.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 100,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional extension: additional SdH measurements down to 0.1 K in a dilution refrigerator.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_5"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source used a helium-flow cryostat; any machine reaching 1.5 K at 18 T would serve.",
+   "evidence_ids": [
+    "v4e_sci_pdga_quantum_oscillations_18t_6"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

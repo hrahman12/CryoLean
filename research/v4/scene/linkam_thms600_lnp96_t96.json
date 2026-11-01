@@ -1,0 +1,55 @@
+{
+  "configuration_id": "linkam_thms600_lnp96_t96",
+  "archetype": "heating_cooling_stage",
+  "outer": {
+    "shape": "table_top_stage",
+    "height": {"value": 22, "unit": "mm", "quote": "Stage Body Size: 138mm x 92mm x 22mm", "source_url": "https://www.mccrone.com/product/linkam-thms600-thermal-stage/", "location": "McCrone (Linkam distributor) product listing, specification table; Linkam's own THMS600 pages do not state body size"},
+    "width_or_diameter": {"value": 138, "unit": "mm", "quote": "Stage Body Size: 138mm x 92mm x 22mm", "source_url": "https://www.mccrone.com/product/linkam-thms600-thermal-stage/", "location": "McCrone product listing, specification table"},
+    "depth": {"value": 92, "unit": "mm", "quote": "Stage Body Size: 138mm x 92mm x 22mm", "source_url": "https://www.mccrone.com/product/linkam-thms600-thermal-stage/", "location": "McCrone product listing, specification table"},
+    "color_note": "Flat rectangular stage body sitting on a microscope substage; lid with single thin window on top; pure silver heating element visible inside the chamber (silver, highly polished); gas ports and LN2 tubing on the body sides."
+  },
+  "stages": [
+    {"name": "Silver heating/cooling block (sample block, 22 mm sample area) - minimum temperature with LNP96-S", "temperature_K": 78.15, "diameter_mm": 22, "quote": "Temperature range < -195°C to 600°C (cooling option required)", "source_url": "https://www.linkam.co.uk/thms600-specifications"},
+    {"name": "Silver heating/cooling block - maximum temperature (water-cooled body above 300 °C)", "temperature_K": 873.15, "diameter_mm": 22, "quote": "Silver heating block for high thermal conductivity ... Direct injection of the coolant into the silver block", "source_url": "https://www.linkam.co.uk/thms600-specifications"}
+  ],
+  "sample_space": {
+    "position": "on_stage",
+    "shape": "circular sample area on top of the silver block, sample on a 0.17 mm cover slip, viewed through 2.0 mm light aperture",
+    "description": "Sample sits on a highly polished pure silver heating element inside a gas-tight chamber; 16 mm XY manipulation; side loading without removing the lid; objective lens working distance 4.8 mm above the lid window.",
+    "diameter_or_width": {"value": 22, "unit": "mm", "quote": "Sample area 22 mm diameter", "source_url": "https://www.linkam.co.uk/thms600-specifications"},
+    "height": {"value": 3, "unit": "mm", "quote": "Maximum Sample Thickness: 3mm", "source_url": "https://www.mccrone.com/product/linkam-thms600-thermal-stage/", "location": "McCrone distributor listing only; not on linkam.co.uk"}
+  },
+  "wiring": [
+    {"kind": "thermometer_lead", "count": 1, "from": "T96-S controller", "to": "Pt100 sensor embedded in silver block", "quote": "100 Ω platinum resistor sensor. 1/10th Din Class B", "source_url": "https://www.linkam.co.uk/thms600-specifications"},
+    {"kind": "heater_lead", "count": 1, "from": "T96-S controller", "to": "pure silver heating element", "quote": "Spare Pure Silver Heating Element incl. Platinum Temperature Sensor", "source_url": "https://phavi.umcs.pl/at/attachments/2016/0622/081208-thms600-linkam.pdf"},
+    {"kind": "none", "count": 0, "from": "n/a", "to": "n/a", "quote": "Electrical connectors can be added to the THMS600 stage to enable electrical sample measurements. This must be specified when the system is purchased.", "source_url": "https://www.linkam.co.uk/thms600-options"}
+  ],
+  "windows": {
+    "count": 2,
+    "axis": "top",
+    "quote": "Single ultra thin lid window - 0.5mm",
+    "source_url": "https://www.linkam.co.uk/thms600-specifications"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "quote": "Direct injection of the coolant into the silver block", "rate": "cooling up to 100 °C/min", "source_url": "https://www.linkam.co.uk/thms600-specifications"},
+    {"part": "circulation_pump", "quote": "A cooling system consists of the control unit housing the pumps and a Dewar.", "rate": "LN2 flow set by T96; linear cooling 0.01 to 100 °C/min", "source_url": "https://www.linkam.co.uk/lnp96"},
+    {"part": "ln2_boiloff_vapour", "quote": "The exhaust dry nitrogen is then recycled through the pumps and used to keep the tubing flexible and purge the sample chamber to eradicate condensation.", "source_url": "https://phavi.umcs.pl/at/attachments/2016/0622/081208-thms600-linkam.pdf"},
+    {"part": "stage_translation", "quote": "16 mm XY sample manipulation", "rate": "manual", "source_url": "https://www.linkam.co.uk/thms600-specifications"},
+    {"part": "circulation_pump", "quote": "The stage body can be cooled with a water cooling pump for high temperature work (>300°C)", "source_url": "https://www.linkam.co.uk/thms600-specifications"}
+  ],
+  "cryogen": "ln2_flow",
+  "not_found": [
+    "outer dimensions from manufacturer (only McCrone distributor listing gives 138 x 92 x 22 mm)",
+    "stage weight",
+    "lid window diameter and material",
+    "base-plate window diameter (current Linkam page says 'Single ultra thin lid window'; v1.1 datasheet mentions stage base plate window)",
+    "silver block diameter/thickness (only sample area 22 mm published)",
+    "heater power",
+    "LN2 flow rate / pump frequency of LNP96",
+    "LNP96 control unit dimensions",
+    "T96-S controller dimensions",
+    "sample mass limit",
+    "stage body vertical height from manufacturer (McCrone 22 mm; THMS600-PS variant states 25.1 mm)"
+  ],
+  "notes": "Catalog combination: THMS600 stage + T96-S controller + LNP96-S LN2 pump + Dewar. Light aperture 2.0 mm diameter (specs page). Objective working distance 4.8 mm; v1.1 datasheet: lid window to element 4.5 mm, condenser (base window) distance 12.5 mm, light aperture 2.4 mm, lid window 0.17 mm - older values superseded by current page (4.8 mm, 2.0 mm, 0.5 mm). Dewar: current electrical product guide lists 'Add LNP96 and 3L Dewar' (https://www.mccrone.com/wp-content/uploads/2025/01/MMA_Electrical-Stage-Product-Guide-V1.0.pdf); predecessor LNP95 shipped with 2 L Dewar. Window count 2 = lid window (current specs) + base plate window for transmitted light ('isolated from the sample by the stage base plate window', v1.1 datasheet); both on the vertical optical axis. Quick-release gas valves for atmospheric control. Stage is static apart from manual XY manipulators, pumped LN2/nitrogen gas flow through the block, and optional water circulation; no pulse tube, no magnet. Linkam brochure v1.54 (2026) fetched: it carries no body dimensions, only 22 mm sample size, 15 mm XY, 4.8 mm working distance."
+}

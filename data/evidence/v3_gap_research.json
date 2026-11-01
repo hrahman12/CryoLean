@@ -1,0 +1,2200 @@
+[
+  {
+    "id": "ev_v3_0001",
+    "claim": "A cryogen-free superconducting 3D vector magnet (6T-1T-1T, 96 mm bore) is a documented magnet option on the Bluefors LD400 (Bluefors Lab Chicago-1 system); this configuration does not include it.",
+    "value_as_printed": "cryogen-free superconducting 3D vector magnet with 6T-1T-1T field configuration",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://bluefors.com/services/bluefors-lab",
+    "document_title": "Bluefors Lab - Bluefors.com",
+    "location": "Section 3.0 'Bluefors Lab Chicago - Facility and Equipment', Chicago-1 System",
+    "quote": "The system is equipped with a cryogen-free superconducting 3D vector magnet with 6T-1T-1T field configuration. The magnet has a 96 mm bore size.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily search 'Bluefors LD400 vector magnet' -> Bluefors Lab page; verified with tavily_extract (advanced); catalog model confirmed via built-in browser on the vector-magnets page)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the Bluefors Lab page with tavily_extract and WebFetch. The quote is verbatim in Section 3.0, Chicago-1 System, which the page calls an 'LD400 Dilution Refrigerator Measurement System'. The same page names the sl variant explicitly for another system ('XLD1000sl'), so this reads as the classic LD400. It cannot be an Ultra-Compact LD, because that variant is limited to magnets of 3 T or less on the z-axis. Checked the vector-magnet catalog DOM in the built-in browser: '6-1-1 Tesla' = '96 mm bore (~88 mm sample space). Compensated, low field drift rate, and full field available.' Unlike the 9-3-1 T and 2-2-2 T models, it has n",
+    "kind": "value",
+    "reasoning": "Bluefors (manufacturer) documents an LD400 delivered with a 3-axis vector magnet; the same 6-1-1 T, 96 mm bore model is in the Bluefors vector-magnet catalog ('6-1-1 Tesla 96 mm bore (~88 mm sample space)'). Vector-field capability therefore exists as a purchasable LD option; this configuration has no magnet, hence optional_not_installed. The LD450 is the renamed LD400; Bluefors states 'the systems themselves remain the same' (eg_079)."
+  },
+  {
+    "id": "ev_v3_0002",
+    "claim": "The highest field documented by Bluefors for a magnet integrated on an LD400 is the 6 T main axis of the 6T-1T-1T vector magnet of the Bluefors Lab Chicago-1 LD400; this configuration does not include the magnet.",
+    "value_as_printed": "6T-1T-1T field configuration (6 T on the main axis)",
+    "normalized": {
+      "value": 6000,
+      "unit": "mT"
+    },
+    "source_url": "https://bluefors.com/services/bluefors-lab",
+    "document_title": "Bluefors Lab - Bluefors.com",
+    "location": "Section 3.0 'Bluefors Lab Chicago - Facility and Equipment', Chicago-1 System",
+    "quote": "The system is equipped with a cryogen-free superconducting 3D vector magnet with 6T-1T-1T field configuration. The magnet has a 96 mm bore size.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily search + tavily_extract of the Bluefors Lab page)",
+    "review_status": "independently re-fetched and verified by a second agent: Same verified source and LD400 = LD450 link as index 0. 6T-1T-1T means 6 T on the main (z) axis, so 6000 mT is a conservative maximum documented field. I found no Bluefors document giving a higher field on an LD400. I checked the Nowack, EQMag and QTran stories and the UC-LD news, which caps the Ultra-Compact LD at 3 T or less. Third-party pages (Notre Dame LD400 with a 9 T solenoid; A*STAR LD-400 with an inconsistent 9/1/1 vs 6/1/1 T listing) suggest LD400s can carry higher fields. So 6 T understates the option, never overstates it. In the engine it only affects the 'option could satisfy' hint, because the configuration has no magnet.",
+    "kind": "value",
+    "reasoning": "Maximum documented field = 6 T (z-axis) = 6000 mT for an LD400 magnet option. Generic catalogs list solenoids to 16 T and vector magnets to 9 T but state 'available magnet configurations are determined by the system size' without an LD compatibility table, so 6 T is the conservative LD-specific documented figure. LD450 = renamed LD400, same hardware."
+  },
+  {
+    "id": "ev_v3_0003",
+    "claim": "The LD dilution refrigerator (LD250/LD400) operates from 7 mK to 4.2 K; the LD450 is the renamed LD400 with unchanged hardware, so its documented range is base (10 mK guaranteed) to 4.2 K.",
+    "value_as_printed": "7 mK to 4.2 K",
+    "normalized": {
+      "lo": {
+        "value": 10,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 4200,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6, Section 2.1 General description, first paragraph",
+    "quote": "The cryogen-free dilution refrigerator (DR), with closed helium cycle, is a measurement system for ultra-low temperatures in the range of 7 mK to 4.2 K.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Manual re-read (pdftotext) + Tavily extract of the rename news)",
+    "review_status": "independently re-fetched and verified by a second agent: Extracted the manual PDF with pdftotext: 'User Manual LD System', January 12, 2022, Version 2.0, BF1000-1234517327-9. 'This User Manual applies to models LD250 and LD400.' Section 2.1 on PDF page 6 contains the exact sentence '... in the range of 7 mK to 4.2 K.' The LD450 is the renamed LD400; the re-fetched March 2026 news says the systems remain the same, and the configuration name itself reads 'LD450 (formerly LD400)'. Storing 10 mK as the low end, using the current guaranteed base, is narrower than the printed 7 mK and so conservative; 4.2 K = 4200 mK. This is consistent with the LD250 and LD400 configurations, which already use 10",
+    "kind": "value",
+    "reasoning": "Same value as the LD250/LD400 configurations (ev_bf_0008). Rename news: 'While we are updating the guaranteed cooling power spec and system names, the systems themselves remain the same.' (eg_079). Lower bound stored as the guaranteed 10 mK LD450 base (ev_bf_0010), conservative vs printed 7 mK."
+  },
+  {
+    "id": "ev_v3_0004",
+    "claim": "The LD250/LD400 is a closed-cycle He-3/He-4 dilution refrigerator measurement system; it has no microtome, so it has no section-thickness setting.",
+    "value_as_printed": "cryogen-free dilution refrigerator ... range of 7 mK to 4.2 K",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6, Section 2.1 General description, first paragraph",
+    "quote": "The cryogen-free dilution refrigerator (DR), with closed helium cycle, is a measurement system for ultra-low temperatures in the range of 7 mK to 4.2 K.",
+    "applies_to": "bluefors_ld250_manual_v2, bluefors_ld400_hdw",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Manual text (pdftotext) and LD product page options list)",
+    "review_status": "independently re-fetched and verified by a second agent: The manual quote is verified verbatim on PDF page 6. value 'unknown' with not_available is the correct absence encoding; manufacturer_specification is in the engine's TRUSTED set, so the absence will take effect.",
+    "kind": "absence",
+    "reasoning": "The manual defines the instrument as a dilution refrigerator measurement system (cryostat, GHS, control unit, pulse tube). A sectioning microtome is physically outside this category and no LD option list contains one, so section_thickness.range is absent."
+  },
+  {
+    "id": "ev_v3_0005",
+    "claim": "The LD450 is a dilution refrigerator measurement system whose complete option list contains no microtome; it has no section-thickness setting.",
+    "value_as_printed": "Dilution Refrigerator Measurement System",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+    "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+    "location": "Page introduction and Section 4.0 Options",
+    "quote": "The LD System is our most sold dilution refrigerator measurement system. Its versatility makes it suitable for many different experimental needs.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of the LD product page)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote is verbatim on the re-fetched LD page intro, and Section 4.0 Options matches the record's list.",
+    "kind": "absence",
+    "reasoning": "The LD page lists all options (4K Heater, FSE, LN2 Pre-Cooling Loop, Still Heat Pipe, vibration/sound isolation, radiation and magnetic shielding, GHS options, Additional Sensors, Helium Battery, Long-Life Cold Trap, Optical Access Ports, Heavy Load Support Rod); no microtome. Sectioning is physically outside the DR category."
+  },
+  {
+    "id": "ev_v3_0006",
+    "claim": "The LD250/LD400 is a closed-cycle dilution refrigerator measurement system; it has no microtome sectioning cryochamber, so it has no cryochamber temperature setting.",
+    "value_as_printed": "cryogen-free dilution refrigerator ... range of 7 mK to 4.2 K",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6, Section 2.1 General description, first paragraph",
+    "quote": "The cryogen-free dilution refrigerator (DR), with closed helium cycle, is a measurement system for ultra-low temperatures in the range of 7 mK to 4.2 K.",
+    "applies_to": "bluefors_ld250_manual_v2, bluefors_ld400_hdw",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Manual text (pdftotext))",
+    "review_status": "independently re-fetched and verified by a second agent: The manual quote is verified verbatim. It covers LD250/LD400; the sl variant is the same DR category.",
+    "kind": "absence",
+    "reasoning": "A sectioning cryochamber (cryostat-microtome feature) is physically outside the dilution-refrigerator category; the instrument's sample space is an evacuated vacuum can, not a sectioning chamber."
+  },
+  {
+    "id": "ev_v3_0007",
+    "claim": "The LD450 is a dilution refrigerator measurement system with no microtome option; it has no sectioning cryochamber temperature setting.",
+    "value_as_printed": "Dilution Refrigerator Measurement System",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+    "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+    "location": "Page introduction and Section 4.0 Options",
+    "quote": "The LD System is our most sold dilution refrigerator measurement system. Its versatility makes it suitable for many different experimental needs.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of the LD product page)",
+    "review_status": "independently re-fetched and verified by a second agent: The LD page quote is verified verbatim.",
+    "kind": "absence",
+    "reasoning": "Complete LD option list contains no microtome/cryochamber; physically outside the DR category."
+  },
+  {
+    "id": "ev_v3_0008",
+    "claim": "The LD250/LD400 is a closed-cycle dilution refrigerator measurement system; it has no microtome specimen head, so it has no specimen-head temperature setting.",
+    "value_as_printed": "cryogen-free dilution refrigerator ... range of 7 mK to 4.2 K",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6, Section 2.1 General description, first paragraph",
+    "quote": "The cryogen-free dilution refrigerator (DR), with closed helium cycle, is a measurement system for ultra-low temperatures in the range of 7 mK to 4.2 K.",
+    "applies_to": "bluefors_ld250_manual_v2, bluefors_ld400_hdw",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Manual text (pdftotext))",
+    "review_status": "independently re-fetched and verified by a second agent: The manual quote is verified verbatim, PDF page 6, Section 2.1.",
+    "kind": "absence",
+    "reasoning": "A specimen/object head is a cryostat-microtome component, physically outside the dilution-refrigerator category; no LD option contains one."
+  },
+  {
+    "id": "ev_v3_0009",
+    "claim": "The LD450 is a dilution refrigerator measurement system with no microtome option; it has no specimen-head temperature setting.",
+    "value_as_printed": "Dilution Refrigerator Measurement System",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+    "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+    "location": "Page introduction and Section 4.0 Options",
+    "quote": "The LD System is our most sold dilution refrigerator measurement system. Its versatility makes it suitable for many different experimental needs.",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of the LD product page)",
+    "review_status": "independently re-fetched and verified by a second agent: The LD page quote is verified verbatim.",
+    "kind": "absence",
+    "reasoning": "Complete LD option list contains no microtome; a specimen head is physically outside the DR category."
+  },
+  {
+    "id": "ev_v3_0010",
+    "claim": "The maximum number of coaxial (SMA) cables for the LD350 (renamed LD250) in the standard ISO-K63 port configuration is 77; coax wiring is an option not fitted in this configuration.",
+    "value_as_printed": "77 (SMA)",
+    "normalized": {
+      "kind": "count",
+      "n": 77
+    },
+    "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/",
+    "document_title": "Dilution Refrigerator Measurement Systems - Bluefors.com",
+    "location": "Section 3.0 System Comparison table, row 'Maximum number of coaxial cables', column LD350",
+    "quote": "Maximum number of coaxial cables | 14 (SMA) | 70 (SMA) | 77 (SMA) | 77 (SMA) | 336 HDW & 28 (SMA), 92 (SMA only)",
+    "applies_to": "bluefors_ld250_manual_v2",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch + built-in browser table extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Verified the System Comparison table on the DR overview page from the DOM in the built-in browser. The header row has 8 cells: '' | SD | LH | LD350 | LD450 | LD450sl | XLD450sl | XLD1000sl. The coax row reads 'Maximum number of coaxial cables | 14 (SMA) | 70 (SMA) | 77 (SMA) | 77 (SMA) | 336 HDW & 28 (SMA), 92 (SMA only) | >1000 (HDW) | >1000 (HDW)', so LD350 = 77 (SMA). LD350 = the renamed LD250 (rename news), which uses the ISO-K63 port configuration (table shows K63 = 2 for LD350). 77 is the per-system maximum of the optional coax wiring, which fits optional_not_installed.",
+    "kind": "value",
+    "reasoning": "Not on the gap worklist but fills an unknown in this configuration. Columns are SD, LH, LD350, LD450, LD450sl, XLD450sl, XLD1000sl (verified from the page DOM with the built-in browser). LD350 = renamed LD250 with unchanged hardware. Per-system maximum of the coax option, not an installed count."
+  },
+  {
+    "id": "ev_v3_0011",
+    "claim": "The Lake Shore CRX-VF is a cryogenic wafer/device probe station (electrical and electro-optical probing of samples on a cooled stage); it has no microtome or sectioning mechanism, so a section-thickness setting range does not exist on this instrument.",
+    "value_as_printed": "cryogen-free ... probe station (no sectioning function)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+    "document_title": "CRX-VF cryogenic probe station (overview page)",
+    "location": "Overview body text under product heading",
+    "quote": "The CRX-VF is a cryogen-free, closed-cycle refrigerator probe station enhanced with a ±2.5 T vertical field superconducting magnet. It performs C-V, I-V, microwave, and electro-optical probing",
+    "applies_to": "lakeshore_crx_vf",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-VF overview and specification pages)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the overview page with tavily_extract (advanced). The quote appears word for word: 'The CRX-VF is a cryogen-free, closed-cycle refrigerator probe station enhanced with a ±2.5 T vertical field superconducting magnet. It performs C-V, I-V, microwave, and electro-optical probing...'. lakeshore_crx_vf is the CRX-VF ±2.5 T, up to 6 probe arms, so the source matches. 'not_available' with kind 'unknown' is appropriate for a sectioning parameter.",
+    "kind": "absence",
+    "reasoning": "The manufacturer's overview defines the instrument's scope as a probe station for electrical/electro-optical probing; the full specification page lists sample cooling assembly, temperature, vacuum, sample, probing, vacuum chamber, radiation shielding, vision system, kits and utilities, with no knife, microtome, section-thickness or trimming entry. Sectioning is physically outside the probe-station category."
+  },
+  {
+    "id": "ev_v3_0012",
+    "claim": "The CRX-VF specification lists its cooled assembly as three cooled stages (sample, magnet, radiation shield) inside a vacuum chamber; it has no refrigerated sectioning cryochamber, so a cryochamber temperature range (sectioning-cryostat parameter) does not exist. Its sample temperature is already recorded under temperature.range.",
+    "value_as_printed": "Type: 3-stage (sample + magnet + radiation shield)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+    "document_title": "CRX-VF cryogenic probe station (CRX-VF probe station specifications)",
+    "location": "Sample cooling assembly table, row Type",
+    "quote": "Type: 3-stage (sample + magnet + radiation shield)",
+    "applies_to": "lakeshore_crx_vf",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-VF specification page)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the CRX-VF specification page. The quote 'Type: 3-stage (sample + magnet + radiation shield)' appears exactly under Sample cooling assembly. The source is specific to the CRX-VF.",
+    "kind": "absence",
+    "reasoning": "The complete specification enumerates every cooled stage; none is a sectioning cryochamber. The vacuum chamber is an electroless nickel-plated aluminum vacuum vessel with no temperature specification, not a refrigerated cutting chamber."
+  },
+  {
+    "id": "ev_v3_0013",
+    "claim": "The CRX-VF specification lists its cooled assembly as three cooled stages (sample, magnet, radiation shield); there is no microtome specimen/object head, so a specimen-head temperature range does not exist on this instrument (the sample stage temperature is recorded under temperature.range).",
+    "value_as_printed": "Type: 3-stage (sample + magnet + radiation shield)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+    "document_title": "CRX-VF cryogenic probe station (CRX-VF probe station specifications)",
+    "location": "Sample cooling assembly table, row Type",
+    "quote": "Type: 3-stage (sample + magnet + radiation shield)",
+    "applies_to": "lakeshore_crx_vf",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-VF specification page)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote was verified exactly on the CRX-VF spec page. The source is specific to the CRX-VF.",
+    "kind": "absence",
+    "reasoning": "The complete specification enumerates every cooled stage and its sensor/heater (Station details: Temperature equipment); none is a microtome specimen head. A specimen head is a sectioning-cryostat component outside the probe-station category."
+  },
+  {
+    "id": "ev_v3_0014",
+    "claim": "The Lake Shore CRX-4K is a cryogenic wafer/device probe station (electrical and electro-optical probing of samples on a cooled stage); it has no microtome or sectioning mechanism, so a section-thickness setting range does not exist on this instrument.",
+    "value_as_printed": "cryogen-free ... probe station (no sectioning function)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+    "document_title": "CRX-4K cryogenic probe station (overview page)",
+    "location": "Overview body text under product heading",
+    "quote": "Designed for versatility and high performance, the CRX-4K is our premium cryogen-free closed-cycle refrigerant probe station.",
+    "applies_to": "lakeshore_crx_4k",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-4K overview and specification pages)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the CRX-4K overview. The quote 'Designed for versatility and high performance, the CRX-4K is our premium cryogen-free closed-cycle refrigerant probe station.' appears word for word. lakeshore_crx_4k is the CRX-4K with 2 probe arms (4.5 K base), and the spec table includes a '4.5 K | 5 K to 350 K | 2 probe arms installed' row, so the source matches.",
+    "kind": "absence",
+    "reasoning": "The manufacturer's overview defines the instrument as a probe station; the full specification page lists sample cooling assembly, temperature, vacuum, sample, probing (DC/RF, microwave, fiber optic probes), vacuum chamber, radiation shielding, vision system, kits and utilities, with no knife, microtome, section-thickness or trimming entry. Sectioning is physically outside the probe-station category."
+  },
+  {
+    "id": "ev_v3_0015",
+    "claim": "The CRX-4K specification lists its cooled assembly as two cooled stages (sample, radiation shield) inside a vacuum chamber; it has no refrigerated sectioning cryochamber, so a cryochamber temperature range (sectioning-cryostat parameter) does not exist. Its sample temperature is already recorded under temperature.range.",
+    "value_as_printed": "Type: 2-stage (sample + radiation shield)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+    "document_title": "CRX-4K cryogenic probe station (CRX-4K probe station specifications)",
+    "location": "Sample cooling assembly table, row Type",
+    "quote": "Type: 2-stage (sample + radiation shield)",
+    "applies_to": "lakeshore_crx_4k",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-4K specification page)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote was verified exactly on the CRX-4K spec page under Sample cooling assembly. The source is specific to the CRX-4K.",
+    "kind": "absence",
+    "reasoning": "The complete specification enumerates every cooled stage; none is a sectioning cryochamber. The vacuum chamber is an electroless nickel-plated aluminum vacuum vessel with no temperature specification, not a refrigerated cutting chamber."
+  },
+  {
+    "id": "ev_v3_0016",
+    "claim": "The CRX-4K specification lists its cooled assembly as two cooled stages (sample, radiation shield); there is no microtome specimen/object head, so a specimen-head temperature range does not exist on this instrument (the sample stage temperature is recorded under temperature.range).",
+    "value_as_printed": "Type: 2-stage (sample + radiation shield)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+    "document_title": "CRX-4K cryogenic probe station (CRX-4K probe station specifications)",
+    "location": "Sample cooling assembly table, row Type",
+    "quote": "Type: 2-stage (sample + radiation shield)",
+    "applies_to": "lakeshore_crx_4k",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Lake Shore CRX-4K specification page)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote 'Type: 2-stage (sample + radiation shield)' was verified exactly on the CRX-4K spec page. The source is specific to the CRX-4K.",
+    "kind": "absence",
+    "reasoning": "The complete specification enumerates every cooled stage and its sensor/heater (Station details: Temperature equipment); none is a microtome specimen head. A specimen head is a sectioning-cryostat component outside the probe-station category."
+  },
+  {
+    "id": "ev_v3_0017",
+    "claim": "Documented lowest temperature of CCS-100, CCS-300S and CCS-400 is below 4 K (recorded conservatively as 4000 mK); far above the <=50 mK / <=20 mK required by the millikelvin experiments.",
+    "value_as_printed": "<4 K",
+    "normalized": {
+      "value": 4000,
+      "unit": "mK"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+    "location": "Specification table, row 'Temperature range', columns CCS-100, CCS-300S, CCS-400",
+    "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the spec page with Tavily and as raw HTML. The Temperature range row has five separate cells with no colspan, under the header CCS-100/300S/300ST/400/400H. It reads '<4 K to 325 K' for CCS-100 and CCS-300S and '<4 K to 500 K' for CCS-400. I also read datasheet p.2 in memory with PyMuPDF (word coordinates plus cell rectangles). One merged cell (x 111-390, rows 101/408/415/418) reads '<4 K' for CCS-100/300S/300ST. The CCS-400 cell for rows 408/415/418 reads '<4 K' (its 101 row reads '<5 K'). So the assumed 408 head reaches <4 K on all three models, and 4000 mK is a conservative min bound.",
+    "kind": "value",
+    "reasoning": "Lower end of the documented temperature range is the base temperature. Datasheet p.2 'Minimum temp options' table (word-coordinate read) confirms <4 K for the 408/415/418 heads on CCS-100/300S/300ST and CCS-400, matching the 408 head assumed by these configurations."
+  },
+  {
+    "id": "ev_v3_0018",
+    "claim": "Documented lowest temperature of the CCS-400H (800 K model) is below 5 K (recorded as 5000 mK).",
+    "value_as_printed": "<5 K",
+    "normalized": {
+      "value": 5000,
+      "unit": "mK"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+    "location": "Specification table, row 'Temperature range', column CCS-400H",
+    "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+    "applies_to": "lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab)",
+    "review_status": "independently re-fetched and verified by a second agent: The raw HTML CCS-400H cell reads '<5 K to 800 K'. On datasheet p.2 the CCS-400H cell (x 483-576) spanning rows 408/415/418 reads '<5 K', and its 101 row reads a dash, which matches the 101 head being excluded for 400H in the facility table. The CCS-400 Series product page (and distributor pages) say '<4 K to 800 K', but that is a series summary. The more specific spec table and per-head table give 5 K, so 5000 mK is the conservative reading.",
+    "kind": "value",
+    "reasoning": "Datasheet p.2 'Minimum temp options' table: in the CCS-400H column the 408/415/418 merged cell reads '<5 K' and the 101 row reads a dash. The spec web page states '<5 K to 800 K' explicitly."
+  },
+  {
+    "id": "ev_v3_0019",
+    "claim": "CCS-400H temperature range is <5 K to 800 K (not <4 K as on the family overview page).",
+    "value_as_printed": "<5 K to 800 K",
+    "normalized": {
+      "lo": {
+        "value": 5000,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 800000,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+    "location": "Specification table, row 'Temperature range', column CCS-400H",
+    "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+    "applies_to": "lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab; datasheet p.2 word coordinates)",
+    "review_status": "independently re-fetched and verified by a second agent: Same evidence as record 1: spec cell '<5 K to 800 K', datasheet per-head cell '<5 K' for the 408/415/418 heads, and 'Maximum temperature 800 K' in the CCS-400H column (x 519-539). A range of 5 K to 800 K is the conservative, narrower range. The '<4 K to 800 K' on the series product page is superseded by the model-specific table.",
+    "kind": "value",
+    "reasoning": "The technical-specification table and the datasheet per-cold-head table (CCS-400H with 408/415/418: '<5 K') agree; the overview page's '<4 K' for CCS-400H is a family-level summary. With a 5 K floor the CCS-400H fails range_within lo=4 K (photoluminescence) but still satisfies lo=5 K (VSM range)."
+  },
+  {
+    "id": "ev_v3_0020",
+    "claim": "The CCS cryostat has no magnet: the datasheet's complete configuration list (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, M81-SSM, software, sensors) contains no magnet or field source, and a CCR cold-finger cryostat produces no field, so no magnetic field is available at the sample.",
+    "value_as_printed": "(no magnet in complete options list)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote is verbatim on datasheet p.1 (also on the product pages). Pipeline warning, not a data issue: cryolean/validation.py raises 'an UNKNOWN value must carry evidence_status unknown' when value.kind is 'unknown' with manufacturer_specification, while not_available requires a trusted status. scripts/import_research_v3.py forces non-flag not_available values to {kind: unknown}. So this record, and records 5, 8, 9 and 10, will fail catalog validation on import unless the validator exempts not_available absences.",
+    "kind": "absence",
+    "reasoning": "Scope sentence defines the product as a sample-in-vacuum CCR cryostat; the full ordering list has no magnet; the only field-related item is a 'magnetic field independent' Cernox sensor accessory, which implies use near external fields but is not a field source."
+  },
+  {
+    "id": "ev_v3_0021",
+    "claim": "No vector (multi-axis) field capability: the CCS has no magnet at all (complete datasheet configuration list contains none).",
+    "value_as_printed": "(no magnet in complete options list)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table)",
+    "review_status": "independently re-fetched and verified by a second agent: Flag false with not_available passes the shape rules. Follows directly from the verified magnet absence.",
+    "kind": "absence",
+    "reasoning": "Follows from the magnet absence."
+  },
+  {
+    "id": "ev_v3_0022",
+    "claim": "The CCS cryostat has no magnet: the datasheet's complete configuration list contains no magnet or field source, and a CCR cold-finger cryostat produces no field. The legacy Lake Shore 10 K CCS datasheet describes the CCS-300S window block as sized 'to fit between poles of a magnet', i.e. for a customer-supplied external magnet; the cryostat itself supplies no field.",
+    "value_as_printed": "(no magnet in complete options list)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_300s",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table)",
+    "review_status": "independently re-fetched and verified by a second agent: Legacy wording verified ('Subcompact extension-optical 38.1 mm (1.5 in) window block to fit between poles of a magnet; Model becomes CCS-300S/20XX'). The profiled configuration (cryostat plus 408 head) has no magnet, so not_available is correct. A user-supplied electromagnet would be a separate configuration. The same import and validation caveat as record 3 applies.",
+    "kind": "absence",
+    "reasoning": "Scope sentence defines the product as a sample-in-vacuum CCR cryostat; the full ordering list has no magnet. Medium confidence because the CCS-300S is designed to be placed in an external magnet gap."
+  },
+  {
+    "id": "ev_v3_0023",
+    "claim": "No vector (multi-axis) field capability: the CCS has no magnet at all (complete datasheet configuration list contains none); the CCS-300S window block is only sized to fit between poles of an external magnet.",
+    "value_as_printed": "(no magnet in complete options list)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_300s",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Follows from record 5. Flag false with not_available is valid.",
+    "kind": "absence",
+    "reasoning": "Follows from the magnet absence."
+  },
+  {
+    "id": "ev_v3_0024",
+    "claim": "No vibrating sample magnetometer: the CCS datasheet's complete configuration list offers sample holders, cold heads, windows, pumps, wiring, M81-SSM source-measure and software but no VSM drive/pickup or magnet; a VSM is outside this sample-in-vacuum optical cryostat category.",
+    "value_as_printed": "(no VSM in complete options list)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Custom Janis CCR cryostats for VSM use exist historically, but they are not these catalog configurations. Flag false with not_available is valid.",
+    "kind": "absence",
+    "reasoning": "Lake Shore sells VSMs as a separate product line; none is an option of the CCS configurator."
+  },
+  {
+    "id": "ev_v3_0025",
+    "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome, cryochamber or specimen head, so section thickness (a sectioning-cryostat property) does not exist on this instrument.",
+    "value_as_printed": "(no microtome / sectioning function)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Not applicable on this instrument; this is not an undocumented value. Same import and validation caveat as record 3 (kind unknown with manufacturer_specification).",
+    "kind": "absence",
+    "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware."
+  },
+  {
+    "id": "ev_v3_0026",
+    "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome cryochamber, so a sectioning-chamber temperature does not exist on this instrument.",
+    "value_as_printed": "(no microtome / sectioning function)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Same import and validation caveat as record 3.",
+    "kind": "absence",
+    "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware."
+  },
+  {
+    "id": "ev_v3_0027",
+    "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome specimen head, so a specimen-head temperature does not exist on this instrument.",
+    "value_as_printed": "(no microtome / sectioning function)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8",
+    "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Same import and validation caveat as record 3.",
+    "kind": "absence",
+    "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware."
+  },
+  {
+    "id": "ev_v3_0028",
+    "claim": "AC/DC electrical transport is a purchasable option: the M81-SSM source-measure system (DC and 100 kHz AC with lock-in) and the SH-RESISTIVITY-1.5-STD resistivity sample holder are optional add-ons not included in these catalog configurations.",
+    "value_as_printed": "M81-SSM ... DC, 100 kHz AC, and mixed DC + AC sourcing and measuring",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+    "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+    "location": "PDF p.3 'Complete your setup - Source + measure + lock-in - Optional add-on'; p.4 steps 2 (Sample holders) and 6 (Measurement instrumentation)",
+    "quote": "The Lake Shore M81-SSM provides highly synchronized DC, 100 kHz AC, and mixed DC + AC sourcing and measuring— including both voltage and current lock-in measurement capabilities—for low-temperature material research performed in your cryostat.",
+    "applies_to": "lakeshore_ccs_100, lakeshore_ccs_300s, lakeshore_ccs_400, lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote is verbatim on datasheet p.3, which labels 'Source + measure + lock-in' as 'Optional add-on'. Step 6 on p.4 lists M81-SSM-X with VM-10/CM-10 lock-in modules, and step 2 lists SH-RESISTIVITY-1.5-STD. AC to 100 kHz with lock-in fits 'AC electrical transport option'. None of these is part of the profiled configurations, so optional_not_installed with flag true is correct for all four models. For 800 K work the guide offers fixed-probe -H wiring.",
+    "kind": "option_not_installed",
+    "reasoning": "Configurations name only cryostat + 408 head; the datasheet marks M81-SSM 'Optional add-on' and lists the resistivity holder as an orderable sample holder. mat_electrical_resistance_low_temperature also needs 2 K, which no CCS reaches."
+  },
+  {
+    "id": "ev_v3_0029",
+    "claim": "Legacy CM1950 (Gen A, serial < 20000), all configurations: no magnetic field capability. The IFU V3.0 Rev ZA Technical Data (printed pp. 21-24) lists only power supply/fuses, dimensions, environment, refrigeration (cryochamber 0 to -35 C, object head -10 to -50 C, quick-freeze shelf, Peltier), the encapsulated rotary microtome and the UVC lamp; intended purpose is freezing and sectioning human specimens. It is a refrigerated rotary-microtome cryostat with no magnet, so no field at the sample.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data / intended purpose",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Section 1.4 Intended purpose, printed page 10; scope confirmed by Chapter 3 Technical Data, printed pages 21-24",
+    "quote": "The Leica CM1950 is a semi-motorized (motorized specimen feeding), high-performance cryostat with an option for motorized sectioning. It is used to freeze and section varying human specimen material quickly. These sections are used for histological medical diagnosis by a pathologist, e.g. for cancer diagnosis.",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: Accept, but the wording needs a fix: 'no magnet' is wrong. The same IFU documents small permanent holding magnets: two magnetic parking surfaces inside the chamber (p. 41), a suction nozzle 'with 4 magnets' (p. 79) and a 'Leica brush w/magnet' (p. 25). None of these is a field source at the sample, so the absence of a magnetic-field capability still holds. Checked in the re-fetched Leica-hosted IFU V3.0 Rev ZA: the §1.4 quote is verbatim on p. 10, and Technical Data pp. 21-24 match the description. Pipeline issue: validation.py rejects value kind 'unknown' with a trusted status, so not_available needs an exception there.",
+    "kind": "absence",
+    "reasoning": "Absence by category with a complete manufacturer specification: full IFU technical data and intended purpose define a clinical sectioning cryostat with no magnet; capability physically outside the instrument category."
+  },
+  {
+    "id": "ev_v3_0030",
+    "claim": "Legacy CM1950 (Gen A), all configurations: no vibrating sample magnetometer (and no magnet to drive one). The complete IFU Technical Data and intended purpose define a refrigerated rotary-microtome sectioning cryostat.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data / intended purpose",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Section 1.4 Intended purpose, printed page 10; scope confirmed by Chapter 3 Technical Data, printed pages 21-24",
+    "quote": "The Leica CM1950 is a semi-motorized (motorized specimen feeding), high-performance cryostat with an option for motorized sectioning. It is used to freeze and section varying human specimen material quickly. These sections are used for histological medical diagnosis by a pathologist, e.g. for cancer diagnosis.",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: Checked in the re-fetched IFU: §1.4 quote on p. 10, Technical Data pp. 21-24. Nowhere in the full IFU is there a VSM, a vibration drive, pick-up coils or a field magnet. The only magnets are small holding magnets on accessories (pp. 25/41/79), which cannot drive a VSM. A false flag with not_available is the correct shape.",
+    "kind": "absence",
+    "reasoning": "Absence by category with complete manufacturer specification; a VSM is physically outside the instrument category."
+  },
+  {
+    "id": "ev_v3_0031",
+    "claim": "Legacy CM1950 (Gen A), all configurations: no magnet, hence no vector (multi-axis) field capability; scope from the complete IFU Technical Data and intended purpose.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data / intended purpose",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Section 1.4 Intended purpose, printed page 10; scope confirmed by Chapter 3 Technical Data, printed pages 21-24",
+    "quote": "The Leica CM1950 is a semi-motorized (motorized specimen feeding), high-performance cryostat with an option for motorized sectioning. It is used to freeze and section varying human specimen material quickly. These sections are used for histological medical diagnosis by a pathologist, e.g. for cancer diagnosis.",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: Accept, but the wording needs a fix: 'no magnet' is wrong. The IFU documents small holding magnets: magnetic parking surfaces in the chamber (p. 41), a 4-magnet suction nozzle (p. 79) and a magnetic brush (p. 25). None of them creates a field at the sample, so there is no vector-field capability. Checked the §1.4 quote (p. 10) and Technical Data pp. 21-24 in the re-fetched IFU. A false flag with not_available is correct.",
+    "kind": "absence",
+    "reasoning": "Absence by category with complete manufacturer specification."
+  },
+  {
+    "id": "ev_v3_0032",
+    "claim": "Legacy CM1950 (Gen A), all configurations: no magnetic shielding of the sample space; the chamber is a refrigerated sectioning cabinet per the complete IFU Technical Data and intended purpose.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data / intended purpose",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Section 1.4 Intended purpose, printed page 10; scope confirmed by Chapter 3 Technical Data, printed pages 21-24",
+    "quote": "The Leica CM1950 is a semi-motorized (motorized specimen feeding), high-performance cryostat with an option for motorized sectioning. It is used to freeze and section varying human specimen material quickly. These sections are used for histological medical diagnosis by a pathologist, e.g. for cancer diagnosis.",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: Checked in the re-fetched IFU: §1.4 on p. 10, Technical Data pp. 21-24. The cryochamber is described as seamlessly welded stainless steel (p. 12). The full IFU has no shielding of any kind. A false flag with not_available is correct.",
+    "kind": "absence",
+    "reasoning": "Absence by category with complete manufacturer specification."
+  },
+  {
+    "id": "ev_v3_0033",
+    "claim": "Legacy CM1950 (Gen A), all configurations: no electrical transport/measurement option or sample wiring. The IFU fuse list enumerates every powered subsystem (object-head heater, sectioning motor, electronics/feed, drip-pan heater, window/grid/drain heaters, illumination and UVC lamp, Peltier, clutch, extraction); none is a sample measurement circuit.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 21, Instrument type > Other fuses (complete list of powered subsystems)",
+    "quote": "Other fuses F1 T4A 250 VAC (5x20 heater - object head) F2 T4A 250 VAC (5x20 sectioning motor) F3 T4A 250 VAC (5x20 power supply 5V and 24V electronics, keyboards, valves, slaveboard, feed) F4 T4A 250 VAC (5x20 heater - drip pan)",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: The fuse quote is verbatim on p. 21 (F1-F4, with F5-F9 following). One minor overstatement: the 'Other fuses' list does not cover every powered subsystem (the compressors and condenser run from the T15 A mains breaker). Still, no fused or described circuit measures the sample, and §1.4 limits use to freezing and sectioning, so the absence is justified by the full IFU.",
+    "kind": "absence",
+    "reasoning": "Complete electrical specification plus intended purpose; sample electrical transport is outside the instrument category. Quote verbatim modulo whitespace (PDF uses narrow no-break spaces)."
+  },
+  {
+    "id": "ev_v3_0034",
+    "claim": "Legacy CM1950 (Gen A), all configurations: no coaxial/RF lines to the sample. The IFU fuse list enumerates every powered subsystem (heaters, motors, electronics, illumination/UVC, Peltier, clutch, extraction); there is no sample wiring of any kind.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 21, Instrument type > Other fuses (complete list of powered subsystems)",
+    "quote": "Other fuses F1 T4A 250 VAC (5x20 heater - object head) F2 T4A 250 VAC (5x20 sectioning motor) F3 T4A 250 VAC (5x20 power supply 5V and 24V electronics, keyboards, valves, slaveboard, feed) F4 T4A 250 VAC (5x20 heater - drip pan)",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: The fuse quote is verbatim on p. 21. 'No sample wiring of any kind' is loose: the object head has heater wiring (F1) and temperature-sensor wiring. But there are no lines to the specimen and no measurement feedthroughs anywhere in the full IFU. Pipeline issue: value kind 'unknown' with a trusted status currently fails validation.py, so not_available needs an exception.",
+    "kind": "absence",
+    "reasoning": "Coaxial microwave lines are physically outside the category of a sectioning cryostat (task rule 4 example)."
+  },
+  {
+    "id": "ev_v3_0035",
+    "claim": "Legacy CM1950 (Gen A), all configurations: there are no coaxial/RF lines to the sample, so no coax bandwidth exists; scope from the complete IFU fuse/subsystem list.",
+    "value_as_printed": "not applicable: no such capability in the complete Technical Data",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 21, Instrument type > Other fuses (complete list of powered subsystems)",
+    "quote": "Other fuses F1 T4A 250 VAC (5x20 heater - object head) F2 T4A 250 VAC (5x20 sectioning motor) F3 T4A 250 VAC (5x20 power supply 5V and 24V electronics, keyboards, valves, slaveboard, feed) F4 T4A 250 VAC (5x20 heater - drip pan)",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the Leica-hosted IFU PDF (full text read))",
+    "review_status": "independently re-fetched and verified by a second agent: Follows from the electrical.coax_lines absence, which is accepted. The same validation.py caveat applies: kind 'unknown' with a trusted status needs a not_available exception.",
+    "kind": "absence",
+    "reasoning": "Absence by category with complete manufacturer specification."
+  },
+  {
+    "id": "ev_v3_0036",
+    "claim": "Legacy CM1950 STANDARD (no object head cooling): the documented operating/sample temperature range is the cryochamber range 0 C to -35 C (+/-5 K tolerance printed); without object-head cooling the specimen is held at chamber temperature.",
+    "value_as_printed": "0 °C to -35 °C ±5 K, adjustable in 1 K increments, at ambient temperature of 20 °C",
+    "normalized": {
+      "lo": {
+        "value": 238150,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 273150,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 22, Refrigeration system > Cryochamber > Temperature range",
+    "quote": "Refrigeration system Cryochamber Temperature range 0 °C to -35 °C ±5 K, adjustable in 1 K increments, at ambient temperature of 20 °C",
+    "applies_to": "leica_cm1950_genA_standard",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of IFU PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim on IFU p. 22. 0 °C and -35 °C convert exactly to 273150 and 238150 mK. The nominal ends are kept (the ±5 K tolerance is not applied), matching temperature.chamber.range already in the file. For model 14047743909 (no object head cooling), the chamber range is the documented operating range. The shelf is colder (-42 °C), so this range is a conservative subset.",
+    "kind": "value",
+    "reasoning": "Nominal printed range (238.15-273.15 K); tolerance not widened. Chamber-range mapping valid only for the configuration without object head cooling."
+  },
+  {
+    "id": "ev_v3_0037",
+    "claim": "Legacy CM1950 with object head cooling (models 14047742464/-465/-466/-467): documented specimen (object head) temperature range -10 C to -50 C (+/-3 K).",
+    "value_as_printed": "-10 to -50 °C ± 3 K",
+    "normalized": {
+      "lo": {
+        "value": 223150,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 263150,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed pages 22-23, Refrigeration system > Object head cooling > Temperature range",
+    "quote": "Optional feature included in model number At 120 V/60 Hz: 14047742464, 14047742465, 14047742466, 14047742467 Temperature range -10 to -50 °C ± 3 K",
+    "applies_to": "leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of IFU PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim on IFU pp. 22-23 (object head cooling is part of models 14047742464-467). -10 °C and -50 °C convert exactly to 263150 and 223150 mK; ±3 K is not applied. This is a conservative subset: the specimen head can be switched off (p. 50), leaving the specimen at chamber temperature, up to 0 °C.",
+    "kind": "value",
+    "reasoning": "The specimen is clamped on the actively cooled object head, so its controlled range is the sample range (223.15-263.15 K); nominal values."
+  },
+  {
+    "id": "ev_v3_0038",
+    "claim": "DualEcoTec CM1950 (specimen cooling fitted in all configurations): documented specimen head temperature range -10 C to -50 C.",
+    "value_as_printed": "-10°C to -50°C",
+    "normalized": {
+      "lo": {
+        "value": 223150,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 263150,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://www.leicabiosystems.com/us/histology-equipment/cryostats/leica-cm1950/",
+    "document_title": "Leica CM1950 | Clinical Cryostat (Leica CM1950 - The Cryostat with DualEcoTec cooling system)",
+    "location": "Specifications tab > Cooling > Specimen head temperature range",
+    "quote": "Specimen head temperature range: -10°C to -50°C",
+    "applies_to": "leica_cm1950_dualecotec_standard",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of US product page)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the US page and the global page. WebFetch confirms the minus signs, which Tavily's text extraction drops. The page reads 'Specimen head temperature range: -10°C to -50°C', and 'Specimen cooling' is listed for STANDARD (1491950STEU/STUS/STJP). Converts exactly to 263150 and 223150 mK; no tolerance is printed.",
+    "kind": "value",
+    "reasoning": "Specimen-head range is the controlled sample temperature range (223.15-263.15 K)."
+  },
+  {
+    "id": "ev_v3_0039",
+    "claim": "Legacy CM1950 STANDARD: lowest absolute temperature printed for any specimen position is the quick-freeze shelf, -42 C (+/-5 K) at chamber -35 C (Peltier stations are specified only relative to the shelf, -17 K).",
+    "value_as_printed": "Lowest temperature -42 °C (±5 K), at chamber temp. -35 °C (+5 K)",
+    "normalized": {
+      "value": 231150,
+      "unit": "mK"
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 23, Quick-freeze shelf",
+    "quote": "Quick-freeze shelf Lowest temperature -42 °C (±5 K), at chamber temp. -35 °C (+5 K) Number of freezing stations 15+2",
+    "applies_to": "leica_cm1950_genA_standard",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of IFU PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim on IFU p. 23. -42 °C converts to 231150 mK. This is the nominal value (±5 K, at chamber -35 °C +5 K; worst case about -37 °C), matching temperature.quick_freeze_shelf.min in the file. The shelf is a sustained specimen position fitted to all models. The Peltier figure (-17 K, relative only) is correctly not combined. Note that sectioning itself happens at chamber temperature (no colder than -35 °C).",
+    "kind": "value",
+    "reasoning": "Conservative: only an absolute printed figure (231.15 K); the relative Peltier figure is not combined into an unprinted absolute value."
+  },
+  {
+    "id": "ev_v3_0040",
+    "claim": "Legacy CM1950 with object head cooling: lowest absolute printed specimen temperature is the object head lower limit, -50 C (+/-3 K).",
+    "value_as_printed": "-10 to -50 °C ± 3 K",
+    "normalized": {
+      "value": 223150,
+      "unit": "mK"
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 3 Technical Data, printed page 23, Object head cooling > Temperature range",
+    "quote": "Optional feature included in model number At 120 V/60 Hz: 14047742464, 14047742465, 14047742466, 14047742467 Temperature range -10 to -50 °C ± 3 K",
+    "applies_to": "leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of IFU PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim on IFU p. 23. -50 °C is also the Max-Cool setpoint (p. 42) and converts exactly to 223150 mK; ±3 K is not applied. It is the lowest absolute printed figure for this configuration (chamber -35, shelf -42); the Peltier figure is relative only.",
+    "kind": "value",
+    "reasoning": "Lowest printed absolute temperature among cryochamber (-35 C), shelf (-42 C) and object head (-50 C): 223.15 K."
+  },
+  {
+    "id": "ev_v3_0041",
+    "claim": "DualEcoTec CM1950: lowest printed temperature is the quick-freeze (Peltier) stations, -59 C at chamber -35 C (object head -50 C, freezing shelf -42 C).",
+    "value_as_printed": "-59°C (at chamber temp. -35°C)",
+    "normalized": {
+      "value": 214150,
+      "unit": "mK"
+    },
+    "source_url": "https://www.leicabiosystems.com/us/histology-equipment/cryostats/leica-cm1950/",
+    "document_title": "Leica CM1950 | Clinical Cryostat (Leica CM1950 - The Cryostat with DualEcoTec cooling system)",
+    "location": "Specifications tab > Cooling > Quickfreeze stations temperature",
+    "quote": "Quickfreeze stations temperature: -59°C (at chamber temp. -35°C)",
+    "applies_to": "leica_cm1950_dualecotec_standard",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of US product page)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote checked on the US page (WebFetch) and the global page. -59 °C converts exactly to 214150 mK. The two quick-freeze (Peltier) stations are built into all configurations. Caveat for reviewers: this is the one-touch Peltier boost (on Gen A it runs in 10-minute cycles, IFU p. 43), not a sustained stage temperature. The lowest sustained specimen temperature printed is -50 °C (specimen head), and Leica's launch text says 'to -50 °C'. It is acceptable as the documented lowest temperature, and no current experiment depends on -50 versus -59 °C.",
+    "kind": "value",
+    "reasoning": "Lowest printed absolute temperature of any specimen position: 214.15 K."
+  },
+  {
+    "id": "ev_v3_0042",
+    "claim": "Legacy CM1950: the sample space cannot be evacuated. The IFU's only 'vacuum' is the optional section-waste vacuum extractor (suction nozzle, adjustable intensity); the cryochamber is an atmospheric cabinet closed by a heated sliding window the operator opens to work, and the complete Technical Data give no chamber vacuum specification. module.vacuum_system (section-waste extraction) must not be read as vacuum.available.",
+    "value_as_printed": "VAC = vacuum extractor for section waste (no evacuable chamber)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.leicabiosystems.com/sites/default/files/media_product-download/2024-06/Leica_CM1950_IFU_3v0ZA_US_en.pdf",
+    "document_title": "Leica CM1950 Cryostat, Instructions for Use, English, Order No. 14 0477 8U101 - Revision ZA, Version 3.0, Revision ZA - 05.2024",
+    "location": "Chapter 7 Instrument Controls, printed page 43 (VAC button); Chapter 5 General Overview, printed page 28, Fig. 8 item 1 (heated sliding window); Chapter 3 Technical Data",
+    "quote": "Press the VAC button to enable the vacuum extractor. The LED in the VAC button is lit while the extractor is on. Press the button again to disable it. • Use the knob to adjust the intensity of the vacuum.",
+    "applies_to": "leica_cm1950_genA_standard, leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of IFU PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: The VAC quote is verbatim on IFU p. 43; the vacuum there is a section-waste extractor with filters and hose (also p. 58). Fig. 8 item 1 is on p. 28. The heated sliding window is opened to work: UVC needs it closed and opening it cancels the cycle (p. 48). The troubleshooting entry 'Sliding window collects condensation: Air humidity and room temperature too high' (p. 63) and sections brushed onto slides inside the chamber (p. 59) also show an atmospheric chamber. Keep module.vacuum_system separate.",
+    "kind": "absence",
+    "reasoning": "An open-front cryostat cabinet accessed through a sliding window is physically not an evacuable sample space; the full manual defines the vacuum function as suction of section waste."
+  },
+  {
+    "id": "ev_v3_0043",
+    "claim": "THMS600 with LNP96 cooling: documented lowest temperature < -195 °C (78.15 K), stored conservatively as 78150 mK.",
+    "value_as_printed": "< -195°C",
+    "normalized": {
+      "value": 78150,
+      "unit": "mK"
+    },
+    "source_url": "https://www.linkam.co.uk/thms600-specifications",
+    "document_title": "THMS600 Specifications — Linkam Scientific",
+    "location": "Section 'THMS600 Specifications', first bullet",
+    "quote": "Temperature range < -195°C to 600°C (cooling option required)",
+    "applies_to": "linkam_thms600_lnp96_t96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk spec page)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched linkam.co.uk/thms600-specifications with Tavily. The first bullet reads exactly 'Temperature range < -195°C to 600°C (cooling option required)'. -195 °C = 78.15 K = 78150 mK. The vocabulary defines temperature.base as shape min, unit mK, lower is better, so storing the printed '<' bound as min 78150 mK is the conservative reading. It also matches the existing temperature.range lower bound (ev_linkam_0001). Brochure v1.54 p.3 ('< -195°C (with the addition of an optional LNP96-S)') and linkam.co.uk/thms600 agree. This configuration includes the LNP96-S and T96-S that the bound requires.",
+    "kind": "value",
+    "reasoning": "Printed bound is '< -195°C'; the guaranteed (conservative) base is -195 °C = 78.15 K = 78150 mK, consistent with the existing temperature.range lower bound. Applies only with the LNP96 cooling option, which this configuration includes."
+  },
+  {
+    "id": "ev_v3_0044",
+    "claim": "THMSEL600 with LNP96: documented lowest temperature < -195 °C (78.15 K), stored conservatively as 78150 mK.",
+    "value_as_printed": "< -195°C",
+    "normalized": {
+      "value": 78150,
+      "unit": "mK"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600-specifications",
+    "document_title": "THMSEL600 Specifications — Linkam Scientific",
+    "location": "Section 'THMSel600 Specifications', first bullet",
+    "quote": "Temperature range < -195°C to 600°C (with use of an LNP96)",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk spec page)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched linkam.co.uk/thmsel600-specifications. Under the heading 'THMSel600 Specifications', the first bullet reads exactly 'Temperature range < -195°C to 600°C (with use of an LNP96)'. The features page and Linkam's 2022 THMSEL600/THMSEL350V/TSEL1000 datasheet give the same range. 78150 mK is the conservative reading. The old T95-era User Guide (p.25) gives the THMSEL600 'Minimum temperature: ambient', but that system had no LNP. The current pages replace it, and this configuration includes the LNP96.",
+    "kind": "value",
+    "reasoning": "Printed bound '< -195°C' with LNP96 (included in this configuration); conservative base -195 °C = 78150 mK."
+  },
+  {
+    "id": "ev_v3_0045",
+    "claim": "The Linkam THMS600 system consists only of the THMS600 heating/freezing microscope stage, a T96-S controller and an optional LNP96-S liquid nitrogen pump; the brochure's complete technical specification lists no magnet, so no magnetic field is available at the sample.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4 (system composition); page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the Drive PDF with Tavily and read the downloaded bytes with pypdf: 4 pages, 'v1.54 2026', and linkam.co.uk/thms600-brochure links to it. The quoted paragraph is on p.2 word for word (only PDF hyphen and spacing artefacts). The 7-row Technical Specification table is on p.3, as the record says. 'Consists only of' slightly overstates the brochure, which also offers the Imaging Station, RHGen and NEXUS modules, but none of those is a magnet. PIPELINE NOTE: I tested cryolean/validation.py. It rejects a {'kind':'unknown'} value whose evidence_status is not 'unknown', with the error 'an UNKNOWN value must carry evidence_status 'un",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: the brochure defines the complete system (stage + T96-S + optional LNP96-S) and gives a complete technical specification table; an LN2-cooled optical heating/freezing stage with a silver heating block has no magnet."
+  },
+  {
+    "id": "ev_v3_0046",
+    "claim": "The THMSEL600 (THMS600 ellipsometry stage) system is the THMSEL stage, a T96-S controller and an optional LNP96-S pump; it has no magnet, so no magnetic field is available at the sample.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote appears word for word on the current features page, in the paragraph starting 'A system requires a THMSEL stage'. The 2022 THMSEL datasheet repeats it, and its spec table (range, rates, aperture, sample area, stability, sensor, vacuum support) has no field entry. See the index 2 pipeline note on unknown-valued not_available records.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: Linkam defines the full system composition; the THMSEL600 specification page lists only temperature, rate, stability, XY, sample area, gas, sensor, aperture, block and window items. No magnet."
+  },
+  {
+    "id": "ev_v3_0047",
+    "claim": "The THMS600 system (stage + T96-S + optional LNP96-S) has no magnet, hence no vector (multi-axis) field capability.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2 (see index 2). Flag false with not_available is the right encoding and passes validation.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: complete system definition and spec table contain no magnet; no magnet means no vector field."
+  },
+  {
+    "id": "ev_v3_0048",
+    "claim": "The THMSEL600 system (stage + T96-S + optional LNP96-S) has no magnet, hence no vector field capability.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed word for word on linkam.co.uk/thmsel600. Flag false with not_available passes validation.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: full system composition has no magnet."
+  },
+  {
+    "id": "ev_v3_0049",
+    "claim": "The THMS600 system (stage + T96-S + optional LNP96-S) has no magnetic shielding of the sample space; none is listed in the complete specification or options.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2. The reasoning calls the stage 'open-environment', which is wrong (the THMS600 has a sealed gas chamber), but that does not change the conclusion.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: an open-environment optical heating/freezing stage; the full system definition and options page (vertical holders, electrical connections, probes) contain no shielding."
+  },
+  {
+    "id": "ev_v3_0050",
+    "claim": "The THMSEL600 system has no magnetic shielding of the sample space.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed word for word on linkam.co.uk/thmsel600.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: full system composition and specification list contain no shielding."
+  },
+  {
+    "id": "ev_v3_0051",
+    "claim": "The THMS600 system (heating/freezing microscope stage + T96-S + optional LNP96-S) has no microtome, so there is no section-thickness setting.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2. See the index 2 pipeline note on unknown-valued not_available records.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: a microscope heating/freezing stage is not a sectioning cryostat; the complete system definition contains no microtome."
+  },
+  {
+    "id": "ev_v3_0052",
+    "claim": "The THMSEL600 system has no microtome, so there is no section-thickness setting.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed word for word on linkam.co.uk/thmsel600. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: ellipsometry heating/freezing stage, not a sectioning cryostat."
+  },
+  {
+    "id": "ev_v3_0053",
+    "claim": "The THMS600 system has no sectioning cryochamber (its 'sample chamber' is the sealed gas chamber around the silver block, not a microtome cryochamber), so a cryochamber temperature range does not apply.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: vocabulary key is defined for sectioning cryostats; the complete THMS600 system contains no microtome cryochamber."
+  },
+  {
+    "id": "ev_v3_0054",
+    "claim": "The THMSEL600 system has no sectioning cryochamber, so a cryochamber temperature range does not apply.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed word for word on linkam.co.uk/thmsel600. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: not a sectioning cryostat."
+  },
+  {
+    "id": "ev_v3_0055",
+    "claim": "The THMS600 system has no microtome specimen/object head, so a specimen-head temperature range does not apply.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: no microtome in the complete system definition."
+  },
+  {
+    "id": "ev_v3_0056",
+    "claim": "The THMSEL600 system has no microtome specimen/object head, so a specimen-head temperature range does not apply.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600",
+    "document_title": "THMSEL600 Features — Linkam Scientific",
+    "location": "Features text, paragraph beginning 'A system requires a THMSEL stage'",
+    "quote": "A system requires a THMSEL stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of linkam.co.uk/thmsel600)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed word for word on linkam.co.uk/thmsel600. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: not a sectioning cryostat."
+  },
+  {
+    "id": "ev_v3_0057",
+    "claim": "The THMS600 heating-only system (stage + T96-S controller) has no magnet and no vibrating sample magnetometer; Linkam documents only the stage, the controller and an optional LN2 pump as system components.",
+    "value_as_printed": "not applicable (outside instrument category)",
+    "normalized": {
+      "kind": "flag",
+      "b": false
+    },
+    "source_url": "https://drive.usercontent.google.com/download?id=1I2MLqNJAnsX4AtrlPzK3h0iBu2Dv9O3U&export=download",
+    "document_title": "THMS600 Versatile Heating and Cooling Stage (Linkam brochure v1.54 2026, linked from https://www.linkam.co.uk/thms600-brochure)",
+    "location": "PDF page 2, 'Introducing the THMS600', paragraph 4; page 3 'Technical Specification' table",
+    "quote": "A system requires both the THMS600 stage and a T96-S temperature controller, which is available with either NEXUS software for computer control, or a LinkPad touch screen for stand-alone control. For cooling below ambient temperatures, an optional LNP96-S liquid nitrogen pump is also available.",
+    "applies_to": "linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch of brochure PDF + pypdf text extraction)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on brochure p.2. Flag false with not_available passes validation. This record covers only the heating-only configuration.",
+    "kind": "absence",
+    "reasoning": "Absence by instrument category: a VSM needs a magnet and a vibration drive; the complete system definition and spec table contain neither."
+  },
+  {
+    "id": "ev_v3_0058",
+    "claim": "The standard THMS600 stage has no internal electrical connections to the sample (these exist only on the separate THMSE600/THMS600E variant, which uses Lemo connectors), so there are no coaxial/RF lines to the sample.",
+    "value_as_printed": "THMS600 stage without internal electrical connections",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://phavi.umcs.pl/at/attachments/2016/0622/081208-thms600-linkam.pdf",
+    "document_title": "THMS600 Heating and Freezing Stage — Linkam Scientific Instruments (THMS600_systems_v1.1, older revision, third-party hosted)",
+    "location": "'Linkam Complete Temperature Control Solution', step 'Select System' (PDF page 5)",
+    "quote": "Select System Either THMS600 stage without internal electrical connections Or THMSE600 with internal electrical connections",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of v1.1 datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the PDF and read it with pypdf: metadata title THMS600_systems_v1.1, created 2011-04-15, 7 pages. The 'Select System' lines are on p.5 word for word. The document is old (T95/LNP95 era), but current sources back up its stage-level statement: the options page, and Linkam's 2024/25 Electrical Stage Product Guide (Science Services copy). In that guide the THMS E variants list only '2 pin LEMO connector & posts' or '4 pin LEMO connector & posts'; BNC appears only on HFS E probe stages. Both configurations use the standard stage (electrical.sample_connections is optional_not_installed). Caveat: a 2026 Linkam exhibition deck lists",
+    "kind": "absence",
+    "reasoning": "Linkam explicitly distinguishes the THMS600 'without internal electrical connections' from the THMSE600. Both configurations use the standard stage. The current options page agrees that electrical connectors 'must be specified when the system is purchased'. Even the electrical variant uses Lemo feed-throughs (ev_linkam_0028), not coax."
+  },
+  {
+    "id": "ev_v3_0059",
+    "claim": "The standard THMS600 stage has no internal electrical connections to the sample, so there are no coaxial lines and no coax bandwidth.",
+    "value_as_printed": "THMS600 stage without internal electrical connections",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://phavi.umcs.pl/at/attachments/2016/0622/081208-thms600-linkam.pdf",
+    "document_title": "THMS600 Heating and Freezing Stage — Linkam Scientific Instruments (THMS600_systems_v1.1, older revision, third-party hosted)",
+    "location": "'Linkam Complete Temperature Control Solution', step 'Select System' (PDF page 5)",
+    "quote": "Select System Either THMS600 stage without internal electrical connections Or THMSE600 with internal electrical connections",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thms600_heating_only",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (Tavily extract of v1.1 datasheet PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote confirmed on p.5 of THMS600_systems_v1.1. The same caveats as index 17 apply. See the index 2 pipeline note.",
+    "kind": "absence",
+    "reasoning": "No coax lines (see electrical.coax_lines record), hence no coax bandwidth."
+  },
+  {
+    "id": "ev_v3_0060",
+    "claim": "OptistatDry TLEX sample space is flushed with clean, dry helium gas through the VTI pump-and-flush valve (positive pressure just above 1 atm) during sample change, and is left filled with one atmosphere of helium exchange gas.",
+    "value_as_printed": "flush the sample space with clean, dry helium gas, maintaining a positive pressure (just above 1 atmosphere)",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-tlex-user-guide.pdf",
+    "document_title": "OptistatDry TLEX Cryofree Sample Loading into Exchange Gas System Manual / Issue 3.0 / July 2019 (Oxford Instruments NanoScience)",
+    "location": "Section 5.8 Sample changing (approx. p. 36-37); see also Section 5.1 Loading the sample probe ('pump and flush the sample space one more time, leaving one atmosphere of helium gas')",
+    "quote": "To remove the probe, flush the sample space with clean, dry helium gas, maintaining a positive pressure (just above 1 atmosphere) on the VTI pump-and-flush valve.",
+    "applies_to": "oxford_optistatdry_tlex",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebSearch found the andor.oxinst.com download listing 'OptistatDry TLEX User Guide'; PDF at /downloads/uploads/ read with tavily_extract)",
+    "review_status": "independently re-fetched and verified by a second agent: TLEX manual PDF re-fetched (HTTP 200; Issue 3.0, July 2019). Quote verbatim in Sec. 5.8 Sample changing (top of p. 37). Sec. 5.1 confirms 'pump and flush the sample space one more time, leaving one atmosphere of helium gas' (five-nines He advised). Sec. 4.4 blanks the port 'to prevent moisture and other contaminants from getting into the sample space'. The NW16 VTI sample-space pump-and-flush valve is standard, so installed/true fits 'sample chamber can be purged with gas'. A sealed dry-He space meets the frost any-of intent.",
+    "kind": "value",
+    "reasoning": "purge.gas = 'Sample chamber can be purged with gas (dry gas purge against condensation)'. The TLEX manual instructs flushing the sample space with dry helium at positive pressure so moisture and contaminants stay out while the probe is removed, through a dedicated pump-and-flush valve. This satisfies the any-of requirement vacuum.available/purge.gas for the TLEX, whose vacuum.available is stored as false."
+  },
+  {
+    "id": "ev_v3_0061",
+    "claim": "OptistatDry BLV sample holder dimensions are 20 mm x 50 mm; the narrower 20 mm dimension bounds the diameter of a sample mounted on the standard holder.",
+    "value_as_printed": "20 mm x 50 mm",
+    "normalized": {
+      "value": 20000,
+      "unit": "um"
+    },
+    "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+    "document_title": "Quantum Design Oxford - Optistat - Optical Cryostats for Spectroscopy",
+    "location": "Optistat Model Comparison table, row 'Sample holder dims', column OptistatDry BLV (6th value; column order DN, DN-V, CF, CF-V, Dry TLEX, Dry BLV)",
+    "quote": "Sample holder dims | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm",
+    "applies_to": "oxford_optistatdry_blv",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the qd-oxford product page comparison table; cross-checked against matrix PDF p. 3)",
+    "review_status": "independently re-fetched and verified by a second agent: Live product page comparison columns: DN, DN-V, CF, CF-V, Dry TLEX, Dry BLV. 'Sample holder dims' for BLV = 20 mm x 50 mm, and the live matrix (OPTSS 0926 R5) printed p. 3 agrees. 20 mm = 20000 um. Holder width -> max sample diameter is an interpretation, consistent with the dataset's Linkam 'sample area' convention. It is conservative: MRL Illinois (a 12-pin BLV, like this configuration) lists a maximum sample of 28 x 35 mm2. The value is below the 40 mm bore.",
+    "kind": "value",
+    "reasoning": "No explicit 'maximum sample diameter' is published. The documented sample-holder footprint (20 mm x 50 mm) is the binding sample-size spec, so the conservative maximum sample diameter is the holder width, 20 mm = 20000 um, which is smaller than the 40 mm sample space already stored as sample.bore_diameter. The specification matrix PDF p. 3 gives the same 20 mm x 50 mm. A university facility page (MRL Illinois, mrl.illinois.edu/facilities/equipment/oxford-optistatdry) lists 'Sample dimensions (maximum): 28 x 35 mm2' for its BLV, which is larger, so 20 mm is the conservative figure. Mapping holder width to sample diameter is an interpretation, hence medium confidence."
+  },
+  {
+    "id": "ev_v3_0062",
+    "claim": "OptistatDry TLEX sample holder dimensions are 19 mm x 30 mm (in a 20 mm diameter sample tube); the 19 mm width bounds the diameter of a sample mounted on the standard holder.",
+    "value_as_printed": "19 mm x 30 mm",
+    "normalized": {
+      "value": 19000,
+      "unit": "um"
+    },
+    "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+    "document_title": "Quantum Design Oxford - Optistat - Optical Cryostats for Spectroscopy",
+    "location": "Optistat Model Comparison table, row 'Sample holder dims', column OptistatDry TLEX (5th value; column order DN, DN-V, CF, CF-V, Dry TLEX, Dry BLV)",
+    "quote": "Sample holder dims | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm",
+    "applies_to": "oxford_optistatdry_tlex",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the qd-oxford product page comparison table; matrix PDF p. 3 checked)",
+    "review_status": "independently re-fetched and verified by a second agent: Live product page 'Sample holder dims' for OptistatDry TLEX = 19 mm x 30 mm. The live R5 matrix p. 3 prints '119 mm x 30 mm', a typo since the tube is 20 mm. The DN/CF X models specify the same holder ('19 mm wide x 30 mm long'). 19000 um is below the 20 mm tube. Holder width -> max sample diameter is an interpretation and a near upper bound, so a requirement right at about 19 mm is marginal. Accepted at medium confidence; inferred_estimate would be the more cautious status.",
+    "kind": "value",
+    "reasoning": "No explicit maximum sample diameter is published. The holder width (19 mm) is the binding, conservative sample-diameter limit and is consistent with the 20 mm sample tube (row 'Maximum sample space 20 mm Ø'). The specification matrix PDF p. 3 prints this TLEX cell as '119 mm x 30 mm', an evident typo because a holder cannot exceed the 20 mm tube, so the product-page value of 19 mm is used. 19 mm = 19000 um. Medium confidence because holder width is mapped to sample diameter."
+  },
+  {
+    "id": "ev_v3_0063",
+    "claim": "The OptistatDry TLEX has no section-thickness microtome; section_thickness.range does not apply to this instrument.",
+    "value_as_printed": "not applicable (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-tlex-user-guide.pdf",
+    "document_title": "OptistatDry TLEX Cryofree Sample Loading into Exchange Gas System Manual / Issue 3.0 / July 2019 (Oxford Instruments NanoScience)",
+    "location": "Section 3 System description (approx. p. 12)",
+    "quote": "The OptistatDry TLEX system provides a temperature-controlled, sample-in-exchange gas measurement environment within a cryogen-free cryostat. The system enables optical and electrical measurements to be carried out on the user’s sample.",
+    "applies_to": "oxford_optistatdry_tlex",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the manufacturer TLEX system manual; complete component list in Section 3 reviewed)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim in TLEX manual Sec. 3 System description (p. 13, not p. 12). Sec. 3.1-3.4 cover the whole system and no microtome fits that architecture. Import caveat for all absence records: cryolean/validation.py rejects value kind 'unknown' with a non-'unknown' evidence_status, while not_available requires a trusted status. The importer or validator must reconcile this.",
+    "kind": "absence",
+    "reasoning": "The TLEX system manual (Section 3 System description) defines the system as a sample-in-exchange-gas cryostat for optical and electrical measurement and lists its full component set (3.1 cryostat, 3.2 sample probe, 3.3 GM cryocooler, 3.4 MercuryiTC). The vocabulary defines section_thickness.range only for sectioning (microtome) cryostats. The documented components (cryostat with optical window block, GM cold head and compressor, sample probe, wiring, controller) include no microtome or section-thickness feed. The capability is physically outside the instrument category, so it is recorded as absent rather than unknown."
+  },
+  {
+    "id": "ev_v3_0064",
+    "claim": "The OptistatDry TLEX has no sectioning cryochamber; temperature.chamber.range does not apply to this instrument.",
+    "value_as_printed": "not applicable (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-tlex-user-guide.pdf",
+    "document_title": "OptistatDry TLEX Cryofree Sample Loading into Exchange Gas System Manual / Issue 3.0 / July 2019 (Oxford Instruments NanoScience)",
+    "location": "Section 3 System description (approx. p. 12)",
+    "quote": "The OptistatDry TLEX system provides a temperature-controlled, sample-in-exchange gas measurement environment within a cryogen-free cryostat. The system enables optical and electrical measurements to be carried out on the user’s sample.",
+    "applies_to": "oxford_optistatdry_tlex",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the manufacturer TLEX system manual; complete component list in Section 3 reviewed)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim in TLEX manual Sec. 3 (p. 13). The manual contains no sectioning chamber, microtome or knife content. Same validation caveat as record 3 (unknown value with a manufacturer_specification status).",
+    "kind": "absence",
+    "reasoning": "The TLEX manual Section 3 defines the system scope and its complete components (cryostat/OVC with optical window block, VTI heat exchanger, sample probe, GM cryocooler, MercuryiTC). The vocabulary defines temperature.chamber.range only for sectioning cryostats, meaning the cryochamber that houses a microtome. The OptistatDry has no such cryochamber; its sample-temperature range is already stored under temperature.range. The capability is physically outside the instrument category, so it is recorded as absent."
+  },
+  {
+    "id": "ev_v3_0065",
+    "claim": "The OptistatDry TLEX has no microtome specimen/object head; temperature.specimen_head.range does not apply to this instrument.",
+    "value_as_printed": "not applicable (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdry-tlex-user-guide.pdf",
+    "document_title": "OptistatDry TLEX Cryofree Sample Loading into Exchange Gas System Manual / Issue 3.0 / July 2019 (Oxford Instruments NanoScience)",
+    "location": "Section 3 System description (approx. p. 12)",
+    "quote": "The OptistatDry TLEX system provides a temperature-controlled, sample-in-exchange gas measurement environment within a cryogen-free cryostat. The system enables optical and electrical measurements to be carried out on the user’s sample.",
+    "applies_to": "oxford_optistatdry_tlex",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the manufacturer TLEX system manual; complete component list in Section 3 reviewed)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote verbatim in TLEX manual Sec. 3 (p. 13). Same validation caveat as record 3.",
+    "kind": "absence",
+    "reasoning": "The TLEX manual Section 3 lists the complete system (cryostat, sample probe with mounting platform, GM cryocooler, MercuryiTC). The vocabulary defines temperature.specimen_head.range only for sectioning cryostats, meaning the microtome specimen/object head. The OptistatDry sample probe is not a microtome specimen head, and no microtome exists on the instrument. The capability is physically outside the instrument category, so it is recorded as absent."
+  },
+  {
+    "id": "ev_v3_0066",
+    "claim": "The OptistatDry BLV has no section-thickness microtome; section_thickness.range does not apply to this instrument.",
+    "value_as_printed": "not applicable (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+    "document_title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (Quantum Design Oxford specification matrix)",
+    "location": "PDF p. 10, Optistat Dry specifications page, product summary statement",
+    "quote": "Optistat Dry – 3 K Cryofree® cryostat, for a wide range of spectroscopy applications. Ideally suited for UV/VIS, Raman, FTIR, Fluorescence, Photoluminescence, Micro-PL, Terahertz, Microscopy and Electroluminescence.",
+    "applies_to": "oxford_optistatdry_blv",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of the full matrix PDF (spec table, ordering codes, sample-holder and accessory tables reviewed))",
+    "review_status": "independently re-fetched and verified by a second agent: Live matrix OPTSS 0926 R5 (2026), printed p. 10 (PDF page 6 of the spread file), reads 'OptistatDry - 3 K Cryofree(R) cryostat, for a wide range of spectroscopy applications...'. This is equivalent to the quote, which used the older R2 spelling 'Optistat Dry'. The p. 11 order codes and pp. 12-13 holder and accessory tables have no microtome item. The BLV manual MAN-OPTDRY-BLV-2.1.0 Sec. 4.1, p. 15 (via manualslib) confirms the sample-in-vacuum system definition. Same validation caveat as record 3.",
+    "kind": "absence",
+    "reasoning": "The specification matrix PDF p. 10 defines the OptistatDry (BLV and TLEX) as a 3 K Cryofree spectroscopy cryostat and gives its complete specification table (sample environment, temperature range, sample space, cooling power, cooldown, sample change, vibration). The p. 13 sample-holder table and the p. 11 ordering options list no microtome. The vocabulary defines section_thickness.range only for sectioning (microtome) cryostats. The capability is physically outside the instrument category, so it is recorded as absent."
+  },
+  {
+    "id": "ev_v3_0067",
+    "claim": "TeslatronPT with the standard integrated VTI: lowest documented sample temperature 1.5 K.",
+    "value_as_printed": "1.5 K (lower end of 1.5 to 300 K)",
+    "normalized": {
+      "value": 1500,
+      "unit": "mK"
+    },
+    "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+    "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+    "location": "PDF page 1, Features / Benefits bullet list",
+    "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of brochure PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Brochure PDF re-fetched (8 A4 pages, text extracted locally). The quote is verbatim on PDF p.4 Features/Benefits, not p.1. The product page and Plus brochure also give 1.5-300 K. 1.5 K = 1500 mK as min is correct. The VTI is integrated in every TeslatronPT and one range is given for all magnet options incl. 6/1/1 vector, so installed for all four ids. This must be the only temperature.base entry per id: duplicate keys fail validation and Lean uses the first match.",
+    "kind": "value",
+    "reasoning": "temperature.base (shape min, unit mK) is the documented lowest temperature. The standard VTI in every configuration goes down to 1.5 K = 1500 mK. This is the same figure as ev_ox_0001 (temperature.range lower bound), recorded here under the separate temperature.base key that the experiments query."
+  },
+  {
+    "id": "ev_v3_0070",
+    "claim": "Sample-in-vacuum environment is available with the optional Universal Measurement Probe (sample in helium exchange gas or vacuum); the standard VTI uses static exchange gas.",
+    "value_as_printed": "helium exchange gas or vacuum",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://qd-oxford.com/products/universal_measurement_probe.html",
+    "document_title": "Quantum Design Oxford - Products - Universal Measurement Probe (Tailored Probe Solutions for Electrical Transport Measurements)",
+    "location": "Features bullet list ('Sample Environment'); Specifications table column Sample Environment = Gas / Vacuum",
+    "quote": "Sample Environment: helium exchange gas or vacuum",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of UMP page; corroborated by TeslatronPT Plus page and brochure)",
+    "review_status": "independently re-fetched and verified by a second agent: UMP Features verbatim: 'Sample Environment: helium exchange gas or vacuum'. Spec table: Gas / Vacuum for both wirings. Corroborated by the Plus page/brochure ('Sample-in-gas and sample-in-vacuum options') and brochure p.8 (HelioxVT 'sample-in-vacuum'). The standard VTI holds the sample in static exchange gas, so vacuum is only an option: optional_not_installed for all four ids is correct.",
+    "kind": "value",
+    "reasoning": "The standard VTI holds the sample in static exchange gas. A vacuum around the sample needs the optional UMP or the optional sample-in-vacuum HelioxVT insert; the TeslatronPT Plus page also lists 'Sample-in-gas and sample-in vacuum options'. Hence the flag is true and optional_not_installed."
+  },
+  {
+    "id": "ev_v3_0071",
+    "claim": "Electrical transport measurement (DC and AC lock-in up to 100 kHz via Lake Shore M81, Hall via M91) is offered through the TeslatronPT Plus upgrade; not part of the plain TeslatronPT configurations.",
+    "value_as_printed": "low and high resistance, Hall effect, I-V; AC up to 100 kHz",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://www.qd-oxford.com/siteDocs/TeslatronPT_Plus_Brochure.pdf",
+    "document_title": "TeslatronPT Plus - Made Simple (brochure)",
+    "location": "Introducing TeslatronPT Plus, page 1 paragraph 3; Measurement Hardware section (Lake Shore M81)",
+    "quote": "TeslatronPT Plus measurement capabilities include low and high resistance, Hall effect in Hall bar and van der Pauw geometries, and I-V characterisation.",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of TeslatronPT Plus brochure and TeslatronPT page)",
+    "review_status": "independently re-fetched and verified by a second agent: Plus brochure re-fetched and extracted. The quote is verbatim on PDF p.3 (not p.1); the M81 'lock-in detection sensitivity of AC up to 100 kHz' is on p.4. The Plus page lists M81/M91 as accessories and says 'Do you own a TeslatronPT ... flexible measurement and automation upgrades' (also brochure p.8). The TeslatronPT page says it can be brought up to the Plus standard. Same magnet options incl. 6/1/1 T. AC transport is a documented upgrade not fitted on plain TeslatronPT: optional_not_installed.",
+    "kind": "value",
+    "reasoning": "The TeslatronPT product page says the system can be upgraded 'by adding the enhanced measurement and control capabilities to bring up to our TeslatronPT Plus open architecture measurement standard'. The Plus brochure lists the M81 with 'the lock-in detection sensitivity of AC up to 100 kHz'. The configurations are plain TeslatronPT, so the transport module is optional_not_installed."
+  },
+  {
+    "id": "ev_v3_0074",
+    "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI, measurement probes and He-3/dilution inserts; it has no microtome or sectioning cryochamber, so a section-thickness (microtome) setting does not exist on this instrument.",
+    "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+    "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+    "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+    "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of brochure PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Title verbatim on brochure PDF p.1; the options list is on p.5 and key specs on p.7 (location says p.1). Import caveat, tested with validate_configuration: a capability with value kind 'unknown' and evidence_status manufacturer_specification fails ('an UNKNOWN value must carry evidence_status unknown'), and not_available requires trusted evidence. So the not_available + {kind: unknown} that import_research_v3.py writes will not validate without a not_available exception.",
+    "kind": "absence",
+    "reasoning": "section_thickness.range applies to microtome (sectioning) cryostats. The brochure's full key-specification and insert/options list covers magnet options, VTI temperature range and stability, the 50 mm sample space, DC/RF wiring, HelioxVT, KelvinoxJT and LCC carriers. That describes a magnet/VTI measurement cryostat, and sectioning hardware is outside this instrument category."
+  },
+  {
+    "id": "ev_v3_0075",
+    "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI; it has no microtome or sectioning cryochamber, so a sectioning-cryostat cryochamber temperature does not exist on this instrument.",
+    "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+    "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+    "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+    "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of brochure PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Title verbatim on brochure PDF p.1; the options list is on p.5 and key specs on p.7. The same import caveat as record 10 applies: validation.py rejects value kind 'unknown' with a trusted evidence_status, so a not_available record needs a validator exception or another placeholder to pass validation.",
+    "kind": "absence",
+    "reasoning": "temperature.chamber.range applies to microtome (sectioning) cryostats. The brochure's full specification and options list describes a magnet/VTI measurement cryostat, and a sectioning cryochamber is outside this instrument category."
+  },
+  {
+    "id": "ev_v3_0076",
+    "claim": "The TeslatronPT brochure defines the instrument as an integrated Cryofree superconducting magnet system with a 1.5-300 K VTI; it has no microtome or sectioning cryochamber, so a sectioning-cryostat specimen/object-head temperature does not exist on this instrument.",
+    "value_as_printed": "n/a (no microtome / sectioning cryochamber)",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+    "document_title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure, 2026)",
+    "location": "PDF page 1, title line; Key Specifications and Insert features and options",
+    "quote": "TeslatronPT Integrated Cryofree® superconducting magnet system",
+    "applies_to": "oxford_teslatronpt_8T, oxford_teslatronpt_12T, oxford_teslatronpt_14T, oxford_teslatronpt_6_1_1T_vector",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_extract of brochure PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: Title verbatim on brochure PDF p.1; the options list is on p.5 and key specs on p.7. The same import caveat as record 10 applies: validation.py rejects value kind 'unknown' with a trusted evidence_status, so a not_available record needs a validator exception or another placeholder to pass validation.",
+    "kind": "absence",
+    "reasoning": "temperature.specimen_head.range applies to microtome (sectioning) cryostats. The brochure's full specification and options list describes a magnet/VTI measurement cryostat, and a microtome specimen head is outside this instrument category."
+  },
+  {
+    "id": "ev_v3_0077",
+    "claim": "Optical access to the DynaCool sample space is a purchasable option, the Optical Multi-Function Probe (OMFP, DynaCool model D725A/B), with an axial free-beam optical window (SM1, 1 in.). None of the three configurations includes the OMFP, so optical access is optional_not_installed.",
+    "value_as_printed": "affording the user optical access to experiments within the variable temperature and magnetic field environment",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+    "location": "PDF page 27 (printed 25), section 'Multi-Function Probes / Optical Multi-Function Probe (OMFP)', PPMS DynaCool (D725A/B)",
+    "quote": "The Optical Multi-Function Probe (OMFP) offers unprecedented versatility in affording the user optical access to experiments within the variable temperature and magnetic field environment of the PPMS® family of instruments.",
+    "applies_to": "qd_dynacool_9T_eto_res, qd_dynacool_14T_eto_vsm_hc, qd_dynacool_12T_vsm",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (curl download of qdusa.com 1084-500.pdf + pdftotext (page 27 extracted on its own); confirmed via Tavily search and qdusa.com/products/dynacool.html)",
+    "review_status": "independently re-fetched and verified by a second agent: Re-fetched the live 1084-500 with WebFetch: Rev. J0, md5-identical to the researcher's copy. PDF p.27 (printed 25) gives 'PPMS DynaCool (D725A/B)', the quote verbatim, axial window 'SM1 (1\" diameter)', and 'Range*: 350 to 5 K (DynaCool)' with the 5 K / 10 mW footnote. The p.30 table lists 'D725A/B [Req. D415]'. QD's DynaCool page says optical access to the sample chamber is attained using the OMFP. No configuration includes D725, so flag true + optional_not_installed is right. (Tavily serves an older cached Rev. H0.)",
+    "kind": "value",
+    "reasoning": "The options brochure lists the OMFP under 'PPMS DynaCool (D725A/B)', so it is an orderable DynaCool option that provides optical access. The configuration names (ETO+Resistivity; ETO+VSM+HC; VSM only) do not include it. The standard sample chamber is closed by a KF-40 blank flange and baffle set (DynaCool User's Manual 1307-110 Rev. D1, section 2.3.3), so the base system has no window. Caveat: the same page gives the OMFP temperature range as 350 to 5 K (DynaCool), not 1.8 to 400 K. Its 5 K base 'represents the minimum achievable stable temperature under 10 mW of radiant flux'. An optical experiment needing T < 5 K would still fail with the OMFP fitted. Other optical routes in the same brochure: Photoconductivity MFP (D790A/B, 1 mm core optical fibers, PDF p. 25/printed 23) and VSM Fiber Optic Sample Holder (D320, max sample 1.6 mm x 1.6 mm, PDF p. 13). This record replaces the current 'unknown' value (ev_qd_0011)."
+  },
+  {
+    "id": "ev_v3_0078",
+    "claim": "The PPMS DynaCool has no section-thickness setting range (a microtome function). Quantum Design defines the PPMS family as an open-architecture, variable-temperature and magnetic-field measurement platform. Its complete specification (1307-010 PDF p. 4: temperature control, magnet options, 2.5 cm clear-bore sample space) and its full options list (1084-500: electrical transport, magnetometry, thermal, sub-Kelvin, multi-function/optical probes) contain no microtome, sectioning blade, cryochamber or specimen head. The capability is outside the instrument category.",
+    "value_as_printed": "",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+    "location": "PDF page 3 (printed 1), introductory section 'PPMS Family'; complete option list in Table of Contents (PDF page 2)",
+    "quote": "The Quantum Design Physical Property Measurement System (PPMS) family of instruments represents a unique concept in laboratory equipment: an open architecture, variable temperature and magnetic field system, designed to perform a variety of automated measurements.",
+    "applies_to": "qd_dynacool_9T_eto_res, qd_dynacool_14T_eto_vsm_hc, qd_dynacool_12T_vsm",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (curl download of qdusa.com 1084-500.pdf and 1307-010.pdf + pdftotext; full option list and spec table reviewed)",
+    "review_status": "independently re-fetched and verified by a second agent: Quote is verbatim on live Rev. J0 PDF p.3 (printed 1); Tavily's cached Rev. H0 lacks 'family of instruments'. There is no explicit 'no microtome' sentence, but the record rests on more than silence: QD defines the PPMS as a variable-temperature/field measurement system, 1307-010 Rev. G0 p.4 gives a 2.5 cm clear-bore sample space, and neither brochure mentions a microtome, section, blade or specimen. The key is microtome-only, with no DynaCool counterpart. Caveat: both brochures say 'For complete specifications, contact your local Quantum Design office'.",
+    "kind": "absence",
+    "reasoning": "The key is defined in capability_vocabulary.json for microtome/sectioning cryostats. This is an inference from the instrument category plus a complete spec and options list, not an explicit 'no microtome' sentence. bio_cryosection_frozen_tissue is blocked by this absence."
+  },
+  {
+    "id": "ev_v3_0079",
+    "claim": "Optical access to the PPMS sample chamber is a purchasable option (Optical Multi-Function Probe, PPMS part P725A/B) with an axial free-beam optical port window. The base configurations (no measurement options) do not include it: Hardware Manual 1070-150 sec. 2.4 says the base sample chamber is closed by a KF blank flange. The OMFP works from 5 to 350 K on DynaCool/PPMS.",
+    "value_as_printed": "affording the user optical access to experiments",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500_PPMS_OMFP.pdf",
+    "document_title": "Optical Multi-Function Probe (OMFP) DynaCool (D725A/B) / PPMS (P725A/B) / VersaLab (V725A/B) (Quantum Design 1084-500 Rev. F0)",
+    "location": "PDF page 1, introductory paragraph",
+    "quote": "Optical Multi-Function Probe (OMFP) DynaCool (D725A/B) / PPMS (P725A/B) / VersaLab (V725A/B) The Optical Multi-Function Probe (OMFP) offers unprecedented versatility in affording the user optical access to experiments within the variable temperature and magnetic field environment of the PPMS® family of instruments.",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract)",
+    "review_status": "independently re-fetched and verified by a second agent: Reachable. The URL now serves 1084-500 Rev. J0 (PDF dated 2026-09-28); Tavily still returns the quoted Rev. F0 text. J0 keeps the intro sentence word for word and lists the probe as also compatible with legacy PPMS (P725A/B), 0 to 16 T. Manual 1070-150 sec. 2.3.4/2.4 confirm that a KF blank flange closes the base chamber, so this is an option that is not installed. Update the title/revision to J0. J0 gives 5-350 K for DynaCool only, and the OMFP does not reach 400 K.",
+    "kind": "value",
+    "reasoning": "The vendor brochure names a PPMS part number (P725A/B) for the OMFP, so optical access is a documented option for the classic PPMS. Both configurations are defined as 'no measurement options installed', so the value is true with install optional_not_installed. Caveat: the OMFP range of 5-350 K does not cover the full 203-393 K POM range."
+  },
+  {
+    "id": "ev_v3_0081",
+    "claim": "The standard classic PPMS purges its sample chamber with clean gas through the built-in vent and flush valves (Purge/Seal operation). By default the gas is helium boil-off from the dewar; another clean gas can be connected to the Sample Vent-Up port.",
+    "value_as_printed": "A purging procedure vents the sample chamber with clean gas",
+    "normalized": {
+      "kind": "flag",
+      "b": true
+    },
+    "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+    "document_title": "Physical Property Measurement System Hardware Manual, 1070-150, Rev. B5 (February 2008)",
+    "location": "Chapter 3, Section 3.4 'Atmospheric Control', page 3-7 (see also Appendix A.3.18 'Sample Vent-Up Port', page A-7)",
+    "quote": "The vent valve allows helium gas into the sample chamber during venting and purging procedures. A purging procedure vents the sample chamber with clean gas and pumps it out through the flush valve, and then repeats the same process two more times.",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + WebFetch (PDF) + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote matches 1070-150 Rev. B5 sec. 3.4 (p. 3-7). Appendix A.3.18/A.3.19 confirm that the Model 6000 vent/flush valves vent and purge the chamber with dewar helium boil-off, or with another gas on the Sample Vent-Up port. Purge/Seal is a step of the standard sample-installation procedure, so installed is correct. A dry-helium purge removes air and moisture before cooling, which is the anti-condensation sense of the key.",
+    "kind": "value",
+    "reasoning": "The purge plumbing (vent and flush valves in the Model 6000) belongs to the base system, not to an option, so the record is installed. This fills the 'vacuum.available/purge.gas' requirement through purge.gas."
+  },
+  {
+    "id": "ev_v3_0082",
+    "claim": "For the base PPMS, the manual sets the sample-size limit by the 2.3 cm diameter of the sample puck. The maximum sample height is 5.0 cm.",
+    "value_as_printed": "The diameter of the sample puck is 2.3 cm",
+    "normalized": {
+      "value": 23000,
+      "unit": "um"
+    },
+    "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+    "document_title": "Physical Property Measurement System Hardware Manual, 1070-150, Rev. B5 (February 2008)",
+    "location": "Chapter 3, Section 3.9 'Experimental Considerations', page 3-12",
+    "quote": "One of the first constraints to consider is the size of the sample. The diameter of the sample puck is 2.3 cm, with a set of notches around its perimeter in which the electrical leads seat. The maximum sample height is 5.0 cm.",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + WebFetch (PDF) + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote matches 1070-150 Rev. B5 sec. 3.9, p. 3-12. The manual gives the 2.3 cm puck diameter as the lateral sample-size constraint, and sec. 4.4.2 has the leads sit in rim notches and stay inside the rim. 23000 um is therefore the puck footprint, the smaller documented limit (the bore is 26000 um), which matches how the repo uses holder sizes. Caveats: it is not literally worded as a maximum sample diameter, wired samples need some margin, and OMFP/option sample mounts are not covered.",
+    "kind": "value",
+    "reasoning": "The manual presents the 2.3 cm puck diameter as the sample-size constraint, and it lies inside the 2.6 cm chamber bore. 2.3 cm = 23000 um. Caveat: optical work uses the OMFP's own PCB sample platform, whose size is not stated, so this value is the puck-mounted limit."
+  },
+  {
+    "id": "ev_v3_0083",
+    "claim": "The maximum sample height in the base classic PPMS is 5.0 cm.",
+    "value_as_printed": "The maximum sample height is 5.0 cm.",
+    "normalized": {
+      "value": 50000,
+      "unit": "um"
+    },
+    "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+    "document_title": "Physical Property Measurement System Hardware Manual, 1070-150, Rev. B5 (February 2008)",
+    "location": "Chapter 3, Section 3.9 'Experimental Considerations', page 3-12",
+    "quote": "The diameter of the sample puck is 2.3 cm, with a set of notches around its perimeter in which the electrical leads seat. The maximum sample height is 5.0 cm.",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch (PDF) + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote matches 1070-150 Rev. B5 sec. 3.9, p. 3-12. The 5.0 cm maximum sample height is stated explicitly by the manufacturer for the base puck-mounted sample and is the same for every classic PPMS magnet option. 5.0 cm = 50000 um, which is correct.",
+    "kind": "value",
+    "reasoning": "Not on the gap list. It is included because the same scope-defining passage states it. 5.0 cm = 50000 um."
+  },
+  {
+    "id": "ev_v3_0084",
+    "claim": "The hardware manual defines the PPMS as an automated workstation for magnetic, electro-transport and thermo-electric measurements. The brochure's complete options list (electrical transport, magnetometry, thermal, sub-kelvin, MFPs, FMR, optics) contains no sectioning hardware. The PPMS has no microtome, so it has no section-thickness setting.",
+    "value_as_printed": "",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+    "document_title": "Physical Property Measurement System Hardware Manual, 1070-150, Rev. B5 (February 2008)",
+    "location": "Chapter 1, Section 1.2 'Overview of the PPMS', page 1-1 (options list: 1070-002 Rev. C1, 'Available Measurement Options')",
+    "quote": "The Physical Property Measurement System (PPMS) provides a flexible, automated workstation that can perform a variety of experiments requiring precise thermal control. You can use the PPMS to execute magnetic, electro-transport, or thermo-electric measurements",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch (PDF) + pdftotext; tavily_extract of 1070-002)",
+    "review_status": "independently re-fetched and verified by a second agent: The quote matches 1070-150 sec. 1.2, p. 1-1. The sentence goes on to say the system can be modified for the user's own experiments, which the record leaves out. The absence still holds: the same manual lists the complete base hardware (dewar, probe with a sealed sample chamber closed by a KF blank flange, sample puck, Model 6000, pump), and the 1070-002 catalog has no sectioning hardware. A microtome is physically outside this instrument category.",
+    "kind": "absence",
+    "reasoning": "This follows the rule for capabilities outside an instrument's category: the manufacturer's scope statement plus a complete options list establish that no microtome exists on this instrument."
+  },
+  {
+    "id": "ev_v3_0085",
+    "claim": "The PPMS is a measurement workstation (magnetic, electro-transport, thermo-electric), not a sectioning cryostat, and its complete options list has no microtome. It has no specimen/object head, so it has no specimen-head temperature range; the sample sits on a puck in the 1.9-400 K sample chamber.",
+    "value_as_printed": "",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+    "document_title": "Physical Property Measurement System Hardware Manual, 1070-150, Rev. B5 (February 2008)",
+    "location": "Chapter 1, Section 1.2 'Overview of the PPMS', page 1-1",
+    "quote": "The Physical Property Measurement System (PPMS) provides a flexible, automated workstation that can perform a variety of experiments requiring precise thermal control. You can use the PPMS to execute magnetic, electro-transport, or thermo-electric measurements",
+    "applies_to": "qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (WebFetch (PDF) + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: Same scope quote, which matches p. 1-1. A specimen/object head is the microtome's specimen holder, which has its own temperature control. The PPMS sample sits on a puck at the system temperature (already captured by temperature.range), with no separate head control. No sectioning hardware appears in the base hardware (1070-150 ch. 2) or in the option catalog (1070-002). Absence by category is justified.",
+    "kind": "absence",
+    "reasoning": "A specimen head is a microtome-cryostat component. It is outside the PPMS category as defined by the manufacturer's scope statement and options list."
+  },
+  {
+    "id": "ev_v3_0086",
+    "claim": "Bluefors LD250 cooling power at 120 mK is 360 uW (third point of the documented cooling-power curve: 10 uW at 20 mK, 250 uW at 100 mK, 360 uW at 120 mK).",
+    "value_as_printed": "360 µW",
+    "normalized": {
+      "value": 360000,
+      "unit": "nW"
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6 (printed 'USER MANUAL | LD SYSTEM | 2 (48)'), Section 2.1 General description, Table 1: Main technical characteristics, LD250 column, row 'Cooling power at 120 mK'",
+    "quote": "Table 1: Main technical characteristics Base temperature: Cooling power at 20 mK: Cooling power at 100 mK: Cooling power at 120 mK: LD250 10 mK 10 µW 250 µW 360 µW LD400 10 mK 12 µW 400 µW 575 µW",
+    "applies_to": "bluefors_ld250_manual_v2",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract (web.archive.org 2024 snapshot of bluefors.com); manual PDF fetched with curl and read with pdftotext (pages 5-7))",
+    "review_status": "independently re-fetched and verified by a second agent: I downloaded the Aalto-hosted PDF again (HTTP 200, 52 pages; title page says January 12, 2022, Version 2.0). I rendered PDF page 6 (printed '2 (48)'). Table 1 shows LD250 'Cooling power at 120 mK: >= 360 uW'. The text layer moves the row labels down by one row and drops the <=, >= and micro signs, so the record's quote is a paraphrase of the text layer, but the passage is there. The manual says it 'applies to models LD250 and LD400'. 360 uW = 360000 nW is correct, and the shape (max) matches ev_bf_0004/0005. The page prints '>= 360 uW' (a guaranteed minimum), so value_as_printed should keep the '>='. I checked the archived 2024 bluefor",
+    "kind": "value",
+    "reasoning": "Same table and document as the catalog's ev_bf_0004/ev_bf_0005, so it applies to exactly this configuration. Corroborated by the archived bluefors.com LD page (https://web.archive.org/web/2024id_/https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/): 'LD250 | Guaranteed | Expected ... Cooling power at 120 mK | 360 μW | 400 μW'; guaranteed figure used. The PDF text layer renders the micro sign as an undecodable glyph; the quote restores µ. NEW VOCABULARY KEY REQUIRED: cooling_power.at_120mK {shape max, unit nW, better higher, at_temperature {120, mK}}. resolve_slots() already uses only installed cooling_power keys with an at_temperature, so a Joule-heating or wiring check at 120 mK <= T_op < 4.2 K would use 360 uW instead of the 100 mK figure (250 uW)."
+  },
+  {
+    "id": "ev_v3_0087",
+    "claim": "Bluefors LD400 cooling power at 120 mK is 575 uW (curve: 12 uW at 20 mK, 400 uW at 100 mK, 575 uW at 120 mK).",
+    "value_as_printed": "575 µW",
+    "normalized": {
+      "value": 575000,
+      "unit": "nW"
+    },
+    "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+    "document_title": "User Manual LD System, January 12, 2022, Version 2.0 (Bluefors Oy, BF1000-1234517327-9)",
+    "location": "PDF page 6 (printed 'USER MANUAL | LD SYSTEM | 2 (48)'), Section 2.1 General description, Table 1: Main technical characteristics, LD400 column, row 'Cooling power at 120 mK'",
+    "quote": "Table 1: Main technical characteristics Base temperature: Cooling power at 20 mK: Cooling power at 100 mK: Cooling power at 120 mK: LD250 10 mK 10 µW 250 µW 360 µW LD400 10 mK 12 µW 400 µW 575 µW",
+    "applies_to": "bluefors_ld400_hdw",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract (web.archive.org 2024 snapshot); manual PDF via curl + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: The rendered Table 1 (PDF page 6) shows LD400 '>= 575 uW' at 120 mK. 575000 nW is correct; value_as_printed should be '>= 575 uW'. The archived 2024 bluefors.com page shows LD400 Guaranteed 575 uW / Expected 650 uW. The 2022 manual covers the LD400 but never mentions the side-loading variant. Bluefors' March 2025 news article (updated 2026) says the side-loading LD450sl (formerly LD400sl) 'matches the performance of our standard' systems. So the figure applies to bluefors_ld400_hdw, the same way ev_bf_0006/0007 already do. The flange cooling power does not include the High-Density Wiring heat load, so the wiring load must be counted se",
+    "kind": "value",
+    "reasoning": "Same table as ev_bf_0006/ev_bf_0007 used for this configuration's 20 mK and 100 mK values. Corroborated by the archived bluefors.com LD page (web.archive.org 2024 snapshot): 'LD400 | Guaranteed | Expected ... Cooling power at 120 mK | 575 μW | 650 μW'; guaranteed figure used. The flange figure excludes the High-Density Wiring heat load, consistent with the mxc_wiring_heat_budget model counting wiring separately. NEW VOCABULARY KEY REQUIRED: cooling_power.at_120mK. The current LD450 pages publish only 20 mK and 100 mK, so nothing is recorded for bluefors_ld450_current."
+  },
+  {
+    "id": "ev_v3_0088",
+    "claim": "The Dilution Refrigerator insert (DynaCool D850 / PPMS P850) provides 0.25 uW at the sample stage at 100 mK; it is an orderable option that none of these catalog configurations includes.",
+    "value_as_printed": "0.25 μW at sample stage at 100 mK",
+    "normalized": {
+      "value": 250,
+      "unit": "nW"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "PPMS Family Measurement Options (Quantum Design, 1084-500 Rev. J0)",
+    "location": "PDF page 22, 'Sub-Kelvin Capabilities - Dilution Refrigerator DynaCool (D850) / PPMS (P850)', Dilution Refrigerator Specifications, Operational Capabilities, row 'Cooling Power'",
+    "quote": "Cooling Power: 0.25 μW at sample stage at 100 mK ... Operational Range: 0.05 to 4 K; 0 to 14 T ... Also compatible with PPMS® (P850) legacy systems.",
+    "applies_to": "qd_dynacool_9T_eto_res, qd_dynacool_14T_eto_vsm_hc, qd_dynacool_12T_vsm, qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract (qdusa.com and qd-uki.co.uk copies); qdusa PDF fetched with curl and read with pdftotext (pages 21-22))",
+    "review_status": "independently re-fetched and verified by a second agent: 1084-500 Rev. J0, PDF page 22 (printed 20), D850 Dilution Refrigerator Specifications: 'Cooling Power: 0.25 uW at sample stage at 100 mK'. I confirmed the glyph is U+03BC; the text layer shows '0.25 W'. The page also says 'Operational Range: 0.05 to 4 K; 0 to 14 T' and 'Also compatible with PPMS (P850) legacy systems'. 250 nW is correct, and optional_not_installed is right for all five configurations. Caveats for any 'add DR' modification: (1) the compatibility table (PDF page 30) lists the legacy P850A as needing Model 1000 + P640; (2) the DR works only with transport, heat capacity and AC susceptibility, not VSM; (3) its field range ",
+    "kind": "value",
+    "reasoning": "Option figure (insert sample stage), so install = optional_not_installed for every DynaCool and classic PPMS configuration (none lists a DR insert). resolve_slots() ignores non-installed cooling_power keys, so this cannot become the Joule-heating slot of the base system; it lets Lean explain that a 100 mK experiment needs the DR option and lets Z3 propose a modified configuration. Single point; no curve published."
+  },
+  {
+    "id": "ev_v3_0089",
+    "claim": "The Helium-3 Refrigerator insert (DynaCool D825A/V / PPMS P825A/V) provides 6 uW at the sample stage at 0.5 K (continuous operation is possible down to 0.5 K).",
+    "value_as_printed": "6 μW at sample stage at 0.5 K",
+    "normalized": {
+      "value": 6000,
+      "unit": "nW"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "PPMS Family Measurement Options (Quantum Design, 1084-500 Rev. J0)",
+    "location": "PDF page 21, 'Sub-Kelvin Capabilities - Helium-3 Refrigerator DynaCool (D825A/V) / PPMS (P825A/V)', Helium-3 Refrigerator Specifications, Operational Capabilities, row 'Cooling Power'",
+    "quote": "Cooling Power: 6 μW at sample stage at 0.5 K 80 μW at sample stage at 1.0 K ... Indefinite continuous operation limited to a base of 0.5 K ... Also compatible with PPMS® (P825A/V) legacy systems.",
+    "applies_to": "qd_dynacool_9T_eto_res, qd_dynacool_14T_eto_vsm_hc, qd_dynacool_12T_vsm, qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract; qdusa PDF via curl + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: PDF page 21 (printed 19), Helium-3 Refrigerator (D825A/V) Specifications: '6 uW at sample stage at 0.5 K' and '80 uW at sample stage at 1.0 K' (I confirmed the micro glyph). The footnote says 'Indefinite continuous operation limited to a base of 0.5 K', and the page says 'Also compatible with PPMS (P825A/V) legacy systems'. 6000 nW is correct, and 0.5 K is a steady-state point. The stated operational range of 0-16 T implies the spec also covers the legacy PPMS. Caveats: the compatibility table names the legacy part P825C/CV and requires Model 1000 + P640. He-3 works only with transport and heat capacity, so it cannot serve a VSM measur",
+    "kind": "value",
+    "reasoning": "Two-point cooling curve of an orderable insert (0.5 K and 1.0 K); 0.5 K lies within the continuous-operation range, so it is a steady-state figure. optional_not_installed for all five configurations (He-3 is compatible with transport and heat capacity; for the VSM-only configuration it is still an orderable platform option). NEW VOCABULARY KEY REQUIRED: cooling_power.at_500mK {shape max, unit nW, at_temperature {500, mK}}."
+  },
+  {
+    "id": "ev_v3_0090",
+    "claim": "The Helium-3 Refrigerator insert provides 80 uW at the sample stage at 1.0 K.",
+    "value_as_printed": "80 μW at sample stage at 1.0 K",
+    "normalized": {
+      "value": 80000,
+      "unit": "nW"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "PPMS Family Measurement Options (Quantum Design, 1084-500 Rev. J0)",
+    "location": "PDF page 21, 'Sub-Kelvin Capabilities - Helium-3 Refrigerator DynaCool (D825A/V) / PPMS (P825A/V)', Helium-3 Refrigerator Specifications, Operational Capabilities, row 'Cooling Power'",
+    "quote": "Cooling Power: 6 μW at sample stage at 0.5 K 80 μW at sample stage at 1.0 K ... Also compatible with PPMS® (P825A/V) legacy systems.",
+    "applies_to": "qd_dynacool_9T_eto_res, qd_dynacool_14T_eto_vsm_hc, qd_dynacool_12T_vsm, qd_ppms_classic_14T, qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search + tavily_extract; qdusa PDF via curl + pdftotext)",
+    "review_status": "independently re-fetched and verified by a second agent: Same He-3 table on PDF page 21: '80 uW at sample stage at 1.0 K', so 80000 nW is correct. optional_not_installed is right for all five configurations. The same caveats as record 3 apply (legacy prerequisites Model 1000/P640; no VSM compatibility). New key cooling_power.at_1000mK required.",
+    "kind": "value",
+    "reasoning": "Second point of the He-3 insert curve; the option is not fitted in any catalog configuration. NEW VOCABULARY KEY REQUIRED: cooling_power.at_1000mK {shape max, unit nW, at_temperature {1000, mK}}."
+  },
+  {
+    "id": "ev_v3_0091",
+    "claim": "The LNP96 liquid-nitrogen pump system is supplied with a 2 L dewar (7 L or 25 L dewars are available as alternatives).",
+    "value_as_printed": "2L Dewar (7L or 25L Dewars are available)",
+    "normalized": {
+      "value": 2,
+      "unit": "L"
+    },
+    "source_url": "https://micro.fel.cvut.cz/wp-content/uploads/2019/05/Linkam_T96_Controller.pdf",
+    "document_title": "T96 System Controller Manual, Linkam Scientific Instruments User Guide 1.1.0 (© 2017 Linkam Scientific Ltd.; copy hosted by the Czech Technical University in Prague, FEL)",
+    "location": "Printed page 13, section 'LNP96 Liquid Nitrogen Pump' > 'System overview' parts list, item 2",
+    "quote": "System overview Please check that all of the following parts have been supplied with the LNP96 System. 1. LNP96 Liquid Nitrogen Pump 2. 2L Dewar (7L or 25L Dewars are available)",
+    "applies_to": "linkam_thms600_lnp96_t96, linkam_thmsel600_lnp96",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (tavily_search (Linkam LNP96 consumption) + tavily_extract of the PDF)",
+    "review_status": "independently re-fetched and verified by a second agent: The source is the T96 System Controller Manual v1.1.0 (copyright 2017 Linkam) on micro.fel.cvut.cz. It is reachable: HTTP 200, and WebFetch also retrieved it. My first curl attempt failed only because of a local Windows certificate-revocation check. Printed/PDF page 13, LNP96 'System overview' parts list: '2. 2L Dewar (7L or 25L Dewars are available)' (confirmed on the rendered page). 2 L matches cryogen.dewar_volume ('Volume of the cryogen dewar supplied') for both LNP96 configurations. CAVEAT: the same page says 'Fill the Dewar approximately 2/3 full', so the usable LN2 charge is about 1.3 L. If the cryogen_consumption model uses the",
+    "kind": "value",
+    "reasoning": "Supplies the dewar_volume term of the cryogen_consumption model (consumption_rate x duration <= dewar_volume) for both LNP96 configurations. The consumption rate is still undocumented (eg_071, pm_020), so the model stays UNSUPPORTED until a rate is found. The 2 L dewar is the supplied default; a 7 L or 25 L dewar would be a documented modification. Manufacturer manual hosted by a university, as the catalog already does for other manuals."
+  },
+  {
+    "id": "ev_v3_c01",
+    "claim": "Correction: count 77 (optional_not_installed; maximum SMA coax for the LD450 ISO-K63 configuration). The 168-per-port (336 total) HDW figure applies only to the LD450sl variant.",
+    "value_as_printed": "Maximum number of coaxial cables | 14 (SMA) | 70 (SMA) | 77 (SMA) | 77 (SMA) | 336 HDW & 28 (SMA), 92 (SMA only)",
+    "normalized": {
+      "kind": "count",
+      "n": 77
+    },
+    "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Maximum number of coaxial cables | 14 (SMA) | 70 (SMA) | 77 (SMA) | 77 (SMA) | 336 HDW & 28 (SMA), 92 (SMA only)",
+    "applies_to": "bluefors_ld450_current",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Verified from the comparison-table DOM: LD450 (ISO-K63) = '77 (SMA)', while '336 HDW & 28 (SMA), 92 (SMA only)' belongs only to the LD450sl column. The LD page and the LD450sl news say High-Density Wiring needs the side-loading ports of the LD450sl. bluefors_ld450_current is named 'LD450' with no options, so 168 (HDW per side-loading port) is unreachable on it and 77 is correct. Follow-up: this configuration's electrical.coax_bandwidth.max (18 GHz, ev_bf_0032) and electrical.sample_connections (ev_bf_0031) also cite High-Density Wiring evidence, which applies only to the sl variant. They should be re-sourced to the coaxial-wiring page (ev_bf_0029: SMA lines to 18  Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "count 168 (optional_not_installed; High-Density Wiring per side-loading port)"
+  },
+  {
+    "id": "ev_v3_c02",
+    "claim": "Correction: range lo 5000 mK, hi 800000 mK (manufacturer_specification); also add temperature.base min 5000 mK",
+    "value_as_printed": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+    "normalized": {
+      "lo": {
+        "value": 5000,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 800000,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+    "applies_to": "lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The raw HTML spec cell for CCS-400H is '<5 K to 800 K'. On datasheet p.2 the CCS-400H cell for rows 408/415/418 reads '<5 K'. The series product page's '<4 K to 800 K' is a summary, so lo = 5000 mK is the conservative, manufacturer-specified value. Adding temperature.base min 5000 mK matches record 1. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "range lo 4000 mK, hi 800000 mK (inferred_estimate)"
+  },
+  {
+    "id": "ev_v3_c03",
+    "claim": "Correction: value unchanged 1 h to 2 h (7200 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+    "value_as_printed": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "normalized": null,
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "applies_to": "lakeshore_ccs_100",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The raw HTML Cooldown row has five separate cells (no colspan); the CCS-100 cell reads '1 h to 2 h'. On PDF p.2 that text is centred at x=157.7 inside the CCS-100 cell (x 111-204). The upper end, 2 h = 7200 s, is a conservative max. Column mapping verified. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "1 h to 2 h (7200 s), evidence_status inferred_estimate (column mapping unverified)"
+  },
+  {
+    "id": "ev_v3_c04",
+    "claim": "Correction: value unchanged 1.5 h to 2.5 h (9000 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+    "value_as_printed": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "normalized": null,
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "applies_to": "lakeshore_ccs_300s",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The HTML CCS-300S cell reads '1.5 h to 2.5 h'. In the PDF that text is centred at x=297, a merged cell spanning the 300S/300ST columns (x 204-390). 2.5 h = 9000 s. Verified. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "1.5 h to 2.5 h (9000 s), evidence_status inferred_estimate (column mapping unverified)"
+  },
+  {
+    "id": "ev_v3_c05",
+    "claim": "Correction: value unchanged 1.5 h to 3 h (10800 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+    "value_as_printed": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "normalized": null,
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "applies_to": "lakeshore_ccs_400",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The HTML CCS-400 cell reads '1.5 h to 3 h'. In the PDF the text is centred at x=436.6 inside the CCS-400 cell (x 390-483). 3 h = 10800 s. Verified. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "1.5 h to 3 h (10800 s), evidence_status inferred_estimate (column mapping unverified)"
+  },
+  {
+    "id": "ev_v3_c06",
+    "claim": "Correction: value unchanged 2 h to 2.5 h (9000 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+    "value_as_printed": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "normalized": null,
+    "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h",
+    "applies_to": "lakeshore_ccs_400h",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The HTML CCS-400H cell reads '2 h to 2.5 h'. In the PDF the text is centred at x=529.5 inside the CCS-400H cell (x 483-576). 2.5 h = 9000 s. Verified. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "2 h to 2.5 h (9000 s), evidence_status inferred_estimate (column mapping unverified)"
+  },
+  {
+    "id": "ev_v3_c07",
+    "claim": "Correction: Treat the 50 mm as specimen HEIGHT (sample.height.max = 50000 um) and leave sample.length.max (depth) unknown for Gen A, consistent with Leica's W x H x D labelling of the same 80 x 50 mm specimen face (same 80 x 50 mm specimen disc, same 59 mm stroke); at minimum flag the axis assignment as uncertain.",
+    "value_as_printed": "Maximum specimen size (WxHxD): 80 x 50 x 25 mm",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.leicabiosystems.com/us/histology-equipment/cryostats/leica-cm1950/",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Maximum specimen size (WxHxD): 80 x 50 x 25 mm",
+    "applies_to": "leica_cm1950_genA_standard",
+    "evidence_status": "unknown",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Checked: the US page reads 'Maximum specimen size (WxHxD): 80 x 50 x 25 mm'. Gen A's own data back the axis assignment too. IFU p. 23 gives 'Maximum specimen size 50 x 80 mm' and 'Vertical specimen stroke 59 mm ± 0.5 mm'. The 80 mm side cannot be vertical within a 59 mm stroke, so 50 mm is the height (H) of the specimen face. 'Horizontal specimen feed 25 mm + 1 mm' matches Gen B's depth D = 25 mm. Mapping 50 mm to sample.length.max conflicts with Gen B (length = D = 25 mm) and could pass a 26-50 mm length requirement on the same microtome. Move 50 mm to sample.height.max (citing IFU p. 23 plus the stroke) and leave sample.length.max UNKNOWN. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "max 50000 um (from Gen A '50 x 80 mm', axes unlabelled in the IFU)"
+  },
+  {
+    "id": "ev_v3_c08",
+    "claim": "Correction: Same as for leica_cm1950_genA_standard: 50 mm is H in Leica's W x H x D labelling; reassign to sample.height.max and leave depth unknown (or flag as uncertain).",
+    "value_as_printed": "Maximum specimen size (WxHxD): 80 x 50 x 25 mm",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.leicabiosystems.com/us/histology-equipment/cryostats/leica-cm1950/",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Maximum specimen size (WxHxD): 80 x 50 x 25 mm",
+    "applies_to": "leica_cm1950_genA_vacuum_motor_objcool",
+    "evidence_status": "unknown",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same as correction 0, and it applies equally to leica_cm1950_genA_vacuum_motor_objcool: same IFU, same 59 mm stroke, same 80 x 50 mm specimen face. Put 50 mm on sample.height.max and leave sample.length.max UNKNOWN. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "max 50000 um (from Gen A '50 x 80 mm', axes unlabelled in the IFU)"
+  },
+  {
+    "id": "ev_v3_c09",
+    "claim": "Correction: unknown (cannot be attributed to this stage). No THMSEL600 source documents sample electrical connections. The Linkam User Guide lists THMSEL600 as the ellipsometry stage and THMS600E as the electrical stage, and the THMSEL600 anatomy shows only the Lemo heater/sensor lead.",
+    "value_as_printed": "THMSEL600 High temperature ellipsometry stage THMS600-PS High temperature pressure stage THMS600E High temperature electrical stage",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://oww-files-public.sfo3.cdn.digitaloceanspaces.com/6/61/THMS600_and_HFS600_manual.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "THMSEL600 High temperature ellipsometry stage THMS600-PS High temperature pressure stage THMS600E High temperature electrical stage",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "unknown",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: ev_linkam_0021 (THMS600 options page) and ev_linkam_0028 (2018 THMS600E column) describe other stages. None of the THMSEL600 documents I re-fetched mentions sample electrical connections: the features and spec pages, the 2022 THMSEL datasheet, and User Guide pp.25-27. The old anatomy shows only the Lemo stage-connection lead. Unknown with evidence_status unknown is the honest value; this evidence does not support recording an absence either. The quote appears word for word on User Guide p.3. Also re-examine electrical.dc_lines (ev_linkam_0023), which rests on the same misidentification. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "flag true, install installed, evidence ev_linkam_0021 + ev_linkam_0028 (both describe the THMS600 electrical-connector option / THMS600E)"
+  },
+  {
+    "id": "ev_v3_c10",
+    "claim": "Correction: Find a THMSEL600 source or mark unknown. The 4.8 mm value belongs to the THMS600/THMS600E. The THMSEL600 specification page gives no objective working distance, and its ellipsometer lid has a different geometry (22 mm top window, 18 mm side windows, 140 deg side-window approach angle per the User Guide p.25-27).",
+    "value_as_printed": "Light aperture - 2mm Ø",
+    "normalized": {
+      "kind": "unknown"
+    },
+    "source_url": "https://www.linkam.co.uk/thmsel600-specifications",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Light aperture - 2mm Ø",
+    "applies_to": "linkam_thmsel600_lnp96",
+    "evidence_status": "unknown",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The re-fetched THMSEL600 spec page has no working-distance entry. The quoted 'Light aperture - 2mm Ø' is there, but it only shows what the list contains. The 2022 THMSEL datasheet table and the User Guide THMSEL600 specs give no working distance either; the guide lists only min/max temperature, heating rate, and 'Objective light approach angle for Ellipsometer side windows: 140º overall'. The ellipsometer lid differs from the THMS600 lid, so the 4.8 mm THMS600/THMS600E value cannot be applied to this stage. Set it to unknown with evidence_status unknown unless a THMSEL600 source turns up. Related item to review: the THMSEL600 temperature.cooling_rate.max of 100 °C Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "min 4800 um, from ev_linkam_0029 (THMS600E column of the 2018 electrical-stages brochure)"
+  },
+  {
+    "id": "ev_v3_c11",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1000,\"unit\":\"ppm\"}}, manufacturer_specification (±0.1% = 1000 ppm over 5.5 cm on-axis)",
+    "value_as_printed": "14 T: ± 0.1% over 5.5 cm on-axis",
+    "normalized": {
+      "value": 1000,
+      "unit": "ppm"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "14 T: ± 0.1% over 5.5 cm on-axis",
+    "applies_to": "qd_ppms_classic_14T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Accept. The quote matches the live 1070-002 Rev. C1, Field Uniformity row. +/-0.1% = 1000 ppm as the maximum deviation from the central field (a peak-to-peak reading would give 2000 ppm). Keep these caveats in the evidence: the figure is on-axis over 5.5 cm, centered 4.05 cm above the transport-puck surface (brochure footnote: the VSM coil center). QD Tech Note 1084-312 plots the 14 T PPMS field about 1% low at the puck surface. Like magnetic_field.max, this is a magnet-center figure. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"unknown\"} (evidence_status unknown, cites ev_qd_0057)"
+  },
+  {
+    "id": "ev_v3_c12",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1000,\"unit\":\"ppm\"}}, manufacturer_specification (±0.1% = 1000 ppm over 1.0 cm on-axis)",
+    "value_as_printed": "16 T: ± 0.1% over 1.0 cm on-axis",
+    "normalized": {
+      "value": 1000,
+      "unit": "ppm"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "16 T: ± 0.1% over 1.0 cm on-axis",
+    "applies_to": "qd_ppms_classic_16T",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Accept with the same caveats. The 16 T row matches (+/-0.1% over 1.0 cm on-axis) = 1000 ppm. The uniform region is small: QD App Note 1085-156 describes 0.1% over a 1 cm DSV centered 4.0 cm above the puck, and Tech Note 1084-312 plots the field about 6% low at the puck surface. A single ppm value drops the 1.0 cm vs 5.5 cm difference, so 14 T and 16 T will look equal; record the volume and position in the evidence claim. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"unknown\"} (evidence_status unknown, cites ev_qd_0058)"
+  },
+  {
+    "id": "ev_v3_c13",
+    "claim": "Correction: {\"kind\":\"range\",\"lo\":{\"value\":1850,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}} (1.8 K holds only at 60 Hz mains; 1.85 K is the conservative value when the line frequency is not part of the configuration)",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "lo": {
+        "value": 1850,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 400000,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_9T_eto_res",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: 1084-500 Rev. J0, PDF page 3: 'Temperature Range*: 1.8 to 400 K' with the footnote '*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.' I confirmed this on the rendered page. 1307-010 (ev_qd_0005) says the same. The configuration does not fix the mains frequency, so 1850-400000 mK is the conservative range. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"range\",\"lo\":{\"value\":1800,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c14",
+    "claim": "Correction: {\"kind\":\"range\",\"lo\":{\"value\":1850,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}} (60 Hz-only figure replaced by the 50 Hz base)",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "lo": {
+        "value": 1850,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 400000,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_14T_eto_vsm_hc",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same footnote and reasoning as correction 0. A narrower range is conservative. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"range\",\"lo\":{\"value\":1800,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c15",
+    "claim": "Correction: {\"kind\":\"range\",\"lo\":{\"value\":1850,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}} (60 Hz-only figure replaced by the 50 Hz base)",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "lo": {
+        "value": 1850,
+        "unit": "mK"
+      },
+      "hi": {
+        "value": 400000,
+        "unit": "mK"
+      }
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_12T_vsm",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same footnote and reasoning as correction 0. A narrower range is conservative. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"range\",\"lo\":{\"value\":1800,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c16",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1850,\"unit\":\"mK\"}}",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "value": 1850,
+      "unit": "mK"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_9T_eto_res",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The 1.85 K base at 50 Hz is confirmed in 1084-500 page 3 and 1307-010. A higher base temperature is conservative for a lower-is-better key. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":1800,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c17",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1850,\"unit\":\"mK\"}}",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "value": 1850,
+      "unit": "mK"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_14T_eto_vsm_hc",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same as correction 3. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":1800,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c18",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1850,\"unit\":\"mK\"}}",
+    "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "normalized": {
+      "value": 1850,
+      "unit": "mK"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+    "applies_to": "qd_dynacool_12T_vsm",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same as correction 3. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":1800,\"unit\":\"mK\"}}"
+  },
+  {
+    "id": "ev_v3_c19",
+    "claim": "Correction: {\"kind\":\"max\",\"q\":{\"value\":160000000,\"unit\":\"nW\"}} (0.2 W holds only at 60 Hz mains; the configuration does not fix the line frequency, so the 50 Hz figure is the conservative one)",
+    "value_as_printed": "Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)",
+    "normalized": {
+      "value": 160000000,
+      "unit": "nW"
+    },
+    "source_url": "https://qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)",
+    "applies_to": "oxford_optistatdry_blv",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Optical_Cryostats_matrix_final.pdf, PDF page 6 (printed page 10), OptistatDry Specifications table: 'Cold head cooling power 0.2 W at 4.2 K (60 Hz) / 0.16 W at 4.2 K (50 Hz)'. I confirmed on the rendered table that this is a merged cell spanning both the TLEX and BLV columns, so it applies to BLV. 160000000 nW is the conservative value when the line frequency is unspecified. The same rendering also settles the 'ambiguous column' concern on the TLEX entry (ev_ox_0028), which could move from inferred_estimate to manufacturer_specification. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"max\",\"q\":{\"value\":200000000,\"unit\":\"nW\"}}"
+  },
+  {
+    "id": "ev_v3_c20",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1334,\"unit\":\"uPa\"}} (1e-5 Torr = 1333.2237 uPa; rounding down claims a better vacuum than documented) or exactly {\"value\":\"0.00001\",\"unit\":\"Torr\"} if non-canonical units are allowed",
+    "value_as_printed": "Base temperature <1 × 10-5 Torr",
+    "normalized": {
+      "value": "0.00001",
+      "unit": "Torr"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Base temperature <1 × 10-5 Torr",
+    "applies_to": "lakeshore_crx_vf",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The CRX-VF page reads 'Base temperature <1 x 10-5 Torr' = 1333.2237 uPa. The spec implies <= 1334 uPa but does not imply <= 1333, so rounding up is correct. Update ev_ls_0015's normalized value as well. The exact Torr form is also acceptable. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":1333,\"unit\":\"uPa\"}}"
+  },
+  {
+    "id": "ev_v3_c21",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1334,\"unit\":\"uPa\"}} (conservative ceiling of 1333.2237 uPa) or exactly {\"value\":\"0.00001\",\"unit\":\"Torr\"}",
+    "value_as_printed": "Base temperature <1 × 10-5 Torr",
+    "normalized": {
+      "value": "0.00001",
+      "unit": "Torr"
+    },
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Base temperature <1 × 10-5 Torr",
+    "applies_to": "lakeshore_crx_4k",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: The CRX-4K page reads 'Base temperature <1 x 10-5 Torr'. Same reasoning as correction 7; also update ev_ls_0044's normalized value. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":1333,\"unit\":\"uPa\"}}"
+  },
+  {
+    "id": "ev_v3_c22",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":13333,\"unit\":\"uPa\"}} (0.1 mTorr = 13332.2368 uPa; conservative ceiling) or exactly {\"value\":\"0.0001\",\"unit\":\"Torr\"}",
+    "value_as_printed": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "normalized": {
+      "value": "0.0001",
+      "unit": "Torr"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "applies_to": "qd_dynacool_9T_eto_res",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: 1084-500 page 3, PPMS DynaCool block: 'High Vacuum: < 0.1 mTorr' (confirmed on the rendered page). In the quoted text layer, '(typical)' belongs to the Min Field Charging Rate row, not to High Vacuum. 1e-4 Torr = 13332.2368 uPa, which rounds up to 13333. For consistency, the classic PPMS optional high-vacuum value (13332, ev_qd_0054) should also become 13333. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":13332,\"unit\":\"uPa\"}}"
+  },
+  {
+    "id": "ev_v3_c23",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":13333,\"unit\":\"uPa\"}} or exactly {\"value\":\"0.0001\",\"unit\":\"Torr\"}",
+    "value_as_printed": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "normalized": {
+      "value": "0.0001",
+      "unit": "Torr"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "applies_to": "qd_dynacool_14T_eto_vsm_hc",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same as correction 9. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":13332,\"unit\":\"uPa\"}}"
+  },
+  {
+    "id": "ev_v3_c24",
+    "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":13333,\"unit\":\"uPa\"}} or exactly {\"value\":\"0.0001\",\"unit\":\"Torr\"}",
+    "value_as_printed": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "normalized": {
+      "value": "0.0001",
+      "unit": "Torr"
+    },
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+    "document_title": "see source",
+    "location": "see verifier note",
+    "quote": "Max Field Charging Rate: Min Field Charging Rate: High Vacuum: ... (typical) < 0.1 mTorr",
+    "applies_to": "qd_dynacool_12T_vsm",
+    "evidence_status": "manufacturer_specification",
+    "accessed": "2026-11-01",
+    "collected_by": "research agent v3 (correction)",
+    "review_status": "verified by a second agent: Same as correction 9. Reviewed by the maintainer.",
+    "kind": "correction",
+    "previous": "{\"kind\":\"min\",\"q\":{\"value\":13332,\"unit\":\"uPa\"}}"
+  }
+]

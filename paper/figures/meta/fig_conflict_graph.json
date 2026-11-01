@@ -1,0 +1,18 @@
+{
+ "name": "fig_conflict_graph",
+ "title": "Constraint conflict graph from Z3 unsat cores",
+ "question": "Which requirements and coupled physics models are responsible for the DOES_NOT_MEET verdicts across the catalog, and which ones block the same experiment-configuration pairs together?",
+ "model": "Z3 unsat cores (smt.all_conflicts): requirements and coupled relations are tracked constraints, documented capability values and parameters are tracked facts; independent minimal cores are enumerated by removing each core's constraints and re-solving (max 8).",
+ "data": "All 109 DOES_NOT_MEET pairs of paper/data/e1_grid.json (11 experiments x 26 configurations), documents rebuilt with verifier.build_documents; Lean re-checked in one check_batch (109/109 still DOES_NOT_MEET); 133 cores. Raw cores with facts and evidence ids: paper/data/fig_conflict_graph.json.",
+ "claim": "COMPUTED",
+ "caption": "(a) Nodes are requirement keys (navy) and coupled models (orange) that appear in a Z3 minimal unsat core; node area is the number of DOES_NOT_MEET pairs they block. Every core contained exactly one constraint plus the documented fact(s) it contradicts ({1: 133} cores by constraint count), so edges join constraints that block the same pair in independent cores (24 pairs have more than one core); edge width and label count such pairs. (b) Pairs blocked per constraint; the most frequent are temperature.range (48), temperature.base (27), optical_access (12). The set of core constraints equals Lean's failing set on 109/109 pairs; Lean, not Z3, issues each verdict.",
+ "section": "main",
+ "script": "paper/scripts/fig_z3_search.py",
+ "command": "python paper/scripts/fig_z3_search.py",
+ "files": [
+  "paper/figures/fig_conflict_graph.png",
+  "paper/figures/fig_conflict_graph.svg",
+  "paper/figures/fig_conflict_graph.pdf"
+ ],
+ "interactive": null
+}

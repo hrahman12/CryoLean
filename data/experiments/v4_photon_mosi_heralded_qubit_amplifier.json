@@ -1,0 +1,78 @@
+{
+ "id": "photon_mosi_heralded_qubit_amplifier",
+ "name": "Heralded amplification of telecom time-bin and Fock-state qubits with 70%-efficient MoSi SNSPDs at 2.5 K in a closed-cycle cryocooler",
+ "plain_name": "Boost a fragile light-based quantum bit sent through lossy fibre using super-cold photon counters",
+ "industry": "photonics_and_telecommunications",
+ "description": "All-fibre heralded qubit amplifier at 1550 nm (Bruno et al., Geneva/NIST/JPL): four MoSi superconducting nanowire single-photon detectors (D1-D4) with 70% system detection efficiency, operated at 2.5 K in a two-stage closed-cycle cryocooler, register the 3- and 4-fold coincidences that herald the teleportation-based amplification.",
+ "keywords": [
+  "Boost a fragile light-based quantum bit sent through lossy fibre using super-cold photon counters",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210, 2015)",
+   "url": "https://arxiv.org/pdf/1507.03210",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "MoSi SNSPDs",
+  "two-stage closed-cycle cryocooler"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 2500,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The MoSi SNSPDs reach their 70% efficiency only at T < 2.5 K, so the detector stage must reach 2.5 K or below.",
+   "evidence_ids": [
+    "v4e_photon_mosi_heralded_qubit_amplifier_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each of the four nanowire detectors (D1-D4) must be current-biased and read out electrically to record the 3- and 4-fold heralding coincidences.",
+   "evidence_ids": [
+    "v4e_photon_mosi_heralded_qubit_amplifier_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the detectors were designed for and operated in a two-stage closed-cycle cryocooler (no liquid-helium bath).",
+   "evidence_ids": [
+    "v4e_photon_mosi_heralded_qubit_amplifier_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

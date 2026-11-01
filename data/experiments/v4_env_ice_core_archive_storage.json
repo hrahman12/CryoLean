@@ -1,0 +1,94 @@
+{
+ "id": "env_ice_core_archive_storage",
+ "name": "Long-term archival storage of ice cores at -36 C with sampling in a -24 C examination room (NSF Ice Core Facility)",
+ "plain_name": "Keep ice cores frozen in a national archive freezer",
+ "industry": "environmental_science",
+ "description": "Ice cores from Antarctica and Greenland are curated as 1 m sections in tubes on shelves inside a walk-in archive freezer held at -36 C so that trapped gases, chemistry and stratigraphy are preserved; cores are cut and sampled for researchers in an examination room held at -24 C.",
+ "keywords": [
+  "Keep ice cores frozen in a national archive freezer",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "About - U.S. National Science Foundation Ice Core Facility (NSF-ICF, formerly National Ice Core Laboratory)",
+   "url": "https://icecores.org/about",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "NSF Ice Core Facility - Services (storage of cores and use of the facility)",
+   "url": "https://icecores.org/services",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "NSF-ICF main archive freezer (-36°C)",
+  "NSF-ICF examination room (-24°C)",
+  "temperature variable dock from 0°C to -30°C"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 237150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Archive storage set point -36 C (237.15 K); the storage space must hold this temperature.",
+   "evidence_ids": [
+    "v4e_env_ice_core_archive_storage_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 249150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Core examination and sub-sampling are done at -24 C (249.15 K) in a separate room; optional for a storage-only machine.",
+   "evidence_ids": [
+    "v4e_env_ice_core_archive_storage_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1000,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cores are stored as 1 m sections in tubes, so the storage space must accept a 1000 mm long item along its loading/shelf axis (either key satisfies).",
+   "evidence_ids": [
+    "v4e_env_ice_core_archive_storage_2"
+   ],
+   "conditions": [],
+   "keys": [
+    "sample.height.max",
+    "sample.length.max"
+   ]
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

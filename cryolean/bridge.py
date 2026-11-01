@@ -24,8 +24,9 @@ import functools
 import json
 import traceback
 import uuid
+from collections import Counter
 
-from . import ai, completeness, coverage, db, gatekeeper, lanyon, lean_runner, modifications, research, schedule, serialize, verifier
+from . import ai, completeness, coverage, db, gatekeeper, industry_matrix, lanyon, lean_runner, modifications, research, schedule, serialize, verifier
 from .catalog import Catalog, CatalogError
 from .edits import EditError
 from .modifications import ModificationError
@@ -106,11 +107,22 @@ class CryoLeanAPI:
         """Register a new (custom) industry. It gets no special verification logic."""
         return self._catalog.register_industry(name, description, industry_id)
 
+    @_api
+    def get_industry_coverage(self):
+        """Prepared industry experiment/equipment assignments; never implies compatibility."""
+        return industry_matrix.registry(self._catalog)
+
+    @_api
+    def evaluate_industry_matrix(self, industry_id: str, confirmed: bool = False):
+        """Evaluate each prepared profile against each assigned configuration in real Lean."""
+        result, _ = industry_matrix.evaluate(self._catalog, [industry_id], confirmed=confirmed)
+        return result
+
     # ------------------------------------------------------------------ experiments
     @_api
     def list_experiments(self, industry: str | None = None):
-        exps = [self._catalog.public(e) for e in self._catalog.experiments.values() if not industry or e.get("industry") == industry]
-        return {"experiments": [{k: e.get(k) for k in ("id", "plain_name", "name", "industry", "description", "confirmed")} for e in exps],
+        exps = [self._catalog.public(e) for e in self._catalog.experiments.values() if not industry or industry in e.get("industries", [e.get("industry")])]
+        return {"experiments": [{k: e.get(k) for k in ("id", "plain_name", "name", "industry", "industries", "description", "confirmed", "visualization", "preferred_configuration_ids")} for e in exps],
                 "count": len(exps)}
 
     @_api
@@ -156,7 +168,7 @@ class CryoLeanAPI:
                 continue
             if family and family.lower() not in (e.get("family") or "").lower():
                 continue
-            out.append({"id": e["id"], "manufacturer": e.get("manufacturer"), "model": e.get("model"), "family": e.get("family"),
+            out.append({"id": e["id"], "manufacturer": e.get("manufacturer"), "model": e.get("model"), "family": e.get("family"), "visualization": e.get("visualization"),
                         "description": e.get("description"),
                         "configurations": [{"id": c["id"], "name": c.get("name")} for c in e.get("configurations", [])]})
         return {"equipment": out, "count": len(out)}
@@ -217,36 +229,70 @@ class CryoLeanAPI:
 
     @_api
     def find_compatible_equipment(self, experiment_id: str, parameters=None, requirement_edits=None, confirmed: bool = False,
-                                  max_results: int = 10, include_hypothetical_options: bool = True):
-        """Z3 searches ALL registered configurations; every candidate is checked by Lean (check-candidates)."""
-        from . import smt
+                                  max_results: int = 10, include_hypothetical_options: bool = True, offset: int = 0):
+        """Lean decides EVERY registered configuration first (parallel check-batch). Z3 then ranks the verified ones by
+        margin and, among the closest non-verified ones, proposes documented options; every hypothetical configuration
+        is re-checked by Lean (check-candidates). `offset`/`max_results` page through the verified list."""
+        from . import grid, smt
         cat = self._catalog
         ex = self._working(experiment_id, parameters, requirement_edits, confirmed)
-        pairs = []
-        for cid in cat.configurations:
-            cd, ed, _, _ = verifier.build_documents(cat, ex, cid)     # registered modifications applied
-            pairs.append((cd, ed))
+        cfgs = grid.configuration_documents(cat)
+        ids = list(cfgs)
+        pairs = grid.experiment_pairs(cat, ex, cfgs)
+        lean = grid.check_parallel(pairs)
+        outs = [grid.outcome(r) for r in lean]
         models = {cid: f"{c.get('manufacturer', '')} {c.get('model', '')} {c.get('name', '')}" for cid, c in cat.configurations.items()}
-        ranked = smt.rank_alternatives(pairs, include_hypothetical_options, ex.get("reported_equipment", []), models)
-        # pending-information candidates that document none of the requirements are not useful suggestions
-        shown = [r for r in ranked if r["evaluation"]["status"] != "conflict"
-                 and (r["evaluation"]["status"] != "pending_information" or r["evaluation"]["documented_passes"] > 0)][:max_results]
-        results = []
-        for r in shown:
-            lr = lean_runner.check_candidates(r["experiment_document"], [r["configuration_document"]])[0]
+        reported = [n.lower() for n in ex.get("reported_equipment", [])]
+        named = [any(n in models[cid].lower() for n in reported) for cid in ids]
+
+        def row(i, ev, lr, cfg_doc, added=()):
+            return {"configuration_id": cfg_doc["id"], "equipment_id": cat.configurations[ids[i]].get("equipment_id"),
+                    "name": cfg_doc["name"], "manufacturer": cat.configurations[ids[i]].get("manufacturer"),
+                    "z3_status": ev.status if ev else None, "added_options": list(added), "hypothetical": bool(added),
+                    "z3_unknown_items": ev.unknown_items if ev else [], "named_in_sources": named[i],
+                    "min_relative_margin": ev.min_relative_margin if ev else None, "lean_verdict": lr["verdict"],
+                    "verified": lr["verdict"] == "REQUIREMENTS_MET", "lean_summary": lr["summary"]}
+
+        # verified: Lean REQUIREMENTS_MET, ranked (named in sources, documented passes, then Z3's smallest relative margin)
+        met = sorted((i for i, o in enumerate(outs) if o["verdict"] == "REQUIREMENTS_MET"),
+                     key=lambda i: (not named[i], -outs[i]["passes"], ids[i]))
+        window = met[:max(200, offset + max_results)]
+        evs = {i: smt.evaluate(pairs[i][0], pairs[i][1], False) for i in window}
+        window.sort(key=lambda i: (not named[i], -outs[i]["passes"],
+                                   -(float(evs[i].min_relative_margin) if evs[i].min_relative_margin is not None else -1e9)))
+        verified = [row(i, evs[i], lean[i], pairs[i][0]) for i in (window + met[len(window):])[offset:offset + max_results]]
+
+        # alternatives: Z3 over the closest non-verified configurations (most documented passes, fewest failures)
+        rest = sorted((i for i, o in enumerate(outs) if o["verdict"] != "REQUIREMENTS_MET"),
+                      key=lambda i: (len(outs[i]["failing"]), -outs[i]["passes"], ids[i]))[:150]
+        index = {pairs[i][0]["id"]: i for i in rest}   # document ids carry '~mod:' when modifications apply
+        alternatives = []
+        for r in smt.rank_alternatives([pairs[i] for i in rest], include_hypothetical_options, ex.get("reported_equipment", []), models):
             ev = r["evaluation"]
-            results.append({"configuration_id": r["configuration_document"]["id"], "equipment_id": ev["equipment_id"],
-                            "name": r["configuration_document"]["name"], "z3_status": ev["status"], "added_options": ev["added_options"],
-                            "hypothetical": bool(ev["added_options"]), "z3_unknown_items": ev["unknown_items"],
-                            "named_in_sources": ev["named_in_sources"], "min_relative_margin": ev["min_relative_margin"],
-                            "lean_verdict": lr["verdict"], "verified": lr["verdict"] == "REQUIREMENTS_MET", "lean_summary": lr["summary"]})
-        rejected = [{"configuration_id": r["configuration_document"]["id"], "failing": r["evaluation"]["failing_items"]}
-                    for r in ranked if r["evaluation"]["status"] == "conflict"]
-        return {"experiment_id": experiment_id, "candidates": results, "verified_compatible": [c for c in results if c["verified"]],
-                "rejected_by_z3": rejected,
-                "ranking_criteria": ["status tier", "fewest added options", "named in the experiment's sources", "fewest unknowns",
-                                     "most documented passes", "largest smallest relative margin"],
-                "note": "Only entries with verified=true passed the Lean checker on the exact document shown."}
+            if ev["status"] == "conflict" or (ev["status"] == "pending_information" and ev["documented_passes"] == 0):
+                continue
+            i = index[r["configuration_document"]["id"].split("+")[0]]
+            lr = (lean_runner.check_candidates(r["experiment_document"], [r["configuration_document"]])[0]
+                  if ev["added_options"] else lean[i])
+            alternatives.append(row(i, smt.Evaluation(**{k: ev[k] for k in smt.Evaluation.__dataclass_fields__}), lr,
+                                    r["configuration_document"], ev["added_options"]))
+            if len(alternatives) >= max_results:
+                break
+        need = sorted((i for i, o in enumerate(outs) if o["verdict"] == "NEED_MORE_INFORMATION"),
+                      key=lambda i: (len(outs[i]["missing"]), -outs[i]["passes"], ids[i]))[:20]
+        failures = Counter(f for o in outs if o["verdict"] == "DOES_NOT_MEET_REQUIREMENTS" for f in o["failing"])
+        counts = Counter(o["verdict"] for o in outs)
+        return {"experiment_id": experiment_id, "checked": len(ids), "counts": dict(counts), "verified_total": len(met),
+                "offset": offset, "verified_compatible": verified + [a for a in alternatives if a["verified"]],
+                "candidates": (verified + alternatives)[:max_results] if offset == 0 else verified,
+                "need_more_information": [{"configuration_id": ids[i], "name": pairs[i][0]["name"], "missing": outs[i]["missing"],
+                                           "documented_passes": outs[i]["passes"]} for i in need],
+                "top_failures": [{"requirement": k, "configurations": n} for k, n in failures.most_common(10)],
+                "z3_evaluated": len(window) + len(rest),
+                "ranking_criteria": ["Lean verdict (REQUIREMENTS_MET first)", "named in the experiment's sources",
+                                     "most documented passes", "largest smallest relative margin (Z3)",
+                                     "then Z3 alternatives: fewest added options, fewest unknowns"],
+                "note": "Every configuration was decided by the Lean checker; only entries with verified=true passed it on the exact document shown."}
 
     @_api
     def compare_equipment(self, experiment_id: str, configuration_ids, parameters=None, requirement_edits=None, confirmed: bool = False):

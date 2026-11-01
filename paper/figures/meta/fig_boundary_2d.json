@@ -1,0 +1,18 @@
+{
+ "name": "fig_boundary_2d",
+ "title": "Exact Lean feasibility region of the heat budget in the wiring plane",
+ "question": "For which combinations of drive and flux lines does the LD400 meet the Demo B heat budget?",
+ "model": "Lean verdict for margin x (n_d q_d + n_f (q_f + p_dc) + n_out q_out) <= P_cool(20 mK) at every integer (n_f, n_d); analytic line 3(13 n_d + 79 n_f + 160) nW = 12 µW overlaid (not used to classify).",
+ "data": "24381 Lean runs (check_batch, n_f = 0..80, n_d = 0..300) on documents built by verifier.build_documents for quantum_mxc_wiring_heat_budget on bluefors_ld400_hdw with n_drive_lines and n_flux_lines edited (origin user_entered); all other parameters as sourced. Grid in paper/data/fig_boundary_2d.json.",
+ "claim": "COMPUTED+MODELED",
+ "caption": "Every integer point of the (flux lines, drive lines) plane classified by the Lean checker (7354 met, 17027 not met); the dashed line is the analytic boundary of the model equation, which agrees with Lean at 24381 of 24381 points. With 58 drive lines at most 39 flux lines fit, and with 50 flux lines no number of drive lines (not even zero) meets the budget. Output lines (8), per-line loads, margin 3 and the 12 µW cooling power at 20 mK are held at their sourced values.",
+ "section": "main",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_boundary_2d.png",
+  "paper/figures/fig_boundary_2d.svg",
+  "paper/figures/fig_boundary_2d.pdf"
+ ],
+ "interactive": null
+}

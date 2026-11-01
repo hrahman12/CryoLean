@@ -1,0 +1,1043 @@
+{
+  "industry": "biology_and_biotechnology",
+  "accessed": "2026-11-01",
+  "experiments": [
+    {
+      "id": "bio_cryoem_grid_plunge_freezing",
+      "name": "Blot-and-plunge vitrification of protein cryo-EM grids in a Vitrobot Mark IV (4 °C, 100% RH, liquid ethane cooled by liquid nitrogen)",
+      "plain_name": "Flash-freeze purified protein on a grid in liquid ethane",
+      "industry": "biology_and_biotechnology",
+      "description": "A 3 mm EM grid carrying a few microlitres of purified protein is blotted inside a humidity- and temperature-controlled chamber (4 °C, 100% relative humidity) and plunged into liquid ethane held in a liquid-nitrogen-cooled cup, producing a vitreous ice film for single-particle cryo-EM.",
+      "requirements": [
+        {
+          "keys": [
+            "humidity.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 100,
+              "unit": "percent"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The environmental chamber is held at 100% relative humidity so the thin sample film does not evaporate before plunging.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Methods, 'Preparation of biological specimens for cryo-EM single particle analysis'",
+          "quote": "For specimens prepared using the Vitrobot, all experiments were conducted with a Vitrobot Mark IV plunger set at 4 °C and 100% humidity.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 277150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Chamber set point 4 °C (277.15 K) during blotting; the NCCAT SOP lists 4-22 °C as typical, 4 °C is the reported operating point in both papers.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML",
+          "document_title": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "location": "Methods, 'Electron microscopy data collection'",
+          "quote": "blotted for 10 s with blot force + 7 before plunge-freezing in liquid ethane using a Vitrobot Mark IV (ThermoScientific) with the environmental chamber set to 4 °C and 100% humidity.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_ethane"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Vitrification requires plunging into liquid ethane, the rapid cryogen held in the brass cup.",
+          "source_url": "https://nccat.nysbc.org/wp-content/uploads/2025/05/CombinedVitrobotSOPv1.2.pdf",
+          "document_title": "Common Vitrobot Standard Operating Procedure, version 1.2 (MBSOP_VBOT_1020_1-2), Hecksel, Mulligan, Zimanyi; NCCAT CryoEM Merit Badges",
+          "location": "Section 4.2 'Cooling the Ethane', safety note, page 2 of 4",
+          "quote": "Liquid ethane is a rapid cryogen and can burn and cause damage to your skin and eyes.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The ethane cup is cooled by liquid nitrogen in the foam base, and finished grids go into liquid-nitrogen storage.",
+          "source_url": "https://nccat.nysbc.org/wp-content/uploads/2025/05/CombinedVitrobotSOPv1.2.pdf",
+          "document_title": "Common Vitrobot Standard Operating Procedure, version 1.2 (MBSOP_VBOT_1020_1-2), Hecksel, Mulligan, Zimanyi; NCCAT CryoEM Merit Badges",
+          "location": "Step 4.2.2, page 2 of 4",
+          "quote": "4.2.2. Fill outer ring of foam base with liquid nitrogen.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 3,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The specimen carrier is a standard 3 mm EM grid held in the plunger tweezers.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Discussion",
+          "quote": "This ensures adequate space in the centre of the loop for transferring the foam film to a standard EM grid of 3 mm diameter.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Common Vitrobot Standard Operating Procedure, version 1.2 (MBSOP_VBOT_1020_1-2), Hecksel, Mulligan, Zimanyi; NCCAT CryoEM Merit Badges",
+          "url": "https://nccat.nysbc.org/wp-content/uploads/2025/05/CombinedVitrobotSOPv1.2.pdf"
+        },
+        {
+          "citation": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML"
+        },
+        {
+          "citation": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "Vitrobot Mark IV",
+        "ThermoFisher Scientific (TFS) Vitrobot Mark IV"
+      ]
+    },
+    {
+      "id": "bio_cryoem_single_particle_krios",
+      "name": "Single-particle cryo-EM data collection on vitrified 3 mm grids in a Titan Krios at 300 kV with the specimen held near 80 K in vacuum",
+      "plain_name": "Photograph frozen protein molecules with a 300 kV electron microscope",
+      "industry": "biology_and_biotechnology",
+      "description": "Autoloaded, vitrified 3 mm grids are imaged in a Titan Krios cryo-TEM operated at 300 kV with a direct electron detector; the specimen is kept at about 80 K inside the microscope vacuum to preserve vitreous ice and limit radiation damage.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 80000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The specimen is imaged at about 80 K to keep the ice vitreous.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10782223/fullTextXML",
+          "document_title": "Dickerson JL, Leahy E, Peet MJ, Naydenova K, Russo CJ (2024). Accurate magnification determination for cryoEM using gold. Ultramicroscopy. doi:10.1016/j.ultramic.2023.113883",
+          "location": "Section 2.2 'Data collection'",
+          "quote": "The temperature of the specimen was ≈ 80K.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Electron imaging requires the specimen to be presented in vacuum.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Introduction",
+          "quote": "Because of the strong interaction of electrons with matter, the molecules of interest must be presented in vacuum and in a thin film of vitrified ice, to enable imaging by electrons and to avoid crystalline ice",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 3,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The specimen is a standard 3 mm EM grid (clipped into an AutoGrid for the autoloader).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Discussion",
+          "quote": "This ensures adequate space in the centre of the loop for transferring the foam film to a standard EM grid of 3 mm diameter.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Vitrified grids are kept in liquid nitrogen until they are loaded into the microscope.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10782223/fullTextXML",
+          "document_title": "Dickerson JL, Leahy E, Peet MJ, Naydenova K, Russo CJ (2024). Accurate magnification determination for cryoEM using gold. Ultramicroscopy. doi:10.1016/j.ultramic.2023.113883",
+          "location": "Section 2.1 'Production of calibration specimens'",
+          "quote": "All samples were stored in liquid nitrogen until imaging in the electron microscope.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Dickerson JL, Leahy E, Peet MJ, Naydenova K, Russo CJ (2024). Accurate magnification determination for cryoEM using gold. Ultramicroscopy. doi:10.1016/j.ultramic.2023.113883",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10782223/fullTextXML"
+        },
+        {
+          "citation": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML"
+        },
+        {
+          "citation": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "FEI Titan Krios G3i electron cryomicroscope",
+        "FEI Titan Krios G2",
+        "Titan Krios G3",
+        "Titan Krios G4",
+        "K3 direct electron detector (Gatan)",
+        "Falcon 4i camera"
+      ]
+    },
+    {
+      "id": "bio_hpf_neuron_sapphire_2100bar",
+      "name": "High-pressure freezing (2100 bar, pressurized liquid nitrogen) of cultured neurons on 6 mm sapphire disks in a Leica HPM100 / EM ICE (flash-and-freeze)",
+      "plain_name": "Freeze living brain cells under high pressure to stop them mid-signal",
+      "industry": "biology_and_biotechnology",
+      "description": "Neurons grown on 6 mm sapphire disks are sandwiched with spacer rings and frozen within milliseconds by pressurized liquid nitrogen at about 2100 bar, which vitrifies specimens up to about 200 um thick; in the flash-and-freeze variant a light pulse stimulates the cells just before freezing.",
+      "requirements": [
+        {
+          "keys": [
+            "pressure.max_working"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 210000000,
+              "unit": "Pa"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Vitrification of thick specimens relies on freezing at 2100 bar (210 MPa).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Introduction, 'High-pressure freezing'",
+          "quote": "Under high pressure (2100 bar), however, a freezing rate of 100 K/s is sufficient to freeze water in an unordered state due to the supercooling effect",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Freezing is done by pressurized liquid nitrogen applied to both sides of the specimen.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Methods, 'Freezing'",
+          "quote": "For the HPM 100 and the EM ICE, pressurized liquid nitrogen is applied to the specimen from both sides.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 6,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Cells are cultured on 6 mm sapphire disks that must fit the freezer's specimen carrier.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Discussion, 'Comparisons among three instruments'",
+          "quote": "On the other hand, sapphire disks as large as 6 mm can be loaded into the HPM100 or the EM ICE.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 200,
+              "unit": "um"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Specimens up to 200 um thick can be vitrified; the carrier stack must accommodate that thickness.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Introduction",
+          "quote": "Specimens as thick as 200 μm can be properly frozen without ice crystal formation.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "optical_access"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": false,
+          "rationale": "Only for the flash-and-freeze variant: light stimulation must reach the specimen inside the freezer (integrated in the EM ICE).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Discussion, 'Comparisons among three instruments'",
+          "quote": "On the contrary EM ICE does not require a custom device or an external light source—everything is integrated.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "Leica EM PACT2",
+        "HPM100",
+        "EM ICE"
+      ]
+    },
+    {
+      "id": "bio_freeze_substitution_afs2",
+      "name": "Automated freeze substitution of high-pressure-frozen samples in a Leica AFS2: -90 °C hold, 5 °C/h to -20 °C, 10 °C/h to 20 °C",
+      "plain_name": "Slowly swap ice for solvent in frozen cells before embedding them in resin",
+      "industry": "biology_and_biotechnology",
+      "description": "High-pressure-frozen specimens on 6 mm sapphire disks are transferred into cryotubes of fixative in acetone at -90 °C and warmed under program control (-90 °C for 5-30 h, 5 °C/h to -20 °C, 12 h at -20 °C, 10 °C/h to 20 °C) so that ice is replaced by solvent before resin embedding for electron microscopy.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 183150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 293150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The programme spans -90 °C (183.15 K) to 20 °C (293.15 K).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Methods, 'Freeze-substitution'",
+          "quote": "The following program is used for the freeze-substitution: −90°C for 5–30 h, 5°C/h to −20°C, 12 h at −20°C, 10°C/h to 20°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 183150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Independent protocol: chamber pre-cooled to -90 °C before samples enter the freeze-substitution medium.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12884447/fullTextXML",
+          "document_title": "Rachid R, Wendt C, de Souza W, Miranda K (2026). Optimisation of freeze substitution protocols for the examination of malaria parasite structure by volumetric electron microscopy. Journal of Microscopy. doi:10.1111/jmi.70007",
+          "location": "Section 2.5 'Freeze substitution and embedding'",
+          "quote": "The chamber was pre‐cooled to −90°C and filled with absolute ethanol (CAS #64‐17‐5, Merck, Darmstadt, Germany) to enhance heat exchange.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 6,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 6 mm middle plate / sapphire disk is released into acetone pre-cooled in the AFS chamber.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Methods, 'Freezing'",
+          "quote": "The sapphire disk is mounted on the countersink of a 6-mm middle plate.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.sweep_rate.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 167,
+              "unit": "mK_per_min"
+            }
+          },
+          "mandatory": false,
+          "rationale": "The fastest programmed warming step is 10 °C/h (166.67 mK/min, rounded up to 167); the unit must ramp at least this fast under control.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Methods, 'Freeze-substitution'",
+          "quote": "The following program is used for the freeze-substitution: −90°C for 5–30 h, 5°C/h to −20°C, 12 h at −20°C, 10°C/h to 20°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Frozen specimens and the osmium/glutaraldehyde fixative tubes are kept and transferred under liquid nitrogen.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+          "document_title": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "location": "Methods, 'Freeze-substitution'",
+          "quote": "The cryotubes containing fixatives are stored under liquid nitrogen to avoid the cross-reaction between osmium tetroxide and glutaraldehyde.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Watanabe S (2016). Flash-and-Freeze: Coordinating Optogenetic Stimulation with Rapid Freezing to Visualize Membrane Dynamics at Synapses with Millisecond Resolution. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML"
+        },
+        {
+          "citation": "Rachid R, Wendt C, de Souza W, Miranda K (2026). Optimisation of freeze substitution protocols for the examination of malaria parasite structure by volumetric electron microscopy. Journal of Microscopy. doi:10.1111/jmi.70007",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12884447/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "Leica AFS2"
+      ]
+    },
+    {
+      "id": "bio_tokuyasu_cryo_ultramicrotomy",
+      "name": "Tokuyasu cryo-ultramicrotomy of 2.3 M sucrose-infused cell pellets: trimming at -100 °C, 50-80 nm sections at -120 °C (Leica UC7/FC7)",
+      "plain_name": "Cut ultra-thin frozen slices of cells for antibody gold labelling",
+      "industry": "biology_and_biotechnology",
+      "description": "Gelatin-embedded cell pellets (about 1 mm cubes) are infused with 2.3 M sucrose, frozen in liquid nitrogen on aluminium pins, trimmed at -100 °C and sectioned at -120 °C into 50-80 nm ultrathin cryosections in a cryo-ultramicrotome, then thawed for immunogold labelling and TEM.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 153150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 173150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Trimming at -100 °C and ultrathin sectioning at -120 °C.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML",
+          "document_title": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+          "location": "Results, 'Tokuyasu immuno-EM procedure', step 8",
+          "quote": "Trimming of the blocks in preparation to thin sectioning was done at −100°C. Ultrathin sections (50–80 nm) were cut at −120°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "section_thickness.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 50,
+              "unit": "nm"
+            },
+            "hi": {
+              "value": 80,
+              "unit": "nm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Ultrathin cryosections of 50-80 nm are required.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML",
+          "document_title": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+          "location": "Results, 'Tokuyasu immuno-EM procedure', step 8",
+          "quote": "Ultrathin sections (50–80 nm) were cut at −120°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Blocks are frozen and stored in liquid nitrogen before cryosectioning.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML",
+          "document_title": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+          "location": "Results, 'Tokuyasu immuno-EM procedure', step 7",
+          "quote": "Blocks were mounted on aluminum specimen holders, frozen and stored in liquid nitrogen.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "1.42",
+              "unit": "mm"
+            }
+          },
+          "mandatory": false,
+          "rationale": "About 1 mm cubic blocks; circumscribed diameter of a 1 mm x 1 mm face is 1.414 mm (rounded up).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML",
+          "document_title": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+          "location": "Results, 'Tokuyasu immuno-EM procedure', step 5",
+          "quote": "The cell pellets were cut to cubic blocks of ~1 mm 3 at 4°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "Leica EM UC6",
+        "Leica EM UC7",
+        "cryo-chamber FC6",
+        "cryo-chamber FC7",
+        "Diatome Cryo-Immuno 35°"
+      ]
+    },
+    {
+      "id": "bio_cryofib_lamella_milling",
+      "name": "Cryo-FIB lamella milling of vitrified yeast on AutoGrids in an Aquilos DualBeam with stage and shield at -180 °C",
+      "plain_name": "Carve a thin window through a frozen cell with an ion beam",
+      "industry": "biology_and_biotechnology",
+      "description": "Plunge-frozen cells on 3 mm grids clipped into Cryo-FIB AutoGrids are coated with organometallic and sputtered platinum and milled with a 30 kV ion beam (300 to 30 pA) into lamellae thinner than 200 nm, with the stage and anti-contamination shield at -180 °C under vacuum, for subsequent cryo-electron tomography.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 93150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Stage and anti-contaminating shield held at -180 °C (93.15 K) during milling.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML",
+          "document_title": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "location": "Methods, 'Cryo-FIB milling for lamella preparation'",
+          "quote": "The temperature of both the stage and the anti-contaminating shield were held at − 180 °C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Ion/electron-beam milling and SEM imaging of vitrified samples take place in vacuum.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Introduction",
+          "quote": "Because of the strong interaction of electrons with matter, the molecules of interest must be presented in vacuum and in a thin film of vitrified ice, to enable imaging by electrons and to avoid crystalline ice",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 3,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Specimens are standard 3 mm EM grids clipped into Cryo-FIB AutoGrids.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+          "document_title": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "location": "Discussion",
+          "quote": "This ensures adequate space in the centre of the loop for transferring the foam film to a standard EM grid of 3 mm diameter.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Grids are clipped in cold nitrogen vapour before loading; nitrogen cooling of the cryo-stage.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML",
+          "document_title": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "location": "Methods, 'Cryo-FIB milling for lamella preparation'",
+          "quote": "Vitrified grids were clipped in CryoFIB Autogrids (ThermoScientific, ref. 1205101) in cold nitrogen vapor, then loaded in an Aquilos DualBeam cryoFIB/SEM (ThermoScientific)",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML"
+        },
+        {
+          "citation": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML"
+        },
+        {
+          "citation": "Thermo Scientific Aquilos 2 Cryo-FIB datasheet DS0303",
+          "url": "https://documents.thermofisher.com/TFS-Assets/MSD/Datasheets/aquilos-2-datasheet-DS0303.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Aquilos DualBeam cryoFIB/SEM (ThermoScientific)",
+        "Vitrobot Mark IV (ThermoScientific)",
+        "Titan Krios TEM G3i (ThermoScientific)"
+      ]
+    },
+    {
+      "id": "bio_mx_cryocrystallography_100k",
+      "name": "Macromolecular X-ray diffraction data collection at 100 K on a loop-mounted, liquid-nitrogen flash-cooled protein crystal in an Oxford Cryostream",
+      "plain_name": "Collect X-ray diffraction from a protein crystal kept at 100 K",
+      "industry": "biology_and_biotechnology",
+      "description": "A cryoprotected protein crystal mounted in a nylon loop is flash-cooled in liquid nitrogen and kept at 100 K in an open-flow nitrogen gas stream on the goniometer while diffraction images are recorded; cooling below the glass transition of water (about 136-155 K) limits radiation damage.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 100000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Diffraction data are collected with the crystal at 100 K.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5947703/fullTextXML",
+          "document_title": "Kumar A, Karthikeyan S (2018). Crystal structure of the MSMEG_4306 gene product from Mycobacterium smegmatis. Acta Crystallographica Section F. doi:10.1107/s2053230x18002236",
+          "location": "Section 2, 'Crystallization, data collection and structure determination of MSMEG_4306'",
+          "quote": "The data were collected at 100 K using an Oxford Cryostream.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 136000,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The crystal must be held below the lower bound of the water glass-transition range (about 136 K).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4461322/fullTextXML",
+          "document_title": "Pflugrath JW (2015). Practical macromolecular cryocrystallography. Acta Crystallographica Section F. doi:10.1107/s2053230x15008304",
+          "location": "Section 'The need for cryocrystallography'",
+          "quote": "Flash-cooling a crystal to a temperature below the glass-transition phase (∼136–155 K; Weik, Kryger et al. , 2001 ▶ ; Weik, Ravelli et al. , 2001 ▶ ; Chinte et al. , 2005 ▶ ; see Fig. 1 ▶ ) is the method used to trap the molecules",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Crystals are flash-cooled in liquid nitrogen before data collection.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5947703/fullTextXML",
+          "document_title": "Kumar A, Karthikeyan S (2018). Crystal structure of the MSMEG_4306 gene product from Mycobacterium smegmatis. Acta Crystallographica Section F. doi:10.1107/s2053230x18002236",
+          "location": "Section 2, 'Crystallization of MSMEG_4306'",
+          "quote": "The crystals obtained were mounted on a nylon loop (Hampton Research, USA) and flash-cooled in liquid nitrogen before data collection.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Kumar A, Karthikeyan S (2018). Crystal structure of the MSMEG_4306 gene product from Mycobacterium smegmatis. Acta Crystallographica Section F. doi:10.1107/s2053230x18002236",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5947703/fullTextXML"
+        },
+        {
+          "citation": "Pflugrath JW (2015). Practical macromolecular cryocrystallography. Acta Crystallographica Section F. doi:10.1107/s2053230x15008304",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4461322/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "Oxford Cryostream",
+        "Rigaku MicroMax-007 HF rotating-anode X-ray generator",
+        "MAR345 image-plate detector"
+      ]
+    },
+    {
+      "id": "bio_bacterial_glycerol_stock_minus80",
+      "name": "Long-term -80 °C storage of plasmid-bearing bacteria as 25% glycerol stocks in 2 mL screw-top cryovials (Addgene protocol)",
+      "plain_name": "Bank bacteria and their plasmids in a minus-80 freezer",
+      "industry": "biology_and_biotechnology",
+      "description": "500 uL of overnight culture is mixed with 500 uL of 50% glycerol in a 2 mL screw-top cryovial, frozen and kept at -80 °C, where it stays viable for years; the stock is kept on dry ice when streaked so it does not thaw.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 193150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The stock is stored at -80 °C (193.15 K) for years.",
+          "source_url": "https://www.addgene.org/protocols/create-glycerol-stock/",
+          "document_title": "Addgene Protocol: Creating Bacterial Glycerol Stocks for Long-term Storage of Plasmids",
+          "location": "Procedure, step 3",
+          "quote": "The stock is now stable for years, as long as it is kept at -80°C.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "storage.capacity.vials_2ml"
+          ],
+          "constraint": {
+            "kind": "count_at_least",
+            "n": 1
+          },
+          "mandatory": false,
+          "rationale": "Each stock is a 2 mL screw-top cryovial; the store must hold 2 mL cryovials.",
+          "source_url": "https://www.addgene.org/protocols/create-glycerol-stock/",
+          "document_title": "Addgene Protocol: Creating Bacterial Glycerol Stocks for Long-term Storage of Plasmids",
+          "location": "Procedure, step 2",
+          "quote": "add 500 μL of the overnight culture to 500 μL of 50% glycerol in a 2 mL screw top tube or cryovial and gently mix.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "dry_ice"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Optional handling: keep the vial on dry ice while streaking so it does not thaw.",
+          "source_url": "https://www.addgene.org/protocols/create-glycerol-stock/",
+          "document_title": "Addgene Protocol: Creating Bacterial Glycerol Stocks for Long-term Storage of Plasmids",
+          "location": "Tips and FAQ",
+          "quote": "Placing the glycerol stock on dry ice while streaking onto LB agar will prevent it from thawing completely and will improve the shelf life.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Addgene Protocol: Creating Bacterial Glycerol Stocks for Long-term Storage of Plasmids",
+          "url": "https://www.addgene.org/protocols/create-glycerol-stock/"
+        }
+      ],
+      "reported_equipment": [
+        "-80°C freezer (not named by model)"
+      ]
+    },
+    {
+      "id": "bio_lactobacillus_freeze_drying",
+      "name": "Freeze-drying of Lactobacillus suspensions with lyoprotectant: primary drying at -40 °C, 10 Pa, condenser -55 °C; secondary drying to 25 °C (Labconco FreeZone 18 L with stoppering tray dryer)",
+      "plain_name": "Freeze-dry probiotic bacteria into a shelf-stable powder",
+      "industry": "biology_and_biotechnology",
+      "description": "Lactobacillus cells resuspended in lyoprotectant are frozen at -80 °C (-2 °C/min) and freeze-dried for 24 h: 2 h at -40 °C with chamber pressure 10 Pa and condenser at -55 °C, warming at 0.04 °C/min to 0 °C, then secondary drying to 25 °C at 0.08 °C/min.",
+      "requirements": [
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Sublimation needs an evacuated drying chamber.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML",
+          "document_title": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "location": "Methods, 'Freeze-drying'",
+          "quote": "Sublimation was carried out by maintaining the samples for 2 h at -40 °C (condenser temperature = − 55 °C and chamber pressure = 10 Pa), then increasing the chamber temperature to 0 °C at a speed of 0.04 °C/min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 10,
+              "unit": "Pa"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The chamber must reach 10 Pa or lower during primary drying.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML",
+          "document_title": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "location": "Methods, 'Freeze-drying'",
+          "quote": "Sublimation was carried out by maintaining the samples for 2 h at -40 °C (condenser temperature = − 55 °C and chamber pressure = 10 Pa), then increasing the chamber temperature to 0 °C at a speed of 0.04 °C/min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 233150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 298150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Shelf/chamber temperature runs from -40 °C (primary drying) to 25 °C (secondary desorption).",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML",
+          "document_title": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "location": "Methods, 'Freeze-drying'",
+          "quote": "After 17 h, the chamber temperature was increased to 25 °C at a heating rate of 0.08 °C/min to carry out the secondary desorption.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.condenser.min"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 218150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Condenser must reach -55 °C (218.15 K) or colder.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML",
+          "document_title": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "location": "Methods, 'Freeze-drying'",
+          "quote": "Sublimation was carried out by maintaining the samples for 2 h at -40 °C (condenser temperature = − 55 °C and chamber pressure = 10 Pa), then increasing the chamber temperature to 0 °C at a speed of 0.04 °C/min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.sweep_rate.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 80,
+              "unit": "mK_per_min"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Controlled shelf warming at 0.08 °C/min (80 mK/min) during secondary drying.",
+          "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML",
+          "document_title": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "location": "Methods, 'Freeze-drying'",
+          "quote": "After 17 h, the chamber temperature was increased to 25 °C at a heating rate of 0.08 °C/min to carry out the secondary desorption.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Bodzen A, Jossier A, Dupont S, et al. (2021). Design of a new lyoprotectant increasing freeze-dried Lactobacillus strain survival to long-term storage. BMC Biotechnology. doi:10.1186/s12896-021-00726-2",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8590290/fullTextXML"
+        }
+      ],
+      "reported_equipment": [
+        "FreeZone 18-Liter Console Freeze Dry System with Stoppering Tray Dryer, Purge Valve and PTFE-Coated Collector, Labconco"
+      ]
+    },
+    {
+      "id": "bio_freezer_mill_tissue_rna",
+      "name": "Cryogenic impact grinding of cartilage tissue for total-RNA extraction in a SPEX large Freezer/Mill (vials immersed in liquid nitrogen, about -196 °C)",
+      "plain_name": "Grind frozen cartilage into powder for RNA extraction",
+      "industry": "biology_and_biotechnology",
+      "description": "Cartilage samples sealed in grinding vials with a magnetically driven impactor are pre-cooled and pulverized while immersed in liquid nitrogen (held at about -196 °C), up to four samples at once with the multi-vial adapter, keeping tissue far below -80 °C so RNA is not degraded.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 77150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Samples are held at about -196 °C (77.15 K) in the liquid-nitrogen bath during pre-cooling and grinding.",
+          "source_url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf",
+          "document_title": "SPEX SamplePrep 14th Edition Handbook: Freezer/Mill section and application notes",
+          "location": "Application note SP005, handbook page 67",
+          "quote": "By utilizing the precool function of the Freezer/Mill, the samples were held at about -196 °C for another two minutes.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 193150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Tissue for RNA or protein extraction must stay at -80 °C or colder throughout.",
+          "source_url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf",
+          "document_title": "SPEX SamplePrep 14th Edition Handbook: Freezer/Mill section and application notes",
+          "location": "'Using the Freezer/Mill for cryogenic grinding of plant and animal tissue', handbook page 65",
+          "quote": "Samples that require extraction of RNA or proteins must be kept at -80º C or lower during the entire extraction process.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Grinding vials are immersed in liquid nitrogen throughout the grinding cycle.",
+          "source_url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf",
+          "document_title": "SPEX SamplePrep 14th Edition Handbook: Freezer/Mill section and application notes",
+          "location": "Application note SP002, handbook page 67",
+          "quote": "The sample is hermetically sealed in the grinding vial and immersed in liquid nitrogen, so cross contamination is eliminated.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "SPEX SamplePrep 14th Edition Handbook: Freezer/Mill section and application notes",
+          "url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "large Freezer/Mill",
+        "6875 Freezer/Mill"
+      ]
+    }
+  ],
+  "notes": "Quotes from Europe PMC full texts were extracted from the JATS XML (Europe PMC REST fullTextXML); PDF quotes from the PDF text layer (NCCAT Vitrobot SOP, SPEX handbook); Addgene quotes confirmed verbatim via page fetch. The Aquilos 2 datasheet is cited as an equipment reference only. temperature.sweep_rate.max 10 C/h = 166.67 mK/min rounded up to 167 (requirement rounded toward stricter side)."
+}

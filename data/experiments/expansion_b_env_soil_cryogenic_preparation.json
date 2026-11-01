@@ -1,0 +1,61 @@
+{
+  "id": "expansion_b_env_soil_cryogenic_preparation",
+  "name": "Cryogenic soil homogenization before volatile-contaminant analysis",
+  "plain_name": "Prepare soil while limiting heat exposure",
+  "industry": "environmental_science",
+  "description": "Manufacturer-documented cryogenic environmental sample preparation. Numeric LN2 operation comes from the primary white paper, not invented pollutant performance.",
+  "keywords": [
+    "Prepare soil while limiting heat exposure",
+    "soil_cryomilling",
+    "environmental_science"
+  ],
+  "sources": [
+    {
+      "citation": "RETSCH CryoMill primary technical/application documentation",
+      "url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "RETSCHCryoMill"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.cryogenic_milling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Actual comminution with cryogenic cooling is essential.",
+      "evidence_ids": [
+        "expb_soil_milling"
+      ]
+    },
+    {
+      "key": "temperature.base",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": "77.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select the manufacturer's nominal LN2-cooled CryoMill procedure; a warm mixer mill does not establish this operating condition.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "No specific contaminant recovery,grind time,feed mass or detection limit is established by this manufacturer method.",
+    "Matrix-specific validation is required; a hardware PASS does not establish analytical recovery."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

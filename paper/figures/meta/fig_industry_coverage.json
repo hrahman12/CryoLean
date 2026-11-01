@@ -1,0 +1,18 @@
+{
+ "name": "fig_industry_coverage",
+ "title": "Cross-industry coverage: industries x physical compatibility properties",
+ "question": "Which physical properties do the validated experiment profiles of each industry depend on, and are those properties backed by data?",
+ "model": "Set intersection: a profile requires a property when one of its requirement keys or coupled models is listed for that property in data/physics/properties.json; property status from cryolean.coverage.property_status.",
+ "data": "data/industries.json + cryolean.catalog_standard (20 industries), data/experiments/*.json (11 profiles), data/physics/properties.json (40 properties), data/physics/coupled_models.json; status cross-checked against paper/data/e7_coverage.json; saved in paper/data/fig_industry_coverage.json",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Rows are the 20 industries the catalogue knows; only 4 have validated experiment profiles (bold). Each filled cell counts the profiles of that industry that require a property (via a requirement key or a coupled model), coloured by the property's implementation status computed from the data; the bottom strip shows the status of all 40 properties. The profiles touch 17 of the 40 properties; the remaining industries are labels only and carry no verification claim.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_equipment.py",
+ "command": "python paper/scripts/fig_equipment.py",
+ "files": [
+  "paper/figures/fig_industry_coverage.png",
+  "paper/figures/fig_industry_coverage.svg",
+  "paper/figures/fig_industry_coverage.pdf"
+ ],
+ "interactive": null
+}

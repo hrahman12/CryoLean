@@ -1,0 +1,191 @@
+{
+ "id": "tenney_tvac",
+ "manufacturer": "Tenney Environmental (Thermal Product Solutions)",
+ "model": "Thermal Vacuum Space Simulator (TVAC), economical design",
+ "family": "thermal-vacuum chamber (space payload thermal vacuum testing)",
+ "description": "Stainless-steel thermal-vacuum chamber with temperature-conditioned platen; the economical design uses a standalone fluid chiller (+125 to -70 C) and a packaged vacuum system to 1e-5 Torr; the custom line offers LN2/GN2 (-150 to +150 C), flooded LN2 shrouds (-184 C), UHV to 1e-7 Torr, viewing window, CF/KF/ISO ports and thermocouple feedthroughs.",
+ "documents": [
+  {
+   "id": "doc_tenney_tvac_0",
+   "url": "https://www.tenney.com/sites/default/files/Tenney%20TVAC%20Brochure_Web.pdf",
+   "title": "Tenney Thermal Vacuum Space Simulator - TVAC Brochure 09032026 (Tenney Environmental / Thermal Product Solutions)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_tenney_tvac_1",
+   "url": "https://www.tenney.com/products/tenney-vacuum-space-chamber",
+   "title": "Tenney Vacuum Space Chamber product page",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "tenney_tvac_economical_fluid_chiller",
+   "name": "Tenney economical TVAC: stainless platen, standalone fluid chiller, packaged vacuum system",
+   "configuration_basis": "The brochure's 'Economical Solutions' configuration: modular/unitized design, stainless-steel platen, standalone fluid chiller (+125 to -70 C), packaged vacuum system to 1x10-5 Torr, hand backfill valve. No viewing window, feedthrough ports, LN2 cold trap, LN2 shroud or UHV pumps fitted. Vessel size is per order and not published, so the size keys are unknown.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 203150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 398150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 203150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "0.00001",
+       "unit": "Torr"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_pressure.base"
+     ]
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_tenney_tvac_economical_fluid_chiller_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.height.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "tenney_tvac_economical_fluid_chiller",
+   "key": "magnetic_field.max",
+   "why": "The brochure describes custom, per-order chambers ('a true custom chamber tailored to your needs'), and the economical section is a 6-bullet highlight list. The absence rests on the silence of a marketing brochure, not a complete specification."
+  },
+  {
+   "configuration_id": "tenney_tvac_economical_fluid_chiller",
+   "key": "sample.diameter.max",
+   "why": "Correctly unknown. The Flexibility section gives a 1 ft to 16 ft per-order range only."
+  },
+  {
+   "configuration_id": "tenney_tvac_economical_fluid_chiller",
+   "key": "sample.height.max",
+   "why": "Correctly unknown."
+  },
+  {
+   "configuration_id": "tenney_tvac_economical_fluid_chiller",
+   "key": "cryogen.cryogen_free",
+   "why": "The brochure's Special Features list 'LN2 Cold Trap to remove any contamination' without marking it optional or custom-only, and 'Optional Boost Cooling' exists. The claim that the cold trap belongs only to the custom line is not stated in the source, and the economical highlight list is not complete. Cryogen-free is unproven."
+  },
+  {
+   "configuration_id": "tenney_tvac_economical_fluid_chiller",
+   "key": "cryogen.type",
+   "why": "Same as cryogen_free: an empty set could be wrong if the LN2 cold trap listed under Special Features is fitted. It rests on the silence of the economical highlight list."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "defense_and_security"
+ ]
+}

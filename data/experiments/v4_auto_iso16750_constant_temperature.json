@@ -1,0 +1,78 @@
+{
+ "id": "auto_iso16750_constant_temperature",
+ "name": "ISO 16750-4:2023 clause 5.1 constant-temperature tests of automotive E/E components: low-temperature storage (-40 C, 24 h, unpowered), low-temperature operation (Tmin, 24 h, powered) and high-temperature storage (85 C, 48 h)",
+ "plain_name": "Leave a car electronic unit at -40 C for a day, then at 85 C for two days",
+ "industry": "automotive_and_transportation",
+ "description": "Constant-temperature climatic tests for road-vehicle electrical/electronic equipment per ISO 16750-4:2023: storage at -40 C for 24 h (IEC 60068-2-1 Test Ab, operating mode 1.1), operation at Tmin for 24 h with the DUT powered (Test Ab/Ad, operating mode 3.3 or 4.3; Tmin = -40 C for code C) and dry-heat storage at 85 C for 48 h (IEC 60068-2-2 Test Bb).",
+ "keywords": [
+  "Leave a car electronic unit at -40 C for a day, then at 85 C for two days",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "ISO 16750-4:2023, Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads, 4th ed., ISO (preview pages via iTeh Standards)",
+   "url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 233150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Low-temperature storage is performed at -40 C (233.15 K) for 24 h.",
+   "evidence_ids": [
+    "v4e_auto_iso16750_constant_temperature_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 358150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "High-temperature storage is performed at 85 C (358.15 K) for 48 h.",
+   "evidence_ids": [
+    "v4e_auto_iso16750_constant_temperature_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The low-temperature operation test runs the DUT electrically (operating mode 3.3/4.3) at Tmin for 24 h, so supply and signal wiring to the DUT inside the chamber is required.",
+   "evidence_ids": [
+    "v4e_auto_iso16750_constant_temperature_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,31 @@
+{
+  "configuration_id": "expc_npl_helium_tensile_20k",
+  "rows": [
+    {
+      "key": "module.volumetric_hydrogen_sorption",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Cryogenic mechanical testing facility (tensile, flexural, shear); no gas-sorption/isotherm apparatus",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "NPL provides a growing range of cryogenic mechanical testing capabilities, including: tensile testing flexural testing shear testing testing of metals and fibre-reinforced polymer composites testing at temperatures down to 4 K.",
+      "document_title": "National Physical Laboratory: Cryogenic testing services",
+      "source_url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services",
+      "location": "Section 'Cryogenic mechanical testing' (cached research/v5/cache/d9514a42ec8a494b.txt); FAQ 'What types of cryogenic mechanical testing does NPL offer?' repeats tensile, flexural and shear testing",
+      "reasoning": "The facility owner positively describes this facility's scope as cryogenic mechanical testing (tensile, flexural and shear) of metals and fibre-reinforced polymer composites; the hydrogen section describes the 20 K helium set-up as assessing the mechanical performance of materials. A volumetric hydrogen dosing / adsorption-isotherm system (calibrated dosing manifold, pressure transducers, sample cell) is a different kind of instrument from a load frame with cryogenic grips. Scope-based absence, not silence."
+    },
+    {
+      "key": "module.liquid_nitrogen_bath",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "20 K condition: test dewar holds controllably boiled liquid helium (LN2 submersion is the separate 77 K mode)",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "In the case of 77 K, simply submerging the test rig in liquid nitrogen is sufficient whereas for 20 K, a novel temperature control configuration was developed, operating on the principal of controllably boiling liquid helium inside the test dewar with a set of heating elements.",
+      "document_title": "CEC/ICMC 2025, M4Or1B-02: Investigating the effect of cryogenic conditions on the elastic behaviour of fibre-reinforced polymer composite materials under tensile loading (National Physical Laboratory authors)",
+      "source_url": "https://indico.cern.ch/event/1431974/contributions/6396972",
+      "location": "Abstract, second paragraph (cached research/v5/cache/ccc2946cd6b5852b.txt); corroborated by ICEC29/ICMC2024 abstract https://indico.cern.ch/event/1296489/contributions/5881748 (cache 11ba7c6035028552)",
+      "reasoning": "The key is scoped to 'this configuration'. The record's configuration is the 20 K helium-cooled condition, and NPL's own authors state that the 20 K condition is produced by boiling liquid helium inside the test dewar with heaters, so the sample bath in this configuration is helium, not LN2 (a flooded LN2 bath would hold the specimen near 77 K, incompatible with 20 K). Caveat for the curator: the same wet-bath rig is documented as submerged in liquid nitrogen for its 77 K mode, so a separate 77 K NPL configuration could truthfully carry module.liquid_nitrogen_bath = true; that configuration would still lack volumetric hydrogen sorption (see other row), and it is not this record."
+    }
+  ]
+}

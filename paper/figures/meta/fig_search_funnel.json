@@ -1,0 +1,18 @@
+{
+ "name": "fig_search_funnel",
+ "title": "Equipment search: Z3 narrows the catalog, Lean decides every candidate",
+ "question": "How much of the 26-configuration catalog does the Z3 search eliminate per experiment, and does any Z3 status ever stand in for a Lean verdict?",
+ "model": "smt.rank_alternatives / smt.evaluate (Z3; documented optional accessories allowed and minimised) proposes and ranks; every returned candidate is checked by the proven Lean checkCandidates entry point.",
+ "data": "Re-run of CryoLeanAPI.find_compatible_equipment for all 11 experiments (confirmed=True, max_results=10); smt.evaluate on all 286 experiment x configuration documents with and without options; Lean check_batch on the same 286 base documents. Data: paper/data/fig_search_funnel.json (previous run: paper/data/e3_search.json).",
+ "claim": "COMPUTED",
+ "caption": "(a) Per experiment: 26 catalog configurations, those Z3 does not put in conflict (201 of 286 pairs in total), the candidates returned (86) and those Lean accepts (26). (b) Z3 status of every returned candidate against its Lean verdict (Z3 needs_options -> Lean MET: 6; Z3 pending_information -> Lean NEED INFO: 60; Z3 satisfiable -> Lean MET: 20); 6 candidates are hypothetical configurations with documented options added, and Lean accepts them only on that exact document. With options allowed, 24 Lean-rejected base pairs leave Z3's conflict tier, and pending-information configurations that document none of an experiment's requirements are not returned (hence 0 candidates for the heat-budget profile). (c) Without options, Z3 status and Lean verdict coincide on 286/286 pairs. Every verdict shown is Lean's; Z3 only proposes and ranks.",
+ "section": "main",
+ "script": "paper/scripts/fig_z3_search.py",
+ "command": "python paper/scripts/fig_z3_search.py",
+ "files": [
+  "paper/figures/fig_search_funnel.png",
+  "paper/figures/fig_search_funnel.svg",
+  "paper/figures/fig_search_funnel.pdf"
+ ],
+ "interactive": null
+}

@@ -1,0 +1,1203 @@
+{
+  "industry": "scientific_research",
+  "accessed": "2026-11-01",
+  "experiments": [
+    {
+      "id": "sci_graphite_dhva_dilution",
+      "name": "Millikelvin torsion-balance de Haas-van Alphen and Hall/SdH magnetotransport of HOPG graphite, 30 mK-3.8 K, up to 12 T",
+      "plain_name": "Detect quantum oscillations in graphite's magnetism near absolute zero",
+      "industry": "scientific_research",
+      "description": "Measure the de Haas-van Alphen effect of a 10 x 5.5 x 0.5 mm HOPG piece with a capacitive torsion-balance magnetometer, then Hall and Shubnikov-de Haas resistance on the same sample (six-terminal Hall bar, AC currents below 10 uA), in the mixing chamber of a low-vibration dilution refrigerator from 30 mK to 3.8 K in a superconducting magnet up to 12 T.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 30,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The lowest measurement temperature (30 mK, where all FFT and phase analyses were done) must be reachable at the sample.",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Section II (Experimental), p. 4",
+          "quote": "Measurements were carried out at temperatures in the range 30 mK to 3.8 K in the mixing chamber of a low-vibration dilution refrigerator.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 30,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 3800,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Cyclotron masses come from the temperature dependence of the oscillation amplitude over 30 mK-3.8 K (data at 30, 485, 980 and 3830 mK).",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Section II (Experimental), p. 4",
+          "quote": "Measurements were carried out at temperatures in the range 30 mK to 3.8 K in the mixing chamber of a low-vibration dilution refrigerator.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 12,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The magnetization and transport sweeps extend to 12 T.",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Abstract, p. 1",
+          "quote": "we report a comprehensive study of the de Haas–van Alphen, Shubnikov–de Haas and Hall effects in a sample of highly orientated pyrolytic graphite, at temperatures in the range 30 mK to 4 K and magnetic fields up to 12 T.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Hall and SdH resistance were measured on the sample in six-terminal geometry, so wired sample contacts are needed (the torsion balance is also read out electrically as a capacitance).",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Section II (Experimental), p. 4",
+          "quote": "the Hall and SdH measurements were performed on the same sample, contacted using silver paint, in six-terminal Hall-bar geometry. Standard low-frequency AC techniques were used with currents below 10 µA.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.dc_lines"
+          ],
+          "constraint": {
+            "kind": "count_at_least",
+            "n": 6
+          },
+          "mandatory": false,
+          "rationale": "Optional detail: the six-terminal Hall bar needs at least six sample leads.",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Section II (Experimental), p. 4",
+          "quote": "the Hall and SdH measurements were performed on the same sample, contacted using silver paint, in six-terminal Hall-bar geometry.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "11.42",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 10 mm x 5.5 mm HOPG footprint has a circumscribed diameter of 11.42 mm (sqrt(10^2+5.5^2) = 11.413 mm, rounded up), which the sample space must clear.",
+          "source_url": "https://arxiv.org/pdf/1007.2573",
+          "document_title": "Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite",
+          "location": "Section II (Experimental), p. 4",
+          "quote": "The sample used for the experiments detailed in this paper was a piece of ZYB grade HOPG measuring 10 × 5.5 × 0.5 mm.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "S.B. Hubbard, T.J. Kershaw, A. Usher, A.K. Savchenko, A. Shytov, 'Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite', arXiv:1007.2573 (2010)",
+          "url": "https://arxiv.org/pdf/1007.2573"
+        }
+      ],
+      "reported_equipment": [
+        "low-vibration dilution refrigerator",
+        "superconducting magnet",
+        "millikelvin torsion-balance magnetometer"
+      ]
+    },
+    {
+      "id": "sci_squid_torque_pdrho2",
+      "name": "SQUID-amplified piezoresistive cantilever torque magnetometry (dHvA) of PdRhO2 at 700 mK up to 15 T in a dilution refrigerator",
+      "plain_name": "Measure a tiny crystal's magnetic twist with a SQUID-read cantilever",
+      "industry": "scientific_research",
+      "description": "Mount a 300 x 200 x 50 um PdRhO2 crystal on a PRC400 piezoresistive micro-cantilever on a rotator thermally anchored to the mixing chamber of an Oxford Instruments MX400 dilution refrigerator with a 15 + 2 T magnet; read the cantilever Wheatstone bridge with a two-stage dc-SQUID null detector and record de Haas-van Alphen torque at (700 +/- 20) mK during 30 mT/min down-sweeps from 15 T.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 700,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The reported dHvA torque data were taken at (700 +/- 20) mK.",
+          "source_url": "https://arxiv.org/pdf/1706.08350",
+          "document_title": "Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry",
+          "location": "Section III (Performance), p. 4",
+          "quote": "Its magnetic torque was measured at a temperature of (700 ± 20) mK in magnetic fields up to 15 T.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 15,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The field sweeps start at 15 T.",
+          "source_url": "https://arxiv.org/pdf/1706.08350",
+          "document_title": "Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry",
+          "location": "Section III (Performance), p. 4",
+          "quote": "Its magnetic torque was measured at a temperature of (700 ± 20) mK in magnetic fields up to 15 T. Data were taken during magnetic field down sweeps at a constant rate of 30 mT/min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The torque sensor is a piezoresistive cantilever read as a resistance bridge, so electrical leads to the sample stage are required.",
+          "source_url": "https://arxiv.org/pdf/1706.08350",
+          "document_title": "Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry",
+          "location": "Section II.A (General Description), p. 2",
+          "quote": "Self sensitive PRC400 piezo-resistive micro-cantilevers were used as magnetic torque sensors, which were mounted on a silver holder on the rotator.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.ramp_rate.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "0.5",
+              "unit": "mT_per_s"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the documented down-sweep rate was 30 mT/min (= 0.5 mT/s).",
+          "source_url": "https://arxiv.org/pdf/1706.08350",
+          "document_title": "Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry",
+          "location": "Section III (Performance), p. 4",
+          "quote": "Data were taken during magnetic field down sweeps at a constant rate of 30 mT/min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 200,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: lower-temperature operation to about 200 mK is possible with reduced excitation.",
+          "source_url": "https://arxiv.org/pdf/1706.08350",
+          "document_title": "Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry",
+          "location": "Section IV, p. 6",
+          "quote": "Measurements to about 200 mK are possible by reducing the excitation current to approximately 100 nA.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "F. Arnold, M. Naumann, Th. Lühmann, A.P. Mackenzie, E. Hassinger, 'Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry', arXiv:1706.08350",
+          "url": "https://arxiv.org/pdf/1706.08350"
+        }
+      ],
+      "reported_equipment": [
+        "Oxford Instruments MX400 dilution refrigerator",
+        "15 + 2 T Nb3Sn superconducting magnet",
+        "Swedish rotator",
+        "PRC400 piezo-resistive micro-cantilever",
+        "two-stage dc-SQUID"
+      ]
+    },
+    {
+      "id": "sci_pdga_quantum_oscillations_18t",
+      "name": "Angle-resolved Shubnikov-de Haas and cantilever dHvA quantum oscillations of PdGa, 1.5-30 K up to 18 T",
+      "plain_name": "Map a metal's electron orbits from resistance wiggles in an 18 T magnet",
+      "industry": "scientific_research",
+      "description": "Record transverse magnetoresistance (4 mA rms, 22.08 Hz lock-in, Al wire bonds) and capacitive cantilever torque of a 4 x 1 x 0.2 mm3 PdGa platelet at constant temperatures 1.5-30 K in a helium-flow cryostat in fields up to 18 T, rotating the sample in 4 degree steps over 90 degrees; extend to 0.1 K in a dilution refrigerator.",
+      "requirements": [
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 18,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Both SdH and dHvA data were recorded up to 18 T.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3",
+          "quote": "Shubnikov–de Haas (SdH) oscillations in the transverse magnetoresistance were recorded in magnetic fields up to 18 T.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": "1.5",
+              "unit": "K"
+            },
+            "hi": {
+              "value": 30,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Effective masses come from constant-temperature data between 1.5 and 30 K.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3",
+          "quote": "Measurements were performed at constant temperatures between 1.5 to 30 K in a Helium flow cryostat with the magnetic field oriented along the crystallographic [110] direction.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "AC magnetoresistance requires wired sample contacts.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3",
+          "quote": "Electrical contacts to the sample were established using Al wire bonds.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "4.13",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 4 mm x 1 mm platelet footprint has a circumscribed diameter of 4.13 mm (sqrt(17) = 4.123 mm, rounded up).",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.A (Sample preparation), p. 3",
+          "quote": "The resulting single crystal was oriented using Laue X-ray diffraction and cut into several platelets with axes along high-symmetry directions and approximate dimensions 4 × 1 × 0.2 mm3.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.current.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 4,
+              "unit": "mA"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the excitation current was 4 mA rms.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3-4",
+          "quote": "An AC excitation current with a frequency of 22.08 Hz and an amplitude of 4 mA rms was applied.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 100,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional extension: additional SdH measurements down to 0.1 K in a dilution refrigerator.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3",
+          "quote": "Further measurements down to 0.1 K with the same field orientation were performed in a dilution refrigerator.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "x": "liquid_helium"
+          },
+          "mandatory": false,
+          "rationale": "Optional: the source used a helium-flow cryostat; any machine reaching 1.5 K at 18 T would serve.",
+          "source_url": "https://arxiv.org/pdf/2504.12379",
+          "document_title": "Fermi surface and magnetic breakdown in PdGa",
+          "location": "Section II.B (Detection of quantum oscillations), p. 3",
+          "quote": "Measurements were performed at constant temperatures between 1.5 to 30 K in a Helium flow cryostat",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "N. Huber, I. Volkau, A. Engelhardt, I. Sheikin, A. Bauer, C. Pfleiderer, M.A. Wilde, 'Fermi surface and magnetic breakdown in PdGa', arXiv:2504.12379 (2025)",
+          "url": "https://arxiv.org/pdf/2504.12379"
+        }
+      ],
+      "reported_equipment": [
+        "Helium flow cryostat",
+        "dilution refrigerator",
+        "cantilever-based torque magnetometer with capacitive readout"
+      ]
+    },
+    {
+      "id": "sci_arpes_gold_fermi_edge",
+      "name": "Synchrotron/VUV-laser ARPES energy-resolution test on polycrystalline gold at 7 K in UHV below 1E-10 mbar",
+      "plain_name": "Measure electron energies knocked out of a cold surface by light",
+      "industry": "scientific_research",
+      "description": "Cool a sample on a six-axis open-cycle liquid-helium-flow cryomanipulator to 7 K in a UHV analysis chamber kept below 1E-10 mbar, illuminate it with 21.2 eV photons (synchrotron or VUV laser) and fit the gold Fermi edge measured by a DA30 analyzer to obtain the combined energy resolution (2.67 meV); quantum materials are then measured, e.g. at 25 K.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 7,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The gold Fermi-edge resolution test was performed at 7 K, the manipulator's lowest temperature.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "Performance section, p. 9",
+          "quote": "To test the energy resolution, we measured polycrystalline gold at T = 7 K (Fig. 6a).",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Photoelectron spectroscopy is done under UHV to avoid surface contamination and electron scattering.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "ARPES system section, p. 6",
+          "quote": "To avoid surface contamination and the scattering of the emitted electrons, the system must be maintained in a UHV environment.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "0.0000000001",
+              "unit": "mbar"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The analysis chamber is kept below 1E-10 mbar.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "ARPES system section, p. 6",
+          "quote": "multiple pumps, including turbomolecular pumps, ion pumps, titanium sublimation pumps, and getter pumps, are typically used to keep the vacuum pressure below 1E-10 mbar.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "optical_access"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Synchrotron or VUV-laser photons must reach the cold sample and photoelectrons must reach the analyzer.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "Endstation layout section, p. 5",
+          "quote": "The analysis chamber (lower chamber) of the ARPES system is connected to two symmetrical incident light sources (the synchrotron radiation and the VUV laser), which can be conveniently switched.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "module.magnetic_shielding"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": false,
+          "rationale": "Optional: mu-metal shielding against the geomagnetic field protects low-energy photoelectron trajectories.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "Performance section, p. 9",
+          "quote": "Furthermore, the analysis chamber has a double-deck μ-metal shield, which is contiguous with the μ-metal-shielded hemispherical electron energy analyzer to counteract the geomagnetic field.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 25,
+              "unit": "K"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the reported quantum-material spectrum was taken at 25 K.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "Figure caption, p. 14",
+          "quote": "ARPES spectral intensity plot along the Γ−Μ direction of undoped sample with a photon energy of 76 eV at BL03U at a temperature of 25 K.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "x": "liquid_helium"
+          },
+          "mandatory": false,
+          "rationale": "Optional: the reported manipulator is cooled by continuous liquid-helium flow.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "ARPES system section, p. 6",
+          "quote": "The sample holder can be cooled using a continuous-flow cryostat, and it can be cooled to 7 K with a liquid helium cryostat.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Y.-C. Yang, Z.-T. Liu, J.-S. Liu, Z.-H. Liu, W.-L. Liu, X.-L. Lu, H.-P. Mei, A. Li, M. Ye, S. Qiao, D.-W. Shen, 'High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF', arXiv:2102.09915",
+          "url": "https://arxiv.org/pdf/2102.09915"
+        }
+      ],
+      "reported_equipment": [
+        "six-axis open-cycle cryogenic manipulator (continuous-flow liquid helium cryostat)",
+        "Scienta Omicron DA30 analyzer",
+        "BL03U beamline, Shanghai Synchrotron Radiation Facility"
+      ]
+    },
+    {
+      "id": "sci_ltstm_nbse2_atomic",
+      "name": "UHV low-temperature STM atomic imaging of NbSe2 at 5 K (He-3 STM with 380 mK base and 14 T magnet)",
+      "plain_name": "Image individual atoms on a cold crystal surface with a sharp tip",
+      "industry": "scientific_research",
+      "description": "Cleave or grow a sample in situ, transfer it under UHV (2 x 10-10 mbar) to a Pan-type STM in a superinsulated liquid-helium cryostat with He-3 refrigerator and 14 T solenoid, and record constant-current topographs of NbSe2 at 5 K with 100 mV bias and 1 nA tunnelling current.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 5,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The reported atomic-resolution image of NbSe2 was taken at 5 K.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "To examine the STM spatial resolution, a NbSe2 single crystal sample was measured at a temperature T of 5 K with a bias voltage of 100 mV and constant current I of 1 nA",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "STM surfaces must be kept clean under UHV.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "The UHV system generates and maintains a UHV (2 × 10-10 mbar) to protect the sample surface from contamination.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "0.0000000002",
+              "unit": "mbar"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The STM chamber operates at 2 x 10-10 mbar.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "The UHV system generates and maintains a UHV (2 × 10-10 mbar) to protect the sample surface from contamination.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "A bias voltage must be applied to the sample and the tunnelling current read out.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "a NbSe2 single crystal sample was measured at a temperature T of 5 K with a bias voltage of 100 mV and constant current I of 1 nA",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 380,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: spectroscopy at the He-3 base temperature of 380 mK.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "The base temperature of 380 mK can be maintained for nearly 48 h.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 14,
+              "unit": "T"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: field-dependent studies use up to 14 T normal to the surface.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "The bipolar superconducting solenoid magnet provides a continuously tunable magnetic field (+14 to -14 T) normal to the sample surface, facilitating studies involving the spin or magnetism.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "x": "liquid_helium"
+          },
+          "mandatory": false,
+          "rationale": "Optional: the reported STM sits in a superinsulated liquid-helium cryostat.",
+          "source_url": "https://arxiv.org/pdf/2102.09915",
+          "document_title": "High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF",
+          "location": "STM system section, p. 8",
+          "quote": "The cryogenic system includes a 3He refrigerator, a 14 T superconducting magnet, and a superinsulated liquid helium cryostat.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Y.-C. Yang et al., 'High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF', arXiv:2102.09915 (STM system section)",
+          "url": "https://arxiv.org/pdf/2102.09915"
+        }
+      ],
+      "reported_equipment": [
+        "home-built Pan-type STM",
+        "3He refrigerator",
+        "14 T superconducting magnet",
+        "superinsulated liquid helium cryostat"
+      ]
+    },
+    {
+      "id": "sci_epr_ethe1_iron",
+      "name": "X-band continuous-wave EPR of iron-loaded ETHE1 protein at 4.7 K in an ESR-900 helium-flow cryostat",
+      "plain_name": "Detect iron centres in a frozen protein with microwave resonance",
+      "industry": "scientific_research",
+      "description": "Record X-band (9.48 GHz) CW-EPR spectra of frozen 1.6 mM ETHE1 protein solutions with 2 mW microwave power and 10 G modulation at 100 kHz in an ESR-900 helium-flow cryostat at 4.7 K (and at 10 K and 9.63 GHz on an EleXsys E580) to identify Fe(III) signals.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "4.7",
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The Figure 4 spectra were collected at 4.7 K.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/",
+          "document_title": "Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein",
+          "location": "Figure 4 caption",
+          "quote": "Spectra were collected on a Bruker ESP-300E spectrometer containing an ESR-900 helium flow cryostat operating at 4.7 K with 2 milliwatts of microwave power at 9.48 GHz and 10 G-field modulation at 100 kHz.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "rf.power.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 2,
+              "unit": "mW"
+            }
+          },
+          "mandatory": true,
+          "rationale": "2 mW of microwave power must be delivered to the sample cavity.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/",
+          "document_title": "Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein",
+          "location": "Figure 4 caption",
+          "quote": "Spectra were collected on a Bruker ESP-300E spectrometer containing an ESR-900 helium flow cryostat operating at 4.7 K with 2 milliwatts of microwave power at 9.48 GHz and 10 G-field modulation at 100 kHz.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "rf.frequency.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "9.48",
+              "unit": "GHz"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The resonance is excited at X-band, 9.48 GHz.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/",
+          "document_title": "Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein",
+          "location": "Figure 4 caption",
+          "quote": "Spectra were collected on a Bruker ESP-300E spectrometer containing an ESR-900 helium flow cryostat operating at 4.7 K with 2 milliwatts of microwave power at 9.48 GHz and 10 G-field modulation at 100 kHz.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 10,
+              "unit": "K"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the Methods spectra were taken at 10 K.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/",
+          "document_title": "Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein",
+          "location": "Materials and Methods, EPR Spectroscopy",
+          "quote": "EPR spectra were obtained at 9.63 GHz and 10 K using a Bruker EleXsys E580 spectrometer equipped with an ER4116DM cavity, and an Oxford ESR900 liquid helium flow cryostat and ITC503 temperature controller.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "x": "liquid_helium"
+          },
+          "mandatory": false,
+          "rationale": "Optional: the source used a liquid-helium flow cryostat.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/",
+          "document_title": "Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein",
+          "location": "Materials and Methods, EPR Spectroscopy",
+          "quote": "and an Oxford ESR900 liquid helium flow cryostat and ITC503 temperature controller.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "'Spectroscopic Studies on ETHE1, a Glyoxalase II-like Protein', J. Inorg. Biochem. (2008), doi:10.1016/j.jinorgbio.2008.06.003, PMC2556177",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/"
+        }
+      ],
+      "reported_equipment": [
+        "Bruker ESP-300E spectrometer",
+        "ESR-900 helium flow cryostat",
+        "Bruker EleXsys E580 spectrometer",
+        "ER4116DM cavity",
+        "Oxford ESR900 liquid helium flow cryostat",
+        "ITC503 temperature controller"
+      ]
+    },
+    {
+      "id": "sci_graphene_yig_quantum_hall",
+      "name": "Local and nonlocal quantum Hall transport of hBN/graphene Hall bars on YIG at 2.7 K and 9 K up to 12 T",
+      "plain_name": "Measure quantized Hall conduction in graphene on a magnetic insulator",
+      "industry": "scientific_research",
+      "description": "Measure Rxx, Rxy and nonlocal resistance of top-gated hBN/graphene Hall bars on Y3Fe5O12 with 7 Hz lock-in amplifiers (50 nA at 2.7 K, 100 nA at 9 K) versus magnetic field 0-12 T, gate voltage and field angle (manual sample rotation).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": "2.7",
+              "unit": "K"
+            },
+            "hi": {
+              "value": 9,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Data were taken at 2.7 K and at 9 K.",
+          "source_url": "https://arxiv.org/pdf/1905.06866",
+          "document_title": "Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator",
+          "location": "Supplementary S4 (Transport measurement setup), p. 12",
+          "quote": "Transport measurements are performed using lock-in amplifiers at low frequency (7 Hz) with an excitation current of 50 nA at 2.7 K and 100 nA at 9 K as a function of magnetic field (0-12 T), top-gate voltage and temperature (T > 2.5 K).",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 12,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The quantum Hall CAF-to-F transition is driven with fields up to 12 T.",
+          "source_url": "https://arxiv.org/pdf/1905.06866",
+          "document_title": "Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator",
+          "location": "Supplementary S4 (Transport measurement setup), p. 12",
+          "quote": "Transport measurements are performed using lock-in amplifiers at low frequency (7 Hz) with an excitation current of 50 nA at 2.7 K and 100 nA at 9 K as a function of magnetic field (0-12 T)",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Four-terminal and nonlocal resistance require wired contacts to the device.",
+          "source_url": "https://arxiv.org/pdf/1905.06866",
+          "document_title": "Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator",
+          "location": "Main text, p. 3",
+          "quote": "Resistance is measured using lock-in amplifiers [21]. For local transport, I9,10 indicates current flowing between contacts 9 and 10 and a local voltage V3,5 is measured between contacts 3 and 5, giving Rxx = V3,5/I9,10.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.dc_lines"
+          ],
+          "constraint": {
+            "kind": "count_at_least",
+            "n": 10
+          },
+          "mandatory": false,
+          "rationale": "Optional: the Hall bar has at least ten numbered contacts (plus a top gate).",
+          "source_url": "https://arxiv.org/pdf/1905.06866",
+          "document_title": "Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator",
+          "location": "Main text, p. 3",
+          "quote": "For local transport, I9,10 indicates current flowing between contacts 9 and 10 and a local voltage V3,5 is measured between contacts 3 and 5",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Y. Li, M. Amado, T. Hyart, G.P. Mazur, V. Risinggård, T. Wagner, L. McKenzie-Sell, G. Kimbell, J. Wunderlich, J. Linder, J.W.A. Robinson, 'Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator', arXiv:1905.06866",
+          "url": "https://arxiv.org/pdf/1905.06866"
+        }
+      ],
+      "reported_equipment": [
+        "lock-in amplifiers",
+        "manually rotatable sample holder"
+      ]
+    },
+    {
+      "id": "sci_hg1223_magnetization_loops",
+      "name": "ZFC/FC diamagnetic transition and isothermal magnetization hysteresis loops of HgBa2Ca2Cu3O8 crystals with a SQUID-VSM, 10-115 K",
+      "plain_name": "Measure how a high-temperature superconductor expels and traps magnetic field",
+      "industry": "scientific_research",
+      "description": "Measure zero-field-cooled and field-cooled magnetization of a 0.41 mg Hg-1223 crystal at 10 Oe through Tc = 129 K, then isothermal magnetization loops (field along c, 10-115 K, dH/dt = 50 and 200 Oe/s) and dynamic relaxation in a Quantum Design SQUID-VSM.",
+      "requirements": [
+        {
+          "keys": [
+            "module.vsm"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The magnetization was measured with a SQUID vibrating-sample magnetometer.",
+          "source_url": "https://arxiv.org/pdf/2502.10737",
+          "document_title": "Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals",
+          "location": "Experimental section, p. 2",
+          "quote": "The magnetization was measured with a superconducting quantum interference device (SQUID-VSM, Quantum Design).",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 10,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 115,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Magnetization loops were measured from 10 K to 115 K.",
+          "source_url": "https://arxiv.org/pdf/2502.10737",
+          "document_title": "Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals",
+          "location": "Results, p. 2",
+          "quote": "The isothermal MHLs for the magnetic field along c-axis from 10 K to 115 K with dH/dt = 50 Oe/s are displayed in Figs. 2(a)–(d).",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 129,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The ZFC/FC curves must pass through the onset Tc of 129 K, so the upper temperature must reach at least 129 K.",
+          "source_url": "https://arxiv.org/pdf/2502.10737",
+          "document_title": "Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals",
+          "location": "Results, p. 2",
+          "quote": "The ZFC curve shows perfect diamagnetism in the low temperature region and the sharp transition with the onset temperature Tc = 129 K.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "1.78",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 1.66 mm x 0.64 mm crystal has a circumscribed diameter of 1.78 mm (sqrt(1.66^2+0.64^2) = 1.779 mm, rounded up).",
+          "source_url": "https://arxiv.org/pdf/2502.10737",
+          "document_title": "Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals",
+          "location": "Experimental section, p. 2",
+          "quote": "Sample 1(S1) used for resistivity measurement and magnetization measurement at 10 Oe for both zero-field cooling (ZFC) and field-cooling (FC) has a mass of 0.41 mg with dimensions of 1.66×0.64×0.065 mm3.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.ramp_rate.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 200,
+              "unit": "Oe_per_s"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: dynamic relaxation used sweep rates of 50 and 200 Oe/s.",
+          "source_url": "https://arxiv.org/pdf/2502.10737",
+          "document_title": "Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals",
+          "location": "Fig. 4 caption, p. 4",
+          "quote": "Field dependence of transient superconducting current density Js(H) with dH/dt = 50 Oe/s (solid) and 200 Oe/s (open) and dynamic magnetic relaxation rate Q(H) at 60K, 70K, and 85K.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Y. Ye, Y. Liu, W. Hong, Y. Li, H.-H. Wen, 'Three Magnetization Peaks in HgBa2Ca2Cu3O8 Single Crystals', arXiv:2502.10737 (2025)",
+          "url": "https://arxiv.org/pdf/2502.10737"
+        }
+      ],
+      "reported_equipment": [
+        "SQUID-VSM, Quantum Design",
+        "PPMS 16T, Quantum Design"
+      ]
+    },
+    {
+      "id": "sci_cryocrystallography_100k",
+      "name": "Cryo-cooled single-crystal X-ray data collection at 100 K in an open nitrogen gas stream",
+      "plain_name": "Collect X-ray diffraction from a crystal held in a 100 K nitrogen stream",
+      "industry": "scientific_research",
+      "description": "Cryoprotect a crystal, mount it in a loop on a goniometer pin, stream-cool it into a nitrogen gas stream held at about 100 K (or plunge it into liquid nitrogen), centre it optically in the stream and collect diffraction data at about 100 K (below 130 K and absolutely below 155 K).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 100,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Data are collected at about 100 K to limit radiation damage; the procedure caps the temperature at 130 K (155 K absolute).",
+          "source_url": "https://www.ccp4.ac.uk/schools/DLS-2022/course_material/20221017%20Cryo-cooling%20-%20Elspeth%20Garman.pdf",
+          "document_title": "CRYO-COOLING: why and how? (CCP4/DLS Winter School, 17 October 2022)",
+          "location": "Slide 'Collect data at around 100K', p. 14",
+          "quote": "Collect data at around 100K [below 130K and absolutely below 155K [Weik, 2001]]",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "optical_access"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The crystal must be centred by telescope or camera in the stream, and the X-ray beam must reach it.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "800 Series Cryostream Cooler Operating & Instruction Guide",
+          "location": "Section 6.10 (Cryostream Nozzle Alignment), p. 28",
+          "quote": "Correctly align and centre an example crystal or empty loop as normal by using the adjustments on the goniometer head and telescope or camera crosshairs to focus sharply on the crystal's position.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "x": "liquid_nitrogen"
+          },
+          "mandatory": false,
+          "rationale": "Optional: the alternative flash-cooling route plunges the crystal straight into liquid nitrogen; stream cooling uses a 100 K nitrogen gas stream.",
+          "source_url": "https://www.ccp4.ac.uk/schools/DLS-2022/course_material/20221017%20Cryo-cooling%20-%20Elspeth%20Garman.pdf",
+          "document_title": "CRYO-COOLING: why and how? (CCP4/DLS Winter School, 17 October 2022)",
+          "location": "Slide 'Flash cool into cryogen', p. 31",
+          "quote": "Straight into liquid nitrogen: have a standard pin length AND blow/flap away surface cold nitrogen from FULL Dewar.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "E. Garman, 'CRYO-COOLING: why and how?', CCP4/DLS Winter School lecture, 17 October 2022",
+          "url": "https://www.ccp4.ac.uk/schools/DLS-2022/course_material/20221017%20Cryo-cooling%20-%20Elspeth%20Garman.pdf"
+        },
+        {
+          "citation": "Oxford Cryosystems, 800 Series Cryostream Cooler Operating & Instruction Guide",
+          "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Oxford Cryosystems 800 Series Cryostream Cooler",
+        "100K nitrogen stream"
+      ]
+    },
+    {
+      "id": "sci_thin_crystal_dilatometry",
+      "name": "Capacitance dilatometry (thermal expansion and magnetostriction) of thin single crystals in a PPMS, 2-50 K, up to 9 T",
+      "plain_name": "Measure how a thin crystal shrinks or stretches on cooling and in a magnetic field",
+      "industry": "scientific_research",
+      "description": "Mount a sub-500 um thin crystal in the slot of a miniature capacitance dilatometer integrated into a Quantum Design PPMS and record the relative length change from 2 to 50 K (alpha(T) by 0.1 K interval differentiation) in zero field and in 9 T; the cell can be rotated in situ.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 2,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 50,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "alpha(T) of the AgCrS2 crystal was determined over 2-50 K.",
+          "source_url": "https://arxiv.org/pdf/2601.13231",
+          "document_title": "High-Resolution Capacitance Dilatometry of Microscopically Thin Samples Using a Miniature Dilatometer",
+          "location": "Section I (Introduction), p. 2",
+          "quote": "The thermal expansion coefficient α(T) was determined over the full temperature range of 2–50 K using interval differentiation with a 0.1 K step.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 9,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Thermal expansion was compared at zero field and 9 T.",
+          "source_url": "https://arxiv.org/pdf/2601.13231",
+          "document_title": "High-Resolution Capacitance Dilatometry of Microscopically Thin Samples Using a Miniature Dilatometer",
+          "location": "Fig. 1 caption, p. 2",
+          "quote": "Inset C) shows a comparison of α(T) measured in zero magnetic field and under an applied magnetic field of 9 T.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The length change is read as a capacitance, so electrical leads to the dilatometer cell on the sample stage are required.",
+          "source_url": "https://arxiv.org/pdf/2601.13231",
+          "document_title": "High-Resolution Capacitance Dilatometry of Microscopically Thin Samples Using a Miniature Dilatometer",
+          "location": "Abstract, p. 1",
+          "quote": "We present a novel application of our high-resolution capacitance dilatometer, specifically engineered for the precise characterization of quantum materials.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "R. Küchler, S. Panja, S. Wirth, P. Gegenwart, 'High-Resolution Capacitance Dilatometry of Microscopically Thin Samples Using a Miniature Dilatometer', arXiv:2601.13231 (2026)",
+          "url": "https://arxiv.org/pdf/2601.13231"
+        }
+      ],
+      "reported_equipment": [
+        "Quantum Design PPMS",
+        "miniature capacitance dilatometer"
+      ]
+    }
+  ]
+}

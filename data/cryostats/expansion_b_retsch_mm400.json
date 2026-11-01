@@ -1,0 +1,80 @@
+{
+  "id": "expansion_b_retsch_mm400",
+  "manufacturer": "RETSCH",
+  "model": "MM 400 with CryoKit and two 50 mL steel jars",
+  "family": "cryogenic_mill",
+  "description": "A real twin-station mixer mill with an explicitly configured CryoKit. The bath is separate and the sample warms during milling.",
+  "documents": [
+    {
+      "id": "expb_doc_retsch_mm400",
+      "title": "MM 400 technical data",
+      "url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_retsch_mm400_documented",
+      "name": "RETSCH MM 400 with CryoKit and two 50 mL steel jars",
+      "configuration_basis": "CryoKit and 50 mL steel jars are explicitly included as documented accessories; this is a selectable catalog configuration, not an installation claim.",
+      "capabilities": [
+        {
+          "key": "process.cryogenic_milling",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_mm400_spec"
+          ]
+        },
+        {
+          "key": "milling.frequency.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "3",
+              "unit": "Hz"
+            },
+            "hi": {
+              "value": "30",
+              "unit": "Hz"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_mm400_spec"
+          ]
+        },
+        {
+          "key": "milling.jar_volume",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": "0.05",
+              "unit": "L"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_mm400_spec"
+          ]
+        },
+        {
+          "key": "temperature.base",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "LN2 precooling is documented, but the source does not guarantee the sample remains at -196 C during MM400 milling."
+        }
+      ]
+    }
+  ]
+}

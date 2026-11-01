@@ -1,0 +1,84 @@
+{
+ "id": "nuc_ipi_d2_pellet_high_speed",
+ "name": "In-situ formation of solid D2 pellets at ~7 K in a cryogen-free pulse-tube cryostat for two-stage light-gas-gun launching at 2-4 km/s (ENEA-ORNL IPI)",
+ "plain_name": "Freeze deuterium fuel into ice bullets near 7 K and fire them at kilometres per second",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "High-speed pellet fuelling R&D for DEMO on the ENEA-ORNL four-barrel Ignitor Pellet Injector: D2 ice frozen in situ under constant gas pressure, cooled to ~7 K and held stable before two-stage gun launch; with a PT810 the freezing zone only reached ~10 K and pellets broke above 2 km/s, a PT415 (1.5 W at 4.2 K) lowered it to ~7.5 K.",
+ "keywords": [
+  "Freeze deuterium fuel into ice bullets near 7 K and fire them at kilometres per second",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Frattolillo et al., Core fueling of DEMO by direct line injection of high-speed pellets from the HFS, EUROfusion preprint WPTFV-CPR(17) 17238",
+   "url": "https://scipub.euro-fusion.org/wp-content/uploads/eurofusion/WPTFVCPR17_17238_submitted-4.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Ignitor Pellet Injector (IPI), ENEA-ORNL four-barrel pipe-gun injector",
+  "Cryomech PT810 pulse tube cryocooler",
+  "Cryomech PT415 pulse tube cryocooler",
+  "two-stage pneumatic light-gas guns (TSG)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 7000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Pellet ice must be lowered to ~7 K and kept stable.",
+   "evidence_ids": [
+    "v4e_nuc_ipi_d2_pellet_high_speed_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1.5",
+     "unit": "W"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Upgraded cooler (1.5 W at 4.2 K) chosen to improve ice quality.",
+   "evidence_ids": [
+    "v4e_nuc_ipi_d2_pellet_high_speed_1"
+   ],
+   "conditions": [],
+   "key": "cooling_power.at_4200mK"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reported cryogen-free cryostat (design choice).",
+   "evidence_ids": [
+    "v4e_nuc_ipi_d2_pellet_high_speed_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

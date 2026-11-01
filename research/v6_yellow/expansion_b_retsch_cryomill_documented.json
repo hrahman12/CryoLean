@@ -1,0 +1,189 @@
+{
+  "configuration_id": "expansion_b_retsch_cryomill_documented",
+  "rows": [
+    {
+      "key": "process.deep_cryogenic_treatment",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "Retsch describes the CryoMill as a laboratory ball mill built for cryogenic grinding: it embrittles samples in an LN2-cooled jar and pulverizes them by ball impact. It is not a controlled sub-zero soak or temper system for metal parts. Its documented cycle is minutes long (typical 10 min cooling / 4 min grinding; grinding time up to 99 min), and its jars hold at most 50 mL. So deep cryogenic treatment of steel parts is outside its documented scope."
+    },
+    {
+      "key": "temperature.range",
+      "result": "documented_absence",
+      "value_as_printed": "No controllable temperature range; only LN2 cryogenic mode at -196 C or ambient-temperature grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The liquid nitrogen is continually supplied from an autofill system in the exact amount required to keep the temperature at –196 °C. ... 3 different grinding modes (cryogenic, dry/wet at ambient temperature)",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description and feature list (cached research/v5/cache/b6343e1615bb3892.txt) lines 301 and 325",
+      "reasoning": "The CryoMill has no adjustable temperature setpoint. Retsch documents only two thermal states: cryogenic grinding with the jar held at -196 C (77.15 K, already recorded as temperature.base) by LN2 autofill, and grinding at ambient temperature with no cooling. There is no controlled operating range. It cannot be held at 113.15 K and cannot cover 173.15-493.15 K or 233.15-278.15 K. If the parent does not accept absence for a numeric key, treat this as still_unknown. Do not record it as a range from 77.15 K to ambient: no intermediate temperatures are documented. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "dwell.duration.max",
+      "result": "documented_absence",
+      "value_as_printed": "No thermal-treatment hold function (grinding timer 30 s - 99 min per cycle only)",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "This key is the maximum hold time for the experiment's thermal process, here a 24 h deep cryogenic soak of steel. The CryoMill does not perform that process (see process.deep_cryogenic_treatment). Its only timers are grinding cycles: 'Setting of grinding time | digital, 30 s - 99 min' and '9 programmable cooling and grinding cycles (10 s to 99 min)' (lines 421 and 335). The 50 L autofill tank gives about 5 h of cooling (line 355). Those are grinding-cycle timers, not a hold duration for a thermal treatment, so they were not recorded as this key. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "process.dsc",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "The CryoMill is a mixer/ball mill for sample pulverization. Its technical data list grinding stations, vibration frequency, grinding time, jar materials and sizes, and dry/wet/cryogenic grinding. There is no heat-flow sensor, reference pan or calorimetric measurement, so differential scanning calorimetry is outside its scope."
+    },
+    {
+      "key": "temperature.heating_rate.range",
+      "result": "documented_absence",
+      "value_as_printed": "No heating function; LN2 cryogenic mode or ambient only",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The liquid nitrogen is continually supplied from an autofill system in the exact amount required to keep the temperature at –196 °C. ... 3 different grinding modes (cryogenic, dry/wet at ambient temperature)",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description and feature list (cached research/v5/cache/b6343e1615bb3892.txt) lines 301 and 325",
+      "reasoning": "The CryoMill has no heater and no programmable temperature ramp. Its only thermal modes are LN2 cooling held at -196 C and ambient-temperature grinding. A controlled heating rate (0.167 K/s for the DSC experiment) does not exist on this machine. If the parent does not accept absence for a numeric key, treat this as still_unknown. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "module.dynamic_nitrogen_purge",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "This key means a dynamic nitrogen purge of a calorimeter cell. The CryoMill has no calorimeter. Its liquid nitrogen flows through a closed cooling circuit around the grinding jar ('The liquid nitrogen flows through the closed system', line 339), not as a purge gas over a DSC sample. So the module is not available."
+    },
+    {
+      "key": "optical_access",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The CryoMill is equipped with one grinding station for screw-top grinding jars with volumes of 10 ml, 25 ml, 35 ml or 50 ml.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Accessories: Grinding jars & Adapters (cached research/v5/cache/b6343e1615bb3892.txt) line 351",
+      "reasoning": "The sample sits inside a closed screw-top grinding jar that oscillates radially in the mill ('The grinding jar of the CryoMill performs radial oscillations in a horizontal position', line 377). The jar materials are hardened steel, stainless steel, zirconium oxide or PTFE (line 415), all opaque. No window, viewport or microscope access is documented, and the machine is a closed ball mill, so there is no optical access to the sample during operation."
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "result": "documented_absence",
+      "value_as_printed": "No controlled cooling ramp; fixed LN2 pre-cooling to -196 C, set by time only",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The liquid nitrogen is continually supplied from an autofill system in the exact amount required to keep the temperature at –196 °C. ... 3 different grinding modes (cryogenic, dry/wet at ambient temperature)",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description and feature list (cached research/v5/cache/b6343e1615bb3892.txt) lines 301 and 325",
+      "reasoning": "Cooling is a fixed LN2 regime: the autofill keeps the jar at -196 C, and the user sets only a pre-cooling time ('Parameters such as oscillation frequency, pre-cooling or grinding time can be digitally set', line 341). No controlled cooling rate is documented, so a 0.017 K/s ramp toward ice nucleation (233-278 K) is not available. 'Such as' in that sentence is not an exhaustive list; the absence rests on the fixed-temperature LN2 design. If the parent does not accept absence for a numeric key, treat this as still_unknown. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "module.dewpoint_control",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "The CryoMill is a closed-jar ball mill. It has no humidified/dry gas mixing or dew-point measurement chain; its only fluid system is the LN2 cooling circuit with an autofill tank. The module is outside its scope."
+    },
+    {
+      "key": "process.cryogenic_preconcentration",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "Cryogenic preconcentration means trapping and focusing volatile compounds from a gas stream for GC analysis. The CryoMill grinds solid samples in a sealed jar. Retsch notes that cryogenic grinding keeps volatile components in the sample ('volatile components are preserved', line 299), but the mill does not trap or desorb analytes from air. So the process is not available."
+    },
+    {
+      "key": "module.gc_ms",
+      "result": "documented_absence",
+      "value": {
+        "kind": "flag",
+        "b": false
+      },
+      "value_as_printed": "Not provided: the CryoMill is a single-station laboratory ball mill for cryogenic grinding",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "The CryoMill is a stand-alone bench-top grinder. Its technical data and accessories (jars, adapters, LN2 autofill, connection tube) include no gas chromatograph or mass-selective detector."
+    },
+    {
+      "key": "trap.precool.temperature",
+      "result": "documented_absence",
+      "value_as_printed": "No cold-focusing trap",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "This key is the precool setpoint of a cold-focusing trap in a cryogenic preconcentrator. The CryoMill has no focusing trap, so the property does not exist. The -196 C jar temperature (already recorded as temperature.base) is the grinding-jar temperature, not a trap setpoint, and was not reused here. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "trap.inject.temperature",
+      "result": "documented_absence",
+      "value_as_printed": "No trap and no heating",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cryogenic grinding is a process where thermally sensitive and elastic substances are successfully processed by cooling with liquid nitrogen. The CryoMill is a laboratory ball mill specifically designed for this application.",
+      "document_title": "RETSCH, CryoMill product page and technical data (accessed 2026-10-31)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+      "location": "Product description, first paragraph (cached research/v5/cache/b6343e1615bb3892.txt) line 299",
+      "reasoning": "This key is the hot desorption/injection setpoint of a cold-focusing trap. The CryoMill has no trap and no heater: its modes are LN2 cryogenic grinding and ambient-temperature grinding only. The property does not exist on this machine. No numeric value is given, which matches how other v6_yellow results record a numeric absence."
+    }
+  ]
+}

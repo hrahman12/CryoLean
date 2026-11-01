@@ -1,0 +1,90 @@
+{
+ "id": "metro_argon_triple_point_sprt",
+ "name": "Calibration of long-stem standard platinum resistance thermometers at the ITS-90 triple point of argon (83.8058 K) in a liquid-nitrogen-cooled sealed argon cell (Isotech Model 471)",
+ "plain_name": "Calibrate a precision platinum thermometer at the melting point of frozen argon",
+ "industry": "metrology_and_calibration",
+ "description": "A sealed argon cell is frozen with liquid nitrogen poured through its re-entrant well. The SPRT is then calibrated on the melting plateau, which lasts about 4 h. Isotech states k=2 uncertainty of 0.5 mK; NIST lists 0.14 mK for its own realization.",
+ "keywords": [
+  "Calibrate a precision platinum thermometer at the melting point of frozen argon",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "Tavener, Argon Triple Point - Isotech Model 471, Isotech Seminar 2018",
+   "url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "NIST SPRT Calibration Laboratory",
+   "url": "https://www.nist.gov/node/1896016",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Isotech Model 471",
+  "Isotech-Bonnier Argon Triple Point Apparatus",
+  "SPRT (model 670)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "83805.8",
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The calibration point is the argon triple point, 83.8058 K.",
+   "evidence_ids": [
+    "v4e_metro_argon_triple_point_sprt_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "83805.8",
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The argon has to be frozen, so the apparatus must cool below the triple point.",
+   "evidence_ids": [
+    "v4e_metro_argon_triple_point_sprt_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Isotech procedure freezes the cell with LN2. NIST also has a closed-cycle apparatus, so LN2 is not mandatory.",
+   "evidence_ids": [
+    "v4e_metro_argon_triple_point_sprt_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

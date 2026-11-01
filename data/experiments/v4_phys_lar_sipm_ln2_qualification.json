@@ -1,0 +1,101 @@
+{
+ "id": "phys_lar_sipm_ln2_qualification",
+ "name": "Cryogenic I-V, dark-count-rate and thermal-cycling qualification of 6x6 mm2 SiPMs at 77 K for a liquid-argon neutrino detector",
+ "plain_name": "Qualify light sensors for a liquid-argon neutrino detector by dunking them in liquid nitrogen",
+ "industry": "physics_and_particle_accelerators",
+ "description": "DUNE photon-detection-system SiPM validation: sensors are lowered into a liquid-nitrogen dewar on a linear stage with a PT100 nearby, I-V curves are taken with a source-measure unit over triaxial cables, dark count rate, gain and correlated noise are recorded in the dark with a cryogenic amplifier, and the sensors undergo 20 room-temperature/LN2 thermal cycles.",
+ "keywords": [
+  "Qualify light sensors for a liquid-argon neutrino detector by dunking them in liquid nitrogen",
+  "physics_and_particle_accelerators"
+ ],
+ "sources": [
+  {
+   "citation": "Cryogenic characterization of FBK NUV-HD-Cryo 3T SiPM sensors for the DUNE photon detection system (arXiv:2511.19095v1)",
+   "url": "https://arxiv.org/html/2511.19095v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "liquid nitrogen (LN2) dewar with mechanical linear stage",
+  "PT100 temperature sensor",
+  "source meter unit (SMU)",
+  "cryogenic amplification (CA) stage",
+  "digital oscilloscope"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "DCR and noise specifications are verified at 77 K.",
+   "evidence_ids": [
+    "v4e_phys_lar_sipm_ln2_qualification_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Sensors are immersed (dived) in liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_phys_lar_sipm_ln2_qualification_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Bias and signal leads (triaxial cables to the SMU, cryogenic amplifier) must reach the sensor.",
+   "evidence_ids": [
+    "v4e_phys_lar_sipm_ln2_qualification_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "8.5",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "A 6x6 mm2 sensor has a circumscribed diameter of 8.5 mm.",
+   "evidence_ids": [
+    "v4e_phys_lar_sipm_ln2_qualification_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

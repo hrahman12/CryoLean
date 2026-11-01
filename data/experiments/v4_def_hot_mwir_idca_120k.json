@@ -1,0 +1,105 @@
+{
+ "id": "def_hot_mwir_idca_120k",
+ "name": "Operating a high-operating-temperature (HOT) T2SL MWIR focal-plane array at about 120 K in a vacuum dewar cooled by a linear Stirling cryocooler (integrated dewar cooler assembly)",
+ "plain_name": "Keep a thermal-sight camera's infrared chip near 120 K inside a sealed vacuum package with a long-life cooler",
+ "industry": "defense_and_security",
+ "description": "Cooled MWIR camera modules (Teledyne FLIR Neutrino) put the focal-plane array, cold shield and cold filter in a vacuum dewar with hermetically sealed electrical feedthroughs, cooled by a mechanical linear cryocooler (FL-100) in an Integrated Dewar Cooler Assembly. HOT barrier (T2SL) detectors operate at approximately 120 K, versus about 77 K for InSb and most HgCdTe; the FL-100 MTTF is about 27,000 h from lifetime tests and Weibull analysis.",
+ "keywords": [
+  "Keep a thermal-sight camera's infrared chip near 120 K inside a sealed vacuum package with a long-life cooler",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+   "url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Teledyne FLIR FL-100 cryocooler",
+  "Neutrino"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 120000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The HOT barrier FPA operates at approximately 120 K.",
+   "evidence_ids": [
+    "v4e_def_hot_mwir_idca_120k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The FPA is housed in a vacuum dewar.",
+   "evidence_ids": [
+    "v4e_def_hot_mwir_idca_120k_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Infrared photons must reach the FPA through the cold shield and cold filter.",
+   "evidence_ids": [
+    "v4e_def_hot_mwir_idca_120k_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "ROIC signals leave the dewar through hermetic electrical feedthroughs.",
+   "evidence_ids": [
+    "v4e_def_hot_mwir_idca_120k_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cooling is by a mechanical cryocooler integrated with the dewar; no liquid cryogen in the field.",
+   "evidence_ids": [
+    "v4e_def_hot_mwir_idca_120k_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

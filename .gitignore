@@ -18,6 +18,14 @@ data/registry/
 .DS_Store
 Thumbs.db
 
+# Frontend dependencies, local hosting identity and generated output
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.vercel/
+/.vercel/
+/frontend/.qa/
+/frontend/test-results/
+
 # Built locally from the JSON seeds (python -m cryolean build-db)
 data/cryolean.db
 data/*.db-journal
@@ -27,3 +35,6 @@ data/*.db-journal
 
 # Lanyon runs (session logs with account ids); the published session is copied to docs/lanyon/
 research/lanyon/runs/
+
+# v5 deep-scrape snapshot cache (full page/PDF text, local only; URLs, hashes and short quotes are committed)
+research/v5/cache/

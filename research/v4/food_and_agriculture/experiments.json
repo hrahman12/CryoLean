@@ -1,0 +1,994 @@
+{
+ "industry": "food_and_agriculture",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "food_bull_semen_programmable_freezing",
+   "name": "Programmed freezing of Tris-egg-yolk-glycerol bull semen in 0.5 mL straws (5 to -140 °C at 5/40/20 °C/min, Mini Digitcool UJ400) with plunge into liquid nitrogen",
+   "plain_name": "Freeze bull semen straws for artificial insemination in a programmable freezer",
+   "industry": "food_and_agriculture",
+   "description": "USDA ARS National Animal Germplasm Program protocol: bull semen extended in Tris-egg yolk (final 7% glycerol) is cooled to 5 °C over 2 h, loaded into 0.5 mL straws and frozen in a programmable freezer on a three-segment curve (5 to -10 °C at 5 °C/min, -10 to -110 °C at 40 °C/min, -110 to -140 °C at 20 °C/min), then plunged into liquid nitrogen for storage and later thawed 30 s at 37 °C for artificial insemination of cattle.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 133150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 278150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The freezing curve starts at 5 °C (278.15 K) and ends at -140 °C (133.15 K) inside the freezer chamber before the plunge, so the chamber must control temperature across that whole span.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', programmable freezer method",
+     "quote": "Programmable freezer: The samples are frozen using the Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN) with the following curve: 5 °C to -10 °C at 5 °C/min; -10 °C to -110°C at 40 °C/min; -110°C to -140°C at 20°C/min and then plunged into liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 5000,
+       "unit": "mK_per_min"
+      },
+      "hi": {
+       "value": 40000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The curve uses controlled cooling rates of 5, 40 and 20 °C/min, so the freezer must impose rates from 5 °C/min (5000 mK/min) to 40 °C/min (40000 mK/min).",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', programmable freezer method",
+     "quote": "Programmable freezer: The samples are frozen using the Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN) with the following curve: 5 °C to -10 °C at 5 °C/min; -10 °C to -110°C at 40 °C/min; -110°C to -140°C at 20°C/min and then plunged into liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "At -140 °C the straws are plunged into liquid nitrogen for storage; liquid nitrogen must be available at the freezer.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', programmable freezer method",
+     "quote": "Programmable freezer: The samples are frozen using the Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN) with the following curve: 5 °C to -10 °C at 5 °C/min; -10 °C to -110°C at 40 °C/min; -110°C to -140°C at 20°C/min and then plunged into liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.controlled_rate_freezing"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The method is a programmed, controlled-rate freeze; the core temperature and rate keys already decide most machines, so this documented-process flag is supporting only.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', programmable freezer method",
+     "quote": "Programmable freezer: The samples are frozen using the Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN) with the following curve: 5 °C to -10 °C at 5 °C/min; -10 °C to -110°C at 40 °C/min; -110°C to -140°C at 20°C/min and then plunged into liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "storage.capacity.straws_0_5ml"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 1
+     },
+     "mandatory": false,
+     "rationale": "Semen is packaged in 0.5 mL straws; a machine documenting 0.5 mL straw capacity is preferred (optional because the batch size is not specified).",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 1, 'Semen collection and processing', last paragraph",
+     "quote": "The samples are then loaded into 0.5 mL CBS or wick and powder (aka French) semen straws.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN)",
+    "Hamilton Thorne motility analyzer (Beverly, MA)",
+    "Impact Shipper"
+   ]
+  },
+  {
+   "id": "food_bull_semen_ln2_vapour_box_freezing",
+   "name": "Box (static liquid-nitrogen-vapour) freezing of bull semen straws: 10 min on a rack 4.5 cm above liquid nitrogen, then plunge into liquid nitrogen for storage",
+   "plain_name": "Freeze bull semen straws on a rack held just above a pool of liquid nitrogen",
+   "industry": "food_and_agriculture",
+   "description": "The equipment-light alternative in the USDA ARS National Animal Germplasm Program bull-semen protocol (no programmable freezer): 0.5 mL straws on a rack are held in static liquid-nitrogen vapour 4.5 cm above the liquid surface for 10 min and then plunged into the liquid nitrogen, where they are stored at liquid-nitrogen temperature until thawing at 37 °C for insemination.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Freezing happens in the vapour 4.5 cm above a liquid-nitrogen pool and the straws are then plunged into the liquid nitrogen, so the container must hold liquid nitrogen.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', box freezing method",
+     "quote": "Box freezing: Samples are placed on a rack and frozen in liquid nitrogen vapor (4.5 cm above liquid nitrogen) for 10 min and plunged into the liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The frozen straws end up immersed in liquid nitrogen, whose temperature the livestock-embryo protocol states as -196 °C (77.15 K); the storage space must reach it.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+     "document_title": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "location": "Abstract (protocol step 7.2)",
+     "quote": "Embryos are cooled at a rate of 0.5°C/min, enabling further dehydration, to a temperature of -34°C before being plunged into liquid nitrogen (-196°C).",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.ln2_immersion"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The straws are plunged directly into liquid nitrogen after vapour freezing; supporting flag only.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 2, 'Semen cryopreservation', box freezing method",
+     "quote": "Box freezing: Samples are placed on a rack and frozen in liquid nitrogen vapor (4.5 cm above liquid nitrogen) for 10 min and plunged into the liquid nitrogen for storage.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "storage.capacity.straws_0_5ml"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 1
+     },
+     "mandatory": false,
+     "rationale": "The semen is packaged in 0.5 mL straws; documented 0.5 mL straw capacity is preferred but the batch size is not specified.",
+     "source_url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+     "document_title": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "location": "Page 1, 'Semen collection and processing', last paragraph",
+     "quote": "The samples are then loaded into 0.5 mL CBS or wick and powder (aka French) semen straws.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+     "url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf"
+    },
+    {
+     "citation": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/"
+    }
+   ],
+   "reported_equipment": [
+    "rack in liquid nitrogen vapor (4.5 cm above liquid nitrogen)"
+   ]
+  },
+  {
+   "id": "food_bovine_embryo_slow_freezing",
+   "name": "Slow freezing of bovine (and ovine/caprine) preimplantation embryos in ethylene glycol in 0.25 mL straws: seeding at -6 °C, 0.5 °C/min to -34 °C, plunge into liquid nitrogen (-196 °C) for direct transfer",
+   "plain_name": "Slow-freeze cattle embryos in straws so they can later be transferred into surrogate cows",
+   "industry": "food_and_agriculture",
+   "description": "Livestock embryo-transfer practice described by Youngs (JoVE 2011): embryos equilibrated in 1.4-1.5 M ethylene glycol or glycerol are loaded individually into 0.25 mL straws, placed in a controlled-rate freezer at -6 °C, seeded with liquid-nitrogen-cooled tongs, held 10 min, cooled at 0.5 °C/min to -34 °C, held 10 min and plunged into liquid nitrogen (-196 °C) for storage in dewar canisters; ethylene-glycol embryos can be transferred directly after thawing.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 239150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 267150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The freezer chamber must hold the seeding temperature -6 °C (267.15 K) and cool to the plunge temperature -34 °C (239.15 K).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+     "document_title": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "location": "Abstract (protocol steps 5.2, 7.1-7.2)",
+     "quote": "Embryos are placed into a controlled rate freezer at a temperature of -6°C.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 500,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The controlled cooling rate after seeding is 0.5 °C/min (500 mK/min).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+     "document_title": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "location": "Abstract (protocol step 7.1)",
+     "quote": "Embryos are cooled at a rate of 0.5°C/min, enabling further dehydration, to a temperature of -34°C before being plunged into liquid nitrogen (-196°C).",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Seeding uses tongs supercooled in liquid nitrogen and the straws are plunged into liquid nitrogen at -34 °C.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+     "document_title": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "location": "Abstract (protocol steps 6.1 and 7.2)",
+     "quote": "Embryos are cooled at a rate of 0.5°C/min, enabling further dehydration, to a temperature of -34°C before being plunged into liquid nitrogen (-196°C).",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.controlled_rate_freezing"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The method needs a programmable (methanol-bath or LN2-vapour) freezing machine; supporting flag only because the temperature and rate keys decide most machines.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+     "document_title": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "location": "Protocol step 5.1",
+     "quote": "Either methanol bath or liquid nitrogen vapor freezing machines may be programmed for cryopreservation of preimplantation embryos.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. Journal of Visualized Experiments (54): e2764. doi:10.3791/2764",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/"
+    }
+   ],
+   "reported_equipment": [
+    "methanol bath or liquid nitrogen vapor freezing machine (no model named)",
+    "liquid nitrogen dewar with canisters, canes and goblets"
+   ]
+  },
+  {
+   "id": "food_seed_genebank_base_collection",
+   "name": "Long-term (base-collection) storage of dried orthodox crop seed at -18 ± 3 °C and 15 ± 3% RH in sealed airtight containers (FAO Genebank Standard 4.2.3)",
+   "plain_name": "Keep a seed bank's master copies of crop seeds in a minus-18 freezer for decades",
+   "industry": "food_and_agriculture",
+   "description": "Genebanks conserve the most-original samples and safety duplicates of orthodox crop seed (maize, wheat, rice, etc.) after drying to equilibrium at 5-20 °C and 10-25% RH, sealing in airtight containers and storing at -18 ± 3 °C. The same -18 °C regime is used at the Svalbard Global Seed Vault (artificial cooling keeps a constant -18 C) and for USDA ARS original (base) seed collections.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 255150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Base collections are stored at a set point of -18 °C (255.15 K).",
+     "source_url": "https://www.fao.org/4/i3704e/i3704e.pdf",
+     "document_title": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "location": "Section 4.2 'Standards for drying and storage', Standard 4.2.3, printed page 24 (PDF page 37)",
+     "quote": "Most-original-samples and safety duplicate samples should be stored under long-term conditions (base collections) at a temperature of –18 ± 3 °C and relative humidity of 15 ± 3 percent.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 3000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The standard asks for storage within ±3 °C of the set temperature; optional because it is phrased as best effort with limited excursions allowed.",
+     "source_url": "https://www.fao.org/4/i3704e/i3704e.pdf",
+     "document_title": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "location": "Section 4.2, 'Context', printed page 25 (PDF page 38)",
+     "quote": "For long-term stored seeds, all attempts should be made to maintain storage temperatures within ±3 °C of the set temperature",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "humidity.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 15,
+       "unit": "percent"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Standard 4.2.3 also gives 15 ± 3% storage RH; optional because Standard 4.2.2 seals the seed in airtight containers and USDA base collections at -18 °C do not control RH.",
+     "source_url": "https://www.fao.org/4/i3704e/i3704e.pdf",
+     "document_title": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "location": "Section 4.2, Standard 4.2.3, printed page 24 (PDF page 37)",
+     "quote": "Most-original-samples and safety duplicate samples should be stored under long-term conditions (base collections) at a temperature of –18 ± 3 °C and relative humidity of 15 ± 3 percent.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "url": "https://www.fao.org/4/i3704e/i3704e.pdf"
+    },
+    {
+     "citation": "Svalbard Global Seed Vault: The facility (seedvault.no)",
+     "url": "https://www.seedvault.no/about/the-facility/"
+    },
+    {
+     "citation": "USDA ARS North Central Regional Plant Introduction Station (Ames, Iowa): Storage Conditions",
+     "url": "https://www.ars.usda.gov/midwest-area/ames/plant-introduction-research/home/station-information/storage-conditions/"
+    }
+   ],
+   "reported_equipment": [
+    "single stage standard deep freezer compressor (FAO context for -18 °C)",
+    "Svalbard Global Seed Vault artificial cooling system",
+    "USDA ARS NCRPIS original seed collection storage at -18°C"
+   ]
+  },
+  {
+   "id": "food_apple_dormant_bud_cryopreservation",
+   "name": "Dormant-bud cryopreservation of Malus and Pyrus germplasm: 35 mm single-bud stem sections dehydrated to 30% moisture, cooled at 1 °C/h to -30 °C in a Kryo 360-3.3, held 24 h, stored in LN2 vapour",
+   "plain_name": "Back up apple and pear tree varieties by slowly freezing their winter buds",
+   "industry": "food_and_agriculture",
+   "description": "Fruit Genebank Dresden-Pillnitz (JKI) duplicate-collection method: winter-dormant budwood is cut into 35 mm single-bud sections, dehydrated to 30% moisture at -5 °C, placed in 4.5 mL cryovials, cooled at 1 °C/h to -30 °C in a controlled-rate freezer, held at -30 °C for 24 h, transferred to the vapour phase over liquid nitrogen, and later rewarmed at +4 °C for 24 h before grafting.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 243150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The controlled-rate freezer must reach and hold -30 °C (243.15 K) for 24 h.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+     "document_title": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "location": "Section 2.2 'Cryopreservation—Dormant Buds of Malus and Pyrus'",
+     "quote": "After holding at −30 °C for 24 h",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 16,
+       "unit": "mK_per_min"
+      },
+      "hi": {
+       "value": 17,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The slow-cooling rate is 1 °C/h = 16.67 mK/min, which has no exact decimal form in mK/min; the machine's controllable rate range must cover 16-17 mK/min, an interval containing 1 °C/h.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+     "document_title": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "location": "Section 2.2 'Cryopreservation—Dormant Buds of Malus and Pyrus'",
+     "quote": "controlled-rate temperature reduction freezer (Kryo 360-3.3, Messer Cryotherm, Euteneuen, Germany) using the freezing protocol of 1 °C/h to −30 °C",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "After the -30 °C hold the vials are stored in the vapour phase over liquid nitrogen in a separate Biosafe tank; optional for the freezing machine itself.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+     "document_title": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "location": "Section 2.2 'Cryopreservation—Dormant Buds of Malus and Pyrus'",
+     "quote": "the cryovials were transferred into cryoboxes and stored for 2 months in the vapor phase over liquid nitrogen",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.controlled_rate_freezing"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "A programmed controlled-rate freezer is used; supporting flag only.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+     "document_title": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "location": "Section 2.2 'Cryopreservation—Dormant Buds of Malus and Pyrus'",
+     "quote": "controlled-rate temperature reduction freezer (Kryo 360-3.3, Messer Cryotherm, Euteneuen, Germany) using the freezing protocol of 1 °C/h to −30 °C",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 35,
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Each sample is a 35 mm stem section (two or three per 4.5 mL cryovial); the sample space must accept at least that length. Optional because vial dimensions are not given.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/",
+     "document_title": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "location": "Section 2.2 'Cryopreservation—Dormant Buds of Malus and Pyrus'",
+     "quote": "Stem sections 35 mm long, with only one bud, in the middle",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Hoefer M, Flachowsky H (2023). Cryopreservation of Malus and Pyrus Wild Species in the 'Fruit Genebank' in Dresden-Pillnitz, Germany. Biology 12(2):200. doi:10.3390/biology12020200",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9952886/"
+    }
+   ],
+   "reported_equipment": [
+    "Kryo 360-3.3 (Messer Cryotherm, Euteneuen, Germany)",
+    "Biosafe (Messer Cryotherm, Euteneuen, Germany)",
+    "4.5-mL cryovials (Nunc, Thermo Fisher Scientific)"
+   ]
+  },
+  {
+   "id": "food_sweet_potato_droplet_vitrification",
+   "name": "Droplet vitrification of sweet potato axillary meristems (20 min LS, 30 min PVS2 on ice, aluminium foil strip plunged into liquid nitrogen, held in 2 mL cryotubes of LN)",
+   "plain_name": "Preserve sweet potato varieties by flash-freezing tiny shoot tips on foil strips",
+   "industry": "food_and_agriculture",
+   "description": "Clonal-crop genebank method (KU Leuven / Bioversity International): 1 mm3 axillary meristems are loaded for 20 min, dehydrated 30 min in PVS2 in an ice bath, placed in droplets on a 4 x 15 mm aluminium foil strip, plunged into liquid nitrogen and kept for at least 30 min in a 2 mL cryotube filled with liquid nitrogen before rewarming in recovery solution at room temperature; cryopreservation of shoot tips in LN at -196 °C is the FAO-recognised long-term route for vegetatively propagated food crops.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The foil strip is plunged into liquid nitrogen and the meristems are held in a cryotube filled with liquid nitrogen.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7477159/",
+     "document_title": "Wilms H, Fanega Sleziak N, Van der Auweraer M, et al., Panis B (2020). Development of a fast and user-friendly cryopreservation protocol for sweet potato genetic resources. Scientific Reports 10:14674. doi:10.1038/s41598-020-70869-3",
+     "location": "Materials and Methods, 'Droplet cryopreservation'",
+     "quote": "Subsequently the aluminium strip was plunged into liquid nitrogen (LN).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cryopreserved plant shoot tips are held at the liquid-nitrogen temperature, -196 °C (77.15 K).",
+     "source_url": "https://www.fao.org/4/i3704e/i3704e.pdf",
+     "document_title": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "location": "Chapter 1 'Introduction', printed page 4 (PDF page 17)",
+     "quote": "Cryopreservation is the storage of biological materials (seeds, plant embryos, shoot tips/meristems, and/or pollen) at ultra-low temperatures, usually that of liquid nitrogen (LN) at –196 °C",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.ln2_immersion"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The carrier (foil strip) is immersed directly in liquid nitrogen; supporting flag only.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7477159/",
+     "document_title": "Wilms H, Fanega Sleziak N, Van der Auweraer M, et al., Panis B (2020). Development of a fast and user-friendly cryopreservation protocol for sweet potato genetic resources. Scientific Reports 10:14674. doi:10.1038/s41598-020-70869-3",
+     "location": "Materials and Methods, 'Droplet cryopreservation'",
+     "quote": "Subsequently the aluminium strip was plunged into liquid nitrogen (LN).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "storage.capacity.vials_2ml"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 1
+     },
+     "mandatory": false,
+     "rationale": "Meristems are kept in a 2 mL cryotube filled with liquid nitrogen; a storage system that documents 2 mL vial capacity is preferred.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7477159/",
+     "document_title": "Wilms H, Fanega Sleziak N, Van der Auweraer M, et al., Panis B (2020). Development of a fast and user-friendly cryopreservation protocol for sweet potato genetic resources. Scientific Reports 10:14674. doi:10.1038/s41598-020-70869-3",
+     "location": "Materials and Methods, 'Droplet cryopreservation'",
+     "quote": "transferred to a 2 mL cryotube filled with liquid nitrogen where the meristems remained for at least 30 min.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Wilms H, Fanega Sleziak N, Van der Auweraer M, et al., Panis B (2020). Development of a fast and user-friendly cryopreservation protocol for sweet potato genetic resources. Scientific Reports 10:14674. doi:10.1038/s41598-020-70869-3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7477159/"
+    },
+    {
+     "citation": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+     "url": "https://www.fao.org/4/i3704e/i3704e.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "sterile laminar flow bench",
+    "binocular microscope",
+    "aluminium foil strip (4 × 15 mm)",
+    "2 mL cryotube"
+   ]
+  },
+  {
+   "id": "food_blueberry_ln2_quick_freezing",
+   "name": "Liquid-nitrogen quick freezing of 'Northcountry' blueberries at -80, -100 and -120 °C to below Tg' (-52.55 °C), compared with a -80 °C ultra-low freezer",
+   "plain_name": "Flash-freeze blueberries in liquid nitrogen to keep them firm and juicy",
+   "industry": "food_and_agriculture",
+   "description": "Blueberries were frozen to their glass-transition end point (Tg' = -52.55 °C) either in an ultra-low temperature freezer at -80 °C or by direct immersion in liquid nitrogen at set points of -80, -100 and -120 °C; LN-120 °C gave the least quality loss (juice loss, hardness, anthocyanin, membrane integrity, microstructure).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 153150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The best-performing treatment, LN-120 °C, needs the freezing space at -120 °C (153.15 K).",
+     "source_url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+     "document_title": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "location": "Abstract (English)",
+     "quote": "or at −80, −100 or −120 ℃ by direct immersion in liquid nitrogen (LN−80 ℃, LN−100 ℃, and LN−120 ℃, respectively).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Freezing is done by direct immersion in liquid nitrogen.",
+     "source_url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+     "document_title": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "location": "Abstract (English)",
+     "quote": "or at −80, −100 or −120 ℃ by direct immersion in liquid nitrogen (LN−80 ℃, LN−100 ℃, and LN−120 ℃, respectively).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 220600,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Tg' (-52.55 °C = 220.6 K) is the freezing end point, so the machine must reach below it.",
+     "source_url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+     "document_title": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "location": "Abstract (English)",
+     "quote": "The results showed that the Tg’ of blueberries was −52.55 ℃; compared with RF-80 ℃, the quality of liquid nitrogen frozen blueberries was better maintained.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 153150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 193150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Reproducing the full comparison needs set points from -120 °C to -80 °C (153.15-193.15 K); optional beyond the -120 °C operating point.",
+     "source_url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+     "document_title": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "location": "Abstract (English)",
+     "quote": "or at −80, −100 or −120 ℃ by direct immersion in liquid nitrogen (LN−80 ℃, LN−100 ℃, and LN−120 ℃, respectively).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "process.ln2_immersion"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The fruit is immersed directly in liquid nitrogen; supporting flag only.",
+     "source_url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225",
+     "document_title": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "location": "Abstract (English)",
+     "quote": "or at −80, −100 or −120 ℃ by direct immersion in liquid nitrogen (LN−80 ℃, LN−100 ℃, and LN−120 ℃, respectively).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Huang B, Li Y, Hu Z (2024). Effect of Glassy State and Liquid Nitrogen Quick Freezing on the Quality Characteristics of Blueberries. Food Science (Shipin Kexue) 45(6):225-232. doi:10.7506/spkx1002-6630-20230629-236",
+     "url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225"
+    }
+   ],
+   "reported_equipment": [
+    "ultra-low temperature freezer (RF−80 ℃)",
+    "liquid nitrogen direct-immersion quick freezing (LN−80/−100/−120 ℃)"
+   ]
+  },
+  {
+   "id": "food_litchi_ln2_tunnel_freezing",
+   "name": "Liquid-nitrogen spray tunnel freezing of whole litchi at -40 to -70 °C (full-cone vs hollow-cone nozzles, 800/1200 rpm fans) to a -18 °C core",
+   "plain_name": "Quick-freeze whole litchi fruit in a liquid-nitrogen spray tunnel without cracking the peel",
+   "industry": "food_and_agriculture",
+   "description": "Taguchi optimisation on a liquid-nitrogen quick-freezing tunnel (Shenzhen De jie li Cryogenic Technology): pre-treated whole litchis (35.2 mm average diameter, 36.09 mm height, 23.9 g) were frozen at tunnel temperatures of -40, -50, -60 and -70 °C with two nozzle types and two fan speeds until the core reached -18 °C; crack ratio, freezing time and nitrogen consumption fell as the tunnel temperature was lowered.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 203150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 233150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The design uses tunnel temperatures from -70 °C (203.15 K) to -40 °C (233.15 K).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+     "document_title": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "location": "Materials and methods, Taguchi experimental design",
+     "quote": "Litchi fruits were frozen under temperatures of − 40, − 50, − 60, and − 70 °C",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Cooling is by liquid nitrogen sprayed through nozzles in the tunnel; consumption is metered on the nitrogen pipe.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+     "document_title": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "location": "Materials and methods, freezing unit",
+     "quote": "The experiments utilized a liquid nitrogen freezing unit manufactured by Shenzhen De jie li Cryogenic Technology Co., Ltd.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "35.2",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Whole fruits averaging 35.2 mm in diameter must pass through the freezing space.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+     "document_title": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "location": "Materials and methods, litchi fruit preparation",
+     "quote": "The average fruit weight was 23.9 g, the average height was 36.09 mm, and the average diameter was 35.2 mm.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "36.09",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Whole fruits averaging 36.09 mm in height must fit the clearance of the freezing space.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+     "document_title": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "location": "Materials and methods, litchi fruit preparation",
+     "quote": "The average fruit weight was 23.9 g, the average height was 36.09 mm, and the average diameter was 35.2 mm.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 255150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Freezing continues until the fruit core reaches -18 °C (255.15 K), so the space must be colder than that.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+     "document_title": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "location": "Materials and methods, freezing end point",
+     "quote": "The Litchis were frozen until their core temperature reached − 18 ºC.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/"
+    }
+   ],
+   "reported_equipment": [
+    "liquid nitrogen freezing unit (Shenzhen De jie li Cryogenic Technology Co., Ltd.): feeding chain, freezing tunnel, PLC control unit, tunnel cover, distributing fans",
+    "Hollow-cone and Full-cone nitrogen spraying nozzles"
+   ]
+  },
+  {
+   "id": "food_cumin_cryogenic_grinding",
+   "name": "Cryogenic grinding of cumin seed (genotypes GC 4 and RZ 209) with liquid-nitrogen pre-cooling to a -30 °C set point in a Fine Impact Mill 100UPZ, 50-100 um powder",
+   "plain_name": "Grind cumin seeds into spice powder while liquid nitrogen keeps their aroma in",
+   "industry": "food_and_agriculture",
+   "description": "ICAR-National Research Centre on Seed Spices: cumin seed is chilled by liquid nitrogen sprayed and blended directly onto it until it reaches a -30 °C set point, then ground in a pin (impact) mill to 50-100 um; cryo-grinding raised volatile-oil recovery by 33.9-43.5% over a conventional mixer grinder.",
+   "requirements": [
+    {
+     "keys": [
+      "process.cryogenic_milling"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The procedure is mechanical comminution with cryogenic cooling; a machine without a grinding function cannot perform it.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4951436/",
+     "document_title": "Sharma LK, Agarwal D, Rathore SS, Malhotra SK, Saxena SN (2016). Effect of cryogenic grinding on volatile and fatty oil constituents of cumin (Cuminum cyminum L.) genotypes. Journal of Food Science and Technology 53(6):2827-2834. doi:10.1007/s13197-016-2258-0",
+     "location": "Materials and methods, 'Grinding of seeds'",
+     "quote": "Cryogenic grinding of seeds was done using a cryogenic grinder (Spectra cryogenics, India) model Fine Impact Mill 100UPZ",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 243150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The seed is cooled to a predetermined set point of -30 °C (243.15 K) before milling.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4951436/",
+     "document_title": "Sharma LK, Agarwal D, Rathore SS, Malhotra SK, Saxena SN (2016). Effect of cryogenic grinding on volatile and fatty oil constituents of cumin (Cuminum cyminum L.) genotypes. Journal of Food Science and Technology 53(6):2827-2834. doi:10.1007/s13197-016-2258-0",
+     "location": "Materials and methods, 'Grinding of seeds'",
+     "quote": "Liquid nitrogen is added until the temperature of the material is reduced to a predetermined set point (−30 °C).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Cooling is by liquid nitrogen sprayed directly onto the seed.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4951436/",
+     "document_title": "Sharma LK, Agarwal D, Rathore SS, Malhotra SK, Saxena SN (2016). Effect of cryogenic grinding on volatile and fatty oil constituents of cumin (Cuminum cyminum L.) genotypes. Journal of Food Science and Technology 53(6):2827-2834. doi:10.1007/s13197-016-2258-0",
+     "location": "Materials and methods, 'Grinding of seeds'",
+     "quote": "Liquid nitrogen is sprayed and blended directly onto the material.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Sharma LK, Agarwal D, Rathore SS, Malhotra SK, Saxena SN (2016). Effect of cryogenic grinding on volatile and fatty oil constituents of cumin (Cuminum cyminum L.) genotypes. Journal of Food Science and Technology 53(6):2827-2834. doi:10.1007/s13197-016-2258-0",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4951436/"
+    }
+   ],
+   "reported_equipment": [
+    "Fine Impact Mill 100UPZ (Spectra cryogenics, India)",
+    "Sujata Dynamix mixer grinder, 810 W (non-cryogenic comparison)"
+   ]
+  },
+  {
+   "id": "food_tuna_ultralow_frozen_storage",
+   "name": "Long-term ultra-low-temperature frozen storage of tuna meat at -45 °C or lower to prevent metmyoglobin (browning) formation",
+   "plain_name": "Store sashimi tuna deep-frozen cold enough that its red colour does not turn brown",
+   "industry": "food_and_agriculture",
+   "description": "Nakazawa et al. (Int. J. Refrigeration 2020) stored low-pH and high-pH tuna meat at a range of frozen-storage temperatures over long periods: metMb% rose in low-pH meat held warmer than -40 °C, while no increase occurred at -45 °C or lower regardless of pH, supporting ultra-low-temperature storage of tuna.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range",
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 228150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Colour stability (no metMb increase) needs storage at -45 °C (228.15 K) or colder; either a documented range reaching that low or a documented lowest temperature settles it.",
+     "source_url": "https://iifiir.org/en/fridoc/effect-of-long-term-storage-ultra-low-temperature-and-freshness-on-142126",
+     "document_title": "Nakazawa N, Wada R, Fukushima H, Tanaka R, Kono S, Okazaki E (2020). Effect of long-term storage, ultra-low temperature, and freshness on the quality characteristics of frozen tuna meat. International Journal of Refrigeration 112:270-280. doi:10.1016/j.ijrefrig.2019.12.012 (IIR FRIDOC abstract record)",
+     "location": "Abstract",
+     "quote": "An increase in the metMb% was not observed in meat stored at −45 °C or lower, irrespective of the pH.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 233150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Storage warmer than -40 °C (233.15 K) increased metMb in low-pH meat; optional because the -45 °C requirement already covers it.",
+     "source_url": "https://iifiir.org/en/fridoc/effect-of-long-term-storage-ultra-low-temperature-and-freshness-on-142126",
+     "document_title": "Nakazawa N, Wada R, Fukushima H, Tanaka R, Kono S, Okazaki E (2020). Effect of long-term storage, ultra-low temperature, and freshness on the quality characteristics of frozen tuna meat. International Journal of Refrigeration 112:270-280. doi:10.1016/j.ijrefrig.2019.12.012 (IIR FRIDOC abstract record)",
+     "location": "Abstract",
+     "quote": "The increase in metMb% was higher in the Low-pH samples stored at temperatures higher than −40 °C.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Nakazawa N, Wada R, Fukushima H, Tanaka R, Kono S, Okazaki E (2020). Effect of long-term storage, ultra-low temperature, and freshness on the quality characteristics of frozen tuna meat. International Journal of Refrigeration 112:270-280. doi:10.1016/j.ijrefrig.2019.12.012 (IIR FRIDOC abstract record)",
+     "url": "https://iifiir.org/en/fridoc/effect-of-long-term-storage-ultra-low-temperature-and-freshness-on-142126"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ],
+ "notes": "10 food_and_agriculture experiment profiles; every quote verbatim from the cited source (PMC full text, USDA/FAO documents, journal abstract pages)."
+}

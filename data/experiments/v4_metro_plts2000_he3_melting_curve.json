@@ -1,0 +1,104 @@
+{
+ "id": "metro_plts2000_he3_melting_curve",
+ "name": "Realization of the PLTS-2000 with a 3He melting-pressure thermometer on a dilution-refrigerator platform, normalized at the 315.24 mK pressure minimum",
+ "plain_name": "Set the millikelvin temperature scale from the pressure at which helium-3 freezes",
+ "industry": "metrology_and_calibration",
+ "description": "A capacitive 3He melting-pressure cell is bolted to the refrigerator platform and read with a three-terminal capacitance bridge. A nuclear stage is needed to reach the Néel point at 0.902 mK.",
+ "keywords": [
+  "Set the millikelvin temperature scale from the pressure at which helium-3 freezes",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "BIPM CCT Supplementary Information for the Realization of the PLTS-2000",
+   "url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "3He melting-pressure cells of Greywall and Busch (1982)",
+  "Schuster, Hoffmann and Hechtfischer (2001) melting-pressure thermometer on a dilution refrigerator"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "315.24",
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The scale must pass through its pressure minimum at 315.24 mK.",
+   "evidence_ids": [
+    "v4e_metro_plts2000_he3_melting_curve_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": "315.24",
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 1000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cell is operated from about 1 K down through the minimum.",
+   "evidence_ids": [
+    "v4e_metro_plts2000_he3_melting_curve_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 2
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Three-terminal capacitor readout needs one coax line per plate.",
+   "evidence_ids": [
+    "v4e_metro_plts2000_he3_melting_curve_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_lines"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.902",
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Covering the full scale down to 0.902 mK needs a nuclear cooling stage.",
+   "evidence_ids": [
+    "v4e_metro_plts2000_he3_melting_curve_3"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

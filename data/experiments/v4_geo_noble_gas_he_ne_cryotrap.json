@@ -1,0 +1,140 @@
+{
+ "id": "geo_noble_gas_he_ne_cryotrap",
+ "name": "Cryogenic He/Ne separation for groundwater noble-gas and 3H/3He dating: Ne adsorbed on a 14 K sintered-steel cold trap (+/-0.1 K), released at 100 K, in a UHV extraction line with LN2 traps",
+ "plain_name": "Separate helium from neon in groundwater gas with a 14 K cold trap",
+ "industry": "geology_and_oceanography",
+ "description": "Noble gases extracted from about 45 g of groundwater sealed in copper tubes are purified in an ultrahigh-vacuum line; water vapour and heavy gases are frozen onto liquid-nitrogen traps, and He is separated from Ne on a computer-controlled cryogenic cold trap held at 14 K (Ne adsorbed, He measured), then warmed to 100 K to release Ne, before magnetic-sector mass spectrometry (Eawag/ETH system).",
+ "keywords": [
+  "Separate helium from neon in groundwater gas with a 14 K cold trap",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+   "url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryogenic cold trap (CCT) with Nupro SS-2FE-5 sintered stainless-steel filter",
+  "SAES GP 50 getter",
+  "Pfeiffer TPU 050 turbomolecular pump",
+  "noncommercial 90 degree magnetic sector mass spectrometers MS1/MS2"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 14,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 100,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold trap must hold 14 K for Ne adsorption and then be heated to 100 K to release Ne, so the trap temperature must span 14-100 K.",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 14,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Quantitative Ne adsorption needs the trap at 14 K or colder.",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.1",
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The trap temperature is computer-set and must stay within 0.1 K during Ne adsorption.",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_2"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold trap sits in the all-metal ultrahigh-vacuum extraction and purification line.",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_3"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.0000001",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The extraction line is pumped to about 1e-7 mbar before the sample is opened (approximate figure, so optional).",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_4"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Water vapour and condensable gases are frozen onto an all-metal trap and a zeolite trap cooled by liquid nitrogen (separate traps on the same line).",
+   "evidence_ids": [
+    "v4e_geo_noble_gas_he_ne_cryotrap_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

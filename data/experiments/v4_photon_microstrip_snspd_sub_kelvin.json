@@ -1,0 +1,82 @@
+{
+ "id": "photon_microstrip_snspd_sub_kelvin",
+ "name": "System detection efficiency of a NbN superconducting microstrip single-photon detector at 1550 nm at 0.84 K (adsorption refrigerator), with a 2.1 K G-M cryocooler cross-check",
+ "plain_name": "Test a wide-strip superconducting photon counter below 1 kelvin so it catches over 90% of telecom photons",
+ "industry": "photonics_and_telecommunications",
+ "description": "Xu et al. (SIMIT) characterise a fibre-coupled NbN microstrip detector (50 um active diameter) at 0.84 K in an adsorption refrigerator (SDE ~92.2% at 1550 nm) and at 2.1 K in a compact closed-cycle G-M cryocooler (SDE > 70%); biased and read out through a cryogenic coaxial cable and a room-temperature bias tee.",
+ "keywords": [
+  "Test a wide-strip superconducting photon counter below 1 kelvin so it catches over 90% of telecom photons",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Superconducting microstrip single-photon detector with system detection efficiency over 90% at 1550 nm (Xu et al., arXiv:2101.05407)",
+   "url": "https://arxiv.org/pdf/2101.05407",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "adsorption refrigerator",
+  "compact closed-cycle G-M cryocooler",
+  "bias tee (ZX85-12G-S+, Mini Circuit Inc.)",
+  "LNA-650, RF Bay Inc.",
+  "SR400, SRS Inc.",
+  "81624B, Keysight Inc."
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 840,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The >90% system detection efficiency was obtained at 0.84 K; reaching that temperature is needed to reproduce the headline result.",
+   "evidence_ids": [
+    "v4e_photon_microstrip_snspd_sub_kelvin_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The detector is DC-biased and its RF pulses are read out through a cryogenic coaxial line to the bias tee.",
+   "evidence_ids": [
+    "v4e_photon_microstrip_snspd_sub_kelvin_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the paper also qualifies the detector (SDE > 70%) in a 2.1 K closed-cycle cryocooler, the practical deployment configuration.",
+   "evidence_ids": [
+    "v4e_photon_microstrip_snspd_sub_kelvin_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

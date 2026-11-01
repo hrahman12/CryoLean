@@ -1,0 +1,68 @@
+{
+  "id": "expa_teo2_bolometer",
+  "name": "TeO2 crystal bolometer particle-energy calorimetry near 10 mK",
+  "plain_name": "TeO2 crystal bolometer particle-energy calorimetry near 10 mK",
+  "industry": "physics_and_particle_accelerators",
+  "description": "Measure energy deposits using thermal pulses from cryogenic TeO2 absorber crystals in CUORE's low-background bolometer array.",
+  "keywords": [
+    "teo2 bolometer",
+    "bolometer array"
+  ],
+  "sources": [
+    {
+      "citation": "INFN Laboratori Nazionali del Gran Sasso, CUORE",
+      "url": "https://www.lngs.infn.it/it/cuore?cookie_08fa49e35a0857da952fcd871a3a3923=accepted",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "10 mK",
+      "evidence_id": "expa_cuore"
+    }
+  ],
+  "reported_equipment": [
+    "CUORE"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "0.01",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The source reports approximately 10 mK operating temperature; this is a nominal point.",
+      "evidence_ids": [
+        "expa_cuore"
+      ]
+    },
+    {
+      "key": "module.teo2_bolometer_calorimetry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Absorbers, thermistors and low-noise thermal readout are indispensable.",
+      "evidence_ids": [
+        "expa_cuore"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Bolometer heat capacity, thermal-link conductance, noise, energy calibration, cooling budget, radiopurity and shielding are not proven by these encoded checks."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

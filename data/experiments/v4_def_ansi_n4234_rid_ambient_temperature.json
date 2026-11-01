@@ -1,0 +1,141 @@
+{
+ "id": "def_ansi_n4234_rid_ambient_temperature",
+ "name": "ANSI N42.34-2006 clause 7.1 ambient-temperature influence test of an externally powered handheld radionuclide identifier from -20 C to +50 C",
+ "plain_name": "Check a handheld radiation identifier still names radioactive sources correctly from -20 C to +50 C",
+ "industry": "defense_and_security",
+ "description": "Homeland-security radionuclide-identifier qualification per ANSI N42.34-2006 clause 7.1: the switched-on instrument, powered from an external source, stabilizes at 22 C for 2 h in an environmental chamber, then is stepped at 10 C/h up to +50 C and down to -20 C with 1.5 h stabilization at each 10 C step and 8 h at each extreme, with Am-241/Co-60 identification trials and Cf-252 neutron checks at each plateau. The device envelope used for the size requirements is the ORTEC Detective-X HPGe identifier (39.5 x 16 x 21 cm), which is rated for -20 C to +50 C.",
+ "keywords": [
+  "Check a handheld radiation identifier still names radioactive sources correctly from -20 C to +50 C",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+   "url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "ORTEC Detective-X Ultra High Resolution HPGe Radioisotope Identification Device (data sheet)",
+   "url": "https://www.htds.fr/wp-content/uploads/2019/04/detective-x.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 253150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 323150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber must cover the full -20 C to +50 C operating range (253.15-323.15 K).",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The instrument runs from an external power source while inside the chamber, so a cable port/feedthrough to the test item is needed.",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 427,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Circumscribed diameter of the Detective-X footprint 39.5 cm x 16 cm (sqrt(395^2 + 160^2) = 426.2 mm, rounded up to 427 mm) must fit the chamber cross-section.",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 21,
+     "unit": "cm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 21 cm instrument height must fit the chamber's usable height.",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_3"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 167,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber ramps at 10 C/h (166.7 mK/min, rounded up to 167 mK/min); any programmable chamber does this.",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_4"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each temperature extreme is held for 8 h with the instrument operating.",
+   "evidence_ids": [
+    "v4e_def_ansi_n4234_rid_ambient_temperature_5"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "expc_npl_mechanical",
+  "manufacturer": "National Physical Laboratory (UK)",
+  "model": "Helium-cooled cryogenic mechanical testing facility",
+  "family": "cryogenic_tensile",
+  "description": "NPL helium-cooled tensile test configuration at 20 K for hydrogen-system materials. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_npl_mechanical",
+      "title": "National Physical Laboratory: Cryogenic testing services",
+      "url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_npl_helium_tensile_20k",
+      "name": "NPL helium-cooled tensile test configuration at 20 K for hydrogen-system materials",
+      "configuration_basis": "Real specialized NPL facility, using documented helium cooling and active temperature control. The selected comparison configuration is the explicitly listed20 K test condition, not an inferred continuous4–77 K operating range. No load capacity or strain rate is invented.",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "20000",
+              "unit": "mK"
+            },
+            "hi": {
+              "value": "20000",
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_npl_20k"
+          ]
+        },
+        {
+          "key": "module.cryogenic_tensile",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_npl_tensile"
+          ]
+        }
+      ]
+    }
+  ]
+}

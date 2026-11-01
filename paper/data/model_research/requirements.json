@@ -1,0 +1,824 @@
+{
+ "meta": {
+  "angle": "Correctness of the 11 experiment requirement profiles (data/experiments/*.json) against their cited procedures",
+  "generated": "2026-10-31",
+  "baseline_e1_grid": "paper/data/e1_grid.json: MET 20 / NOT MET 109 / NEED 157 (reproduced exactly from a scratch copy of data/cryolean.db)",
+  "method": "Each proposal was applied to an in-memory copy of the profile; documents were built with cryolean.verifier.build_documents and judged by the compiled Lean checker (lean_runner.check_batch) on all 26 configurations. Scripts: scratchpad/reqeval/eval_proposals.py and eval_final.py (scratch DB copies; no repository file other than this one was written).",
+  "combined_effect_e1_database": {
+   "before": {
+    "NOT": 109,
+    "MET": 20,
+    "NEED": 157
+   },
+   "after_all_proposals": {
+    "NOT": 138,
+    "NEED": 135,
+    "MET": 13
+   },
+   "per_experiment_after": {
+    "bio_cryo_fluorescence_vitrified": {
+     "NOT": 6,
+     "NEED": 20
+    },
+    "bio_cryosection_frozen_tissue": {
+     "NEED": 23,
+     "MET": 2,
+     "NOT": 1
+    },
+    "chem_low_temperature_raman": {
+     "NOT": 5,
+     "NEED": 19,
+     "MET": 2
+    },
+    "chem_phase_transition_pom": {
+     "NOT": 12,
+     "MET": 4,
+     "NEED": 10
+    },
+    "chem_temperature_dependent_photoluminescence": {
+     "NOT": 12,
+     "MET": 3,
+     "NEED": 11
+    },
+    "mat_electrical_resistance_low_temperature": {
+     "NOT": 14,
+     "NEED": 12
+    },
+    "mat_magnetometry_vsm": {
+     "NOT": 13,
+     "NEED": 11,
+     "MET": 2
+    },
+    "mat_magnetoresistance_10T": {
+     "NEED": 11,
+     "NOT": 15
+    },
+    "quantum_mk_vector_field_transport": {
+     "NEED": 8,
+     "NOT": 18
+    },
+    "quantum_mxc_wiring_heat_budget": {
+     "NOT": 21,
+     "NEED": 5
+    },
+    "quantum_transmon_characterization": {
+     "NOT": 21,
+     "NEED": 5
+    }
+   }
+  },
+  "combined_effect_latest_seeds": {
+   "note": "DB rebuilt in scratch from the repository seeds at 21:10, which already include the data workflow's new records",
+   "before": {
+    "NOT": 233,
+    "MET": 25,
+    "NEED": 28
+   },
+   "after_all_proposals": {
+    "NOT": 235,
+    "NEED": 37,
+    "MET": 14
+   },
+   "per_experiment_after": {
+    "bio_cryo_fluorescence_vitrified": {
+     "NOT": 13,
+     "NEED": 13
+    },
+    "bio_cryosection_frozen_tissue": {
+     "NOT": 24,
+     "MET": 2
+    },
+    "chem_low_temperature_raman": {
+     "NOT": 11,
+     "NEED": 13,
+     "MET": 2
+    },
+    "chem_phase_transition_pom": {
+     "NOT": 20,
+     "MET": 5,
+     "NEED": 1
+    },
+    "chem_temperature_dependent_photoluminescence": {
+     "NOT": 23,
+     "MET": 3
+    },
+    "mat_electrical_resistance_low_temperature": {
+     "NOT": 23,
+     "NEED": 3
+    },
+    "mat_magnetometry_vsm": {
+     "NOT": 22,
+     "NEED": 2,
+     "MET": 2
+    },
+    "mat_magnetoresistance_10T": {
+     "NEED": 3,
+     "NOT": 23
+    },
+    "quantum_mk_vector_field_transport": {
+     "NEED": 2,
+     "NOT": 24
+    },
+    "quantum_mxc_wiring_heat_budget": {
+     "NOT": 26
+    },
+    "quantum_transmon_characterization": {
+     "NOT": 26
+    }
+   }
+  },
+  "eval_label_to_proposal_id": {
+   "R1_bio_objective_wd_na": "R1-bio-objective-wd-na",
+   "R2_bio_cryo_transfer": "R2-bio-cryo-transfer",
+   "R1+R2_bio": "R1 + R2 together",
+   "R3_raman_rates": "R3-raman-cooling-heating-rates",
+   "R5_pl_sample_size": "R4-pl-sample-size-correction",
+   "R6_mxc_pump_lines": "R5-mxc-heat-budget-pump-lines",
+   "R4_temp_range_transmon / _mxc / _mk": "R6-quantum-operating-temperature-key",
+   "R7_rf_mk / R7_rf_transmon": "R7-quantum-rf-lines"
+  },
+  "per_proposal_changes_e1": "R1_bio_objective_wd_na: bio_cryo_fluorescence_vitrified MET 8/NOT 3/NEED 15 -> MET 0/NOT 6/NEED 20; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_heating_only NEED->NOT; linkam_thms600_lnp96_t96 MET->NOT; linkam_thmsel600_lnp96 MET->NOT; oxford_optistatdry_blv MET->NEED | R2_bio_cryo_transfer: bio_cryo_fluorescence_vitrified MET 8/NOT 3/NEED 15 -> MET 0/NOT 3/NEED 23; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_lnp96_t96 MET->NEED; linkam_thmsel600_lnp96 MET->NEED; oxford_optistatdry_blv MET->NEED | R1+R2_bio: bio_cryo_fluorescence_vitrified MET 8/NOT 3/NEED 15 -> MET 0/NOT 6/NEED 20; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_heating_only NEED->NOT; linkam_thms600_lnp96_t96 MET->NOT; linkam_thmsel600_lnp96 MET->NOT; oxford_optistatdry_blv MET->NEED | R3_raman_rates: chem_low_temperature_raman MET 4/NOT 3/NEED 19 -> MET 2/NOT 5/NEED 19; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; qd_ppms_classic_14T NEED->NOT; qd_ppms_classic_16T NEED->NOT | R4_temp_range_transmon: quantum_transmon_characterization MET 0/NOT 12/NEED 14 -> MET 0/NOT 21/NEED 5; lakeshore_ccs_100 NEED->NOT; lakeshore_ccs_300s NEED->NOT; lakeshore_ccs_400 NEED->NOT; linkam_thms600_lnp96_t96 NEED->NOT; linkam_thmsel600_lnp96 NEED->NOT; oxford_teslatronpt_12T NEED->NOT; oxford_teslatronpt_14T NEED->NOT; oxford_teslatronpt_6_1_1T_vector NEED->NOT; oxford_teslatronpt_8T NEED->NOT | R4_temp_range_mxc: quantum_mxc_wiring_heat_budget MET 0/NOT 12/NEED 14 -> MET 0/NOT 21/NEED 5; lakeshore_ccs_100 NEED->NOT; lakeshore_ccs_300s NEED->NOT; lakeshore_ccs_400 NEED->NOT; linkam_thms600_lnp96_t96 NEED->NOT; linkam_thmsel600_lnp96 NEED->NOT; oxford_teslatronpt_12T NEED->NOT; oxford_teslatronpt_14T NEED->NOT; oxford_teslatronpt_6_1_1T_vector NEED->NOT; oxford_teslatronpt_8T NEED->NOT | R4_temp_range_mk: quantum_mk_vector_field_transport MET 0/NOT 12/NEED 14 -> MET 0/NOT 18/NEED 8; lakeshore_ccs_100 NEED->NOT; lakeshore_ccs_300s NEED->NOT; lakeshore_ccs_400 NEED->NOT; linkam_thms600_lnp96_t96 NEED->NOT; linkam_thmsel600_lnp96 NEED->NOT; oxford_teslatronpt_6_1_1T_vector NEED->NOT | R5_pl_sample_size: chem_temperature_dependent_photoluminescence MET 0/NOT 12/NEED 14 -> MET 3/NOT 12/NEED 11; lakeshore_ccs_100 NEED->MET; lakeshore_ccs_300s NEED->MET; lakeshore_ccs_400 NEED->MET | R6_mxc_pump_lines: quantum_mxc_wiring_heat_budget MET 0/NOT 12/NEED 14 -> MET 0/NOT 12/NEED 14;  | R7_rf_mk: quantum_mk_vector_field_transport MET 0/NOT 12/NEED 14 -> MET 0/NOT 12/NEED 14;  | R7_rf_transmon: quantum_transmon_characterization MET 0/NOT 12/NEED 14 -> MET 0/NOT 12/NEED 14; ",
+  "per_proposal_changes_latest": "R1_bio_objective_wd_na: bio_cryo_fluorescence_vitrified MET 10/NOT 11/NEED 5 -> MET 0/NOT 13/NEED 13; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_ccs_400h MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_heating_only NEED->NOT; linkam_thms600_lnp96_t96 MET->NOT; linkam_thmsel600_lnp96 MET->NEED; oxford_optistatdry_blv MET->NEED; oxford_optistatdry_tlex MET->NEED | R2_bio_cryo_transfer: bio_cryo_fluorescence_vitrified MET 10/NOT 11/NEED 5 -> MET 0/NOT 11/NEED 15; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_ccs_400h MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_lnp96_t96 MET->NEED; linkam_thmsel600_lnp96 MET->NEED; oxford_optistatdry_blv MET->NEED; oxford_optistatdry_tlex MET->NEED | R1+R2_bio: bio_cryo_fluorescence_vitrified MET 10/NOT 11/NEED 5 -> MET 0/NOT 13/NEED 13; lakeshore_ccs_100 MET->NEED; lakeshore_ccs_300s MET->NEED; lakeshore_ccs_400 MET->NEED; lakeshore_ccs_400h MET->NEED; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; linkam_thms600_heating_only NEED->NOT; linkam_thms600_lnp96_t96 MET->NOT; linkam_thmsel600_lnp96 MET->NEED; oxford_optistatdry_blv MET->NEED; oxford_optistatdry_tlex MET->NEED | R3_raman_rates: chem_low_temperature_raman MET 6/NOT 11/NEED 9 -> MET 2/NOT 11/NEED 13; lakeshore_crx_4k MET->NEED; lakeshore_crx_vf MET->NEED; oxford_optistatdry_blv MET->NEED; oxford_optistatdry_tlex MET->NEED | R4_temp_range_transmon: quantum_transmon_characterization MET 0/NOT 26/NEED 0 -> MET 0/NOT 26/NEED 0;  | R4_temp_range_mxc: quantum_mxc_wiring_heat_budget MET 0/NOT 26/NEED 0 -> MET 0/NOT 26/NEED 0;  | R4_temp_range_mk: quantum_mk_vector_field_transport MET 0/NOT 24/NEED 2 -> MET 0/NOT 24/NEED 2;  | R5_pl_sample_size: chem_temperature_dependent_photoluminescence MET 0/NOT 23/NEED 3 -> MET 3/NOT 23/NEED 0; lakeshore_ccs_100 NEED->MET; lakeshore_ccs_300s NEED->MET; lakeshore_ccs_400 NEED->MET | R6_mxc_pump_lines: quantum_mxc_wiring_heat_budget MET 0/NOT 26/NEED 0 -> MET 0/NOT 26/NEED 0;  | R7_rf_mk: quantum_mk_vector_field_transport MET 0/NOT 24/NEED 2 -> MET 0/NOT 24/NEED 2;  | R7_rf_transmon: quantum_transmon_characterization MET 0/NOT 26/NEED 0 -> MET 0/NOT 26/NEED 0; ",
+  "connectors_used": [
+   "Tavily search/extract",
+   "WebFetch (Europe PMC full text)",
+   "built-in browser (Linkam CMS196 page, read only)",
+   "alphaXiv answer_pdf_queries (Swidinsky, Shyam, Nowakowska, van Zanten, Zhou, Krinner, Tuokkola)",
+   "Undermind search_papers/read_pdfs/get_paper_info (Schorb & Briggs 2013, Kaufmann 2014, Schorb 2017)",
+   "Consensus search",
+   "Lune search_papers_many (no relevant hits: corpus is CS venues)"
+  ],
+  "connectors_unavailable": [
+   "scite: requires a paid plan or trial (tool returned an access error)"
+  ],
+  "consensus_notice": "Upgrade to Consensus Pro to return 20 results per search instead of 10, and include more data like study design and key takeaways for every result.: https://consensus.app/pricing/?utm_source=claude_desktop"
+ },
+ "proposals": [
+  {
+   "id": "R1-bio-objective-wd-na",
+   "title": "Cryo-CLEM profile: require the procedure's 0.9 NA / 2.0 mm working-distance objective to reach the grid (coupled WD clearance + NA cone)",
+   "kind": "requirement_change",
+   "description": "bio_cryo_fluorescence_vitrified only requires 'optical_access present', so every windowed cryostat passes the optical part; on the e1 grid it is REQUIREMENTS_MET on CCS-100/300S/400, CRX-4K/VF, THMS600 (LNP96), THMSEL600 and OptistatDry BLV. The cited procedure images vitrified grids through a Nikon CFI TU Plan Apo 100x/0.9 air objective (Nikon: WD 2.0 mm) on a Linkam CMS196v3 stage that was optimised for high-NA lenses (fluorescence up to NA 0.9). Under-specified physics (b): add the existing validated coupled model objective_working_distance_clearance as MANDATORY and optical_na_vs_f_number as non-mandatory, with the procedure's objective as parameters. Exact JSON to add to the profile: params += [{\"name\":\"objective_working_distance\",\"value\":{\"value\":2000,\"unit\":\"um\"},\"origin\":\"manufacturer_specification\",\"description\":\"Working distance of the Nikon CFI TU Plan Apo EPI 100x/0.90 used by Last et al. (Nikon lists WD 2.0 mm); enter your own objective\",\"evidence_ids\":[\"ev_exp_0013\",\"<new: Nikon CFI60-2 table record>\"]}, {\"name\":\"extra_spacer\",\"value\":{\"value\":0,\"unit\":\"um\"},\"origin\":\"user_entered\",\"description\":\"No cover slip or extra window between objective and grid is stated by Last et al.; add any you insert\"}, {\"name\":\"objective_na\",\"value\":{\"value\":\"0.9\",\"unit\":\"NA\"},\"origin\":\"experimental_observation\",\"evidence_ids\":[\"ev_exp_0013\"]}]; coupled += [{\"model\":\"objective_working_distance_clearance\",\"mandatory\":true,\"rationale\":\"Last et al. image the vitrified grid with a 0.9 NA air objective (Nikon CFI TU Plan Apo 100x/0.9, WD 2.0 mm). The grid must lie within that working distance: WD_stage_min + spacer <= 2.0 mm. A stage whose window geometry needs a longer WD (THMS600: 4.8 mm) cannot focus this objective on the sample.\"}, {\"model\":\"optical_na_vs_f_number\",\"mandatory\":false,\"rationale\":\"Reports whether the stage's optical cone admits NA 0.9 (NA^2(4N^2+1) <= 1, i.e. N <= 0.242). Non-mandatory: a vignetted cone lowers collection efficiency but does not make imaging impossible.\"}]. The temperature (at_most 136 K), optical_access and frost requirements are unchanged.",
+   "equation_latex": "\\mathrm{WD}_{\\mathrm{stage,min}} + s_{\\mathrm{spacer}} \\le \\mathrm{WD}_{\\mathrm{obj}} = 2.0\\,\\mathrm{mm}, \\qquad \\mathrm{NA}^2\\,(4N^2+1) \\le 1 \\;\\; (\\mathrm{NA}=0.9 \\Rightarrow N \\le 0.242)",
+   "validity": "Air between objective and window (n = 1); working distances measured along the same optical axis; s_spacer = any cover slip or extra window the user adds; NA cone uses the thin-lens relation tan(theta) = 1/(2N) (existing model optical_na_vs_f_number, validity 0 <= NA <= 1). Valid for the procedure's 100x/0.9 objective; a user with a long-WD, lower-NA objective edits objective_working_distance/objective_na (the edit resets confirmation).",
+   "parameters": [
+    {
+     "name": "objective_working_distance",
+     "value": "2.0",
+     "unit": "mm",
+     "source_url": "https://www.nikon.com/company/news/2012/0925_cfi60_2_01.html",
+     "quote": "TU Plan Apo EPI  Plan apo  (Apochromat)  [Phase Fresnel lens type] | 50X | 0.8 | 2.0 | | 100X | 0.9 | 2.0 |"
+    },
+    {
+     "name": "objective_na",
+     "value": "0.9",
+     "unit": "NA (dimensionless)",
+     "source_url": "https://doi.org/10.1038/s41598-023-35590-x (full text read via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML)",
+     "quote": "using a 0.9 NA air immersion objective lens (Nikon, CFI TU Plan Apo 100x/0.9NA)"
+    },
+    {
+     "name": "optical.objective_working_distance.min (THMS600, capability already in catalog)",
+     "value": "4.8",
+     "unit": "mm",
+     "source_url": "https://www.linkam.co.uk/thms600-specifications",
+     "quote": "Objective lens working distance 4.8mm"
+    },
+    {
+     "name": "maximum fluorescence NA of the procedure's stage (CMS196V3)",
+     "value": "0.9",
+     "unit": "NA (dimensionless)",
+     "source_url": "https://www.linkam.co.uk/cms196",
+     "quote": "Fluorescence observation with NA of up to 0.9"
+    }
+   ],
+   "affected_experiments": [
+    "bio_cryo_fluorescence_vitrified"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "linkam_thms600_heating_only",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96",
+    "oxford_optistatdry_blv",
+    "lakeshore_ccs_400h (latest seeds only)",
+    "oxford_optistatdry_tlex (latest seeds only)"
+   ],
+   "data_available": "Nikon WD 2.0 mm and NA 0.9 (manufacturer table, retrieved); Linkam THMS600 WD 4.8 mm (already in catalog as optical.objective_working_distance.min, manufacturer_specification). Missing (data workflow): optical.objective_working_distance.min for CCS, CRX, OptistatDry (all physically far longer than 2 mm: CRX viewport on a 270 mm tall chamber, OptistatDry radial windows on a 40 mm sample space) and optical.f_number (OptistatDry f/1 is already quoted in evidence ev_ox_0029 but not recorded as a capability).",
+   "expected_effect": "Lean-checked on the e1 database (scratch copy, compiled checker): bio_cryo_fluorescence_vitrified MET 8/NOT 3/NEED 15 -> MET 0/NOT 6/NEED 20. THMS600 LNP96 and THMSEL600 MET -> NOT MET (4.8 mm > 2 mm); THMS600 heating-only NEED -> NOT MET; CCS-100/300S/400, CRX-4K/VF, OptistatDry BLV MET -> NEED INFO (stage WD undocumented). On the latest seeds (with the data workflow's new records): MET 10/NOT 11/NEED 5 -> MET 0/NOT 13/NEED 13. Removes acceptances that a 2 mm-WD objective cannot physically deliver; no catalog configuration is the procedure's own cryo-CLEM stage (CMS196), so MET 0 is the honest state.",
+   "implementation": "Edit data/experiments/bio_cryo_fluorescence_vitrified.json (params + coupled as above; both models are already status 'validated'); add one evidence record for the Nikon table (manufacturer_specification, quote above) under data/evidence; python -m cryolean build-db; rerun paper/scripts/paper_eval.py. Verified with scratchpad/reqeval/eval_proposals.py (DB copy, no repository write).",
+   "citations": [
+    {
+     "title": "Selecting optimal support grids for super-resolution cryogenic correlated light and electron microscopy",
+     "authors": "Last, M. G. F.; Tuijtel, M. W.; Voortman, L. M.; Sharp, T. H.",
+     "venue": "Scientific Reports 13, 8270",
+     "year": 2023,
+     "doi_or_url": "https://doi.org/10.1038/s41598-023-35590-x (full text read via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML)",
+     "quote": "using a 0.9 NA air immersion objective lens (Nikon, CFI TU Plan Apo 100x/0.9NA)"
+    },
+    {
+     "title": "Nikon Introduces CFI60-2 Objective Series for Industrial Microscopes (objective table)",
+     "authors": "Nikon Corporation",
+     "venue": "Nikon company news (manufacturer specification)",
+     "year": 2012,
+     "doi_or_url": "https://www.nikon.com/company/news/2012/0925_cfi60_2_01.html",
+     "quote": "TU Plan Apo EPI  Plan apo  (Apochromat)  [Phase Fresnel lens type] | 50X | 0.8 | 2.0 | | 100X | 0.9 | 2.0 |"
+    },
+    {
+     "title": "CMS196 - Cryo-Correlative Microscopy Stage for CLEM",
+     "authors": "Linkam Scientific Instruments",
+     "venue": "Manufacturer product page",
+     "year": 2026,
+     "doi_or_url": "https://www.linkam.co.uk/cms196",
+     "quote": "Although the CMS196V³ was designed specifically to solve the problem of how to get vitrified EM grids from the fluorescent microscope into the cryo TEM without devitrification and contamination through condensation, the stage also had to be optimized optically to enable the use of high NA lenses."
+    },
+    {
+     "title": "THMS600 Specifications",
+     "authors": "Linkam Scientific Instruments",
+     "venue": "Manufacturer specification page",
+     "year": 2026,
+     "doi_or_url": "https://www.linkam.co.uk/thms600-specifications",
+     "quote": "Objective lens working distance 4.8mm"
+    },
+    {
+     "title": "Correlated cryo-fluorescence and cryo-electron microscopy with high spatial precision and improved sensitivity",
+     "authors": "Schorb, M.; Briggs, J. A. G.",
+     "venue": "Ultramicroscopy 143, 24-32 (online 2013-11-11)",
+     "year": 2013,
+     "doi_or_url": "https://doi.org/10.1016/j.ultramic.2013.10.015",
+     "quote": "All of the discussed setups have in common that they make use of dry lenses with relatively long WDs. For geometrical reasons, such objectives have a limited NA."
+    },
+    {
+     "title": "Fluorescence cryo-microscopy: current challenges and prospects",
+     "authors": "Kaufmann, R.; Hagen, C.; Grunewald, K.",
+     "venue": "Current Opinion in Chemical Biology 20, 86-91",
+     "year": 2014,
+     "doi_or_url": "https://doi.org/10.1016/j.cbpa.2014.05.007",
+     "quote": "Thus the NA of the optical system is limited to <1.0, typically ~0.8."
+    }
+   ],
+   "risks": "Users imaging with long-WD, low-NA objectives must edit the two parameters (resets confirmation). Windowed cryostats that physically cannot reach 2 mm become NEED INFO, not NOT MET, until their stage WD is documented. Demo D (README: campaign on the CRX-VF with this profile) and tests/test_pipeline_extensions.py (ACCEPTED list) assume MET on lakeshore_crx_vf and must be re-based. The NA model assumes a thin-lens cone and no other apertures.",
+   "priority": 1
+  },
+  {
+   "id": "R2-bio-cryo-transfer",
+   "title": "Cryo-CLEM profile: require cold, dry loading of the vitrified grid (new flag key sample.cryo_transfer)",
+   "kind": "requirement_change",
+   "description": "The profile checks only that the stage can get below 136 K. Vitrified grids must stay below the devitrification temperature and away from humid air from plunge-freezing to imaging, so the grid has to be loaded into a pre-cooled, dry stage (LN2 cassette/shuttle into a pre-cooled loading chamber). Sample-in-vacuum cryostats and probe stations are loaded warm, then pumped and cooled (CRX-VF cycle: 1.5 h pump-down, 5 h cooldown, 2 h warm-up), which would devitrify the specimen. Under-specified physics (b). Exact JSON: vocabulary += {\"sample.cryo_transfer\":{\"shape\":\"flag\",\"unit\":\"\",\"description\":\"A vitrified/frozen specimen can be loaded into the pre-cooled sample position and kept below its devitrification temperature and away from humid air during loading (e.g. LN2-cooled transfer cassette or shuttle into a pre-cooled dry loading chamber)\",\"status\":\"established\",\"better\":\"flag\"}}; requirements += {\"key\":\"sample.cryo_transfer\",\"constraint\":{\"kind\":\"present\"},\"mandatory\":true,\"origin\":\"experimental_observation\",\"rationale\":\"Vitrified grids must be kept below ~136 K (Last et al.) and dry during transfer and imaging (Schorb et al. 2017); the cryo-stage must be pre-cooled before the sample is inserted (Kaufmann et al. 2014). The procedure's stage (Linkam CMS196) loads a grid cassette from a sealed container into a pre-cooled dry loading chamber. A stage that must be loaded warm and then cooled cannot keep the specimen vitrified.\",\"evidence_ids\":[\"ev_exp_0009\",\"ev_exp_0017\",\"ev_exp_0018\",\"<new: Schorb 2017, Kaufmann 2014, Linkam CMS196 records>\"]}.",
+   "equation_latex": "T_{\\mathrm{sample}}(t) < T_{\\mathrm{devit}} \\approx 136\\,\\mathrm{K}\\;\\; \\forall t \\in [t_{\\mathrm{plunge}},\\, t_{\\mathrm{image}}] \\;\\Rightarrow\\; \\texttt{sample.cryo\\_transfer} = \\mathrm{true}",
+   "validity": "Applies to vitrified (plunge-frozen or high-pressure-frozen) specimens, which is this profile's scope; not to samples that tolerate warm loading. The literature threshold ranges from ~135 K (Kaufmann et al.) to -140 C / 133 K (Schorb & Briggs; Linkam) and ~136 K (Last et al.).",
+   "parameters": [
+    {
+     "name": "devitrification threshold (procedure)",
+     "value": "136",
+     "unit": "K",
+     "source_url": "https://doi.org/10.1038/s41598-023-35590-x (full text read via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML)",
+     "quote": "Devitrification occurs when vitrified cryogenic samples are heated to more than approximately 136 K"
+    },
+    {
+     "name": "devitrification threshold (review)",
+     "value": "135",
+     "unit": "K",
+     "source_url": "https://doi.org/10.1016/j.cbpa.2014.05.007",
+     "quote": "Therein, the samples have to be kept below the devitrification temperature of ~135 K to maintain the structural preservation [33], thus precooling of the cryo stage is required before insertion of the sample."
+    },
+    {
+     "name": "maximum sample temperature after vitrification",
+     "value": "-140",
+     "unit": "degC",
+     "source_url": "https://doi.org/10.1016/j.ultramic.2013.10.015",
+     "quote": "The most crucial one is, that at all times after vitrification, the sample temperature has to remain below -140 ºC to avoid formation of crystalline ice."
+    }
+   ],
+   "affected_experiments": [
+    "bio_cryo_fluorescence_vitrified"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96",
+    "oxford_optistatdry_blv",
+    "lakeshore_ccs_400h (latest seeds only)",
+    "oxford_optistatdry_tlex (latest seeds only)"
+   ],
+   "data_available": "No configuration documents sample.cryo_transfer yet (new key). Evidence for a trusted 'false' on warm-loaded systems exists, e.g. the CRX-VF cycle time (pump-down 1.5 h, station cooldown 5 h, warm-up 2 h); the procedure's own stage (Linkam CMS196) is not in the catalog.",
+   "expected_effect": "Alone (Lean-checked, e1 database): bio_cryo_fluorescence_vitrified MET 8/NOT 3/NEED 15 -> MET 0/NOT 3/NEED 23 (all eight MET -> NEED INFO). Together with R1: MET 0/NOT 6/NEED 20 (no further change; THMS600 stays NOT MET on the WD clearance). Latest seeds alone: 10/11/5 -> 0/11/15. Once the data workflow records sample.cryo_transfer = false (trusted) for warm-loaded cryostats, those pairs become NOT MET; a cryo-CLEM stage such as the CMS196 would be the only route to MET.",
+   "implementation": "Add the key to data/capability_vocabulary.json; add the requirement to data/experiments/bio_cryo_fluorescence_vitrified.json; add evidence records for the quotes below; ask the data workflow to record sample.cryo_transfer for all 26 configurations (true only with a documented cold-loading path).",
+   "citations": [
+    {
+     "title": "New hardware and workflows for semi-automated correlative cryo-fluorescence and cryo-electron microscopy/tomography",
+     "authors": "Schorb, M.; Gaechter, L.; Avinoam, O.; Sieckmann, F.; Clarke, M.; Bebeacua, C.; Bykov, Y. S.; Sonnen, A. F.; Lihl, R.; Briggs, J. A. G.",
+     "venue": "Journal of Structural Biology 197(2), 83-93",
+     "year": 2017,
+     "doi_or_url": "https://doi.org/10.1016/j.jsb.2016.06.020",
+     "quote": "To combine it with structural studies using cryo-electron microscopy or tomography, fluorescence microscopy must be performed while maintaining the specimen vitrified at liquid-nitrogen temperatures and in a dry environment during imaging and transfer."
+    },
+    {
+     "title": "Fluorescence cryo-microscopy: current challenges and prospects",
+     "authors": "Kaufmann, R.; Hagen, C.; Grunewald, K.",
+     "venue": "Current Opinion in Chemical Biology 20, 86-91",
+     "year": 2014,
+     "doi_or_url": "https://doi.org/10.1016/j.cbpa.2014.05.007",
+     "quote": "Therein, the samples have to be kept below the devitrification temperature of ~135 K to maintain the structural preservation [33], thus precooling of the cryo stage is required before insertion of the sample."
+    },
+    {
+     "title": "CMS196 - Cryo-Correlative Microscopy Stage for CLEM",
+     "authors": "Linkam Scientific Instruments",
+     "venue": "Manufacturer product page",
+     "year": 2026,
+     "doi_or_url": "https://www.linkam.co.uk/cms196",
+     "quote": "Up to 3 grids are loaded into a specially designed cassette which is transported from a plunge freezer in a small sealed container.  The container is loaded into a precooled dry sample loading chamber fitted on an upright fluorescent microscope."
+    },
+    {
+     "title": "Correlated cryo-fluorescence and cryo-electron microscopy with high spatial precision and improved sensitivity",
+     "authors": "Schorb, M.; Briggs, J. A. G.",
+     "venue": "Ultramicroscopy 143, 24-32 (online 2013-11-11)",
+     "year": 2013,
+     "doi_or_url": "https://doi.org/10.1016/j.ultramic.2013.10.015",
+     "quote": "The grids are transferred under LN to the cryo-FM loading-station and one grid is placed into the grid holder."
+    },
+    {
+     "title": "Selecting optimal support grids for super-resolution cryogenic correlated light and electron microscopy",
+     "authors": "Last, M. G. F.; Tuijtel, M. W.; Voortman, L. M.; Sharp, T. H.",
+     "venue": "Scientific Reports 13, 8270",
+     "year": 2023,
+     "doi_or_url": "https://doi.org/10.1038/s41598-023-35590-x (full text read via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML)",
+     "quote": "Devitrification occurs when vitrified cryogenic samples are heated to more than approximately 136 K"
+    },
+    {
+     "title": "Model CRX-VF cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification page",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+     "quote": "| Cycle time: | 8.5 h | | Pump down: | 1.5 h | | Station cooldown: | 5 h | | Station warmup: | 2 h |"
+    }
+   ],
+   "risks": "New vocabulary key with no data: every configuration is NEED INFO for this profile until the data workflow records it, so the profile cannot reach MET with the current catalog (no cryo-CLEM stage). The flag is coarse (does not model transfer time or contamination rate).",
+   "priority": 2
+  },
+  {
+   "id": "R3-raman-cooling-heating-rates",
+   "title": "Low-temperature Raman profile: require the procedure's 100 C/min controlled cooling and heating",
+   "kind": "requirement_change",
+   "description": "chem_low_temperature_raman follows Park et al. (2026) for its -140 C operating point but ignores the procedure's central variable: the LiCl solutions were frozen 'at varied cooling rates (0.5, 5, 100 C/min)' and melted 'at the same rates as the freezing'. A stage that cannot cool and heat at 100 C/min cannot reproduce the procedure. Under-specified (b). Exact JSON: requirements += {\"key\":\"temperature.cooling_rate.max\",\"constraint\":{\"kind\":\"at_least\",\"q\":{\"value\":100000,\"unit\":\"mK_per_min\"}},\"mandatory\":true,\"origin\":\"experimental_observation\",\"rationale\":\"Park et al. (2026) froze the solutions at 0.5, 5 and 100 C/min (down to -80 C); the fastest rate defines the required controlled cooling rate. Paper's choice, confirmed by the user (Pamula et al. 2025 used 1 C/min).\",\"evidence_ids\":[\"<new: Park rates record>\",\"ev_exp_0020\"]} and {\"key\":\"temperature.sweep_rate.max\",\"constraint\":{\"kind\":\"at_least\",\"q\":{\"value\":100000,\"unit\":\"mK_per_min\"}},\"mandatory\":true,\"origin\":\"experimental_observation\",\"rationale\":\"Melting was run at the same rates as freezing, from -140 C to room temperature, so heating at up to 100 C/min is required.\",\"evidence_ids\":[\"ev_exp_0020\",\"<new: Park rates record>\"]}.",
+   "equation_latex": "\\dot T_{\\mathrm{cool,max}} \\ge 100\\,\\mathrm{K\\,min^{-1}}, \\qquad \\dot T_{\\mathrm{heat,max}} \\ge 100\\,\\mathrm{K\\,min^{-1}}",
+   "validity": "Rate capability as documented by the vendor (headline maximum); the procedure's 100 C/min runs went down to -80 C. temperature.sweep_rate.max is used for heating because vendors document it as the warming/heating maximum (Linkam 150 C/min heating, PPMS 10 K/min warming).",
+   "parameters": [
+    {
+     "name": "required controlled cooling rate",
+     "value": "100",
+     "unit": "K/min",
+     "source_url": "https://doi.org/10.1038/s41598-026-61621-4 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML)",
+     "quote": "at varied cooling rates (0.5, 5, 100 °C/min)"
+    },
+    {
+     "name": "required heating rate (melting at the freezing rates)",
+     "value": "100",
+     "unit": "K/min",
+     "source_url": "https://doi.org/10.1038/s41598-026-61621-4 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML)",
+     "quote": "Melting experiments were conducted at the same rates as the freezing, reversibly from − 140 °C to room temperature."
+    },
+    {
+     "name": "Linkam THMS600 + LNP96 cooling / heating rate (catalog)",
+     "value": "100 / 150",
+     "unit": "K/min",
+     "source_url": "https://www.linkam.co.uk/thms600-specifications",
+     "quote": "Up to 150°C/min heating, 100°C/min cooling (using LNP96)"
+    },
+    {
+     "name": "classic PPMS sweep rate (catalog)",
+     "value": "6 cooling / 10 warming",
+     "unit": "K/min",
+     "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+     "quote": "6 K/min. cooling, 10 K/min. warming; (typical)"
+    }
+   ],
+   "affected_experiments": [
+    "chem_low_temperature_raman"
+   ],
+   "affected_configurations": [
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "qd_ppms_classic_14T",
+    "qd_ppms_classic_16T",
+    "oxford_optistatdry_blv (latest seeds only)",
+    "oxford_optistatdry_tlex (latest seeds only)"
+   ],
+   "data_available": "Linkam THMS600/THMSEL600 rates documented (temperature.cooling_rate.max 100 K/min, temperature.sweep_rate.max 150 K/min); classic PPMS 6/10 K/min documented. CRX and OptistatDry rates undocumented (CRX station cooldown 5 h, OptistatDry cooldown < 150 min suggest far below 100 K/min).",
+   "expected_effect": "Lean-checked, e1 database: MET 4/NOT 3/NEED 19 -> MET 2/NOT 5/NEED 19. CRX-4K and CRX-VF MET -> NEED INFO (rates undocumented); classic PPMS 14T/16T NEED -> NOT MET (10 K/min < 100 K/min); THMS600 LNP96 and THMSEL600 remain MET (the procedure's stage). Latest seeds: 6/11/9 -> 2/11/13 (OptistatDry BLV and TLEX also MET -> NEED INFO).",
+   "implementation": "Add the two requirements to data/experiments/chem_low_temperature_raman.json and an evidence record for the Park et al. rate quotes; rebuild the DB.",
+   "citations": [
+    {
+     "title": "Molecular-level freezing and melting dynamics of aqueous lithium chloride solutions using in-situ Raman spectroscopy",
+     "authors": "Park, H.; Wang, A.; Kim, J.; Pophali, A.; Gersappe, D.; Kim, T.",
+     "venue": "Scientific Reports 16, 32309",
+     "year": 2026,
+     "doi_or_url": "https://doi.org/10.1038/s41598-026-61621-4 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML)",
+     "quote": "at cooling rates of 0.5, 5, and 100 °C/min down to -80 °C"
+    },
+    {
+     "title": "Molecular-level freezing and melting dynamics of aqueous lithium chloride solutions using in-situ Raman spectroscopy",
+     "authors": "Park, H.; Wang, A.; Kim, J.; Pophali, A.; Gersappe, D.; Kim, T.",
+     "venue": "Scientific Reports 16, 32309",
+     "year": 2026,
+     "doi_or_url": "https://doi.org/10.1038/s41598-026-61621-4 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML)",
+     "quote": "Melting experiments were conducted at the same rates as the freezing, reversibly from − 140 °C to room temperature."
+    },
+    {
+     "title": "In-situ Raman spectroscopic analysis of phase transition temperatures in silica interacting with water and NaCl solutions",
+     "authors": "Pamula, K.; Pophali, A.; Gersappe, D.; Kim, T.",
+     "venue": "Scientific Reports 15, 26449",
+     "year": 2025,
+     "doi_or_url": "https://doi.org/10.1038/s41598-025-12034-2 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML)",
+     "quote": "The cooling and heating rates were kept constant at 1 ℃/min throughout the freezing–thawing experiments"
+    },
+    {
+     "title": "THMS600 Specifications",
+     "authors": "Linkam Scientific Instruments",
+     "venue": "Manufacturer specification page",
+     "year": 2026,
+     "doi_or_url": "https://www.linkam.co.uk/thms600-specifications",
+     "quote": "Up to 150°C/min heating, 100°C/min cooling (using LNP96)"
+    },
+    {
+     "title": "PPMS Physical Property Measurement System product description (1070-002)",
+     "authors": "Quantum Design",
+     "venue": "Manufacturer brochure",
+     "year": 2026,
+     "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+     "quote": "6 K/min. cooling, 10 K/min. warming; (typical)"
+    },
+    {
+     "title": "Model CRX-VF cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification page",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+     "quote": "| Station cooldown: | 5 h |"
+    }
+   ],
+   "risks": "Users studying only slow freezing (Pamula et al., 1 C/min) must lower the values (edit resets confirmation). Vendor rate specs are headline maxima and may not hold at the coldest end. Demo D (CRX-VF campaign) and tests that expect MET for this profile on lakeshore_crx_vf must be re-based.",
+   "priority": 3
+  },
+  {
+   "id": "R4-pl-sample-size-correction",
+   "title": "Photoluminescence profile: drop the 25 x 25 mm sample-size requirement that the cited cryostat measurements never used; record the transmission geometry",
+   "kind": "requirement_change",
+   "description": "Wrong number (c). chem_temperature_dependent_photoluminescence requires sample.width.max >= 25 mm and sample.length.max >= 25 mm because 'Swidinsky et al. used 25 x 25 x 2 mm fused silica substrates mounted on the coldfinger'. In the paper the fused-silica substrates were used only for room-temperature absorbance and same-side spectra outside the cryostat; every cryostat measurement (emission spectra at 300/87/4 K, time-resolved data at 18 temperatures) used 5 mm acrylic substrates 'machined to fit the dimensions necessary for the cryochamber', whose lateral size is not stated. The sample size was set by the cryostat, not the other way round, so no sample-size requirement follows from the procedure. Geometry (as requested): the cryostat sample faces the side windows on the cold finger, i.e. it is inserted end-on (plate plane contains the cryostat axis); a bore-based fit would need W^2 + t^2 <= D^2, but W is unknown, and replacing the width/length keys by sample.bore_diameter would not be physically equivalent because holders are narrower than bores (OptistatDry BLV: holder 20 x 50 mm in a 40 x 50 mm sample space). Exact JSON: delete the two requirements {\"key\":\"sample.width.max\",...25000 um...} and {\"key\":\"sample.length.max\",...25000 um...} (the values stay in reported_conditions); missing_information += \"lateral size of the cryostat samples (5 mm UV-absorbing acrylic 'machined to fit the dimensions necessary for the cryochamber') not stated; the 25 x 25 x 2 mm fused-silica substrates were measured only outside the cryostat\"; requirements += {\"key\":\"optical.window_count\",\"constraint\":{\"kind\":\"count_at_least\",\"n\":2},\"mandatory\":false,\"origin\":\"experimental_observation\",\"rationale\":\"Swidinsky et al. measure in transmission: the LED enters through one window and the emission exits via the opposite window. Two windows are necessary (not sufficient: backside access through the mount is also needed). Non-mandatory because Shyam et al. collect PL confocally through one window.\",\"evidence_ids\":[\"ev_exp_0032\",\"<new: Swidinsky transmission record>\"]}.",
+   "equation_latex": "\\text{end-on plate in a bore of diameter } D:\\; W^2 + t^2 \\le D^2 \\text{ (necessary only; } W \\text{ not stated by the procedure, so no requirement)}",
+   "validity": "Removes a requirement that the procedure does not support; the 4-300 K range (Swidinsky et al. measured down to 4 K), optical_access and vacuum requirements are unchanged. Users must enter their own sample size if it is close to a holder limit.",
+   "parameters": [
+    {
+     "name": "fused-silica substrate size (not measured in the cryostat)",
+     "value": "25 x 25 x 2",
+     "unit": "mm",
+     "source_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "The fused silica substrates are Edmund Optics 25x25x2 mm3, uncoated fused silica windows"
+    },
+    {
+     "name": "cryostat (acrylic) sample size",
+     "value": "not stated (5 mm thick)",
+     "unit": "mm",
+     "source_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "All of the acrylic substrates come from the same sheet of acrylic, which was machined to fit the dimensions necessary for the cryochamber used for the temperature dependent portion of the study"
+    },
+    {
+     "name": "OptistatDry BLV sample-holder vs sample-space size (why bore keys are not equivalent)",
+     "value": "20 x 50 holder in 40 x 50 space",
+     "unit": "mm",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Sample holder dims | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm | 19 mm x 30 mm | 20 mm x 50 mm |"
+    }
+   ],
+   "affected_experiments": [
+    "chem_temperature_dependent_photoluminescence"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400"
+   ],
+   "data_available": "CCS-100/300S/400 document 4-325 K, vacuum and optical access (manufacturer); optical.window_count is UNKNOWN for CCS (reported by the optional check); CRX documents one top viewport and no backside optical access.",
+   "expected_effect": "Lean-checked, e1 database: MET 0/NOT 12/NEED 14 -> MET 3/NOT 12/NEED 11 (CCS-100, CCS-300S, CCS-400 NEED -> MET: 4-325 K, sample in vacuum, windows). Latest seeds: 0/23/3 -> 3/23/0. Shyam et al. measured exactly this kind of experiment in 'a Lakeshore closed-cycle cryostat'.",
+   "implementation": "Edit data/experiments/chem_temperature_dependent_photoluminescence.json (remove two requirements, add the optional window requirement and the missing_information line); fix the reported_conditions note for ev_exp_0033 ('room-temperature measurements outside the cryostat'); rebuild the DB.",
+   "citations": [
+    {
+     "title": "Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber",
+     "authors": "Swidinsky, N.; Ellingwood, E.; Hucker, J.; Skensved, P.; Di Stefano, P.; Mason, J.; Boulay, M.; Kemp, A.; Schuckman, F.; Wang, Y.",
+     "venue": "arXiv:2407.08075 [physics.ins-det]",
+     "year": 2024,
+     "doi_or_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "These measurements were carried out at room temperature outside of the cryostat since the cryostat geometry did not allow for desired light source–sample–photodetector configuration."
+    },
+    {
+     "title": "Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber",
+     "authors": "Swidinsky, N.; Ellingwood, E.; Hucker, J.; Skensved, P.; Di Stefano, P.; Mason, J.; Boulay, M.; Kemp, A.; Schuckman, F.; Wang, Y.",
+     "venue": "arXiv:2407.08075 [physics.ins-det]",
+     "year": 2024,
+     "doi_or_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "Time-resolved measurements were conducted using both thicknesses of the Clevios-coated acrylic samples."
+    },
+    {
+     "title": "Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber",
+     "authors": "Swidinsky, N.; Ellingwood, E.; Hucker, J.; Skensved, P.; Di Stefano, P.; Mason, J.; Boulay, M.; Kemp, A.; Schuckman, F.; Wang, Y.",
+     "venue": "arXiv:2407.08075 [physics.ins-det]",
+     "year": 2024,
+     "doi_or_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "All of the acrylic substrates come from the same sheet of acrylic, which was machined to fit the dimensions necessary for the cryochamber used for the temperature dependent portion of the study"
+    },
+    {
+     "title": "Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber",
+     "authors": "Swidinsky, N.; Ellingwood, E.; Hucker, J.; Skensved, P.; Di Stefano, P.; Mason, J.; Boulay, M.; Kemp, A.; Schuckman, F.; Wang, Y.",
+     "venue": "arXiv:2407.08075 [physics.ins-det]",
+     "year": 2024,
+     "doi_or_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "Light produced from the sample interaction, such as fluorescent light, passes through the substrate and exits the cryostat via a window opposite the window that the LED was shone through."
+    },
+    {
+     "title": "Hexagonal Boron Nitride Spin Defects for Quantum Photonics: Annealing-Free Generation by Krypton Ion Implantation",
+     "authors": "Shyam, I.; Singh, R.; Akkanaboina, M.; et al.",
+     "venue": "arXiv:2606.23334 [physics.optics]",
+     "year": 2026,
+     "doi_or_url": "https://arxiv.org/abs/2606.23334",
+     "quote": "PL spectra were collected under optical excitation using the same confocal spectroscopy setup described previously at an incident power of 3.83 mW."
+    },
+    {
+     "title": "Optistat - Optical Cryostats for Spectroscopy (model comparison table)",
+     "authors": "Quantum Design Oxford (Oxford Instruments NanoScience)",
+     "venue": "Manufacturer product page",
+     "year": 2026,
+     "doi_or_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "Sample Space: 40 mm x 50 mm vacuum"
+    },
+    {
+     "title": "Model CRX-VF cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification page",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+     "quote": "Sample backside optical access: | Not an option"
+    }
+   ],
+   "risks": "The profile no longer checks sample fit at all; a user with a large sample must add their own size requirement. MET on CCS does not guarantee two opposed windows (count undocumented; reported by the optional check).",
+   "priority": 4
+  },
+  {
+   "id": "R5-mxc-heat-budget-pump-lines",
+   "title": "Qubit wiring heat budget: count Krinner et al.'s 8 TWPA pump lines (66 drive-type lines, not 58)",
+   "kind": "coupled_model",
+   "description": "quantum_mxc_wiring_heat_budget requires 124 coax lines (50 drive, 50 flux, 8 output, 8 read-in, 8 TWPA pump) but its heat-budget parameters count only 58 drive-type lines (50 drive + 8 read-in), so the 8 pump lines carry no load. Krinner et al. derive the per-drive-line passive load from a cable tree of drive and pump lines 'having the same thermalization scheme', and their 50-qubit budget (Fig. 10) lists '8x passive load pump line'. Under-specified (b), parameter fix only (model unchanged). Exact JSON: params[n_drive_lines] = {\"name\":\"n_drive_lines\",\"value\":{\"value\":66,\"unit\":\"count\"},\"origin\":\"experimental_observation\",\"description\":\"50 qubit drive + 8 read-in (readout drive) + 8 TWPA pump lines; pump lines share the drive lines' UT085-SS-SS thermalization (attenuators at 4K, CP, MXC), so they carry the same passive load per line\",\"evidence_ids\":[\"hl_033\",\"hl_011\",\"<new: Krinner readout-tree and Fig. 10 records>\"]}; model assumption text: 'active drive-line and pump-line dissipation are not included' (pump-line passive load now is).",
+   "equation_latex": "\\mu\\,(n_d q_d + n_f (q_f + p_{dc}) + n_o q_o) = 3\\,(66\\cdot 13 + 50\\cdot(29+50) + 8\\cdot 20)\\,\\mathrm{nW} = 14.904\\,\\mu\\mathrm{W} \\le P_{\\mathrm{cool}}(20\\,\\mathrm{mK})",
+   "validity": "Same as the existing model: T_doc <= T_op = 20 mK; per-line loads are Krinner et al.'s measured central values; pump lines assumed to share the drive-line passive load.",
+   "parameters": [
+    {
+     "name": "n_drive_lines (drive + read-in + TWPA pump)",
+     "value": "66",
+     "unit": "count",
+     "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "Such a quantum compressor requires a total of 124 RF lines (50 drive lines, 50 flux lines, 8 output lines, 8 read-in lines, 8 TWPA pump lines), corresponding to the operation of our system at its full capacity."
+    },
+    {
+     "name": "pump-line passive load per line (= drive line)",
+     "value": "13",
+     "unit": "nW",
+     "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "the readout tree consists of drive lines and pump lines having the same thermalization scheme with attenuators at the 4K, CP, and MXC stages."
+    }
+   ],
+   "affected_experiments": [
+    "quantum_mxc_wiring_heat_budget"
+   ],
+   "affected_configurations": [
+    "bluefors_ld250_manual_v2",
+    "bluefors_ld400_hdw",
+    "bluefors_ld450_current"
+   ],
+   "data_available": "All per-line loads already in the catalog (hl_011, hl_017, hl_019, hl_029); only the line count changes.",
+   "expected_effect": "No verdict change (Lean-checked, e1 and latest seeds): LD250 (10 uW), LD400 HDW (12 uW), LD450 (14 uW) stay NOT MET; the computed MXC load rises from 14.592 uW to 14.904 uW. The Z3 flux-line repair for LD400 HDW changes from 39 to 37 lines (3 x (1018 + 79 x 37) nW = 11.823 uW <= 12 uW; 38 lines give 12.060 uW).",
+   "implementation": "Change one parameter in data/experiments/quantum_mxc_wiring_heat_budget.json and the assumption text in data/physics/coupled_models.json; update tests/test_required_scenarios.py (expects '14.592 uW' and suggested '39'), README demo B, docs/examples/demo_b_coupled.json, FRONTEND_INTEGRATION.md and paper section 6 / fig_physics2d outputs.",
+   "citations": [
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+     "authors": "Krinner, S.; Storz, S.; Kurpiers, P.; Magnard, P.; Heinsoo, J.; Keller, R.; Lutolf, J.; Eichler, C.; Wallraff, A.",
+     "venue": "EPJ Quantum Technology 6, 2 (quotes from arXiv:1806.07862v1)",
+     "year": 2019,
+     "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "the readout tree consists of drive lines and pump lines having the same thermalization scheme with attenuators at the 4K, CP, and MXC stages."
+    },
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+     "authors": "Krinner, S.; Storz, S.; Kurpiers, P.; Magnard, P.; Heinsoo, J.; Keller, R.; Lutolf, J.; Eichler, C.; Wallraff, A.",
+     "venue": "EPJ Quantum Technology 6, 2 (quotes from arXiv:1806.07862v1)",
+     "year": 2019,
+     "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "8x passive load pump line"
+    },
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+     "authors": "Krinner, S.; Storz, S.; Kurpiers, P.; Magnard, P.; Heinsoo, J.; Keller, R.; Lutolf, J.; Eichler, C.; Wallraff, A.",
+     "venue": "EPJ Quantum Technology 6, 2 (quotes from arXiv:1806.07862v1)",
+     "year": 2019,
+     "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "Such a quantum compressor requires a total of 124 RF lines (50 drive lines, 50 flux lines, 8 output lines, 8 read-in lines, 8 TWPA pump lines), corresponding to the operation of our system at its full capacity."
+    }
+   ],
+   "risks": "Pump lines carry 50 dB instead of 60 dB attenuation, which changes their active (not passive) load; the active pump load sits mainly on the cold plate, which this model does not check. Demo numbers and one test assertion change.",
+   "priority": 5
+  },
+  {
+   "id": "R6-quantum-operating-temperature-key",
+   "title": "Quantum profiles: check the mK operating point against the documented operating range (temperature.range), not only temperature.base",
+   "kind": "requirement_change",
+   "description": "Over-specified key (a). quantum_transmon_characterization (<= 20 mK), quantum_mxc_wiring_heat_budget (<= 20 mK) and quantum_mk_vector_field_transport (<= 50 mK) need an operating point (sample at ~10 mK, ~9-20 mK, ~50 mK electron temperature) but require the key temperature.base, which many configurations do not document although they document their operating range (CCS 4-325 K, TeslatronPT 1.5-300 K, Linkam 78-873 K). Exact JSON: in each of the three profiles change \"key\":\"temperature.base\" to \"key\":\"temperature.range\" (constraint unchanged: at_most 20 mK / 20 mK / 50 mK). keys alternatives [\"temperature.range\",\"temperature.base\"] were tested and change nothing, because combineAny returns unknown when one alternative is missing.",
+   "equation_latex": "\\min \\mathrm{range}(T_{\\mathrm{op}}) \\le T_{\\mathrm{req}}, \\quad T_{\\mathrm{req}} \\in \\{20\\,\\mathrm{mK},\\,20\\,\\mathrm{mK},\\,50\\,\\mathrm{mK}\\}",
+   "validity": "The lower bound of the documented operating range and the documented base temperature describe the same quantity (lowest attainable sample temperature).",
+   "parameters": [
+    {
+     "name": "transmon operating temperature",
+     "value": "~10",
+     "unit": "mK",
+     "source_url": "https://doi.org/10.1038/s41467-025-61126-0 ; https://arxiv.org/abs/2407.18778",
+     "quote": "It is then cooled down to approximately 10 mK in a Bluefors dilution refrigerator"
+    },
+    {
+     "name": "transmon base temperature range",
+     "value": "9-20",
+     "unit": "mK",
+     "source_url": "https://doi.org/10.1038/s41467-021-22030-5 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7979772/fullTextXML)",
+     "quote": "The device is mounted in a dilution refrigerator with a base temperature of ~9–20 mK."
+    },
+    {
+     "name": "nanowire electron temperature",
+     "value": "~50",
+     "unit": "mK",
+     "source_url": "https://doi.org/10.1038/s41567-020-0858-0 ; https://arxiv.org/abs/1902.00797",
+     "quote": "Measurements were carried out in an Oxford Instruments Triton-400 dilution refrigerator with a base electron temperature of T ∼ 50 mK and a 6-1-1 T vector magnet."
+    }
+   ],
+   "affected_experiments": [
+    "quantum_transmon_characterization",
+    "quantum_mxc_wiring_heat_budget",
+    "quantum_mk_vector_field_transport"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96",
+    "oxford_teslatronpt_8T",
+    "oxford_teslatronpt_12T",
+    "oxford_teslatronpt_14T",
+    "oxford_teslatronpt_6_1_1T_vector"
+   ],
+   "data_available": "temperature.range is documented (trusted) for 21 of 26 configurations, temperature.base for 12 in the e1 catalog.",
+   "expected_effect": "Lean-checked, e1 database: transmon 0/12/14 -> 0/21/5, wiring budget 0/12/14 -> 0/21/5, mK transport 0/12/14 -> 0/18/8 (24 NEED -> NOT MET, all configurations whose operating range starts at >= 1.5 K). Latest seeds: no change, because the data workflow has since added temperature.base for these families; the change then only removes the dependence on a second, redundant key.",
+   "implementation": "Edit the 'key' of one requirement in each of the three experiment JSON files; rebuild the DB.",
+   "citations": [
+    {
+     "title": "Methods to achieve near-millisecond energy relaxation and dephasing times for a superconducting transmon qubit",
+     "authors": "Tuokkola, M.; Sunada, Y.; Kivijarvi, H.; Albanese, J.; Gronberg, L.; Kaikkonen, J.-P.; Vesterinen, V.; Govenius, J.; Mottonen, M.",
+     "venue": "Nature Communications 16, 5421 (quotes from arXiv:2407.18778v3)",
+     "year": 2025,
+     "doi_or_url": "https://doi.org/10.1038/s41467-025-61126-0 ; https://arxiv.org/abs/2407.18778",
+     "quote": "It is then cooled down to approximately 10 mK in a Bluefors dilution refrigerator"
+    },
+    {
+     "title": "New material platform for superconducting transmon qubits with coherence times exceeding 0.3 milliseconds",
+     "authors": "Place, A. P. M.; Rodgers, L. V. H.; Mundada, P.; et al.; Houck, A. A.",
+     "venue": "Nature Communications 12, 1779",
+     "year": 2021,
+     "doi_or_url": "https://doi.org/10.1038/s41467-021-22030-5 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7979772/fullTextXML)",
+     "quote": "The device is mounted in a dilution refrigerator with a base temperature of ~9–20 mK."
+    },
+    {
+     "title": "Photon-assisted tunnelling of zero modes in a Majorana wire",
+     "authors": "van Zanten, D. M. T.; Sabonis, D.; Suter, J.; Vayrynen, J. I.; Karzig, T.; Pikulin, D. I.; O'Farrell, E. C. T.; Razmadze, D.; Petersson, K. D.; Krogstrup, P.; Marcus, C. M.",
+     "venue": "Nature Physics (quotes from arXiv:1902.00797v1)",
+     "year": 2020,
+     "doi_or_url": "https://doi.org/10.1038/s41567-020-0858-0 ; https://arxiv.org/abs/1902.00797",
+     "quote": "Measurements were carried out in an Oxford Instruments Triton-400 dilution refrigerator with a base electron temperature of T ∼ 50 mK and a 6-1-1 T vector magnet."
+    },
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+     "authors": "Krinner, S.; Storz, S.; Kurpiers, P.; Magnard, P.; Heinsoo, J.; Keller, R.; Lutolf, J.; Eichler, C.; Wallraff, A.",
+     "venue": "EPJ Quantum Technology 6, 2 (quotes from arXiv:1806.07862v1)",
+     "year": 2019,
+     "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0 ; https://arxiv.org/abs/1806.07862",
+     "quote": "The load on MXC corresponds to an operation temperature of 14 mK."
+    }
+   ],
+   "risks": "bluefors_ld450_current documents temperature.base (10 mK) but not temperature.range, so it would lose its temperature pass (no verdict change today because it fails or lacks other mandatory items in all three profiles); the data workflow should add its range.",
+   "priority": 6
+  },
+  {
+   "id": "R7-quantum-rf-lines",
+   "title": "Quantum profiles: RF-line requirements stated by the procedures (transmon input+output mandatory; PAT lines reported for mK transport)",
+   "kind": "requirement_change",
+   "description": "Under-specified (b). Transmon: both procedures need at least one RF input and one RF output line (Place et al.: input signals combined into a single line, reflection readout through a circulator to a HEMT; Tuokkola et al.: drive and readout-in lines plus a readout-out chain through TWPA and HEMT), but the profile keeps electrical.coax_lines >= 2 as a non-mandatory inferred estimate. mK transport: van Zanten et al. read the charge sensor by rf reflectometry (input via attenuators and a directional coupler, reflected signal amplified by a cryogenic amplifier) and drive photon-assisted tunnelling at up to 14 GHz through a high-bandwidth line; Zhou et al. use only dc and low-frequency lock-in transport, so these are reported, not mandatory. Exact JSON: transmon: {\"key\":\"electrical.coax_lines\",\"constraint\":{\"kind\":\"count_at_least\",\"n\":2},\"mandatory\":true,\"origin\":\"experimental_observation\",\"rationale\":\"At least one RF input and one RF output line in both procedures\",\"evidence_ids\":[\"ev_exp_0052\",\"ev_exp_0059\"]}; mK transport += {\"key\":\"electrical.coax_lines\",\"constraint\":{\"kind\":\"count_at_least\",\"n\":3},\"mandatory\":false,\"origin\":\"experimental_observation\",\"rationale\":\"rf reflectometry in/out plus a microwave drive line (van Zanten et al.); not needed for dc transport (Zhou et al.)\",\"evidence_ids\":[\"ev_exp_0065\"]} and {\"key\":\"electrical.coax_bandwidth.max\",\"constraint\":{\"kind\":\"at_least\",\"q\":{\"value\":14000000,\"unit\":\"kHz\"}},\"mandatory\":false,\"origin\":\"experimental_observation\",\"rationale\":\"Photon-assisted tunnelling drive at up to 14 GHz (van Zanten et al.)\"}.",
+   "equation_latex": "N_{\\mathrm{coax}} \\ge 2 \\;(\\text{transmon}); \\qquad N_{\\mathrm{coax}} \\ge 3,\\; f_{\\mathrm{line}} \\ge 14\\,\\mathrm{GHz} \\;(\\text{PAT variant, reported})",
+   "validity": "Counts installed RF lines to the sample; the mK-transport RF items apply only to the PAT/rf-charge-sensing variant of the profile.",
+   "parameters": [
+    {
+     "name": "PAT microwave drive frequency",
+     "value": "14",
+     "unit": "GHz",
+     "source_url": "https://doi.org/10.1038/s41567-020-0858-0 ; https://arxiv.org/abs/1902.00797",
+     "quote": "A continuous microwave signal (fd = 14 GHz) was applied to VRP during the measurement"
+    },
+    {
+     "name": "transmon RF lines (minimum, reflection readout)",
+     "value": "2",
+     "unit": "count",
+     "source_url": "https://doi.org/10.1038/s41467-021-22030-5 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7979772/fullTextXML)",
+     "quote": "The input signals are combined into a single line and then attenuated on each plate of the dilution refrigerator."
+    }
+   ],
+   "affected_experiments": [
+    "quantum_transmon_characterization",
+    "quantum_mk_vector_field_transport"
+   ],
+   "affected_configurations": [],
+   "data_available": "electrical.coax_lines documented for LD400 HDW (168) and LD450 (168, optional not installed); unknown elsewhere; coax bandwidth documented for Bluefors and CRX options.",
+   "expected_effect": "No verdict change on the e1 grid or the latest seeds (Lean-checked); the transmon line requirement moves from an untracked inferred estimate to a sourced mandatory check, and the mK-transport report shows whether the PAT variant is wired.",
+   "implementation": "Edit the existing transmon requirement (mandatory true, origin experimental_observation, new rationale); add two non-mandatory requirements to quantum_mk_vector_field_transport. Cleaner long-term option: split the mK profile into a dc-transport profile (Zhou) and a PAT/rf profile (van Zanten) with these RF items mandatory in the latter.",
+   "citations": [
+    {
+     "title": "New material platform for superconducting transmon qubits with coherence times exceeding 0.3 milliseconds",
+     "authors": "Place, A. P. M.; Rodgers, L. V. H.; Mundada, P.; et al.; Houck, A. A.",
+     "venue": "Nature Communications 12, 1779",
+     "year": 2021,
+     "doi_or_url": "https://doi.org/10.1038/s41467-021-22030-5 (full text via https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7979772/fullTextXML)",
+     "quote": "Measured in reflection, the output signal is sent through a circulator"
+    },
+    {
+     "title": "Methods to achieve near-millisecond energy relaxation and dephasing times for a superconducting transmon qubit",
+     "authors": "Tuokkola, M.; Sunada, Y.; Kivijarvi, H.; Albanese, J.; Gronberg, L.; Kaikkonen, J.-P.; Vesterinen, V.; Govenius, J.; Mottonen, M.",
+     "venue": "Nature Communications 16, 5421 (quotes from arXiv:2407.18778v3)",
+     "year": 2025,
+     "doi_or_url": "https://doi.org/10.1038/s41467-025-61126-0 ; https://arxiv.org/abs/2407.18778",
+     "quote": "The readout signal coming out of the sample goes through a three-wave-mixing Josephson traveling-wave parametric amplifier (TWPA), a cryogenic high-electron-mobility-transistor (HEMT) amplifier, and a room-temperature HEMT amplifier before being digitized by RFSoC."
+    },
+    {
+     "title": "Photon-assisted tunnelling of zero modes in a Majorana wire",
+     "authors": "van Zanten, D. M. T.; Sabonis, D.; Suter, J.; Vayrynen, J. I.; Karzig, T.; Pikulin, D. I.; O'Farrell, E. C. T.; Razmadze, D.; Petersson, K. D.; Krogstrup, P.; Marcus, C. M.",
+     "venue": "Nature Physics (quotes from arXiv:1902.00797v1)",
+     "year": 2020,
+     "doi_or_url": "https://doi.org/10.1038/s41567-020-0858-0 ; https://arxiv.org/abs/1902.00797",
+     "quote": "we now apply microwaves through a high bandwidth line connected to the right plunger gate"
+    },
+    {
+     "title": "Photon-assisted tunnelling of zero modes in a Majorana wire",
+     "authors": "van Zanten, D. M. T.; Sabonis, D.; Suter, J.; Vayrynen, J. I.; Karzig, T.; Pikulin, D. I.; O'Farrell, E. C. T.; Razmadze, D.; Petersson, K. D.; Krogstrup, P.; Marcus, C. M.",
+     "venue": "Nature Physics (quotes from arXiv:1902.00797v1)",
+     "year": 2020,
+     "doi_or_url": "https://doi.org/10.1038/s41567-020-0858-0 ; https://arxiv.org/abs/1902.00797",
+     "quote": "The excitation signal coming from the lock-in is first attenuated by 21 dB of built-in cryostat attenuators and then by another 15 dB additionally as it passes though the CPL-to-In port of the directional coupler installed below the mixing chamber."
+    },
+    {
+     "title": "Fusion of Majorana bound states with mini-gate control in two-dimensional systems",
+     "authors": "Zhou, T.; Dartiailh, M. C.; Sardashti, K.; Han, J. E.; Matos-Abiague, A.; Shabani, J.; Zutic, I.",
+     "venue": "Nature Communications 13, 1738 (quotes from arXiv:2101.09272v3)",
+     "year": 2022,
+     "doi_or_url": "https://doi.org/10.1038/s41467-022-29463-6 ; https://arxiv.org/abs/2101.09272",
+     "quote": "All transport measurements are performed using standard dc and lock-in techniques at low frequencies and excitation current I ac = 10 nA."
+    }
+   ],
+   "risks": "Low impact today; the mK profile mixes a dc-transport and an RF procedure, so optional items are only a stopgap.",
+   "priority": 7
+  }
+ ],
+ "rejected_ideas": [
+  "keys alternative sample.bore_diameter (or sample.diameter.max) for the 3 x 3 x 3 mm crystal in mat_electrical_resistance_low_temperature / mat_magnetoresistance_10T: not physically equivalent. The crystal lies across the bore on the PPMS puck, a '2.3 cm (0.91 inch) diameter disk' inside a 'Clear bore 2.5 cm (1 inch) diameter'; the ETO/Resistivity manuals give no mounting-area figure, so the bore is only a necessary bound (a 4.24 mm footprint diagonal never binds). The project rule also forbids relaxing the 3 mm requirement to reach MET.",
+  "keys alternative sample.bore_diameter for the 15 mm Raman crucible: not equivalent. The liquid-filled crucible must lie flat and be viewed from above on the stage's sample area (THMS600 'Sample area 22 mm diameter'); in side-window cryostats the holder is narrower than the bore (OptistatDry BLV holder 20 x 50 mm in a 40 x 50 mm space).",
+  "Making the transmon chip-size requirements (7 x 7 mm, Place et al.) non-mandatory because the chip sits in a user package: rejected. Bluefors sells the QCage.24 holder 'tested and pre-installed' at the mixing-chamber flange of LD systems, so the chip limit can be a configuration capability like the PPMS puck; keep the requirement and document the installed holder's chip size.",
+  "Necessary-only bore checks as extra coupled constraints (across the bore W^2 + L^2 <= D^2, end-on W^2 + t^2 <= D^2): sound as necessary conditions, but none binds for the current profiles (3 mm crystal, 15 mm crucible; the PL sample size is unstated after R4), so no verdict value now.",
+  "Allowing module.dc_resistivity as an alternative to module.electrical_transport in the transport profiles: Nowakowska et al. measured 'with ac electrical current flowing along [100]', and Quantum Design describes the ETO as AC resistance and the Resistivity Option as DC resistance, so the alternative is not the procedure's measurement.",
+  "Raising mat_magnetoresistance_10T to 14 T: Nowakowska et al.'s SdH analysis uses B_eff 'obtained for B1 = 14 T and B2 = 9 T', so 10 T would not reproduce it; but 10 T is the user's documented demo value (origin user_entered), so it is kept and only flagged here.",
+  "Illumination-heating coupled model T_stage + dT(P) <= 136 K for cryo-fluorescence: Last et al. give power-density limits per grid type measured with the stage at 77 K, not temperature rises in K, and Huebinger & Bastiaens report 'a new steady-state temperature between -108 C and -115 C, depending on beam shape' at ~300 W/cm2; the heating is a grid/illumination property, every catalog stage reaches <= 78 K, so there is no verdict effect.",
+  "Tightening the devitrification limit from 136 K to 133 K (-140 C per Linkam and Schorb & Briggs): no verdict effect; the procedure's own value (Last et al., ~136 K) is kept.",
+  "Requiring a dry-gas purge instead of vacuum for the open aqueous Raman sample (an evacuated sample space would evaporate the liquid): physically plausible, but Park et al. do not describe the stage atmosphere and a sealed cell would be compatible with vacuum; R3 already removes the probe-station acceptances.",
+  "Requiring a transmitted-light path (>= 2 windows) for polarized optical microscopy: the wax procedure states only a 'Leica DM2700 polarized optical microscope with an Olympus long-distance lens', not transmitted light; the long-distance lens's working distance is not stated either, so no WD requirement can be set.",
+  "Raising the transmon coax bandwidth from 8 GHz to >= 10.5 GHz for Tuokkola et al.'s TWPA pump: the TWPA is optional in the procedure (unpumped in the first cooldown; 'the TWPA does not significantly affect the coherence times'), so the 8 GHz margin above the 7.3 GHz resonators is kept.",
+  "Inert-atmosphere requirement for the air-sensitive REBi crystals ('oxidize easily in ambient atmosphere and decompose after several hours'): needs a new key; the PPMS chamber always holds helium exchange gas, while [vacuum.available, purge.gas] would give spurious failures for the classic PPMS; no verdict value.",
+  "keys alternatives [temperature.range, temperature.base] for the quantum temperature requirements: Lean-checked, zero verdict change, because combineAny returns unknown when one alternative is missing; replaced by R6.",
+  "Accepting the cryochamber range as an alternative to the specimen-head range in bio_cryosection_frozen_tissue: not equivalent. Li et al. set the holder 2 C warmer than the chamber (-18 C vs -20 C), which needs active object-head control; without it the specimen equilibrates near the chamber temperature, so leica_cm1950_genA_standard (object cooling not installed) is correctly NOT MET for this procedure.",
+  "Schema note instead of a requirement: sample.height.max mixes sample thickness (Linkam THMS600 'Maximum Sample Thickness: 3mm', ev_linkam_0013) and vertical sample-space height (OptistatDry BLV '40 mm x 50 mm'); a thickness requirement (e.g. the 5 mm PL acrylic) would be checked against unlike quantities. Proposed for the data/schema workflow: split into sample.thickness.max and sample_space.height."
+ ],
+ "data_followups_for_data_workflow": [
+  "optical.objective_working_distance.min for CCS-100/300S/400/400H, CRX-4K/VF, OptistatDry BLV/TLEX (needed by R1; expected >> 2 mm).",
+  "sample.cryo_transfer for all 26 configurations (R2); trusted 'false' for warm-loaded cryostats (e.g. CRX-VF cycle: pump-down 1.5 h, cooldown 5 h, warm-up 2 h).",
+  "temperature.cooling_rate.max and temperature.sweep_rate.max for CRX-4K/VF and OptistatDry BLV/TLEX (R3).",
+  "optical.f_number for OptistatDry (f/1 already quoted in ev_ox_0029) and optical.window_count for CCS (R1 optional NA check, R4 optional window check).",
+  "temperature.range for bluefors_ld450_current (R6).",
+  "The procedure's own cryo-CLEM stage (Linkam CMS196V3/V4) is not in the catalog; adding it is the only way bio_cryo_fluorescence_vitrified can reach MET after R1/R2."
+ ]
+}

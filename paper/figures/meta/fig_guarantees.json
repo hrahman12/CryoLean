@@ -1,0 +1,18 @@
+{
+ "name": "fig_guarantees",
+ "title": "Formal guarantee coverage",
+ "question": "For each guarantee CryoLean claims, which Lean theorem states it, does that theorem use only standard axioms, is it exercised by a runtime test, and did the independent forensics audit find it clean?",
+ "model": "Coverage matrix. Theorem column: theorem names listed in VERIFICATION_SCOPE.md and found in the elaborated environment. Audit: axioms from lean/audit-axioms.json (#print axioms). Tests: tests mapped to each guarantee by reading tests/*.py, run now with pytest -m 'not slow'. Forensics: per-declaration axioms, smells and flags from the for-all-dev/forensics extractor.",
+ "data": "VERIFICATION_SCOPE.md (13 guarantees + 2 auxiliary rows); lean/audit-axioms.json (44 theorems, source hash 3120e7563625); tests/*.py run here (91 tests, 0 failures, 72 s); docs/forensics/cryolean-forensics.json + summary.json; evaluation summaries read from paper/data/e3_search.json, e4_faults.json, e6_schedule.json. Data: paper/data/fig_guarantees.json.",
+ "claim": "PROVEN+COMPUTED",
+ "caption": "Coverage of CryoLean's guarantees by four independent kinds of evidence. 11 of the 13 numbered guarantees are stated by named Lean theorems that the kernel checks, use only the standard axioms (propext, Quot.sound, Classical.choice), are exercised by passing runtime tests and were found clean by the forensics audit. Guarantee 10 (AI cannot bypass the gate) holds by construction, since the checker's input type has no AI field, and is covered by tests only; guarantee 9 is partial because verdict_deterministic is plain congruence. Theorem and axiom facts are PROVEN by the Lean kernel; test outcomes were computed on this machine.",
+ "section": "main",
+ "script": "paper/scripts/fig_formal.py",
+ "command": "python paper/scripts/fig_formal.py",
+ "files": [
+  "paper/figures/fig_guarantees.png",
+  "paper/figures/fig_guarantees.svg",
+  "paper/figures/fig_guarantees.pdf"
+ ],
+ "interactive": null
+}

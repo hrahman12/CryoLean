@@ -1,0 +1,85 @@
+{
+ "id": "med_mrna_vaccine_ult_storage",
+ "name": "Ultra-low-temperature storage of frozen Pfizer-BioNTech COMIRNATY (KP.2) mRNA vaccine vials at -90 C to -60 C",
+ "plain_name": "Keep mRNA vaccine vials frozen in an ultra-cold freezer",
+ "industry": "healthcare_and_medicine",
+ "description": "Vaccine-depot storage: frozen vials are kept in an ultra-low-temperature (ULT) freezer between -90 C and -60 C until expiry and must not be stored at -25 C to -15 C; thawed vials go to a 2-8 C fridge for up to 10 weeks.",
+ "keywords": [
+  "Keep mRNA vaccine vials frozen in an ultra-cold freezer",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+   "url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "ultra-low temperature (ULT) freezer",
+  "ULT portable unit"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 213150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The storage space must reach -60 C or colder (warm edge of the permitted -90 C to -60 C window).",
+   "evidence_ids": [
+    "v4e_med_mrna_vaccine_ult_storage_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 183150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The storage space must also be settable no colder than -90 C (cold edge of the window); with the previous requirement the machine range must overlap -90 C to -60 C, which excludes nitrogen storage that only runs far below -90 C.",
+   "evidence_ids": [
+    "v4e_med_mrna_vaccine_ult_storage_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 213150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Same -60 C limit for machines that document only their lowest temperature (portable ULT units qualify).",
+   "evidence_ids": [
+    "v4e_med_mrna_vaccine_ult_storage_2"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

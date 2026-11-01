@@ -1,0 +1,1166 @@
+{
+  "meta": {
+    "angle": "Magnet and field physics for the catalog's magnet systems (QD PPMS 14/16 T, DynaCool 9/12/14 T, Oxford TeslatronPT 8/12/14 T and 6/1/1 T vector, Lake Shore CRX-VF 2.5 T)",
+    "produced_by": "CryoLean model-research workflow, magnet subagent",
+    "date": "2026-11-01",
+    "status": "proposals only; no catalog, physics, experiment or Lean file was modified",
+    "repository_inputs_read": [
+      "README.md",
+      "VERIFICATION_SCOPE.md",
+      "paper/src/paper.md (sections 3-7)",
+      "data/physics/coupled_models.json",
+      "data/physics/properties.json",
+      "data/capability_vocabulary.json",
+      "data/SCHEMA.md",
+      "data/experiments/*.json",
+      "data/cryostats/*.json",
+      "data/evidence/*.json (magnet records)",
+      "paper/data/e1_grid.json",
+      "paper/data/gap_worklist.json",
+      "cryolean/units.py"
+    ],
+    "grid_baseline": {
+      "experiments": 11,
+      "configurations": 26,
+      "REQUIREMENTS_MET": 20,
+      "DOES_NOT_MEET_REQUIREMENTS": 109,
+      "NEED_MORE_INFORMATION": 157
+    },
+    "division_free": "Every relation is lhs <= rhs over +, -, * of dimensioned quantities; irrational constants (pi, mu0) enter only through rational bounds; sufficient-only conditions are encoded through the validity list, so no Lean change is required.",
+    "coordination": "Does not duplicate the parallel workflow (datasheet values/absences, cooling-power curves, envelope/cryogen/pressure/stress tables, interval representation, QuickXplain, SiLA/OPC UA). MAG-2 supplies magnet semantics and sources for the envelope model; table import stays with the envelope workflow."
+  },
+  "findings_about_current_model": [
+    "magnet_ramp_time (status validated) passes on a necessary-only bound: B_target <= (dB/dt)_max * t_budget uses a lower bound on the ramp time (the model's own assumption), and QD's documented times to full field exceed it by x1.07 (9 T), x1.25 (12 T) and x1.71 (14 T DynaCool), contradicting the assumption text 'times to full field are consistent with field / maximum rate'.",
+    "lakeshore_crx_vf records magnetic_field.max = 2.5 T for 10-420 K, but the manufacturer table (already in evidence ev_ls_0004) gives 2.5 T only at 10 K, 2 T for 11-400 K and 1 T for 401-420 K; independent checks of field and temperature can therefore pass combinations the instrument cannot reach.",
+    "The CRX-VF magnet is a superconducting solenoid (vertical field, current control), not an electromagnet.",
+    "oxford_teslatronpt_6_1_1T_vector stores the 6 T main-axis rating as magnetic_field.max next to vector = true, so profiles needing more than 1 T off the main axis could pass.",
+    "Five QD uniformity values exist in evidence (ev_qd_0040-0042, ev_qd_0057, ev_qd_0058) but are UNKNOWN in the configurations because the 'ppm' key cannot carry the region length and center height.",
+    "magnetic_field.max is the field at the magnet center, which QD places about 4 cm above the standard transport-puck surface; QD Tech Note 1084-312 shows the puck-surface field is lower (about -5 % for the 16 T PPMS by reading its figure) and recommends the vertical puck or rotator for transport at the center.",
+    "QD's classic PPMS brochure (1070-002 Rev. C1) prints '14 T: 100 Oe/s (≈1 T/min.)', internally inconsistent (100 Oe/s = 0.6 T/min); the catalog correctly stores 100 Oe/s.",
+    "On liquid-helium PPMS systems full field is recommended only above 60 % helium (14 T magnet: 1 T at 40-60 %; 16 T magnet: 0 T), a field limit that depends on run duration through helium consumption.",
+    "The DynaCool magnet is switch-less (driven only), so persistent-mode creep does not apply there; remanent (trapped-flux) offsets of tens to ~200 Oe after high-field excursions do apply to QD magnets and matter for the VSM profile's 1 kOe M(T) step."
+  ],
+  "proposals": [
+    {
+      "id": "MAG-1-ramp-time-two-sided",
+      "title": "Make magnet_ramp_time sound: keep the max-rate inequality as a fail-only (necessary) check and add a sufficient pass check from documented time-to-full-field or field-banded rate tables",
+      "kind": "coupled_model",
+      "description": "The validated model magnet_ramp_time passes whenever B_target <= (dB/dt)_max * t_budget. Its own assumption says the max-rate time is a lower bound on the real ramp time, so the inequality is only NECESSARY: its violation soundly rejects, but its satisfaction does not establish that the target is reached in time. QD's data show the gap is real: the DynaCool 14 T at 100 Oe/s needs >= 1400 s, but QD documents 'less than 40 min (typical)' = 2400 s to full field (ratio 1.71; 12 T: 1200 s vs 1500 s, ratio 1.25; 9 T: 450 s vs 480 s, ratio 1.07), so the model's assumption text 'Quantum Design's times to full field are consistent with field / maximum rate' is contradicted for the 14 T magnet. Ramp rates are also field-banded in practice: QD's EverCool guidance ramps to 8 T at full rate and 8-9 T at 100 Oe/s; Oxford's MercuryiPS applies coercive rate-limit tables by current band (example 10 A/min to 70 A, 8 A/min above). Physical cause: AC losses heat the winding and lower the quench current as the ramp rate rises (Caspi 1983); in cryocooler-cooled magnets such as DynaCool and TeslatronPT this heat must be removed by the cryocooler (Liu 2005). Proposal: split the model into (1) the existing relation, now documented as a fail-only necessary bound, and (2) a sufficient pass relation encoded through the validity list so it can only PASS or give NEED INFO: (A, assumption-free) t_full,doc <= t_budget with B_target <= B_max (monotone ramp from zero reaches any lower field no later than full field); (B, optional, only if the reviewer accepts 'documented rate is non-increasing with field') B_target * t_full,doc <= B_max * t_budget; (C) when a banded table (B_0=0 < B_1 < ... with rates r_i) is documented, the exact multiplied-out banded time, e.g. for two bands B_1*r_2 + (B_t - B_1)*r_1 <= t_budget*r_1*r_2. The sufficient half needs the approach mode to be Linear (Oscillate overshoots by about 30 % and takes longer). No Lean change is needed: a sufficient-only condition is expressed by putting it in 'validity' and repeating one validity bound as the relation.",
+      "equation_latex": "\\text{fail iff } B_t > \\dot B_{\\max}\\, t_b;\\qquad \\text{pass if } t_{\\mathrm{full}} \\le t_b \\wedge B_t \\le B_{\\max};\\quad\\text{(rate non-increasing in }B\\text{): } B_t\\, t_{\\mathrm{full}} \\le B_{\\max}\\, t_b;\\quad\\text{banded, }B_1 \\le B_t \\le B_2:\\ B_1 r_2 + (B_t - B_1)\\, r_1 \\le t_b\\, r_1 r_2",
+      "validity": "0 <= B_target <= B_max of the installed magnet; ramp from zero field in Linear approach mode (no Oscillate/No-Overshoot overhead); one monotone ramp; t_full,doc is QD's 'typical' time to full field (manufacturer specification class, as already accepted for pm_021-pm_023); banded form only inside the documented band B_{k-1} <= B_target <= B_k (re-checked by Lean as validity bounds); assumption B only with reviewer sign-off.",
+      "parameters": [
+        {
+          "name": "(dB/dt)_max PPMS DynaCool 9 T / 12 T / 14 T",
+          "value": "200 / 100 / 100",
+          "unit": "Oe/s (exactly 0.02 / 0.01 / 0.01 T/s with 1 Oe <-> 1e-4 T)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "quote": "9 T: 200 Oe/s; 12 T: 100 Oe/s; 14 T: 100 Oe/s"
+        },
+        {
+          "name": "t_full,doc PPMS DynaCool 9 T / 12 T / 14 T (typical upper bound)",
+          "value": "480 / 1500 / 2400",
+          "unit": "s (less than 8 / 25 / 40 min, typical)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "9 T: less than 8 min (typical) 12 T: less than 25 min (typical) 14 T: less than 40 min (typical)"
+        },
+        {
+          "name": "(dB/dt)_max PPMS classic 14 T / 16 T",
+          "value": "100 / 160",
+          "unit": "Oe/s (0.01 / 0.016 T/s; note the brochure's '≈1 T/min.' is inconsistent with 100 Oe/s = 0.6 T/min)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+          "quote": "9 T: 190 Oe/s (> 1 T/min.) 14 T: 100 Oe/s (≈1 T/min.) 16 T: 160 Oe/s (≈1 T/min.)"
+        },
+        {
+          "name": "Banded ramp guidance, PPMS EverCool 9 T: band boundary B_1 and rate above it",
+          "value": "B_1 = 8 T; r_2 = 100 Oe/s",
+          "unit": "T; Oe/s (r_1 = full rate)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1099-205.pdf",
+          "quote": "to sweep the field up to +9 tesla, set up your sequence to first sweep to +8 tesla at full field (~4.5 V), then to sweep to +9 tesla at 100 Oe/s (~1 V charging rate)."
+        },
+        {
+          "name": "MercuryiPS example rate-limit table (Oxford supplies used on TeslatronPT)",
+          "value": "10 A/min for 0-70 A; 8 A/min for 70.0001-120.5 A",
+          "unit": "A/min (current bands; field = field constant x current)",
+          "source_url": "https://www.jlab.org/div_dept/physics_division/dsg/technical_documentation/HDice/Manuals_and_Specifications/MercuryiPS%20Power%20Supply.pdf",
+          "quote": "magnet rate limit of 10A/min is being applied for output currents from 0A to 70.0000A, then fast magnet rate limit of 8A/min is being applied for output currents from 70.0001A to 120.5000A."
+        },
+        {
+          "name": "Demonstrated sweep rate, TeslatronPT Plus with 12 T solenoid, 0-12 T",
+          "value": "0.3",
+          "unit": "T/min (= 0.005 T/s); an achieved rate, usable only for the pass half",
+          "source_url": "https://qd-oxford.com/siteDocs/appNotes/TeslatronPT_Plus_app_note_SdH_data_analysis.pdf",
+          "quote": "# start z feild ramp to 12 T at 0.3 T/min"
+        },
+        {
+          "name": "Oscillate approach overshoot (PPMS)",
+          "value": "30",
+          "unit": "% of set point (approximate)",
+          "source_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+          "quote": "In Oscillate mode, the magnet controller allows the magnet to overshoot or undershoot the field set point by about 30%, if possible, and then narrows in on the set point in an oscillatory fashion"
+        }
+      ],
+      "affected_experiments": [
+        "mat_magnetometry_vsm"
+      ],
+      "affected_configurations": [
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T",
+        "oxford_teslatronpt_12T"
+      ],
+      "data_available": "Already in the catalog: ev_qd_0037-0039 (DynaCool max rates), ev_qd_0057/0058 (classic 14/16 T max rates), pm_021-pm_023 (DynaCool time to full field), pm_025. New sources retrieved here: QD 1099-205 (banded EverCool guidance), MercuryiPS manual (banded rate-limit mechanism), QD Oxford 2026 app note (0.3 T/min demonstrated 0-12 T on a 12 T TeslatronPT Plus), QD 1070-150 (Oscillate overshoot). Missing: QD does not publish a time to full field for the classic PPMS 14/16 T or a banded table for any catalog magnet; Oxford publishes no TeslatronPT ramp spec (Tavily research found none); Lake Shore publishes no CRX-VF ramp rate (only the older CPX-VF manual's 0.12 A/s supply limit, a different product).",
+      "expected_effect": "Current e1 grid unchanged (20 MET / 109 NOT MET / 157 NEED INFO): the only use is optional in mat_magnetometry_vsm with field_ramp_time_budget = null. Closes a false-MET class for any user-entered budget between the max-rate lower bound and the documented time: e.g. 14 T within 1800 s on qd_dynacool_14T_eto_vsm_hc passes today (1400 s <= 1800 s) and becomes NEED INFO (2400 s > 1800 s); 9 T within 960 s on qd_dynacool_12T_vsm passes today and becomes NEED INFO (needs 1125 s with assumption B, 1500 s without). Budgets below the max-rate bound still give NOT MET (9 T in 420 s on the DynaCool 9 T). 9 T within 480 s on the DynaCool 9 T still passes (t_full = 480 s). Classic PPMS 14/16 T: pass half has no documented time, so any budget at or above the max-rate bound gives NEED INFO instead of PASS. TeslatronPT 12 T can pass via B_t <= 0.005 T/s * t_b if the reviewer accepts that the app-note TeslatronPT Plus 12 T magnet is the catalog's 12 T option.",
+      "implementation": "1) data/physics/coupled_models.json: keep magnet_ramp_time relations unchanged but rename its meaning to 'necessary (fail-only) bound', correct the assumption text, and add model magnet_ramp_time_sufficient with validity [{a: cap magnetic_field.full_field_time.max, b: param field_ramp_time_budget}, {a: param target_field, b: cap magnetic_field.max}] and relation target_field <= cap magnetic_field.max (repeats a validity bound, so it can only pass or be UNSUPPORTED). Optional variant with relation target_field*t_full <= B_max*t_budget under assumption B. 2) capability_vocabulary.json: new key magnetic_field.full_field_time.max (shape min, unit s) and banded keys magnetic_field.ramp_rate.band_<lo>_<hi>T (shape max, uT_per_s); serializer picks the band containing target_field like cooling_power.at_* and expands the k-band polynomial template; Lean re-checks band bounds through validity. 3) Add evidence records for 1099-205, the MercuryiPS manual and the QD Oxford app note. 4) Profiles: add param approach_mode (enum, default Linear) and keep field_ramp_time_budget user-entered. 5) Tests: regression cases 14 T/1800 s (DynaCool 14 T) -> NEED INFO, 9 T/420 s (DynaCool 9 T) -> NOT MET, 9 T/480 s -> MET; Z3 'repair' for t_budget should propose the sufficient bound (t_full or B_t*t_full/B_max), not the lower bound.",
+      "citations": [
+        {
+          "title": "Product Description: Cryogen-Free Physical Property Measurement System PPMS DynaCool (1307-010 Rev. G0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer product description, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "9 T: less than 8 min (typical) 12 T: less than 25 min (typical) 14 T: less than 40 min (typical)"
+        },
+        {
+          "title": "PPMS Family Measurement Options (1084-500 Rev. J0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer brochure, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "quote": "9 T: 200 Oe/s; 12 T: 100 Oe/s; 14 T: 100 Oe/s"
+        },
+        {
+          "title": "PPMS Physical Measurement Property System Product Description (1070-002 Rev. C1)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer product description, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+          "quote": "9 T: 190 Oe/s (> 1 T/min.) 14 T: 100 Oe/s (≈1 T/min.) 16 T: 160 Oe/s (≈1 T/min.)"
+        },
+        {
+          "title": "Magnet Ramping Guidelines for an EverCool Dewar (PPMS Application Note 1099-205 Rev. A-1)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design PPMS Application Note",
+          "year": 2005,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1099-205.pdf",
+          "quote": "to sweep the field up to +9 tesla, set up your sequence to first sweep to +8 tesla at full field (~4.5 V), then to sweep to +9 tesla at 100 Oe/s (~1 V charging rate)."
+        },
+        {
+          "title": "MercuryiPS Operator's Manual, Issue 14 (UMC0071)",
+          "authors": "Oxford Instruments NanoScience",
+          "venue": "Manufacturer operator's manual (copy hosted by Jefferson Lab)",
+          "year": 2016,
+          "doi_or_url": "https://www.jlab.org/div_dept/physics_division/dsg/technical_documentation/HDice/Manuals_and_Specifications/MercuryiPS%20Power%20Supply.pdf",
+          "quote": "the power supply can be pre-programmed with sets of ramp rate limits to avoid ramping the magnet too quickly or dumping current in the switch too quickly."
+        },
+        {
+          "title": "Collection, analysis and presentation of Shubnikov-de Haas data (TeslatronPT Plus application note)",
+          "authors": "A. Graham, O. Armitage, A. Matthews (Quantum Design Oxford)",
+          "venue": "Quantum Design Oxford Application Note, March 2026",
+          "year": 2026,
+          "doi_or_url": "https://qd-oxford.com/siteDocs/appNotes/TeslatronPT_Plus_app_note_SdH_data_analysis.pdf",
+          "quote": "For the measurement described here, a system with a 12 T solenoid magnet was used."
+        },
+        {
+          "title": "Physical Property Measurement System Hardware Manual (1070-150 Rev. B5)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer hardware manual (copy hosted by NJIT)",
+          "year": 2008,
+          "doi_or_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+          "quote": "In Oscillate mode, the magnet controller allows the magnet to overshoot or undershoot the field set point by about 30%, if possible, and then narrows in on the set point in an oscillatory fashion"
+        },
+        {
+          "title": "Ramp rate sensitivities of several superconducting dipole magnets operated in He I and superfluid He II",
+          "authors": "S. Caspi, W. Gilbert, J. Rechen",
+          "venue": "IEEE Transactions on Magnetics 19(3), 1394-1397",
+          "year": 1983,
+          "doi_or_url": "https://doi.org/10.1109/TMAG.1983.1062262",
+          "quote": "The quench current of a superconducting dipole magnet decreases from its slow-ramp value as the current ramp-rate is increased, due to heat buildup in the coil winding."
+        },
+        {
+          "title": "Stability study on cryocooler-cooled superconducting magnets during current excitation",
+          "authors": "H. Liu",
+          "venue": "Chinese Journal of Low Temperature Physics",
+          "year": 2005,
+          "doi_or_url": "https://www.semanticscholar.org/paper/17d831c8b0bc0100a5f5ae2db998c6680b973f0c",
+          "quote": "When the superconducting magnet is charged, ac loss is generated and it causes the coil temperatureto rise."
+        },
+        {
+          "title": "The Proteox family (brochure 2023 V7)",
+          "authors": "Oxford Instruments NanoScience",
+          "venue": "Manufacturer brochure",
+          "year": 2023,
+          "doi_or_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "Driven magnets as a standard with no persistent switch - Typical ramp rates of 0.25 T/min"
+        }
+      ],
+      "risks": "QD's times are 'typical', not guaranteed (same class as already accepted pm_021-023). Assumption B (rate non-increasing with field) is physically motivated and matches the EverCool and MercuryiPS examples but is not documented for every magnet, so it must stay optional. The 12 T TeslatronPT pass relies on a TeslatronPT Plus app note (cross-product inference). Field-dependent rate tables are user/service-configurable on Oxford supplies, so a documented table may not match an installed system. The classic PPMS 14 T brochure is internally inconsistent (100 Oe/s vs '≈1 T/min.'); use the Oe/s value.",
+      "priority": 1
+    },
+    {
+      "id": "MAG-2-field-temperature-envelope",
+      "title": "Validate field_temperature_envelope as division-free temperature bands; fix the CRX-VF 2.5 T over-statement; add the liquid-helium PPMS helium-level field limit",
+      "kind": "coupled_model",
+      "description": "magnetic_field.max and temperature requirements are checked independently, so the CRX-VF (catalog 2.5 T, 10-420 K) passes e.g. '2.2 T at 300 K', but Lake Shore documents ±2.5 T only at 10 K, ±2 T for 11-400 K and ±1 T for 401-420 K (this table is already in the catalog as ev_ls_0004). Encode a documented envelope as bands (T_lo,i, T_hi,i, B_i): for every band overlapping the profile's operating temperature(s) emit B_req <= B_i with validity T_lo,i <= T_op <= T_hi,i (selected by the serializer like cooling_power.at_*, re-checked by Lean; a temperature in an undocumented gap such as 10.5 K gives NEED INFO, never PASS). For QD and Oxford the documented envelope is rectangular: QD says the magnet 'is always at the same temperature' and the classic PPMS magnet 'is always immersed in liquid helium'; the VSM option's operational range is '1.8 to 400 K; 0 to 16 T'; the TeslatronPT VTI gives 1.5-300 K 'while operating the magnet'. For the liquid-helium PPMS (14 T, 16 T) QD adds a third axis: full field only with helium above 60 %, 1 T (14 T magnet) or 0 T (16 T magnet) at 40-60 %, so a run needing more than 1 T for t_run couples to the cryogen-consumption model: h_0 - hdot*t_run >= 60 %. This is the magnet-physics part of the envelope work; importing further envelope tables belongs to the separate envelope-table workflow.",
+      "equation_latex": "\\forall i:\\ T_{lo,i} \\le T_{op} \\le T_{hi,i} \\Rightarrow B_{\\mathrm{req}} \\le B_i;\\qquad\\text{LHe PPMS: } B_{\\mathrm{req}} > 1\\,\\mathrm{T} \\Rightarrow h_0 - \\dot h\\, t_{\\mathrm{run}} \\ge \\tfrac{60}{100}",
+      "validity": "Bands only from manufacturer statements that name field and temperature together; rectangle only where one document states both ranges for the same operating mode (VSM operational range, TeslatronPT VTI 'while operating the magnet'); CRX-VF ratings hold for 'up to 6 probe arms installed'; helium relation only for liquid-helium PPMS (not DynaCool or TeslatronPT); helium level in percent of the dewar gauge.",
+      "parameters": [
+        {
+          "name": "CRX-VF envelope band 1 (10 K)",
+          "value": "2.5",
+          "unit": "T",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed ±2 T 11 K to 400 K ±1 T 401 K to 420 K"
+        },
+        {
+          "name": "CRX-VF envelope band 2 (11-400 K)",
+          "value": "2",
+          "unit": "T",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed ±2 T 11 K to 400 K ±1 T 401 K to 420 K"
+        },
+        {
+          "name": "CRX-VF envelope band 3 (401-420 K)",
+          "value": "1",
+          "unit": "T",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed ±2 T 11 K to 400 K ±1 T 401 K to 420 K"
+        },
+        {
+          "name": "QD VSM operational range (rectangular envelope evidence for DynaCool/PPMS VSM)",
+          "value": "1.8-400 K x 0-16 T",
+          "unit": "K; T (capped by the installed magnet)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "quote": "1.8 to 400 K; 0 to 16 T"
+        },
+        {
+          "name": "TeslatronPT VTI temperature range while the magnet operates",
+          "value": "1.5-300",
+          "unit": "K",
+          "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+          "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet"
+        },
+        {
+          "name": "PPMS (LHe) helium level required for full field",
+          "value": "60",
+          "unit": "% helium level (above)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-208.pdf",
+          "quote": "Helium Level (%) Maximum Field (T) 7T, 9T, 14T Maximum Field (T) 7T Transverse, 16T > 60 Full Field Full Field 40 – 60 1 0 < 40 0 0"
+        },
+        {
+          "name": "PPMS (LHe) maximum field at 40-60 % helium: 14 T magnet / 16 T magnet",
+          "value": "1 / 0",
+          "unit": "T",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-208.pdf",
+          "quote": "Helium Level (%) Maximum Field (T) 7T, 9T, 14T Maximum Field (T) 7T Transverse, 16T > 60 Full Field Full Field 40 – 60 1 0 < 40 0 0"
+        },
+        {
+          "name": "Analog, not in catalog: Oxford Proteox temperature control range at full field",
+          "value": "0.01-30",
+          "unit": "K",
+          "source_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "10 mK to 30 K with magnet at full field"
+        }
+      ],
+      "affected_experiments": [
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T",
+        "quantum_mk_vector_field_transport"
+      ],
+      "affected_configurations": [
+        "lakeshore_crx_vf",
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T",
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "data_available": "CRX-VF bands already in evidence ev_ls_0004 (re-verified on the Lake Shore page this session). Rectangle statements retrieved: QD 1084-500 (VSM operational range), QD 1500-021 (magnet always at the same temperature), QD 1070-150 (magnet always in liquid helium), QD Oxford TeslatronPT brochure. Helium-level table: QD 1070-208. Missing: helium consumption rates for the classic PPMS (being researched by the cryogen-consumption workflow); no statement found that the TeslatronPT reaches full field at 300 K specifically (only 'while operating the magnet'); a QD search for a 16 T lambda-plate limit found nothing.",
+      "expected_effect": "Current grid unchanged: CRX-VF already fails the field profiles (9 T VSM, 10 T MR) and the vector profile; the two MET cells (VSM on DynaCool 12 T and 14 T) stay MET if the VSM operational-range statement is accepted as the rectangle [1.8, 400] K x [0, B_magnet] (if a reviewer rejects that reading, making the model mandatory would turn those 2 MET cells into NEED INFO, so it must not be made mandatory before the QD band is accepted). Closes a false-MET class on the CRX-VF: 2.2 T at 300 K -> NOT MET (band 2 gives 2 T); 1.5 T at 410 K -> NOT MET; 2.5 T at 10 K -> MET; 2.0 T at 10.5 K -> NEED INFO (gap). Classic PPMS 14/16 T runs above 1 T become conditional on enough helium for the run. Removes one UNSUPPORTED check (field_temperature_envelope is representable_only today) from every profile that combines field and temperature.",
+      "implementation": "1) capability_vocabulary.json: keys magnetic_field.max.band_<Tlo>_<Thi> (shape max, mT) with '.t_lo'/'.t_hi' companions derived like '<cooling key>.temperature'; rectangle configs get one band equal to their temperature.range. 2) coupled_models.json: field_temperature_envelope -> status validated; relation param required_field <= cap $band (sel max); validity [cap $band.t_lo <= param operating_temperature, param operating_temperature <= cap $band.t_hi]; slot 'band containing operating_temperature'; for range requirements the serializer instantiates one copy per overlapping band. 3) Add 'magnetic_field.helium_level.full_field_min' (percent) for qd_ppms_classic_14T/16T and a helium-run relation h0 - hdot*t_run >= h_min, status representable_only until hdot is documented. 4) Profiles: add param required_field (VSM 9 T; MR 10 T; vector 1 T). 5) Tests: the four CRX-VF cases above.",
+      "citations": [
+        {
+          "title": "CRX-VF cryogenic probe station specifications",
+          "authors": "Lake Shore Cryotronics",
+          "venue": "Manufacturer specification page, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "±2.5 T 10 K Up to 6 probe arms installed ±2 T 11 K to 400 K ±1 T 401 K to 420 K"
+        },
+        {
+          "title": "PPMS Family Measurement Options (1084-500 Rev. J0), Vibrating Sample Magnetometer Specifications",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer brochure, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "quote": "1.8 to 400 K; 0 to 16 T"
+        },
+        {
+          "title": "Correcting for the Absolute Field Error using the Pd Standard (Application Note 1500-021 Rev. B0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2020,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1500-021.pdf",
+          "quote": "as the superconducting magnet is always at the same temperature, its remanent field behavior does not depend on the sample chamber temperature."
+        },
+        {
+          "title": "Physical Property Measurement System Hardware Manual (1070-150 Rev. B5)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer hardware manual (copy hosted by NJIT)",
+          "year": 2008,
+          "doi_or_url": "https://web.njit.edu/~tyson/PPMS_Documents/PPMS_Manual/1070-150%20Rev.%20B5%20PQ%20%20PPMS%20Hardware.pdf",
+          "quote": "It is on the outside of the probe, so it is always immersed in liquid helium."
+        },
+        {
+          "title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure)",
+          "authors": "Quantum Design Oxford",
+          "venue": "Manufacturer brochure, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+          "quote": "Integrated variable temperature insert with static exchange gas around the sample, providing sample temperatures between 1.5 and 300 K while operating the magnet"
+        },
+        {
+          "title": "Magnet Charging Guidelines in the PPMS (Application Note 1070-208 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2009,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1070-208.pdf",
+          "quote": "Helium Level (%) Maximum Field (T) 7T, 9T, 14T Maximum Field (T) 7T Transverse, 16T > 60 Full Field Full Field 40 – 60 1 0 < 40 0 0"
+        },
+        {
+          "title": "The Proteox family (brochure 2023 V7)",
+          "authors": "Oxford Instruments NanoScience",
+          "venue": "Manufacturer brochure",
+          "year": 2023,
+          "doi_or_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "10 mK to 30 K with magnet at full field"
+        }
+      ],
+      "risks": "Overlap with the envelope-table workflow (coordinate: one model id, one key scheme). CRX-VF table is given in integer kelvin with gaps (10-11 K, 400-401 K) that must stay NEED INFO. Reading QD's VSM operational range as a full rectangle is an interpretation of one sentence; reviewer sign-off needed. The 1070-208 table is a recommendation for quench safety; treating it as a hard limit is conservative but correct in direction (it can only remove passes).",
+      "priority": 2
+    },
+    {
+      "id": "MAG-3-field-at-sample-position-and-homogeneity",
+      "title": "Position-resolved field at the sample: axial profile (standard puck surface vs magnet center) and (delta, L, z_c) homogeneity regions, filling 5 UNKNOWN uniformity entries",
+      "kind": "data",
+      "description": "magnetic_field.max is the field at the magnet center. QD places the magnet center about 4 cm above the transport-puck surface (the VSM coil center, 4.05 cm), and QD Tech Note 1084-312 plots the 'relative change in field between the puck surface (A) and the center of the magnet (B)'; its table tells users of ETO, Resistivity and AC Transport to 'use Vertical Puck or Rotator option' (heat capacity: Vertical Puck) to reach the center. Read from its Fig. 1 (approximate, not printed numbers): about -5 % at the puck surface for the 16 T PPMS, -0.8 % for 14 T PPMS, -0.35 % for 14 T DynaCool, -0.2 % for 9 T PPMS, about 0 for 9 T DynaCool. Separately, uniformity is documented as pairs (delta over L, centered at z_c): DynaCool 9 T ±0.01 % over 3 cm, 12/14 T ±0.1 % over 5.5 cm; PPMS 14 T ±0.1 % over 5.5 cm, 16 T ±0.1 % over 1.0 cm; all five are UNKNOWN in the catalog because the 'ppm' key cannot hold the length; the CRX-VF has radial pairs 0.5 % over 10 mm and 1.0 % over 25 mm diameter (vertical field, perpendicular to the sample). Proposal: (i) store uniformity as {delta (dimensionless), L (m), z_c (m above puck surface), geometry axial|radial}; (ii) give each measurement option a sample position (center | puck_surface | height in m), taken verbatim from 1084-312's table; (iii) necessary-and-sufficient field check at the sample B_req <= r_pos * B_max (r_center = 1 by definition; r_puck from QD's tabulated profile once obtained); (iv) a sufficient-only homogeneity check: the sample's axial span, including the VSM vibration amplitude A, lies inside the documented region and delta_doc <= delta_req; it never fails because a datasheet uniformity is an upper bound and a smaller region can be more uniform (quadratic scaling to smaller regions is unsound, see rejected ideas).",
+      "equation_latex": "B_{\\mathrm{req}} \\le r_{\\mathrm{pos}}\\, B_{\\max};\\qquad \\text{pass if } 2(z_s - z_c) + L_s + 2A \\le L_{\\mathrm{doc}} \\,\\wedge\\, 2(z_c - z_s) + L_s + 2A \\le L_{\\mathrm{doc}} \\,\\wedge\\, \\delta_{\\mathrm{doc}} \\le \\delta_{\\mathrm{req}}\\ (\\text{else NEED INFO});\\quad \\text{radial: } D_s \\le D_{\\mathrm{doc}} \\wedge \\delta_{\\mathrm{doc}} \\le \\delta_{\\mathrm{req}}",
+      "validity": "Axial specs are on-axis values for a sample centered on the bore axis; z measured above the standard puck surface; VSM: A = peak vibration amplitude (2 mm typical) and sample length L_s per the catalog's eg_017 (< 5 mm); radial (CRX-VF) specs apply in the sample plane at the field center; r_puck values only from a QD table or a documented digitization with uncertainty; profiles may state delta_req only as user-entered (published procedures do not).",
+      "parameters": [
+        {
+          "name": "DynaCool 9 T uniformity and center height",
+          "value": "±0.01 % over 30 mm; z_c = 40 mm",
+          "unit": "fraction; m (on axis)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "9 T: ±0.01% over 3 cm on axis; magnet center located 4 cm above puck surface"
+        },
+        {
+          "name": "DynaCool 12 T uniformity and center height",
+          "value": "±0.1 % over 55 mm; z_c = 40 mm",
+          "unit": "fraction; m (on axis)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "12 T: ±0.1% over 5.5 cm on axis; magnetic center located 4 cm above puck surface"
+        },
+        {
+          "name": "DynaCool 14 T uniformity and center height",
+          "value": "±0.1 % over 55 mm; z_c = 40 mm",
+          "unit": "fraction; m (on axis)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "14 T: ±0.1% over 5.5 cm on axis; magnet center located 4 cm above puck surface"
+        },
+        {
+          "name": "PPMS classic 14 T / 16 T uniformity",
+          "value": "±0.1 % over 55 mm / ±0.1 % over 10 mm",
+          "unit": "fraction; m (on axis)",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+          "quote": "14 T: ± 0.1% over 5.5 cm on-axis 16 T: ± 0.1% over 1.0 cm on-axis"
+        },
+        {
+          "name": "Uniformity center height above a standard transport puck (VSM coil center)",
+          "value": "40.5",
+          "unit": "mm",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+          "quote": "*Uniformity range is centered 4.05 cm above the surface of a standard transport puck; this point represents the center of an installed VSM coil set."
+        },
+        {
+          "name": "VSM peak vibration amplitude A",
+          "value": "2 (range 0.1-5)",
+          "unit": "mm peak",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "quote": "0.1 to 5 mm peak, 2 mm (typical)"
+        },
+        {
+          "name": "Options whose standard mount is not at the magnet center (QD)",
+          "value": "ETO, Resistivity, AC Transport, Heat Capacity",
+          "unit": "categorical",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1084-312.pdf",
+          "quote": "ETO Resistivity AC Transport use Vertical Puck or Rotator option Heat Capacity use Vertical Puck VSM standard"
+        },
+        {
+          "name": "Field ratio at the puck surface r_puck (digitized from Fig. 1; inferred_estimate until QD supplies numbers)",
+          "value": "about 0.95 (16 T PPMS), 0.992 (14 T PPMS), 0.9965 (14 T DynaCool), 0.998 (9 T PPMS), 1.000 (9 T DynaCool)",
+          "unit": "dimensionless B(puck surface)/B(center); approximate, read from plotted curves",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1084-312.pdf",
+          "quote": "The plot below summarizes typical magnetic field profiles of various magnets used in PPMS, DynaCool and VersaLab systems, showing the relative change in field between the puck surface (A) and the center of the magnet (B)."
+        },
+        {
+          "name": "CRX-VF radial homogeneity pairs",
+          "value": "0.5 % over 10 mm diameter; 1.0 % over 25 mm diameter",
+          "unit": "fraction; m (diameter in the sample plane)",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Field homogeneity: 0.5% over 10 mm diameter; 1.0% over 25 mm diameter"
+        }
+      ],
+      "affected_experiments": [
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T"
+      ],
+      "affected_configurations": [
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T",
+        "lakeshore_crx_vf"
+      ],
+      "data_available": "Uniformity pairs already in evidence (ev_qd_0040-0042, ev_qd_0057, ev_qd_0058) but stored as UNKNOWN; center height in 1307-010/1070-002/1084-500 footnotes; QD 1084-312 (retrieved and rendered this session) gives the axial profiles graphically and the option-position table verbatim; CRX-VF radial pairs from the Lake Shore page. Missing: printed r_puck values (QD invites customers to request the profile of their magnet); 12 T DynaCool profile not plotted; no TeslatronPT homogeneity value found (Tavily research: none published).",
+      "expected_effect": "Current grid unchanged: no profile states a homogeneity requirement (published procedures do not, so none should be invented); the VSM sits at the uniformity center (span 5 mm + 2*2 mm = 9 mm << 30 or 55 mm); every MR cell is already NOT MET or NEED INFO for other reasons. Fills 5 UNKNOWN capability entries with trusted manufacturer data (unknown capability count 121 -> 116). Once QD supplies r_puck: closes false MET for transport requirements within ~5 % of the 16 T PPMS maximum (15.5 T on a standard puck -> NOT MET; MET path via the vertical puck or rotator option, which Z3 can suggest as 'needs option'), ~0.8 % of the 14 T PPMS and ~0.35 % of the 14 T DynaCool (a 14 T transport requirement on a standard ETO puck in a 14 T DynaCool reaches about 13.95 T).",
+      "implementation": "1) capability_vocabulary.json: replace magnetic_field.uniformity (ppm) by magnetic_field.uniformity.{delta (ppm or percent, shape min), length (um), center_height (um), geometry (enum axial|radial)} and add magnetic_field.ratio.<position> (dimensionless, shape max). 2) cryostats: fill the five QD entries and the CRX-VF radial pairs (two documented regions -> slot 'smallest documented region containing the sample'). 3) coupled_models.json: field_at_sample_position (relation param required_field <= cap magnetic_field.max * cap magnetic_field.ratio.$pos) and homogeneity_over_sample (all conditions in validity, relation repeats one bound => pass or NEED INFO). 4) Experiments: add sample_position (VSM: center; MR and resistance with standard ETO puck: puck_surface) and optional user-entered delta_req, sample_length. 5) Ask QD for the tabulated profiles; until then record the digitized r_puck values as inferred_estimate so they can never pass or fail.",
+      "citations": [
+        {
+          "title": "Magnetic Field Uniformity in PPMS, DynaCool and VersaLab systems (Tech Note 1084-312 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Tech Note",
+          "year": 2015,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1084-312.pdf",
+          "quote": "The plot below summarizes typical magnetic field profiles of various magnets used in PPMS, DynaCool and VersaLab systems, showing the relative change in field between the puck surface (A) and the center of the magnet (B)."
+        },
+        {
+          "title": "Magnetic Field Uniformity in PPMS, DynaCool and VersaLab systems (Tech Note 1084-312 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Tech Note",
+          "year": 2015,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1084-312.pdf",
+          "quote": "Because magnetometry measurements like VSM, torque and ACMS are most sensitive to magnetic field variations, they are positioned near the magnet center (B)."
+        },
+        {
+          "title": "Product Description: Cryogen-Free Physical Property Measurement System PPMS DynaCool (1307-010 Rev. G0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer product description, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "9 T: ±0.01% over 3 cm on axis; magnet center located 4 cm above puck surface"
+        },
+        {
+          "title": "PPMS Physical Measurement Property System Product Description (1070-002 Rev. C1)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer product description, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1070-002.pdf",
+          "quote": "*Uniformity range is centered 4.05 cm above the surface of a standard transport puck; this point represents the center of an installed VSM coil set."
+        },
+        {
+          "title": "CRX-VF cryogenic probe station specifications",
+          "authors": "Lake Shore Cryotronics",
+          "venue": "Manufacturer specification page, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Field homogeneity: 0.5% over 10 mm diameter; 1.0% over 25 mm diameter"
+        }
+      ],
+      "risks": "Digitized values are not verbatim and must not enter the trusted tables; QD notes each magnet departs slightly from the plotted curves; the 12 T DynaCool is not in the figure; on-axis specs say nothing about off-axis (radial) inhomogeneity for wide transport samples; adding r_puck as mandatory with only inferred data would turn future transport-in-field MET cells into NEED INFO, so the check should become mandatory only with trusted ratios.",
+      "priority": 3
+    },
+    {
+      "id": "MAG-4-vector-field-region",
+      "title": "Vector-field region for the 6/1/1 T magnet: per-axis ratings as a necessary box, rotation sphere and single-axis ratings as sufficient regions",
+      "kind": "coupled_model",
+      "description": "oxford_teslatronpt_6_1_1T_vector stores magnetic_field.max = 6 T (main axis) plus magnetic_field.vector = true, so a profile asking for, e.g., 2 T in the sample plane with vector capability would pass although the transverse axes are rated 1 T. Vector magnets have coupled limits: Meckler et al. report 5 T / 1.3 T in single-axis mode but only 3.5 T / 1 T in cooperative mode; Oxford states for its vector rotate magnets 'Full spherical rotation at the lowest rated axis' and a typical tilt of only 2.5 degrees at the maximum-field axis; a commercial 6/1/1 T magnet offers '1 Tesla spherical vector rotation'. Proposal: capabilities magnetic_field.axis_{x,y,z}.max (single-axis ratings) and magnetic_field.rotation.max (radius r_rot of the documented full-rotation sphere); profiles state the required field as axial (one axis), rotation (magnitude B in every direction of a set) or a general vector set. Division-free relations (squares remove signs): necessary box Bx^2 <= Bx,max^2, By^2 <= By,max^2, Bz^2 <= Bz,max^2 (fail-capable); sufficient sphere Bx^2+By^2+Bz^2 <= r_rot^2 and sufficient single-axis region (other components exactly 0, |B_i| <= B_i,max), both encoded through validity so they only PASS or give NEED INFO. For a rotation requirement of magnitude B: NOT MET if B^2 > min_i B_i,max^2, MET if B^2 <= r_rot^2.",
+      "equation_latex": "\\text{fail if } B_x^2 > B_{x,\\max}^2 \\vee B_y^2 > B_{y,\\max}^2 \\vee B_z^2 > B_{z,\\max}^2;\\quad \\text{pass if } B_x^2 + B_y^2 + B_z^2 \\le r_{\\mathrm{rot}}^2 \\ \\text{or}\\ (B_x = B_y = 0 \\wedge B_z^2 \\le B_{z,\\max}^2);\\quad \\text{rotation of }|B|: \\text{fail if } |B|^2 > \\min_i B_{i,\\max}^2",
+      "validity": "Field components in the magnet frame; single-axis region only when the other components are exactly zero; r_rot only from a vendor statement for this magnet (Oxford's Proteox rule is an analog, not TeslatronPT evidence); the 2.5 degree tilt cone needs a rational inner bound on tan(2.5 deg) and a TeslatronPT source before use; the serializer instantiates only the region matching the declared requirement kind and Lean re-checks it, so a wrong choice can only give NEED INFO.",
+      "parameters": [
+        {
+          "name": "TeslatronPT vector option axis ratings (z / x / y)",
+          "value": "6 / 1 / 1",
+          "unit": "T (single-axis ratings implied by the '6/1/1' name)",
+          "source_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+          "quote": "Magnetic Field Options 8 T, 12 T, 14 T and 6/1/1 Vector Rotation"
+        },
+        {
+          "name": "Oxford vector rotate rule: full-rotation sphere radius equals the lowest axis rating (analog)",
+          "value": "1 (for a 6-2-1 magnet)",
+          "unit": "T",
+          "source_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "Full spherical rotation at the lowest rated axis e.g. 6-2-1 gives 1 T vector modulus, full rotation in a sphere about any axis or combination."
+        },
+        {
+          "name": "Oxford vector rotate typical tilt at the maximum-field axis (analog)",
+          "value": "2.5",
+          "unit": "degrees",
+          "source_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "Typical tilt at 2.5 degrees for the maximum field axis e.g. 6-2-1 gives 6 T vector modulus, full rotation about the Y axis"
+        },
+        {
+          "name": "Single-axis vs cooperative limits of a triple-axis magnet (Meckler et al.)",
+          "value": "5 / 1.3 single-axis; 3.5 / 1 cooperative",
+          "unit": "T (perpendicular / in plane)",
+          "source_url": "https://doi.org/10.1063/1.3086428",
+          "quote": "In single axis mode the maximum field is 5 T perpendicular to the sample plane and 1.3 T in the sample plane, respectively. In cooperative mode fields are limited to 3.5 T perpendicular and 1 T in plane."
+        },
+        {
+          "name": "Commercial 6/1/1 T magnet rotation sphere (Cryomagnetics, analog)",
+          "value": "1",
+          "unit": "T",
+          "source_url": "https://cryomagnetics.com/6-1-1-optical-research-magnet-system",
+          "quote": "6/1/1 Tesla 3-Axis Magnet with 1 Tesla spherical vector rotation."
+        },
+        {
+          "name": "Field used along the nanowire in the source profile (van Zanten et al.)",
+          "value": "0.75",
+          "unit": "T",
+          "source_url": "https://doi.org/10.1038/s41567-020-0858-0",
+          "quote": "Photon assisted tunneling at B|| = 0.75 T revealed coherent coupling between discrete zero-energy states"
+        }
+      ],
+      "affected_experiments": [
+        "quantum_mk_vector_field_transport"
+      ],
+      "affected_configurations": [
+        "oxford_teslatronpt_6_1_1T_vector",
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "lakeshore_crx_vf"
+      ],
+      "data_available": "Axis ratings follow from the catalog's own configuration_basis ('6 T main-axis value; the two transverse axes are 1 T each'). Rotation radius: no TeslatronPT-specific statement found (QD Oxford pages, Tavily research, alphaXiv search); Oxford's Proteox brochure and Cryomagnetics/Meckler give the physics and analog values. The van Zanten profile used a 6-1-1 T magnet with B|| up to about 0.9 T along the wire and B_perp up to 0.2 T (inside a 1 T sphere).",
+      "expected_effect": "Current grid unchanged: quantum_mk_vector_field_transport on the 6/1/1 config stays NEED INFO (temperature.base missing; a 1.5 K VTI cannot reach 50 mK anyway), all other magnet configs already fail on magnetic_field.vector. Closes a false-MET class on the 6/1/1 config: 2 T in-plane -> NOT MET (box); 1 T in any direction -> MET only once a TeslatronPT rotation radius of 1 T is documented, otherwise NEED INFO; 6 T along z -> MET (single-axis region); (0.5, 0, 5.5) T -> NEED INFO (combined fields undocumented; Oxford's 2.5 degree tilt rule suggests only ~0.24 T transverse at 5.5 T).",
+      "implementation": "1) capability_vocabulary.json: magnetic_field.axis_x.max, axis_y.max, axis_z.max (shape max, mT), magnetic_field.rotation.max (shape max, mT); keep magnetic_field.max as the largest single-axis rating and document that it is not a vector capability. 2) cryostats: 6/1/1 config axis ratings 6000/1000/1000 mT (manufacturer naming), rotation.max unknown until a TeslatronPT document is found. 3) coupled_models.json: vector_field_box (three relations param Bi*param Bi <= cap Bi,max*cap Bi,max), vector_field_rotation_sphere and vector_field_single_axis (validity-encoded, pass or NEED INFO). 4) quantum_mk_vector_field_transport: replace 'magnetic_field.max >= 1 T' + 'vector present' by required_field_kind = rotation, |B| = 1 T (the profile's existing threshold; the paper used up to ~0.9 T). 5) Tests: the four cases above.",
+      "citations": [
+        {
+          "title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure)",
+          "authors": "Quantum Design Oxford",
+          "venue": "Manufacturer brochure, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+          "quote": "Magnetic Field Options 8 T, 12 T, 14 T and 6/1/1 Vector Rotation"
+        },
+        {
+          "title": "The Proteox family (brochure 2023 V7)",
+          "authors": "Oxford Instruments NanoScience",
+          "venue": "Manufacturer brochure",
+          "year": 2023,
+          "doi_or_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "Full spherical rotation at the lowest rated axis e.g. 6-2-1 gives 1 T vector modulus, full rotation in a sphere about any axis or combination."
+        },
+        {
+          "title": "The Proteox family (brochure 2023 V7)",
+          "authors": "Oxford Instruments NanoScience",
+          "venue": "Manufacturer brochure",
+          "year": 2023,
+          "doi_or_url": "https://nanoscience.oxinst.com/assets/uploads/TFD_Oxford_Instruments_The_Proteox_Family_2023_V7.pdf",
+          "quote": "Typical tilt at 2.5 degrees for the maximum field axis e.g. 6-2-1 gives 6 T vector modulus, full rotation about the Y axis"
+        },
+        {
+          "title": "A low-temperature spin-polarized scanning tunneling microscope operating in a fully rotatable magnetic field",
+          "authors": "S. Meckler, M. Gyamfi, O. Pietzsch, R. Wiesendanger",
+          "venue": "Review of Scientific Instruments 80, 023708",
+          "year": 2009,
+          "doi_or_url": "https://doi.org/10.1063/1.3086428",
+          "quote": "In single axis mode the maximum field is 5 T perpendicular to the sample plane and 1.3 T in the sample plane, respectively. In cooperative mode fields are limited to 3.5 T perpendicular and 1 T in plane."
+        },
+        {
+          "title": "6-1-1 Tesla 3-Axis Optical C-Mag Research Magnet System",
+          "authors": "Cryomagnetics, Inc.",
+          "venue": "Manufacturer project page",
+          "year": 2022,
+          "doi_or_url": "https://cryomagnetics.com/6-1-1-optical-research-magnet-system",
+          "quote": "6/1/1 Tesla 3-Axis Magnet with 1 Tesla spherical vector rotation."
+        },
+        {
+          "title": "Photon-assisted tunnelling of zero modes in a Majorana wire",
+          "authors": "D. M. T. van Zanten, D. Sabonis, J. Suter, J. I. Väyrynen, T. Karzig, D. I. Pikulin, E. C. T. O'Farrell, D. Razmadze, K. D. Petersson, P. Krogstrup, C. M. Marcus",
+          "venue": "Nature Physics (2020); full text read from arXiv:1902.00797",
+          "year": 2020,
+          "doi_or_url": "https://doi.org/10.1038/s41567-020-0858-0",
+          "quote": "Measurements were carried out in an Oxford Instruments Triton-400 dilution refrigerator with a base electron temperature of T ∼ 50 mK and a 6-1-1 T vector magnet."
+        }
+      ],
+      "risks": "No TeslatronPT document gives the rotation radius, so the main benefit until then is the fail side (box). Axis ratings inferred from a product name; combined-field limits depend on coil forces and peak conductor field and differ per magnet; magnet-frame vs sample-frame orientation must be declared by the profile.",
+      "priority": 4
+    },
+    {
+      "id": "MAG-5-low-field-remanence-and-creep",
+      "title": "Low-field accuracy after high-field excursions: remanent (trapped-flux) field and persistent-mode creep as a sufficient-only check",
+      "kind": "coupled_model",
+      "description": "QD systems report the field computed from magnet current. After a high-field excursion, flux pinned in the windings leaves an error at low set fields: up to 20 G (9 T magnet) and 120 G (14 T) in linear mode (1070-207), up to ~200 Oe for a 16 T magnet (1500-021), about 100 Oe for the Nb3Sn 14 T magnets and generally < 10 Oe for NbTi magnets up to 9 T (1096-301); setting zero in Oscillate mode from above 1 T typically leaves 1-2 G; in persistent mode the field at the sample drifts by ~20-25 G within about an hour after discharge, an effect removed by staying in driven mode. Nb3Sn magnets have larger error fields (Lu 2019); the artefact is visible in published remanent-magnetization data (Bud'ko 2026). The VSM profile measures M(T) at 1 kOe after M(H) up to 9 T: the field error is 2 % for a 9 T magnet and up to 12 % for a 14 T magnet in Linear mode, but 0.2 % after Oscillate. Model: B_rem,bound(magnet, approach mode) + [persistent only] B_creep <= eps * B_set, valid for B_set <= 1 T, sufficient-only (documented values are 'up to'/'typically' upper bounds, so the check can only PASS or give NEED INFO). DynaCool is switch-less (driven only), so the creep term is zero there.",
+      "equation_latex": "B_{\\mathrm{rem}}(\\text{magnet},\\text{mode}) + \\mathbb{1}_{\\mathrm{persistent}}\\, B_{\\mathrm{creep}} \\le \\varepsilon\\, B_{\\mathrm{set}}\\ \\Rightarrow\\ \\text{pass, else NEED INFO};\\quad \\text{valid if } B_{\\mathrm{set}} \\le 1\\,\\mathrm{T}",
+      "validity": "Low-field regime B_set <= 1 T (QD: deviations matter below 1 T); a previous excursion above 1 T; bounds per magnet class (NbTi <= 9 T vs Nb3Sn >= 14 T) and approach mode (Linear vs Oscillate vs Low Field option); classic PPMS values transfer to DynaCool only as 'QD instruments' statements (1500-021) - otherwise inferred.",
+      "parameters": [
+        {
+          "name": "Remanent field error, Linear mode: 9 T / 14 T PPMS magnets",
+          "value": "20 / 120",
+          "unit": "G (= Oe in vacuum; 2e-3 / 1.2e-2 T)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "For example, the magnitude of this field error can be up to 20 gauss in a 9 tesla magnet and up to 120 gauss in a 14 tesla magnet."
+        },
+        {
+          "name": "Remanent field error, 16 T magnet (QD instruments)",
+          "value": "200",
+          "unit": "Oe (approximate upper value)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1500-021.pdf",
+          "quote": "such remanent fields can produce field errors up to ~20 Oe in a 9 Tesla magnet and up to ~200 Oe in a 16 Tesla magnet in QD instruments."
+        },
+        {
+          "name": "Remanent field after zero set in Oscillate mode from above 1 T",
+          "value": "1-2",
+          "unit": "G",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "The magnitude of the remanence and flux creep in the magnet can typically be reduced down to 1-2 gauss by setting the field to zero (from an initial field above 1 tesla) in oscillate mode"
+        },
+        {
+          "name": "Persistent-mode creep drift at zero field after discharge (classic PPMS)",
+          "value": "20-25",
+          "unit": "G (over about 1 h)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "One notices that the magnitude of the drift in the sample magnetic field (~20-25 gauss) is similar for all magnets"
+        },
+        {
+          "name": "Remanence of 14 T Nb3Sn magnets (VSM note)",
+          "value": "100",
+          "unit": "Oe (about)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1096-301.pdf",
+          "quote": "large remanent magnetic fields in the sample space (about 100 Oe for the 14-T magnets used currently at Quantum Design, which are fabricated using the \"internal tin process\" Nb3Sn magnets)"
+        },
+        {
+          "name": "Low-field validity bound",
+          "value": "1",
+          "unit": "T",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "At low fields (less than 1 tesla), the magnetic field experienced by the user’s sample can deviate significantly from the reported magnetic field."
+        }
+      ],
+      "affected_experiments": [
+        "mat_magnetometry_vsm"
+      ],
+      "affected_configurations": [
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T",
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "data_available": "QD app notes 1070-207, 1500-021, 1096-301 (retrieved); DynaCool approach modes 'Linear, Oscillating, No Overshoot' and switch-less design (1307-010); TeslatronPT only qualitative ('minimum field hysteresis via remnant field'). The VSM profile's M(T) field (1 kOe, evidence ex2_B_005) and M(H) to 9 T are already in the catalog. Missing: DynaCool-specific remanence numbers; any TeslatronPT or CRX-VF remanence value.",
+      "expected_effect": "Current grid unchanged when added as an optional coupled check with user tolerance eps (null by default). With eps = 1 % (10 Oe at 1 kOe): Oscillate approach on a DynaCool -> PASS only if the reviewer accepts QD's cross-platform statements (1-2 G), else NEED INFO; Linear approach after a 14 T-class excursion -> NEED INFO (120 G > 10 G). It never produces NOT MET, and it never demotes the two VSM MET cells unless a user marks it mandatory.",
+      "implementation": "1) capability_vocabulary.json: magnetic_field.remanence.linear.max, magnetic_field.remanence.oscillate.max (shape min, unit Oe), magnetic_field.persistent_creep.max (Oe), magnetic_field.persistent_switch (flag; DynaCool false per 'switch-less'). 2) coupled_models.json: low_field_remanence (validity [param B_set <= 1 T, cap remanence.$mode + creep term <= param eps * param B_set], relation repeats the first bound). 3) mat_magnetometry_vsm: params B_set_MT = 1 kOe (from ex2_B_005), approach_mode, eps (user). 4) UI text: recommend Oscillate-to-zero or the Pd-standard correction (1500-021) before low-field runs.",
+      "citations": [
+        {
+          "title": "Using PPMS Superconducting Magnets at Low Fields (Application Note 1070-207 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2009,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "For example, the magnitude of this field error can be up to 20 gauss in a 9 tesla magnet and up to 120 gauss in a 14 tesla magnet."
+        },
+        {
+          "title": "Using PPMS Superconducting Magnets at Low Fields (Application Note 1070-207 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2009,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "The magnitude of the remanence and flux creep in the magnet can typically be reduced down to 1-2 gauss by setting the field to zero (from an initial field above 1 tesla) in oscillate mode"
+        },
+        {
+          "title": "Correcting for the Absolute Field Error using the Pd Standard (Application Note 1500-021 Rev. B0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2020,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1500-021.pdf",
+          "quote": "such remanent fields can produce field errors up to ~20 Oe in a 9 Tesla magnet and up to ~200 Oe in a 16 Tesla magnet in QD instruments."
+        },
+        {
+          "title": "Performing VSM Measurements in PPMS High-Field (14 T or Higher) Magnets (VSM Application Note 1096-301 Rev. A-1)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2004,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1096-301.pdf",
+          "quote": "large remanent magnetic fields in the sample space (about 100 Oe for the 14-T magnets used currently at Quantum Design, which are fabricated using the \"internal tin process\" Nb3Sn magnets)"
+        },
+        {
+          "title": "Product Description: Cryogen-Free Physical Property Measurement System PPMS DynaCool (1307-010 Rev. G0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Manufacturer product description, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
+          "quote": "The PPMS DynaCool comes equipped with either a 9 T, 12 T or 14 T conduction-cooled superconducting switch-less magnet system."
+        },
+        {
+          "title": "TeslatronPT - Integrated Cryofree superconducting magnet system (brochure)",
+          "authors": "Quantum Design Oxford",
+          "venue": "Manufacturer brochure, accessed 2026-11-01",
+          "year": 2026,
+          "doi_or_url": "https://qd-oxford.com/siteDocs/TeslatronPT_brochure.pdf",
+          "quote": "Fine filament Nb3Sn superconducting wire offers the minimum field hysteresis via remnant field, and reduces flux jumping at low fields"
+        },
+        {
+          "title": "Analysis of magnetization induced error field in superconducting magnets",
+          "authors": "Jun Lu",
+          "venue": "arXiv:1911.02139 [cond-mat.supr-con]",
+          "year": 2019,
+          "doi_or_url": "https://arxiv.org/abs/1911.02139",
+          "quote": "For magnets wound with high critical current density Nb3Sn wires, the error field from wire magnetization is significantly larger"
+        },
+        {
+          "title": "Notes on remanent magnetization measurements in superconductors and hard ferromagnets",
+          "authors": "S. L. Bud'ko, M. Xu, W. Xie, C. Hu, N. Ni, P. C. Canfield",
+          "venue": "Physics Letters A (2026); arXiv:2606.23738",
+          "year": 2026,
+          "doi_or_url": "https://doi.org/10.1016/j.physleta.2026.131936",
+          "quote": "In our opinion this is an artefact caused by magnetic flux trapped in the superconducting magnet of the magnetometer"
+        }
+      ],
+      "risks": "Remanence depends on history and varies 'from magnet to magnet'; numbers come mostly from classic PPMS magnets; QD's two notes differ (9 T: < 10 Oe in 2004 vs up to 20 G in 2009) - use the larger; the 1-2 G Oscillate value is 'typically'. Flux-jump noise in >= 14 T magnets below 2 T (1096-301) is a data-quality advisory, not encoded.",
+      "priority": 5
+    },
+    {
+      "id": "MAG-6-sweep-heating-budget",
+      "title": "Replace the unsupported temperature_stability_during_field_sweep with an eddy-current + Joule heat budget during field sweeps",
+      "kind": "coupled_model",
+      "description": "A field sweep induces eddy currents in conducting sample holders and cold fingers inside the bore. For a thin disk (thickness h much smaller than the skin depth) of radius R and conductivity sigma in a uniform axial field ramped at dB/dt, P = (pi/8) sigma h R^4 (dB/dt)^2 (Tan 2014, after Knoepfel). Add this term to the existing Joule model: I^2 R_s + P_eddy <= P_cool(T_doc), using the same cooling-power slot and validity as joule_heating_vs_cooling_power. pi is irrational, so use rational bounds (333/106 < pi < 22/7): the pass relation uses 22/7 and an upper bound on sigma (user-entered low-temperature value), the fail relation uses 333/106 and a lower bound on sigma (the room-temperature value, 5.96e7 S/m for copper, since a pure metal's conductivity rises on cooling). A conservative quasi-static validity mu0 sigma h R (dB/dt) <= B_target (eddy time constant shorter than the ramp) keeps the thin-disk formula in range. For liquid-helium PPMS magnets with a persistent switch, QD notes that the switch dissipates V^2/R during ramps (V = L dI/dt), which is the same (dB/dt)^2 coupling on the helium bath; that extension waits for the cryogen-consumption data.",
+      "equation_latex": "8 I^2 R_s + \\pi_{\\uparrow}\\, \\sigma_{\\uparrow}\\, h\\, R_d^4\\, \\dot B^2 \\le 8\\, P_{\\mathrm{cool}}(T_{\\mathrm{doc}}) \\Rightarrow \\text{pass};\\quad 8 I^2 R_s + \\pi_{\\downarrow}\\, \\sigma_{\\downarrow}\\, h\\, R_d^4\\, \\dot B^2 > 8\\, P_{\\mathrm{cool}}(T_{\\mathrm{doc}}) \\Rightarrow \\text{fail};\\quad \\pi_{\\downarrow} = \\tfrac{333}{106},\\ \\pi_{\\uparrow} = \\tfrac{22}{7};\\quad \\text{valid if } \\mu_0\\, \\sigma_{\\uparrow}\\, h\\, R_d\\, \\dot B \\le B_t \\wedge T_{\\mathrm{doc}} \\le T_{\\mathrm{op}}",
+      "validity": "Thin conducting disk normal to a uniform field; quasi-static ramp; all dissipated power reaches the stage whose cooling power is used (as in the Joule model); T_doc <= T_op (cooling power documented at or below the operating temperature); sigma_down = 300 K value is a valid lower bound only for pure normal metals (also in field, where copper's magnetoresistance stays far below its room-temperature resistivity for RRR >> 1 - needs a source before the fail side is enabled).",
+      "parameters": [
+        {
+          "name": "Thin-disk eddy loss coefficient",
+          "value": "pi/8",
+          "unit": "dimensionless (P = (pi/8) sigma h R^4 (dB/dt)^2)",
+          "source_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+          "quote": "When I integrate the above, I get the total power loss Pdisk due to eddy currents flowing in this disk Pdisk = π/8 σ Ḃz² h R⁴ (equation 9, transcribed from the typeset formula)"
+        },
+        {
+          "name": "Copper conductivity at room temperature (lower bound for low-T sigma)",
+          "value": "5.96e7",
+          "unit": "S/m",
+          "source_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+          "quote": "For copper, µ = 1.256 × 10−6 H/m, σ = 5.96 × 107 S/m and f = 15 Hz, I get δCu = 1.7 cm"
+        },
+        {
+          "name": "Persistent-switch heating law (PPMS EverCool)",
+          "value": "P = V^2 / R_switch",
+          "unit": "W",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1099-205.pdf",
+          "quote": "The Joule heating of the persistent switch is proportional to the square of the charging voltage divided by the resistance of the switch."
+        },
+        {
+          "name": "9 T PPMS magnet inductance and field constant (switch-heating extension)",
+          "value": "L = 35 H; B/I = 1950 Oe/A",
+          "unit": "H; Oe/A (typical)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "L is the inductance of the magnet (typically around 35 henries for a 9 T magnet), B/I is the field-to-current ratio constant (typically around 1950 Oe/A for a 9 T magnet)"
+        }
+      ],
+      "affected_experiments": [
+        "quantum_mk_vector_field_transport",
+        "mat_magnetoresistance_10T",
+        "mat_magnetometry_vsm",
+        "quantum_mxc_wiring_heat_budget"
+      ],
+      "affected_configurations": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current",
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T",
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "data_available": "Formula and room-temperature copper conductivity (FNAL note); qualitative low-temperature confirmation (Meyer et al. 1989); cooling power at 20/100 mK already in the catalog for the Bluefors LD configs; QD 1099-205 and 1070-207 for the switch-heating extension. Missing: holder geometry, sweep rate and low-temperature conductivity (RRR) in every profile; cooling power of the TeslatronPT VTI and of the DynaCool sample stage (UNKNOWN in the catalog).",
+      "expected_effect": "Current grid unchanged (sweep rate and holder geometry are not in any profile; add as optional with null parameters). Turns one UNSUPPORTED model into an executable one. Example (exact rationals): copper disk R = 10 mm, h = 1 mm, user sigma = 6e9 S/m (RRR about 100) dissipates about 0.41 uW at 0.25 T/min and 6.5 uW at 1 T/min, i.e. about half of the LD400's 12 uW at 20 mK at 1 T/min (it would fail with the factor-3 margin the wiring model uses). With only the 300 K conductivity the fail side never triggers in this example (65 nW), so the fail side mainly catches gross cases.",
+      "implementation": "1) cryolean/units.py: add S_per_m (A^2 s^3 kg^-1 m^-3) and H_per_m (kg m s^-2 A^-2). 2) coupled_models.json: model sweep_heating_vs_cooling_power with two relations (pass with pi_up, sigma_up; fail with pi_lo, sigma_lo) - the pass relation in validity form so it cannot fail - and validity [mu0_up*sigma*h*R*Bdot <= B_target, $cooling.temperature <= T_op]; mu0_up = 1257/10^9 H/m. 3) Status validated only for the pass side until a magnetoresistance source supports the fail side. 4) Profiles: optional params field_sweep_rate, holder_radius, holder_thickness, holder_conductivity (user-entered). 5) Mark temperature_stability_during_field_sweep as superseded.",
+      "citations": [
+        {
+          "title": "Eddy Currents (Fermilab Beams-doc-4663)",
+          "authors": "C. Y. Tan",
+          "venue": "Fermi National Accelerator Laboratory technical note",
+          "year": 2014,
+          "doi_or_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+          "quote": "When I integrate the above, I get the total power loss Pdisk due to eddy currents flowing in this disk Pdisk = π/8 σ Ḃz² h R⁴ (equation 9, transcribed from the typeset formula)"
+        },
+        {
+          "title": "Eddy current shielding and heating: Reduction of dissipation for very low-temperature experiments in the presence of magnetic field ripple",
+          "authors": "E. Meyer, I. F. Silvera, B. L. Brandt",
+          "venue": "Review of Scientific Instruments 60, 2964-2968",
+          "year": 1989,
+          "doi_or_url": "https://doi.org/10.1063/1.1140636",
+          "quote": "Eddy current heating in OFHC copper at low temperatures and means of suppressing it have been studied in a Bitter magnet in a field of 15 T."
+        },
+        {
+          "title": "Magnet Ramping Guidelines for an EverCool Dewar (PPMS Application Note 1099-205 Rev. A-1)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design PPMS Application Note",
+          "year": 2005,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1099-205.pdf",
+          "quote": "The Joule heating of the persistent switch is proportional to the square of the charging voltage divided by the resistance of the switch."
+        },
+        {
+          "title": "Using PPMS Superconducting Magnets at Low Fields (Application Note 1070-207 Rev. A0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2009,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1070-207.pdf",
+          "quote": "For example, the magnitude of this field error can be up to 20 gauss in a 9 tesla magnet and up to 120 gauss in a 14 tesla magnet."
+        }
+      ],
+      "risks": "Thin-disk idealisation (real holders are cylinders/plates with slots); only the in-bore part sees the full dB/dt; conductivity depends on RRR and field; the FNAL note is a technical note, not peer reviewed (the formula is standard textbook physics); stage cooling power may not be the limiting quantity for small samples (thermal link).",
+      "priority": 6
+    },
+    {
+      "id": "MAG-7-thermometry-in-field",
+      "title": "Field-induced thermometry error: record whether each option thermometer is magneto-resistance corrected",
+      "kind": "data",
+      "description": "Resistive thermometers err in field: QD reports typically a few percent at 1.8 K and 9 T and above 5 % at 14 T. The DynaCool block thermometer is supplied magneto-resistance (MR) calibrated, but some option thermometers (VSM coil set, ACMS II, rotator, MFP, TTO) are supplied without an MR calibration; ThermCal reduces residual errors below 0.5 % after about 16 h (9 T) or 30 h (14 T). Add per-option capabilities thermometry.mr_corrected (flag) and thermometry.field_error.max (fraction), and an optional requirement for profiles that state a temperature accuracy at field: e_max * T_op <= Delta_T_allowed (division-free).",
+      "equation_latex": "e_{\\max}(B)\\, T_{op} \\le \\Delta T_{\\mathrm{allowed}}",
+      "validity": "Only at fields and temperatures inside the calibrated table; the uncorrected bound is a typical value; applies to the thermometer actually used by the option.",
+      "parameters": [
+        {
+          "name": "Uncorrected MR temperature error at 14 T (1.8 K)",
+          "value": "above 5",
+          "unit": "%",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1307-200.pdf",
+          "quote": "Typically the error at 1.8 K and 9 T is a few percent, and can be above 5 % at 14 T."
+        },
+        {
+          "name": "Residual error after ThermCal MR calibration",
+          "value": "0.5",
+          "unit": "% (upper bound)",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1307-200.pdf",
+          "quote": "then verifies that the residual MR errors are below 0.5 % at another series of temperatures and magnetic fields."
+        },
+        {
+          "name": "ThermCal duration on a 9 T / 14 T DynaCool",
+          "value": "16 / 30",
+          "unit": "h",
+          "source_url": "https://qdusa.com/siteDocs/appNotes/1307-200.pdf",
+          "quote": "The entire process takes about 16 hours on a 9 T system and about 30 hours on a 14 T system."
+        }
+      ],
+      "affected_experiments": [
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T"
+      ],
+      "affected_configurations": [
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc"
+      ],
+      "data_available": "QD 1307-200 retrieved; no values for the classic PPMS options beyond the existence of an MR wizard (QD 1078-202, not read), none for TeslatronPT or CRX-VF.",
+      "expected_effect": "Current grid unchanged: no profile states a temperature-accuracy requirement at field (the VSM M(H) isotherms at 5 K up to 9 T and the 2 K / 10 T MR point do not give tolerances). Adds an install-status-like fact (calibrated or not) that a user requirement such as ±1 % at 9 T would need: NEED INFO until the option's MR calibration is documented, MET with the 0.5 % residual.",
+      "implementation": "1) capability_vocabulary.json: thermometry.mr_corrected (flag), thermometry.field_error.max (percent, shape min). 2) DynaCool configs: base block thermometer mr_corrected = true (manufacturer); VSM option thermometer unknown (install-specific). 3) Optional requirement template temperature_accuracy_in_field.",
+      "citations": [
+        {
+          "title": "Magneto-Resistance Calibration of DynaCool Option Thermometers (Application Note 1307-200 Rev. C0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2015,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1307-200.pdf",
+          "quote": "Typically the error at 1.8 K and 9 T is a few percent, and can be above 5 % at 14 T."
+        },
+        {
+          "title": "Magneto-Resistance Calibration of DynaCool Option Thermometers (Application Note 1307-200 Rev. C0)",
+          "authors": "Quantum Design, Inc.",
+          "venue": "Quantum Design Application Note",
+          "year": 2015,
+          "doi_or_url": "https://qdusa.com/siteDocs/appNotes/1307-200.pdf",
+          "quote": "DynaCool is supplied with the sample chamber block thermometer MR calibrated, so temperature values reported by the base DynaCool are always corrected for magneto-resistance. However, some option thermometers are supplied without an MR calibration."
+        }
+      ],
+      "risks": "Calibration state is per unit and can change; 'a few percent' at 9 T is not a number, so the uncorrected bound is only usable above 14 T (> 5 %) as a lower bound.",
+      "priority": 7
+    }
+  ],
+  "rejected_ideas": [
+    "Scaling a documented uniformity to a smaller region with the leading solenoid term (delta(L) = delta_doc (L/L_doc)^2): unsound for compensated magnets whose axial profile is not monotone (counterexample f = z^2 - z^4: max 0.25 over |z| <= 1 but 0.1875 over |z| <= 0.5, where the scaling predicts 0.0625). Homogeneity is therefore pass-or-NEED-INFO only (MAG-3).",
+    "Using the per-axis ratings of the 6/1/1 T magnet (box) as a sufficient condition: unsound, combined fields are limited below the single-axis ratings (Meckler et al. 2009: 5 T vs 3.5 T; Oxford: about 2.5 degree tilt at the main axis). The box is kept only as the necessary (fail) side of MAG-4.",
+    "A high-field persistent-mode decay model (ppm per hour): no catalog magnet documents a decay rate; the DynaCool is switch-less, Oxford's vector rotate magnets are driven-only, Bluefors offers a persistent switch only as an option ('higher stability', no number); only zero-field creep (~20-25 G after discharge, QD 1070-207) is documented, folded into MAG-5.",
+    "An inductive-voltage ramp limit L*dB/dt <= k*V_max: magnet inductance and field constant are documented only for a typical 9 T PPMS (about 35-40 H, 1950 Oe/A), not for any catalog configuration, and the documented maximum rates already embed this limit.",
+    "A separate persistent-switch heating model for the liquid-helium bath (P = V^2/R, QD 1099-205): only relevant to liquid-helium/EverCool PPMS and only useful together with helium consumption data that the cryogen workflow is researching; recorded as an extension of MAG-6 and MAG-2 instead.",
+    "Turning QD's advice to measure at stable fields between -2 T and +2 T with 14 T or higher magnets (flux-jump noise, QD 1096-301) into a NOT MET rule: it is a data-quality recommendation, not a feasibility limit; keep it as advisory text in the VSM explanation.",
+    "Encoding QD AR10 (magnetic force on the PPMS probe above 1 T near ferromagnetic objects affects temperature control below 10 K) as a requirement: it is a site-installation condition (1 m from rebar walls), not a property of a configuration.",
+    "Using the CPX-VF manual's power-supply limits (0.12 A/s maximum ramp, 35 A maximum current) for the CRX-VF: a different, older product and no field constant is printed, so the conversion to T/s would be a cross-product inference.",
+    "Treating the BAQIS facility page ('Magnet ramp to full field: <= 60 minutes') as a TeslatronPT manufacturer specification: it is a third-party restatement; at most inferred_estimate.",
+    "Using the demonstrated 0.3 T/min sweep of a 12 T TeslatronPT Plus as a maximum rate: an achieved rate is a lower bound on capability, so it can support a PASS but never a NOT MET.",
+    "Entering the field ratios digitized from QD Tech Note 1084-312 Fig. 1 as trusted evidence: they are read from plotted curves, not printed values; they stay inferred_estimate until QD supplies the tabulated profile it offers on request.",
+    "Accepting a 'lambda-plate' or sub-4.2 K requirement for the 16 T PPMS: searched (WebSearch) and found no Quantum Design document stating it; the only lambda-plate statements concern Oxford magnets.",
+    "Substituting the DynaCool Horizontal Rotator (-10 to 370 degrees) for vector-magnet capability in the mK vector-transport profile: the rotator cannot reach 50 mK; mechanical rotation is worth modelling later as a magnetic_field.direction capability for angle-dependent transport profiles above 1.8 K.",
+    "Applying Bluefors catalogue magnet maxima (16 T solenoid, 9 T vector) to the LD configurations: no LD-specific compatibility table exists (already UNKNOWN in the catalog) and Bluefors magnets are outside this angle's systems."
+  ],
+  "verdict_effects_summary": {
+    "current_grid_change": "none: 20 MET / 109 NOT MET / 157 NEED INFO stay as they are, provided the envelope rectangle for the DynaCool VSM is accepted before MAG-2 is made mandatory (otherwise the 2 VSM MET cells would become NEED INFO).",
+    "latent_false_MET_classes_closed": [
+      "Ramp budgets between the max-rate lower bound and the documented time to full field (MAG-1).",
+      "CRX-VF fields above 2 T at 11-400 K or above 1 T at 401-420 K (MAG-2).",
+      "Transport requirements within the top ~5 % (16 T PPMS), ~0.8 % (14 T PPMS) or ~0.35 % (14 T DynaCool) of the rated field on a standard puck, once QD tabulated ratios are trusted (MAG-3).",
+      "Off-axis fields above 1 T on the 6/1/1 T magnet (MAG-4)."
+    ],
+    "models_status_changes": "field_temperature_envelope: representable_only -> validated (MAG-2); temperature_stability_during_field_sweep: unsupported -> superseded by an executable sweep heat budget (MAG-6); magnet_ramp_time: validated but split into necessary + sufficient halves (MAG-1).",
+    "coverage": "Five UNKNOWN capability entries (QD uniformity) become documented (MAG-3).",
+    "why_NEED_INFO_does_not_fall_here": "The magnet-related NEED INFO cells are blocked by missing module/sample-size/base-temperature facts that belong to the datasheet workflow; magnet physics mainly removes unjustified passes."
+  },
+  "worked_examples_exact_rationals": [
+    {
+      "proposal": "MAG-1",
+      "configuration": "qd_dynacool_14T_eto_vsm_hc",
+      "target_T": "14",
+      "budget_s": "1800",
+      "max_rate_lower_bound_s": "1400",
+      "current_model": "PASS",
+      "proposed": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-1",
+      "configuration": "qd_dynacool_12T_vsm",
+      "target_T": "9",
+      "budget_s": "960",
+      "max_rate_lower_bound_s": "900",
+      "current_model": "PASS",
+      "proposed": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-1",
+      "configuration": "qd_dynacool_9T_eto_res",
+      "target_T": "9",
+      "budget_s": "480",
+      "max_rate_lower_bound_s": "450",
+      "current_model": "PASS",
+      "proposed": "PASS"
+    },
+    {
+      "proposal": "MAG-1",
+      "configuration": "qd_dynacool_9T_eto_res",
+      "target_T": "9",
+      "budget_s": "420",
+      "max_rate_lower_bound_s": "450",
+      "current_model": "FAIL",
+      "proposed": "FAIL"
+    },
+    {
+      "proposal": "MAG-2",
+      "configuration": "lakeshore_crx_vf",
+      "required_field_T": "11/5",
+      "operating_temperature_K": "300",
+      "current_model": "PASS (2.5 T >= B and 10 K <= T <= 420 K checked separately)",
+      "proposed": "FAIL"
+    },
+    {
+      "proposal": "MAG-2",
+      "configuration": "lakeshore_crx_vf",
+      "required_field_T": "3/2",
+      "operating_temperature_K": "410",
+      "current_model": "PASS (2.5 T >= B and 10 K <= T <= 420 K checked separately)",
+      "proposed": "FAIL"
+    },
+    {
+      "proposal": "MAG-2",
+      "configuration": "lakeshore_crx_vf",
+      "required_field_T": "5/2",
+      "operating_temperature_K": "10",
+      "current_model": "PASS (2.5 T >= B and 10 K <= T <= 420 K checked separately)",
+      "proposed": "PASS"
+    },
+    {
+      "proposal": "MAG-2",
+      "configuration": "lakeshore_crx_vf",
+      "required_field_T": "2",
+      "operating_temperature_K": "21/2",
+      "current_model": "PASS (2.5 T >= B and 10 K <= T <= 420 K checked separately)",
+      "proposed": "NEED INFO (undocumented gap)"
+    },
+    {
+      "proposal": "MAG-4",
+      "configuration": "oxford_teslatronpt_6_1_1T_vector",
+      "required_vector_T": [
+        "2",
+        "0",
+        "0"
+      ],
+      "current_model": "PASS (magnetic_field.max 6 T and vector flag)",
+      "proposed": "FAIL"
+    },
+    {
+      "proposal": "MAG-4",
+      "configuration": "oxford_teslatronpt_6_1_1T_vector",
+      "required_vector_T": [
+        "1",
+        "0",
+        "0"
+      ],
+      "current_model": "PASS (magnetic_field.max 6 T and vector flag)",
+      "proposed": "PASS if a TeslatronPT rotation radius of 1 T is documented, else NEED INFO"
+    },
+    {
+      "proposal": "MAG-4",
+      "configuration": "oxford_teslatronpt_6_1_1T_vector",
+      "required_vector_T": [
+        "0",
+        "0",
+        "6"
+      ],
+      "current_model": "PASS (magnetic_field.max 6 T and vector flag)",
+      "proposed": "PASS (single-axis region)"
+    },
+    {
+      "proposal": "MAG-4",
+      "configuration": "oxford_teslatronpt_6_1_1T_vector",
+      "required_vector_T": [
+        "1/2",
+        "0",
+        "11/2"
+      ],
+      "current_model": "PASS (magnetic_field.max 6 T and vector flag)",
+      "proposed": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-5",
+      "case": "9 T magnet, Linear",
+      "remanent_bound_Oe": 20,
+      "relative_error_at_1_kOe": "2.0 %",
+      "proposed_with_eps_1_percent": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-5",
+      "case": "14 T magnet, Linear",
+      "remanent_bound_Oe": 120,
+      "relative_error_at_1_kOe": "12.0 %",
+      "proposed_with_eps_1_percent": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-5",
+      "case": "16 T magnet, Linear",
+      "remanent_bound_Oe": 200,
+      "relative_error_at_1_kOe": "20.0 %",
+      "proposed_with_eps_1_percent": "NEED INFO"
+    },
+    {
+      "proposal": "MAG-5",
+      "case": "Oscillate to zero",
+      "remanent_bound_Oe": 2,
+      "relative_error_at_1_kOe": "0.2 %",
+      "proposed_with_eps_1_percent": "PASS"
+    },
+    {
+      "proposal": "MAG-6",
+      "sweep": "0.25 T/min",
+      "conductivity": "sigma_user = 6e9 S/m (RRR about 100)",
+      "disk": "R = 10 mm, h = 1 mm",
+      "eddy_power_upper_W": "4.092e-07",
+      "compare": "bluefors_ld400_hdw cooling_power.at_20mK = 12 uW"
+    },
+    {
+      "proposal": "MAG-6",
+      "sweep": "0.25 T/min",
+      "conductivity": "sigma_300K = 5.96e7 S/m (lower bound)",
+      "disk": "R = 10 mm, h = 1 mm",
+      "eddy_power_upper_W": "4.065e-09",
+      "compare": "bluefors_ld400_hdw cooling_power.at_20mK = 12 uW"
+    },
+    {
+      "proposal": "MAG-6",
+      "sweep": "1 T/min",
+      "conductivity": "sigma_user = 6e9 S/m (RRR about 100)",
+      "disk": "R = 10 mm, h = 1 mm",
+      "eddy_power_upper_W": "6.548e-06",
+      "compare": "bluefors_ld400_hdw cooling_power.at_20mK = 12 uW"
+    },
+    {
+      "proposal": "MAG-6",
+      "sweep": "1 T/min",
+      "conductivity": "sigma_300K = 5.96e7 S/m (lower bound)",
+      "disk": "R = 10 mm, h = 1 mm",
+      "eddy_power_upper_W": "6.504e-08",
+      "compare": "bluefors_ld400_hdw cooling_power.at_20mK = 12 uW"
+    }
+  ],
+  "connector_log": [
+    {
+      "connector": "Tavily",
+      "tools": [
+        "tavily_search",
+        "tavily_extract",
+        "tavily_research"
+      ],
+      "yield": "QD app notes 1070-207, 1070-208, 1084-312, 1099-205, 1500-021, 1307-200, AR10; DynaCool brochure; CRX-VF specification page; MercuryiPS manual; Proteox brochure; QD Oxford TeslatronPT brochure and SdH app note; CPX-VF manual; FNAL and CERN eddy-current notes; research run confirming no published TeslatronPT homogeneity/ramp values or CRX-VF ramp rate."
+    },
+    {
+      "connector": "WebSearch / WebFetch",
+      "tools": [
+        "WebSearch",
+        "WebFetch"
+      ],
+      "yield": "QD 1070-002, 1307-010, 1084-500, 1084-312 PDFs saved and text-extracted locally; searches on DynaCool rate reduction, TeslatronPT sweep rates, 6-1-1 vector magnets, 16 T lambda plate (no QD evidence), CRX-VF ramp, DynaCool remanence."
+    },
+    {
+      "connector": "Built-in browser (read only)",
+      "tools": [
+        "preview_start",
+        "get_page_text",
+        "find",
+        "navigate",
+        "javascript_tool (link listing)"
+      ],
+      "yield": "QD DynaCool product page (Horizontal Rotator range) and the QD application-note index that led to 1070-208, 1084-312, 1099-205, 1307-200, 1500-021 and AR10."
+    },
+    {
+      "connector": "Lune",
+      "tools": [
+        "search_papers_many",
+        "verify_claims"
+      ],
+      "yield": "No coverage: the corpus returned computer-science papers for six magnet-physics queries, and verify_claims gave insufficient_evidence for all three physics claims; get_paper_fulltext/extract_from_papers therefore had nothing to read."
+    },
+    {
+      "connector": "alphaXiv",
+      "tools": [
+        "discover_papers",
+        "answer_pdf_queries"
+      ],
+      "yield": "Bud'ko et al. 2026 (trapped-flux artefact), Lu 2019 (magnetization-induced error field), van Zanten et al. (6-1-1 T vector magnet, B|| 0.75 T)."
+    },
+    {
+      "connector": "Consensus",
+      "tools": [
+        "search"
+      ],
+      "yield": "SQUID-magnetometry artefact reviews (remanent field), eddy-current heating papers (Meyer et al. 1989)."
+    },
+    {
+      "connector": "Undermind",
+      "tools": [
+        "create_workspace",
+        "search_papers",
+        "get_paper_info",
+        "lookup_papers_by_metadata"
+      ],
+      "yield": "Workspace 'CryoLean magnet and field physics research' (https://app.undermind.ai/projects/d48efb8c-5987-43f5-853b-3f9f5c62443f); abstracts and DOIs for Caspi 1983, Liu 2005, Meyer 1989, Meckler 2009, Bud'ko 2026 (Physics Letters A)."
+    },
+    {
+      "connector": "scite",
+      "tools": [
+        "search_literature"
+      ],
+      "yield": "Unavailable: the server requires a paid plan or trial."
+    }
+  ]
+}

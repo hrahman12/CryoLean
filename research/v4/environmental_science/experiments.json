@@ -1,0 +1,1075 @@
+{
+ "industry": "environmental_science",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "env_ice_core_archive_storage",
+   "name": "Long-term archival storage of ice cores at -36 C with sampling in a -24 C examination room (NSF Ice Core Facility)",
+   "plain_name": "Keep ice cores frozen in a national archive freezer",
+   "industry": "environmental_science",
+   "description": "Ice cores from Antarctica and Greenland are curated as 1 m sections in tubes on shelves inside a walk-in archive freezer held at -36 C so that trapped gases, chemistry and stratigraphy are preserved; cores are cut and sampled for researchers in an examination room held at -24 C.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 237150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Archive storage set point -36 C (237.15 K); the storage space must hold this temperature.",
+     "source_url": "https://icecores.org/about",
+     "document_title": "About - U.S. National Science Foundation Ice Core Facility (NSF-ICF, formerly National Ice Core Laboratory)",
+     "location": "About page, 'Facility' section",
+     "quote": "The main archive freezer is ~6,000 square feet (72,000 cubic feet) and is held at a temperature of -36°C.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 249150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Core examination and sub-sampling are done at -24 C (249.15 K) in a separate room; optional for a storage-only machine.",
+     "source_url": "https://icecores.org/about",
+     "document_title": "About - U.S. National Science Foundation Ice Core Facility (NSF-ICF, formerly National Ice Core Laboratory)",
+     "location": "About page, 'Facility' section",
+     "quote": "The examination room is 1,500 square feet (7,800 cubic feet) and is held at -24°C.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.height.max",
+      "sample.length.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1000,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cores are stored as 1 m sections in tubes, so the storage space must accept a 1000 mm long item along its loading/shelf axis (either key satisfies).",
+     "source_url": "https://icecores.org/about",
+     "document_title": "About - U.S. National Science Foundation Ice Core Facility (NSF-ICF, formerly National Ice Core Laboratory)",
+     "location": "About page, 'Storage' photo caption",
+     "quote": "Each silver tube on these shelves contains a 1-meter long section of an ice core.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "About - U.S. National Science Foundation Ice Core Facility (NSF-ICF, formerly National Ice Core Laboratory)",
+     "url": "https://icecores.org/about"
+    },
+    {
+     "citation": "NSF Ice Core Facility - Services (storage of cores and use of the facility)",
+     "url": "https://icecores.org/services"
+    }
+   ],
+   "reported_equipment": [
+    "NSF-ICF main archive freezer (-36°C)",
+    "NSF-ICF examination room (-24°C)",
+    "temperature variable dock from 0°C to -30°C"
+   ]
+  },
+  {
+   "id": "env_soil_plant_water_cryo_vacuum_extraction",
+   "name": "Cryogenic vacuum extraction of soil and plant water for d2H/d18O analysis (18-slot manifold, 0.3 Pa, 90 C, liquid-nitrogen U-tube traps)",
+   "plain_name": "Pull water out of soil samples under vacuum for isotope tracing",
+   "industry": "environmental_science",
+   "description": "Frozen soil or plant samples in extraction tubes are evacuated to 0.3 Pa, then heated to 90 C in a water bath while the evaporated water is frozen in U-tubes immersed in liquid nitrogen; the recovered water is analysed for stable hydrogen and oxygen isotopes to trace water sources in ecohydrology.",
+   "requirements": [
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The extraction runs under vacuum so water distils from the heated sample to the cold trap.",
+     "source_url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+     "document_title": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "location": "Sect. 2.1, p. 180",
+     "quote": "Afterwards, the entire system is evacuated to a pressure of 0.3 Pa.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.3",
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The validated procedure evacuates the line to 0.3 Pa before extraction; the authors note lower pressure may be needed for clay soils.",
+     "source_url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+     "document_title": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "location": "Sect. 2.1, p. 180",
+     "quote": "Afterwards, the entire system is evacuated to a pressure of 0.3 Pa.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 363150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Samples are held at 90 C (363.15 K) for the whole extraction.",
+     "source_url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+     "document_title": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "location": "Sect. 2.1, p. 180",
+     "quote": "During the entire extraction process, the samples are heated to 90 °C, leading to the evaporation of water, which is successively trapped in the frozen U-tubes.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The evolved vapour is collected in liquid-nitrogen-cooled traps.",
+     "source_url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+     "document_title": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "location": "Sect. 1 Introduction, p. 180",
+     "quote": "The sample water evaporates and the evolved vapor is frozen in a cryogenic (liquid nitrogen) trap (Ingraham and Shadel, 1992).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 180,
+       "unit": "min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Extraction must run to completion to avoid fractionation; the validation runs lasted 180 min.",
+     "source_url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+     "document_title": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "location": "Sect. 3.2.1 (Experiment 4), p. 184",
+     "quote": "despite a long extraction time of 180 min and a vacuum of 0.3 Pa.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+     "url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Edwards RV5 two-stage rotary vane pump",
+    "Vacuubrand VAP-5 PIRANI vacuum gauge",
+    "Vacuubrand DCP 3000 + VSK 3000 vacuum gauge",
+    "Grant JB aqua 18 water bath",
+    "Reichelt Chemietechnik nitrogen cold trap 478-4302",
+    "Swagelok stainless-steel vacuum manifold with 18 extraction slots"
+   ]
+  },
+  {
+   "id": "env_plant_stem_cryogenic_distillation",
+   "name": "Cryogenic vacuum distillation of xylem (stem), leaf or soil water on a glass line at 0-30 mTorr with liquid-nitrogen collection tubes",
+   "plain_name": "Boil water out of plant stems on a glass vacuum line for isotope work",
+   "industry": "environmental_science",
+   "description": "Stem, leaf or soil samples in 1-inch glass ignition tubes are attached to a manifold pumped to 0-30 mTorr, the sample tube is heated in boiling water and the released water is frozen into a collection tube held in liquid nitrogen for 40-90 min, then thawed for d18O/d2H analysis of plant water sources.",
+   "requirements": [
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The distillation is done on an evacuated manifold.",
+     "source_url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/",
+     "document_title": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "location": "Protocol, vacuum line check step",
+     "quote": "The main line should have a vacuum between 0-30 mTorr.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.03",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The line must reach 30 mTorr or better before extraction.",
+     "source_url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/",
+     "document_title": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "location": "Protocol, vacuum line check step",
+     "quote": "The main line should have a vacuum between 0-30 mTorr.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The collection tube is frozen with liquid nitrogen to trap the distilled water.",
+     "source_url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/",
+     "document_title": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "location": "Protocol, extraction steps",
+     "quote": "Once the water is at a boil, freeze the sample collection tube with LN2.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1,
+       "unit": "inch"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Samples are loaded in 1-inch ignition tubes, so the port must accept a 1-inch tube.",
+     "source_url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/",
+     "document_title": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "location": "Protocol, materials list",
+     "quote": "1 inch ignition (sample) tube",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 90,
+       "unit": "min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Extraction lasts 60-90 min (stems 60-70 min, soils 40-45 min).",
+     "source_url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/",
+     "document_title": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "location": "Protocol, extraction steps",
+     "quote": "Boil for 60-90 minutes.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "PrometheusWiki protocol: Cryogenic extraction of water from stems, leaves or soils (L. Santiago, modified from T.E. Dawson, J.R. Ehleringer, M.F. Allen and T.J. Jones)",
+     "url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/"
+    }
+   ],
+   "reported_equipment": [
+    "glass vacuum line with 1 inch ignition (sample) tubes",
+    "hot plate with boiling water bath",
+    "LN2 dewar for the sample collection tube"
+   ]
+  },
+  {
+   "id": "env_medusa_halocarbon_monitoring",
+   "name": "In-situ Medusa-GCMS measurement of atmospheric halocarbons, PFCs, SF6 and NMHCs with dual adsorbent traps cooled to -165 C by a Cryotiger",
+   "plain_name": "Monitor ozone-depleting and greenhouse gases at a remote air station",
+   "industry": "environmental_science",
+   "description": "Two-litre whole-air samples are preconcentrated on adsorbent micro-traps cooled to -165 C by a closed-cycle Cryotiger cooler, selectively flushed at -70/-125 C to remove CO2, Xe and bulk air, desorbed at +100 C and transferred to a GC-MS, giving 12 air measurements per day of PFCs, SF6, HFCs, HCFCs, CFCs and halons at AGAGE stations.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 108150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Adsorbent traps must reach -165 C (108.15 K) to retain the most volatile species.",
+     "source_url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html",
+     "document_title": "Medusa-GCMS - Atmospheric Chemistry Research Group instruments, University of Bristol",
+     "location": "Instrument description",
+     "quote": "Central to the Medusa-GCMS design is the 'Cryotiger' which cools adsorbent traps to -165oC.",
+     "evidence_status": "manufacturer_specification",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 108150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 373150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Each cycle runs the trap between -165 C trapping and +100 C desorption.",
+     "source_url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html",
+     "document_title": "Medusa-GCMS - Atmospheric Chemistry Research Group instruments, University of Bristol",
+     "location": "Measurement cycle steps",
+     "quote": "T1 is heated to 100oC and back-flushed to transfer analytes to T2, held at -165oC.",
+     "evidence_status": "manufacturer_specification",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "module.gc_ms"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Preconcentrated analytes are separated and detected by the coupled GC-MS.",
+     "source_url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html",
+     "document_title": "Medusa-GCMS - Atmospheric Chemistry Research Group instruments, University of Bristol",
+     "location": "Instrument description",
+     "quote": "Central to the Medusa-GCMS design is the 'Cryotiger' which cools adsorbent traps to -165oC.",
+     "evidence_status": "manufacturer_specification",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Medusa-GCMS - Atmospheric Chemistry Research Group instruments, University of Bristol",
+     "url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html"
+    }
+   ],
+   "reported_equipment": [
+    "Medusa-GCMS",
+    "Cryotiger"
+   ]
+  },
+  {
+   "id": "env_aida_sulphuric_acid_homogeneous_freezing",
+   "name": "Homogeneous freezing of supercooled H2SO4/H2O aerosol by expansion cooling in the 84 m3 AIDA chamber (189-235 K)",
+   "plain_name": "Make artificial cirrus clouds from acid droplets in a giant chamber",
+   "industry": "environmental_science",
+   "description": "Submicron sulphuric acid droplets are added to the evacuated, re-filled and ice-coated 84 m3 AIDA vessel at 189-235 K; pumping expansions cool the gas at up to 2.8 K/min until the droplets freeze, detected by laser depolarisation, optical counters and hygrometers, to derive ice-nucleation thresholds for upper-tropospheric cirrus.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 189000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 235000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The freezing experiments spanned 189-235 K.",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Abstract, p. 211",
+     "quote": "24 freezing experiments were performed at temperatures between 189 and 235 K with aerosol particles in the diameter range 0.05 to 1 µm.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The vessel is evacuated and flushed before each series and pumped to expand-cool the gas.",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Sect. 2.1, p. 212",
+     "quote": "The aerosol vessel can be evacuated to a final pressure of about 0.01 hPa by two large mechanical pumps that can be operated at different pumping speeds.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.01",
+       "unit": "mbar"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Preparation step (2) evacuates the vessel to 0.01 hPa (= 0.01 mbar).",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Sect. 2.2, p. 212",
+     "quote": "Ice saturation is achieved by (1) cooling the walls to 273 K, (2) evacuating the vessel to 0.01 hPa, (3) flushing twice",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "chamber.volume"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 84,
+       "unit": "m3"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cloud-simulation method relies on the 84 m3 vessel so that expansions behave like a rising air parcel with small wall effects.",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Sect. 2.1, p. 212",
+     "quote": "made of 2 cm thick aluminium walls and has a height of 7 m, a diameter of 4 m, and a volume of 84 m3.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Freezing onset is detected by laser backscatter depolarisation inside the chamber.",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Sect. 2.6, p. 218",
+     "quote": "an Argon-Ion laser beam (99% polarised light at 488 nm) is directed into the chamber via an optical fibre which preserves the plane of polarization (Fig. 1).",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 2800,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Cloud cooling rates up to 2.8 K/min were imposed by expansion.",
+     "source_url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf",
+     "document_title": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "location": "Abstract, p. 211",
+     "quote": "Cloud cooling rates up to -2.8 K min-1 were simulated dynamically in the chamber by expansion cooling using a mechanical pump.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Moehler O, Stetzer O, Schaefers S, et al. (2003). Experimental investigation of homogeneous freezing of sulphuric acid particles in the aerosol chamber AIDA. Atmos. Chem. Phys. 3, 211-223. doi:10.5194/acp-3-211-2003",
+     "url": "https://acp.copernicus.org/articles/3/211/2003/acp-3-211-2003.pdf"
+    },
+    {
+     "citation": "KIT IMKAAF AIDA facilities page",
+     "url": "https://www.imkaaf.kit.edu/AIDA_facilities.php"
+    }
+   ],
+   "reported_equipment": [
+    "AIDA aerosol chamber (Forschungszentrum Karlsruhe)",
+    "CNC3010",
+    "PCS2000, Palas",
+    "FISH hygrometer",
+    "Argon-Ion laser depolarisation system"
+   ]
+  },
+  {
+   "id": "env_aida_desert_dust_ice_nucleation",
+   "name": "Heterogeneous ice nucleation on Asian and Saharan desert dust during AIDA expansion runs from -20 C to -65 C",
+   "plain_name": "Test how desert dust seeds ice crystals in a cloud chamber",
+   "industry": "environmental_science",
+   "description": "The AIDA chamber is pumped below 1 hPa, flushed, humidified and cooled to -20 to -60 C with ice-coated walls; dispersed Takla Makan or Saharan dust is added and the chamber expanded from about 1000 to 800 hPa so ice forms on the dust, with ice number and size recorded by the SID probe and hygrometers.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 208150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The dust expansions covered -20 C to -65 C (253.15-208.15 K).",
+     "source_url": "https://acp.copernicus.org/articles/7/243/2007/acp-7-243-2007.pdf",
+     "document_title": "Cotton RJ, Benz S, Field PR, Moehler O, Schnaiter M (2007). Technical Note: A numerical test-bed for detailed ice nucleation studies in the AIDA cloud simulation chamber. Atmos. Chem. Phys. 7, 243-256. doi:10.5194/acp-7-243-2007",
+     "location": "Sect. 6, text on Table 1, p. 251",
+     "quote": "Table 1 lists some details of the chamber expansions for both dust samples, with the chamber temperature covering a range of -20°C to -65°C.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Each day starts by pumping the chamber down to clear aerosol before refilling.",
+     "source_url": "https://acp.copernicus.org/articles/7/243/2007/acp-7-243-2007.pdf",
+     "document_title": "Cotton RJ, Benz S, Field PR, Moehler O, Schnaiter M (2007). Technical Note: A numerical test-bed for detailed ice nucleation studies in the AIDA cloud simulation chamber. Atmos. Chem. Phys. 7, 243-256. doi:10.5194/acp-7-243-2007",
+     "location": "Sect. 2, p. 244",
+     "quote": "First, the chamber is cleared of any aerosols from previous experiments by pumping down to below 1hPa and flushed with dry synthetic particle free air.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 1,
+       "unit": "mbar"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cleaning requires pumping below 1 hPa (= 1 mbar).",
+     "source_url": "https://acp.copernicus.org/articles/7/243/2007/acp-7-243-2007.pdf",
+     "document_title": "Cotton RJ, Benz S, Field PR, Moehler O, Schnaiter M (2007). Technical Note: A numerical test-bed for detailed ice nucleation studies in the AIDA cloud simulation chamber. Atmos. Chem. Phys. 7, 243-256. doi:10.5194/acp-7-243-2007",
+     "location": "Sect. 2, p. 244",
+     "quote": "First, the chamber is cleared of any aerosols from previous experiments by pumping down to below 1hPa and flushed with dry synthetic particle free air.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "chamber.volume"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 84,
+       "unit": "m3"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The expansion cloud experiments use the 84 m3 vessel.",
+     "source_url": "https://acp.copernicus.org/articles/7/243/2007/acp-7-243-2007.pdf",
+     "document_title": "Cotton RJ, Benz S, Field PR, Moehler O, Schnaiter M (2007). Technical Note: A numerical test-bed for detailed ice nucleation studies in the AIDA cloud simulation chamber. Atmos. Chem. Phys. 7, 243-256. doi:10.5194/acp-7-243-2007",
+     "location": "Sect. 2, p. 244",
+     "quote": "The chamber is 7 m high, has a diameter of 4 m and a volume of 84 m3.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cotton RJ, Benz S, Field PR, Moehler O, Schnaiter M (2007). Technical Note: A numerical test-bed for detailed ice nucleation studies in the AIDA cloud simulation chamber. Atmos. Chem. Phys. 7, 243-256. doi:10.5194/acp-7-243-2007",
+     "url": "https://acp.copernicus.org/articles/7/243/2007/acp-7-243-2007.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "AIDA aerosol and cloud chamber (Forschungszentrum Karlsruhe)",
+    "SID (small ice detector)",
+    "MBW hygrometer"
+   ]
+  },
+  {
+   "id": "env_fresh_inp_plate_freezing",
+   "name": "Immersion-freezing INP spectra of filter-collected aerosol in 96-well PCR plates in an ethanol bath (FrESH, 0 to -35 C at 1 C/min)",
+   "plain_name": "Count ice-forming particles from air filters in plate wells",
+   "industry": "environmental_science",
+   "description": "Aerosol filter extracts are pipetted as 50 uL droplets into two 96-well PCR plates floating in a Lauda-chilled ethanol bath, cooled from 0 to -35 C at 1 C/min while a USB camera records backlit images every 10 s to detect each well freezing, giving ice-nucleating particle concentration spectra N_INP(T).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 238150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 273150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Each run sweeps the sample from 0 C to -35 C (273.15-238.15 K).",
+     "source_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf",
+     "document_title": "Perez Fogwill G, Welti A (2026). Temperature uncertainty characterisation of the FrESH droplet-freezing assay. EGUsphere preprint egusphere-2026-3971",
+     "location": "Sect. 2.1 Instrument description, p. 2",
+     "quote": "Each plate contains 96 droplets of 50 µL each. During a measurement, the bath is cooled from 0 to -35 °C at 1 °C min-1 while backlit images are recorded every 10 s.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 1000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The calibration and spectra apply to a 1 C/min ramp.",
+     "source_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf",
+     "document_title": "Perez Fogwill G, Welti A (2026). Temperature uncertainty characterisation of the FrESH droplet-freezing assay. EGUsphere preprint egusphere-2026-3971",
+     "location": "Sect. 2.1 Instrument description, p. 2",
+     "quote": "During a measurement, the bath is cooled from 0 to -35 °C at 1 °C min-1 while backlit images are recorded every 10 s.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Freezing events are detected optically with a camera viewing the wells.",
+     "source_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf",
+     "document_title": "Perez Fogwill G, Welti A (2026). Temperature uncertainty characterisation of the FrESH droplet-freezing assay. EGUsphere preprint egusphere-2026-3971",
+     "location": "Sect. 2.1 Instrument description, p. 2",
+     "quote": "a floating frame holding two standard 96-well PCR plates, and a USB camera for optical detection of freezing events",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Perez Fogwill G, Welti A (2026). Temperature uncertainty characterisation of the FrESH droplet-freezing assay. EGUsphere preprint egusphere-2026-3971",
+     "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf"
+    },
+    {
+     "citation": "EGUsphere preprint landing page",
+     "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/"
+    }
+   ],
+   "reported_equipment": [
+    "FrESH (Freezing Experiment Setup Helsinki)",
+    "Lauda RE1050",
+    "Lauda RP1845",
+    "Lauda RK20",
+    "MOKOSE USB camera"
+   ]
+  },
+  {
+   "id": "env_ice_core_co2_sublimation_extraction",
+   "name": "Vacuum sublimation extraction of air from ice-core samples for d13CO2, CO2 and N2O (-34 C vessel, -150 C water trap, LN2 CO2 trap, <2e-7 mbar)",
+   "plain_name": "Release ancient air from ice-core pieces to measure past CO2",
+   "industry": "environmental_science",
+   "description": "A 30 g ice cylinder (3.2 cm diameter, 4.5 cm long) is held at about -34 C in an evacuated glass sublimation vessel and sublimated by infrared halogen lamps; water is removed in traps down to -150 C, CO2/N2O are frozen in a liquid-nitrogen trap and sealed in a glass capillary for GC-IRMS, reconstructing past atmospheric CO2 and its carbon isotopes.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 239150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The ice sample is held near -34 C (239.15 K) during sublimation, keeping it well below -20 C.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.2.1, p. 1448",
+     "quote": "The sublimation is run at around 0.25 mbar pH2O or -34 °C.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 123150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The external water trap must reach -150 C (123.15 K) to reach the required H2O vapour pressure.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.2.2, p. 1449",
+     "quote": "Therefore, temperatures as cold as -150 °C in the external water trap are needed to reach the required H2O vapour pressure.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Extraction is done in a high-vacuum sublimation line.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.3, p. 1453",
+     "quote": "If the system is leak free, a final pressure of <2 × 10−7 mbar is achieved at the high vacuum side with gas free blank ice",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.0000002",
+       "unit": "mbar"
+      }
+     },
+     "mandatory": true,
+     "rationale": "A leak-free line reaches below 2e-7 mbar on the high-vacuum side before sampling.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.3, p. 1453",
+     "quote": "If the system is leak free, a final pressure of <2 × 10−7 mbar is achieved at the high vacuum side with gas free blank ice",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "CO2 and N2O are frozen out in a trap immersed in liquid nitrogen.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.2.4, p. 1450",
+     "quote": "The CO2 trap is a 8 cm long, U-shaped, 1/8 stainless steel tubing which can be immersed in a dewar filled with LN2 during the trapping procedure",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 32,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The ice is trimmed to a 3.2 cm cylinder to fit the 3.3 cm vessel.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.3, p. 1453",
+     "quote": "the edges are rounded and trimmed with a stainless steel knife to a cylinder of 3.2 cm diameter and a weight of 30 g.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 45,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The ice piece is 4.5 cm long along the vessel axis.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Sect. 2.3, p. 1453",
+     "quote": "With a band saw a cube is cut to the dimensions 3.5 cm × 3.5 cm with 4.5 cm length.",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The ice is sublimated by infrared light from halogen bulbs shining through the glass vessel.",
+     "source_url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf",
+     "document_title": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "location": "Fig. 2 caption, p. 1448",
+     "quote": "The infrared source consists of 18 bulbs mounted on a holder",
+     "evidence_status": "experimental_observation",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Schmitt J, Schneider R, Fischer H (2011). A sublimation technique for high-precision measurements of d13CO2 and mixing ratios of CO2 and N2O from air trapped in ice cores. Atmos. Meas. Tech. 4, 1445-1461. doi:10.5194/amt-4-1445-2011",
+     "url": "https://amt.copernicus.org/articles/4/1445/2011/amt-4-1445-2011.pdf"
+    },
+    {
+     "citation": "AMT article landing page",
+     "url": "https://amt.copernicus.org/articles/4/1445/2011/"
+    }
+   ],
+   "reported_equipment": [
+    "Leybold turbo molecular pump backed by a rotary vane vacuum pump",
+    "Caburn CF sublimation vessel (33 mm o.d., 121 mm length)",
+    "West 2300 PID controller",
+    "infrared source of 18 halogen bulbs",
+    "tube cracker-GC-IRMS"
+   ]
+  },
+  {
+   "id": "env_hpge_gamma_environmental_radioactivity",
+   "name": "Gamma-ray spectrometry of environmental samples (soil, water, food) with a cooled HPGe detector in a 10-15 cm lead shield (Japan NRA method No. 7)",
+   "plain_name": "Measure radioactivity in soil and water with a frozen germanium detector",
+   "industry": "environmental_science",
+   "description": "Environmental samples in U-8 containers or 2 L Marinelli beakers are counted for about 80,000 s on a germanium semiconductor detector held at liquid-nitrogen temperature (LN2 dewar or electric cooler) inside a lead shield, to quantify radionuclides such as 137Cs, 134Cs and 131I for radiation monitoring.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The germanium crystal must operate at liquid-nitrogen temperature (77 K).",
+     "source_url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "document_title": "Environmental Radioactivity Measuring Methods Series No. 7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment of June 2021)",
+     "location": "Section 4.1.2 Cooling equipment, p. 23",
+     "quote": "Because a germanium crystal cannot be used at room temperature due to its narrow-forbidden band (0.665 eV), it must be used at the liquid nitrogen temperature (77 K, -196°C).",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 250,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "A 2 L Marinelli beaker needs a shield cavity of at least 30 x 25 x 50 cm; the smaller cross-section is 25 cm.",
+     "source_url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "document_title": "Environmental Radioactivity Measuring Methods Series No. 7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment of June 2021)",
+     "location": "Section 4.1.6 Radiation shield, (2) Inner volume, pp. 24-25",
+     "quote": "The inner volume of 30 cm × 25 cm × 50 cm or more is needed to measure samples using a 2 L Marinelli-type vessel.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 80000,
+       "unit": "s"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Typical counting time for environmental detection limits is about 80,000 s, so cooling must be maintained for that long.",
+     "source_url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "document_title": "Environmental Radioactivity Measuring Methods Series No. 7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment of June 2021)",
+     "location": "Document 1.10 Detectable level, table notes",
+     "quote": "Measuring time is approximately 80000 s For 131I, a raw sample is measured in a 2 L Marinelli-type vessel.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Environmental Radioactivity Measuring Methods Series No. 7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment of June 2021)",
+     "url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "coaxial-type germanium semiconductor detector p-type",
+    "liquid nitrogen vessel (Dewar) of approximately 30 L",
+    "Electric cooling equipment",
+    "lead shield of 10-15 cm thickness",
+    "U-8 container",
+    "2 L Marinelli-type vessel"
+   ]
+  },
+  {
+   "id": "env_specimen_bank_ln2_vapour_archive",
+   "name": "Long-term environmental specimen banking of cryo-homogenised sub-samples in the vapour phase above liquid nitrogen (below -150 C)",
+   "plain_name": "Archive environmental samples for decades above liquid nitrogen",
+   "industry": "environmental_science",
+   "description": "Environmental specimens (fish, mussels, bird eggs, plants, soils, human blood and urine) are deep-frozen in the gas phase above liquid nitrogen, ground while frozen, divided into about 10 g sub-samples and archived long-term above liquid nitrogen below -150 C so that future analysts can measure pollutants retrospectively (German ESB, NIST Biorepository).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 123150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Sub-specimens are stored below -150 C (123.15 K).",
+     "source_url": "https://www.umweltprobenbank.de/en/documents/10023",
+     "document_title": "Specimen archive - German Environmental Specimen Bank (Umweltprobenbank des Bundes)",
+     "location": "Specimen archive page",
+     "quote": "Remaining sub-specimens are long-term stored above liquid nitrogen at temperatures below -150°C.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The archive keeps specimens in the vapour above liquid nitrogen.",
+     "source_url": "https://www.umweltprobenbank.de/en/documents/10023",
+     "document_title": "Specimen archive - German Environmental Specimen Bank (Umweltprobenbank des Bundes)",
+     "location": "Specimen archive page",
+     "quote": "Remaining sub-specimens are long-term stored above liquid nitrogen at temperatures below -150°C.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    },
+    {
+     "keys": [
+      "sample.mass.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 10,
+       "unit": "g"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Each archived sub-specimen portion is about 10 g.",
+     "source_url": "https://www.umweltprobenbank.de/en/documents/10023",
+     "document_title": "Specimen archive - German Environmental Specimen Bank (Umweltprobenbank des Bundes)",
+     "location": "Specimen archive page",
+     "quote": "About 10 g portions of standardized sub-specimens are stored.",
+     "evidence_status": "reference_data",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Specimen archive - German Environmental Specimen Bank (Umweltprobenbank des Bundes)",
+     "url": "https://www.umweltprobenbank.de/en/documents/10023"
+    },
+    {
+     "citation": "The NIST Biorepository (Marine Environmental Specimen Bank), National Institute of Standards and Technology",
+     "url": "https://www.nist.gov/programs-projects/marine-environmental-specimen-bank"
+    }
+   ],
+   "reported_equipment": [
+    "cryo tank (gaseous phase above liquid nitrogen)",
+    "Liquid Nitrogen (LN2) vapor-phase freezers (auto-fills)",
+    "Cryogenic Vibrating Disc Mills"
+   ]
+  }
+ ],
+ "notes": "Ten environmental-science profiles, each requirement quoted from a fetched source (accessed 2026-11-01). Tavily, Lune and WebSearch quotas were exhausted during this run, so sources are limited to idea URLs plus pages/papers reachable by direct WebFetch; quotes from PDFs were taken from pdftotext extraction (degree signs restored as printed, e.g. -34 °C). Not covered: TO-15 canister VOCs (duplicates existing expansion_b_env_whole_air_voc_cryofocusing) and the Radiocarbon sediment-DIC distillation (source URL redirects to journal home page). The Medusa Bristol page quotes 'Cryotiger' but does not state cryogen-free operation, so no cryogen.cryogen_free requirement was written. AIDA chamber.volume >= 84 m3 is mandatory because the published cloud-expansion method relies on the large vessel; only cloud-simulation chambers of that size can pass. HPGe temperature.base <= 77 K follows the NRA manual; electrically cooled detectors documented warmer than 77 K would fail it. Specimen-bank profile uses the German ESB specimen-archive page (with NIST Biorepository as corroborating source)."
+}

@@ -1,0 +1,69 @@
+{
+  "id": "expansion_b_labconco_freezone6",
+  "manufacturer": "Labconco",
+  "model": "FreeZone 6 L -50 C (CSD Facility configuration)",
+  "family": "freeze_dryer",
+  "description": "A documented installed sediment-preparation system. Collector temperature is separate from the temperature of a frozen sample.",
+  "documents": [
+    {
+      "id": "expb_doc_labconco_freezone6",
+      "title": "CSD Facility freeze-drying equipment",
+      "url": "https://cse.umn.edu/csd/subsample-preparation-and-analysis",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "expb_doc_freezone_manufacturer",
+      "url": "https://documents.thermofisher.com/TFS-Assets/ANZ/brochures/labconco-console-freeze-dryers.pdf",
+      "title": "Labconco manufacturer specification,hosted by ThermoFisher",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_labconco_freezone6_documented",
+      "name": "Labconco FreeZone 6 L -50 C (CSD Facility configuration)",
+      "configuration_basis": "The CSD laboratory explicitly reports this installed -50 C/6 L system with three10-inch shelves and6ports; pressure remains UNKNOWN.",
+      "capabilities": [
+        {
+          "key": "process.freeze_drying",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_freezone_csd"
+          ]
+        },
+        {
+          "key": "condenser.temperature.min",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": "223.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_freezone_csd",
+            "expb_freezone_manufacturer"
+          ],
+          "note": "Collector rating, not shelf or sample temperature."
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "The facility page does not give an attainable vacuum specification."
+        }
+      ]
+    }
+  ]
+}

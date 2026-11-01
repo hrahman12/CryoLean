@@ -1,0 +1,81 @@
+{
+ "id": "mfg_ksc_ln2_vessel_vacuum_retention",
+ "name": "Vacuum-retention acceptance test of a vacuum-jacketed LN2 storage vessel: annulus evacuated to 50 microns or less, inner vessel filled and cooled with LN2, 48 h atmospheric hold then 1 h at MAWP (KSC-STD-Z-0009 Rev D 6.2.7)",
+ "plain_name": "Fill a new vacuum-insulated liquid-nitrogen tank and check for two days that its insulating vacuum does not leak",
+ "industry": "manufacturing_and_industrial_processing",
+ "description": "The annular space of a double-walled cryogenic storage vessel is evacuated to 50 microns or less; the inner vessel and pipe are filled from the top and cooled to LN2 temperature while annulus pressure is logged; after stabilisation (5 degrees per hour or less) the vessel must hold atmospheric pressure for at least 48 h without annulus pressure rise or outer-shell condensation, then hold MAWP for at least 1 h.",
+ "keywords": [
+  "Fill a new vacuum-insulated liquid-nitrogen tank and check for two days that its insulating vacuum does not leak",
+  "manufacturing_and_industrial_processing"
+ ],
+ "sources": [
+  {
+   "citation": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+   "url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The inner vessel is filled and cooled with liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_ln2_vessel_vacuum_retention_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.05",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The vacuum pumping system must bring the annular space to 50 microns (50 mTorr = 0.05 Torr) or less before the test continues.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_ln2_vessel_vacuum_retention_1"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 48,
+     "unit": "h"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The LN2-filled vessel must be held and monitored for at least 48 h.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_ln2_vessel_vacuum_retention_2"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

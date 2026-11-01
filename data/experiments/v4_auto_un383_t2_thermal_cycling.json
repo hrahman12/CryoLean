@@ -1,0 +1,82 @@
+{
+ "id": "auto_un383_t2_thermal_cycling",
+ "name": "UN Manual of Tests and Criteria 38.3 Test T.2 thermal cycling of lithium cells/batteries (+72 C / -40 C, 6 h or 12 h dwells, 10 cycles), preceded in the sequence by T.1 altitude simulation at 11.6 kPa",
+ "plain_name": "Bake and freeze a lithium battery ten times to prove it is safe to ship",
+ "industry": "automotive_and_transportation",
+ "description": "Transport-qualification thermal test for lithium-ion cells and EV/automotive batteries: storage for 6 h (12 h for large cells/batteries) at +72 C, then 6 h (12 h) at -40 C, repeated for 10 cycles. In the UN 38.3 sequence the same samples first undergo T.1 altitude simulation (storage at 11.6 kPa for more than 6 h), recorded here only as optional (non-mandatory) requirements for a machine that would run both steps.",
+ "keywords": [
+  "Bake and freeze a lithium battery ten times to prove it is safe to ship",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "TUV SUD, UN/DOT 38.3 testing for lithium cells and batteries (summary of UN Manual of Tests and Criteria, sub-section 38.3, tests T1-T8)",
+   "url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 345150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The thermal test alternates the battery between +72 C (345.15 K) and -40 C (233.15 K); the test space must reach both extremes.",
+   "evidence_ids": [
+    "v4e_auto_un383_t2_thermal_cycling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: T.1 altitude simulation, run on the same samples before T.2, stores them in an evacuated chamber; only needed if one machine performs both steps.",
+   "evidence_ids": [
+    "v4e_auto_un383_t2_thermal_cycling_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 11600,
+     "unit": "Pa"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: T.1 requires holding the samples at 11.6 kPa (11600 Pa) or lower for more than 6 h.",
+   "evidence_ids": [
+    "v4e_auto_un383_t2_thermal_cycling_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

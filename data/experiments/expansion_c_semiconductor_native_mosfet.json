@@ -1,0 +1,80 @@
+{
+  "id": "expc_semiconductor_native_mosfet",
+  "name": "Native silicon MOSFET DC transfer and output characterization,4.2–300 K (Zhang et al.2021)",
+  "plain_name": "Measure transistor turn-on and leakage from room temperature to liquid helium",
+  "industry": "semiconductors_and_electronics",
+  "description": "Measure transistor turn-on and leakage from room temperature to liquid helium. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "semiconductor_transistor",
+    "semiconductors_and_electronics"
+  ],
+  "sources": [
+    {
+      "id": "src_mosfet",
+      "citation": "Zhang et al. (2021), Characterization and Modeling of Native MOSFETs Down to 4.2 K",
+      "url": "https://arxiv.org/html/2104.03094",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "300 K to4.2 K",
+      "normalized": null,
+      "evidence_id": "expc_mosfet_temperatures"
+    },
+    {
+      "key": "measurement",
+      "as_printed": "DC transfer/output curves; four-wire method",
+      "normalized": null,
+      "evidence_id": "expc_mosfet_analyzer"
+    }
+  ],
+  "reported_equipment": [
+    "liquid nitrogen/helium Dewar",
+    "Keysight B1500A"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "4200",
+          "unit": "mK"
+        },
+        "hi": {
+          "value": "300000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the published device temperature span. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_mosfet_temperatures"
+      ]
+    },
+    {
+      "key": "module.semiconductor_parameter_analyzer",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "An installed semiconductor source/measure analyzer and appropriate four-wire fixture are essential; a bare cryostat is insufficient. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_mosfet_analyzer"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The source used a wired Dewar, not a named cryogenic probe station. Substituting a station requires confirming installed analyzer, wiring/fixture, bias compliance and self-heating.",
+    "Probe-arm capacity alone does not prove source/drain/gate/body connections are installed; this remains part of analyzer/fixture review."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

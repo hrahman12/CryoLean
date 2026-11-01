@@ -1,0 +1,144 @@
+{
+ "id": "quantum_superconducting_ic_wafer_probing",
+ "name": "Automated 4.4 K wafer-scale probing of superconductor IC process-control monitors (Josephson junctions, SQUIDs, inductors, vias) on 200-mm wafers",
+ "plain_name": "Automatically probe thousands of superconducting test circuits across a 200 mm wafer at 4 K",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Load 200-mm SFQ5ee wafers through a vacuum load-lock onto a liquid-helium-cooled chuck, step a 20-pin DC probe card across 49 process-control-monitor groups inside mu-metal shielding with field-cancelling coils, and measure junction resistance, energy gap, inductance and via critical currents at 4.4 K.",
+ "keywords": [
+  "Automatically probe thousands of superconducting test circuits across a 200 mm wafer at 4 K",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Wafer-Scale Characterization of a Superconductor Integrated Circuit Fabrication Process, Using a Cryogenic Wafer Prober (West, Kurlej, Wynn, Rogers, Gouker, Tolpygo, arXiv:2112.00705; IEEE Trans. Appl. Supercond. 2022)",
+   "url": "https://arxiv.org/pdf/2112.00705",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "fully automated cryogenic wafer prober developed at HPD/FormFactor, Inc.",
+  "DC probe card with 20 flexible tungsten probes",
+  "standard Brooks wafer loading system"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4400,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All process-control monitors were measured at 4.4 K.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 200000,
+     "unit": "um"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Whole 200 mm wafers are tested.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_1"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 20
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The DC probe card has 20 tungsten probes, each needing a DC line.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_2"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Test structures are contacted through probe pins on the contact pads.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Wafers are transferred and probed in vacuum on the cryogenic chuck.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_4"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.000001",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the chamber and handler were at better than 1e-6 Torr.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_5"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: a mu-metal shield inside the 4 K radiation shield limits flux trapping in the SQUIDs and junctions.",
+   "evidence_ids": [
+    "v4e_quantum_superconducting_ic_wafer_probing_6"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

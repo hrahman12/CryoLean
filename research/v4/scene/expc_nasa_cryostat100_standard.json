@@ -1,0 +1,126 @@
+{
+  "configuration_id": "expc_nasa_cryostat100_standard",
+  "archetype": "calorimeter_dewar",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 1026,
+      "unit": "mm",
+      "location": "cold mass assembly (upper guard + test vessel + lower guard), suspended inside the vacuum canister; the canister's own outer height is not published",
+      "quote": "The cold mass cylindrical configuration is 167-mm by 1026-mm, including guarded ends.",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20130012853/downloads/20130012853.pdf"
+    },
+    "width_or_diameter": {
+      "value": 167,
+      "unit": "mm",
+      "location": "cold mass outer diameter (= test article inner diameter); the vacuum canister's own outer diameter is not published",
+      "quote": "Cryostat-100 Cylindrical Absolute 1-m long, 167-mm diameter, up to 50-mm thick Annex A1 Full range vacuum 77 - 353 K 0.1-200",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20150011030/downloads/20150011030.pdf?attachment=true"
+    },
+    "color_note": "Heavy-wall stainless-steel vacuum canister with domed top lid carrying three LN2 feedthroughs, a view port and auxiliary ports; cold mass test chamber is black chrome, guard chambers electropolished; an internal black-coated aluminium heater sleeve surrounds the specimen. Canister stands in a screw-jack lift mechanism frame on a locking turntable."
+  },
+  "stages": [
+    {
+      "name": "Cold mass test (measurement) vessel, LN2 at ambient pressure",
+      "temperature_K": 78,
+      "diameter_mm": 167,
+      "quote": "Test temperatures are as follows: cold-boundary temperature (CBT) 78 K, warm-boundary temperature (WBT) 293 K, temperature difference (AT) 216 K, and mean temperature 186K.",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20130012853/downloads/20130012853.pdf"
+    },
+    {
+      "name": "Upper and lower thermal guard vessels, LN2 near saturation",
+      "temperature_K": 77.4,
+      "diameter_mm": 167,
+      "quote": "During operation, all three vessels are kept filled with liquid nitrogen near saturation at ambient pressure (temperature ≈77.4 K).",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20100005254/downloads/20100005254.pdf"
+    },
+    {
+      "name": "Warm boundary: black-coated aluminium heater sleeve inside vacuum can",
+      "temperature_K": 293,
+      "quote": "is attached inside the vacuum canister 102 to provide fine temperature and heating control to establish the precise warm boundary temperature required for the test (293 K+/- 0.3 K is typical).",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    }
+  ],
+  "sample_space": {
+    "position": "in_bath",
+    "shape": "annular cylindrical shell wrapped around the vertical cold mass (specimen ID 167 mm, nominal 25.4 mm thick, 0-50 mm allowed, up to 1 m long)",
+    "description": "The insulation test specimen is wrapped around the outside of the 1 m long, 167/168 mm diameter LN2-filled cold mass; the whole assembly hangs from the lid on six Kevlar threads inside the vacuum canister. Heat flows radially inward through the specimen into the LN2 and is read as boil-off gas flow from the middle test vessel.",
+    "diameter_or_width": {
+      "value": 168,
+      "unit": "mm",
+      "location": "cold mass diameter = specimen inner diameter",
+      "quote": "The cold mass of Cryostat-100 is 1m long, with a diameter of 168 mm. The test articles can therefore be of a corresponding length and diameter, with a nominal thickness of 25.4 mm.",
+      "source_url": "https://ntts-prod.s3.amazonaws.com/t2p/prod/t2media/tops/pdf/KSC-TOPS-79.pdf"
+    },
+    "height": {
+      "value": 1000,
+      "unit": "mm",
+      "location": "specimen length along the cold mass",
+      "quote": "Insulation test articles 167-mm inside diameter by 1000-mm-in length up to 70-mm-in thickness can be fabricated and tested.",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "thermometer_lead",
+      "count": 15,
+      "from": "lid auxiliary instrumentation ports",
+      "to": "thermocouples on cold mass surface, between specimen layers, on specimen outer surface and on the heater sleeve",
+      "quote": "There are temperature sensors e.g., 15 pairs of thermocouple lead wire conductors",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 1,
+      "from": "vacuum can feedthrough",
+      "to": "thin-film heaters on the internal black aluminium sleeve, wired together for single-point control",
+      "quote": "a high emissivity black coated aluminum sleeve with a number of thin film heaters glued on with a special high-temperature, vacuum compatible adhesive; the heaters are wired together for a single point temperature control",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    },
+    {
+      "kind": "none",
+      "count": 3,
+      "from": "domed top lid",
+      "to": "upper guard, test and lower guard vessels (LN2 fill/vent bellows feedthroughs, not electrical)",
+      "quote": "Each of the three chambers is filled and vented through a single low conductivity feedthrough. All fluid and instrumentation feedthroughs are mounted in the top domed lid to allow easy removal of the cold mass.",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    }
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "quote": "has a lid 104 with three feedthroughs 106 a - 106 c capable of filling and venting a cryogenic fluid (e.g., liquid nitrogen (LN2)), a view port 108 , auxiliary ports 110 for instrumentation, and a pair of lifting supports (handling lugs) 112 .",
+    "source_url": "https://patents.google.com/patent/US8628238B2/en"
+  },
+  "moving_parts": [
+    {
+      "part": "ln2_boiloff_vapour",
+      "quote": "Liquid nitrogen is supplied to the three chambers independently. The boil-off mass flow rates from all three chambers, after system cool down and thermal stabilization is complete, are continuously measured.",
+      "rate": "steady-state; test-chamber flow averaged while liquid level falls from 92 to 88 percent",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20130012853/downloads/20130012853.pdf"
+    },
+    {
+      "part": "gas_flow",
+      "quote": "Boil-off flow rates for all three chambers are continuously monitored during this time by maintaining connection via flexible plastic tubing to the three mass flow meters.",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    },
+    {
+      "part": "stage_translation",
+      "quote": "a lift mechanism is attached to the top lid of the vacuum can to allow removal of the cold mass assembly and convenient manipulation of the assembly for the installation, wrapping, or placement of insulation test materials",
+      "rate": "manual screw-jack lift on a locking turntable, used only between tests (static during measurement)",
+      "source_url": "https://patents.google.com/patent/US8628238B2/en"
+    }
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "outer.vacuum_canister_height",
+    "outer.vacuum_canister_diameter",
+    "outer.depth",
+    "lift_mechanism_frame_dimensions",
+    "windows.diameter_mm",
+    "stages.guard_vessel_lengths",
+    "mass_flow_meter_model",
+    "LN2_vessel_volumes"
+  ],
+  "notes": "Cryostat-100 is a vertical cylindrical LN2 boil-off calorimeter, not a sample cryostat: the 'stages' are the LN2-filled cold mass (78 K cold boundary) and the 293 K heater sleeve warm boundary; the 'sample' is an annular insulation shell wrapped around the cold mass. Published dimensions cover only the cold mass (167/168 mm diameter, 1 m / 1026 mm with guards; test-chamber effective length 575 mm per patent: 'using an effective length of the cold mass of 575 mm, the mean surface area for heat transfer through a typical 25-mm thick insulation test article is 0.35 m 2'). The vacuum canister's outer size is not published anywhere found, so the outer block carries cold-mass numbers with that stated; the canister must be modelled as a slightly larger stainless cylinder with a domed lid without quoting a dimension. Vacuum range: below 1x10-5 torr to 760 torr (NTRS 20150011030). Cold mass suspended by six Kevlar threads ('six KEVLAR threads with hooks and hardware for attachment and length adjustment', patent); CO2-filled vapor-pocket disks separate guard and test vessels; bake-out heaters on the canister exterior. Sources: KSC-TOPS-79 (cache 8a6b708eed0b8339), NTRS 20150011030 (c582e9d07eb670ef), NTRS 20100005254 tech brief (a6e9f3182a5f41ae), NTRS 20130012853 bulk-fill paper (3340971823e78180), US 8,628,238 B2 (2db63b0b75f42b79)."
+}

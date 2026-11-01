@@ -1,0 +1,103 @@
+{
+ "id": "mat_lowtemp_xrd_phase_transitions_ttk600",
+ "name": "In-situ low-temperature powder XRD of ammonium nitrate phase transitions from -190 C to 135 C in a TTK 600 chamber",
+ "plain_name": "Watch a powder's crystal structure change with X-rays while it is cooled to -190 C",
+ "industry": "materials_and_nanotechnology",
+ "description": "Powder X-ray diffraction in reflection or transmission geometry in a liquid-nitrogen-cooled non-ambient chamber; five ammonium nitrate phases (Pm-3m, P4bm, Pnma, Pmmm, Pccn) are tracked between 135 C and -40 C and the Pccn phase is followed down to -190 C, which the chamber reaches only under vacuum (1e-2 mbar).",
+ "keywords": [
+  "Watch a powder's crystal structure change with X-rays while it is cooled to -190 C",
+  "materials_and_nanotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Anton Paar / PANalytical, TTK 600 - low-temperature chamber, non-ambient attachment for XRD, brochure PN10467 (2009)",
+   "url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Anton Paar TTK 600 low-temperature chamber",
+  "Empyrean",
+  "X'Pert3 Powder"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 83150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 408150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The phase sequence is recorded from 135 C (408.15 K) down to -190 C (83.15 K).",
+   "evidence_ids": [
+    "v4e_mat_lowtemp_xrd_phase_transitions_ttk600_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "-190 C is reached only with the sample space evacuated; with gas atmospheres the LN2-cooled stage stops at -150 C.",
+   "evidence_ids": [
+    "v4e_mat_lowtemp_xrd_phase_transitions_ttk600_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.01",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the documented low-temperature vacuum condition is 1e-2 mbar.",
+   "evidence_ids": [
+    "v4e_mat_lowtemp_xrd_phase_transitions_ttk600_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the chamber reached -190 C with liquid-nitrogen cooling; another cooling method reaching 83 K would also do.",
+   "evidence_ids": [
+    "v4e_mat_lowtemp_xrd_phase_transitions_ttk600_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

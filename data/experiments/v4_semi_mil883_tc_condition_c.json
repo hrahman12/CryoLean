@@ -1,0 +1,64 @@
+{
+ "id": "semi_mil883_tc_condition_c",
+ "name": "MIL-STD-883 Method 1010.8 temperature cycling, test condition C (-65 C to +150 C, at least 10 cycles, at least 10 min dwell)",
+ "plain_name": "Check that sealed military-grade chips survive repeated swings between -65 C and +150 C",
+ "industry": "semiconductors_and_electronics",
+ "description": "Microcircuit screening/qualification by air-to-air temperature cycling per MIL-STD-883 Method 1010.8: a minimum of 10 uninterrupted cycles of test condition C, cold step -65 C (+0/-10) and hot step +150 C (+15/-0), dwell at least 10 min, load reaching temperature within 15 min (16 min for a single chamber), followed by visual examination and end-point electrical tests.",
+ "keywords": [
+  "Check that sealed military-grade chips survive repeated swings between -65 C and +150 C",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+   "url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 208150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Condition C cold step is -65 C (+0/-10), so the working zone must reach -65 C = 208.15 K or colder (third column of the cold row; columns are conditions A-F).",
+   "evidence_ids": [
+    "v4e_semi_mil883_tc_condition_c_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 423150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Condition C hot step is +150 C (+15/-0), so the chamber must reach +150 C = 423.15 K or hotter (third column of the hot row).",
+   "evidence_ids": [
+    "v4e_semi_mil883_tc_condition_c_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

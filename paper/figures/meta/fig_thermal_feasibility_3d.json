@@ -1,0 +1,18 @@
+{
+ "name": "fig_thermal_feasibility_3d",
+ "title": "Thermal feasibility of a Joule-heated measurement over operating temperature and heat load",
+ "question": "For a given operating temperature and dissipated power, does the documented cooling power of a real cryostat suffice, and where does the documentation not allow a decision?",
+ "model": "joule_heating_vs_cooling_power: I^2 R <= P_cool(T_doc), valid when T_doc <= T_op, with T_doc the highest documented, installed, non-unknown cooling-power temperature not above T_op (serialize.resolve_slots).",
+ "data": "1020 Lean checks (check_batch, 2.9 s): 3 configurations x 17 T_op x 20 Q; I = 1 mA, R = Q/I^2 (exact rationals). Cooling-power values from data/cryostats (bluefors_ld.json, oxford_optistatdry.json, lakeshore_janis_ccs.json) via the catalog. paper/data/fig_thermal_feasibility_3d.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "For each configuration the translucent roof is the sourced cooling power P_cool(T_doc) at the highest documented temperature not above T_op, the conservative value the checker uses; markers are Lean checker verdicts, placed at height Q, for a synthetic experiment whose only mandatory requirement is the Joule-heating coupled model, and the floor repeats the verdict map. Below the lowest documented temperature, and where the only value is an estimate (OptistatDry TLEX, 4.2-5 K), the checker answers Need more information. Verdicts are computed; cooling powers are sourced manufacturer specifications.",
+ "section": "main",
+ "script": "paper/scripts/fig_physics3d.py",
+ "command": "python paper/scripts/fig_physics3d.py",
+ "files": [
+  "paper/figures/fig_thermal_feasibility_3d.png",
+  "paper/figures/fig_thermal_feasibility_3d.svg",
+  "paper/figures/fig_thermal_feasibility_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig_thermal_feasibility_3d.html"
+}

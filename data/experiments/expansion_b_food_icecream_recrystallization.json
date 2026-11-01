@@ -1,0 +1,82 @@
+{
+  "id": "expansion_b_food_icecream_recrystallization",
+  "name": "Cold-stage microscopy of ice-crystal recrystallization in ice cream",
+  "plain_name": "Watch ice crystals grow in ice cream",
+  "industry": "food_and_agriculture",
+  "description": "An optical food-structure experiment. Animation illustrates crystal shape changes and never invents measured growth rates.",
+  "keywords": [
+    "Watch ice crystals grow in ice cream",
+    "icecream_microscopy",
+    "food_and_agriculture"
+  ],
+  "sources": [
+    {
+      "citation": "Donhowe and Hartel1996, DOI10.1016/S0958-6946(96)00029-5",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0958694696000295",
+      "accessed": "2026-10-31",
+      "doi": "10.1016/S0958-6946(96)00029-5"
+    }
+  ],
+  "reported_equipment": [
+    "Cold-stage microscope housed in a refrigerated glove box, exact model not in accessible abstract"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "253.15",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "268.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Selected study mean-temperature window -20 to-5 C.",
+      "evidence_ids": [
+        "expb_icecream"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Time-lapse microscopy must see the thin food film.",
+      "evidence_ids": [
+        "expb_icecream"
+      ]
+    },
+    {
+      "key": "temperature.stability",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": "0.01",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The constant-temperature arm maintained the sample within±0.01 C.",
+      "evidence_ids": [
+        "expb_icecream"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Microscope,camera and cold glove-box arrangement are external to a bare stage configuration; optical access does not certify an installed camera.",
+    "A stage stability rating does not prove specimen equilibration over5days; calibration and the film preparation remain required."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

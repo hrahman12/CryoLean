@@ -1,0 +1,18 @@
+{
+ "name": "fig_incomplete_info",
+ "title": "Robustness to incomplete information",
+ "question": "When documented specifications are deleted at random, does CryoLean degrade only towards NEED MORE INFORMATION and never towards an unwarranted acceptance?",
+ "model": "For each pair and k in {0,10,...,100} %, 30 random draws remove round(k/100 * n_doc) of the configuration's documented capabilities (value kind != unknown); the same draw is evaluated with the records removed and with install set to 'unknown'. Coloured areas: mean verdict fractions over draws (removal mode); white bands with dotted edges: 2.5-97.5 percentile of the cumulative boundaries over the 30 draws.",
+ "data": "188760 Lean checks (lean_runner.check_batch, 467 s) on documents built from the 286-pair grid; seed 20261031; results in paper/data/fig_incomplete_info.json.",
+ "claim": "COMPUTED",
+ "caption": "Verdict distribution as a growing fraction k of each configuration's documented capabilities is deleted (30 random draws per k; bands are 95 % percentile intervals over draws). (a) The 20 accepted pairs move from REQUIREMENTS MET to NEED MORE INFORMATION only; (b) over all 286 pairs, rejections also turn into requests for information. Each deletion mode ran 94380 checks (8580 of them the k = 0 controls); among the 87780 checks of non-accepted pairs per mode, none became REQUIREMENTS MET (0 with records removed, 0 with install unknown), no verdict changed to anything other than NEED MORE INFORMATION (0 of 188760), and removing a record or marking it install-unknown gave the same verdict in 94380/94380 draws. All verdicts are computed by the Lean checker.",
+ "section": "main",
+ "script": "paper/scripts/fig_baselines.py",
+ "command": "python paper/scripts/fig_baselines.py",
+ "files": [
+  "paper/figures/fig_incomplete_info.png",
+  "paper/figures/fig_incomplete_info.svg",
+  "paper/figures/fig_incomplete_info.pdf"
+ ],
+ "interactive": null
+}

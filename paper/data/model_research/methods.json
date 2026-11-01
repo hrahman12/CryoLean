@@ -1,0 +1,849 @@
+{
+  "meta": {
+    "generated": "2026-10-31",
+    "workflow_angle": "Verification-method improvements: information monotonicity, robust verdicts under tolerance, verified explanations, verified scheduling.",
+    "method": "Read README.md, VERIFICATION_SCOPE.md, paper.md, lean/CryoLean/*.lean (Checker, Spec, Model, Num, Schedule, Explain, and the newly added Monotone.lean), data/physics, data/experiments, data/cryostats and paper/data. Re-ran the compiled Lean checker read-only on all 286 pairs against a copy of data/cryolean.db in the session scratchpad; the 20 / 109 / 157 counts were reproduced exactly, and all derived numbers come from that run. Literature and sources were retrieved with Tavily (search, extract), WebSearch, WebFetch, the built-in browser (Lake Shore CCS-100 page), Lune (search_papers_many, search_papers, get_paper_fulltext, verify_claims), alphaXiv (discover_papers, answer_pdf_queries), Consensus (search) and Undermind (search_papers, get_paper_info). scite was not usable: its MCP tools require a paid plan.",
+    "concurrency_note": "While this research ran, lean/CryoLean/Monotone.lean, cryolean/completeness.py and the paper's 'Information monotonicity' paragraph appeared from a concurrent session. The proposals build on them. Sibling workflow outputs in this folder (thermal.json TH3/TH4, magnet.json MAG-1/MAG-4, requirements.json R5) were read to avoid duplication and are cross-referenced.",
+    "derived_numbers": {
+      "need_info_pairs": 157,
+      "need_info_undecided_items": 466,
+      "need_info_with_unsupported_items": 0,
+      "need_info_one_item_from_met": 19,
+      "need_info_single_fact_can_force_not_met": 156,
+      "not_met_with_one_violated_item": 85,
+      "not_met_with_two_violated_items": 24,
+      "met_pairs_items": {
+        "3_items": 16,
+        "4_items": 4
+      },
+      "not_met_resting_only_on_open_one_sided_ends": 12,
+      "not_met_partially_on_open_one_sided_ends": 2,
+      "trusted_known_records_with_tolerance_or_typical_wording": "71 of 379",
+      "met_pairs_passing_only_on_typical_or_approx_wording": 0,
+      "mxc_lhs_interval_1sigma_uW": [
+        11.964,
+        17.22
+      ],
+      "mxc_lhs_interval_2sigma_uW": [
+        9.624,
+        19.848
+      ],
+      "robust_repair_1sigma_ld400_max_flux_lines": 30,
+      "z3_repair_39_lines_1sigma_upper_uW": 14.349,
+      "mxc_lhs_interval_1sigma_with_66_drive_type_lines_uW": [
+        12.132,
+        17.676
+      ],
+      "duplicate_capability_keys_in_catalog": 0,
+      "demo_d_single_cycle_lower_bound_h": 24.5,
+      "demo_d_single_cycle_with_final_warmup_h": 26.5,
+      "demo_d_three_cycles_h": 43.5
+    }
+  },
+  "proposals": [
+    {
+      "id": "M1-pipeline-monotonicity",
+      "title": "Pipeline-wide information monotonicity: extend verdict_refines to experiment parameters, a Lean-side cooling-power bracket, duplicate keys and schedules",
+      "kind": "theorem",
+      "description": "Status. lean/CryoLean/Monotone.lean (added by a concurrent session while this research ran) proves the configuration side: Refines cfg cfg' -> verdict cfg e != needMoreInfo -> verdict cfg' e = verdict cfg e (verdict_refines), with accept_preserved_by_refinement, reject_preserved_by_refinement and needMoreInfo_of_refined. paper.md now states that data research 'can only resolve undecided pairs, never overturn a decided one'. Four gaps separate the theorem from that claim. (1) Experiment side: e is fixed. A user entering a missing or untrusted parameter (measurement_current and sample_resistance are null in mat_electrical_resistance_low_temperature) or confirming a profile is not covered. (2) Slot resolution happens in Python before Lean: serialize.resolve_slots picks the highest cooling_power.at_* temperature <= T_op among installed records with a known value (evidence trust is not checked) and bakes that key into the expression. Adding a documented point between T_doc and T_op therefore changes the document, and a decided NOT MET can become MET. Sourced counterexample: the Bluefors LD manual gives LD400 cooling power >= 12 uW at 20 mK, >= 400 uW at 100 mK and >= 575 uW at 120 mK; the catalog stores only the first two. For a hypothetical profile with a mandatory 500 uW heat budget at T_op = 150 mK the verdict is NOT MET today (slot 100 mK, 400 uW) and becomes MET once the documented 120 mK row is added (with a cooling_power.at_120mK vocabulary key). An untrusted higher point can also shadow a trusted lower one (an avoidable NEED INFO). (3) lookup is first-match: a duplicated key makes the verdict depend on record order; nothing enforces uniqueness (0 duplicates today in 26 configurations). (4) The 94,380 identical verdicts between 'record removed' and 'install unknown' have no theorem, and validSchedule stability under refinement is unproved.\nLean statements:\ndef ParamInformative (p : Param) : Prop := trustedB p.origin = true ∧ p.value.isSome\ndef ExpRefines (e e' : Experiment) : Prop := e'.requirements = e.requirements ∧ e'.coupled = e.coupled ∧ (e.confirmed = true → e'.confirmed = true) ∧ ∀ n p, findParam e n = some p → ParamInformative p → findParam e' n = some p\ntheorem verdict_refines_full (hc : Refines cfg cfg') (he : ExpRefines e e') (hd : verdict cfg e ≠ .needMoreInfo) : verdict cfg' e' = verdict cfg e\ntheorem verdict_eq_of_mutual_refines (h₁ : Refines cfg cfg') (h₂ : Refines cfg' cfg) : verdict cfg e = verdict cfg' e\ntheorem verdict_erase_uninformative (hu : (cfg.capabilities.map (·.key)).Nodup) : verdict (eraseUninformative cfg) e = verdict cfg e\ntheorem verdict_perm (hu : (cfg.capabilities.map (·.key)).Nodup) (hp : cfg.capabilities.Perm cfg'.capabilities) : verdict cfg e = verdict cfg' e\ntheorem validSchedule_refines (hr : Refines cfg cfg') (h : validSchedule cfg exps slots L = true) : validSchedule cfg' exps slots L = true\nCooling-power bracket in Lean: a new Expr node `.cooling (T : Expr)` evaluated over usable cooling_power.at_* records with Plo(T) = max{P_i : T_i <= T} and Phi(T) = min{P_j : T_j >= T}; checkLe passes on lhs <= Plo and fails on lhs > Phi, otherwise unknown. Theorems: cooling_lo_refines (Plo can only grow under Refines), cooling_hi_refines (Phi can only shrink), and cooling_bracket_sound: assuming P is non-decreasing in T (already an assumption in data/physics/coupled_models.json), Plo(T) <= P(T) <= Phi(T). The max/min over all usable points makes monotonicity a theorem that does not depend on the stored values being ordered, unlike nearest-point slots.\nProof strategy: mirror Monotone.lean. Add the param leaves (paramValue decided implies a trusted param with a value, which ExpRefines keeps) to evalCond_refines and evalExpr_refines. Mutual refinement: two applications of verdict_refines plus needMoreInfo_of_refined. eraseUninformative: Refines in both directions under Nodup, because the filter keeps the unique informative record of each key. Perm: List.find? is invariant under permutation when keys are unique. validSchedule: cooldownOf reads a usable .min record, which is informative and therefore kept, and accept_preserved_by_refinement covers the experiments. Curve: foldl max/min over a superset of points, then an order-based variant of checkLe_refines (lhs <= Plo <= Plo').",
+      "equation_latex": "c \\sqsubseteq c' \\wedge e \\sqsubseteq e' \\wedge V(c,e)\\neq \\mathrm{NI} \\Rightarrow V(c',e')=V(c,e);\\qquad \\underline{P}_c(T)=\\max_{i:\\,T_i\\le T}P_i \\;\\le\\; P(T)\\;\\le\\; \\min_{j:\\,T_j\\ge T}P_j=\\overline{P}_c(T)",
+      "validity": "Holds for data refinement only: records and parameters that cannot decide anything may be replaced or added, informative ones are kept verbatim. Edits of trusted values, profile edits, new requirements and model changes are not refinements and must keep invalidating stored results (fingerprints already do this). cooling_bracket_sound additionally assumes cooling power non-decreasing in temperature between documented points; the vendor table (20, 100, 120 mK) is consistent with it.",
+      "parameters": [
+        {
+          "name": "Lean checks in the incomplete-information experiment",
+          "value": "188760",
+          "unit": "checks",
+          "source_url": "paper/data/fig_incomplete_info.json",
+          "quote": "\"lean_checks\": 188760"
+        },
+        {
+          "name": "Non-monotone transitions observed (record removed / install unknown)",
+          "value": "0 / 0",
+          "unit": "transitions",
+          "source_url": "paper/data/fig_incomplete_info.json",
+          "quote": "\"non_monotone_transitions\": { \"remove\": 0, \"install_unknown\": 0 }"
+        },
+        {
+          "name": "Identical verdicts between the two deletion modes",
+          "value": "94380",
+          "unit": "verdicts",
+          "source_url": "paper/data/fig_incomplete_info.json",
+          "quote": "\"modes_identical_verdicts\": 94380"
+        },
+        {
+          "name": "LD400 guaranteed cooling power at 20 / 100 / 120 mK (120 mK row absent from the catalog)",
+          "value": ">= 12 / >= 400 / >= 575",
+          "unit": "uW",
+          "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "quote": "Cooling power at 20 mK: ≥ 10 µW ≥ 12 µW Cooling power at 100 mK: ≥ 250 µW ≥ 400 µW Cooling power at 120 mK: ≥ 360 µW ≥ 575 µW"
+        }
+      ],
+      "affected_experiments": [
+        "bio_cryo_fluorescence_vitrified",
+        "bio_cryosection_frozen_tissue",
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom",
+        "chem_temperature_dependent_photoluminescence",
+        "mat_electrical_resistance_low_temperature",
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T",
+        "quantum_mk_vector_field_transport",
+        "quantum_mxc_wiring_heat_budget",
+        "quantum_transmon_characterization"
+      ],
+      "affected_configurations": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current",
+        "lakeshore_ccs_100",
+        "lakeshore_ccs_300s",
+        "lakeshore_ccs_400",
+        "lakeshore_ccs_400h",
+        "lakeshore_crx_4k",
+        "lakeshore_crx_vf",
+        "leica_cm1950_dualecotec_standard",
+        "leica_cm1950_genA_standard",
+        "leica_cm1950_genA_vacuum_motor_objcool",
+        "linkam_thms600_heating_only",
+        "linkam_thms600_lnp96_t96",
+        "linkam_thmsel600_lnp96",
+        "oxford_optistatdry_blv",
+        "oxford_optistatdry_tlex",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector",
+        "oxford_teslatronpt_8T",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_dynacool_9T_eto_res",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T"
+      ],
+      "data_available": "No new data needed: the theorems are about the existing documents. Optional data addition that exercises the slot fix: the 120 mK rows of the Bluefors LD manual (>= 360 uW LD250, >= 575 uW LD400).",
+      "expected_effect": "No current verdict changes (the MXC slot is an exact 20 mK match and the Joule check is optional today), but the paper's claim becomes true for the whole pipeline: refining catalog records, user parameters or confirmations can only turn NEED INFO into a decision. The 129 decided pairs (20 MET + 109 NOT MET) then never need re-checking when data are added; only the 157 NEED INFO pairs form the re-verification set. The 94,380 identical verdicts become a corollary, order dependence disappears, and Lean-validated schedules stay valid as documentation improves. Complements the thermal workflow's TH3 (two Python-resolved slots for a FAIL-only-against-upper-bound rule): computing the bracket in Lean turns its monotonicity into a theorem. Effort S: about 150-300 lines of Lean mirroring Monotone.lean, a small curve module and a decoder check; 1 day for the theorems, 1-2 days for moving the slot into Lean.",
+      "implementation": "lean/CryoLean/Monotone.lean: ParamInformative, ExpRefines, param cases of evalCond/evalExpr, verdict_refines_full, verdict_eq_of_mutual_refines, eraseUninformative + verdict_erase_uninformative, verdict_perm, validSchedule_refines. Model.lean: Expr.cooling; Checker.lean: envelope evaluation and an order-based checkLe for it; Json.lean: decode the node and reject duplicate capability keys (fail-closed). cryolean/serialize.py: emit .cooling instead of resolving $cooling to one key (keep the chosen points in the notes for display). tests/test_pipeline_extensions.py: extend test_refinement_never_changes_a_decided_verdict with parameter refinements and with added cooling points between T_doc and T_op. Audit.lean: print the axioms of the new theorems.",
+      "citations": [
+        {
+          "title": "Monotonic Abstraction-Refinement for CTL",
+          "authors": "Sharon Shoham, Orna Grumberg",
+          "venue": "TACAS 2004, LNCS 2988",
+          "year": 2004,
+          "doi_or_url": "https://doi.org/10.1007/978-3-540-24730-2_40",
+          "quote": "Abstract models can then be designed to be conservative for both true and false. Only if the value of a formula in the abstract model is indefinite, its value in the concrete model is unknown."
+        },
+        {
+          "title": "When is Naive Evaluation Possible?",
+          "authors": "Amelie Gheerbrant, Leonid Libkin, Cristina Sirangelo",
+          "venue": "PODS 2013",
+          "year": 2013,
+          "doi_or_url": "https://doi.org/10.1145/2463664.2463674",
+          "quote": "prove that under very mild conditions, naïve evaluation works for a query iff it is monotone with respect to the semantic ordering"
+        },
+        {
+          "title": "A Methodology for Verifying Refinements of Partial Models",
+          "authors": "Rick Salay, Marsha Chechik, Michalis Famelis, Jan Gorzny",
+          "venue": "Journal of Object Technology 14(3), 3:1-31",
+          "year": 2015,
+          "doi_or_url": "https://www.jot.fm/issues/issue_2015_03/article3.pdf",
+          "quote": "As more information becomes available, it can be incorporated into the partial model to reduce its degree of uncertainty."
+        },
+        {
+          "title": "Model Checking Partial State Spaces with 3-Valued Temporal Logics",
+          "authors": "Glenn Bruns, Patrice Godefroid",
+          "venue": "CAV 1999, LNCS 1633, pp. 274-287",
+          "year": 1999,
+          "doi_or_url": "https://doi.org/10.1007/3-540-48683-6_25",
+          "quote": "We define a preorder on partial Kripke structures that reflects their degree of completeness."
+        },
+        {
+          "title": "Bilattices and the semantics of logic programming",
+          "authors": "Melvin Fitting",
+          "venue": "The Journal of Logic Programming 11(2):91-116",
+          "year": 1991,
+          "doi_or_url": "https://doi.org/10.1016/0743-1066(91)90014-G",
+          "quote": "Bilattices are a family of truth-value spaces that allow elegantly for missing or conflicting information"
+        },
+        {
+          "title": "User Manual: LD System (BF1000-1234517327-9)",
+          "authors": "Bluefors Oy",
+          "venue": "Vendor user manual, 2022 (copy hosted by Aalto University)",
+          "year": 2022,
+          "doi_or_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "quote": "Table 1: Main technical characteristics LD250 LD400 Base temperature: ≤ 10 mK ≤ 10 mK Cooling power at 20 mK: ≥ 10 µW ≥ 12 µW Cooling power at 100 mK: ≥ 250 µW ≥ 400 µW Cooling power at 120 mK: ≥ 360 µW ≥ 575 µW"
+        }
+      ],
+      "risks": "Moving slot choice into Lean changes the serialized document format (decoder, explanation text, frontend). Under the bracket semantics a NOT MET obtained against a point below T_op becomes NEED INFO unless a documented point at or above T_op exists (none in today's grid). ExpRefines deliberately excludes edits of requirement values, which stay outside the guarantee.",
+      "priority": 1
+    },
+    {
+      "id": "M2-campaign-schedules",
+      "title": "Verified multi-cycle campaign scheduling: pump-down, warm-up and sample exchange, sample thermal-exposure safety, three-valued schedule verdicts and a makespan lower-bound certificate",
+      "kind": "method",
+      "description": "validSchedule (Schedule.lean) accepts a slot list when every experiment is accepted, every slot starts after the documented cooldown, ends before the run length, and slots are pairwise disjoint. Checking demo D against the sources shows three gaps. (1) The CRX-VF datasheet gives a full cycle of pump down 1.5 h + station cooldown 5 h + station warmup 2 h; the model uses only the 5 h cooldown, so the earliest start is 1.5 h too early and the final warm-up is ignored. (2) There is no sample-exposure constraint. The Lean-valid demo D timeline runs Raman 5-13 h, the phase-transition POM run 13-17 h (requirement range_within 203-393 K) and then the vitrified-sample fluorescence run 17-23 h (requires <= 136 K). With all samples on the shared stage of one cooldown, as the demo's 'one cooldown' framing implies, the vitrified sample is heated above 136 K before its own measurement, and Last et al. state that devitrification occurs above about 136 K. If the samples are mounted separately, the CRX-VF needs a full 8.5 h cycle per exchange, which the schedule does not contain. (3) No setup or temperature-transition times, and no rule for one-sided time specs: '< 2 hours' (TeslatronPT sample cooldown) is a sound upper bound for scheduling, while the Bluefors fast-sample-exchange page gives 'typically less than 7 hours' in its prose and a guaranteed '< 7 hours' in its table, with the note that the cooldown time 'is for a typical configuration'; using it needs M4's reviewed promise annotation. Lean also proves validity, not optimality.\nLean statements (sketch):\nstructure Slot2 where exp sample : String; start dur tLo tHi : Q\nstructure Cycle where start : Q; samples : List String; slots : List Slot2\ndef cycleTimesOf (cfg) : Option (Q × Q × Q)  -- pump, cool, warm, read only from usable records (pumpdown_time.max, cooldown_time.max, warmup_time.max)\ninductive SchedVerdict | valid | invalid | needMoreInfo\ndef CampaignOK cfg exps (camp : List Cycle) (L : Q) : Prop := (∀ e ∈ exps, verdict cfg e = .accept) ∧ (∀ c ∈ camp, ∀ s ∈ c.slots, c.start + pump + cool ≤ s.start) ∧ SlotChain (fun a b => a.start + a.dur + τ a b ≤ b.start) ∧ (lastStop cᵢ + warm ≤ cᵢ₊₁.start) ∧ (lastStop + warm ≤ L) ∧ (∀ c, ∀ m ∈ c.samples, ∀ s ∈ c.slots, s.start < done m c → s.tHi ≤ maxExposure m ∧ minExposure m ≤ s.tLo) ∧ (∀ s ∈ c.slots, s.sample ∈ c.samples)\ntheorem validCampaign_valid_iff : validCampaign cfg exps camp L = .valid ↔ CampaignOK cfg exps camp L\ntheorem validCampaign_nmi : (a needed time is undocumented, untrusted or only 'typical') → validCampaign … = .needMoreInfo\ntheorem campaign_exposure_safe : CampaignOK … → no mounted sample is taken outside its declared exposure window before its own last slot ends\ntheorem campaign_makespan_lb : CampaignOK … → lastStop camp ≥ camp.length * (pump + cool + warm) + Σ dur  (warm counted once per cycle)\ntheorem validCampaign_refines : Refines cfg cfg' → validCampaign cfg … = .valid → validCampaign cfg' … = .valid  (uses M1)\nOptimality: Z3 returns its optimum; Lean certifies it when lastStop equals the lower bound (single cycle with documented zero or summed minimal transitions), otherwise a compiled exhaustive check over orders for n <= 8 with a generic soundness theorem; never a kernel enumeration. Proof strategy: Boolean checker and Prop spec side by side, as validSchedule_sound/complete do now; exposure safety by induction on the slot chain; the lower bound by summing the chain inequalities (linear arithmetic over Q or core Rat).",
+      "equation_latex": "t_{\\mathrm{pump}}+t_{\\mathrm{cool}}\\le s_1,\\quad s_i+d_i+\\tau(T_i,T_{i+1})\\le s_{i+1},\\quad s_n+d_n+t_{\\mathrm{warm}}\\le L,\\quad \\forall m,\\ \\forall i<\\mathrm{done}(m):\\ T^{\\max}_i\\le T^{\\exp}_m;\\qquad C_{\\max}\\ge k\\,(t_{\\mathrm{pump}}+t_{\\mathrm{cool}}+t_{\\mathrm{warm}})+\\textstyle\\sum_i d_i",
+      "validity": "Exposure limits are only as complete as the profiles declare them (a new sourced field per profile; the vitrified profile already cites the 136 K threshold). Times are taken only from trusted records; upper-bound wording ('<', 'less than') is accepted for durations, 'typical'/'approx.' wording is not. Single-cycle optimality certificates assume transitions are documented or bounded below; multi-cycle optimality is certified only for small instances.",
+      "parameters": [
+        {
+          "name": "CRX-VF pump down",
+          "value": "1.5",
+          "unit": "h",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Pump down: 1.5 h"
+        },
+        {
+          "name": "CRX-VF station cooldown",
+          "value": "5",
+          "unit": "h",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Station cooldown: 5 h"
+        },
+        {
+          "name": "CRX-VF station warmup",
+          "value": "2",
+          "unit": "h",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Station warmup: 2 h"
+        },
+        {
+          "name": "CRX-VF full cycle",
+          "value": "8.5",
+          "unit": "h",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Cycle time: 8.5 h"
+        },
+        {
+          "name": "Devitrification threshold of vitrified samples",
+          "value": "136",
+          "unit": "K",
+          "source_url": "https://doi.org/10.1038/s41598-023-35590-x",
+          "quote": "Devitrification occurs when vitrified cryogenic samples are heated to more than approximately 136 K"
+        },
+        {
+          "name": "Phase-transition POM scan range (profile requirement)",
+          "value": "203-393",
+          "unit": "K",
+          "source_url": "data/experiments/chem_phase_transition_pom.json",
+          "quote": "\"kind\": \"range_within\", \"lo\": { \"value\": 203000, \"unit\": \"mK\" }, \"hi\": { \"value\": 393000, \"unit\": \"mK\" }"
+        },
+        {
+          "name": "TeslatronPT sample exchange (cold VTI)",
+          "value": "< 2",
+          "unit": "h",
+          "source_url": "https://qd-oxford.com/products/teslatronPT.html",
+          "quote": "Sample Cooldown:  < 2 hours from room temperature to < 2 K for Basic Probe loaded into cold variable temperature insert (VTI)"
+        },
+        {
+          "name": "Bluefors fast sample exchange: cooldown to base (table 'Guaranteed', prose 'typically')",
+          "value": "< 7",
+          "unit": "h",
+          "source_url": "https://bluefors.com/products/cryogenic-measurement-system-options/fast-sample-exchange-system/",
+          "quote": "Cooldown time to base temperature | < 7 hours"
+        },
+        {
+          "name": "Demo D Lean-valid timeline and makespan",
+          "value": "Raman 5-13 h, POM 13-17 h, vitrified fluorescence 17-23 h; makespan 23 h",
+          "unit": "h",
+          "source_url": "paper/data/e6_schedule.json",
+          "quote": "{ \"experiment_id\": \"chem_phase_transition_pom\", \"start\": \"13 h\", \"stop\": \"17 h\" }, { \"experiment_id\": \"bio_cryo_fluorescence_vitrified\", \"start\": \"17 h\", \"stop\": \"23 h\" }"
+        }
+      ],
+      "affected_experiments": [
+        "bio_cryo_fluorescence_vitrified",
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom",
+        "mat_magnetoresistance_10T"
+      ],
+      "affected_configurations": [
+        "lakeshore_crx_vf",
+        "lakeshore_crx_4k",
+        "oxford_teslatronpt_8T",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector",
+        "oxford_optistatdry_tlex",
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current"
+      ],
+      "data_available": "CRX-VF pump-down/cooldown/warm-up and the TeslatronPT sample cooldown were retrieved this session; the catalog already has cooldown_time.sample_exchange for TeslatronPT and OptistatDry TLEX and the devitrification evidence for the vitrified profile. Missing: vocabulary keys pumpdown_time.max, warmup_time.max and documented warming/cooling ramp rates for the CRX-VF (absent from the page read), so transition times stay NEED INFO until a user enters them.",
+      "expected_effect": "Demo D's published schedule becomes invalid (exposure violation). The exposure-safe single-cycle order is vitrified fluorescence (<= 136 K) -> Raman (133.15 K) -> POM (203-393 K), with makespan >= 1.5 + 5 + 18 = 24.5 h, or 26.5 h if the run must end warm, instead of 23 h; the E6 sweep threshold moves from 23 h to at least 24.5 h. Because the CRX-VF documents no ramp rates, the honest schedule verdict is NEED INFO until a ramp rate is entered. Separate mounting needs 3 cycles: 3 x 8.5 h + 18 h = 43.5 h. When transitions are zero or documented, the Lean lower bound certifies Z3's single-cycle optimum. Effort M-L: about 400-700 lines of Lean, about 200 lines of Z3 encoding with sequence-dependent setups, three vocabulary keys and one profile field.",
+      "implementation": "lean/CryoLean/Schedule.lean: keep validSchedule for backward compatibility, add Campaign types, validCampaign (three-valued), CampaignOK and the theorems; Main.lean: a check-campaign entry point. data/capability_vocabulary.json: pumpdown_time.max, warmup_time.max, temperature.ramp_rate.warming/cooling. Experiment profiles: optional sample_exposure {min, max, evidence_ids} (vitrified: max 136 K from Last et al.). cryolean/schedule.py: Z3 model with cycles, sample mounting variables, sequence-dependent setups tau(T_i, T_j) and exposure constraints; unsat cores name the exposure conflict. Tests: demo D's timeline rejected; the safe order accepted with user-entered rates; tampered cycles rejected.",
+      "citations": [
+        {
+          "title": "PROSA: A Case for Readable Mechanized Schedulability Analysis",
+          "authors": "Felipe Cerqueira, Felix Stutz, Bjorn B. Brandenburg",
+          "venue": "28th Euromicro Conference on Real-Time Systems (ECRTS 2016), pp. 273-284",
+          "year": 2016,
+          "doi_or_url": "https://people.mpi-sws.org/~bbb/papers/pdf/ecrts16f.pdf",
+          "quote": "the trust in the validity of the claimed schedulability analysis rests only in the understanding of the speciﬁcation (which we keep intentionally simple and accessible), and not in the ability to follow each proof step."
+        },
+        {
+          "title": "A survey of scheduling problems with setup times or costs",
+          "authors": "Ali Allahverdi, C. T. Ng, T. C. E. Cheng, Mikhail Y. Kovalyov",
+          "venue": "European Journal of Operational Research 187(3):985-1032",
+          "year": 2008,
+          "doi_or_url": "https://doi.org/10.1016/j.ejor.2006.06.060",
+          "quote": "The paper classifies scheduling problems into those with batching and non-batching considerations, and with sequence-independent and sequence-dependent setup times."
+        },
+        {
+          "title": "An Algorithm for a Single Machine Scheduling Problem with Sequence Dependent Setup Times and Scheduling Windows",
+          "authors": "J. E. Moore",
+          "venue": "IIE Transactions, pp. 35-41",
+          "year": 1975,
+          "doi_or_url": "https://doi.org/10.1080/05695557508974982",
+          "quote": "An enumeration algorithm is presented for solving a scheduling problem similar to the single machine job shop problem with sequence dependent setup times."
+        },
+        {
+          "title": "End-to-End Verification for Subgraph Solving",
+          "authors": "Stephan Gocht, Ciaran McCreesh, Magnus O. Myreen, Jakob Nordström, Andy Oertel, Yong Kiam Tan",
+          "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 38(8):8038-8047",
+          "year": 2024,
+          "doi_or_url": "https://doi.org/10.1609/aaai.v38i8.28642",
+          "quote": "the most promising way to achieve verifiably correct combinatorial solving seems to be proof logging, meaning that solvers produce efficiently verifiable certificates of correctness that can be corroborated by an independent proof checking program"
+        },
+        {
+          "title": "Proving Bounds for Real Linear Programs in Isabelle/HOL (Extended Abstract)",
+          "authors": "Steven Obua",
+          "venue": "Dagstuhl Seminar Proceedings 05021 (Mathematics, Algorithms, Proofs)",
+          "year": 2005,
+          "doi_or_url": "https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol05021/DagSemProc.05021.18/DagSemProc.05021.18.pdf",
+          "quote": "Checking the certiﬁcate from the external LP solver is basically a calculation involving ﬁnite matrices"
+        },
+        {
+          "title": "Selecting optimal support grids for super-resolution cryogenic correlated light and electron microscopy",
+          "authors": "Mart G. F. Last, Maarten W. Tuijtel, Lenard M. Voortman, et al.",
+          "venue": "Scientific Reports 13 (2023)",
+          "year": 2023,
+          "doi_or_url": "https://doi.org/10.1038/s41598-023-35590-x",
+          "quote": "Devitrification occurs when vitrified cryogenic samples are heated to more than approximately 136 K"
+        },
+        {
+          "title": "CRX-VF cryogenic probe station specifications",
+          "authors": "Lake Shore Cryotronics",
+          "venue": "Manufacturer specification page (accessed 2026-10-31)",
+          "year": 2026,
+          "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "quote": "Cycle time: 8.5 h | Pump down: 1.5 h | Station cooldown: 5 h | Station warmup: 2 h"
+        },
+        {
+          "title": "TeslatronPT product page",
+          "authors": "Quantum Design Oxford",
+          "venue": "Manufacturer product page (accessed 2026-10-31)",
+          "year": 2026,
+          "doi_or_url": "https://qd-oxford.com/products/teslatronPT.html",
+          "quote": "Sample Cooldown:  < 2 hours from room temperature to < 2 K for Basic Probe loaded into cold variable temperature insert (VTI)"
+        },
+        {
+          "title": "Fast Sample Exchange System for Dilution Refrigerators",
+          "authors": "Bluefors Oy",
+          "venue": "Manufacturer product page (accessed 2026-10-31)",
+          "year": 2026,
+          "doi_or_url": "https://bluefors.com/products/cryogenic-measurement-system-options/fast-sample-exchange-system/",
+          "quote": "Base temperature and cooling power are measured at the Sample Holder of the FSE Insert. The provided cooldown time is for a typical configuration."
+        }
+      ],
+      "risks": "Many schedules will be NEED INFO because ramp and warm-up times are rarely documented; exposure limits must be sourced or user-entered per profile; multi-cycle packing with sequence-dependent setups is NP-hard, so Z3 may time out (the validator stays exact); the co-mounting assumption must be explicit in the UI.",
+      "priority": 2
+    },
+    {
+      "id": "M3-verified-explanations",
+      "title": "Verified three-valued explanations: refinement-stable rejection certificates, certified minimal sufficient fact sets (abductive explanations) computed with the Lean checker as oracle, contrastive explanations, and 'what to document next' plans for NEED INFO",
+      "kind": "method",
+      "description": "Today 'why' comes from Z3 unsat cores, which the paper itself calls advisory and 'not itself evidence'. NEED INFO pairs (157 of 286) list undecided items, and completeness.py splits gaps into configuration-side and experiment-side, but nothing certifies that an explanation is sufficient or minimal, or says which single documentation would decide the most pairs. Because verdict_refines makes the verdict monotone in information, one Lean evaluation on a restricted configuration certifies sufficiency for every completion.\nLean statements:\ndef restrictTo (S : List String) (cfg : Configuration) : Configuration := { cfg with capabilities := cfg.capabilities.filter (·.key ∈ S) }\ntheorem restrictTo_refines (hS : ∀ k ∈ S, lookup cfg' k = lookup cfg k) : Refines (restrictTo S cfg) cfg'\ntheorem axp_sufficient (hS : ∀ k ∈ S, lookup cfg' k = lookup cfg k) (hv : verdict (restrictTo S cfg) e = v) (hd : v ≠ .needMoreInfo) : verdict cfg' e = v\ntheorem axp_not_sufficient (hv : verdict (restrictTo (S.erase s) cfg) e ≠ v) : ¬ Sufficient (S.erase s) cfg e v  -- the restricted configuration itself is the counter-witness\ninductive ItemRef | req (i : Nat) | coupled (i : Nat)\ndef checkRejectCert (cfg) (e) (i : ItemRef) : Bool  -- e.confirmed ∧ item i is mandatory, applicable and its outcome is .fail\ntheorem checkRejectCert_sound : checkRejectCert cfg e i = true → RejectSpec cfg e\ntheorem checkRejectCert_complete : verdict cfg e = .reject → ∃ i, checkRejectCert cfg e i = true\ntheorem checkRejectCert_refines : Refines cfg cfg' → checkRejectCert cfg e i = true → checkRejectCert cfg' e i = true\ntheorem item_local : (∀ k ∈ factsOf e i, lookup cfg' k = lookup cfg k) → itemOutcome cfg' e i = itemOutcome cfg e i\ntheorem possibly (hr : Refines cfg w) (hv : verdict w e = v) : ∃ cfg', Refines cfg cfg' ∧ verdict cfg' e = v\nMethod. (a) Abductive explanation (AXp) of a decided verdict v: start from all keys read by mandatory applicable items and drop keys one at a time while verdict (restrictTo S cfg) e = v (Ignatiev et al.'s deletion algorithm, a linear number of oracle calls). The oracle is the verified checker, so sufficiency for all completions follows from axp_sufficient and subset-minimality from the |S| failed deletions. With a monotone verdict every such explanation is automatically robust to later disclosure, the property that fails for defeasible classifiers (Li 2026). (b) Contrastive explanations (CXp) by minimal-hitting-set duality: for a NOT MET pair with two violated items, any change that stops the rejection must touch both items; Lean re-checks each proposed CXp. (c) NEED INFO: undecided items, their missing facts and witnesses. A hypothetical completion w that refines cfg and gives MET (or NOT MET) proves the verdict is still reachable (Bruns-Godefroid generalized model checking: does some completion satisfy it). Witnesses are never stored as evidence. Facts are ranked by the number of pairs they can decide, a deterministic analogue of de Kleer and Williams's next-measurement selection. The thorough semantics (NEED INFO iff two completions disagree) is not required; witnesses are sound in one direction only.",
+      "equation_latex": "\\mathrm{AXp}(S):\\iff V(c|_S,e)=v\\neq\\mathrm{NI}\\ \\wedge\\ \\forall s\\in S.\\ V(c|_{S\\setminus\\{s\\}},e)\\neq v;\\qquad c|_S\\sqsubseteq c'\\ \\Rightarrow\\ V(c',e)=v;\\qquad \\mathrm{CXp}=\\mathrm{MHS}(\\{\\mathrm{AXp}\\})",
+      "validity": "Sufficiency is relative to the fixed requirement and model set and to configuration-side facts; parameter facts need M1's ExpRefines. AXps are not unique (the deletion order chooses one; cost-based orders are possible). Possibility witnesses use synthetic records and only show that a verdict is reachable, never that it is likely.",
+      "parameters": [
+        {
+          "name": "E1 grid verdict counts",
+          "value": "109 NOT MET / 20 MET / 157 NEED INFO of 286",
+          "unit": "pairs",
+          "source_url": "paper/data/e1_grid.json",
+          "quote": "\"counts\": { \"DOES_NOT_MEET_REQUIREMENTS\": 109, \"REQUIREMENTS_MET\": 20, \"NEED_MORE_INFORMATION\": 157 }"
+        },
+        {
+          "name": "Undecided-item count distribution over NEED INFO pairs",
+          "value": "1:19, 2:23, 3:81, 4:15, 5:16, 6:3",
+          "unit": "pairs per item count",
+          "source_url": "paper/data/fig_missing_info.json",
+          "quote": "\"missing_count_distribution\": { \"1\": 19, \"2\": 23, \"3\": 81, \"4\": 15, \"5\": 16, \"6\": 3 }"
+        }
+      ],
+      "affected_experiments": [
+        "bio_cryo_fluorescence_vitrified",
+        "bio_cryosection_frozen_tissue",
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom",
+        "chem_temperature_dependent_photoluminescence",
+        "mat_electrical_resistance_low_temperature",
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T",
+        "quantum_mk_vector_field_transport",
+        "quantum_mxc_wiring_heat_budget",
+        "quantum_transmon_characterization"
+      ],
+      "affected_configurations": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current",
+        "lakeshore_ccs_100",
+        "lakeshore_ccs_300s",
+        "lakeshore_ccs_400",
+        "lakeshore_ccs_400h",
+        "lakeshore_crx_4k",
+        "lakeshore_crx_vf",
+        "leica_cm1950_dualecotec_standard",
+        "leica_cm1950_genA_standard",
+        "leica_cm1950_genA_vacuum_motor_objcool",
+        "linkam_thms600_heating_only",
+        "linkam_thms600_lnp96_t96",
+        "linkam_thmsel600_lnp96",
+        "oxford_optistatdry_blv",
+        "oxford_optistatdry_tlex",
+        "oxford_teslatronpt_12T",
+        "oxford_teslatronpt_14T",
+        "oxford_teslatronpt_6_1_1T_vector",
+        "oxford_teslatronpt_8T",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_dynacool_9T_eto_res",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T"
+      ],
+      "data_available": "Everything needed is in the repository: per-item outcomes and per-key records in the check-batch output, verdict_refines in lean/CryoLean/Monotone.lean, completeness.py's gap classification. No new data.",
+      "expected_effect": "From a read-only re-run of the compiled checker on all 286 pairs (counts reproduced exactly): 85 NOT MET pairs have exactly one violated item and 24 have two, so all 109 get a one-item Lean certificate that provably survives any future documentation, and the 24 two-item pairs get CXps that must touch both items. The 20 MET pairs need one passing fact per mandatory item (3 items in 16 pairs, 4 in 4). The 157 NEED INFO pairs contain 466 undecided items (no item is permanently unsupported, so catalog records or user parameters can still decide every one of them); 19 are one passing item away from MET; 156 can be decided NOT MET by documenting a single failing fact. Top single facts by NEED INFO pairs touched: temperature.range of lakeshore_ccs_400h (an inferred estimate today) and of the three Leica CM1950 configurations (7 pairs each), and of linkam_thms600_heating_only (6). Z3 cores remain proposals; the user-facing 'why' becomes Lean-checked. Effort M: about 300-500 lines of Lean (certificate checkers reuse the Soundness lemmas) and about 200 lines of Python on top of completeness.py.",
+      "implementation": "New lean/CryoLean/Certify.lean: restrictTo and its lemmas, ItemRef, checkRejectCert, checkAcceptCert (a witness key or failing condition per mandatory item) with soundness, completeness and refinement stability; Main.lean entry points check-cert and check-restricted (batch). cryolean/explain.py: deletion-based AXp over lean_runner.check_batch, CXp by minimal hitting sets over violated items, NEED INFO plans (undecided items, missing facts, optimistic and pessimistic completions verified by Lean, greedy ranking of (configuration, key) facts by pairs decided). The bridge shows certificates in the verdict card. Tests: on random subsets S, a decided restricted verdict equals the full verdict.",
+      "citations": [
+        {
+          "title": "Abduction-Based Explanations for Machine Learning Models",
+          "authors": "Alexey Ignatiev, Nina Narodytska, Joao Marques-Silva",
+          "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 33(01):1511-1519",
+          "year": 2019,
+          "doi_or_url": "https://doi.org/10.1609/aaai.v33i01.33011511",
+          "quote": "The computation of a subset-minimal explanation requires a linear number of calls to a T -oracle."
+        },
+        {
+          "title": "From Contrastive to Abductive Explanations and Back Again (arXiv title: On Relating 'Why?' and 'Why Not?' Explanations)",
+          "authors": "Alexey Ignatiev, Nina Narodytska, Nicholas Asher, Joao Marques-Silva",
+          "venue": "AIxIA 2020, LNCS 12414, pp. 335-355 (arXiv:2012.11067)",
+          "year": 2020,
+          "doi_or_url": "https://arxiv.org/abs/2012.11067",
+          "quote": "the paper proves that, for any given instance, ‘Why?’ explanations are minimal hitting sets of ‘Why Not?’ explanations and vice-versa."
+        },
+        {
+          "title": "The Complexity of Auditing Disclosure-Robust Defeasible Explanations",
+          "authors": "Haoyang Li",
+          "venue": "arXiv preprint 2606.19401 (not peer reviewed)",
+          "year": 2026,
+          "doi_or_url": "https://arxiv.org/abs/2606.19401",
+          "quote": "Under incremental disclosure, however, evidence arrives field by field, and a normally sufficient reason can be overturned by later information."
+        },
+        {
+          "title": "Generalized Model Checking (invited abstract)",
+          "authors": "Patrice Godefroid",
+          "venue": "TIME 2005 (Symposium on Temporal Representation and Reasoning), abstract",
+          "year": 2005,
+          "doi_or_url": "https://patricegodefroid.github.io/public_psfiles/abstract-time2005.pdf",
+          "quote": "verification re-sults can be more precise with generalized model checking, which checks whether there exists a concretization of an ab-straction satisfying a temporal-logic formula."
+        },
+        {
+          "title": "Multi-Valued Symbolic Model-Checking",
+          "authors": "Marsha Chechik, Benet Devereux, Steve Easterbrook, Arie Gurfinkel",
+          "venue": "ACM Transactions on Software Engineering and Methodology 12(4)",
+          "year": 2003,
+          "doi_or_url": "https://www.cs.toronto.edu/~sme/papers/2003/TOSEM-mvmodelchecking.pdf",
+          "quote": "the authors describe a thorough semantics of 3-valued model-checking under which a property evaluates to MAYBE if and only if there are two reﬁnements of the partial model that disagree"
+        },
+        {
+          "title": "Diagnosing Multiple Faults",
+          "authors": "Johan de Kleer, Brian C. Williams",
+          "venue": "Artificial Intelligence 32(1):97-130",
+          "year": 1987,
+          "doi_or_url": "https://doi.org/10.1016/0004-3702(87)90063-4",
+          "quote": "The best measurement is the one which minimizes the expected entropy of candidate probabilities resulting from the measurement."
+        }
+      ],
+      "risks": "Explanations can be long for coupled constraints (every leaf of the expression is a fact); witness completions use synthetic records and must never leak into the catalog; the ranking is advisory and ignores the cost of obtaining a fact; the parallel QuickXplain/MCS research covers search strategies, and this proposal only adds the Lean certificate layer that makes their outputs checkable.",
+      "priority": 3
+    },
+    {
+      "id": "M4-bound-polarity-world-semantics",
+      "title": "Bound polarity and physical-world (certain-answer) soundness: one-sided datasheet bounds ('<4 K', '< -195 °C', '≥ 12 µW') may justify PASS but never FAIL, with first-class necessary/sufficient coupled relations",
+      "kind": "theorem",
+      "description": "Spec.lean reads every trusted number as the exact capability, so RejectSpec means 'violated by the documented number'. Datasheets state one-sided promises: Lake Shore CCS-100 '<4 K to 325 K', Linkam THMS600 '< -195°C to 600°C', the Bluefors LD manual 'Cooling power at 20 mK: ≥ 12 µW' (LD400), and Bluefors now publishes cooling power only as a guaranteed '>' value. A promise 'reaches below 4 K' supports PASS for any requirement at or above 4 K but says nothing about 2 K, yet the checker rejects 2 K requirements on these stages. Proposal: give every numeric end a promise in {exact, achievable, limit, typical}. achievable(q) means the true capability is at least as good as q (supports PASS); limit(q) means it is no better than q (supports FAIL); exact gives both; typical gives neither. Each requirement gets a level in {physical, guarantee}; at guarantee level the printed number is treated as the contract value, which is today's behaviour. Coupled models get first-class necessary relations (fail-only) and sufficient relations (pass-only), replacing the validity-list encoding that sibling proposals TH3, TH4, MAG-1 and MAG-4 use for the same pattern.\nLean statements:\ninductive Promise | exact | achievable | limit | typical\nstructure End where q : Quantity; promise : Promise   -- CapValue.range (lo hi : End) | .max (m : End) | .min (m : End) | …\ninductive Level | physical | guarantee\ndef Consistent (w : World) (cfg : Configuration) : Prop  -- w assigns true values allowed by every trusted promise\ndef checkValueP (lvl : Level) : Constraint → CapValueP → Outcome  -- PASS only via achievable/exact ends, FAIL only via limit/exact ends\ntheorem checkValueP_pass_sound : checkValueP .physical k v = .pass → ∀ t, Allows v t → ValueMeetsTrue k t\ntheorem checkValueP_fail_sound : checkValueP .physical k v = .fail → ∀ t, Allows v t → ValueFailsTrue k t\ntheorem checkValueP_exact : checkValueP lvl k (allExact v) = checkValue k v  -- conservative extension: today's theorems are the special case\ntheorem verdictP_accept_sound : verdictP cfg e = .accept → ∀ w, Consistent w cfg → AcceptSpecW w e\ntheorem verdictP_reject_sound : verdictP cfg e = .reject → ∀ w, Consistent w cfg → RejectSpecW w e\ntheorem coupled_roles : necessary relations never PASS an item and sufficient relations never FAIL one\ntheorem verdictP_refines : sharpening a promise (typical → achievable → exact) or adding a limit is a Refines step (with M1)\nProof strategy: per constraint shape (11 shapes x pass/fail), unfold Allows and use transitivity of Q.le (or core Rat with grind); verdict level by reusing the outcomes/accept_iff_outcomes structure of Soundness.lean with the world-indexed specification; conservativity by rfl-style case analysis when every end is exact.",
+      "equation_latex": "\\mathrm{PASS}\\Rightarrow\\forall w\\models c:\\ \\mathrm{Meets}(k,w(\\kappa)),\\qquad \\mathrm{FAIL}\\Rightarrow\\forall w\\models c:\\ \\mathrm{Fails}(k,w(\\kappa)),\\qquad w\\models(q,\\mathrm{achievable})\\iff w(\\kappa)\\succeq q,\\quad w\\models(q,\\mathrm{limit})\\iff w(\\kappa)\\preceq q",
+      "validity": "Physical-level soundness is relative to correct promise annotation, which is a reviewed reading of the source wording and not something Lean can check. Guarantee-level requirements keep today's semantics and must say so in the verdict text. Hard limits must come from sources: vendor minima or reference data with the assumption stated.",
+      "parameters": [
+        {
+          "name": "Lake Shore CCS-100 lower temperature end (one-sided)",
+          "value": "< 4",
+          "unit": "K",
+          "source_url": "https://www.lakeshore.com/products/product-detail/janis/ccs-100-cryostat",
+          "quote": "Temperature range <4 K to 325 K"
+        },
+        {
+          "name": "Linkam THMS600 lower temperature end (one-sided)",
+          "value": "< -195",
+          "unit": "°C",
+          "source_url": "https://www.linkam.co.uk/thms600-specifications",
+          "quote": "Temperature range < -195°C to 600°C (cooling option required)"
+        },
+        {
+          "name": "Bluefors LD400 cooling power at 20 mK (guarantee, one-sided)",
+          "value": ">= 12",
+          "unit": "uW",
+          "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "quote": "Cooling power at 20 mK: ≥ 10 µW ≥ 12 µW"
+        },
+        {
+          "name": "Bluefors LD350/LD450 guaranteed cooling power at 20 mK",
+          "value": "> 12 / > 14",
+          "unit": "uW",
+          "source_url": "https://bluefors.com/news/increased-cooling-power-specifications-for-bluefors-dilution-refrigerators/",
+          "quote": "Guaranteed cooling power at 20 mK | > 12 µW | > 14 µW | > 14 µW"
+        }
+      ],
+      "affected_experiments": [
+        "mat_electrical_resistance_low_temperature",
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T",
+        "chem_temperature_dependent_photoluminescence",
+        "quantum_mxc_wiring_heat_budget"
+      ],
+      "affected_configurations": [
+        "lakeshore_ccs_100",
+        "lakeshore_ccs_300s",
+        "lakeshore_ccs_400",
+        "linkam_thms600_lnp96_t96",
+        "linkam_thmsel600_lnp96",
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current"
+      ],
+      "data_available": "The wording is already in every evidence quote (667 records). 71 of the 379 trusted capability records with a known value carry tolerance, approximate or typical wording, by a keyword scan of their evidence quotes. The 12 changed pairs rest on only 5 records (3 Lake Shore CCS '<4 K' lower ends, 2 Linkam '< -195 °C' lower ends). Restoring those rejections soundly needs documented hard minima, which belongs to the data workflow.",
+      "expected_effect": "From the read-only re-run of the checker: 12 of the 109 NOT MET pairs rest only on failing ends written as open one-sided bounds (mat_electrical_resistance_low_temperature and mat_magnetoresistance_10T on lakeshore_ccs_100/300s/400 and on both Linkam LNP96 configurations; mat_magnetometry_vsm on both Linkam LNP96 configurations). Under physical-level semantics they become NEED INFO with a precise 'document the hard minimum' item from M3; 2 more pairs keep NOT MET through another violated item. No MET pair passes only on typical or approximate wording, so the 20 MET verdicts should not change (to be confirmed by the full annotation). Demo B stays NOT MET only if Krinner's factor-3 rule is tagged guarantee-level, and then reads 'the guaranteed ≥ 12 µW does not cover 3x the predicted load'; untagged, the 3 MXC NOT MET pairs become NEED INFO. Grid with the MXC rule tagged: 20 / 97 / 169. Gives one verified semantics under which the sibling model fixes (TH3 FAIL-only-against-upper-bound, TH4 exact-vs-upper-bound anchors, MAG-1/MAG-4 necessary-vs-sufficient checks) are instances. Effort M-L: about 600-900 lines across Model, Spec, Checker, Soundness and Json, plus a reviewed annotation of 379 records.",
+      "implementation": "Model.lean: Promise, End, Level, Coupled.necessary/sufficient lists; Spec.lean: World, Consistent, AcceptSpecW/RejectSpecW; Checker.lean: checkValueP and role-aware checkCoupled; Soundness.lean (or a new Worlds.lean): the theorems above; Json.lean: decode promise (default exact for backward compatibility) and level. cryolean/serialize.py: map value_as_printed prefixes ('<', '≤', '>', '≥', 'up to', 'better than', 'typical', 'approx.') to a promise proposal that a reviewer confirms; validation.py refuses unreviewed mappings. Explain.lean: distinguish 'documented limitation' from 'not covered by the documented guarantee'.",
+      "citations": [
+        {
+          "title": "When is Naive Evaluation Possible?",
+          "authors": "Amelie Gheerbrant, Leonid Libkin, Cristina Sirangelo",
+          "venue": "PODS 2013",
+          "year": 2013,
+          "doi_or_url": "https://doi.org/10.1145/2463664.2463674",
+          "quote": "prove that under very mild conditions, naïve evaluation works for a query iff it is monotone with respect to the semantic ordering"
+        },
+        {
+          "title": "Generalized Model Checking (invited abstract)",
+          "authors": "Patrice Godefroid",
+          "venue": "TIME 2005 (Symposium on Temporal Representation and Reasoning), abstract",
+          "year": 2005,
+          "doi_or_url": "https://patricegodefroid.github.io/public_psfiles/abstract-time2005.pdf",
+          "quote": "model check-ing three-valued abstractions (also called may/must abstrac-tions) can be used to both prove and disprove any temporal-logic property, whereas traditional conservative abstractions can only prove universal properties."
+        },
+        {
+          "title": "Multi-Valued Symbolic Model-Checking",
+          "authors": "Marsha Chechik, Benet Devereux, Steve Easterbrook, Arie Gurfinkel",
+          "venue": "ACM Transactions on Software Engineering and Methodology 12(4)",
+          "year": 2003,
+          "doi_or_url": "https://www.cs.toronto.edu/~sme/papers/2003/TOSEM-mvmodelchecking.pdf",
+          "quote": "If a property is ⊤ (respectively, ⊥) in a partial model, then it is ⊤(⊥) in all completions."
+        },
+        {
+          "title": "Increased Cooling Power Specifications for Bluefors Dilution Refrigerators",
+          "authors": "Bluefors Oy",
+          "venue": "Bluefors news article, 10 March 2026",
+          "year": 2026,
+          "doi_or_url": "https://bluefors.com/news/increased-cooling-power-specifications-for-bluefors-dilution-refrigerators/",
+          "quote": "Going forward, we will publish a single, guaranteed cooling power value (expressed as “>”) instead of separate “guaranteed” and “expected” figures"
+        },
+        {
+          "title": "User Manual: LD System (BF1000-1234517327-9)",
+          "authors": "Bluefors Oy",
+          "venue": "Vendor user manual, 2022 (copy hosted by Aalto University)",
+          "year": 2022,
+          "doi_or_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "quote": "Table 1: Main technical characteristics LD250 LD400 Base temperature: ≤ 10 mK ≤ 10 mK Cooling power at 20 mK: ≥ 10 µW ≥ 12 µW Cooling power at 100 mK: ≥ 250 µW ≥ 400 µW Cooling power at 120 mK: ≥ 360 µW ≥ 575 µW"
+        },
+        {
+          "title": "CCS-100 optical cryostat (Cryogen-free vacuum cryostats product page)",
+          "authors": "Lake Shore Cryotronics",
+          "venue": "Manufacturer product page (read with the built-in browser, 2026-10-31)",
+          "year": 2026,
+          "doi_or_url": "https://www.lakeshore.com/products/product-detail/janis/ccs-100-cryostat",
+          "quote": "Temperature range <4 K to 325 K"
+        },
+        {
+          "title": "THMS600 Specifications",
+          "authors": "Linkam Scientific Instruments",
+          "venue": "Manufacturer specification page (accessed 2026-10-31)",
+          "year": 2026,
+          "doi_or_url": "https://www.linkam.co.uk/thms600-specifications",
+          "quote": "Temperature range < -195°C to 600°C (cooling option required)"
+        }
+      ],
+      "risks": "Changes published counts and the meaning of DOES_NOT_MEET; the authors must choose guarantee vs physical level per requirement and explain it in the UI. Annotation disagreements (is a printed base temperature a guarantee or a limit?) need a written rule. NEED INFO grows until hard limits are documented. A fourth verdict 'not guaranteed' may be clearer than folding these cases into NEED INFO.",
+      "priority": 4
+    },
+    {
+      "id": "M5-dominance-certified-thresholds",
+      "title": "Capability dominance and certified parameter thresholds: better hardware never breaks a MET, and exact repair thresholds certified by one Lean evaluation",
+      "kind": "theorem",
+      "description": "Prove that the requirement language is monotone in the 'better' direction of each vocabulary key, and that coupled expressions are monotone in each leaf whose polarity is syntactically known.\nLean statements:\ndef BetterFor : Constraint → CapValue → CapValue → Prop  -- higher .max, lower .min, wider .range, larger .count, superset .set; flags, enums and countEquals: equality only\ntheorem checkValue_better_pass : BetterFor k v v' → checkValue k v = .pass → checkValue k v' = .pass\ntheorem checkValue_better_fail : BetterFor k v v' → checkValue k v' = .fail → checkValue k v = .fail\ninductive Pol | up | down | none\ndef Expr.pol (leaf) : Expr → Pol  -- add keeps, sub/neg flip, mul keeps only when both factors are provably >= 0 from the validity list\ntheorem evalExpr_mono_leaf : x.pol leaf = .up → value ≤ value' → evalExpr (… value) ≤ evalExpr (… value')\ntheorem verdict_dominance : Dominates e cfg cfg' → verdict cfg e = .accept → verdict cfg' e = .accept\ntheorem param_down_keeps_accept : lhs.pol p = .up → rhs.pol p = .none → verdict (e.set p a) = .accept → 0 ≤ b → b ≤ a → verdict (e.set p b) = .accept\ntheorem affine_threshold : lhs = a + b·p syntactically, 0 < b, a + b·p* = rhs → (outcome = .pass ↔ p ≤ p*)\nExpr has no division, so Z3 or Python proposes p* as an exact rational and Lean checks a + b·p* = rhs with one multiplication, a certifying-algorithm step. The non-negativity side conditions already exist: serialize.coupled_docs adds 0 <= param validity bounds for every parameter not marked signed. Proof automation: core Lean 4.35 Rat has grind ordered-ring instances, so the order lemmas need no Mathlib (or prove them once for the custom Q).",
+      "equation_latex": "v\\preceq_k v'\\Rightarrow\\big(\\mathrm{chk}(k,v)=\\mathrm{pass}\\Rightarrow\\mathrm{chk}(k,v')=\\mathrm{pass}\\big);\\qquad \\mathrm{lhs}(p)=a+b\\,p,\\ b>0,\\ a+b\\,p^{*}=\\mathrm{rhs}\\ \\Rightarrow\\ (\\mathrm{pass}\\iff p\\le p^{*})",
+      "validity": "Only for constraints with an order (flags, enumerations, countEquals and 'must be absent' are excluded) and leaves with a known sign; signed parameters (thermal-contraction strains) get Pol.none and no claim. Dominance is relative to one experiment's requirement set.",
+      "parameters": [
+        {
+          "name": "Flux-line count at which the demo B verdict flips (Z3 repair)",
+          "value": "39",
+          "unit": "lines",
+          "source_url": "paper/data/fig_sensitivity.json",
+          "quote": "\"flip_value\": 39"
+        },
+        {
+          "name": "q_flux_line threshold as a fraction of the baseline",
+          "value": "293/725",
+          "unit": "1",
+          "source_url": "paper/data/fig_sensitivity.json",
+          "quote": "\"analytic_threshold\": \"293/725\""
+        },
+        {
+          "name": "p_flux_dc threshold as a fraction of the baseline",
+          "value": "409/625",
+          "unit": "1",
+          "source_url": "paper/data/fig_sensitivity.json",
+          "quote": "\"analytic_threshold\": \"409/625\""
+        },
+        {
+          "name": "Width of today's bisection bracket (2^-40, about 40 Lean runs per parameter)",
+          "value": "9.094947017729282e-13",
+          "unit": "1",
+          "source_url": "paper/data/fig_sensitivity.json",
+          "quote": "\"bracket_width\": 9.094947017729282e-13"
+        },
+        {
+          "name": "Krinner design margin",
+          "value": "3",
+          "unit": "1",
+          "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "We designed and planned the wiring and attenuation scheme of the dilution refrigerator with the goal that the resulting heat load is at least about a factor three smaller than those cooling powers."
+        }
+      ],
+      "affected_experiments": [
+        "quantum_mxc_wiring_heat_budget",
+        "mat_magnetoresistance_10T",
+        "mat_magnetometry_vsm"
+      ],
+      "affected_configurations": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current",
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_12T_vsm",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "qd_ppms_classic_14T",
+        "qd_ppms_classic_16T"
+      ],
+      "data_available": "No new data; uses the vocabulary 'better' directions, the serializer's non-negativity bounds and the existing sensitivity data.",
+      "expected_effect": "Demo B thresholds become exact and certified at central values: n_flux <= 39 (79 n <= 3086), q_flux <= 11.72 nW (293/725 of 29 nW), p_dc <= 32.72 nW (409/625 of 50 nW), each by one Lean evaluation plus a theorem instead of a 40-step bisection with 2^-40 brackets. One Lean check of the 39-line repair certifies every n_flux <= 39. Z3's alternative search can prune configurations dominated by a NOT MET one without re-running Lean (shown candidates are still re-checked). Supplies maximal tolerance intervals for 'inflated' explanations in M3 and the corner evaluation used by stage 1 of M6. Effort M: about 300-600 lines.",
+      "implementation": "New lean/CryoLean/Dominance.lean: BetterFor, Dominates, Expr.pol, the monotonicity lemmas (order lemmas for Q or a migration of Num.lean to core Rat with grind), verdict_dominance, param_down_keeps_accept, affine_threshold; Main.lean: check-threshold. cryolean/smt.py: return exact p* and the affine coefficients; paper/scripts: replace bisection in fig_sensitivity with certified thresholds.",
+      "citations": [
+        {
+          "title": "Principles of Optimal Design: Modeling and Computation (3rd ed.)",
+          "authors": "Panos Y. Papalambros, Douglass J. Wilde",
+          "venue": "Cambridge University Press (book companion site)",
+          "year": 2017,
+          "doi_or_url": "https://principlesofoptimaldesign.org",
+          "quote": "The concepts of constraint activity, criticality, dominance, and relaxation are presented formally, along with two monotonicity principles that allow quick, practical boundedness checking."
+        },
+        {
+          "title": "Delivering Inflated Explanations",
+          "authors": "Yacine Izza, Alexey Ignatiev, Peter J. Stuckey, Joao Marques-Silva",
+          "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 38(11):12744-12753",
+          "year": 2024,
+          "doi_or_url": "https://doi.org/10.1609/aaai.v38i11.29170",
+          "quote": "In an inflated explanation the literals of the form x i = v i are replaced by literals of the form x i ∈ E i , where E i is a subset of the feature's domain."
+        },
+        {
+          "title": "End-to-End Verification for Subgraph Solving",
+          "authors": "Stephan Gocht, Ciaran McCreesh, Magnus O. Myreen, Jakob Nordström, Andy Oertel, Yong Kiam Tan",
+          "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 38(8):8038-8047",
+          "year": 2024,
+          "doi_or_url": "https://doi.org/10.1609/aaai.v38i8.28642",
+          "quote": "the most promising way to achieve verifiably correct combinatorial solving seems to be proof logging, meaning that solvers produce efficiently verifiable certificates of correctness that can be corroborated by an independent proof checking program"
+        },
+        {
+          "title": "Init/Grind/Ordered/Rat.lean (grind instances for Rat)",
+          "authors": "Robin Arnez (Lean FRO)",
+          "venue": "Lean 4 core library (present in the pinned v4.35.0 toolchain)",
+          "year": 2025,
+          "doi_or_url": "https://github.com/leanprover/lean4/blob/master/src/Init/Grind/Ordered/Rat.lean",
+          "quote": "`grind` instances for `Rat` as an ordered module."
+        }
+      ],
+      "risks": "Products of signed quantities defeat the syntactic polarity analysis; the dominance theorem needs a WF hypothesis (positive denominators) because the custom Q admits den = 0 at the type level; pruning by dominance must not hide candidates the user explicitly asked to see.",
+      "priority": 5
+    },
+    {
+      "id": "M6-tolerance-interval-verdicts",
+      "title": "Tolerance-interval verdicts: exact rational interval arithmetic with an inclusion theorem, robust MET/NOT MET at a stated tolerance, conservative extension, and inflated explanations",
+      "kind": "method",
+      "description": "Measured inputs carry uncertainties (Krinner et al.'s per-line loads 0.013(6), 0.029(5), 0.020(16) and 0.050(3) µW; Leica ±3 K and ±5 K), but the model evaluates central values only ('measurement uncertainties of the per-line loads are not propagated', coupled_models.json). Stage 1 (needs M5): for expressions monotone in every uncertain leaf, the exact range is two corner evaluations of the existing checker (all leaves at their unfavourable ends, then all at their favourable ends), justified by evalExpr_mono_leaf. Stage 2: general interval evaluation.\nLean statements:\nstructure IQ where lo hi : Rat   -- or the custom Q; lo ≤ hi checked by the decoder\ndef IQ.add/sub/neg; def IQ.mul (x y : IQ) : IQ := ⟨min4 (x.lo*y.lo) (x.lo*y.hi) (x.hi*y.lo) (x.hi*y.hi), max4 …⟩  -- four-corner rule; Mathlib's NonemptyInterval product does not apply to ℚ\ntheorem IQ.mul_mem : a ∈ x → b ∈ y → a * b ∈ x.mul y   -- inclusion (containment) property\ntheorem evalExprI_sound : Consistent w cfg → evalExprI cfg e x = .ok I → Denotes_w x q → q ∈ I\ndef checkLeI (a b : IQ) : Outcome := if a.hi ≤ b.lo then .pass else if b.hi < a.lo then .fail else .unknown  -- 'borderline'\ntheorem verdictI_accept_sound / verdictI_reject_sound : ∀ worlds within the stated tolerances\ntheorem verdictI_point : all intervals degenerate → verdictI cfg e = verdict cfg e   -- conservative extension\ntheorem verdictI_narrow : tolerances only shrink → InfoLe (verdictI wide) (verdictI narrow)   -- tightening tolerances is a refinement (M1)\nInflated explanations (Izza et al.): for a MET pair, report for each fact the widest interval on which MET still holds, for example the cooling power below which a repair stops passing. Decision procedure: as now, the compiled checker runs and generic theorems justify it, or decide +kernel; never native_decide (LeanCert's native mode adds an auxiliary axiom per call, which the Gatekeeper forbids).",
+      "equation_latex": "\\mathrm{PASS}_I\\iff\\overline{\\mathrm{lhs}}\\le\\underline{\\mathrm{rhs}},\\quad \\mathrm{FAIL}_I\\iff\\underline{\\mathrm{lhs}}>\\overline{\\mathrm{rhs}};\\qquad 3\\big[58\\cdot[7,19]+50\\,([24,34]+[47,53])+8\\cdot[4,36]\\big]\\ \\mathrm{nW}=[11.964,\\ 17.220]\\ \\mu\\mathrm{W}",
+      "validity": "Robustness is relative to the stated tolerance. Statistical 1σ error bars are not hard bounds, so verdicts must be labelled 'robust at kσ'. Interval evaluation is exact for single-use monotone expressions such as the MXC budget; repeated variables overestimate (the dependency effect), which can only add NEED INFO, never an unsound verdict.",
+      "parameters": [
+        {
+          "name": "Passive load per drive line at MXC",
+          "value": "0.013 ± 0.006",
+          "unit": "uW",
+          "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "Drive line UT-085-SS-SS Measured HL 45(34) mW 1.0(5) mW 4(3) μW 0.4(2) μW 0.013(6) μW"
+        },
+        {
+          "name": "Passive load per flux line at MXC",
+          "value": "0.029 ± 0.005",
+          "unit": "uW",
+          "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "The measured passive load of 0.029(5) μW per flux line on MXC is more than a factor of two larger than the passive load per drive line."
+        },
+        {
+          "name": "Passive load per output line at MXC",
+          "value": "0.020 ± 0.016",
+          "unit": "uW",
+          "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "Output line UT-085-NbTi Measured HL – – – 0.3(3) μW 0.020(16) μW"
+        },
+        {
+          "name": "DC flux-bias dissipation per flux line at MXC",
+          "value": "0.050 ± 0.003",
+          "unit": "uW",
+          "source_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "is dissipated, evaluating to 0.050(3) μW (0.140(7) μW) on MXC (CP)."
+        },
+        {
+          "name": "LD400 guaranteed cooling power at 20 mK",
+          "value": ">= 12",
+          "unit": "uW",
+          "source_url": "https://infrabooking.aalto.fi/kokvar/tilakuvat/aaltoinfra/220429114610_blueforsldsystemusermanual.pdf",
+          "quote": "Cooling power at 20 mK: ≥ 10 µW ≥ 12 µW"
+        },
+        {
+          "name": "LD450 guaranteed cooling power at 20 mK",
+          "value": "> 14",
+          "unit": "uW",
+          "source_url": "https://bluefors.com/news/increased-cooling-power-specifications-for-bluefors-dilution-refrigerators/",
+          "quote": "Guaranteed cooling power at 20 mK | > 12 µW | > 14 µW | > 14 µW"
+        },
+        {
+          "name": "Leica CM1950 DualEcoTec cryochamber range and tolerance",
+          "value": "-35 to -5, ±3",
+          "unit": "°C, K",
+          "source_url": "https://www.triolab.no/media/optk4e1e/flyer-cm1950-dualecotec_en-250384-rev-a.pdf",
+          "quote": "CRYOCHAMBER Temperature range -5 °C to -35 °C ±3 K, adjustable in 1 K increments, at ambient temperature of 20 °C"
+        },
+        {
+          "name": "Leica CM1950 DualEcoTec object head range and tolerance",
+          "value": "-50 to -10, ±3",
+          "unit": "°C, K",
+          "source_url": "https://www.triolab.no/media/optk4e1e/flyer-cm1950-dualecotec_en-250384-rev-a.pdf",
+          "quote": "OBJECT HEAD COOLING Temperature range -10 °C to -50 °C ± 3 K"
+        }
+      ],
+      "affected_experiments": [
+        "quantum_mxc_wiring_heat_budget",
+        "bio_cryosection_frozen_tissue"
+      ],
+      "affected_configurations": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "bluefors_ld450_current",
+        "leica_cm1950_dualecotec_standard",
+        "leica_cm1950_genA_standard",
+        "leica_cm1950_genA_vacuum_motor_objcool"
+      ],
+      "data_available": "The four Krinner uncertainties are already written in the MXC profile's parameter descriptions (not yet machine-readable fields), and the Leica ±3 K / ±5 K tolerances are in evidence quotes; the parallel data workflow is researching the tolerance representation, which this proposal consumes.",
+      "expected_effect": "Exact rational computation at 1σ: the MXC load interval is [11.964, 17.220] µW. Against LD400's 12 µW (demo B) the verdict becomes borderline NEED INFO (a robust NOT MET would need a lower end above 12 µW); against LD450's 14 µW, NEED INFO; against the catalog's LD250 10 µW, still NOT MET at 1σ but not at 2σ (lower end 9.624 µW). Z3's 39-line repair becomes NEED INFO at 1σ (upper end 14.349 µW); the robust 1σ repair is n_flux <= 30 (upper end exactly 12.000 µW). If the requirements workflow's R5 is adopted (66 drive-type lines including 8 TWPA pump lines), the 1σ interval is [12.132, 17.676] µW and demo B becomes a robust NOT MET. The 3 Leica cryosectioning verdicts are unchanged: their margins (15 K chamber, 8 K specimen head) exceed the ±3 K and ±5 K tolerances. The paper's 'fails by 2.6 µW' headline should carry this caveat now. Effort L: stage 1 is S once M5 exists; stage 2 is about 500-800 lines.",
+      "implementation": "Stage 1: Python builds the two corner documents from tolerance fields, Lean evaluates both, and a theorem (evalExpr_mono_leaf from M5) justifies reading the range from the corners. Stage 2: lean/CryoLean/Interval.lean (IQ, operations, inclusion lemmas proved with grind over core Rat), evalExprI, checkLeI, verdictI with the soundness, conservativity and narrowing theorems; Json: optional tol fields (absolute or kσ with k recorded); Explain: 'borderline at kσ' wording.",
+      "citations": [
+        {
+          "title": "Verified Real Number Calculations: A Library for Interval Arithmetic",
+          "authors": "Marc Daumas, David Lester, César Muñoz",
+          "venue": "IEEE Transactions on Computers 58(2):226-237",
+          "year": 2009,
+          "doi_or_url": "https://doi.org/10.1109/TC.2008.213",
+          "quote": "we develop a rational interval arithmetic where real number calculations take place in an algebraic setting"
+        },
+        {
+          "title": "Proving Tight Bounds on Univariate Expressions with Elementary Functions in Coq",
+          "authors": "Érik Martin-Dorel, Guillaume Melquiond",
+          "venue": "Journal of Automated Reasoning 57(3):187-217",
+          "year": 2016,
+          "doi_or_url": "https://doi.org/10.1007/s10817-015-9350-4",
+          "quote": "the interval operators should satisfy the containment property: the resulting interval should be large enough so that it contains all the possible results of the operation applied to real numbers."
+        },
+        {
+          "title": "Mathlib.Algebra.Order.Interval.Basic (Interval arithmetic)",
+          "authors": "Yaël Dillies and the mathlib community",
+          "venue": "mathlib4 (Lean 4 library), file docstring",
+          "year": 2022,
+          "doi_or_url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Algebra/Order/Interval/Basic.lean",
+          "quote": "Note that this multiplication does not apply to `ℚ` or `ℝ`."
+        },
+        {
+          "title": "Lean 4.24.0 release notes",
+          "authors": "Lean FRO",
+          "venue": "Lean reference manual",
+          "year": 2025,
+          "doi_or_url": "https://lean-lang.org/doc/reference/latest/releases/v4.24.0",
+          "quote": "#9957 upstreams the definition of Rat from Batteries, for use in our planned interval arithmetic tactic."
+        },
+        {
+          "title": "A Lean 4 Framework for the Radii Polynomial Method",
+          "authors": "Fengyang Wang, Konstantin Mischaikow, Marcio Gameiro",
+          "venue": "arXiv preprint 2610.02335",
+          "year": 2026,
+          "doi_or_url": "https://arxiv.org/abs/2610.02335",
+          "quote": "Each native evaluation appears as one auxiliary axiom of every theorem that uses it, so such a theorem also relies on Lean’s compiler and runtime."
+        },
+        {
+          "title": "LeanCert: Verified interval arithmetic / numerical computation for Lean 4",
+          "authors": "Alejandro Radisic",
+          "venue": "GitHub repository",
+          "year": 2026,
+          "doi_or_url": "https://github.com/alerad/leancert",
+          "quote": "Search, heuristics, and candidate generation do not need to be trusted: a bad candidate fails the checker."
+        },
+        {
+          "title": "Delivering Inflated Explanations",
+          "authors": "Yacine Izza, Alexey Ignatiev, Peter J. Stuckey, Joao Marques-Silva",
+          "venue": "Proceedings of the AAAI Conference on Artificial Intelligence 38(11):12744-12753",
+          "year": 2024,
+          "doi_or_url": "https://doi.org/10.1609/aaai.v38i11.29170",
+          "quote": "In an inflated explanation the literals of the form x i = v i are replaced by literals of the form x i ∈ E i , where E i is a subset of the feature's domain."
+        },
+        {
+          "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+          "authors": "S. Krinner, S. Storz, P. Kurpiers, P. Magnard, J. Heinsoo, R. Keller, J. Lütolf, C. Eichler, A. Wallraff",
+          "venue": "EPJ Quantum Technology 6:2",
+          "year": 2019,
+          "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+          "quote": "Indicated errors include statistical errors between different cooldowns and reflect run-to-run temperature variations on the stages of the DR."
+        }
+      ],
+      "risks": "Turning a headline NOT MET into 'borderline' must be communicated carefully; choosing k is a policy decision; one-sided promises (M4) give infinite interval ends that need special cases in products; a migration from custom Q to core Rat touches every proof file.",
+      "priority": 6
+    }
+  ],
+  "rejected_ideas": [
+    "Re-proving configuration-side information monotonicity: a concurrent session added lean/CryoLean/Monotone.lean (verdict_refines, accept/reject_preserved_by_refinement, needMoreInfo_of_refined) during this research; M1 extends it rather than duplicating it.",
+    "A Belnap four-valued verdict for conflicting trusted sources: the 26 configurations contain 0 duplicate capability keys, so enforcing key uniqueness at decode time plus an order-invariance theorem (M1) is cheaper and closes the same hole.",
+    "Thorough (completion-exact) NEED INFO semantics, where NEED INFO holds exactly when two completions disagree: deciding it quantifies over all completions (minimal robust cores are Sigma2p-complete in the closely related disclosure setting); the compositional semantics is sound, and M3 offers one-directional witness checks instead.",
+    "Bayesian or entropy-based measurement selection (de Kleer and Williams) inside the trusted core: it needs priors over undocumented vendor specifications, which would turn NEED INFO into guesses; M3 keeps a deterministic decisiveness ranking, and entropy could only be an advisory layer.",
+    "LeanCert or native_decide for interval checks: native evaluation adds one auxiliary axiom per call (Wang et al. 2026), which violates the Gatekeeper's standard-axioms rule; exact rationals with generic theorems, or decide +kernel, are used instead.",
+    "Mathlib's NonemptyInterval as the interval type: its multiplication 'does not apply to ℚ or ℝ' because it assumes monotone multiplication, and CryoLean has signed products (eps_sample - eps_holder); the four-corner rule is needed (M6).",
+    "Floating-point intervals (FloatLib, Flean): exact rationals already decide a pair in 0.14 s median including process start, and floats would add rounding obligations without benefit.",
+    "Reconstructing Z3 proofs inside Lean (lean-smt or SMTCoq style): verdicts are recomputed by the verified checker, so small certificate checkers (M2, M3, M5) give the same assurance with a smaller trusted base.",
+    "Signal-temporal-logic robustness degrees as verdicts: CryoLean's constraints are static inequalities whose exact margins are already computed; robustness to tolerances is handled by interval semantics (M6).",
+    "Kernel decide over all schedule permutations as an optimality proof beyond about 8 experiments: factorial growth; M2 uses lower-bound certificates and a compiled exhaustive check only for small n.",
+    "Migrating the trusted core to Mathlib's ℚ: it would enlarge the build and the trusted base; core Lean 4.35 already ships Rat with grind ordered-ring instances.",
+    "Researching QuickXplain or minimal-correction-set algorithms for explanations: the parallel workflow covers them; M3 only adds the Lean certificate layer that makes any such output checkable."
+  ]
+}

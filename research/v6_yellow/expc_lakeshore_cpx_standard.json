@@ -1,0 +1,57 @@
+{
+  "configuration_id": "expc_lakeshore_cpx_standard",
+  "rows": [
+    {
+      "key": "module.capacitance_transient_spectroscopy",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Electronics console: two Model 336 temperature controllers; CPX options list contains no DLTS/capacitance-transient electronics",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Electronics console: Temperature controllers: Two Model 336s ... Optional configurations: Load lock (PS-LL-CPX), High vacuum (PS-HV-CPX), Low temperature (PS-LT-CPX), Very low temperature (PS-VLT-CPX), Vibration isolation (PS-PVIS), 12:1 microscope (PS-Z12). Options: Ring magnet kit (PS-RING-MAG-KIT)",
+      "document_title": "Lake Shore Cryotronics, Probe Stations catalog (CPX section, pp. 32-33)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13",
+      "location": "CPX 'Station details' (Electronics console) and 'Optional configurations'/'Options' lists, catalog pp. 32-33 (cached research/v5/cache/75efd8eb8da79422.txt); same console line on the CPX technical-specifications web page (research/v5/cache/451174e70c03125a.txt)",
+      "reasoning": "The manufacturer's complete CPX specification enumerates the included electronics console as two Model 336 temperature controllers, and its complete option list (load lock, high vacuum, LT/VLT stages, vibration isolation, microscope, ring magnet kit) contains no capacitance meter, pulse generator or transient-analysis electronics. The standard CPX configuration therefore positively does not include DLTS instrumentation. The catalog does show DLTS performed by a university group using Lake Shore stages with their own instruments, so a CPX paired with an external DLTS system would be a different (customer-integrated) configuration, not this standard one."
+    },
+    {
+      "key": "module.hall_measurement",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Hall measurement offered for CPX-VF, not CPX; CPX console is two Model 336 temperature controllers; only limited Hall with optional 0.2 T ring magnet",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Electronics console: Temperature controllers: Two Model 336s ... Also available: Hall measurement for the CPX-VF probe station. ... Limited Hall effect measurements possible with 0.2 T ring magnet installed",
+      "document_title": "Lake Shore Cryotronics, Probe Stations catalog (CPX section p. 33; applications overview p. 6; ordering information)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13",
+      "location": "CPX Station details p. 33; Applications overview footnote p. 6; Ordering information 'Sample measurement options' (cached research/v5/cache/75efd8eb8da79422.txt)",
+      "reasoning": "Lake Shore's Hall sourcing/switching/analysis package is offered for the magnet-equipped CPX-VF ('Also available: Hall measurement for the CPX-VF probe station'), not for the CPX, whose complete included electronics console is two Model 336 temperature controllers and whose option list contains no Hall instrumentation. The standard CPX also has no magnet (the 0.2 T ring magnet is an option requiring a different sample holder). So the standard configuration positively lacks installed Hall measurement instrumentation."
+    },
+    {
+      "key": "module.liquid_nitrogen_bath",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Split-flow cryostat; sample in vacuum chamber (<5 x 10^-4 Torr at room temperature); LN2 used only as flow coolant",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Type: 1 + 3-stage split flow cryostat (sample + 3 radiation shields); dual exhaust ports with independent flow control of sample and shields ... Cooling source: Liquid helium (LHe) or liquid nitrogen (LN2)",
+      "document_title": "Lake Shore: CPX cryogenic probe station specifications",
+      "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-cpx-cryogenic-probe-station",
+      "location": "Sample cooling assembly and Vacuum sections (cached research/v5/cache/451174e70c03125a.txt); same text in catalog CPX section p. 32-33",
+      "reasoning": "The manufacturer describes the CPX as a continuous-flow cryostat in which LHe or LN2 flows through the sample stage and shields via a transfer line and exhaust ports, while the sample sits in an evacuated chamber (spec: <5 x 10^-4 Torr at room temperature, <1 x 10^-5 Torr at helium base). A sample held in vacuum on a flow-cooled stage is by construction not immersed in a flooded liquid-nitrogen bath, so this configuration positively lacks a flooded LN2 sample bath."
+    },
+    {
+      "key": "magnetic_field.max",
+      "result": "value",
+      "value": {"kind": "max", "q": {"value": "190", "unit": "mT"}},
+      "value_as_printed": "Magnetic field: Ring magnet kit; nominal fields 0.19 T, 0.177 T, 0.144 T, 0.085 T (optional PS-RING-MAG-KIT)",
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The magnets are positioned 1 mm above the top of the sample holder, creating nominal fields of 0.19 T, 0.177 T, 0.144 T, and 0.085 T at the sample holder elevation.",
+      "document_title": "Lake Shore Cryotronics, Probe Stations catalog (Ring magnet sample holder kit, p. 23; CPX 'Magnetic field: Ring magnet kit')",
+      "source_url": "https://www.lakeshore.com/docs/default-source/product-downloads/catalog/probestationcatalog_l.pdf?sfvrsn=c0f0f3c1_13",
+      "location": "Ring magnet sample holder kit description p. 23 and CPX Sample cooling assembly 'Magnetic field' line p. 32 (cached research/v5/cache/75efd8eb8da79422.txt)",
+      "reasoning": "The CPX specification lists its only magnetic-field provision as the Ring magnet kit (PS-RING-MAG-KIT), listed under 'Options' on the CPX overview page; the kit gives at most 0.19 T = 190 mT nominal at the sample. The standard configuration uses the SH-1.25-G holder and the kit needs its own special grounded holder, so the magnet is an option not installed. Even fitted, 190 mT is below the 750 mT the cryo-Hall experiment requires; higher fields need the different CPX-VF (+/-2.5 T) station."
+    }
+  ]
+}

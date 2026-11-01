@@ -1,0 +1,113 @@
+{
+ "id": "bio_tokuyasu_cryo_ultramicrotomy",
+ "name": "Tokuyasu cryo-ultramicrotomy of 2.3 M sucrose-infused cell pellets: trimming at -100 °C, 50-80 nm sections at -120 °C (Leica UC7/FC7)",
+ "plain_name": "Cut ultra-thin frozen slices of cells for antibody gold labelling",
+ "industry": "biology_and_biotechnology",
+ "description": "Gelatin-embedded cell pellets (about 1 mm cubes) are infused with 2.3 M sucrose, frozen in liquid nitrogen on aluminium pins, trimmed at -100 °C and sectioned at -120 °C into 50-80 nm ultrathin cryosections in a cryo-ultramicrotome, then thawed for immunogold labelling and TEM.",
+ "keywords": [
+  "Cut ultra-thin frozen slices of cells for antibody gold labelling",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "De Mazière A, van der Beek J, van Dijk S, de Heus C, Reggiori F, Koike M, Klumperman J (2022). An optimized protocol for immuno-electron microscopy of endogenous LC3. Autophagy. doi:10.1080/15548627.2022.2056864",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9673964/fullTextXML",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Leica EM UC6",
+  "Leica EM UC7",
+  "cryo-chamber FC6",
+  "cryo-chamber FC7",
+  "Diatome Cryo-Immuno 35°"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 153150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 173150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Trimming at -100 °C and ultrathin sectioning at -120 °C.",
+   "evidence_ids": [
+    "v4e_bio_tokuyasu_cryo_ultramicrotomy_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 50,
+     "unit": "nm"
+    },
+    "hi": {
+     "value": 80,
+     "unit": "nm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ultrathin cryosections of 50-80 nm are required.",
+   "evidence_ids": [
+    "v4e_bio_tokuyasu_cryo_ultramicrotomy_1"
+   ],
+   "conditions": [],
+   "key": "section_thickness.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Blocks are frozen and stored in liquid nitrogen before cryosectioning.",
+   "evidence_ids": [
+    "v4e_bio_tokuyasu_cryo_ultramicrotomy_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1.42",
+     "unit": "mm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "About 1 mm cubic blocks; circumscribed diameter of a 1 mm x 1 mm face is 1.414 mm (rounded up).",
+   "evidence_ids": [
+    "v4e_bio_tokuyasu_cryo_ultramicrotomy_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

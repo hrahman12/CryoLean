@@ -1,0 +1,18 @@
+{
+ "name": "fig_compat_region_3d",
+ "title": "Three-dimensional compatibility region over temperature, magnetic field and heat load",
+ "question": "What region of (temperature, field, heat load) can a real configuration certify, and where does missing documentation turn the answer into Need more information rather than a pass or a fail?",
+ "model": "Mandatory requirements temperature.range point_within T and magnetic_field.max at_least B, plus the joule_heating_vs_cooling_power coupled model (I^2 R = Q <= P_cool(T_doc), T_doc <= T_op = T).",
+ "data": "3920 Lean checks (check_batch, 14.5 s): 14 T x 9 or 11 B x 14 Q for lakeshore_crx_vf and qd_dynacool_9T_eto_res; envelopes from data/cryostats/lakeshore_crx.json and qd_ppms_dynacool.json. paper/data/fig_compat_region_3d.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Markers are Lean checker verdicts on a (T, B, Q) grid for a synthetic experiment requiring temperature T, field B and the Joule-heating model with heat load Q; non-passing points are drawn faint. The box is the sourced envelope (temperature range, maximum field and, where documented, cooling power), drawn as an overlay. For the CRX-VF (a) the certified volume is bounded by 10-420 K, 2.5 T and the 1 W cooling power at 4.2 K; for the DynaCool (b), whose cooling power is not documented, every point inside the envelope is Need more information.",
+ "section": "main",
+ "script": "paper/scripts/fig_physics3d.py",
+ "command": "python paper/scripts/fig_physics3d.py",
+ "files": [
+  "paper/figures/fig_compat_region_3d.png",
+  "paper/figures/fig_compat_region_3d.svg",
+  "paper/figures/fig_compat_region_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig_compat_region_3d.html"
+}

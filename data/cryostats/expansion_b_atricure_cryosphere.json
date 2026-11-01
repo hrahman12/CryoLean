@@ -1,0 +1,86 @@
+{
+  "id": "expansion_b_atricure_cryosphere",
+  "manufacturer": "AtriCure",
+  "model": "cryoSPHERE CRYOS with cryoICE BOX",
+  "family": "nerve_cryoablation_probe",
+  "description": "A real specialized N2O surgical cryoprobe configuration. Probe temperature is kept separate from tissue and room temperature; no pain-relief or clinical-eligibility result is inferred.",
+  "documents": [
+    {
+      "id": "expb_doc_atricure_cryosphere",
+      "title": "AtriCure cryoSPHERE official IFU",
+      "url": "https://asia.atricure.com/sites/default/files/devices-ifu/IFU-0036.C.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_atricure_cryosphere_documented",
+      "name": "AtriCure cryoSPHERE CRYOS with cryoICE BOX",
+      "configuration_basis": "The IFU specifies cryoSPHERE with cryoICE BOX; an external N2O cylinder is a required separately supplied utility. A thoracoscopic visualization chain is not asserted installed.",
+      "capabilities": [
+        {
+          "key": "process.nerve_cryoneurolysis",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_cryoice"
+          ]
+        },
+        {
+          "key": "probe.temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "203.15",
+              "unit": "K"
+            },
+            "hi": {
+              "value": "223.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_cryoice"
+          ],
+          "note": "Typical probe operating envelope; not a guaranteed tissue-temperature range."
+        },
+        {
+          "key": "probe.freeze_duration.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "120",
+              "unit": "s"
+            },
+            "hi": {
+              "value": "120",
+              "unit": "s"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_cryoice"
+          ],
+          "note": "Single documented120s default setting; no unsupported minimum or maximum duration inferred."
+        },
+        {
+          "key": "module.direct_visualization",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "The candidate console/probe does not establish an installed thoracoscopic visualization chain."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+ "id": "mat_thermal_expansion_tma_130_800k",
+ "name": "Linear thermal expansion (CTE) of borosilicate glasses LK5 and Borofloat 33 from 130 K to 800 K by push-rod thermomechanical analysis",
+ "plain_name": "Measure how much a glass shrinks and grows between -143 C and 526 C",
+ "industry": "materials_and_nanotechnology",
+ "description": "20 mm glass samples stand under a quartz push-rod probe (0.2 N) in a thermomechanical analyser; the chamber is pre-cooled and then heated at 10 K/min from about 130 K to 800 K while the length change is logged; CTE polynomials are fitted for anodic silicon-glass bonding (MEMS) design.",
+ "keywords": [
+  "Measure how much a glass shrinks and grows between -143 C and 526 C",
+  "materials_and_nanotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Sinev L. S., Petrov I. D. Linear thermal expansion coefficient (at temperatures from 130 to 800 K) of borosilicate glasses applicable for coupling with silicon in microelectronics. Steklo i Keramika 2016 no.1 35-38; Glass and Ceramics 73 (2016) 32-35, doi:10.1007/s10717-016-9820-0 (arXiv:1801.01181)",
+   "url": "https://arxiv.org/pdf/1801.01181",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "TMA 7100 SII Nanotechnology thermomechanical analyzer"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 130,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 800,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The CTE data set covers 130 K to 800 K; the sample space must span both ends.",
+   "evidence_ids": [
+    "v4e_mat_thermal_expansion_tma_130_800k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 20,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "20 mm long samples stand on the pedestal under the vertical push rod, so the usable length along the loading axis must be at least 20 mm.",
+   "evidence_ids": [
+    "v4e_mat_thermal_expansion_tma_130_800k_1"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 10000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the heating run was made at 10 K/min.",
+   "evidence_ids": [
+    "v4e_mat_thermal_expansion_tma_130_800k_2"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

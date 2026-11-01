@@ -1,0 +1,185 @@
+{
+ "id": "iceoxford_dry_ice_3k_inv",
+ "manufacturer": "ICEoxford",
+ "model": "DRY ICE 3K INV",
+ "family": "closed-cycle (GM) top-access cryostat, sample in vacuum",
+ "description": "Cryogen-free inverted-cold-head cryostat, <3 K to 300 K, 50 mW at 3 K, sample in vacuum with 81 mm (wired) / 134 mm (unwired) sample space, up to 8 electrical access ports for DC/RF/fibre wiring kits, optional windows, no magnet; suited to cold detector, SIS/LNA component and receiver tests at 4-50 K.",
+ "documents": [
+  {
+   "id": "doc_iceoxford_dry_ice_3k_inv_0",
+   "url": "https://www.iceoxford.com/DRY-ICE-3K-INV.htm",
+   "title": "DRY ICE 3K INV (ICEoxford product page, SPECIFICATION table)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_iceoxford_dry_ice_3k_inv_1",
+   "url": "https://www.iceoxford.com/files/image/files/DRY%20ICE%203K-10K%20INV%20Brochure%20reduced(1).pdf",
+   "title": "DRY ICE 3K INV brochure (ICEoxford)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "iceoxford_dry_ice_3k_inv_wired",
+   "name": "DRY ICE 3K INV (3 K cold head) with DC/RF wiring kit, no windows",
+   "configuration_basis": "ICEoxford DRY ICE 3K INV standard (<3 K base, Lakeshore 335 controller) with a DC/RF wiring kit installed on its electrical access ports (sample space then 81 mm diameter). Optical access options NOT fitted. Specification table states Magnetic Field N/A. 8 K/10 K base options are not this configuration.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 3000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 300000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 3000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_vacuum.available"
+     ]
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 81000,
+       "unit": "um"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_sample.diameter.max"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": []
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_cryogen.type"
+     ]
+    },
+    {
+     "key": "temperature.stability",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 14400,
+       "unit": "s"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_iceoxford_dry_ice_3k_inv_wired_cooldown_time.max"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "iceoxford_dry_ice_3k_inv_wired",
+   "key": "temperature.stability",
+   "why": "The quote is verbatim, but stability is only specified up to 50 K ('±50mK @ 50K'). The machine runs to 300 K, and no stability is stated for 50-300 K. A single 50 mK value would wrongly certify stability over a range where none is documented. A range-limited value would be acceptable."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "astronomy_and_astrophysics"
+ ]
+}

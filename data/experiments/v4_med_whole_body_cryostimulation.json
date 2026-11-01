@@ -1,0 +1,90 @@
+{
+ "id": "med_whole_body_cryostimulation",
+ "name": "Whole-body cryostimulation in a three-chamber cryo-room: precooling at -30 C and -60 C then 3-4 min at -110 C, twice weekly",
+ "plain_name": "Give a patient a short session in an extremely cold therapy room",
+ "industry": "healthcare_and_medicine",
+ "description": "Clinical-trial adjunct to obesity management: 28 supervised whole-body cryotherapy sessions in a Univers Cryo-Combi three-chamber system, brief precooling at -30 C and -60 C followed by 3-4 min at -110 C; the person breathes the cold air at ambient pressure.",
+ "keywords": [
+  "Give a patient a short session in an extremely cold therapy room",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Karppinen JE et al. Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial. Obesity 2025. DOI 10.1002/oby.70019",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Ritter H et al. Analgesia by Cryotherapy in Patients with Chronic Pain with Analysis of Pain-Modulating and Pro-Inflammatory Parameters - A Clinical Controlled Pilot Study. J Clin Med 2025. DOI 10.3390/jcm14217567",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12608988/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "three-chamber WBC system (Univers Cryo-Combi, Oy MJG Univers Ab, Helsinki, Finland)",
+  "in-house cryochamber (three rooms, Helios Vogelsang Gommern Specialist Hospital)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 163150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 243150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber system must provide -30 C and -60 C precooling and the -110 C treatment chamber.",
+   "evidence_ids": [
+    "v4e_med_whole_body_cryostimulation_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "absent"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The patient is exposed to cold air; an evacuated sample space cannot host a person.",
+   "evidence_ids": [
+    "v4e_med_whole_body_cryostimulation_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 163150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Treatment-chamber temperature of about -110 C (second clinical source, chronic-pain patients).",
+   "evidence_ids": [
+    "v4e_med_whole_body_cryostimulation_2"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

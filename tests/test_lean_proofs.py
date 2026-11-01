@@ -22,6 +22,8 @@ REQUIRED = [
     # campaign scheduling
     "validSchedule_sound", "validSchedule_complete", "validSchedule_bounds", "validSchedule_disjoint",
     "validSchedule_only_accepted", "validSchedule_rejects_unaccepted", "resolve_ids",
+    # information monotonicity (Monotone.lean)
+    "verdict_refines", "accept_preserved_by_refinement", "reject_preserved_by_refinement", "needMoreInfo_of_refined",
 ]
 
 

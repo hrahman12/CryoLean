@@ -225,3 +225,123 @@ def test_certified_simulation_is_trusted_in_lean(lean_available):
            "requirements": [{"keys": ["temperature.gradient.max"], "constraint": {"kind": "at_least", "q": Q(1, "K")},
                              "mandatory": True, "origin": "user_entered"}]}
     assert lean_runner.check(cfg, exp)["verdict"] == "REQUIREMENTS_MET"
+
+
+# ------------------------------------------------------------------ documented absence (install "not_available")
+@pytest.mark.parametrize("status,expected", [("manufacturer_specification", "DOES_NOT_MEET_REQUIREMENTS"),
+                                             ("inferred_estimate", "NEED_MORE_INFORMATION"),
+                                             ("unknown", "NEED_MORE_INFORMATION")])
+def test_not_available_is_a_documented_absence(lean_available, status, expected):
+    """SYNTHETIC fixture. 'not_available' (the instrument does not offer the capability) decodes to Lean's absent
+    case: with trusted evidence it fails a requirement for the capability; untrusted, it only gives NEED INFO."""
+    cfg = {"id": "c", "equipment_id": "s", "name": "s", "capabilities": [
+        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "not_available",
+         "evidence_status": status, "evidence_ids": ["ev_x"]}]}
+    exp = {"id": "e", "name": "e", "industry": "x", "params": [], "coupled": [], "confirmed": True,
+           "requirements": [{"keys": ["magnetic_field.max"], "constraint": {"kind": "at_least", "q": Q(9, "T")},
+                             "mandatory": True, "origin": "user_entered"}]}
+    r = lean_runner.check(cfg, exp)
+    assert r["verdict"] == expected
+    if expected.startswith("DOES"):
+        assert "not available" in r["checks"][0]["explanation"]
+
+
+def test_not_available_requires_trusted_evidence(built_db):
+    import copy
+    from cryolean.validation import Report, validate_configuration
+    cat = Catalog(str(built_db))
+    cfg = copy.deepcopy(cat.get_configuration(CRX))
+    cfg["capabilities"].append({"key": "section_thickness.range", "value": {"kind": "unknown"}, "install": "not_available",
+                                "evidence_status": "inferred_estimate", "evidence_ids": []})
+    rep = Report()
+    validate_configuration(cat, cfg, "cfg", rep)
+    assert any("not_available" in str(i) for i in rep.errors)
+
+
+def test_not_available_is_never_offered_as_an_option():
+    from cryolean import smt
+    cfg = {"id": "c", "capabilities": [{"key": "magnetic_field.max", "value": {"kind": "max", "q": Q(14, "T")},
+                                        "install": "not_available", "evidence_status": "manufacturer_specification",
+                                        "evidence_ids": ["ev_x"]}]}
+    st = smt.key_status(cfg, "magnetic_field.max", {"kind": "at_least", "q": Q(9, "T")})
+    assert st["kind"] == "fail" and "option_satisfies" not in st
+    hyp = smt.hypothetical(cfg, ["magnetic_field.max"])
+    assert hyp["capabilities"][0]["install"] == "not_available"
+
+
+# ------------------------------------------------------------------ information monotonicity (empirical companion of
+# the Lean theorem verdict_refines in lean/CryoLean/Monotone.lean)
+def test_refinement_never_changes_a_decided_verdict(lean_available):
+    """SYNTHETIC fixtures. Start from configurations with gaps (missing keys, unknown values, estimates), refine them
+    by documenting the gaps with trusted values, and check that every decided verdict is unchanged."""
+    import random
+    rng = random.Random(5)
+    keys = ["temperature.range", "magnetic_field.max", "optical_access", "electrical.dc_lines", "sample.width.max"]
+    good = {"temperature.range": {"kind": "range", "lo": Q(1, "K"), "hi": Q(400, "K")},
+            "magnetic_field.max": {"kind": "max", "q": Q(20, "T")}, "optical_access": {"kind": "flag", "b": True},
+            "electrical.dc_lines": {"kind": "count", "n": 48}, "sample.width.max": {"kind": "max", "q": Q(50, "mm")}}
+    bad = {"temperature.range": {"kind": "range", "lo": Q(10, "K"), "hi": Q(400, "K")},
+           "magnetic_field.max": {"kind": "max", "q": Q(5, "T")}, "optical_access": {"kind": "flag", "b": False},
+           "electrical.dc_lines": {"kind": "count", "n": 4}, "sample.width.max": {"kind": "max", "q": Q(2, "mm")}}
+    reqs = [{"keys": ["temperature.range"], "constraint": {"kind": "point_within", "q": Q(4, "K")}},
+            {"keys": ["magnetic_field.max"], "constraint": {"kind": "at_least", "q": Q(9, "T")}},
+            {"keys": ["optical_access"], "constraint": {"kind": "flag_is", "b": True}},
+            {"keys": ["electrical.dc_lines"], "constraint": {"kind": "count_at_least", "n": 8}},
+            {"keys": ["sample.width.max"], "constraint": {"kind": "at_least", "q": Q(3, "mm")}}]
+    exp = {"id": "e", "name": "e", "industry": "x", "params": [], "coupled": [], "confirmed": True,
+           "requirements": [{**r, "mandatory": True, "origin": "user_entered"} for r in reqs]}
+    pairs = []
+    for i in range(400):
+        caps_before, caps_after = [], []
+        for k in keys:
+            truth = rng.choice([good[k], bad[k]])
+            state = rng.choice(["known", "known", "missing", "unknown_value", "estimate"])
+            rec = {"key": k, "value": truth, "install": "installed", "evidence_status": "manufacturer_specification", "evidence_ids": ["e"]}
+            if state == "known":
+                caps_before.append(rec)
+            elif state == "unknown_value":
+                caps_before.append({**rec, "value": {"kind": "unknown"}, "evidence_status": "unknown"})
+            elif state == "estimate":
+                caps_before.append({**rec, "evidence_status": "inferred_estimate"})
+            caps_after.append(rec)                    # refinement: the gap is documented with a trusted value
+        pairs.append(({"id": f"b{i}", "equipment_id": "s", "name": "s", "capabilities": caps_before}, exp))
+        pairs.append(({"id": f"a{i}", "equipment_id": "s", "name": "s", "capabilities": caps_after}, exp))
+    res = lean_runner.check_batch(pairs)
+    decided = 0
+    for before, after in zip(res[0::2], res[1::2]):
+        if before["verdict"] != "NEED_MORE_INFORMATION":
+            decided += 1
+            assert after["verdict"] == before["verdict"]
+    assert decided > 50
+
+
+# ------------------------------------------------------------------ data completeness per cryostat
+def test_completeness_counts_only_configuration_side_gaps(lean_available):
+    from cryolean import completeness
+    cfg = {"id": "c", "equipment_id": "s", "name": "s", "capabilities": [
+        {"key": "temperature.range", "value": {"kind": "range", "lo": Q(1, "K"), "hi": Q(400, "K")}, "install": "installed",
+         "evidence_status": "manufacturer_specification", "evidence_ids": ["e"]},
+        {"key": "magnetic_field.max", "value": {"kind": "unknown"}, "install": "installed", "evidence_status": "unknown",
+         "evidence_ids": []}]}
+    exp = {"id": "e", "name": "e", "industry": "x", "params": [], "coupled": [], "confirmed": True,
+           "requirements": [{"keys": ["temperature.range"], "constraint": {"kind": "point_within", "q": Q(4, "K")},
+                             "mandatory": True, "origin": "user_entered"},
+                            {"keys": ["magnetic_field.max"], "constraint": {"kind": "at_least", "q": Q(9, "T")},
+                             "mandatory": True, "origin": "user_entered"}]}
+    r = lean_runner.check(cfg, exp)
+    g = completeness.classify(cfg, exp, r)
+    assert r["verdict"] == "NEED_MORE_INFORMATION" and g["configuration"] == ["magnetic_field.max"] and g["experiment"] == []
+    assert completeness.informative(cfg["capabilities"][0]) and not completeness.informative(cfg["capabilities"][1])
+    assert completeness.informative({"install": "not_available", "evidence_status": "manufacturer_specification",
+                                     "value": {"kind": "unknown"}})
+
+
+def test_bridge_data_completeness(api):
+    r = data(api.get_data_completeness())
+    assert len(r["configurations"]) == sum(len(e["configurations"]) for e in data(api.list_equipment())["equipment"])
+    for rec in r["configurations"].values():
+        assert 0 <= rec["score"] <= 1 and rec["fully_documented"] == (len(rec["complete_for"]) == rec["experiments"])
+        # a decided verdict always counts as complete (no data can change it: verdict_refines)
+        for eid, v in rec["verdicts"].items():
+            if v != "NEED_MORE_INFORMATION":
+                assert eid in rec["complete_for"]

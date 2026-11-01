@@ -1,0 +1,105 @@
+{
+ "id": "chem_mdsc_frozen_tg",
+ "name": "Modulated DSC of a frozen biopharmaceutical formulation: equilibration at -70 C and 1 C/min ramp to determine the glass transition of the freeze-concentrate",
+ "plain_name": "Find the temperature at which a frozen medicine mixture softens",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "A liquid vaccine formulation is sealed in a hermetic Tzero pan, equilibrated at -70 C, held for 5 minutes and ramped at 1 C/min to 100 C with heat-cool temperature modulation, so that the glass transition of the maximally freeze-concentrated solution can be read from the reversing heat-flow signal. That transition sets the maximum allowable product temperature of the subsequent freeze-drying cycle.",
+ "keywords": [
+  "Find the temperature at which a frozen medicine mixture softens",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration, npj Vaccines 8, 83 (2023)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Q2000 DSC (TA Instruments, Elstree, Herts, UK)",
+  "Tzero pan with Tzero hermetic lid (TA Instruments)",
+  "Virtis Advantage Plus",
+  "Lyostar 3"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 203150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 373150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The measurement cycle runs from an equilibration at -70 C up to 100 C in one ramp, so the sample space must cover that whole span.",
+   "evidence_ids": [
+    "v4e_chem_mdsc_frozen_tg_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 203150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The glass transition of the freeze-concentrate is below -30 C, so the instrument must equilibrate at -70 C before the ramp begins.",
+   "evidence_ids": [
+    "v4e_chem_mdsc_frozen_tg_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The underlying heating ramp is 1 C/min (1000 mK/min); the machine must be able to drive at least that rate under control.",
+   "evidence_ids": [
+    "v4e_chem_mdsc_frozen_tg_2"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The readout is a modulated differential-scanning-calorimetry heat-flow signal, so the machine must be a DSC and not just a cold stage.",
+   "evidence_ids": [
+    "v4e_chem_mdsc_frozen_tg_3"
+   ],
+   "conditions": [],
+   "key": "process.dsc"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

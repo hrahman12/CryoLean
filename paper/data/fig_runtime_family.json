@@ -1,0 +1,285 @@
+{
+ "source": "paper/data/bench_runtime_family.json",
+ "env": {
+  "env_json": {
+   "machine": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+   "python": "3.12.10",
+   "os": "Windows-11-10.0.26200-SP0",
+   "lean": "cryolean v2 (Lean 4.35.0)",
+   "date": "2026-10-31"
+  },
+  "cpu": "Intel(R) Core(TM) i9-14900HX",
+  "cpu_id": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "physical_cores": 24,
+  "logical_cpus": 32,
+  "ram_gib": 29.7,
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "lean": "cryolean v2 (Lean 4.35.0)",
+  "z3": "5.3.3",
+  "lean_binary_bytes": 107344896,
+  "timer": "time.perf_counter (wall clock)",
+  "gc": "gc.collect() before every timed call; GC enabled during the call",
+  "measured_at": "2026-10-31 21:39:19",
+  "lean_binary_mtime": "2026-10-31 21:23:16",
+  "lean_binary_sha256": "d015b3a781c2961afac08f1de46fb0136d997b43dbbc9a38d414e4e8c4a1a7a4",
+  "catalog_db_mtime": "2026-10-31 21:23:29",
+  "provenance_note": "binary and catalog database last modified at 21:23 (before the run started 21:39); hash recorded after the run",
+  "benchmark_run": "2026-10-31 21:39-23:11"
+ },
+ "families": {
+  "clinical cryostat for frozen sectioning (encapsulated rotary microtome in a refrigerated cryochamber)": {
+   "short": "Cryostat microtome (Leica CM1950)",
+   "pairs": 33,
+   "configurations": [
+    "leica_cm1950_dualecotec_standard",
+    "leica_cm1950_genA_standard",
+    "leica_cm1950_genA_vacuum_motor_objcool"
+   ],
+   "pair_medians_ms": {
+    "median": 151.93759999237955,
+    "q1": 119.73520001629367,
+    "q3": 198.5704000107944,
+    "min": 96.28030000021681,
+    "max": 268.0805000127293,
+    "n": 33
+   },
+   "verdicts": {
+    "DOES_NOT_MEET_REQUIREMENTS": 31,
+    "REQUIREMENTS_MET": 2
+   }
+  },
+  "temperature-controlled microscope heating/freezing stage (liquid-nitrogen cooled)": {
+   "short": "LN2 microscope stage (Linkam THMS600)",
+   "pairs": 33,
+   "configurations": [
+    "linkam_thms600_heating_only",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96"
+   ],
+   "pair_medians_ms": {
+    "median": 156.35350003140047,
+    "q1": 116.0459999809973,
+    "q3": 232.20580001361668,
+    "min": 102.43410000111908,
+    "max": 307.9254000331275,
+    "n": 33
+   },
+   "verdicts": {
+    "NEED_MORE_INFORMATION": 4,
+    "REQUIREMENTS_MET": 6,
+    "DOES_NOT_MEET_REQUIREMENTS": 23
+   }
+  },
+  "cryogen-free closed-cycle-refrigerator optical cryostat, sample in vacuum, bottom-loading": {
+   "short": "CCR optical cryostat (Lake Shore CCS)",
+   "pairs": 44,
+   "configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "pair_medians_ms": {
+    "median": 165.14279998955317,
+    "q1": 127.31142500706483,
+    "q3": 220.97427501284983,
+    "min": 86.1239000223577,
+    "max": 286.012299999129,
+    "n": 44
+   },
+   "verdicts": {
+    "REQUIREMENTS_MET": 6,
+    "DOES_NOT_MEET_REQUIREMENTS": 31,
+    "NEED_MORE_INFORMATION": 7
+   }
+  },
+  "cryogen-free (Cryofree) superconducting magnet system with variable temperature insert": {
+   "short": "Magnet + VTI (Oxford TeslatronPT)",
+   "pairs": 44,
+   "configurations": [
+    "oxford_teslatronpt_12T",
+    "oxford_teslatronpt_14T",
+    "oxford_teslatronpt_6_1_1T_vector",
+    "oxford_teslatronpt_8T"
+   ],
+   "pair_medians_ms": {
+    "median": 174.08825000165962,
+    "q1": 121.88644999696407,
+    "q3": 231.38062500220258,
+    "min": 87.38740003900602,
+    "max": 299.1042999783531,
+    "n": 44
+   },
+   "verdicts": {
+    "NEED_MORE_INFORMATION": 10,
+    "DOES_NOT_MEET_REQUIREMENTS": 34
+   }
+  },
+  "cryogen-free (Cryofree) optical cryostat for spectroscopy": {
+   "short": "Optical cryostat (Oxford OptistatDry)",
+   "pairs": 22,
+   "configurations": [
+    "oxford_optistatdry_blv",
+    "oxford_optistatdry_tlex"
+   ],
+   "pair_medians_ms": {
+    "median": 174.8589499911759,
+    "q1": 137.30287498037796,
+    "q3": 204.32077499572188,
+    "min": 103.66900003282353,
+    "max": 312.49290000414476,
+    "n": 22
+   },
+   "verdicts": {
+    "REQUIREMENTS_MET": 4,
+    "DOES_NOT_MEET_REQUIREMENTS": 18
+   }
+  },
+  "cryogen-free physical property measurement platform": {
+   "short": "Cryogen-free PPMS (QD DynaCool)",
+   "pairs": 33,
+   "configurations": [
+    "qd_dynacool_12T_vsm",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "qd_dynacool_9T_eto_res"
+   ],
+   "pair_medians_ms": {
+    "median": 177.24220000673085,
+    "q1": 144.3169999984093,
+    "q3": 216.08539996668696,
+    "min": 110.01060000853613,
+    "max": 268.34720000624657,
+    "n": 33
+   },
+   "verdicts": {
+    "DOES_NOT_MEET_REQUIREMENTS": 28,
+    "NEED_MORE_INFORMATION": 3,
+    "REQUIREMENTS_MET": 2
+   }
+  },
+  "liquid-helium physical property measurement platform": {
+   "short": "LHe PPMS (Quantum Design PPMS)",
+   "pairs": 22,
+   "configurations": [
+    "qd_ppms_classic_14T",
+    "qd_ppms_classic_16T"
+   ],
+   "pair_medians_ms": {
+    "median": 179.0669999900274,
+    "q1": 119.5535500155529,
+    "q3": 231.78309999639168,
+    "min": 103.09109999798238,
+    "max": 313.9952000346966,
+    "n": 22
+   },
+   "verdicts": {
+    "DOES_NOT_MEET_REQUIREMENTS": 22
+   }
+  },
+  "cryogen-free dilution refrigerator measurement system": {
+   "short": "Dilution refrigerator (Bluefors LD)",
+   "pairs": 33,
+   "configurations": [
+    "bluefors_ld250_manual_v2",
+    "bluefors_ld400_hdw",
+    "bluefors_ld450_current"
+   ],
+   "pair_medians_ms": {
+    "median": 185.12770003871992,
+    "q1": 155.61419998994097,
+    "q3": 218.66439998848364,
+    "min": 108.68139995727688,
+    "max": 264.7959999740124,
+    "n": 33
+   },
+   "verdicts": {
+    "DOES_NOT_MEET_REQUIREMENTS": 29,
+    "NEED_MORE_INFORMATION": 4
+   }
+  },
+  "closed-cycle-refrigerator (CCR) cryogenic probe station": {
+   "short": "CCR probe station (Lake Shore CRX)",
+   "pairs": 22,
+   "configurations": [
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf"
+   ],
+   "pair_medians_ms": {
+    "median": 190.3842499887105,
+    "q1": 123.61542499274947,
+    "q3": 248.79055000201333,
+    "min": 101.39389999676496,
+    "max": 297.6243000011891,
+    "n": 22
+   },
+   "verdicts": {
+    "REQUIREMENTS_MET": 5,
+    "DOES_NOT_MEET_REQUIREMENTS": 17
+   }
+  }
+ },
+ "order": [
+  "clinical cryostat for frozen sectioning (encapsulated rotary microtome in a refrigerated cryochamber)",
+  "temperature-controlled microscope heating/freezing stage (liquid-nitrogen cooled)",
+  "cryogen-free closed-cycle-refrigerator optical cryostat, sample in vacuum, bottom-loading",
+  "cryogen-free (Cryofree) superconducting magnet system with variable temperature insert",
+  "cryogen-free (Cryofree) optical cryostat for spectroscopy",
+  "cryogen-free physical property measurement platform",
+  "liquid-helium physical property measurement platform",
+  "cryogen-free dilution refrigerator measurement system",
+  "closed-cycle-refrigerator (CCR) cryogenic probe station"
+ ],
+ "process_start": {
+  "median": 0.14532809995580465,
+  "q1": 0.09408119998988695,
+  "q3": 0.21189264999702573,
+  "min": 0.06756370002403855,
+  "max": 0.45181489997776225,
+  "n": 87
+ },
+ "spearman_time_vs_input_bytes": {
+  "rho": 0.07379386025479329,
+  "p": 0.21342631871270254
+ },
+ "kruskal_wallis_family": {
+  "H": 6.004504364814807,
+  "p": 0.646727305906643
+ },
+ "by_verdict": {
+  "REQUIREMENTS_MET": {
+   "median": 0.1510597999440506,
+   "q1": 0.11919559998204932,
+   "q3": 0.2046445999876596,
+   "min": 0.09933669999008998,
+   "max": 0.31249290000414476,
+   "n": 25
+  },
+  "NEED_MORE_INFORMATION": {
+   "median": 0.1700866000028327,
+   "q1": 0.1353946000308497,
+   "q3": 0.23881557500862982,
+   "min": 0.09682440001051873,
+   "max": 0.2991042999783531,
+   "n": 28
+  },
+  "DOES_NOT_MEET_REQUIREMENTS": {
+   "median": 0.17382600001292303,
+   "q1": 0.1268693000311032,
+   "q3": 0.22089330002199858,
+   "min": 0.0861239000223577,
+   "max": 0.3139952000346966,
+   "n": 233
+  }
+ },
+ "all_pairs": {
+  "median": 0.17246745000011288,
+  "q1": 0.12608990003354847,
+  "q3": 0.22097842501534615,
+  "min": 0.0861239000223577,
+  "max": 0.3139952000346966,
+  "n": 286
+ },
+ "verdict_agreement_with_e1_grid": 157,
+ "verdicts_stable_across_repeats": 286
+}

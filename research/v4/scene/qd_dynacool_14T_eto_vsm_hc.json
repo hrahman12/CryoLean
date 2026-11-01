@@ -1,0 +1,153 @@
+{
+  "configuration_id": "qd_dynacool_14T_eto_vsm_hc",
+  "archetype": "ppms_magnet_platform",
+  "outer": {
+    "shape": "box",
+    "height": {
+      "value": 127,
+      "unit": "cm",
+      "location": "Cryostat & Can Rack (14 T), D x W x H",
+      "quote": "Cryostat & Can Rack 14 T: 94 cm x 132 cm x 127 cm; ~328 kg",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    },
+    "width_or_diameter": {
+      "value": 132,
+      "unit": "cm",
+      "location": "Cryostat & Can Rack (14 T) width",
+      "quote": "Cryostat & Can Rack 14 T: 94 cm x 132 cm x 127 cm; ~328 kg",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    },
+    "depth": {
+      "value": 94,
+      "unit": "cm",
+      "location": "Cryostat & Can Rack (14 T) depth",
+      "quote": "Cryostat & Can Rack 14 T: 94 cm x 132 cm x 127 cm; ~328 kg",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    },
+    "color_note": "Exterior is a fiberglass housing over a steel magnet shield; removable top cryostat cover; CAN module bay attached to the side. Separate electronics cabinet 67 x 70 x 100 cm (~70 kg) and Cryomech helium compressor 69 x 50 x 62 cm (~134 kg)."
+  },
+  "stages": [
+    {
+      "name": "Pulse tube first stage / main radiation shield",
+      "temperature_K": 45,
+      "quote": "The first stage typically runs at ~ 45 K, while the second stage typically runs at ~ 4.2 K.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "name": "Pulse tube second stage / 4 K Plate (thermosiphon from ~150 cc LHe bucket; magnet conduction-cooled from it)",
+      "temperature_K": 4.2,
+      "quote": "The 4 K Plate is cooled by contact with approximately 150 cc of liquid helium in the bottom of the bucket.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "name": "Sample chamber isothermal region / puck block (base)",
+      "temperature_K": 1.8,
+      "quote": "1.8 to 400 K @ 60Hz; 1.85 to 400 K @ 50Hz (Continuous Low Temperature Control and Temperature Sweep modes)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    },
+    {
+      "name": "Cryopump cold surfaces (first stage)",
+      "temperature_K": 70,
+      "quote": "cold metal surfaces at about 70 K and charcoal cooled to about 4 K by the cryocooler system in the cryostat",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "vertical cylindrical sample chamber (2.5 cm clear bore) inside the 14 T solenoid bore; 12-pin keyed puck connector at the bottom; field centre 4.05 cm above puck surface",
+    "description": "Open-architecture vertical sample chamber; a 2.3 cm diameter gold-plated copper puck plugs into a 12-pin connector at the chamber bottom. ETO puck, VSM puck + linear motor, or heat-capacity puck (3 mm x 3 mm platform) are installed one at a time. Magnet centre 4 cm above puck surface; 14 T uniformity +/-0.1% over 5.5 cm on axis.",
+    "diameter_or_width": {
+      "value": 25,
+      "unit": "mm",
+      "location": "sample chamber clear bore",
+      "quote": "Clear bore 2.5 cm (1 inch) diameter",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_loom",
+      "count": 12,
+      "from": "gray Lemo connector / JQP-8 D-shell at top of chamber (room temperature)",
+      "to": "12-pin puck connector at bottom of sample chamber (3 channels x I+/I-/V+/V-)",
+      "quote": "These solder pads are connected to a set of 12 sockets on the base of the puck, which contact pins in the bottom of the sample chamber.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "kind": "dc_twisted_pair",
+      "count": 4,
+      "from": "JQP-8 sample D-shell connector (Spare A-D)",
+      "to": "annulus (unwired spares for custom feed-through)",
+      "quote": "The connections labeled \"Spare\" are not wired to anything, but could be used to feed custom wires into the annulus.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "kind": "thermometer_lead",
+      "count": 3,
+      "from": "cryostat controller electronics",
+      "to": "first-stage (shield), second-stage (4 K Plate) and block thermometers",
+      "quote": "On the outside of the sample chamber, the block thermometer is tightly coupled to the metal of the puck interface.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "kind": "heater_lead",
+      "count": 2,
+      "from": "cryostat controller electronics",
+      "to": "first-stage heater (main radiation shield) and second-stage heater (4 K Plate)",
+      "quote": "When the system is cold, the first stage heater is off, and the second stage heater is used to control the second stage thermometer at 4.2 K.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Magneto-Optic Measurements (light source and FOSH)",
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "pulse_tube_rotary_valve",
+      "quote": "The system uses a single, two-stage pulse tube cryocooler for both the superconducting magnet and the temperature control system",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    },
+    {
+      "part": "compressor",
+      "quote": "All DynaCool systems include a cryocooler system, which consists of a cold head and a compressor manufactured by Cryomech, Inc.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "part": "circulation_pump",
+      "quote": "Circulation Pump: This is a sealed scroll pump that is used for circulating helium past the sample chamber for cooling the sample.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "part": "gas_flow",
+      "rate": "0 to 5000 sccm helium through the cooling annulus",
+      "quote": "The mass flow controller controls the main flow rate from 0 to 5000 sccm.",
+      "source_url": "https://www.nanophys.kth.se/nanolab/ppms/4307-004%20Dynacool%20Digital%20User%20Manual%20Set/02%201307-110%20Rev%20D1%20Dynacool%20User's%20Manual.pdf"
+    },
+    {
+      "part": "vsm_vibrator",
+      "rate": "40 Hz typical (10-60 Hz), 2 mm peak amplitude typical (0.1-5 mm)",
+      "quote": "0.1 to 5 mm peak, 2 mm (typical)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500_PPMS_VSM.pdf"
+    },
+    {
+      "part": "magnet_ramp",
+      "rate": "14 T: zero to full field in less than 40 min typical; 120 A",
+      "quote": "14 T: less than 40 min (typical)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "stages[].diameter_mm (4 K Plate and radiation shield diameters not published)",
+    "sample_space.height (sample chamber length not published)",
+    "moving_parts.pulse_tube_rotary_valve.rate (Cryomech valve frequency not stated in QD documents)",
+    "VSM linear-motor travel length",
+    "magnet solenoid bore / outer diameter / winding length",
+    "sample chamber wall material and thickness",
+    "annulus radiation shield temperature (only '< 100 K')"
+  ],
+  "notes": "Vertical cryogen-free PPMS: a single Cryomech two-stage pulse tube sits in helium gas in a 'bucket' tank (not vacuum-mounted); first stage ~45 K cools the main and annulus radiation shields and cryopump stage 1; the second stage condenses He onto a ~150 cc LHe pool that cools the 4 K Plate by thermosiphon; the switch-less 14 T NbTi solenoid is conduction-cooled by solid contact to the 4 K Plate and produces a vertical (longitudinal) field at 120 A full field. The sample chamber (2.5 cm clear bore) runs down the magnet bore; 4.2 K helium from the bucket passes a counter-flow heat exchanger and mass-flow controller (0-5000 sccm) into the cooling annulus around the chamber and returns via the circulation scroll pump (5-50 Torr return, 500-800 Torr outlet), giving 1.8-400 K at the puck. The puck (2.3 cm Cu, Au plated) plugs into the 12-pin keyed connector at the chamber bottom; the block thermometer is clamped to the puck interface outside the chamber. Magnet centre 4.05 cm above puck surface; 14 T uniformity +/-0.1% over 5.5 cm on axis. Options modelled: ETO (2 channels), VSM (linear transport motor on the top KF flange, 6.3 mm coil bore, 9 mm coil separation, 40 Hz x 2 mm) and Heat Capacity (3 x 3 mm platform, puck microcalorimeter in high vacuum via the integrated cryopump). No optical windows in this configuration (magneto-optic FOSH option not installed). Outer dimensions are D x W x H for cryostat plus can rack; the 67x70x100 cm electronics cabinet and 69x50x62 cm compressor stand apart. 14 T startup 40 h typical; puck 300 K to 1.9 K in under 40 min."
+}

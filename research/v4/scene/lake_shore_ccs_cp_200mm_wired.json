@@ -1,0 +1,109 @@
+{
+  "configuration_id": "lake_shore_ccs_cp_200mm_wired",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {
+      "value": 532,
+      "unit": "mm",
+      "location": "WATER-COOLED COMPRESSOR UNIT ONLY (443 x 493 x 532 mm, 100 kg). The cryostat body/vacuum shroud height is NOT published; see not_found.",
+      "quote": "443 mm × 493 mm × 532 mm high; 100 kg",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    "width_or_diameter": {
+      "value": 200,
+      "unit": "mm",
+      "location": "Cold plate diameter (inner, standard). The vacuum shroud outer diameter is NOT published and must exceed this (cold plate + cooled radiation shield + shroud); see not_found.",
+      "quote": "Standard 200 mm (8 in) diameter cold plate (other sizes available)",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    "color_note": "Lake Shore datasheet shows a 'CCS-CP cutaway view'; vacuum shroud finish not described in text. Cold head mounts at the bottom ('Cold head location: Bottom'), so the cold plate sits above the cold head with a split (removable) shroud for sample access."
+  },
+  "stages": [
+    {
+      "name": "first stage (cooled radiation shield, thermal anchor for DC wiring and RF 0 dB attenuators)",
+      "temperature_K": 300,
+      "quote": "Cooled radiation shields on first stage and cold plate",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    {
+      "name": "cold plate (second stage, sample stage, 200 mm diameter)",
+      "temperature_K": 4,
+      "diameter_mm": 200,
+      "quote": "Cold plate size 200 mm (8 in) diameter standard; other sizes up to 300 mm (12 in) available ... Minimum temperature options 408 / 415 / 418 <4 K",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    }
+  ],
+  "sample_space": {
+    "position": "top_plate",
+    "shape": "flat circular cold plate, 200 mm diameter, sample in vacuum, surrounded by cooled radiation shield; split shroud opens for access",
+    "description": "Sample mounts directly on the 200 mm (8 in) cold plate in vacuum, with D-sub (DC) and SMA (RF) connectors at the cold plate. Cold head is below the plate. Sample-space height above the plate is not published.",
+    "diameter_or_width": {
+      "value": 200,
+      "unit": "mm",
+      "location": "cold plate",
+      "quote": "Cold plate size 200 mm (8 in) diameter standard; other sizes up to 300 mm (12 in) available",
+      "source_url": "https://www.lakeshore.com/products/categories/overview/environment-by-janis/cryogen-free-cryostats/cryogen-free-large-sample-space-cryostats"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_twisted_pair",
+      "count": 100,
+      "from": "room-temperature feedthrough, thermally anchored at first stage",
+      "to": "D-sub connectors at the cold plate",
+      "quote": "Up to 100 PhBr wires (twisted pairs), thermally anchored at the first stage and terminated in D-sub connectors at the cold plate.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    {
+      "kind": "coax",
+      "count": 0,
+      "from": "SMA or high-density RF feedthrough with 0 dB attenuators at the first stage",
+      "to": "SMA connectors at the cold plate (67 GHz option)",
+      "quote": "Standard SMA or high-density feedthroughs with 0 dB attenuators at the first stage and SMA connectors at the cold plate. 40 GHz and 67 GHz options also available.",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    }
+  ],
+  "windows": {
+    "count": 0,
+    "axis": "none",
+    "quote": "Optical ✖ (Optional top or side windows) ... Custom options include four side-looking windows or one top window. Cooled radiation shield windows also included.",
+    "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+  },
+  "moving_parts": [
+    {
+      "part": "compressor",
+      "rate": "not published (3-phase helium compressor, 7.5-7.8 kW water-cooled, 443 x 493 x 532 mm)",
+      "quote": "Compressor size 443 mm × 493 mm × 532 mm high; 100 kg",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    {
+      "part": "cold_head_1hz",
+      "rate": "not published; cold head mounted at bottom; cold head type (GM displacer vs pulse tube) not named in the Lake Shore datasheet",
+      "quote": "Cold head location Bottom ... Minimum temperature options 408 415 418",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    },
+    {
+      "part": "turbo_pump",
+      "rate": "not published",
+      "quote": "Each cryostat requires a pump to operate. ... TSJ-85-D Turbopumping station with scroll backing pump",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-large-sample-space.pdf?sfvrsn=9bf27add_6"
+    }
+  ],
+  "cryogen": "cryogen_free_gm",
+  "not_found": [
+    "outer.height (cryostat body / vacuum shroud height; only compressor dimensions are published)",
+    "outer.width_or_diameter (vacuum shroud outer diameter; only the 200 mm cold plate diameter is published)",
+    "outer.depth",
+    "stages[first stage].temperature_K (first-stage temperature not published; 300 K is a placeholder upper bound only)",
+    "stages[first stage].diameter_mm",
+    "sample_space.height (clearance above cold plate)",
+    "wiring.coax.count (RF line count 'specify number required' at order)",
+    "windows.diameter_mm (optional windows, not fitted in this configuration)",
+    "moving_parts.cold_head rate and type (408/415/418 cold heads not identified as GM or pulse tube in Lake Shore text)",
+    "cooling power at 4 K and first stage",
+    "cryostat weight",
+    "cooldown time"
+  ],
+  "notes": "Sources: Lake Shore CCS-CP datasheet (ccr-large-sample-space.pdf, cached research/v5/cache/4d5c7f00e97af8bd.txt) and product page (cached 0e493d121b7537b0.txt). Only two stage temperatures are documented: cold plate <4 K (408/415/418 options) and 300 K max; the first-stage temperature_K=300 is a schema placeholder, not a measurement. The cryogen enum 'cryogen_free_gm' is a forced choice: the datasheet says only 'closed-cycle refrigerator' with 'cold head' options 408/415/418 and never names GM or pulse tube; treat the cold-head motion type as unverified. outer.height/width values are labelled as compressor height and cold-plate diameter respectively because the cryostat shroud dimensions are unpublished; renderers should not treat them as shroud dimensions. Temperature stability ±50 mK measured with the included Model 346 controller (100 W heater output). Water-cooled compressor needs 6-9 L/min at 5-25 °C; air-cooled alternative is 450 x 485 x 925 mm, 155 kg. Recommended maintenance 13,000 h (cryostat), 30,000 h compressor, 10,000 h cold head. A web search found no published CCS-CP outline drawing."
+}

@@ -1,0 +1,72 @@
+{
+  "id": "expa_relaxation_heat_capacity",
+  "name": "Zero-field heat-pulse relaxation calorimetry, 2–300 K",
+  "plain_name": "Zero-field heat-pulse relaxation calorimetry, 2–300 K",
+  "industry": "scientific_research",
+  "description": "Measure heat capacity versus temperature using a vacuum microcalorimeter and relaxation fit in the manufacturer-specified zero-field accuracy range.",
+  "keywords": [
+    "relaxation heat capacity",
+    "physical property system"
+  ],
+  "sources": [
+    {
+      "citation": "Quantum Design Heat Capacity Option, 1084-500 Rev. J0",
+      "url": "https://www.qdusa.com/siteDocs/productBrochures/1084-500_PPMS_Heat_Capacity.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "±5% for 2 K to 300 K, zero field",
+      "evidence_id": "expa_qd_hc"
+    }
+  ],
+  "reported_equipment": [
+    "PPMS DynaCool with Heat Capacity option"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "2",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "300",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "manufacturer_specification",
+      "rationale": "The selected measurement range is the brochure's 2–300 K zero-field accuracy interval.",
+      "evidence_ids": [
+        "expa_qd_hc"
+      ]
+    },
+    {
+      "key": "module.heat_capacity",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "manufacturer_specification",
+      "rationale": "An installed calorimeter puck/heater/thermometer and relaxation acquisition are essential.",
+      "evidence_ids": [
+        "expa_qd_hc"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Sample must fit the 3 x 3 mm platform; thermal contact, addenda calibration and relaxation model suitability require confirmation. Accuracy is not promised outside the cited zero-field scope."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

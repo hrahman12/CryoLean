@@ -1,0 +1,108 @@
+{
+ "id": "quantum_heralded_qubit_amplifier",
+ "name": "Heralded amplification of time-bin and Fock-state photonic qubits at 1550 nm with MoSi SNSPDs below 2.5 K",
+ "plain_name": "Boost a lossy light-based qubit and confirm success with superconducting photon counters",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Run an all-fibre telecom heralded qubit amplifier (SPDC heralded source, ancilla preparation, Bell-state measurement) and record four-fold coincidences with fibre-coupled MoSi superconducting nanowire detectors (70 % efficiency at 1550 nm, 80 ns recovery) held below 2.5 K in a two-stage closed-cycle cryocooler.",
+ "keywords": [
+  "Boost a lossy light-based qubit and confirm success with superconducting photon counters",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Heralded amplification of photonic qubits (Bruno et al., arXiv:1507.03210; Optics Express 24, 125-133, 2016)",
+   "url": "https://arxiv.org/pdf/1507.03210",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "MoSi superconducting nanowire single photon detectors (SNSPD)",
+  "two-stage closed-cycle cryocooler",
+  "PP-KTP type II SPDC source"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 2500,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The MoSi SNSPDs reach 70 % efficiency when held below 2.5 K.",
+   "evidence_ids": [
+    "v4e_quantum_heralded_qubit_amplifier_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each detector is self-aligned to a single-mode optical fibre, so fibre optical access to the cold stage is required.",
+   "evidence_ids": [
+    "v4e_quantum_heralded_qubit_amplifier_1"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 4
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "At least the two Bell-state-measurement detectors (D2 and D3) need their own RF readout lines; the heralding/output detector adds more.",
+   "evidence_ids": [
+    "v4e_quantum_heralded_qubit_amplifier_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_lines"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The nanowires are current-biased and read out electrically.",
+   "evidence_ids": [
+    "v4e_quantum_heralded_qubit_amplifier_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the detectors were designed for a two-stage closed-cycle cryocooler; a bath cryostat below 2.5 K would also work.",
+   "evidence_ids": [
+    "v4e_quantum_heralded_qubit_amplifier_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,894 @@
+{
+ "industry": "manufacturing_and_industrial_processing",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "mfg_x210crw12_dct_minus180c",
+   "name": "Deep cryogenic treatment of quenched X210CrW12 (AISI D3-type) cold-work tool steel at -180 C for 12-36 h with 2 C/min cooling and heating, followed by 300 C tempering",
+   "plain_name": "Deep-freeze a chromium cold-work tool steel at -180 C for up to a day and a half so it wears more slowly",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Quenched X210CrW12 tool steel (austenitised 920 C, 25 min) is cooled at 2 C/min to -180 C, held 12, 18, 24 or 36 h, warmed at 2 C/min and tempered at 300 C for 2 h; hardness, tensile strength and pin-on-disc wear are compared with conventional quench-and-temper. The cryogenic device appears only as a schematic/photo (model not named).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 93150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The sample space must hold -180 C (93.15 K) during the soak.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+     "document_title": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879)",
+     "location": "Section 2 Material and Methods",
+     "quote": "After quenching, the steel samples were subjected to deep cryogenic treatment at −180 °C for 12, 18, 24, and 36 h using the device whose schematic view and photograph are given in Figure 2."
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 36,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The longest treatment of the series holds the steel at -180 C for 36 h, so the machine must sustain an uninterrupted 36 h soak.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+     "document_title": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879)",
+     "location": "Section 2 Material and Methods",
+     "quote": "After quenching, the steel samples were subjected to deep cryogenic treatment at −180 °C for 12, 18, 24, and 36 h using the device whose schematic view and photograph are given in Figure 2."
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 2000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cooling to the soak temperature is ramped at a controlled 2 C/min (programmable ramp, not plunge immersion).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+     "document_title": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879)",
+     "location": "Section 2 Material and Methods",
+     "quote": "A heating and cooling rate of 2 °C/min was used during heat treatment."
+    },
+    {
+     "keys": [
+      "temperature.heating_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 2000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Warming back from -180 C is also ramped at 2 C/min.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+     "document_title": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879)",
+     "location": "Section 2 Material and Methods",
+     "quote": "A heating and cooling rate of 2 °C/min was used during heat treatment."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879), doi:10.3390/ma18040879",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "mfg_ti6al4v_ln2_turning_6_8bar",
+   "name": "Cryogenic longitudinal turning of Ti-6Al-4V with liquid nitrogen delivered at 6.8 bar through internal tool-holder channels (0.4 mm nozzle, rake face)",
+   "plain_name": "Cut titanium on a lathe while liquid nitrogen is pumped through the tool onto the cutting edge",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Longitudinal turning of Ti-6Al-4V on an SMT Swedturn 12 lathe (vc 70 m/min, f 0.15 mm/rev, ap 1.5 mm) with uncoated carbide inserts; LN2 is delivered at 6.8 bar through a prototype tool holder with internal channels and a 0.4 mm nozzle aimed at the rake face, compared with 6 bar emulsion flood cooling, to study surface integrity versus flank wear.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The coolant is liquid nitrogen supplied to the cutting zone; the supply system must hold and deliver LN2.",
+     "source_url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "document_title": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12)",
+     "location": "Section 5.1.1 Cryogenic turning experiments with LN2, p. 23",
+     "quote": "Liquid nitrogen was delivered at a pressure of 6.8 bar."
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 680000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The LN2 supply vessel/line must operate at the 6.8 bar delivery pressure that drives LN2 through the 0.4 mm internal nozzle (gauge or absolute not stated).",
+     "source_url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "document_title": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12)",
+     "location": "Section 5.1.1 Cryogenic turning experiments with LN2, p. 23",
+     "quote": "The nozzle diameter was 0.4 mm and the flow was directed to the rake face of the tool. Liquid nitrogen was delivered at a pressure of 6.8 bar."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Reference: LN2 at ambient pressure boils at -196 C; the delivery system handles liquid at this temperature (jet temperature at the tool not measured).",
+     "source_url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "document_title": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12)",
+     "location": "Section 4.2.1 Cryogens, p. 18",
+     "quote": "When it is exposed to ambient pressure and temperature, the liquid nitrogen starts to boil at a temperature of -196 °C."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12)",
+     "url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "SMT Swedturn 12 lathe",
+    "prototype tool holder with internal coolant channels (0.4 mm nozzle)",
+    "Sandvik Coromant VNMG 16 04 08-SM H13A inserts"
+   ]
+  },
+  {
+   "id": "mfg_inconel718_ln2_turning_1_5bar",
+   "name": "Liquid-nitrogen-cooled orthogonal turning of Inconel 718 (LN2 about 0.5 kg/min at 1.5 bar through a 3 mm external nozzle on the rake face)",
+   "plain_name": "Machine a jet-engine nickel superalloy on a lathe while a liquid nitrogen jet cools the cutting insert",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Orthogonal turning of Inconel 718 discs (from 50 mm bar) with TiAlN-coated carbide inserts on an Excel BNC-21437 CNC turning center, comparing dry, flood and LN2 cooling; LN2 is delivered at about 0.5 kg/min under 1.5 bar through a 3 mm nozzle at 45 degrees, 12 mm from the tool, and forces are measured with a Kistler 9129AA dynamometer.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Liquid nitrogen is the cryogenic coolant delivered to the rake face.",
+     "source_url": "https://link.springer.com/article/10.1007/s00170-021-08173-1",
+     "document_title": "Machinability analysis of dry and liquid nitrogen-based cryogenic cutting of Inconel 718: experimental and FE analysis (Pervaiz, Kannan, Anwar, Huo; Int J Adv Manuf Technol 118, 3801-3818, 2022)",
+     "location": "Experimental setup (machining experiments paragraph after Fig. 4 and Table 2)",
+     "quote": "Liquid nitrogen was delivered from the direction of the tool rake face with the flow rate of approximately 0.5 kg/min mass under 1.5 bar pressure."
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 150000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The LN2 supply must operate at the stated 1.5 bar delivery pressure (gauge or absolute not stated). The 0.5 kg/min mass flow is not converted to L/min because that would need a density assumption.",
+     "source_url": "https://link.springer.com/article/10.1007/s00170-021-08173-1",
+     "document_title": "Machinability analysis of dry and liquid nitrogen-based cryogenic cutting of Inconel 718: experimental and FE analysis (Pervaiz, Kannan, Anwar, Huo; Int J Adv Manuf Technol 118, 3801-3818, 2022)",
+     "location": "Experimental setup (machining experiments paragraph after Fig. 4 and Table 2)",
+     "quote": "Liquid nitrogen was delivered from the direction of the tool rake face with the flow rate of approximately 0.5 kg/min mass under 1.5 bar pressure."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 93150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the paper models the LN2 jet at -180 to -190 C, so the coolant source must deliver at or below -180 C.",
+     "source_url": "https://link.springer.com/article/10.1007/s00170-021-08173-1",
+     "document_title": "Machinability analysis of dry and liquid nitrogen-based cryogenic cutting of Inconel 718: experimental and FE analysis (Pervaiz, Kannan, Anwar, Huo; Int J Adv Manuf Technol 118, 3801-3818, 2022)",
+     "location": "Finite element modelling section (cryogenic jet boundary condition)",
+     "quote": "The location of jet radius is kept at the cryogenic temperature of liquid nitrogen (− 180 ~  − 190 C°)."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Machinability analysis of dry and liquid nitrogen-based cryogenic cutting of Inconel 718: experimental and FE analysis (Pervaiz, Kannan, Anwar, Huo; Int J Adv Manuf Technol 118, 3801-3818, 2022), doi:10.1007/s00170-021-08173-1",
+     "url": "https://link.springer.com/article/10.1007/s00170-021-08173-1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Excel BNC-21437 CNC turning center (Fagor 800 T controller)",
+    "KISTLER 9129AA dynamometer with type 5080 charge amplifier",
+    "Kennametal TPGN 220408 KCU10 inserts"
+   ]
+  },
+  {
+   "id": "mfg_waste_tyre_ln2_impact_crumbing",
+   "name": "Cryogenic comminution of whole passenger-car waste tyres: complete LN2 immersion (200-300 s, below Tg = 215 K) followed by a single pneumatic-hammer impact",
+   "plain_name": "Freeze a whole scrap car tyre in liquid nitrogen until it turns glassy, then smash it into rubber crumb",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "One-piece waste passenger tyres (modelled as 185 mm wide, 75% profile, 13 inch landing diameter) are fully immersed in liquid nitrogen in a purpose-built vessel until intense boiling stops (200-300 s), taking the rubber below its 215 K glass transition, and are then shattered by an MA4129A pneumatic sledgehammer with profiled punches; crumb size distribution is reported.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The tyre is cooled by complete immersion in a liquid-nitrogen bath.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+     "document_title": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494)",
+     "location": "Abstract",
+     "quote": "Liquid nitrogen was used as a cryoagent for laboratory tests."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 215,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The rubber must be taken below its glass-transition temperature (215 K) so it shatters instead of deforming; the cooling medium must reach below 215 K.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+     "document_title": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494)",
+     "location": "Section 2.2 Measurement of Thermal Conductivity of Samples",
+     "quote": "this temperature is the glass transition temperature, i.e., T g = 215 K"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 13,
+       "unit": "inch"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The whole tyre goes into the vessel; its 13 inch landing (rim) diameter is a lower bound on the clear diameter needed (the outer diameter, with the 75% x 185 mm sidewall on each side, is larger).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+     "document_title": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494)",
+     "location": "Section 2.4 Mathematical Model",
+     "quote": "The simulated model of car tire has the following geometrical dimensions: width—185 mm; tire profile—75%; landing diameter—13 inches."
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300,
+       "unit": "s"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the immersion lasted up to 300 s depending on tyre mass and wall thickness.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+     "document_title": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494)",
+     "location": "Section 3.1 Evaluation of the Mechanical Impact Force",
+     "quote": "The cooling time, depending on the mass and average thickness of the tire walls, varied from 200 s to 300 s."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494), doi:10.3390/polym13152494",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "pneumatic sledgehammer of type MA4129A (LLC South Ural Mechanical Plant)",
+    "special vessel for complete liquid-nitrogen immersion of tyres"
+   ]
+  },
+  {
+   "id": "mfg_lng_austenitic_weld_charpy_minus196c",
+   "name": "Charpy ISO-V impact energy and lateral expansion of austenitic stainless (304L/316L) LNG weld metal at -196 C (ASTM E23; ASME 0.38 mm / TUV 32 J acceptance)",
+   "plain_name": "Qualify stainless-steel welds for LNG tanks by checking a notched weld sample still absorbs impact at -196 C",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Weld metal and joints made with low-ferrite 308L/316L consumables (SMAW, GTAW, FCAW) are Charpy V-notch tested per ASTM E23 at -196 C, the LNG qualification temperature, and also at +20 and -120 C; lateral expansion is checked against the ASME B31.3 minimum of 0.38 mm and impact energy against the TUV minimum of 32 J.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The qualification test temperature for LNG weldments is -196 C; specimens must be conditioned at -196 C (77.15 K).",
+     "source_url": "https://app.aws.org/mwf/attachments/6/240506/Friedrich_et_al.pdf",
+     "document_title": "Welding of austenitic stainless steels for cryogenic LNG applications - Low Temperature Behaviour of Austenitic Weldments (Friedrich, Posch, Tosch, Ziegerhofer, Berger; Boehler Welding Austria)",
+     "location": "Section 1 Introduction",
+     "quote": "The test temperature for mechanical properties has been set to -196°C (-320°F) due to safety reaso ns but also of the easy reproducibility of this test condition."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 77150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 293150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the full toughness-versus-temperature curves were measured at +20, -120 and -196 C.",
+     "source_url": "https://app.aws.org/mwf/attachments/6/240506/Friedrich_et_al.pdf",
+     "document_title": "Welding of austenitic stainless steels for cryogenic LNG applications - Low Temperature Behaviour of Austenitic Weldments (Friedrich, Posch, Tosch, Ziegerhofer, Berger; Boehler Welding Austria)",
+     "location": "Figures 11-12, test temperature axis (°C)",
+     "quote": "+20 -120 -196 -196 -120 +20"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 110150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional service-temperature check at the LNG operating temperature (methane liquefaction, -163 C).",
+     "source_url": "https://app.aws.org/mwf/attachments/6/240506/Friedrich_et_al.pdf",
+     "document_title": "Welding of austenitic stainless steels for cryogenic LNG applications - Low Temperature Behaviour of Austenitic Weldments (Friedrich, Posch, Tosch, Ziegerhofer, Berger; Boehler Welding Austria)",
+     "location": "Section 1 Introduction",
+     "quote": "The liquefaction temperature of Methane is -163°C ( -261°F) and this fact determines the operating temperature of the LNG plant."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Welding of austenitic stainless steels for cryogenic LNG applications - Low Temperature Behaviour of Austenitic Weldments (Friedrich, Posch, Tosch, Ziegerhofer, Berger; Boehler Welding Austria)",
+     "url": "https://app.aws.org/mwf/attachments/6/240506/Friedrich_et_al.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "mfg_ksc_gse_ln2_cold_shock",
+   "name": "LN2 cold-shock test of cryogenic ground-support components (pipe spools, valves, filters, flex hoses): fill with LN2 until it exits, then cold-soak for at least 1 h (KSC-STD-Z-0009 Rev D 6.2.1)",
+   "plain_name": "Flood a cryogenic pipe section or valve with liquid nitrogen for an hour to prove it neither deforms nor leaks",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "After shop fabrication, cryogenic ground-support assemblies are cold-shock tested by introducing LN2 at the inlet until a steady LN2 stream exits, then maintaining the supply for a cold soak of at least 1 h; no deformation, leakage, frost or condensation on vacuum jackets is allowed, and annulus pressure is monitored until the assembly returns to ambient.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The test medium is liquid nitrogen fed continuously into the component.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "document_title": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "location": "Section 6.2.1 Cold-Shock Testing, p. 25",
+     "quote": "Cryogenic GS shall be cold-shock tested using LN2 either as individual assemblies, components, after shop fabrication, or as part of the assembled system after field installation."
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The LN2 supply must be maintained for a cold soak of at least 1 hour.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "document_title": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "location": "Section 6.2.1 a, p. 25",
+     "quote": "The LN2 supply will then be maintained, allowing the assembly to cold-soak for 1 hour minimum. No evidence of deformation or leakage is allowed."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Reference: LN2 at ambient pressure boils at -196 C, the temperature the component reaches during the soak.",
+     "source_url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "document_title": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12)",
+     "location": "Section 4.2.1 Cryogens, p. 18",
+     "quote": "When it is exposed to ambient pressure and temperature, the liquid nitrogen starts to boil at a temperature of -196 °C."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12) (LN2 boiling point reference)",
+     "url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "mfg_ksc_ln2_vessel_vacuum_retention",
+   "name": "Vacuum-retention acceptance test of a vacuum-jacketed LN2 storage vessel: annulus evacuated to 50 microns or less, inner vessel filled and cooled with LN2, 48 h atmospheric hold then 1 h at MAWP (KSC-STD-Z-0009 Rev D 6.2.7)",
+   "plain_name": "Fill a new vacuum-insulated liquid-nitrogen tank and check for two days that its insulating vacuum does not leak",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "The annular space of a double-walled cryogenic storage vessel is evacuated to 50 microns or less; the inner vessel and pipe are filled from the top and cooled to LN2 temperature while annulus pressure is logged; after stabilisation (5 degrees per hour or less) the vessel must hold atmospheric pressure for at least 48 h without annulus pressure rise or outer-shell condensation, then hold MAWP for at least 1 h.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The inner vessel is filled and cooled with liquid nitrogen.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "document_title": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "location": "Section 6.2.7 c, p. 28",
+     "quote": "The inner vessel and internal pipe will be uniformly filled from top of vessel and cooled to LN2 temperature while monitoring the vacuum annular space pressure."
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.05",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The vacuum pumping system must bring the annular space to 50 microns (50 mTorr = 0.05 Torr) or less before the test continues.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "document_title": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "location": "Section 6.2.7 a, p. 27",
+     "quote": "Evacuate, establish and maintain annular space pressure to 50 microns or less prior to continuing."
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 48,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The LN2-filled vessel must be held and monitored for at least 48 h.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "document_title": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "location": "Section 6.2.7 e, p. 28",
+     "quote": "To pass this test, the inner vessel shall maintain atmospheric pressure for 48 hours minimum with no evidence of leakage in the annular space, nor evidence of condensation or wetting on the outer sphere surface."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+     "url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "mfg_al1050_asymmetric_cryorolling",
+   "name": "Asymmetric cryorolling of Al 1050 sheet (1.45 x 60 x 200 mm) with a liquid-nitrogen dip of at least 8 min before each of seven passes to 0.17 mm",
+   "plain_name": "Dip aluminium strip in liquid nitrogen before every pass through a rolling mill to make an ultra-fine-grained sheet",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Annealed (456 C, 1 h) commercial 1050 aluminium sheets 1.45 mm x 60 mm x 200 mm are dipped in liquid nitrogen for at least 8 min before each rolling pass and rolled asymmetrically (upper/lower roll speed ratios 1.1-1.4) to about 0.17 mm in seven passes, producing 211-360 nm grains; tensile tests at 1e-3 s-1 and FIB/TEM follow.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Sheets are dipped in a liquid-nitrogen bath before every pass.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480655/",
+     "document_title": "Asymmetric cryorolling for fabrication of nanostructural aluminum sheets (Yu et al., Scientific Reports 2, 772, 2012)",
+     "location": "Methods",
+     "quote": "Asymmetric cryorolling was performed by dipping the sheets into liquid nitrogen for at least 8 min before each rolling pass."
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 8,
+       "unit": "min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Each immersion lasts at least 8 min before the pass.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480655/",
+     "document_title": "Asymmetric cryorolling for fabrication of nanostructural aluminum sheets (Yu et al., Scientific Reports 2, 772, 2012)",
+     "location": "Methods",
+     "quote": "Asymmetric cryorolling was performed by dipping the sheets into liquid nitrogen for at least 8 min before each rolling pass."
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 200,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 200 mm sheet length must fit in the bath along the loading direction.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480655/",
+     "document_title": "Asymmetric cryorolling for fabrication of nanostructural aluminum sheets (Yu et al., Scientific Reports 2, 772, 2012)",
+     "location": "Methods",
+     "quote": "Asymmetric cryorolling process was employed to produce Al 1050 sheets with size of 1.45 mm ×60 mm×200 mm under several of ratios of upper and down rolling velocities (RUDV)."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "60.02",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Circumscribed diameter of the 1.45 mm x 60 mm sheet cross-section (sqrt(1.45^2+60^2) = 60.018 mm, rounded up) that must pass through the bath opening.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480655/",
+     "document_title": "Asymmetric cryorolling for fabrication of nanostructural aluminum sheets (Yu et al., Scientific Reports 2, 772, 2012)",
+     "location": "Methods",
+     "quote": "Asymmetric cryorolling process was employed to produce Al 1050 sheets with size of 1.45 mm ×60 mm×200 mm under several of ratios of upper and down rolling velocities (RUDV)."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Asymmetric cryorolling for fabrication of nanostructural aluminum sheets (Yu et al., Scientific Reports 2, 772, 2012), doi:10.1038/srep00772",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480655/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "mfg_gear_steel_ln2_aerosol_cryotreatment",
+   "name": "Cryogenic treatment of carburized 17Cr2Ni2MoVNb heavy-duty gear steel at -80, -150 and -196 C for 1 h in an LN2-aerosol cryogenic furnace (GL-150), then 150 C tempering",
+   "plain_name": "Chill case-hardened gear steel cubes to -80, -150 and -196 C in a nitrogen-mist freezer to cut retained austenite and wear",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Carburized and oil-quenched 17Cr2Ni2MoVNb gear-steel cubes (20 x 20 x 20 mm) are suspended on a wire in a GL-150 cryogenic treatment furnace that sprays LN2 aerosol (avoiding the cracking caused by direct LN2 immersion), held 1 h at -80 C (CT-80), -150 C (SCT-150) or -196 C (DCT-196) under real-time temperature control, then tempered at 150 C for 2 h; retained austenite, carbides, microhardness and wear are compared.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 77150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 193150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The three treatment set points -80, -150 and -196 C must all be reachable in the same chamber.",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Section 2.1",
+     "quote": "The three cryogenic treatment temperatures were designated as −80, −150 and −196 °C as shown in Table 2, and the corresponding samples are denoted as CT-80, SCT-150 and DCT-196, respectively."
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Liquid nitrogen (sprayed as an aerosol) is the cooling medium.",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Section 2.1",
+     "quote": "Liquid nitrogen was used as the cooling medium. The liquid nitrogen immersion method used in traditional cryogenic treatment easily leads to the formation of the cracks."
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Each treatment holds the set temperature for 1 h.",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Abstract",
+     "quote": "The low temperature treatment range is divided into cryogenic treatment (CT-80), shallow cryogenic treatment (SCT-150) and deep cryogenic treatment (DCT-196), all with a duration of 1 h."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "28.29",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Circumscribed diameter of the 20 mm x 20 mm cube footprint (20 x sqrt 2 = 28.28 mm, rounded up).",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Section 2.1",
+     "quote": "The ring samples were normalized, quenched, tempered, and then cut into samples of dimensions 20 mm × 20 mm × 20 mm."
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 20,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 20 mm cube height must fit (the cube is suspended on a wire).",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Section 2.1",
+     "quote": "The ring samples were normalized, quenched, tempered, and then cut into samples of dimensions 20 mm × 20 mm × 20 mm."
+    },
+    {
+     "keys": [
+      "module.sample_thermometry"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "Optional: the run used a real-time temperature sensor for control.",
+     "source_url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "document_title": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281)",
+     "location": "Section 2.1",
+     "quote": "The samples for cryogenic treatment were suspended using a wire. The entire experiment was equipped with a real-time temperature sensor for temperature control."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Effect of Cryogenic Treatment on the Microstructure and Wear Resistance of 17Cr2Ni2MoVNb Carburizing Gear Steel (Yan et al., Coatings 2022, 12(2):281), doi:10.3390/coatings12020281",
+     "url": "https://www.mdpi.com/2079-6412/12/2/281",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "GL-150 cryogenic treatment experimental furnace (Shanghai GaoLe Machinery Equipment Co., Ltd.)"
+   ]
+  },
+  {
+   "id": "mfg_carburized_steel_minus80c_cold_treatment",
+   "name": "Sub-zero cold treatment of carburized 20CrNi2MoV steel at -80 C for 4 h after about 0.2 C/s controlled cooling (with a -196 C / 4 h DCT variant), then 180 C tempering",
+   "plain_name": "Slowly cool a case-hardened steel block to -80 C and keep it there four hours so its soft retained austenite turns to martensite",
+   "industry": "manufacturing_and_industrial_processing",
+   "description": "Gas-carburized 20CrNi2MoV steel blocks (60 x 60 x 20 mm) are re-austenitised, oil-quenched, cooled from room temperature to -80 C at about 0.2 C/s to avoid thermal shock, held 4 h, warmed gradually and tempered at 180 C for 2 h (CT); a deep cryogenic variant holds about -196 C for 4 h (DCT). Wear resistance improved 17% (CT) and 25.5% (DCT).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 193150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold-treatment set point is -80 C (193.15 K).",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.2 Heat Treatment Process",
+     "quote": "Another sample, designated CT, was cooled from room temperature to −80 °C at a slow cooling rate of ~0.2 °C/s for avoiding thermal shocks, kept at the temperature for 4 h"
+    },
+    {
+     "keys": [
+      "temperature.cooling_rate.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 12000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cooling is ramped at about 0.2 C/s (= 12 C/min) to avoid thermal shock, so a controlled-rate cooling capability is needed.",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.2 Heat Treatment Process",
+     "quote": "Another sample, designated CT, was cooled from room temperature to −80 °C at a slow cooling rate of ~0.2 °C/s for avoiding thermal shocks, kept at the temperature for 4 h"
+    },
+    {
+     "keys": [
+      "dwell.duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 4,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The sample is held 4 h at the sub-zero temperature.",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.2 Heat Treatment Process",
+     "quote": "Another sample, designated CT, was cooled from room temperature to −80 °C at a slow cooling rate of ~0.2 °C/s for avoiding thermal shocks, kept at the temperature for 4 h"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "84.86",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Circumscribed diameter of the 60 mm x 60 mm block footprint (60 x sqrt 2 = 84.853 mm, rounded up).",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.1 Material Preparation",
+     "quote": "For carburizing process, the samples were cut from the billet in size of 60 × 60 × 20 mm3 and were subjected to surface grinding process before carburizing process."
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 20,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The block is 20 mm thick.",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.1 Material Preparation",
+     "quote": "For carburizing process, the samples were cut from the billet in size of 60 × 60 × 20 mm3 and were subjected to surface grinding process before carburizing process."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional DCT variant: hold at about -196 C for 4 h.",
+     "source_url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "document_title": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808)",
+     "location": "Section 2.2 Heat Treatment Process",
+     "quote": "The DCT consisted of slowly cooling from the as-quenched condition to about −196 °C, holding at this temperature for 4 h and then gradually bringing the sample back to room temperature"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Effect of Cryogenic Treatment on Microstructure and Wear Resistance of Carburized 20CrNi2MoV Steel (Li, Li, Wang, Jin; Metals 2018, 8(10):808), doi:10.3390/met8100808",
+     "url": "https://www.mdpi.com/2075-4701/8/10/808",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ],
+ "notes": "Web search (WebSearch budget) and Tavily quotas were exhausted during this run; sources were read with WebFetch, Europe PMC full text, local pdftotext of WebFetch-saved PDFs and the read-only built-in browser. No values were invented. LN2 mass flow (0.5 kg/min, Inconel paper) was not converted to L/min. Sample circumscribed diameters are exact arithmetic on the quoted dimensions, rounded up. CryoMill grinding and the Bombardier bushing PPS were not used: CryoMill duplicates existing rubber/chemistry cryomilling profiles and the PPS URL returned 404; ASTM D2137 gives no numeric conditions on its public page; the Ayed LN2 pressure/flow paper was 403."
+}

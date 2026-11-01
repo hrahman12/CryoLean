@@ -1,0 +1,18 @@
+{
+ "name": "fig_fault_injection",
+ "title": "Fault injection by defect type",
+ "question": "Does any single or combined data defect ever lead the checker to accept, and does each defect produce the verdict an independent rule predicts?",
+ "model": "Synthetic configuration with five capabilities against five mandatory requirements; one defect (1800 cases), 2-4 defects (900) or none (50 controls) injected at random (seed 7). Independent rule: any trusted violation -> DOES NOT MEET; otherwise any defect -> NEED MORE INFORMATION; for multiple defects the worst outcome wins.",
+ "data": "paper/data/e4_faults.json (paper/scripts/paper_eval.py e4_faults: one lean_runner.check_batch run of 2750 cases in 2.85 s).",
+ "claim": "COMPUTED",
+ "caption": "Lean verdicts for 2750 synthetic configurations grouped by injected defect. Only documented, trusted violations (value below the requirement, option documented as not fitted) are rejected; every provenance, completeness or dimension defect yields NEED MORE INFORMATION. 0 of 2700 defective cases were accepted, all 50 controls were accepted, and the Lean verdict matched the independent rule in 2750 of 2750 cases.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_baselines.py",
+ "command": "python paper/scripts/fig_baselines.py",
+ "files": [
+  "paper/figures/fig_fault_injection.png",
+  "paper/figures/fig_fault_injection.svg",
+  "paper/figures/fig_fault_injection.pdf"
+ ],
+ "interactive": null
+}

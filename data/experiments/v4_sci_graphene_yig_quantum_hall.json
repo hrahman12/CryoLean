@@ -1,0 +1,100 @@
+{
+ "id": "sci_graphene_yig_quantum_hall",
+ "name": "Local and nonlocal quantum Hall transport of hBN/graphene Hall bars on YIG at 2.7 K and 9 K up to 12 T",
+ "plain_name": "Measure quantized Hall conduction in graphene on a magnetic insulator",
+ "industry": "scientific_research",
+ "description": "Measure Rxx, Rxy and nonlocal resistance of top-gated hBN/graphene Hall bars on Y3Fe5O12 with 7 Hz lock-in amplifiers (50 nA at 2.7 K, 100 nA at 9 K) versus magnetic field 0-12 T, gate voltage and field angle (manual sample rotation).",
+ "keywords": [
+  "Measure quantized Hall conduction in graphene on a magnetic insulator",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "Y. Li, M. Amado, T. Hyart, G.P. Mazur, V. Risinggård, T. Wagner, L. McKenzie-Sell, G. Kimbell, J. Wunderlich, J. Linder, J.W.A. Robinson, 'Transition between canted antiferromagnetic and spin-polarized ferromagnetic quantum Hall states in graphene on a ferrimagnetic insulator', arXiv:1905.06866",
+   "url": "https://arxiv.org/pdf/1905.06866",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "lock-in amplifiers",
+  "manually rotatable sample holder"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": "2.7",
+     "unit": "K"
+    },
+    "hi": {
+     "value": 9,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Data were taken at 2.7 K and at 9 K.",
+   "evidence_ids": [
+    "v4e_sci_graphene_yig_quantum_hall_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 12,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The quantum Hall CAF-to-F transition is driven with fields up to 12 T.",
+   "evidence_ids": [
+    "v4e_sci_graphene_yig_quantum_hall_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Four-terminal and nonlocal resistance require wired contacts to the device.",
+   "evidence_ids": [
+    "v4e_sci_graphene_yig_quantum_hall_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 10
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the Hall bar has at least ten numbered contacts (plus a top gate).",
+   "evidence_ids": [
+    "v4e_sci_graphene_yig_quantum_hall_3"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

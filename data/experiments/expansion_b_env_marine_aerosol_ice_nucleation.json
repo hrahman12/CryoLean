@@ -1,0 +1,94 @@
+{
+  "id": "expansion_b_env_marine_aerosol_ice_nucleation",
+  "name": "Immersion freezing of marine-aerosol droplets",
+  "plain_name": "Measure when a cloud droplet freezes",
+  "industry": "environmental_science",
+  "description": "Atmospheric ice-nucleation experiment with a droplet,gas conditioning and optical observation.",
+  "keywords": [
+    "Measure when a cloud droplet freezes",
+    "cloud_droplet_freezing",
+    "environmental_science"
+  ],
+  "sources": [
+    {
+      "citation": "ACP2023,DOI10.5194/acp-23-12707-2023",
+      "url": "https://acp.copernicus.org/articles/23/12707/2023/",
+      "accessed": "2026-10-31",
+      "doi": "10.5194/acp-23-12707-2023"
+    }
+  ],
+  "reported_equipment": [
+    "LinkamLTS350;OlympusBX51M;QImagingcamera;EdgeTechDewPrimeII"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "233.15",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "278.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the +5 to-40 C cycle.",
+      "evidence_ids": [
+        "expb_inp"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Images identify each discrete freezing event.",
+      "evidence_ids": [
+        "expb_inp"
+      ]
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "1",
+          "unit": "K_per_min"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The cooling ramp is1 C/min.",
+      "evidence_ids": [
+        "expb_inp"
+      ]
+    },
+    {
+      "key": "module.dewpoint_control",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The source requires gas mixing and hygrometer control to prevent evaporation/condensation; stage gas ports alone are insufficient.",
+      "evidence_ids": [
+        "expb_inp"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Published equipment is LTS350; LTS120 is a different real candidate and its full gas/dewpoint assembly remains UNKNOWN.",
+    "The stage's maximum cooling rate is not proof of an arbitrary controlled ramp at the cold endpoint."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

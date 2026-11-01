@@ -1,0 +1,96 @@
+{
+  "id": "expc_metrology_josephson_dc",
+  "name": "DC transfer-reference calibration against an INRIM4.2 K programmable Josephson standard",
+  "plain_name": "Realize and compare a quantum-accurate DC voltage reference",
+  "industry": "metrology_and_calibration",
+  "description": "Realize and compare a quantum-accurate DC voltage reference. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "superconducting_standard",
+    "metrology_and_calibration"
+  ],
+  "sources": [
+    {
+      "id": "src_pjvs",
+      "citation": "INRIM: Quantum voltage standard laboratory",
+      "url": "https://www.inrim.it/en/research/scientific-sectors/quantum-electronics/laboratories/quantum-voltage-standard-laboratory-0",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "4.2 K",
+      "normalized": {
+        "value": "4200",
+        "unit": "mK"
+      },
+      "evidence_id": "expc_pjvs_function"
+    },
+    {
+      "key": "electrical.reference_voltage.max",
+      "as_printed": "up to 10 V",
+      "normalized": {
+        "value": "10",
+        "unit": "V"
+      },
+      "evidence_id": "expc_pjvs_10v"
+    }
+  ],
+  "reported_equipment": [
+    "INRIM PJVS national DC standard"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "4200",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Use the documented liquid-helium operating condition. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_pjvs_function"
+      ]
+    },
+    {
+      "key": "module.programmable_josephson_voltage",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A PJVS array and its microwave/bias control are essential. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_pjvs_function"
+      ]
+    },
+    {
+      "key": "electrical.reference_voltage.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "10",
+          "unit": "V"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Choose the documented 10 V comparison range; this is a procedure selection rather than a need for every voltage calibration. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_pjvs_10v"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Specific microwave frequency, array bias margins, thermal-emf cancellation, leakage control and measurement uncertainty require the laboratory procedure. Passing compatibility is not a calibration certificate."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

@@ -1,0 +1,90 @@
+{
+ "id": "env_specimen_bank_ln2_vapour_archive",
+ "name": "Long-term environmental specimen banking of cryo-homogenised sub-samples in the vapour phase above liquid nitrogen (below -150 C)",
+ "plain_name": "Archive environmental samples for decades above liquid nitrogen",
+ "industry": "environmental_science",
+ "description": "Environmental specimens (fish, mussels, bird eggs, plants, soils, human blood and urine) are deep-frozen in the gas phase above liquid nitrogen, ground while frozen, divided into about 10 g sub-samples and archived long-term above liquid nitrogen below -150 C so that future analysts can measure pollutants retrospectively (German ESB, NIST Biorepository).",
+ "keywords": [
+  "Archive environmental samples for decades above liquid nitrogen",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "Specimen archive - German Environmental Specimen Bank (Umweltprobenbank des Bundes)",
+   "url": "https://www.umweltprobenbank.de/en/documents/10023",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "The NIST Biorepository (Marine Environmental Specimen Bank), National Institute of Standards and Technology",
+   "url": "https://www.nist.gov/programs-projects/marine-environmental-specimen-bank",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryo tank (gaseous phase above liquid nitrogen)",
+  "Liquid Nitrogen (LN2) vapor-phase freezers (auto-fills)",
+  "Cryogenic Vibrating Disc Mills"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 123150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Sub-specimens are stored below -150 C (123.15 K).",
+   "evidence_ids": [
+    "v4e_env_specimen_bank_ln2_vapour_archive_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The archive keeps specimens in the vapour above liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_env_specimen_bank_ln2_vapour_archive_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 10,
+     "unit": "g"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each archived sub-specimen portion is about 10 g.",
+   "evidence_ids": [
+    "v4e_env_specimen_bank_ln2_vapour_archive_2"
+   ],
+   "conditions": [],
+   "key": "sample.mass.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

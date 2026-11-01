@@ -1,0 +1,18 @@
+{
+ "name": "fig_operating_envelope_3d",
+ "title": "Sourced temperature-field operating envelopes of all catalogued configurations",
+ "question": "How do the documented temperature ranges and maximum fields of the catalogued cryostats cover what the experiment profiles need, and where is the field simply not documented?",
+ "model": "Geometry only: rectangle [T_lo, T_hi] x [0, B_max] per configuration from its temperature.range and magnetic_field.max capabilities; experiment needs from the mandatory temperature and field requirements.",
+ "data": "21 configurations with a sourced temperature.range (11 with a documented field), 5 excluded (no temperature.range), 11 experiment profiles; data/cryostats/*.json and data/experiments/*.json via the catalog. Hover counts in the interactive version from paper/data/e1_grid.json. paper/data/fig_operating_envelope_3d.json.",
+ "claim": "SOURCED",
+ "caption": "Each upright rectangle is the sourced temperature range (log axis) times the documented maximum field of one configuration, with equipment families in depth; nested rectangles are configurations of one family with different magnets. Hatched strips mark configurations whose field capability is not documented, and the dashed outline a magnet that is only an uninstalled option. Orange segments on the front wall are the temperature and field needs of the experiment profiles. The figure shows sourced geometry only; feasibility verdicts are those of the Lean checker in the verdict grid.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_physics3d.py",
+ "command": "python paper/scripts/fig_physics3d.py",
+ "files": [
+  "paper/figures/fig_operating_envelope_3d.png",
+  "paper/figures/fig_operating_envelope_3d.svg",
+  "paper/figures/fig_operating_envelope_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig_operating_envelope_3d.html"
+}

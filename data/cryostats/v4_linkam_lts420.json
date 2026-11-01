@@ -1,0 +1,200 @@
+{
+ "id": "linkam_lts420",
+ "manufacturer": "Linkam Scientific Instruments",
+ "model": "LTS420 with LNP96 liquid nitrogen cooling pump",
+ "family": "large-area heating/freezing microscope stage (cold stage for droplet-freezing / ice-nucleation assays)",
+ "description": "Large-area (53.5 x 43 mm) temperature-controlled microscope stage, < -195 C to 420 C with the LNP96 LN2 pump, stability < 0.01 C, gas-tight chamber with gas valves; used for droplet-freezing (immersion-mode ice nucleation) assays observed by microscope/camera.",
+ "documents": [
+  {
+   "id": "doc_linkam_lts420_0",
+   "url": "https://www.linkam.co.uk/lts420-specifications",
+   "title": "LTS420 specifications (product specification page), Linkam Scientific Instruments",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_linkam_lts420_1",
+   "url": "https://www.linkam.co.uk/lts420",
+   "title": "LTS420 large area heating/freezing stage (product page), Linkam Scientific Instruments",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_linkam_lts420_2",
+   "url": "https://www.linkam.co.uk/lnp96",
+   "title": "LNP96 liquid nitrogen cooling pump (product page), Linkam Scientific Instruments",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "linkam_lts420_lnp96",
+   "name": "LTS420 standard stage with T96 controller and LNP96 liquid-nitrogen pump",
+   "configuration_basis": "Standard LTS420 (not the LTS420E electrical version) with T96 controller and LNP96 cooling pump/dewar, per Linkam specification and product pages.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 78150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 693150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 78150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_temperature.base"
+     ]
+    },
+    {
+     "key": "temperature.stability",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 10,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_temperature.stability"
+     ]
+    },
+    {
+     "key": "temperature.sweep_rate.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 50000,
+       "unit": "mK_per_min"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_temperature.sweep_rate.max"
+     ]
+    },
+    {
+     "key": "temperature.cooling_rate.range",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 26,
+       "unit": "mm"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_sample.diameter.max"
+     ]
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": [
+       "liquid_nitrogen"
+      ]
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_linkam_lts420_lnp96_cryogen.type"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "linkam_lts420_lnp96",
+   "key": "temperature.cooling_rate.range",
+   "why": "The LNP96 page says it lets 'specific stages' reach linear cooling rates of up to 100 °C/min. This is a generic pump rating, not established for the large-block LTS420, whose own maximum heating rate is only 50 °C/min. The vocabulary forbids substituting another rate."
+  },
+  {
+   "configuration_id": "linkam_lts420_lnp96",
+   "key": "magnetic_field.max",
+   "why": "The absence rests only on the silence of a short web specification and feature list (about 16 bullet points), not on a complete technical specification or manual. Under the rule, this not_available cannot be accepted without a full LTS420 manual or datasheet."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "environmental_science",
+  "geology_and_oceanography"
+ ]
+}

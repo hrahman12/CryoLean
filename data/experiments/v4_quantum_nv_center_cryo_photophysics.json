@@ -1,0 +1,116 @@
+{
+ "id": "quantum_nv_center_cryo_photophysics",
+ "name": "Photoluminescence of single NV centres versus axial magnetic field up to 5 T at 4 K in a closed-cycle vector-magnet confocal cryostat",
+ "plain_name": "Watch how single diamond defects glow in a strong magnetic field at 4 K",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Address individual NV centres (bulk ones under solid immersion lenses and shallow ones in nanopillars) with a 532 nm confocal microscope in a closed-cycle refrigerator at about 4 K, align the field along the NV axis with a (1,1,5) T vector magnet and record photoluminescence and ODMR contrast for fields up to 5 T to locate excited-state level anticrossings.",
+ "keywords": [
+  "Watch how single diamond defects glow in a strong magnetic field at 4 K",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Low-Temperature Photophysics of Single Nitrogen-Vacancy Centers in Diamond (Happacher et al., Phys. Rev. Lett. 128, 177401, 2022)",
+   "url": "https://quantum-sensing.physik.unibas.ch/fileadmin/user_upload/quantum-sensing_physik/PhysRevLett.128.177401.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Low temperature photo-physics of single NV centers in diamond (Happacher et al., arXiv:2105.08075, supplementary material)",
+   "url": "https://ar5iv.labs.arxiv.org/html/2105.08075",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "closed-cycle refrigerator (Leiden Cryogenics, CF-CS81)",
+  "(Bx,By,Bz)=(1,1,5) T vector magnet",
+  "confocal microscope with a green excitation laser at 532 nm (Coherent Compass 315M)",
+  "signal generator (SRS SG384)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All data were recorded with samples held at about 4 K.",
+   "evidence_ids": [
+    "v4e_quantum_nv_center_cryo_photophysics_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Confocal excitation at 532 nm and PL collection need free-space optical access to the sample.",
+   "evidence_ids": [
+    "v4e_quantum_nv_center_cryo_photophysics_1"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 5000,
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "PL versus field was examined up to B_NV = 5 T.",
+   "evidence_ids": [
+    "v4e_quantum_nv_center_cryo_photophysics_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The field must be aligned along the NV axis, which requires three-axis vector field control.",
+   "evidence_ids": [
+    "v4e_quantum_nv_center_cryo_photophysics_3"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.vector"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: ODMR/spin-contrast measurements deliver microwaves through a 25 um Al wire next to the NV; pure PL-versus-field scans do not need it.",
+   "evidence_ids": [
+    "v4e_quantum_nv_center_cryo_photophysics_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

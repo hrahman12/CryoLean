@@ -1,0 +1,166 @@
+{
+ "id": "astro_fast_lband_receiver_15k",
+ "name": "Cryogenic L-band (1.2-1.8 GHz) receiver front end for FAST: OMT at 55 K and Coupling-LNAs at 15 K in a GM-cooled rectangular dewar at 1e-5 Pa behind a film vacuum window",
+ "plain_name": "Cool a giant radio telescope's 1.2-1.8 GHz receiver electronics to 15 K to cut its noise",
+ "industry": "astronomy_and_astrophysics",
+ "description": "The FAST single-beam L-band receiver: a 728.3 mm long conical quad-ridge OMT (189 mm internal aperture) is cooled by the first GM stage to ~55 K and two Coupling-LNAs (noise ~4 K) by the second stage to 15 K inside a rectangular vacuum dewar reaching 1e-5 Pa; the RF enters through a polyimide/Teflon film window. LNA noise at 15 K is measured with the Variable Load Temperature method and the receiver noise (<9 K) with hot/cold loads.",
+ "keywords": [
+  "Cool a giant radio telescope's 1.2-1.8 GHz receiver electronics to 15 K to cut its noise",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "H.-F. Liu, C. He, J. Wang et al., 'Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope', Research in Astronomy and Astrophysics (2021), arXiv:2103.10677",
+   "url": "https://arxiv.org/pdf/2103.10677v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "FAST L-band receiver rectangular cryogenic dewar",
+  "two-stage GM cold head and helium compressor",
+  "Coupling-LNA with Agilent ATF34143 HEMTs",
+  "conical quad-ridge OMT"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 15,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Coupling-LNAs must operate at a physical temperature of 15 K.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00001",
+     "unit": "Pa"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The dewar reaches a vacuum of 1e-5 Pa to suppress gas conduction and convection to the cold parts.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_1"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The OMT and LNAs sit inside a vacuum dewar.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The sky signal enters the dewar through a large film vacuum window in front of the OMT.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_3"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "728.3",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 728.3 mm long OMT must fit inside the cold space.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_4"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 189,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The OMT has a 189 mm internal receiving aperture (its outer envelope is larger), which sets the minimum clear diameter.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_5"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1.8",
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cryogenic RF chain carries 1.2-1.8 GHz.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_6"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: cooling is by a Gifford-McMahon cold head and helium compressor (no liquid cryogen), as required for a telescope-mounted receiver.",
+   "evidence_ids": [
+    "v4e_astro_fast_lband_receiver_15k_7"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,102 @@
+{
+ "id": "geo_hydrate_sediment_lt_magnetism_5t",
+ "name": "FC/ZFC/LTC remanence, AC susceptibility and low-temperature hysteresis (5-300 K, 5 T SIRM) of gas-hydrate-bearing sediments from IODP Site U1519C on an MPMS XL-7",
+ "plain_name": "Read the magnetic minerals in deeply buried gas-hydrate mud between 5 K and room temperature",
+ "industry": "geology_and_oceanography",
+ "description": "Thirteen sediment samples from 587-618 mbsf are given a 5 T SIRM (field-cooled, zero-field-cooled and room-temperature low-temperature-cycling protocols) and measured between 5 and 300 K; a subset gets AC susceptibility (1, 10, 111 Hz) and hysteresis loops at 5, 70, 130 and 300 K to +/-1 T, to identify magnetite and iron sulfides.",
+ "keywords": [
+  "Read the magnetic minerals in deeply buried gas-hydrate mud between 5 K and room temperature",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+   "url": "https://doi.org/10.3389/feart.2025.1661858",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Quantum Design MPMS XL-7"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 5,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 300,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All protocols cool to 5 K and warm back to 300 K.",
+   "evidence_ids": [
+    "v4e_geo_hydrate_sediment_lt_magnetism_5t_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 5,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The lowest measurement temperature is 5 K.",
+   "evidence_ids": [
+    "v4e_geo_hydrate_sediment_lt_magnetism_5t_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 5,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "SIRM is imparted in a 5 T field.",
+   "evidence_ids": [
+    "v4e_geo_hydrate_sediment_lt_magnetism_5t_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "AC susceptibility at 1-111 Hz was measured on a subset of nine samples.",
+   "evidence_ids": [
+    "v4e_geo_hydrate_sediment_lt_magnetism_5t_3"
+   ],
+   "conditions": [],
+   "key": "module.acms"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

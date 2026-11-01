@@ -1,0 +1,69 @@
+{
+  "configuration_id": "expc_lne_cnam_agt_2019",
+  "rows": [
+    {
+      "key": "temperature.range",
+      "result": "value",
+      "value": {"kind": "range", "lo": {"value": "6000", "unit": "mK"}, "hi": {"value": "24554.99", "unit": "mK"}},
+      "value_as_printed": "lowest temperature reached by the pressure vessel approximately 6 K; AGT operated at T* = (24.55499 +/- 0.00016) K",
+      "install": "installed",
+      "evidence_status": "experimental_observation",
+      "quote": "The lowest temperature reached by the pressure vessel was approximately 6 K.",
+      "document_title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "location": "p.6, section 2.1 Cryostat (lower bound); conclusions, T* = (24.55499 +/- 0.00016) K (upper bound = documented operating isotherm). Cached research/v5/cache/d74643f3f5552cfa.txt lines 172-173 and 1127.",
+      "reasoning": "The paper on this exact apparatus states the pressure vessel (which holds the resonator) bottomed out at about 6 K, and it was operated and thermostatted at T* = 24.55499 K. So the documented operating interval is 6 K to 24.55499 K. The 6 K floor means the vessel cannot reach 4.2 K or 5.4 K, so both experiments that need this key fail on temperature. The upper bound is only the highest temperature documented in operation. It is not a rated maximum; the real upper limit is undocumented and probably higher. 'Approximately 6 K' is entered as 6000 mK."
+    },
+    {
+      "key": "module.programmable_josephson_voltage",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Primary acoustic gas thermometer (helium-filled copper quasi-sphere, microphones, microwave antennas, SPRT bridges); no Josephson array",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "We used absolute primary acoustic gas thermometry (AGT) to calibrate a Pt-Co resistance thermometer on the thermodynamic temperature scale by measuring the speed of sound in helium at a temperature T* chosen to be near the temperature of the triple point of neon",
+      "document_title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "location": "Abstract p.1; apparatus described in full in section 2 (2.1 Cryostat, 2.2 Gas handling, 2.3 Quasi-spherical AGT, 2.4 Microwave, 2.5 Acoustic measurements). Cached research/v5/cache/d74643f3f5552cfa.txt.",
+      "reasoning": "The paper names the instrument as a primary acoustic gas thermometer. Section 2 lists everything in it: a pulse-tube cryostat, a gas-handling system, the TCU1 copper quasi-sphere with capacitive microphones and microwave antennas, and cSPRTs read by F18 bridges. A programmable Josephson junction array with its microwave bias electronics is a different kind of instrument (a voltage standard) and is not part of this apparatus. This is absence shown by the instrument's stated scope, not by silence."
+    },
+    {
+      "key": "electrical.reference_voltage.max",
+      "result": "documented_absence",
+      "value_as_printed": "No voltage standard in the apparatus; the only high voltage is a 50 V RMS microphone drive from a TEGAM 2340 amplifier, which is not a reference voltage",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The AGT and its pressure vessel were contained within a cryogen-free cryostat cooled by a commercial 4 K pulse-tube cryocooler (Cryomech PT405, 0.5 W at 4.2 K cooling power).",
+      "document_title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "location": "p.5 section 2.1, and p.9 section 2.5 Acoustic Measurements (source microphone excited with 50 V RMS). Cached research/v5/cache/d74643f3f5552cfa.txt.",
+      "reasoning": "The vocabulary defines this key as the largest reference voltage produced by a documented voltage standard. The paper describes the apparatus as an acoustic gas thermometer in a pulse-tube cryostat. Its electrical parts are a function generator with a high-voltage amplifier driving the source microphone, a preamplifier and lock-in for the detector, microwave instruments, and resistance bridges. None of these is a voltage standard. The 50 V RMS drive is an excitation signal, not a reference voltage. So this function does not exist on the machine, and no number is given (same convention as other v6_yellow numeric absences)."
+    },
+    {
+      "key": "module.electrical_substitution_radiometry",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Acoustic gas thermometer (speed of sound in helium); no absorbing cavity / optical-power substitution readout",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "We used absolute primary acoustic gas thermometry (AGT) to calibrate a Pt-Co resistance thermometer on the thermodynamic temperature scale by measuring the speed of sound in helium",
+      "document_title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "location": "Abstract p.1; section 2 apparatus description pp.5-9. Cached research/v5/cache/d74643f3f5552cfa.txt.",
+      "reasoning": "The paper describes the instrument's purpose and parts as primary thermometry from the speed of sound in a helium-filled copper resonator. Electrical-substitution radiometry needs an optical absorbing cavity with a heater and an optical-power substitution readout. That is a different instrument (a cryogenic radiometer). The apparatus list in section 2 has nothing of the kind. This is absence shown by scope."
+    },
+    {
+      "key": "optical_access",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Sealed copper quasi-sphere inside a pressure vessel within two gold-plated heat shields; only a capillary and cables in a bellows reach the cavity; probed acoustically and by microwave antennas",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "a 6-meter-long capillary (ID 1.01mm) connected the gas handling system to the quasi-spherical cavity. The electrical cables surrounded the capillary and were enclosed by a bellows. This arrangement avoided using hermetic feedthroughs at low temperatures.",
+      "document_title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "location": "pp.5-7 sections 2.1-2.2 (vessel surrounded by two gold-plated heat shields; capillary/bellows access); sections 2.4-2.5 measurement systems (antennas, microphones). Cached research/v5/cache/d74643f3f5552cfa.txt lines 158-160, 236-238.",
+      "reasoning": "The paper describes how the cavity is reached: it sits in a pressure vessel inside two gold-plated radiation shields, and the only path from outside is a capillary with the cables in a bellows. The cavity is probed only by microwave antennas and microphones set flush in its wall. No window or optical port is part of the described apparatus, and it has no optical measurement function. This is weaker than the flag rows because the paper does not say 'no window' outright. It rests on the paper's account of the cavity's enclosure and its only access path. The optical-watt experiment also fails on electrical-substitution radiometry and on the 5.4 K requirement, so this row does not decide the outcome."
+    }
+  ]
+}

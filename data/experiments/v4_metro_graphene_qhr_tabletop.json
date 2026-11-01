@@ -1,0 +1,102 @@
+{
+ "id": "metro_graphene_qhr_tabletop",
+ "name": "Epitaxial-graphene quantized Hall resistance standard (RK/2) at 5 T in a cryogen-free table-top cryocooler below 4 K, scaled to 1 kOhm with a binary CCC",
+ "plain_name": "Keep the ohm standard running in a helium-free tabletop fridge using graphene",
+ "industry": "metrology_and_calibration",
+ "description": "NIST graphene Hall bars are held below 4 K at 5 T in a cryogen-free system with a 2.7 K base, and compared with resistors through a BCCC and a DCC.",
+ "keywords": [
+  "Keep the ohm standard running in a helium-free tabletop fridge using graphene",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "Rigosi et al., Graphene Devices for Tabletop and High-Current QHR Standards, IEEE TIM 68 (2019)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Rigosi et al., Table-top graphene quantized Hall standard, CPEM 2018",
+   "url": "https://www.nist.gov/publications/table-top-graphene-quantized-hall-standard",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryogen-free tabletop system (model not stated)",
+  "commercial binary-winding CCC (BCCC)",
+  "room-temperature direct current comparator (DCC)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 4000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The device must stay below 4 K while carrying current.",
+   "evidence_ids": [
+    "v4e_metro_graphene_qhr_tabletop_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 5000,
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All measurements were made at 5 T.",
+   "evidence_ids": [
+    "v4e_metro_graphene_qhr_tabletop_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Hall bar is wired through a TO-8 or LCC-32 package.",
+   "evidence_ids": [
+    "v4e_metro_graphene_qhr_tabletop_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Running without liquid helium is the aim, but the physics does not require it.",
+   "evidence_ids": [
+    "v4e_metro_graphene_qhr_tabletop_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

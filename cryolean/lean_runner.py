@@ -49,7 +49,7 @@ def _with_file(payload, args_prefix: list[str], timeout: float | None = None) ->
     fd, path = tempfile.mkstemp(suffix=".json", prefix="cryolean_")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False)
+            f.write(json.dumps(payload, ensure_ascii=False))   # one-shot dumps uses the C encoder; dump(f) does not
         return _run([*args_prefix, path], timeout)
     finally:
         try:

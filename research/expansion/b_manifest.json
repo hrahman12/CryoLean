@@ -1,0 +1,969 @@
+{
+  "group": "b",
+  "accessed": "2026-10-31",
+  "industries": [
+    {
+      "id": "biology_and_biotechnology",
+      "experiment_ids": [
+        "bio_cryosection_frozen_tissue",
+        "bio_cryo_fluorescence_vitrified",
+        "expansion_b_bio_pbmc_controlled_freezing"
+      ],
+      "configuration_ids": [
+        "leica_cm1950_genA_vacuum_motor_objcool",
+        "linkam_thms600_lnp96_t96",
+        "expansion_b_planer_kryo560_documented"
+      ],
+      "shortfalls": []
+    },
+    {
+      "id": "chemistry_and_pharmaceuticals",
+      "experiment_ids": [
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom",
+        "chem_temperature_dependent_photoluminescence"
+      ],
+      "configuration_ids": [
+        "linkam_thms600_lnp96_t96",
+        "oxford_optistatdry_blv",
+        "lakeshore_ccs_100"
+      ],
+      "shortfalls": []
+    },
+    {
+      "id": "healthcare_and_medicine",
+      "experiment_ids": [
+        "expansion_b_health_intercostal_nerve_cryoneurolysis",
+        "expansion_b_health_oocyte_vitrification",
+        "expansion_b_health_breast_cell_freeze_thaw"
+      ],
+      "configuration_ids": [
+        "expansion_b_atricure_cryosphere_documented",
+        "expansion_b_kitazato_cryotop_documented",
+        "expansion_b_neslab_rte740_documented"
+      ],
+      "shortfalls": [
+        "The nerve-probe candidate does not establish an installed thoracoscopic visualization chain; the in-vitro freezing experiment's custom aluminum block and independent logger are not established in the candidate bath configuration. Preserve UNKNOWN."
+      ]
+    },
+    {
+      "id": "food_and_agriculture",
+      "experiment_ids": [
+        "expansion_b_food_gummy_cryogenic_homogenization",
+        "expansion_b_food_icecream_recrystallization",
+        "expansion_b_food_strawberry_lyophilization"
+      ],
+      "configuration_ids": [
+        "expansion_b_retsch_mm400_documented",
+        "expansion_b_linkam_lts120_documented",
+        "expansion_b_labconco_freezone6_documented"
+      ],
+      "shortfalls": [
+        "The documented -50 C FreeZone candidate does not satisfy the strawberry procedure's -67 C collector requirement; no fictitious compatible unit is substituted."
+      ]
+    },
+    {
+      "id": "environmental_science",
+      "experiment_ids": [
+        "expansion_b_env_soil_cryogenic_preparation",
+        "expansion_b_env_marine_aerosol_ice_nucleation",
+        "expansion_b_env_whole_air_voc_cryofocusing"
+      ],
+      "configuration_ids": [
+        "expansion_b_retsch_cryomill_documented",
+        "expansion_b_linkam_lts120_documented",
+        "expansion_b_entech7200a_epa_documented"
+      ],
+      "shortfalls": [
+        "LTS120 lacks documented installed dewpoint conditioning and a guaranteed 1 C/min ramp at -40 C in the consulted specification; the complete published LTS350 assembly is not silently assumed.",
+        "The soil method is manufacturer-documented sample preparation,not a matrix-specific pollutant recovery study."
+      ]
+    },
+    {
+      "id": "geology_and_oceanography",
+      "experiment_ids": [
+        "expansion_b_geo_fluid_inclusion_microthermometry",
+        "expansion_b_geo_permafrost_complex_resistivity",
+        "expansion_b_geo_soft_sediment_lyophilization"
+      ],
+      "configuration_ids": [
+        "expansion_b_linkam_thmsg600_documented",
+        "expansion_b_espec_egnx12_documented",
+        "expansion_b_labconco_freezone6_documented"
+      ],
+      "shortfalls": [
+        "The ESPEC chamber has no documented installed complex-resistivity electrodes/electronics; temperature cycling does not establish the measurement chain."
+      ]
+    },
+    {
+      "id": "manufacturing_and_industrial_processing",
+      "experiment_ids": [
+        "expansion_b_manufacturing_steel_deep_cryo_treatment",
+        "expansion_b_manufacturing_rubber_cryomilling",
+        "expansion_b_manufacturing_sbr_rubber_dsc"
+      ],
+      "configuration_ids": [
+        "expansion_b_messer_metal_cabinet_documented",
+        "expansion_b_retsch_cryomill_documented",
+        "expansion_b_linkam_dsc600_documented"
+      ],
+      "shortfalls": [
+        "Messer loaded maximum hold duration is not specified; Linkam installed dynamic nitrogen purge is not established. These mandatory conditions remain UNKNOWN."
+      ]
+    }
+  ],
+  "vocabulary": {
+    "process.controlled_rate_freezing": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Programmed, controlled-rate biological sample freezing is documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.cryogenic_milling": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Mechanical sample comminution with documented cryogenic cooling.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.freeze_drying": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Vacuum freeze drying of pre-frozen bulk samples (not merely a cold condenser).",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.dsc": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Differential scanning calorimetry with a heat-flow sensor and reference is available.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.deep_cryogenic_treatment": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Controlled sub-zero treatment of metal parts is documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.vitrification": {
+      "shape": "flag",
+      "unit": "",
+      "description": "The documented carrier/protocol supports rapid cryoprotectant-assisted vitrification.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.ln2_immersion": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Direct liquid-nitrogen immersion of the documented sample carrier.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.circulating_bath": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Refrigerated circulating liquid bath, including its liquid work area.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.temperature_cycling": {
+      "shape": "flag",
+      "unit": "",
+      "description": "A chamber with programmable temperature cycling is documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.dewpoint_control": {
+      "shape": "flag",
+      "unit": "",
+      "description": "The complete humidified/dry gas mixing and dew-point measurement chain is installed.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.complex_resistivity": {
+      "shape": "flag",
+      "unit": "",
+      "description": "A complex-resistivity measurement chain and sample electrodes are installed.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.sample_thermometry": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Independent sample thermocouple and logger are installed.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.eight_well_freezing_block": {
+      "shape": "flag",
+      "unit": "",
+      "description": "The validated thermal-contact aluminum block for eight-well strips is installed.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.dynamic_nitrogen_purge": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Dynamic nitrogen purge of the calorimeter is documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "process.cryogenic_preconcentration": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Cryogenic trapping and focusing for gas analysis is documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.gc_ms": {
+      "shape": "flag",
+      "unit": "",
+      "description": "An interfaced gas chromatograph and mass-selective detector are documented.",
+      "status": "established",
+      "better": "flag"
+    },
+    "temperature.cooling_rate.range": {
+      "shape": "range",
+      "unit": "mK_per_min",
+      "description": "Documented controlled cooling-rate magnitudes; do not substitute heating rates.",
+      "status": "established",
+      "better": "range"
+    },
+    "temperature.heating_rate.range": {
+      "shape": "range",
+      "unit": "mK_per_min",
+      "description": "Documented controlled heating-rate magnitudes.",
+      "status": "established",
+      "better": "range"
+    },
+    "milling.frequency.range": {
+      "shape": "range",
+      "unit": "Hz",
+      "description": "Documented grinding-jar vibration frequency, not electrical line frequency.",
+      "status": "established",
+      "better": "range"
+    },
+    "milling.duration.max": {
+      "shape": "max",
+      "unit": "s",
+      "description": "Documented programmable maximum milling duration (not a guarantee against sample warming).",
+      "status": "established",
+      "better": "higher"
+    },
+    "milling.jar_volume": {
+      "shape": "max",
+      "unit": "L",
+      "description": "Nominal volume of the documented grinding jar.",
+      "status": "established",
+      "better": "higher"
+    },
+    "condenser.temperature.min": {
+      "shape": "min",
+      "unit": "mK",
+      "description": "Lowest documented freeze-dryer collector/condenser temperature; never substitute for shelf/sample temperature.",
+      "status": "established",
+      "better": "lower"
+    },
+    "trap.precool.temperature": {
+      "shape": "min",
+      "unit": "mK",
+      "description": "Lowest documented cold-focusing-trap precool setting for the selected installed method.",
+      "status": "established",
+      "better": "lower"
+    },
+    "trap.inject.temperature": {
+      "shape": "max",
+      "unit": "mK",
+      "description": "Documented hot desorption/injection trap setpoint for the selected method.",
+      "status": "established",
+      "better": "higher"
+    },
+    "dwell.duration.max": {
+      "shape": "max",
+      "unit": "s",
+      "description": "Maximum documented hold duration for the specified thermal process.",
+      "status": "established",
+      "better": "higher"
+    },
+    "carrier.oocyte.capacity": {
+      "shape": "count",
+      "unit": "",
+      "description": "Maximum recommended number of oocytes on the documented vitrification carrier.",
+      "status": "established",
+      "better": "higher"
+    },
+    "process.nerve_cryoneurolysis": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Documented peripheral-nerve freezing with the specified surgical cryoprobe.",
+      "status": "established",
+      "better": "flag"
+    },
+    "probe.temperature.range": {
+      "shape": "range",
+      "unit": "mK",
+      "description": "Documented cryoprobe operating temperature envelope,distinct from tissue temperature and console ambient range.",
+      "status": "established",
+      "better": "range"
+    },
+    "probe.freeze_duration.range": {
+      "shape": "range",
+      "unit": "s",
+      "description": "Conservatively documented supported freeze durations; a single-point interval records one established timer setting.",
+      "status": "established",
+      "better": "range"
+    },
+    "module.direct_visualization": {
+      "shape": "flag",
+      "unit": "",
+      "description": "Documented installed direct-visualization equipment for the selected procedure; never inferred from a console specification.",
+      "status": "established",
+      "better": "flag"
+    }
+  },
+  "experiment_scenes": {
+    "expansion_b_bio_pbmc_controlled_freezing": {
+      "archetype": "controlled_rate_freezing",
+      "apparatus": [
+        "cryovial basket in insulated freezer",
+        "1mL cell suspension in each vial",
+        "programmed chamber cooling and separate later storage vessel"
+      ],
+      "sample_shape": "small translucent screw-cap vials containing suspended spherical immune cells",
+      "distinctive_sample_shape": "small translucent screw-cap vials containing suspended spherical immune cells",
+      "steps": [
+        "Load precooled cryovials containing the prepared PBMC suspension.",
+        "Cool from+4 to-80 C at1 C/min.",
+        "Complete the initial freeze; evaluate subsequent nitrogen-vapor storage separately."
+      ],
+      "source_urls": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5180082/fullTextXML"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_health_oocyte_vitrification": {
+      "archetype": "vitrification_plunge",
+      "apparatus": [
+        "Cryotop thin strip",
+        "LN2 container and cooling rack",
+        "forceps and cover straw",
+        "equilibration drops beside the plunge area"
+      ],
+      "sample_shape": "four spherical oocytes on a tiny flat transparent carrier strip",
+      "distinctive_sample_shape": "four spherical oocytes on a tiny flat transparent carrier strip",
+      "steps": [
+        "Equilibrate oocytes in the prescribed media.",
+        "Load at most four oocytes on the carrier and plunge into LN2 within1s.",
+        "Cap with the tip submerged and transfer to LN2 storage."
+      ],
+      "source_urls": [
+        "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_health_breast_cell_freeze_thaw": {
+      "archetype": "cell_freeze_thaw",
+      "apparatus": [
+        "refrigerated circulating bath",
+        "aluminum block holding8well strip",
+        "typeT thermocouple in representative well",
+        "external sample-temperature logger"
+      ],
+      "sample_shape": "linear strip of eight small cup wells with a thin cell monolayer",
+      "distinctive_sample_shape": "linear strip of eight small cup wells with a thin cell monolayer",
+      "steps": [
+        "Place the prepared8well strip into the precooled aluminum block.",
+        "Nucleate ice as specified and hold the selected -25 C freezing arm for5min.",
+        "Passively thaw and measure biological response with the study's assays."
+      ],
+      "source_urls": [
+        "https://journals.sagepub.com/doi/pdf/10.1177/1178223420972363"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_food_gummy_cryogenic_homogenization": {
+      "archetype": "food_cryomilling",
+      "apparatus": [
+        "twin jar mixer mill",
+        "separate LN2 precooling container",
+        "50mL steel jars with25mm balls"
+      ],
+      "sample_shape": "ten irregular gummy confectionery pieces changing into loose granules",
+      "distinctive_sample_shape": "ten irregular gummy confectionery pieces changing into loose granules",
+      "steps": [
+        "Precool the closed jars and food using the documented CryoKit method.",
+        "Clamp jars and mill at30Hz for1min.",
+        "Recover homogenized sample for the planned food analysis."
+      ],
+      "source_urls": [
+        "https://www.retsch.com/files/15592/white-paper-cryogenic-preparation-of-sample-materials.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_food_icecream_recrystallization": {
+      "archetype": "icecream_microscopy",
+      "apparatus": [
+        "flat cold stage under microscope",
+        "thin vanilla-ice-cream film between slides",
+        "camera and calibrated specimen-temperature readout"
+      ],
+      "sample_shape": "thin creamy disc containing faceted ice crystals and rounded air cells",
+      "distinctive_sample_shape": "thin creamy disc containing faceted ice crystals and rounded air cells",
+      "steps": [
+        "Mount a thin ice-cream film on the cold microscope stage.",
+        "Hold the selected temperature within the required stability and record images.",
+        "Measure changes in the ice-crystal size distribution."
+      ],
+      "source_urls": [
+        "https://www.sciencedirect.com/science/article/abs/pii/S0958694696000295"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_food_strawberry_lyophilization": {
+      "archetype": "fruit_freeze_drying",
+      "apparatus": [
+        "vacuum freeze dryer",
+        "shelf tray of fruit slices",
+        "cold water-vapor collector",
+        "vacuum pump line and pressure gauge"
+      ],
+      "sample_shape": "red circular strawberry slices with pale seeds on a horizontal tray",
+      "distinctive_sample_shape": "red circular strawberry slices with pale seeds on a horizontal tray",
+      "steps": [
+        "Pre-freeze single-layer slices at-40 C for4h using a separate freezer.",
+        "Apply vacuum with the reported -67 C condenser and0.055mbar condition.",
+        "Recover dried slices and perform the reported quality assays."
+      ],
+      "source_urls": [
+        "https://mdpi-res.com/d_attachment/processes/processes-13-02065/article_deploy/processes-13-02065.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_env_soil_cryogenic_preparation": {
+      "archetype": "soil_cryomilling",
+      "apparatus": [
+        "single cooled steel grinding jar",
+        "soil particles and grinding ball",
+        "LN2 jacket and autofill line"
+      ],
+      "sample_shape": "brown heterogeneous soil granules in a horizontal steel jar",
+      "distinctive_sample_shape": "brown heterogeneous soil granules in a horizontal steel jar",
+      "steps": [
+        "Select and document soil aliquot and contamination controls.",
+        "Precool and cryogenically homogenize using the documented LN2 method.",
+        "Extract and assay target contaminants using an independently validated analytical method."
+      ],
+      "source_urls": [
+        "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_env_marine_aerosol_ice_nucleation": {
+      "archetype": "cloud_droplet_freezing",
+      "apparatus": [
+        "sealed optical cold stage",
+        "2uL droplet over aerosol spot on foil",
+        "dry and humidified nitrogen mixing lines",
+        "dewpoint sensor and microscope camera"
+      ],
+      "sample_shape": "single hemispherical water droplet over a small dark aerosol spot",
+      "distinctive_sample_shape": "single hemispherical water droplet over a small dark aerosol spot",
+      "steps": [
+        "Place the collected aerosol beneath a2uL droplet.",
+        "Condition the gas dewpoint and cool +5 to-40 C at1 C/min.",
+        "Record the freezing event,rewarm and repeat the reported cycles."
+      ],
+      "source_urls": [
+        "https://acp.copernicus.org/articles/23/12707/2023/"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_env_whole_air_voc_cryofocusing": {
+      "archetype": "voc_cryofocusing",
+      "apparatus": [
+        "whole-air canister",
+        "three-module cryogenic preconcentrator",
+        "LN2 trap-cooling plumbing",
+        "GC column and mass-selective detector"
+      ],
+      "sample_shape": "trace gas molecules moving through a narrow coiled focusing capillary",
+      "distinctive_sample_shape": "trace gas molecules moving through a narrow coiled focusing capillary",
+      "steps": [
+        "Connect the prepared whole-air canister and verify the method's QC prerequisites.",
+        "Dehydrate,trap and cryofocus using the documented module setpoints.",
+        "Heat the focusing trap for injection and analyze by the interfaced GC-MSD."
+      ],
+      "source_urls": [
+        "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_geo_fluid_inclusion_microthermometry": {
+      "archetype": "fluid_inclusion_microscopy",
+      "apparatus": [
+        "geology microscope cold stage",
+        "doubly polished quartz/beryl wafer on quartz disc",
+        "microscope objective and calibrated temperature readout"
+      ],
+      "sample_shape": "thin angular transparent mineral wafer containing tiny ellipsoidal fluid bubbles",
+      "distinctive_sample_shape": "thin angular transparent mineral wafer containing tiny ellipsoidal fluid bubbles",
+      "steps": [
+        "Locate inclusions in the doubly polished mineral wafer.",
+        "Freeze and rewarm through the calibrated -56.6 to0 C window.",
+        "Observe phase changes and record temperatures with the required laboratory calibration."
+      ],
+      "source_urls": [
+        "https://mdpi-res.com/d_attachment/minerals/minerals-13-00365/article_deploy/minerals-13-00365.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_geo_permafrost_complex_resistivity": {
+      "archetype": "permafrost_resistivity",
+      "apparatus": [
+        "environmental freeze-thaw chamber",
+        "vertical Arctic soil column",
+        "four electrode bands and measurement leads",
+        "external impedance measurement chain,unverified unless configuration documents it"
+      ],
+      "sample_shape": "tall brown cylindrical soil core with horizontal electrode rings",
+      "distinctive_sample_shape": "tall brown cylindrical soil core with horizontal electrode rings",
+      "steps": [
+        "Prepare and wire the soil column using the study's measurement method.",
+        "Cycle the environment between+4 and-20 C and allow sample equilibration.",
+        "Record complex-resistivity response through freezing and thawing."
+      ],
+      "source_urls": [
+        "https://www.ornl.gov/publication/remote-sensing-freeze-thaw-transitions-arctic-soils-using-complex-resistivity-method"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_geo_soft_sediment_lyophilization": {
+      "archetype": "sediment_freeze_drying",
+      "apparatus": [
+        "six-liter freeze dryer",
+        "sample cups on adjustable vacuum-chamber shelves",
+        "collector and vacuum line"
+      ],
+      "sample_shape": "small foil-covered glass cups containing irregular laminated sediment crumbs",
+      "distinctive_sample_shape": "small foil-covered glass cups containing irregular laminated sediment crumbs",
+      "steps": [
+        "Freeze the sediment subsamples in separate suitable equipment.",
+        "Dry the frozen open-surface subsamples in the documented freeze dryer over multiple days.",
+        "Confirm dryness and use the friable material for the selected geological analysis."
+      ],
+      "source_urls": [
+        "https://cse.umn.edu/csd/subsample-preparation-and-analysis"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_manufacturing_steel_deep_cryo_treatment": {
+      "archetype": "steel_cryogenic_treatment",
+      "apparatus": [
+        "industrial insulated treatment cabinet",
+        "metal tooling rack",
+        "nitrogen circulation supply",
+        "time-temperature controller"
+      ],
+      "sample_shape": "several silver cutting-tool inserts and a fluted steel drill on a rack",
+      "distinctive_sample_shape": "several silver cutting-tool inserts and a fluted steel drill on a rack",
+      "steps": [
+        "Load previously heat-treated tools using a documented material-specific recipe.",
+        "Apply the selected-160 C,24h cryogenic treatment leg.",
+        "Warm according to the validated process and measure the actual material properties."
+      ],
+      "source_urls": [
+        "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_manufacturing_rubber_cryomilling": {
+      "archetype": "rubber_cryomilling",
+      "apparatus": [
+        "single horizontal cooled steel jar",
+        "25mm steel grinding ball",
+        "rubber feed pieces",
+        "continuous LN2 jacket"
+      ],
+      "sample_shape": "four grams of black irregular rubber chips becoming brittle fragments",
+      "distinctive_sample_shape": "four grams of black irregular rubber chips becoming brittle fragments",
+      "steps": [
+        "Load4g caoutchouc with the documented25mm ball in the50mL jar.",
+        "Precool and mill for2min at30Hz with continuous LN2 cooling.",
+        "Recover material and independently assess the required fineness."
+      ],
+      "source_urls": [
+        "https://www.retsch.com/files/15592/white-paper-cryogenic-preparation-of-sample-materials.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_manufacturing_sbr_rubber_dsc": {
+      "archetype": "rubber_calorimetry",
+      "apparatus": [
+        "DSC sample and reference pans",
+        "rubber specimen on heat-flow sensor",
+        "controlled LN2 cooling and nitrogen purge",
+        "temperature-program controller"
+      ],
+      "sample_shape": "tiny black SBR rubber disc inside one shallow round aluminum DSC pan",
+      "distinctive_sample_shape": "tiny black SBR rubber disc inside one shallow round aluminum DSC pan",
+      "steps": [
+        "Weigh15.41mg SBR into the sample pan and prepare the reference.",
+        "Run the reported -100 to220 C heating program at10K/min with dynamicN2.",
+        "Repeat the thermal program and interpret actual measured heat-flow data."
+      ],
+      "source_urls": [
+        "https://analyzing-testing.netzsch.com/_Resources/Persistent/1/1/3/a/113a82aa25c66d466843e79a134e449ecb15ac00/DSC_214_Polyma_en_web.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "expansion_b_health_intercostal_nerve_cryoneurolysis": {
+      "archetype": "nerve_cryoanalgesia",
+      "apparatus": [
+        "N2O cryosurgical console",
+        "long fine cryoprobe with target-contact tip",
+        "rib and intercostal nerve model",
+        "thoracoscopic visualization,unverified for candidate"
+      ],
+      "sample_shape": "thin yellow intercostal nerve following the underside of a curved pale rib",
+      "distinctive_sample_shape": "thin yellow intercostal nerve following the underside of a curved pale rib",
+      "steps": [
+        "Identify the study's nerve target under the required visualization.",
+        "Illustrate the published probe-temperature and timing condition.",
+        "Review the trial's measured recovery and analgesia outcomes from the source; generate no synthetic outcome."
+      ],
+      "source_urls": [
+        "https://escholarship.org/content/qt9qv3x483/qt9qv3x483_noSplash_14462970dec59270c3a1dc7d725b12cd.pdf"
+      ],
+      "scope": "Illustrative mechanism, never simulated scientific measurements or an installed-equipment claim."
+    },
+    "bio_cryosection_frozen_tissue": {
+      "archetype": "frozen_tissue_sectioning",
+      "apparatus": [
+        "clinical cryostat microtome",
+        "specimen chuck and blade",
+        "glass slide receiving a thin section"
+      ],
+      "sample_shape": "irregular tissue embedded in a white OCT block,with a curling thin ribbon",
+      "distinctive_sample_shape": "irregular tissue embedded in a white OCT block,with a curling thin ribbon",
+      "steps": [
+        "Equilibrate the frozen tissue block at the confirmed chamber/head settings.",
+        "Advance the microtome and cut the selected15um tissue section.",
+        "Collect the section on a slide for the reported microscopy workflow."
+      ],
+      "source_urls": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12224881/fullTextXML",
+        "https://www.protocols.io/view/coronal-cryosectioning-of-mouse-brains-dxbw7ipe.pdf"
+      ],
+      "scope": "Descriptor for an existing sourced profile; no experiment data or verification semantics changed."
+    },
+    "bio_cryo_fluorescence_vitrified": {
+      "archetype": "cryo_fluorescence_grid",
+      "apparatus": [
+        "optical cryogenic microscope stage",
+        "vitrified support grid",
+        "objective and fluorescence excitation/emission paths"
+      ],
+      "sample_shape": "small perforated circular microscopy grid containing vitrified cellular material",
+      "distinctive_sample_shape": "small perforated circular microscopy grid containing vitrified cellular material",
+      "steps": [
+        "Transfer the vitrified support grid while preserving its cryogenic state.",
+        "Keep the specimen below the confirmed devitrification threshold and illuminate it.",
+        "Collect actual fluorescence images and correlate them with the intended microscopy workflow."
+      ],
+      "source_urls": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10751236/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13038024/fullTextXML"
+      ],
+      "scope": "Descriptor for an existing sourced profile; no experiment data or verification semantics changed."
+    },
+    "chem_low_temperature_raman": {
+      "archetype": "raman_solution_freezing",
+      "apparatus": [
+        "LN2 optical stage",
+        "15mm quartz crucible with aqueous sample",
+        "Raman excitation and collection objective"
+      ],
+      "sample_shape": "round transparent quartz crucible containing a freezing aqueous lithium-chloride sample",
+      "distinctive_sample_shape": "round transparent quartz crucible containing a freezing aqueous lithium-chloride sample",
+      "steps": [
+        "Load the paper's aqueous sample into the quartz crucible.",
+        "Apply the confirmed freezing/melting temperature program.",
+        "Collect real Raman spectra through the optical window."
+      ],
+      "source_urls": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML"
+      ],
+      "scope": "Descriptor for an existing sourced profile; no experiment data or verification semantics changed."
+    },
+    "chem_phase_transition_pom": {
+      "archetype": "wax_polarized_microscopy",
+      "apparatus": [
+        "optical temperature stage",
+        "synthetic wax specimen",
+        "crossed polarizers and microscope camera"
+      ],
+      "sample_shape": "thin wax specimen with branching crystalline domains visible under crossed polarizers",
+      "distinctive_sample_shape": "thin wax specimen with branching crystalline domains visible under crossed polarizers",
+      "steps": [
+        "Mount the synthetic wax specimen for polarized microscopy.",
+        "Apply the reported203–393K temperature window.",
+        "Observe actual crystal-growth morphology without generating synthetic measurements."
+      ],
+      "source_urls": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10578349/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13568031/fullTextXML"
+      ],
+      "scope": "Descriptor for an existing sourced profile; no experiment data or verification semantics changed."
+    },
+    "chem_temperature_dependent_photoluminescence": {
+      "archetype": "pedot_photoluminescence",
+      "apparatus": [
+        "vacuum optical cryostat",
+        "cold finger supporting fused-silica substrate",
+        "excitation beam and luminescence collection optics"
+      ],
+      "sample_shape": "square25x25x2mm fused-silica substrate carrying a thin PEDOT:PSS film",
+      "distinctive_sample_shape": "square25x25x2mm fused-silica substrate carrying a thin PEDOT:PSS film",
+      "steps": [
+        "Mount and evacuate the optical sample space.",
+        "Apply the confirmed4–300K temperature program.",
+        "Measure the actual temperature-dependent photoluminescence spectrum."
+      ],
+      "source_urls": [
+        "https://arxiv.org/html/2407.08075v1",
+        "https://arxiv.org/html/2606.23334"
+      ],
+      "scope": "Descriptor for an existing sourced profile; no experiment data or verification semantics changed."
+    }
+  },
+  "equipment_scenes": {
+    "expansion_b_planer_kryo560_documented": {
+      "equipment_id": "expansion_b_planer_kryo560",
+      "family": "controlled_rate_freezer",
+      "archetype": "controlled_rate_freezer",
+      "apparatus": [
+        "insulated square top-opening 16 L chamber",
+        "basket of cryovials",
+        "separate liquid-nitrogen dewar and delivery hose",
+        "MRV controller showing a procedural cooling ramp"
+      ],
+      "source_urls": [
+        "https://planer.com/docs/freezers/K560_V2_0.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Only the documented configuration named above."
+    },
+    "expansion_b_retsch_cryomill_documented": {
+      "equipment_id": "expansion_b_retsch_cryomill",
+      "family": "cryogenic_mill",
+      "archetype": "cryogenic_mill",
+      "apparatus": [
+        "single horizontal oscillating steel grinding jar",
+        "large ball visible in cutaway",
+        "insulated LN2 cooling jacket",
+        "separate nitrogen autofill dewar"
+      ],
+      "source_urls": [
+        "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Documented 50 mL steel jar and LN2 autofill arrangement. Jar cooling does not establish volatile-analyte recovery or grind-size performance on every matrix."
+    },
+    "expansion_b_retsch_mm400_documented": {
+      "equipment_id": "expansion_b_retsch_mm400",
+      "family": "cryogenic_mill",
+      "archetype": "cryogenic_mill",
+      "apparatus": [
+        "two side-by-side horizontal screw-top jars",
+        "oscillating clamp arms",
+        "separate insulated LN2 precooling container and tongs"
+      ],
+      "source_urls": [
+        "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "CryoKit and 50 mL steel jars are explicitly included as documented accessories; this is a selectable catalog configuration, not an installation claim."
+    },
+    "expansion_b_linkam_lts120_documented": {
+      "equipment_id": "expansion_b_linkam_lts120",
+      "family": "optical_cold_stage",
+      "archetype": "optical_cold_stage",
+      "apparatus": [
+        "flat rectangular Peltier stage under microscope",
+        "hinged lid with round optical window",
+        "microscope slide holding the selected specimen",
+        "two water hoses to an external chiller"
+      ],
+      "source_urls": [
+        "https://www.linkam.co.uk/lts120-specifications"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Optional water chiller explicitly included, as required by the source for operation below -25 C. Dew-point conditioning and microscope camera are unverified ancillary items."
+    },
+    "expansion_b_linkam_dsc600_documented": {
+      "equipment_id": "expansion_b_linkam_dsc600",
+      "family": "calorimeter",
+      "archetype": "calorimeter",
+      "apparatus": [
+        "low flat DSC chamber",
+        "separate sample and reference crucibles on heat-flow sensor",
+        "LN2 supply hose",
+        "optical aperture in chamber lid"
+      ],
+      "source_urls": [
+        "https://www.linkam.co.uk/dsc600-specifications"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "DSC600 stage,T96 controller,and documented optionalLNP96 explicitly included to reach the cryogenic range. This is a catalog configuration,not a claim of a lab installation."
+    },
+    "expansion_b_linkam_thmsg600_documented": {
+      "equipment_id": "expansion_b_linkam_thmsg600",
+      "family": "geology_microthermometry_stage",
+      "archetype": "geology_microthermometry_stage",
+      "apparatus": [
+        "small round silver geology stage on microscope",
+        "7 mm quartz disc supporting a doubly polished mineral wafer",
+        "optical viewing cone",
+        "LN2 pump hoses"
+      ],
+      "source_urls": [
+        "https://www.linkam.co.uk/thmsg600"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Only the documented configuration named above."
+    },
+    "expansion_b_labconco_freezone6_documented": {
+      "equipment_id": "expansion_b_labconco_freezone6",
+      "family": "freeze_dryer",
+      "archetype": "freeze_dryer",
+      "apparatus": [
+        "floor console containing refrigeration and collector",
+        "transparent round vacuum drying chamber",
+        "three stacked horizontal shelves",
+        "side manifold valves and external vacuum line"
+      ],
+      "source_urls": [
+        "https://cse.umn.edu/csd/subsample-preparation-and-analysis"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "The CSD laboratory explicitly reports this installed -50 C/6 L system with three10-inch shelves and6ports; pressure remains UNKNOWN."
+    },
+    "expansion_b_espec_egnx12_documented": {
+      "equipment_id": "expansion_b_espec_egnx12",
+      "family": "freeze_thaw_chamber",
+      "archetype": "freeze_thaw_chamber",
+      "apparatus": [
+        "large rectangular environmental cabinet",
+        "thick front access door",
+        "horizontal chamber shelves holding soil columns",
+        "side cable-port position; external measurement instrument shown only when verified"
+      ],
+      "source_urls": [
+        "https://espec.com/images/uploads/files/e_globaln-A4.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Only the documented configuration named above."
+    },
+    "expansion_b_entech7200a_epa_documented": {
+      "equipment_id": "expansion_b_entech7200a_epa",
+      "family": "cryogenic_gas_preconcentrator",
+      "archetype": "cryogenic_gas_preconcentrator",
+      "apparatus": [
+        "steel whole-air sampling canister",
+        "rectangular preconcentrator with three distinct small traps and LN2 plumbing",
+        "adjacent gas chromatograph",
+        "separate mass-selective detector"
+      ],
+      "source_urls": [
+        "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Actual EPA laboratory configuration from SOP5188, including Agilent8890/5977B and cryogenic focusing. Only demonstrated method setpoints are represented; no continuous temperature envelope is inferred."
+    },
+    "expansion_b_messer_metal_cabinet_documented": {
+      "equipment_id": "expansion_b_messer_metal_cabinet",
+      "family": "industrial_cryogenic_cabinet",
+      "archetype": "industrial_cryogenic_cabinet",
+      "apparatus": [
+        "tall front-loading insulated steel cabinet",
+        "guillotine style access door",
+        "rack of metal tooling",
+        "LN2 spray circulation and nitrogen supply pipe"
+      ],
+      "source_urls": [
+        "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Only the documented configuration named above."
+    },
+    "expansion_b_kitazato_cryotop_documented": {
+      "equipment_id": "expansion_b_kitazato_cryotop",
+      "family": "vitrification_plunge_system",
+      "archetype": "vitrification_plunge_system",
+      "apparatus": [
+        "open LN2 container and cooling rack",
+        "thin transparent carrier strip on colored handle",
+        "four microscopic spherical oocytes magnified in an inset",
+        "cover straw beside carrier"
+      ],
+      "source_urls": [
+        "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Protocol-required Cryotop, cooling rack, liquid-nitrogen container and cover straw explicitly configured; medium and operator technique remain procedural prerequisites."
+    },
+    "expansion_b_neslab_rte740_documented": {
+      "equipment_id": "expansion_b_neslab_rte740",
+      "family": "refrigerated_circulating_bath",
+      "archetype": "refrigerated_circulating_bath",
+      "apparatus": [
+        "rectangular liquid reservoir with insulated lid",
+        "upright circulator/controller at rear",
+        "immersed freezing-block position",
+        "recirculation pump and rear tubing connections"
+      ],
+      "source_urls": [
+        "https://www.nist.gov/system/files/documents/ncnr/Circulating-Bath_Thermo-Scientific_NESLAB-RTE-7.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "Only the documented configuration named above."
+    },
+    "expansion_b_atricure_cryosphere_documented": {
+      "equipment_id": "expansion_b_atricure_cryosphere",
+      "family": "nerve_cryoablation_probe",
+      "archetype": "nerve_cryoablation_probe",
+      "apparatus": [
+        "compact cryoICE BOX console with timer",
+        "external N2O cylinder and delivery hose",
+        "long narrow bent probe with spherical ball tip",
+        "representative rib and intercostal nerve model; visualization system unverified"
+      ],
+      "source_urls": [
+        "https://asia.atricure.com/sites/default/files/devices-ifu/IFU-0036.C.pdf"
+      ],
+      "geometry_status": "representative procedural geometry; not manufacturer CAD",
+      "installed_options": "The IFU specifies cryoSPHERE with cryoICE BOX; an external N2O cylinder is a required separately supplied utility. A thoracoscopic visualization chain is not asserted installed."
+    }
+  },
+  "cross_industry_membership": [
+    {
+      "experiment_id": "bio_cryosection_frozen_tissue",
+      "industry_ids": [
+        "biology_and_biotechnology",
+        "healthcare_and_medicine"
+      ],
+      "reason": "The same frozen-tissue sectioning operation supports biological research and diagnostic histology. Reuse avoids a renamed duplicate."
+    }
+  ],
+  "verification_semantics": "No engine changes. Per-function flags are open-world: omitted flags are UNKNOWN,never a fabricated documented absence. Every matrix verdict must come from existing Lean,not these scene descriptors.",
+  "notes": [
+    "Three configurations per industry are distinct real instruments relevant to at least one procedure. Cross pairings deliberately include missing capabilities and failures; membership is not suitability.",
+    "16newprofiles+5existing unique profiles cover21distinctindustry/profile slots. Additional cross-industry relevance is optional and does not inflate this count.",
+    "No new coupled-physics law was introduced. Phenomena not modeled by existing backend are reported as scope limitations,not simulated proofs."
+  ]
+}

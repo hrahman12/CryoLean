@@ -1,0 +1,93 @@
+{
+  "id": "expc_semiconductor_cryo_hall",
+  "name": "Cryogenic van der Pauw Hall analysis in an LN2 bath at nominal 0.75 T (FastHall documented method class)",
+  "plain_name": "Measure carrier type, density and mobility in a cold semiconductor",
+  "industry": "semiconductors_and_electronics",
+  "description": "Measure carrier type, density and mobility in a cold semiconductor. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "documented_method_class",
+  "keywords": [
+    "semiconductor_hall",
+    "semiconductors_and_electronics"
+  ],
+  "sources": [
+    {
+      "id": "src_hall",
+      "citation": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "sample_environment",
+      "as_printed": "flooded LN2 bath",
+      "normalized": null,
+      "evidence_id": "expc_hall_ln2_bath"
+    },
+    {
+      "key": "magnetic_field.max",
+      "as_printed": "0.75 T with LN2 option",
+      "normalized": {
+        "value": "750",
+        "unit": "mT"
+      },
+      "evidence_id": "expc_hall_ln2_field"
+    }
+  ],
+  "reported_equipment": [
+    "FastHall Station",
+    "M91",
+    "HMS-TT-ADD-LN2"
+  ],
+  "requirements": [
+    {
+      "key": "module.hall_measurement",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The measurement requires Hall sourcing, voltage readout, switching and analysis. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_hall_function"
+      ]
+    },
+    {
+      "key": "module.liquid_nitrogen_bath",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Use the explicitly documented flooded-LN2 sample environment. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_hall_ln2_bath"
+      ]
+    },
+    {
+      "key": "magnetic_field.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "750",
+          "unit": "mT"
+        }
+      },
+      "mandatory": true,
+      "origin": "manufacturer_specification",
+      "rationale": "Select the manufacturer's nominal 0.75 T LN2 setup; this is not a universal minimum Hall field. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_hall_ln2_field"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "This is a manufacturer-documented measurement method, not a single published material dataset.",
+    "Specimen temperature must be measured; the bath's nominal boiling point is not treated as a guaranteed sample setpoint.",
+    "Sample dimensions/thickness, ohmic-contact quality and excitation current must be confirmed. No mobility or carrier density is invented."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

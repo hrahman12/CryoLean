@@ -1,0 +1,103 @@
+{
+  "id": "expa_mli_guarded_heat_leak",
+  "name": "Multilayer-insulation heat-leak calorimetry with 20 K / 90 K boundaries",
+  "plain_name": "Multilayer-insulation heat-leak calorimetry with 20 K / 90 K boundaries",
+  "industry": "aerospace_and_space_exploration",
+  "description": "Measure steady heat leakage through multilayer spacecraft/tank insulation between separate cryogenic boundaries with calibrated conduction calorimetry.",
+  "keywords": [
+    "mli guarded heat leak",
+    "guarded calorimeter"
+  ],
+  "sources": [
+    {
+      "citation": "Chato et al., Design and Operation of a Calorimeter for Advanced Multilayer Insulation Testing",
+      "url": "https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20170003927.pdf",
+      "accessed": "2026-10-31"
+    },
+    {
+      "citation": "NASA Creek Road Cryogenics Complex",
+      "url": "https://www.nasa.gov/centers-and-facilities/glenn/creek-road-cryogenics-complex/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "boundary_temperatures",
+      "as_printed": "nominal 20 K inner and 90 K outer boundaries",
+      "evidence_id": "expa_mli"
+    }
+  ],
+  "reported_equipment": [
+    "NASA 20 K to 90 K calorimeter"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.cold_boundary.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "20",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Nominal inner cold boundary is 20 K.",
+      "evidence_ids": [
+        "expa_mli"
+      ]
+    },
+    {
+      "key": "temperature.warm_boundary.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "90",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Nominal outer warm boundary is 90 K.",
+      "evidence_ids": [
+        "expa_mli"
+      ]
+    },
+    {
+      "key": "module.guarded_heat_flow_calorimetry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Guarded geometry and a calibrated heat-flow rod are indispensable.",
+      "evidence_ids": [
+        "expa_mli"
+      ]
+    },
+    {
+      "key": "vacuum.available",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The documented calorimeter is a vacuum apparatus.",
+      "evidence_ids": [
+        "expa_creek"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Insulation layer count, contact compression, residual gas pressure and rod calibration determine heat leak; no predicted insulation performance is fabricated."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

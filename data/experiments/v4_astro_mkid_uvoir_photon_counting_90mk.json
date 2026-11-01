@@ -1,0 +1,115 @@
+{
+ "id": "astro_mkid_uvoir_photon_counting_90mk",
+ "name": "Optical/near-IR MKID array photon-counting readout (4-8 GHz frequency-multiplexed) with the array at 90 mK behind a cryostat window",
+ "plain_name": "Count single photons of starlight with a superconducting detector array kept near 0.1 K",
+ "industry": "astronomy_and_astrophysics",
+ "description": "UVOIR microwave kinetic inductance detector arrays (PtSi resonators, 4-8 GHz feedline) are housed at 90 mK inside a dilution refrigerator (MEC uses an ADR at 90 mK), illuminated through the front-plate window by lasers at 405.9, 663.1 and 808.0 nm, and read out by the RFSoC-based MKIDGen3 system via a cryogenic HEMT/paramp signal chain; the readout must run stably for a full observing night (at least 8 h).",
+ "keywords": [
+  "Count single photons of starlight with a superconducting detector array kept near 0.1 K",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "J. P. Smith, J. I. Bailey III, A. Cuda, N. Zobrist, B. A. Mazin et al., 'MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC', arXiv:2406.09764 (2024)",
+   "url": "https://arxiv.org/html/2406.09764v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "dilution refrigerator (20 mK) with windows",
+  "MKID Exoplanet Camera (MEC) adiabatic demagnetization refrigerator (90 mK)",
+  "Low Noise Factory HEMT amplifier",
+  "RFSoC4x2 board with IF board (MKIDGen3)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 90,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "MKIDs are operated at 90 mK.",
+   "evidence_ids": [
+    "v4e_astro_mkid_uvoir_photon_counting_90mk_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Photons (lasers at 405.9-808 nm in the lab, the telescope beam at the observatory) reach the array through a cryostat window.",
+   "evidence_ids": [
+    "v4e_astro_mkid_uvoir_photon_counting_90mk_1"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8,
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The microwave feedline carries the 4-8 GHz readout comb, so the coaxial wiring must pass at least 8 GHz.",
+   "evidence_ids": [
+    "v4e_astro_mkid_uvoir_photon_counting_90mk_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The feedline input/output and the cryogenic amplifier chain require cold RF connections to the array.",
+   "evidence_ids": [
+    "v4e_astro_mkid_uvoir_photon_counting_90mk_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: observing requires continuous cold operation for a typical night of at least eight hours (a limitation for single-shot ADRs, not for continuous dilution refrigerators).",
+   "evidence_ids": [
+    "v4e_astro_mkid_uvoir_photon_counting_90mk_4"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

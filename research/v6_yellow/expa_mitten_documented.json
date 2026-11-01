@@ -1,0 +1,49 @@
+{
+  "configuration_id": "expa_mitten_documented",
+  "rows": [
+    {
+      "key": "temperature.range",
+      "result": "value",
+      "value": {"kind": "range", "lo": {"value": "30000", "unit": "mK"}, "hi": {"value": "70000", "unit": "mK"}},
+      "value_as_printed": "30-70 K (detector mount held to +/- 0.001 K)",
+      "install": "installed",
+      "evidence_status": "experimental_observation",
+      "quote": "We can maintain the detector mount temperature to within +/- 0.001 K from 30-70 K.",
+      "document_title": "Bowens et al., The Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat (Proc. SPIE 11447, 2020)",
+      "source_url": "https://arxiv.org/pdf/2012.06620",
+      "location": "Section 3.1 Thermal Mechanical, p. 4 (cached research/v5/cache/da10a87d5baf2c5d.txt)",
+      "reasoning": "The detector mount is the specimen position of this cryostat; the paper reports controlled operation over 30-70 K, converted to mK per the vocabulary (temperature.range unit mK). This is separate from the 16 K optical-bench figure already in the record. The paper also states a design intent of 20-100 K for detectors, but the 30-70 K figure is the demonstrated controlled range, so it was used. Note the experiments needing this key test mirrors/telescopes, not detectors; the module flags below decide those pairings."
+    },
+    {
+      "key": "module.cryogenic_mirror_interferometry",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Detector test facility; no window; internal light source only",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "We introduce the Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat, a new facility for testing infrared detectors ... To minimize external leaks and stray light MITTEN does not have a window for light to enter from the outside: an internal light source is required.",
+      "document_title": "Bowens et al., The Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat (Proc. SPIE 11447, 2020)",
+      "source_url": "https://arxiv.org/pdf/2012.06620",
+      "location": "Abstract (p. 1) and Section 2.2 Technical Specifications (p. 2)",
+      "reasoning": "The paper positively states the facility's purpose (testing infrared detectors) and that it has no optical window, so no external interferometer can view a specimen; its only optics are an internal blackbody source, filter wheel, pinhole plate and Offner relay imaging onto the detector. No interferometer is described anywhere in the full paper. This is a positive description of the instrument's scope, not silence. A 2023 follow-up (arXiv:2306.05470) also describes MITTEN only as a GeoSnap detector test cryostat."
+    },
+    {
+      "key": "temperature.gradient.max",
+      "result": "still_unknown",
+      "reasoning": "Read the full MITTEN paper (arXiv:2012.06620). It gives detector-mount temporal stability (+/- 0.001 K, not a spatial gradient), a simulated 0.05 K variation across the internal copper light source (not the test specimen), bench 16 K and interior 40 K (different surfaces, not a specimen gradient). No maximum temperature difference across a test specimen is reported. Web search for later MITTEN papers found only the 2023 GeoSnap evaluation (arXiv:2306.05470), which is about detector noise. Tavily was over quota. Not documented-absence because a gradient is a property, not a missing function."
+    },
+    {
+      "key": "module.integrated_telescope_optical_test",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Detector test cryostat; internal source re-imaged onto detector by Offner relay",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "a new facility for testing infrared detectors with a focus on mid-infrared (MIR) wavelengths (8-13 microns). ... MITTEN has an internal light source, and soon an accompanying filter wheel and aperture plate, re-imaged onto the detector using an Offner relay.",
+      "document_title": "Bowens et al., The Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat (Proc. SPIE 11447, 2020)",
+      "source_url": "https://arxiv.org/pdf/2012.06620",
+      "location": "Abstract, p. 1",
+      "reasoning": "The paper positively describes MITTEN as a detector test facility whose internal optics (fixed 1:1 Offner relay) serve only to image an internal source onto the detector under test; it has no window and a 36.3 cm tall x 67 cm diameter working volume. It is not a chamber for cold optical testing of an integrated telescope. Same kind of scope-based absence as the mirror interferometry row."
+    }
+  ]
+}

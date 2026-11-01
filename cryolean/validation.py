@@ -15,7 +15,8 @@ EVIDENCE_STATUSES = {"manufacturer_specification", "experimental_observation", "
                      "user_entered", "inferred_estimate", "unknown", "certified_simulation"}
 LEAN_STATUSES = {"manufacturer_specification", "experimental_observation", "reference_data", "user_entered",
                  "inferred_estimate", "unknown", "certified_simulation"}
-INSTALL = {"installed", "optional_not_installed", "unknown"}
+INSTALL = {"installed", "optional_not_installed", "not_available", "unknown"}
+ABSENT = {"optional_not_installed", "not_available"}   # Lean decodes both to optionalNotInstalled (absent)
 VALUE_KINDS = {"range", "max", "min", "flag", "count", "enum", "set", "unknown"}
 CONSTRAINT_KINDS = {"point_within", "range_within", "at_least", "at_most", "present", "absent", "flag_is",
                     "count_at_least", "count_equals", "enum_in", "set_contains"}
@@ -158,7 +159,7 @@ def validate_evidence_record(rec, path, rep):
         rep.error(path, "a sourced record must carry a verbatim quote")
     if rec.get("doi") and not DOI_RE.match(str(rec["doi"])):
         rep.error(path, f"malformed DOI {rec['doi']!r}")
-    if st == "unknown" and rec.get("normalized") not in (None, {}):
+    if st == "unknown" and rec.get("normalized") not in (None, {}, {"kind": "unknown"}):
         rep.error(path, "an UNKNOWN record must not carry a normalized value")
 
 
@@ -182,6 +183,10 @@ def validate_configuration(catalog, cfg, path, rep):
             rep.error(p, f"key {key!r} is not in the vocabulary")
         if cap.get("install") not in INSTALL:
             rep.error(p, f"install must be one of {sorted(INSTALL)}")
+        if cap.get("install") == "not_available" and (cap.get("evidence_status") not in
+                ("manufacturer_specification", "experimental_observation", "reference_data") or not cap.get("evidence_ids")):
+            rep.error(p, "not_available (a documented absence) needs trusted evidence with evidence ids: "
+                         "silence in a document is not evidence of absence")
         st = cap.get("evidence_status")
         if st not in LEAN_STATUSES:
             rep.error(p, f"capability evidence_status must be one of {sorted(LEAN_STATUSES)}")
@@ -192,7 +197,10 @@ def validate_configuration(catalog, cfg, path, rep):
                              "only a Lanyon run whose exported proof passed the Gatekeeper may use this status")
         validate_cap_value(cap.get("value"), p + ".value", rep, shape, unit)
         kind = (cap.get("value") or {}).get("kind")
-        if kind == "unknown" and st != "unknown":
+        # A documented absence has trusted provenance for the absence, while
+        # its numeric value is intentionally unknown. Lean already represents
+        # both ABSENT states as optionalNotInstalled; no checker rule changes.
+        if kind == "unknown" and st != "unknown" and cap.get("install") not in ABSENT:
             rep.error(p, "an UNKNOWN value must carry evidence_status 'unknown'")
         if kind != "unknown" and st == "unknown":
             rep.error(p, "a concrete value must not carry evidence_status 'unknown'")

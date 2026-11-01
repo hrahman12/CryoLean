@@ -1,0 +1,40 @@
+{
+  "configuration_id": "expc_lakeshore_fasthall_ln2",
+  "rows": [
+    {
+      "key": "temperature.range",
+      "result": "still_unknown",
+      "reasoning": "Lake Shore documents only two sample conditions: the standard room-temperature station and, with HMS-TT-ADD-LN2, a sample sitting in a pour-filled, flooded LN2 bath with about 10 min hold time. The catalog (rev 062526, p. 4 and 7) and the HMS-TT-MAN options page give no numeric sample temperature or controlled temperature interval. They have no heater, temperature controller or sensor. The 23 C +/- 5 C figure is the M91 controller's operating condition, not a sample temperature. A value of 77 K would be inferred from the boiling point of LN2, not quoted from a source, so it is not recorded. Searches covered: the Lake Shore catalog PDF (cached research/v5/cache/052e125d6ba34edd.txt), the lakeshore.com HMS-TT-MAN options page, the Columbia CNI facility page ('LN2 sample cooling is available upon request', no temperature) and web searches for FastHall LN2 77 K papers. None gave a documented range. The documents do say the sample is either at room temperature or in an LN2 bath, with no cryocooler or helium option, so even with a number this configuration could not cover 4.2-300 K or 36-300 K continuously. Recording that would still require a quoted numeric value, so this key stays unknown.",
+      "document_title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526; Lake Shore HMS-TT-MAN options page",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "location": "p. 4 'LN2 option'; p. 7 Specifications; https://www.lakeshore.com/products/product-detail/hms-tt-man/options",
+      "quote": "Hall analysis measurements can be easily performed while the sample is in a flooded LN2 bath."
+    },
+    {
+      "key": "module.semiconductor_parameter_analyzer",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Hall/van der Pauw system built around the M91 FastHall controller; options limited to LN2 kit, gate bias 155 source, rack kits and triax cable",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The FastHall Station combines all of the necessary van der Pauw measurement functions into a single tabletop system",
+      "document_title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "location": "p. 3 (scope); p. 6 'Measurement applications'; p. 8 'Ordering information' (cached research/v5/cache/052e125d6ba34edd.txt)",
+      "reasoning": "The manufacturer describes the station as a turnkey Hall/van der Pauw system. Its built-in electronics are the M91 FastHall controller, which integrates the source, measure and switching for Hall analysis, with six triaxial sample connections. The measurement applications list on p. 6 gives Hall voltage, resistance/resistivity, magnetoresistance, Hall coefficient, Hall mobility, anomalous Hall effect and carrier type/concentration. It has no multi-SMU transistor I-V/C-V characterisation. The complete ordering list (HMS-TT-MAN, HMS-TT-ADD-LN2, HMS-TT-ADD-GATEBIAS, RM-1/2, RM-2, 843-076 cable) has no semiconductor parameter analyzer. The only extra source is the optional 155-DC gate-bias supply, which this configuration does not include. It is a single precision I/V source for applying gate bias during Hall measurements, not a device-characterisation analyzer. The catalog notes that third-party instruments can be integrated, but such an instrument would be the user's own and not part of this machine."
+    },
+    {
+      "key": "module.capacitance_transient_spectroscopy",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Hall/resistivity system; no capacitance measurement or trap-filling pulse electronics in the specification or option list",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The FastHall Station is capable of running a wide array of Hall analysis functions including:",
+      "document_title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "location": "p. 6 'Measurement applications'; p. 7 Specifications; p. 8 'Ordering information'",
+      "reasoning": "The catalog lists the station's measurement functions as Hall analysis functions: Hall voltage, resistance/resistivity, magnetoresistance, Hall coefficient, Hall mobility, anomalous Hall effect and carrier concentration. The p. 7 specification lists only DC Hall/resistance ranges and the M91's analog/digital I/O. It has no capacitance meter, capacitance-transient recorder or pulse generator. The complete ordering list (base station, LN2 kit, gate-bias 155 source, rack kits, triax cable) adds none. The options page likewise names only the LN2 and gate-bias options. So the machine has no DLTS capacitance-transient electronics."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+ "id": "def_mil810_502_munitions_storage_c3",
+ "name": "MIL-STD-810H Method 502.7 Procedure I low-temperature storage of explosives/munitions at the Severe Cold (C3) extreme, -51 C, for at least 72 h after stabilization",
+ "plain_name": "Store explosives and munitions at -51 C for three days to check they stay safe",
+ "industry": "defense_and_security",
+ "description": "Procedure I (Storage) of MIL-STD-810H Method 502.7 applied to explosives, munitions, rubber and plastics, which the method says may keep deteriorating after temperature stabilization and therefore need a minimum storage period of 72 hours. The storage temperature is the Severe Cold (C3) design value of -51 C from Table 502.7-I (also the 20 % frequency-of-occurrence extreme of Table 502.7-II), reached at no more than 3 C/min, followed by return to ambient, visual examination and operational checkout.",
+ "keywords": [
+  "Store explosives and munitions at -51 C for three days to check they stay safe",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+   "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 222150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The item is stored at the C3 storage/transit temperature of -51 C (222.15 K).",
+   "evidence_ids": [
+    "v4e_def_mil810_502_munitions_storage_c3_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 222150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The machine's lowest temperature must be -51 C (222.15 K) or colder.",
+   "evidence_ids": [
+    "v4e_def_mil810_502_munitions_storage_c3_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 72,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Explosives/munitions need at least 72 h at -51 C after stabilization, so the chamber must run unattended that long; continuous-run capability is rarely documented, so not mandatory.",
+   "evidence_ids": [
+    "v4e_def_mil810_502_munitions_storage_c3_2"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

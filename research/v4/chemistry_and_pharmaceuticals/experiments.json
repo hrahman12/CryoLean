@@ -1,0 +1,784 @@
+{
+  "industry": "chemistry_and_pharmaceuticals",
+  "accessed": "2026-11-01",
+  "agent": "experiments agent, industry chemistry_and_pharmaceuticals",
+  "notes": "10 real, published cryogenic procedures from pharmaceutical and chemical practice. Requirements are written on core-passport keys (temperature.range, temperature.base, pressure.base, vacuum.available, optical_access, sample.diameter.max, cryogen.type, magnetic_field.max) wherever the physics allows, plus the family keys the procedure genuinely needs (process.freeze_drying, temperature.condenser.min, process.dsc, process.cryogenic_milling, milling.*, rf.frequency.range, purge.gas, chamber.volume, optical.transmission_range, temperature.stability, gas.flow_rate.max). Every number and every quote comes from the cited document; nothing is inferred. Celsius converted exactly ((C+273.15)*1000 mK).",
+  "experiments": [
+    {
+      "id": "chem_matrix_isolation_ir",
+      "name": "Matrix-isolation FTIR spectroscopy of a sublimed heterocycle in solid argon at 15 K with broadband UV photolysis",
+      "plain_name": "Trap single molecules in frozen argon and study them with infrared light",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "A heterocyclic compound is sublimed and co-deposited with a large excess of argon onto a CsI window held at 15 K inside a closed-cycle helium cryostat evacuated to about 3.5e-5 mbar; mid-IR spectra (4000-400 cm-1) are recorded on the isolated monomers and followed through broadband UV irradiation from a 500 W Hg(Xe) lamp. This is the standard matrix-isolation route to conformers, photoproducts and reactive intermediates in chemistry.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 15000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The matrix is deposited and held with the optical substrate at 15 K; the machine must be able to reach and hold that sample temperature.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "onto a CsI optical substrate, cooled down to 15 K."
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 15000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "Argon matrix isolation needs a base temperature of 15 K or lower; a machine whose lowest temperature is above 15 K cannot form a rigid Ar matrix.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "onto a CsI optical substrate, cooled down to 15 K."
+        },
+        {
+          "keys": ["vacuum.available"],
+          "constraint": {"kind": "flag_is", "b": true},
+          "mandatory": true,
+          "rationale": "Deposition and spectroscopy happen inside an evacuated chamber; an atmospheric-pressure cold space would frost the window and destroy the matrix.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "The pressure inside the vacuum chamber goes down to ~3.5 × 10−5 mbar."
+        },
+        {
+          "keys": ["pressure.base"],
+          "constraint": {"kind": "at_most", "q": {"value": "0.000035", "unit": "mbar"}},
+          "mandatory": true,
+          "rationale": "The reported working vacuum of the matrix chamber is about 3.5e-5 mbar; poorer vacuum deposits residual water and air with the matrix gas.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "The pressure inside the vacuum chamber goes down to ~3.5 × 10−5 mbar."
+        },
+        {
+          "keys": ["optical_access"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "The IR beam and the UV photolysis beam must reach the cold deposit, so the cold space needs optical windows; the sample itself sits on a cold optical substrate.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "onto a CsI optical substrate, cooled down to 15 K."
+        },
+        {
+          "keys": ["optical.transmission_range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 2500, "unit": "nm"}, "hi": {"value": 25000, "unit": "nm"}},
+          "mandatory": true,
+          "rationale": "Spectra are taken over 4000-400 cm-1, i.e. 2500-25000 nm, so the cryostat windows must transmit the whole mid-infrared (hence CsI rather than glass or quartz).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+          "document_title": "Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole (Molecules 2025, 30, 3444)",
+          "location": "Section 3.1. Experimental Methods",
+          "quote": "Mid-IR spectra (4000–400 cm−1) of the matrix-isolated compound were acquired on a Thermo Nicolet 6700 FTIR spectrometer."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "İsa Sıdır, Susy Lopes, Rui Fausto, A. J. Lopes Jesus, Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole, Molecules 30(16):3444 (2025), doi:10.3390/molecules30163444",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/"
+        },
+        {
+          "citation": "Daria Bumażnik, Magdalena Sałdyka, UV-Induced Photodegradation of 2-Aminothiazole-4-Carboxylic Acid: Identification of New Carbodiimide Molecules, Molecules 30(18):3713 (2025) - second, independent matrix-isolation procedure (ARS-2HW closed-cycle helium cryostat, CsI window at 15 K, spectra at 10 K)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12472919/"
+        }
+      ],
+      "reported_equipment": [
+        "closed-cycle helium cryostat with a DE-202 A expander",
+        "Thermo Nicolet 6700 FTIR spectrometer",
+        "500 W Hg(Xe) arc lamp",
+        "CsI optical substrate",
+        "ARS-2HW, APD-Cryogenics closed-cycle helium cryostat",
+        "Nicolet iS50 FTIR spectrometer"
+      ]
+    },
+    {
+      "id": "chem_scxrd_cryostream_100k",
+      "name": "Single-crystal X-ray diffraction of a pharmaceutical multicomponent crystal at 100 K in an open-flow nitrogen cryostream",
+      "plain_name": "Work out a medicine's crystal structure while a cold gas jet keeps it at 100 K",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "Co-crystals and salts of two anti-tubercular drugs with pyridoxine are mounted on a diffractometer and held at 100 K by an open-flow liquid-nitrogen cryostream (Oxford Cryosystems Cryostream 800) while Mo-K-alpha data are collected. Cooling to 100 K suppresses thermal motion and solvent loss and is routine for structure determination of active pharmaceutical ingredients.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 100000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The whole data collection is made with the crystal held at 100 K.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13029089/",
+          "document_title": "Adjunctive Multicomponent Crystals of Two Anti-Tubercular Drugs with Pyridoxine (Pharmaceutics 2026, 18, 297)",
+          "location": "Section 2.3. Single-Crystal X-Ray Diffraction (SCXRD)",
+          "quote": "was used for temperature control at 100 K"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 100000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "A machine that cannot get down to 100 K cannot run this low-temperature structure determination.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13029089/",
+          "document_title": "Adjunctive Multicomponent Crystals of Two Anti-Tubercular Drugs with Pyridoxine (Pharmaceutics 2026, 18, 297)",
+          "location": "Section 2.3. Single-Crystal X-Ray Diffraction (SCXRD)",
+          "quote": "was used for temperature control at 100 K"
+        },
+        {
+          "keys": ["cryogen.type"],
+          "constraint": {"kind": "set_contains", "needed": ["liquid_nitrogen"]},
+          "mandatory": true,
+          "rationale": "The cooling device is an open-flow nitrogen cryostream fed from a liquid-nitrogen dewar (0.6 L/h at 5 L/min gas flow), so liquid nitrogen is consumed by the procedure.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "Cryostream 800 Series Cooler User Manual, Oxford Cryosystems",
+          "location": "Section 5.1 Standard Cryostream Technical Data, Liquid Nitrogen Consumption row",
+          "quote": "Liquid Nitrogen Consumption 0.6 litres/hour at 5 litres/minute gas flow"
+        },
+        {
+          "keys": ["temperature.stability"],
+          "constraint": {"kind": "at_most", "q": {"value": 100, "unit": "mK"}},
+          "mandatory": false,
+          "rationale": "Optional: the cooler used for this procedure holds the set point to 0.1 K, which is what keeps unit-cell parameters constant across a multi-hour data collection.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "Cryostream 800 Series Cooler User Manual, Oxford Cryosystems",
+          "location": "Section 5.1 Standard Cryostream Technical Data, Temperature Stability row",
+          "quote": "Temperature Stability 0.1 Kelvin"
+        },
+        {
+          "keys": ["gas.flow_rate.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 5, "unit": "L_per_min"}},
+          "mandatory": false,
+          "rationale": "Optional: the cold nitrogen stream that reaches 100 K runs at 5 L/min (10 L/min for fast cool-down), so an open-flow machine must deliver at least that gas flow.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "Cryostream 800 Series Cooler User Manual, Oxford Cryosystems",
+          "location": "Section 5.1 Standard Cryostream Technical Data, Nitrogen Gas Flow Rate row",
+          "quote": "5 or 10 litres/minute"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Tsebang A. Matlapeng, Theodor E. Geswindt, Roderick B. Walker, Vincent J. Smith, Adjunctive Multicomponent Crystals of Two Anti-Tubercular Drugs with Pyridoxine, Pharmaceutics 18(3):297 (2026)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13029089/"
+        },
+        {
+          "citation": "Oxford Cryosystems, Cryostream 800 Series Cooler User Manual (2014)",
+          "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Bruker D8 Venture diffractometer",
+        "Oxford Cryosystems Cryostream 800 series"
+      ]
+    },
+    {
+      "id": "chem_lyophilization_cycle",
+      "name": "Pharmaceutical lyophilization cycle in vials: freezing at -50 C, primary drying at -10 C and 180 mTorr, secondary drying at 40 C",
+      "plain_name": "Freeze-dry a medicine into a shelf-stable powder",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "A nucleic-acid lipid-nanoparticle drug product is frozen on the shelves at -50 C, primary-dried at a shelf temperature of -10 C under 180 mTorr chamber pressure and secondary-dried at 40 C (optimised variant: -15 C primary, 30 C secondary) in a pilot freeze dryer, with the sublimed water captured on the ice condenser. This is the standard cycle structure for parenteral lyophilised drug products.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 223150, "unit": "mK"}, "hi": {"value": 313150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The shelves must span the whole recipe, from the -50 C freezing step to the 40 C secondary-drying step.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+          "document_title": "Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs (Int. J. Mol. Sci. 2024, 25, 10603)",
+          "location": "Section 2.1 (initial lyophilization recipe)",
+          "quote": "a freezing step at −50 °C, followed by a primary drying step at −10 °C and 180 mTorr,"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 223150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "Freezing is done on the shelves at -50 C; a dryer whose shelves cannot reach -50 C cannot execute this freezing step.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+          "document_title": "Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs (Int. J. Mol. Sci. 2024, 25, 10603)",
+          "location": "Section 2.1 (initial lyophilization recipe)",
+          "quote": "a freezing step at −50 °C, followed by a primary drying step at −10 °C and 180 mTorr,"
+        },
+        {
+          "keys": ["vacuum.available"],
+          "constraint": {"kind": "flag_is", "b": true},
+          "mandatory": true,
+          "rationale": "Primary drying is sublimation under vacuum; without an evacuated product chamber there is no lyophilisation.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+          "document_title": "Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs (Int. J. Mol. Sci. 2024, 25, 10603)",
+          "location": "Section 2.1 (initial lyophilization recipe)",
+          "quote": "a freezing step at −50 °C, followed by a primary drying step at −10 °C and 180 mTorr,"
+        },
+        {
+          "keys": ["pressure.base"],
+          "constraint": {"kind": "at_most", "q": {"value": "0.18", "unit": "Torr"}},
+          "mandatory": true,
+          "rationale": "Primary drying runs at 180 mTorr (0.18 Torr) chamber pressure, so the dryer must pump at least that low.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+          "document_title": "Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs (Int. J. Mol. Sci. 2024, 25, 10603)",
+          "location": "Section 2.1 (initial lyophilization recipe)",
+          "quote": "a freezing step at −50 °C, followed by a primary drying step at −10 °C and 180 mTorr,"
+        },
+        {
+          "keys": ["process.freeze_drying"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "The procedure is a freeze-drying cycle: the machine must be a lyophiliser with controllable shelves and an ice condenser, not merely a cold evacuated space.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+          "document_title": "Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs (Int. J. Mol. Sci. 2024, 25, 10603)",
+          "location": "Section 3.5 Lyophilization Process",
+          "quote": "Lyophilization was performed in a Virtis Genesis Pilot Freeze Dryer (SP, Warminster, PA, USA)."
+        },
+        {
+          "keys": ["temperature.condenser.min"],
+          "constraint": {"kind": "at_most", "q": {"value": 203150, "unit": "mK"}},
+          "mandatory": false,
+          "rationale": "Optional: the water sublimed during primary drying has to be captured on an ice condenser far colder than the product; laboratory-scale dryers hold the condenser below -70 C even at choked flow.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10661802/",
+          "document_title": "Practical Advice on Scientific Design of Freeze-Drying Process: 2023 Update (Pharm Res 40:2433-2455)",
+          "location": "Section on condenser and choked flow",
+          "quote": "For most laboratory-scale dryers, the condenser temperature remains below -70C even when the flow is fully choked"
+        },
+        {
+          "keys": ["pressure.operating.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": "0.05", "unit": "Torr"}, "hi": {"value": "0.2", "unit": "Torr"}},
+          "mandatory": false,
+          "rationale": "Optional: pharmaceutical primary drying is almost always controlled between 50 and 200 mTorr, so a dryer must be able to hold a set pressure inside that window rather than only pump to its ultimate vacuum.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10661802/",
+          "document_title": "Practical Advice on Scientific Design of Freeze-Drying Process: 2023 Update (Pharm Res 40:2433-2455)",
+          "location": "Section on chamber pressure during primary drying",
+          "quote": "Chamber pressure during primary drying is almost universally maintained between 50 and 200 mTorr"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "T. Alejo, A. Toro-Córdova, L. Fernández, A. Rivero, A. M. Stoian, L. Pérez, V. Navarro, J. Martínez-Oliván, D. de Miguel, Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs, Int. J. Mol. Sci. 25(19):10603 (2024)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/"
+        },
+        {
+          "citation": "S. Tchessalov, V. Maglio, P. Kazarin, A. Alexeenko, B. Bhatnagar, E. Sahni, E. Shalaev, Practical Advice on Scientific Design of Freeze-Drying Process: 2023 Update, Pharmaceutical Research 40(10):2433-2455 (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10661802/"
+        }
+      ],
+      "reported_equipment": [
+        "Virtis Genesis Pilot Freeze Dryer (SP, Warminster, PA, USA)",
+        "LyoStar 2"
+      ]
+    },
+    {
+      "id": "chem_mdsc_frozen_tg",
+      "name": "Modulated DSC of a frozen biopharmaceutical formulation: equilibration at -70 C and 1 C/min ramp to determine the glass transition of the freeze-concentrate",
+      "plain_name": "Find the temperature at which a frozen medicine mixture softens",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "A liquid vaccine formulation is sealed in a hermetic Tzero pan, equilibrated at -70 C, held for 5 minutes and ramped at 1 C/min to 100 C with heat-cool temperature modulation, so that the glass transition of the maximally freeze-concentrated solution can be read from the reversing heat-flow signal. That transition sets the maximum allowable product temperature of the subsequent freeze-drying cycle.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 203150, "unit": "mK"}, "hi": {"value": 373150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The measurement cycle runs from an equilibration at -70 C up to 100 C in one ramp, so the sample space must cover that whole span.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+          "document_title": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration (npj Vaccines 2023)",
+          "location": "Methods, Product characterisation",
+          "quote": "The cycle involved equilibration at −70 °C, isothermal hold for 5 min, and ramping at 1 °C/min to 100 °C."
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 203150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The glass transition of the freeze-concentrate is below -30 C, so the instrument must equilibrate at -70 C before the ramp begins.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+          "document_title": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration (npj Vaccines 2023)",
+          "location": "Methods, Product characterisation",
+          "quote": "The cycle involved equilibration at −70 °C, isothermal hold for 5 min, and ramping at 1 °C/min to 100 °C."
+        },
+        {
+          "keys": ["temperature.sweep_rate.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 1000, "unit": "mK_per_min"}},
+          "mandatory": true,
+          "rationale": "The underlying heating ramp is 1 C/min (1000 mK/min); the machine must be able to drive at least that rate under control.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+          "document_title": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration (npj Vaccines 2023)",
+          "location": "Methods, Product characterisation",
+          "quote": "The cycle involved equilibration at −70 °C, isothermal hold for 5 min, and ramping at 1 °C/min to 100 °C."
+        },
+        {
+          "keys": ["process.dsc"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "The readout is a modulated differential-scanning-calorimetry heat-flow signal, so the machine must be a DSC and not just a cold stage.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+          "document_title": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration (npj Vaccines 2023)",
+          "location": "Methods, Product characterisation",
+          "quote": "mDSC was performed on a Q2000 DSC (TA Instruments, Elstree, Herts, UK)"
+        },
+        {
+          "keys": ["temperature.stability"],
+          "constraint": {"kind": "at_most", "q": {"value": 636, "unit": "mK"}},
+          "mandatory": false,
+          "rationale": "Optional: the heat-cool modulation is +/-0.636 C with a 60 s period, so the furnace must control temperature to better than that amplitude for the reversing signal to be meaningful.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/",
+          "document_title": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration (npj Vaccines 2023)",
+          "location": "Methods, Product characterisation",
+          "quote": "Heat-cool modulation ( ± 0.636 °C) was applied for all the samples with 60 s modulation period."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Lyophilization to enable distribution of ChAdOx1 and ChAdOx2 adenovirus-vectored vaccines without refrigeration, npj Vaccines 8, 83 (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10240132/"
+        }
+      ],
+      "reported_equipment": [
+        "Q2000 DSC (TA Instruments, Elstree, Herts, UK)",
+        "Tzero pan with Tzero hermetic lid (TA Instruments)",
+        "Virtis Advantage Plus",
+        "Lyostar 3"
+      ]
+    },
+    {
+      "id": "chem_cryomilling_amorphization",
+      "name": "Cryogenic impact milling of a crystalline drug under liquid nitrogen for 2.5 h at 9 impacts per second to produce the amorphous form",
+      "plain_name": "Grind a medicine into powder while liquid nitrogen keeps it brittle",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "Crystalline bosentan is milled in a stainless-steel grinding vessel immersed in liquid nitrogen in a Retsch CryoMill at an impact frequency of 9 cycles per second for a total of 2.5 h, converting it to the amorphous state without the thermal degradation that ambient milling or melt-quenching would cause. The amorphous product is then compared with the melt-quenched glass.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 77150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The grinding jar is held at liquid-nitrogen temperature (-196 C = 77150 mK) throughout, which is what embrittles the drug and stops it recrystallising or degrading during milling.",
+          "source_url": "https://www.azom.com/equipment-details.aspx?EquipID=9856",
+          "document_title": "Why Choose CryoMill for Cryogenic Grinding? - RETSCH CryoMill equipment data (AZoM, source: RETSCH GmbH)",
+          "location": "Product description, cooling paragraph",
+          "quote": "Liquid nitrogen is supplied continuously from an autofill system, delivering the precise amount needed to maintain a temperature of -196 °C."
+        },
+        {
+          "keys": ["cryogen.type"],
+          "constraint": {"kind": "set_contains", "needed": ["liquid_nitrogen"]},
+          "mandatory": true,
+          "rationale": "The procedure consumes liquid nitrogen: the milling vessel is physically immersed in it, so a purely mechanical or electrically cooled machine cannot reproduce the process.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/",
+          "document_title": "Studies on the Vitrified and Cryomilled Bosentan (Mol. Pharmaceutics 2022, 19, 80-90)",
+          "location": "Experimental Section, Preparation of Amorphous Samples",
+          "quote": "consisting of a stainless steel vessel immersed in liquid nitrogen"
+        },
+        {
+          "keys": ["process.cryogenic_milling"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "The machine has to be a cryogenic impact mill: the amorphisation comes from mechanical impact delivered while the sample is at cryogenic temperature.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/",
+          "document_title": "Studies on the Vitrified and Cryomilled Bosentan (Mol. Pharmaceutics 2022, 19, 80-90)",
+          "location": "Experimental Section, Preparation of Amorphous Samples",
+          "quote": "a cryogenic impact mill (CryoMill ∼100–240 V-50/60 Hz, Retsch GmbH, Germany)"
+        },
+        {
+          "keys": ["milling.frequency.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 9, "unit": "Hz"}},
+          "mandatory": true,
+          "rationale": "Milling was carried out at 9 impacts per second (9 Hz), which must lie inside the mill's selectable frequency range.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/",
+          "document_title": "Studies on the Vitrified and Cryomilled Bosentan (Mol. Pharmaceutics 2022, 19, 80-90)",
+          "location": "Experimental Section, Preparation of Amorphous Samples",
+          "quote": "an impact frequency of 9 cycles per second."
+        },
+        {
+          "keys": ["milling.duration.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 9000, "unit": "s"}},
+          "mandatory": true,
+          "rationale": "Full amorphisation needed 2.5 h (9000 s) of milling, so the machine's programmable grinding time (with intermediate cooling cycles) must reach that total.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/",
+          "document_title": "Studies on the Vitrified and Cryomilled Bosentan (Mol. Pharmaceutics 2022, 19, 80-90)",
+          "location": "Experimental Section, Preparation of Amorphous Samples",
+          "quote": "The total milling time for our sample was 2.5 h."
+        },
+        {
+          "keys": ["milling.jar_volume"],
+          "constraint": {"kind": "at_least", "q": {"value": "0.02", "unit": "L"}},
+          "mandatory": false,
+          "rationale": "Optional: a laboratory cryomill batch of this kind is up to 20 mL of feed material, so a machine with a smaller grinding chamber would limit the batch.",
+          "source_url": "https://www.azom.com/equipment-details.aspx?EquipID=9856",
+          "document_title": "Why Choose CryoMill for Cryogenic Grinding? - RETSCH CryoMill equipment data (AZoM, source: RETSCH GmbH)",
+          "location": "Technical Data table, Batch size/feed quantity row",
+          "quote": "Batch size/feed quantity Maximum 20 mL"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "A. Minecka, K. Chmiel, K. Jurkiewicz, et al., Studies on the Vitrified and Cryomilled Bosentan, Molecular Pharmaceutics 19(1):80-90 (2022)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/"
+        },
+        {
+          "citation": "RETSCH GmbH CryoMill equipment data sheet, reproduced on AZoM (equipment ID 9856)",
+          "url": "https://www.azom.com/equipment-details.aspx?EquipID=9856"
+        }
+      ],
+      "reported_equipment": [
+        "CryoMill ~100-240 V-50/60 Hz, Retsch GmbH, Germany",
+        "stainless steel grinding vessel"
+      ]
+    },
+    {
+      "id": "chem_flow_organolithium_60c",
+      "name": "Continuous-flow n-butyllithium lithiation-borylation at -60 C for the manufacture of an active pharmaceutical ingredient",
+      "plain_name": "Run a reaction continuously through chilled tubing",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "The organolithium step of a crisaborole process is run in continuous flow with the reactor jacket held at -60 C (dry ice in a Dewar at laboratory scale, a Huber 815 thermostat on scale-up), with n-butyllithium in hexane under nitrogen, residence times of a few seconds and a 0.2 mL PFA coil or 4.0 mL 3D-printed stainless-steel reactor. Keeping the reagent cold is what suppresses the impurity-forming side reactions.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 213150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The organolithium step is run with the reactor held at -60 C; the machine must reach and hold that process temperature.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/",
+          "document_title": "Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation (ACS Omega 2025, 10, 55920-55931)",
+          "location": "Procedure 1 for Crisaborole Synthesis in Continuous Flow",
+          "quote": "the reactor jacket temperature was controlled at −60 °C using dry ice in a Dewar flask"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 213150, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "A cooling system that cannot reach -60 C cannot run this lithiation; warmer operation is what the paper links to impurity formation.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/",
+          "document_title": "Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation (ACS Omega 2025, 10, 55920-55931)",
+          "location": "Scale-Up Procedure for Continuous Flow Synthesis of Crisaborole",
+          "quote": "The reaction temperature was maintained at −60 °C using a thermocouple and controlled by a Huber 815 instrument"
+        },
+        {
+          "keys": ["purge.gas"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "n-Butyllithium is handled under a nitrogen atmosphere; an inert-gas blanket on the reagent and reactor is mandatory for this chemistry.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/",
+          "document_title": "Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation (ACS Omega 2025, 10, 55920-55931)",
+          "location": "Procedure 2 for Continuous Flow Synthesis of Crisaborole",
+          "quote": "1.2 M n-butyllithium was contained in a reagent bottle under a nitrogen atmosphere, with n-hexane as the solvent"
+        },
+        {
+          "keys": ["cryogen.type"],
+          "constraint": {"kind": "set_contains", "needed": ["dry_ice"]},
+          "mandatory": false,
+          "rationale": "Optional: at laboratory scale the -60 C jacket is produced with dry ice in a Dewar; an electrically cooled thermostat (Huber 815) is the documented alternative on scale-up, so this is not a hard requirement.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/",
+          "document_title": "Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation (ACS Omega 2025, 10, 55920-55931)",
+          "location": "Procedure 1 for Crisaborole Synthesis in Continuous Flow",
+          "quote": "the reactor jacket temperature was controlled at −60 °C using dry ice in a Dewar flask"
+        },
+        {
+          "keys": ["chamber.volume"],
+          "constraint": {"kind": "at_least", "q": {"value": "0.004", "unit": "L"}},
+          "mandatory": false,
+          "rationale": "Optional: the scale-up reactor held inside the cooled space has an internal volume of 4.0 mL (0.004 L); the laboratory coil is only 0.2 mL, so a small cooled volume still suffices.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/",
+          "document_title": "Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation (ACS Omega 2025, 10, 55920-55931)",
+          "location": "Scale-Up Procedure for Continuous Flow Synthesis of Crisaborole",
+          "quote": "a 3D-printed Innosyn 4.0 mL SS-316 reactor with a 2.26 mm internal diameter"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "C. S. Bohara, M. S. Phull, S. Pabbaraja, Flow Process for Production of Crisaborole Using Organolithium Chemistry with Control over Impurity Formation, ACS Omega 10(46):55920-55931 (2025)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12658708/"
+        }
+      ],
+      "reported_equipment": [
+        "customized PFA coil reactor (volume, 0.2 mL; bore diameter, 1.0 mm, length 25.5 cm)",
+        "3D-printed Innosyn 4.0 mL SS-316 reactor",
+        "Huber 815 instrument",
+        "dry ice in a Dewar flask"
+      ]
+    },
+    {
+      "id": "chem_dnp_ssnmr_protac",
+      "name": "DNP-enhanced magic-angle-spinning solid-state NMR of an amorphous drug at 100 K, 9.39 T and 264 GHz microwave irradiation",
+      "plain_name": "Boost a magnetic resonance signal by cooling a drug powder to 100 K",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "An amorphous PROTAC drug substance is impregnated with a 12 mM AMUPol radical solution, packed into a 3.2 mm sapphire rotor and measured by dynamic-nuclear-polarisation solid-state NMR at 9.39 T with the sample at 100 K, 10 kHz magic-angle spinning and 264 GHz microwave irradiation from a klystron. The low temperature is what makes the DNP signal enhancement, and hence natural-abundance structure determination of the amorphous drug, possible.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 100000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The DNP experiments are run with the sample temperature set to 100 K.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+          "document_title": "Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC (Nature Communications 16:9694, 2025)",
+          "location": "Methods, NMR experiments",
+          "quote": "The temperature was set to 100 K"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 100000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "DNP enhancement requires the sample to be cooled to about 100 K; a machine limited to higher temperatures gives no usable enhancement.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+          "document_title": "Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC (Nature Communications 16:9694, 2025)",
+          "location": "Methods, NMR experiments",
+          "quote": "The temperature was set to 100 K"
+        },
+        {
+          "keys": ["magnetic_field.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 9390, "unit": "mT"}},
+          "mandatory": true,
+          "rationale": "The spectrometer operates at 9.39 T (9390 mT); the cold sample space must sit inside a magnet of at least that field.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+          "document_title": "Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC (Nature Communications 16:9694, 2025)",
+          "location": "Methods, NMR experiments",
+          "quote": "operating at 9.39 T (13C Larmor frequency of 101 MHz)"
+        },
+        {
+          "keys": ["sample.diameter.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 3200, "unit": "um"}},
+          "mandatory": true,
+          "rationale": "The sample is packed in a 3.2 mm (3200 um) outer-diameter sapphire rotor, which must fit the machine's cold sample space.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+          "document_title": "Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC (Nature Communications 16:9694, 2025)",
+          "location": "Methods, sample preparation (impregnated powder)",
+          "quote": "packed in a 3.2 mm sapphire rotor"
+        },
+        {
+          "keys": ["rf.frequency.range"],
+          "constraint": {"kind": "point_within", "q": {"value": 264, "unit": "GHz"}},
+          "mandatory": true,
+          "rationale": "Polarisation transfer needs 264 GHz microwaves delivered to the cold sample through a corrugated waveguide, so the machine must pass that frequency into the sample space.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+          "document_title": "Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC (Nature Communications 16:9694, 2025)",
+          "location": "Methods, NMR experiments",
+          "quote": "connected through a corrugated waveguide to a 264 GHz klystron"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "D. Torodii, J. B. Holmes, M. Cordova, et al., Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC, Nature Communications 16:9694 (2025)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/"
+        },
+        {
+          "citation": "H. Karlsson, A. C. Pinon, L. Karlson, et al., Position-Specific Substitution in Cellulose Ethers Studied by DNP Enhanced Solid-State NMR Spectroscopy, Magnetic Resonance in Chemistry 63(8):560-568 (2025) - second procedure on a pharmaceutical excipient (400 MHz Bruker Ascend DNP magnet, 263 GHz gyrotron, ~104 K, 3.2 mm LTMAS)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12223920/"
+        }
+      ],
+      "reported_equipment": [
+        "264 GHz klystron",
+        "3.2 mm sapphire rotor",
+        "400-MHz Bruker Ascend DNP magnet",
+        "263-GHz gyrotron and a 3.2-mm LTMAS DNP probe"
+      ]
+    },
+    {
+      "id": "chem_cryo_ion_ir_spectroscopy",
+      "name": "Cryogenic messenger-tagging infrared ion spectroscopy in a 30-45 K trap at 2e-6 mbar",
+      "plain_name": "Identify a molecule by chilling its ions and shining infrared on them",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "Mass- and mobility-selected ions are stored in a cryogenic ion trap held between 30 and 45 K by a closed-cycle helium cryostat, where a pulsed 20% N2/80% He gas mixture forms weakly bound messenger-tagged complexes at about 2e-6 mbar; a tunable mid-IR source is stepped in 2 cm-1 steps from 990 to 1810 cm-1 and tag loss gives a diagnostic vibrational fingerprint. This is how isomeric small molecules, glycans and drug metabolites are distinguished when mass spectrometry alone cannot.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 30000, "unit": "mK"}, "hi": {"value": 45000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The trap is operated between 30 and 45 K, tuned for the analyte; outside that window the messenger tag either does not bind or does not detach cleanly.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "maintained between 30 and 45 K (adjusted for optimal tagging of different analytes)"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 30000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "Tagging requires the trap to be able to reach 30 K; a machine with a higher base temperature cannot condense the N2 messenger onto the ions.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "maintained between 30 and 45 K (adjusted for optimal tagging of different analytes)"
+        },
+        {
+          "keys": ["vacuum.available"],
+          "constraint": {"kind": "flag_is", "b": true},
+          "mandatory": true,
+          "rationale": "The ions are stored in an evacuated trap chamber; the experiment is impossible in an atmospheric-pressure cold space.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "The average pressure reading inside the trap chamber during typical operation is ∼2 × 10–6 mbar"
+        },
+        {
+          "keys": ["pressure.base"],
+          "constraint": {"kind": "at_most", "q": {"value": "0.000002", "unit": "mbar"}},
+          "mandatory": true,
+          "rationale": "Typical operation is at about 2e-6 mbar inside the trap chamber, so the machine must pump at least that low with the tagging gas pulsed in.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "The average pressure reading inside the trap chamber during typical operation is ∼2 × 10–6 mbar"
+        },
+        {
+          "keys": ["optical_access"],
+          "constraint": {"kind": "present"},
+          "mandatory": true,
+          "rationale": "The tunable mid-IR beam has to enter the cold trap and overlap the stored ion cloud, which requires an optical window into the cold space.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "the laser is stepped in 2 cm–1 increments between 990 and 1810 cm–1"
+        },
+        {
+          "keys": ["cryogen.cryogen_free"],
+          "constraint": {"kind": "flag_is", "b": true},
+          "mandatory": false,
+          "rationale": "Optional: the trap is cooled by a closed-cycle helium cryostat with a single-stage coldhead, so no liquid cryogen is consumed; a bath-cooled implementation would also reach the required temperature.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+          "document_title": "Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform (Anal. Chem. 2026, 98, 14800-14808)",
+          "location": "Cryogenic Ion Trapping and Infrared Spectroscopy",
+          "quote": "connected to a closed-cycle helium cryostat (single-stage 0/40 coldhead"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "G. P. Szekeres, J. S. Jordan, J. Riedel, J. Horlebein, G. R. D. Prabhu, M. Götze, S. Daly, S. Warnke, K. Pagel, Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform, Analytical Chemistry 98(20):14800-14808 (2026)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/"
+        }
+      ],
+      "reported_equipment": [
+        "closed-cycle helium cryostat (single-stage 0/40 coldhead)",
+        "Synapt G2-S",
+        "1064 nm Nd/YAG laser (Surelite EX)"
+      ]
+    },
+    {
+      "id": "chem_epr_frozen_catalyst",
+      "name": "Frozen-sample EPR of a transition-metal catalyst: X-band CW at 77 K in a liquid-nitrogen finger dewar and Q-band pulsed HYSCORE at 40 K and 1224.1 mT",
+      "plain_name": "Detect unpaired electrons in a deep-frozen catalyst sample",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "Chromium-doped silicoaluminophosphate molecular sieves are characterised by continuous-wave X-band EPR (about 9.5 GHz) with the sample cell in a liquid-nitrogen finger dewar at 77 K, and by Q-band (about 33.8 GHz) pulsed HYSCORE at 1224.1 mT and 40 K, to locate the chromium site and its coordination. Freezing the sample is what narrows the lines and makes the hyperfine couplings resolvable.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 40000, "unit": "mK"}, "hi": {"value": 77000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The study needs both the 77 K continuous-wave measurement and the 40 K pulsed measurement, so the sample space must cover 40-77 K.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+          "document_title": "Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies (J. Phys. Chem. C 2021)",
+          "location": "Materials and Methods, Electron Paramagnetic Resonance Spectroscopy",
+          "quote": "The EPR cell was placed in a finger Dewar filled with liquid nitrogen to perform the measurement at 77 K."
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 40000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The pulsed HYSCORE experiments are run at 40 K, which a liquid-nitrogen bath alone cannot reach; the machine must get to 40 K or below.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+          "document_title": "Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies (J. Phys. Chem. C 2021)",
+          "location": "Materials and Methods, Electron Paramagnetic Resonance Spectroscopy",
+          "quote": "were performed at 1224.1 mT and T = 40 K"
+        },
+        {
+          "keys": ["magnetic_field.max"],
+          "constraint": {"kind": "at_least", "q": {"value": "1224.1", "unit": "mT"}},
+          "mandatory": true,
+          "rationale": "The Q-band pulsed measurements are made at a field of 1224.1 mT, so the magnet around the cold sample must reach at least that field.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+          "document_title": "Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies (J. Phys. Chem. C 2021)",
+          "location": "Materials and Methods, Electron Paramagnetic Resonance Spectroscopy",
+          "quote": "were performed at 1224.1 mT and T = 40 K"
+        },
+        {
+          "keys": ["cryogen.type"],
+          "constraint": {"kind": "set_contains", "needed": ["liquid_nitrogen"]},
+          "mandatory": false,
+          "rationale": "Optional: the 77 K part of the work is done by immersing the EPR cell in a liquid-nitrogen finger dewar; a closed-cycle variable-temperature insert could reach 77 K without liquid nitrogen.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+          "document_title": "Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies (J. Phys. Chem. C 2021)",
+          "location": "Materials and Methods, Electron Paramagnetic Resonance Spectroscopy",
+          "quote": "The EPR cell was placed in a finger Dewar filled with liquid nitrogen to perform the measurement at 77 K."
+        },
+        {
+          "keys": ["rf.frequency.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": "9.5", "unit": "GHz"}, "hi": {"value": "33.8", "unit": "GHz"}},
+          "mandatory": true,
+          "rationale": "Microwaves from X-band (about 9.5 GHz) to Q-band (about 33.8 GHz) must be delivered to the cold sample for the combined CW and pulsed measurements.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+          "document_title": "Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies (J. Phys. Chem. C 2021)",
+          "location": "Materials and Methods, Electron Paramagnetic Resonance Spectroscopy",
+          "quote": "Pulsed EPR experiments at the Q-band (∼33.8 GHz)"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Y.-K. Liao, P. C. Bruzzese, M. Hartmann, A. Pöppl, M. Chiesa, Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies, The Journal of Physical Chemistry C 125 (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/"
+        }
+      ],
+      "reported_equipment": [
+        "Bruker EMX EPR spectrometer equipped with a super-high-Q cavity",
+        "finger Dewar filled with liquid nitrogen"
+      ]
+    },
+    {
+      "id": "chem_vt_pxrd_solvate",
+      "name": "Variable-temperature X-ray powder diffraction of a drug solvate from 293 K to 103 K in 10 K steps in a capillary",
+      "plain_name": "Cool a drug powder step by step and watch its X-ray pattern change",
+      "industry": "chemistry_and_pharmaceuticals",
+      "description": "Nifedipine solvates are loaded into 0.7 mm borosilicate capillaries and measured on a Cu-K-alpha-1 powder diffractometer while an open-flow nitrogen cryostream steps the temperature from 293 K down to 103 K, capturing patterns every 10 K with a 5 minute hold at each step, which reveals a phase transition at 143 K. Variable-temperature powder diffraction is the standard way to map solid-form stability of an active pharmaceutical ingredient.",
+      "requirements": [
+        {
+          "keys": ["temperature.range"],
+          "constraint": {"kind": "range_within", "lo": {"value": 103000, "unit": "mK"}, "hi": {"value": 293000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The series runs continuously from room temperature (293 K) down to 103 K, so the machine must cover that whole span on one sample.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088478/",
+          "document_title": "Exploring the thermal behaviour of the solvated structures of nifedipine (Acta Cryst. B 2023, 79, 164-175)",
+          "location": "Section 3.1.3 Dimethylacetamide",
+          "quote": "captured every 10 K from 293 K down to 103 K"
+        },
+        {
+          "keys": ["temperature.base"],
+          "constraint": {"kind": "at_most", "q": {"value": 103000, "unit": "mK"}},
+          "mandatory": true,
+          "rationale": "The lowest point of the series is 103 K; a machine that stops warmer cannot follow the low-temperature phase.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088478/",
+          "document_title": "Exploring the thermal behaviour of the solvated structures of nifedipine (Acta Cryst. B 2023, 79, 164-175)",
+          "location": "Section 3.1.3 Dimethylacetamide",
+          "quote": "captured every 10 K from 293 K down to 103 K"
+        },
+        {
+          "keys": ["sample.diameter.max"],
+          "constraint": {"kind": "at_least", "q": {"value": 700, "unit": "um"}},
+          "mandatory": true,
+          "rationale": "The sample is a 0.7 mm (700 um) diameter borosilicate capillary that must fit in the cooled sample position in transmission geometry.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088478/",
+          "document_title": "Exploring the thermal behaviour of the solvated structures of nifedipine (Acta Cryst. B 2023, 79, 164-175)",
+          "location": "Section 2.4 Variable-temperature X-ray powder diffraction",
+          "quote": "transferred to 0.7 mm diameter borosilicate glass capillaries."
+        },
+        {
+          "keys": ["cryogen.type"],
+          "constraint": {"kind": "set_contains", "needed": ["liquid_nitrogen"]},
+          "mandatory": true,
+          "rationale": "The cooling is an open-flow nitrogen cryostream boiled from a liquid-nitrogen dewar (0.6 L/h at 5 L/min), so the procedure consumes liquid nitrogen.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "Cryostream 800 Series Cooler User Manual, Oxford Cryosystems",
+          "location": "Section 5.1 Standard Cryostream Technical Data, Liquid Nitrogen Consumption row",
+          "quote": "Liquid Nitrogen Consumption 0.6 litres/hour at 5 litres/minute gas flow"
+        },
+        {
+          "keys": ["temperature.stability"],
+          "constraint": {"kind": "at_most", "q": {"value": 100, "unit": "mK"}},
+          "mandatory": false,
+          "rationale": "Optional: each step is held for 5 min before collection and the cooler used holds the set point to 0.1 K, which is needed to place a transition temperature within a 10 K step.",
+          "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+          "document_title": "Cryostream 800 Series Cooler User Manual, Oxford Cryosystems",
+          "location": "Section 5.1 Standard Cryostream Technical Data, Temperature Stability row",
+          "quote": "Temperature Stability 0.1 Kelvin"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "E. C. L. Jones, K. E. Goldsmith, M. R. Ward, L. M. Bimbo, I. D. H. Oswald, Exploring the thermal behaviour of the solvated structures of nifedipine, Acta Crystallographica Section B 79(2):164-175 (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088478/"
+        },
+        {
+          "citation": "Oxford Cryosystems, Cryostream 800 Series Cooler User Manual (2014)",
+          "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Bruker D8 Advance diffractometer with Johansson monochromator (Cu Ka1)",
+        "Oxford Cryosystems Cryostream 800 system",
+        "0.7 mm diameter borosilicate glass capillaries"
+      ]
+    }
+  ]
+}

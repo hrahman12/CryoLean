@@ -1,0 +1,50 @@
+{
+  "configuration_id": "expc_asap2020_hydrogen_ln2",
+  "machine_file": "data/cryostats/expansion_c_asap2020.json",
+  "rows": [
+    {
+      "key": "temperature.range",
+      "result": "still_unknown",
+      "reasoning": "I read the record's only document, Micromeritics Application Note 136 (cached as research/v5/cache/9f777cd399cdabb7.txt), in full. It has no sample or analysis temperature specification. It says only that an isothermal jacket is recommended for analysis 'at cryogenic temperatures (liquid nitrogen or liquid argon)', and that the user should 'enter the bath temperature' and 'Prepare a Dewar with cryogen (or use a recirculating bath)'. Figures 1 and 2 show example hydrogen-on-carbon isotherms at 77 K and 87 K, which are two discrete bath points (LN2 and LAr). They do not give a continuous operating interval, so recording 77-87 K would wrongly imply that 78 K is available. A web search for the ASAP 2020 operator's manual or spec sheet found only training checklists, ASAP 2020 Plus brochures (the successor model) and facility pages; none gives an analysis-temperature range. Tavily was unavailable because the plan limit was exceeded. Nothing sourced shows 20 K operation. Both experiments that need this key are already ruled out by the documented absence of module.boiloff_calorimetry and module.cryogenic_tensile."
+    },
+    {
+      "key": "temperature.warm_boundary.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "unknown"},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "document_title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "location": "p. 1, second paragraph",
+      "quote": "The Micromeritics ASAP 2020 is a flexible gas adsorption analyzer capable of measuring the hydrogen adsorption capacity of powders and porous materials.",
+      "value_as_printed": "flexible gas adsorption analyzer",
+      "reasoning": "This key is the controlled warm-side boundary temperature of a guarded insulation calorimeter. The manufacturer defines the ASAP 2020 as a gas adsorption analyzer for powders and porous materials. Its sample is held in a fritted glass sample tube, with an isothermal jacket, in a cryogen Dewar (pp. 1, 6-7). There is no insulation specimen between warm and cold boundaries and no controlled warm guard. The only heated element in the procedure is the degas heating mantle, which is used for sample preparation (degassing at up to 300 C), not as a calorimeter boundary. So the function this numeric key describes does not exist on this machine, and no numeric value is recorded. If the parent does not allow absence for a numeric key, treat this as still_unknown. The boiloff experiment is ruled out by module.boiloff_calorimetry either way."
+    },
+    {
+      "key": "module.boiloff_calorimetry",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "document_title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "location": "p. 1, second paragraph",
+      "quote": "The Micromeritics ASAP 2020 is a flexible gas adsorption analyzer capable of measuring the hydrogen adsorption capacity of powders and porous materials.",
+      "value_as_printed": "flexible gas adsorption analyzer ... measuring the hydrogen adsorption capacity of powders and porous materials",
+      "reasoning": "The manufacturer defines the instrument as a volumetric gas adsorption analyzer. What it measures is the quantity of gas adsorbed by a powder sample versus pressure (isotherm reports, weight percent H2, Pressure Composition Isotherm; pp. 1, 4-5). The LN2 Dewar is only a constant-temperature bath for the sample tube (p. 7: 'Prepare a Dewar with cryogen'). Nothing in the procedure measures cryogen boiloff flow or heat leak through an insulation specimen. A steady-state boiloff calorimeter is a different kind of instrument, so this function is not provided."
+    },
+    {
+      "key": "module.cryogenic_tensile",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "document_title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "location": "p. 1, second paragraph",
+      "quote": "The Micromeritics ASAP 2020 is a flexible gas adsorption analyzer capable of measuring the hydrogen adsorption capacity of powders and porous materials.",
+      "value_as_printed": "flexible gas adsorption analyzer ... powders and porous materials",
+      "reasoning": "The manufacturer defines the ASAP 2020 as a gas adsorption analyzer for powders and porous materials. The sample sits loose in a standard 1/2-inch-stem glass sample tube with a seal frit (p. 1). There are no grips, no load frame and no force or strain measurement. A cryogenic tensile test machine is a different kind of instrument, so this function is not provided."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+ "name": "fig_compat_heatmap",
+ "title": "Lean verdicts: 11 experiment profiles x 26 cryostat configurations",
+ "question": "Which sourced cryostat configurations can perform which validated experiment profiles, and how often must the checker withhold a decision?",
+ "model": "Verdict of the compiled Lean 4 checker (cryolean.exe check / check-batch) on documents built by verifier.build_documents from the catalog; no Python re-implementation.",
+ "data": "paper/data/e1_grid.json (286 pairs, paper_eval.py E1); re-checked in one Lean check_batch run (286/286 verdicts agree, 286 with identical failed/missing keys); plain names from data/experiments/*.json; families from data/cryostats/*.json. Saved: paper/data/fig_compat_heatmap.json",
+ "claim": "COMPUTED",
+ "caption": "Verdict of the Lean checker for every pairing of the 11 validated experiment profiles (rows, grouped by industry) with the 26 sourced cryostat configurations (columns, grouped by equipment family). Of 286 pairs, 20 meet all mandatory requirements, 109 violate at least one, and 157 cannot be decided because a required specification or model input is undocumented. Verdicts are computed by the compiled checker (a fresh batch run reproduced all of them); colour, hatch and glyph encode the same verdict, and the right-hand columns count verdicts per profile.",
+ "section": "main",
+ "script": "paper/scripts/fig_equipment.py",
+ "command": "python paper/scripts/fig_equipment.py",
+ "files": [
+  "paper/figures/fig_compat_heatmap.png",
+  "paper/figures/fig_compat_heatmap.svg",
+  "paper/figures/fig_compat_heatmap.pdf"
+ ],
+ "interactive": null
+}

@@ -695,7 +695,8 @@
           "available_display": "a documented minimum of 1.333 mPa",
           "capability": {
             "evidence_ids": [
-              "ev_ls_0015"
+              "ev_ls_0015",
+              "ev_v3_c20"
             ],
             "evidence_status": "manufacturer_specification",
             "install": "installed",
@@ -703,7 +704,7 @@
             "value": {
               "kind": "min",
               "q": {
-                "den": 1000000,
+                "den": 3040000,
                 "dim": {
                   "A": 0,
                   "K": 0,
@@ -713,7 +714,7 @@
                   "mol": 0,
                   "s": -2
                 },
-                "num": 1333
+                "num": 4053
               }
             }
           },
@@ -763,6 +764,26 @@
           "review_status": "unreviewed",
           "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
           "value_as_printed": "<1 × 10-5 Torr"
+        },
+        {
+          "accessed": "2026-11-01",
+          "applies_to": "lakeshore_crx_vf",
+          "claim": "Correction: {\"kind\":\"min\",\"q\":{\"value\":1334,\"unit\":\"uPa\"}} (1e-5 Torr = 1333.2237 uPa; rounding down claims a better vacuum than documented) or exactly {\"value\":\"0.00001\",\"unit\":\"Torr\"} if non-canonical units are allowed",
+          "collected_by": "research agent v3 (correction)",
+          "document_title": "see source",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_v3_c20",
+          "kind": "correction",
+          "location": "see verifier note",
+          "normalized": {
+            "unit": "Torr",
+            "value": "0.00001"
+          },
+          "previous": "{\"kind\":\"min\",\"q\":{\"value\":1333,\"unit\":\"uPa\"}}",
+          "quote": "Base temperature <1 × 10-5 Torr",
+          "review_status": "verified by a second agent: The CRX-VF page reads 'Base temperature <1 x 10-5 Torr' = 1333.2237 uPa. The spec implies <= 1334 uPa but does not imply <= 1333, so rounding up is correct. Update ev_ls_0015's normalized value as well. The exact Torr form is also acceptable. Reviewed by the maintainer.",
+          "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+          "value_as_printed": "Base temperature <1 × 10-5 Torr"
         }
       ]
     }
@@ -793,7 +814,7 @@
       "engine": "CryoLean Lean 4 compatibility checker v2",
       "lean_version": "4.35.0",
       "verified_by_lean": true,
-      "lean_input_hash": "14146946071595274236",
+      "lean_input_hash": "2551021327867058406",
       "verdict": "REQUIREMENTS_MET"
     },
     "source_data_validation": {
@@ -849,9 +870,9 @@
       "accessed": "2026-10-31"
     }
   ],
-  "fingerprint": "d91042c6406bc78a3a39d12c0e79a42b96bf309defe2759b165b926879fc879e",
-  "catalog_version": "749312e678b54c14",
-  "checked_at": "2026-11-01T02:32:25.229821+00:00",
+  "fingerprint": "f90a83724ccd3c363cd1b32463e0535c0de9044759401b2e44204fe12eb4ba9f",
+  "catalog_version": "63bfbe703f0e20b3",
+  "checked_at": "2026-11-01T06:46:49.247185+00:00",
   "lean_input": {
     "configuration": {
       "id": "lakeshore_crx_vf",
@@ -1016,8 +1037,8 @@
           "value": {
             "kind": "min",
             "q": {
-              "num": 1333,
-              "den": 1000000,
+              "num": 4053,
+              "den": 3040000,
               "dim": {
                 "m": -1,
                 "kg": 1,
@@ -1028,7 +1049,8 @@
           "install": "installed",
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
-            "ev_ls_0015"
+            "ev_ls_0015",
+            "ev_v3_c20"
           ]
         },
         {
@@ -1213,6 +1235,39 @@
           "evidence_ids": [
             "ev_ls_0017"
           ]
+        },
+        {
+          "key": "section_thickness.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0011"
+          ]
+        },
+        {
+          "key": "temperature.chamber.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0012"
+          ]
+        },
+        {
+          "key": "temperature.specimen_head.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0013"
+          ]
         }
       ]
     },
@@ -1385,11 +1440,11 @@
     },
     "axioms_standard_only": true,
     "axiom_audit": "current",
-    "source_hash": "5262e4e8c30d09e8126695328940be0e7dc3969462a7eef0817873403cac1850",
-    "lean_input_hash": "14146946071595274236",
+    "source_hash": "a1b460f33516d78c570e478e938dd6a99992b3c4f123e5505ce1184b99390f2e",
+    "lean_input_hash": "2551021327867058406",
     "lean_version": "4.35.0",
     "z3_role": "Z3 output is a hint, never a verdict"
   },
   "suggestions": null,
-  "result_id": "res_79f5b95c41a5"
+  "result_id": "res_4c807ac4fedb"
 }

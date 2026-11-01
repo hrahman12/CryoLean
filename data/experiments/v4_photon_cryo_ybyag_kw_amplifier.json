@@ -1,0 +1,114 @@
+{
+ "id": "photon_cryo_ybyag_kw_amplifier",
+ "name": "Joule-class picosecond CPA with cryogenically cooled (77 K) Yb:YAG active-mirror amplifiers at 0.5-1 kW average power",
+ "plain_name": "Amplify a kilowatt-class picosecond laser using crystals chilled by liquid nitrogen",
+ "industry": "photonics_and_telecommunications",
+ "description": "Reagan et al. (Colorado State) amplify stretched pulses in Yb:YAG active mirrors cooled to 77 K by flowing cryogenic liquid; the 100-mJ stage sits on a cryogenic cooling manifold inside a vacuum chamber and the joule-level stage uses 30 mm x 30 mm x 2 mm composite active mirrors (1.5 J at 500 Hz; 1 J at 1 kHz).",
+ "keywords": [
+  "Amplify a kilowatt-class picosecond laser using crystals chilled by liquid nitrogen",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Scaling diode-pumped, high energy picosecond lasers to kilowatt average powers (Reagan et al., High Power Laser Sci. Eng. 6, e11, 2018, doi:10.1017/hpl.2018.3)",
+   "url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryogenic cooling manifold enclosed in a vacuum chamber",
+  "single cryogenic cooling head",
+  "Yb:YAG active mirror regenerative amplifier",
+  "Yb:KYW oscillator"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The active mirrors are cooled to 77 K, where Yb:YAG becomes four-level with higher cross-section and thermal conductivity.",
+   "evidence_ids": [
+    "v4e_photon_cryo_ybyag_kw_amplifier_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cryogenic cooling manifold carrying the gain medium is enclosed in a vacuum chamber.",
+   "evidence_ids": [
+    "v4e_photon_cryo_ybyag_kw_amplifier_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Free-space pump and seed beams must reach the cooled active mirrors and exit after each pass, so the cold enclosure needs optical windows.",
+   "evidence_ids": [
+    "v4e_photon_cryo_ybyag_kw_amplifier_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 42427,
+     "unit": "um"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Joule-level active mirrors are 30 mm x 30 mm; the circumscribing diameter is 42.43 mm (rounded up to 42427 um).",
+   "evidence_ids": [
+    "v4e_photon_cryo_ybyag_kw_amplifier_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source cools the Yb:YAG disks with liquid nitrogen; a cryocooler with sufficient lift at 77 K could substitute.",
+   "evidence_ids": [
+    "v4e_photon_cryo_ybyag_kw_amplifier_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -106,8 +106,72 @@ def condition(c: dict) -> dict:
     raise SerializationError(f"unknown condition kind {k!r}")
 
 
+# ---------------------------------------------------------------------------- derived capabilities
+TRUSTED_STATUSES = {"manufacturer_specification", "experimental_observation", "reference_data", "certified_simulation",
+                    "user_entered"}
+
+
+def _informative(c: dict | None) -> bool:
+    if not c or c.get("evidence_status") not in TRUSTED_STATUSES:
+        return False
+    if c.get("install") in ("optional_not_installed", "not_available"):
+        return True
+    return c.get("install") == "installed" and (c.get("value") or {}).get("kind") != "unknown"
+
+
+def derivations(cfg: dict) -> list[dict]:
+    """Capabilities that another trusted record of the same configuration logically implies. Each one only fills a key
+    that has no informative record (missing, UNKNOWN, untrusted or unknown install), so by `verdict_refines`
+    (lean/CryoLean/Monotone.lean) it can never change a decided verdict; it can only decide a NEED_MORE_INFORMATION pair.
+    Returns records {key, value, install, evidence_status, evidence_ids, derived_from, rule}."""
+    caps = {}
+    for c in cfg.get("capabilities", []):
+        caps.setdefault(c["key"], c)
+    out = []
+
+    def add(key, value, install, src, rule):
+        if _informative(caps.get(key)):
+            return
+        out.append({"key": key, "value": value, "install": install, "evidence_status": src["evidence_status"],
+                    "evidence_ids": list(src.get("evidence_ids", [])), "derived_from": src["key"], "rule": rule})
+
+    r = caps.get("temperature.range")
+    if _informative(r) and r.get("install") == "installed" and r["value"].get("kind") == "range":
+        add("temperature.base", {"kind": "min", "q": r["value"]["lo"]}, "installed", r,
+            "the lowest temperature of the documented operating range is the lowest documented temperature")
+    p = caps.get("pressure.base")
+    if _informative(p) and p.get("install") == "installed" and p["value"].get("kind") == "min":
+        add("vacuum.available", {"kind": "flag", "b": True}, "installed", p,
+            "a documented base pressure of the sample space means the sample space can be evacuated")
+    w = caps.get("optical.window_count")
+    if _informative(w) and w.get("install") == "installed" and w["value"].get("kind") == "count" and w["value"].get("n", 0) >= 1:
+        add("optical_access", {"kind": "flag", "b": True}, "installed", w, "a documented optical window gives optical access")
+    m = caps.get("magnetic_field.max")
+    if _informative(m) and m.get("install") == "not_available":
+        add("magnetic_field.vector", {"kind": "flag", "b": False}, "not_available", m,
+            "an instrument with no magnet has no vector magnet")
+        add("module.vsm", {"kind": "flag", "b": False}, "not_available", m,
+            "a vibrating sample magnetometer needs a magnet; this instrument documents none")
+    return out
+
+
+def with_derivations(cfg: dict) -> dict:
+    """The configuration with derived capabilities in place of uninformative placeholders (first match wins in Lean)."""
+    ders = derivations(cfg)
+    if not ders:
+        return cfg
+    by_key = {d["key"]: d for d in ders}
+    caps = []
+    for c in cfg.get("capabilities", []):
+        d = by_key.pop(c["key"], None)
+        caps.append({k: v for k, v in d.items() if k not in ("derived_from", "rule")} if d else c)
+    caps += [{k: v for k, v in d.items() if k not in ("derived_from", "rule")} for d in by_key.values()]
+    return {**cfg, "capabilities": caps}
+
+
 # ---------------------------------------------------------------------------- configuration
 def configuration_doc(catalog: Catalog, cfg: dict) -> dict:
+    cfg = with_derivations(cfg)
     caps = []
     for c in cfg.get("capabilities", []):
         caps.append({"key": c["key"], "value": cap_value(c["value"]), "install": c["install"],

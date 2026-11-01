@@ -1,0 +1,948 @@
+{
+ "industry": "aerospace_and_space_exploration",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "aero_cubesat_tvac_lsp",
+   "name": "CubeSat thermal-vacuum cycling qualification per NASA LSP-REQ-317.01 Rev B (-14 to +71 C, 1e-4 torr)",
+   "plain_name": "Space-qualify a small CubeSat satellite by cycling it hot and cold in a vacuum chamber",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Qualification thermal-vacuum cycling of a 3U CubeSat for a NASA Launch Services Program ride: the satellite is cycled over at least -14 C to +71 C at a chamber pressure of 13.3e-3 Pa (1e-4 torr) with functional tests at the soaks, as summarised from LSP-REQ-317.01 Rev B in the INPE ICES-2017 test-specification method; the article envelope is the CubeSat Design Specification 3U size.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 259150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 344150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "LSP-REQ-317.01 qualification requires at least the -14 C to +71 C range (-14 C = 259.15 K, +71 C = 344.15 K).",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+     "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+     "location": "p. 6, section D (NASA LSP-REQ-317.01 Rev.B)",
+     "quote": "It also adds that a minimum range of temperatures from -14 -3/+0°C to +71 -0/+3°C shall be used for qualification",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The test is a thermal-vacuum cycling test; an evacuated chamber is required.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+     "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+     "location": "p. 4, definition of TVCT",
+     "quote": "Thermal Vacuum Cycling Test (TV CT): This tes t subjects the test article to a series of cycles of hot and",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.0001",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Table 1, NASA LSP-REQ-317.01 Rev.B column (last of five columns: GSFC-STD-7000, MIL-HDBK-340A, ECSS-E-ST-10-03C, TR-2004(8583)-1, LSP-REQ-317.01): qualification chamber pressure 13.3x10-3 Pa (1e-4 torr).",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+     "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+     "location": "p. 7, Table 1, row 'Qualification Chamber pressure', column NASA LSP-REQ-317.01 Rev.B",
+     "quote": "Qualification Chamber pressure 1.33x10-3Pa (10-5 torr) 13.3x10-3Pa (10-4 torr) 10-3 Pa (7x10-6 torr) 13.3x10-3Pa (10-4 torr) 13.3x10-3Pa (10-4 torr)",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Functional/performance tests of the powered satellite are run during the cycling, so harness feedthroughs to the article are needed.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+     "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+     "location": "p. 4",
+     "quote": "TVCT, are performed functional tests for the performance verification of the subsystem or system.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "141.6",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "A 3U CubeSat is 100.0 +/- 0.1 mm square; circumscribed diameter of a 100.1 mm square = 141.56 mm, rounded up.",
+     "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+     "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+     "location": "3U CubeSat Acceptance Checklist, Width [x-y]",
+     "quote": "Width [x-y] Side 1 (-Y) Side 2 (-X) Side 3 (+Y) Side 4 (+X) +Z __________ __________ __________ __________ 100.0 0.1mm",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "340.8",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "3U CubeSat rail height 340.5 +/- 0.3 mm; upper bound 340.8 mm along the loading axis.",
+     "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+     "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+     "location": "3U CubeSat Acceptance Checklist, Height",
+     "quote": "Height [x-y] Rail 1 (+X, -Y) __________ __________ __________ 340.5 0.3mm",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "sample.mass.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "4",
+       "unit": "kg"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the platen/fixture must carry a CubeSat of up to 4.00 kg.",
+     "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+     "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+     "location": "section 3.2.13",
+     "quote": "3.2.13 The maximum mass of a 3U CubeSat shall be 4.00 kg.",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+     "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+     "url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "aero_ecss_equipment_tvac",
+   "name": "ECSS-E-ST-10-03C space-segment equipment thermal vacuum test (<= 1e-5 hPa, functional tests at hot and cold)",
+   "plain_name": "Test a satellite electronics unit in vacuum under the European space testing standard",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Equipment-level thermal vacuum test per ECSS-E-ST-10-03C clause 5.5.4: equipment that operates in space vacuum is tested at 10-5 hPa (1e-3 Pa) or less, with functional tests at the hot and cold operating temperatures, a dwell of at least 2 h before functional tests and a non-operating cycle.",
+   "requirements": [
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Clause 5.5.4.2a: equipment operating in space vacuum must be tested in thermal vacuum.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+     "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+     "location": "p. 74, clause 5.5.4.2a",
+     "quote": "Thermal vacuum testing shall be performed for space segment equipment whose operation occurs in space vacuum environment at any time of its lifetime.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.001",
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Clause 5.5.4.2b: 10-5 hPa = 1e-3 Pa or less.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+     "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+     "location": "p. 75, clause 5.5.4.2b",
+     "quote": "b. Space segment equipment shall be tested at a pressure of 10-5 hPa or less.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Functional tests at hot and cold operating temperatures require powered, instrumented equipment inside the chamber.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+     "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+     "location": "p. 74, clause 5.5.4.1k",
+     "quote": "k. Functional tests shall be performed as a minimum at hot and cold operating temperatures.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 2,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: functional tests start only after a dwell of at least 2 h, so the facility must hold a plateau for at least 2 h.",
+     "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+     "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+     "location": "p. 74, clause 5.5.4.1g",
+     "quote": "g. Functional test shall only start after a dwell time greater or equal to 2 hours.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+     "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "aero_gevs_unit_tvac",
+   "name": "GSFC GEVS unit-level protoflight thermal-vacuum cycling (< 1.33e-3 Pa, AFT +/-10 C, 4 h plateaus, <= 1 C/min)",
+   "plain_name": "Prove a NASA spacecraft part keeps working through hot and cold cycles in space-like vacuum",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Unit (component) protoflight thermal-vacuum test per NASA GSFC-STD-7000B (GEVS) section 2.6: 8 thermal-vacuum cycles at the allowable flight temperature range +/-10 C, 4 h hot/cold operational plateaus, transition rate up to 1 C/min, chamber pressure below 1.33e-3 Pa after the electrical discharge checks, with the unit powered and functionally tested.",
+   "requirements": [
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Thermal-vacuum cycling requires an evacuated chamber.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "location": "PDF p. 261 (2.6-20), section 2.6.3.2.4 Pressure",
+     "quote": "The chamber pressure after the electrical discharge checks are conducted is less than 1.33 X 10 -3 Pa. (1 X 10-5 torr).",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.00133",
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Section 2.6.3.2.4: chamber pressure less than 1.33e-3 Pa (1e-5 torr).",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "location": "PDF p. 261 (2.6-20), section 2.6.3.2.4 Pressure",
+     "quote": "The chamber pressure after the electrical discharge checks are conducted is less than 1.33 X 10 -3 Pa. (1 X 10-5 torr).",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Items electrically operational during pressure transitions undergo an electrical discharge check; the unit is powered and tested through feedthroughs.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "location": "PDF p. 261 (2.6-20), section 2.6.3.3.1",
+     "quote": "Items that are electrically operational during pressure tr ansitions undergo an electrical discharge check",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: Table 2.6-1 suggests transitions up to 1.0 C/min; a facility able to ramp at 1 C/min keeps the test schedule.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "location": "PDF p. 258 (2.6-17), Table 2.6-1",
+     "quote": "Plateau Duration (hrs) (4) 4 12 24 Maximum Transition Rate (°C/min) (6) 1.0 1.0 1.0",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 4,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: unit hot and cold operational plateaus last at least 4 h.",
+     "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "location": "PDF p. 260 (2.6-19), section 2.6.3.2.3",
+     "quote": "Hot and cold operational plateaus are a minimum of 4 hours in duration, or the time needed to complete performance testing, whichever is greater",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+     "url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "aero_solar_array_50_133k",
+   "name": "Thermal-cycle qualification of radiation-tested solar-array coupons from 50 to 133 K in vacuum (122 cycles)",
+   "plain_name": "Repeatedly deep-freeze and rewarm a spacecraft solar-panel sample for an icy-moon mission",
+   "industry": "aerospace_and_space_exploration",
+   "description": "JPL qualification of large solar-array panel coupons (6 x 5 x 1.5 in) for an outer-planet mission: 122 vacuum thermal cycles between 50 and 133 K on a cryostat in a high-vacuum system, monitoring electrical continuity of the coupons.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 50,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 133,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cycles span 50 K to 133 K.",
+     "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "location": "article body",
+     "quote": "as a result of 122 thermal cycles performed from 50 to 133 K",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Cycling is done in vacuum (high vacuum avoids water condensation).",
+     "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "location": "article body",
+     "quote": "A very high vacuum system was used to avoid the condensation of water",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Electrical continuity of the coupons is the pass/fail measurement, so leads to the coupon are needed.",
+     "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "location": "article body",
+     "quote": "There was no change in the electrical continuity of the solar array test coupons",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "7.82",
+       "unit": "inch"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Coupon footprint 6 x 5 in; circumscribed diameter sqrt(61) = 7.81 in, rounded up.",
+     "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "location": "article body",
+     "quote": "large solar array panel coupon [6 × 5 × 1.5 in. (≈15 × 13 × 4 cm)]",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "1.5",
+       "unit": "inch"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Coupon thickness 1.5 in.",
+     "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "location": "article body",
+     "quote": "large solar array panel coupon [6 × 5 × 1.5 in. (≈15 × 13 × 4 cm)]",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+     "url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "vacuum setup with a cryostat (JPL)"
+   ]
+  },
+  {
+   "id": "aero_lox_mechanical_impact",
+   "name": "Ambient-pressure liquid-oxygen mechanical impact test (NHB 8060.1C / NASA-STD-6001 Test 13A, ASTM D2512, 98 J)",
+   "plain_name": "Drop a heavy weight on material soaked in liquid oxygen to check that it does not ignite",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Oxygen-compatibility screening at NASA MSFC: samples in 0.625 in cups are frozen in liquid nitrogen, immersed in ambient-pressure LOX and struck with 72 ft-lb (98 J) by a 20 lb plummet dropped 43.3 in; pass is fewer than 2 reactions in 20 drops.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_oxygen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "Test 13A impacts samples immersed in ambient-pressure liquid oxygen.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+     "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+     "location": "p. 1",
+     "quote": "Test 13A of NHB 8060.1C defines the test procedure for the evaluation of the mechanical impact sensitivity of materials in ambient pressure LOX environments.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: liquid samples are pre-frozen in a liquid-nitrogen container before impact in LOX.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+     "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+     "location": "p. 2",
+     "quote": "then the cups are chilled in a container of liquid nitrogen to freeze the sample prior to impact testing in LOX.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "0.625",
+       "unit": "inch"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: sample cups are about 0.625 in inside diameter.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+     "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+     "location": "p. 2",
+     "quote": "Paragraph 10.1 details the preparation of liquid samples in cups that are approximately 0.625 inch inside diameter and 0.050 inch deep.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+     "url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "ambient pressure LOX impact test unit (MSFC Materials Combustion Research Facility)"
+   ]
+  },
+  {
+   "id": "aero_composite_lh2_tank_pressure",
+   "name": "Cryogenic (LH2-filled) pressure and pressure-cycle test of a 2.4 m out-of-autoclave composite cryotank to 0.93 MPa",
+   "plain_name": "Pressure-test a carbon-fibre rocket fuel tank while it is full of liquid hydrogen",
+   "industry": "aerospace_and_space_exploration",
+   "description": "NASA CCTD 2.4 m carbon/epoxy precursor tank tested at MSFC Test Cell 4626: stepwise fill with LH2 to 90% volume, pneumatic cryogenic pressure test to 0.93 MPa with the tank full of LH2, then 20 pressure/vent cycles with in-situ hydrogen-permeation measurement.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_hydrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The tank is filled with liquid hydrogen for the cryogenic pressure test.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf",
+     "document_title": "Design, Manufacture and Test of Cryotank Components (McCarville et al., Comprehensive Composite Materials II)",
+     "location": "p. 24",
+     "quote": "The test met program requirements: (1) stepwise fill with LH2",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 930000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cryogenic pressure test to 0.93 MPa with the tank filled with LH2.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf",
+     "document_title": "Design, Manufacture and Test of Cryotank Components (McCarville et al., Comprehensive Composite Materials II)",
+     "location": "p. 24, Table 2",
+     "quote": "Cryogenic pressure test Pneumatic test to 0.93 MPa with tank filled with LH 2",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "2.4",
+       "unit": "m"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The test stand must accept a 2.4 m diameter tank.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf",
+     "document_title": "Design, Manufacture and Test of Cryotank Components (McCarville et al., Comprehensive Composite Materials II)",
+     "location": "p. 23, Table 1",
+     "quote": "Feature 5.5 m Cryotank 2.4 m Precursor tank Diameter 5.5 m 2.4 m",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Design, Manufacture and Test of Cryotank Components (McCarville et al., Comprehensive Composite Materials II)",
+     "url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "NASA MSFC Test Cell 4626"
+   ]
+  },
+  {
+   "id": "aero_lox_liquefaction_90k",
+   "name": "In-situ oxygen liquefaction/zero-boil-off in a prototype lander tank with a 90 K reverse-turbo-Brayton cryocooler (CryoFILL)",
+   "plain_name": "Make and keep liquid oxygen in a Moon-lander tank using an electric cryogenic cooler",
+   "industry": "aerospace_and_space_exploration",
+   "description": "NASA GRC CryoFILL third test: a Creare 150 W / 90 K reverse turbo-Brayton cryocooler integrated with a prototype lander LOX tank in the SMiRF vacuum chamber, chilled down with the tank 90% full of LOX and operated for 31 days in steady and cyclic modes.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 90,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cooler operates at a 90 K design point to liquefy and hold oxygen.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+     "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+     "location": "slide 4",
+     "quote": "Cooling capacity design point of 120 Watts or greater with goal of 150 Watts during SS operation at 90 K",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_oxygen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The tank under test holds liquid oxygen.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+     "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+     "location": "slide 7",
+     "quote": "Chilldown performed with LOX at 90% full in the tank",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The prototype tank is tested inside the SMiRF vacuum chamber.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+     "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+     "location": "slide 3",
+     "quote": "NASA GRC SMiRF Facility with Prototype Test Article in Vacuum Chamber.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 744,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the integrated test ran 31 days (744 h).",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+     "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+     "location": "slide 13",
+     "quote": "The Creare 90 K cryocooler has operated for 31 days in both steady state and transient operations.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+     "url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "NTRS record 20260004829",
+     "url": "https://ntrs.nasa.gov/citations/20260004829",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Creare 90 K cryocooler (150W/90K Reverse Turbo Brayton)",
+    "NASA GRC SMiRF Facility vacuum chamber"
+   ]
+  },
+  {
+   "id": "aero_lptc_ir_detector_80k",
+   "name": "Infrared focal-plane cooling with a single-stage space pulse-tube cooler at 50-80 K, 2-7 W (Air Liquide LPTC)",
+   "plain_name": "Chill a weather-satellite infrared camera to about 80 K with a pulse-tube refrigerator",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Cooling of Earth-observation and meteorological infrared detectors (e.g. Meteosat Third Generation) with the Air Liquide Large Pulse Tube Cooler: cold tip at 50-80 K delivering 2-7 W depending on cold and reject temperature.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 80,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Detectors are cooled within 50-80 K; 80 K is the upper operating point.",
+     "source_url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf",
+     "document_title": "Qualification of a European Large Pulse Tube Cooler System for Space Applications (Wiertz & Urbano, Cryocoolers 19)",
+     "location": "p. 147, abstract",
+     "quote": "cooling of infrared detectors at temperatures between 50K and 80K with cooling power between 2W and 7W.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cooling_power.at_80000mK"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 2,
+       "unit": "W"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Conservative lower bound of the stated 2-7 W cryogenic power.",
+     "source_url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf",
+     "document_title": "Qualification of a European Large Pulse Tube Cooler System for Space Applications (Wiertz & Urbano, Cryocoolers 19)",
+     "location": "p. 148, LPTC cooler design description",
+     "quote": "the cryogenic power is between 2 W and 7 W, as depicted in Figure 2.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 50,
+       "unit": "K"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: low end of the application range (50 K detectors).",
+     "source_url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf",
+     "document_title": "Qualification of a European Large Pulse Tube Cooler System for Space Applications (Wiertz & Urbano, Cryocoolers 19)",
+     "location": "p. 147, abstract",
+     "quote": "cooling of infrared detectors at temperatures between 50K and 80K with cooling power between 2W and 7W.",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Qualification of a European Large Pulse Tube Cooler System for Space Applications (Wiertz & Urbano, Cryocoolers 19)",
+     "url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Air Liquide Large Pulse Tube Cooler (LPTC)"
+   ]
+  },
+  {
+   "id": "aero_adr_xray_microcalorimeter_50mk",
+   "name": "X-ray microcalorimeter array operation at 50 mK (<2 uK rms) on a 3-stage ADR (Astro-H SXS)",
+   "plain_name": "Hold an X-ray space-telescope detector at 50 millikelvin with a magnetic refrigerator",
+   "industry": "aerospace_and_space_exploration",
+   "description": "Operation of the Astro-H Soft X-ray Spectrometer 6x6 microcalorimeter array at 50 mK with <2 uK rms stability, cooled by a 3-stage adiabatic demagnetization refrigerator whose heat sink is superfluid helium or a 4.5 K JT cooler, designed for a 24 h hold time per recycle.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 50,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The array must be cooled to 50 mK.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+     "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+     "location": "p. 1, abstract",
+     "quote": "to cool a 6x6 array of x-ray microcalorimeters to 50 mK.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 2,
+       "unit": "uK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Detector temperature stability requirement <2 uK rms.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+     "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+     "location": "p. 2, Table 1",
+     "quote": "Detector temperature stability <2 µK rms <2 µK rms",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The detector array is read out through readout wires to the cold stage.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+     "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+     "location": "p. 2",
+     "quote": "The heat leak into the detector array, through the Kevlar suspension and readout wires , depends only on the temperature of the housing.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 24,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: Stage 1 was sized for a 24-hour hold time at 50 mK.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+     "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+     "location": "p. 3",
+     "quote": "accommodated the expected heat load (of 0.65 µW; see Table 3) for a 24-hour hold time, plus 100% margin.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+     "url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "SXS 3-stage ADR (Astro-H Soft X-ray Spectrometer)"
+   ]
+  },
+  {
+   "id": "aero_mars_prt_thermal_cycling",
+   "name": "Mars surface thermal-cycle qualification of bonded Honeywell PRTs for MSL (-135 to 70 C qual cycles, +125 C planetary-protection bake)",
+   "plain_name": "Cycle Mars-rover temperature sensors through Martian day-night temperature swings",
+   "industry": "aerospace_and_space_exploration",
+   "description": "JPL qualification of Honeywell platinum resistance thermometers bonded to six substrates with four adhesives for the Mars Science Laboratory: planetary-protection cycle to +125 C for 2 h, three protoflight/qualification cycles -135 to 70 C, 1,384 summer cycles (-105 to 40 C) and 599 winter cycles (-130 to 15 C), with resistance checks.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 138150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 343150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Protoflight/qualification cycles -135 C to 70 C (138.15 K to 343.15 K).",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+     "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+     "location": "p. 32 (NASA Tech Briefs May 2012)",
+     "quote": "three protoflight/qualification cycles (-135 to 70 °C), 1,384 summer cycles (-105 to 40 °C), and 599 winter cycles (-130 to 15 °C).",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 398150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Planetary-protection cycle to +125 C (398.15 K) for two hours.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+     "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+     "location": "p. 32",
+     "quote": "which included a planetary protection cycle to +125 °C for two hours",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "Optional: PRT resistances are monitored to detect bond failures.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+     "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+     "location": "p. 32",
+     "quote": "There were no observed changes in PRT resistances, bonding characteristics, or damage identified from the package evaluation",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+     "url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "NTRS record 20120009249",
+     "url": "https://ntrs.nasa.gov/citations/20120009249",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ],
+ "notes": "Minus signs in the PRT quote were extracted as replacement glyphs from the PDF and are rendered as '-'. The LPTC quotes are the readable portions of a PDF whose body font is partly unextractable. Techbriefs NPO-49655 quotes were read via WebFetch (direct download blocked)."
+}

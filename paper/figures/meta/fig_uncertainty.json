@@ -1,0 +1,18 @@
+{
+ "name": "fig_uncertainty",
+ "title": "Robustness of the heat-budget verdict to uncertain per-line loads",
+ "question": "How likely is the LD400 heat budget to hold for a given number of flux lines when the per-line loads are uncertain?",
+ "model": "Monte Carlo over the four per-line loads (q_drive, q_flux, p_flux_dc, q_output), one value per load type shared by all lines of that type; each sample decided by the Lean checker; P(MET) with Wilson 95% intervals. Two input models: uniform +-20% (ASSUMED tolerance) and Gaussian with the sourced 1-sigma (shape ASSUMED).",
+ "data": "164041 Lean runs (check_batch): 2000 samples x 41 flux-line counts (20..60) x 2 input models + 41 nominal runs; seed 20261031, common random numbers across n_f. Sourced sigmas from Krinner et al. 2019 Table 2 (hl_011, hl_017, hl_019, hl_029). paper/data/fig_uncertainty.json.",
+ "claim": "COMPUTED+MODELED",
+ "caption": "Fraction of Monte Carlo samples that the Lean checker accepts, with Wilson 95% intervals, against the number of flux lines on bluefors_ld400_hdw. The nominal boundary between 39 and 40 flux lines becomes a transition band: under an assumed independent ±20% tolerance on each per-line load (navy) the Z3-repaired design with 39 flux lines is accepted in 1016/2000 samples (P = 0.508, 95% CI 0.486-0.530) and P(MET) >= 0.95 requires at most 33 flux lines; with the sourced 1-sigma uncertainties of Krinner et al. (lavender; Gaussian shape assumed) the band is wider (P(MET) >= 0.95 up to 30 flux lines). The strip shows the Lean verdict at the central (sourced) loads. The input distributions are modelling assumptions; every accept/reject decision is a Lean run.",
+ "section": "main",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_uncertainty.png",
+  "paper/figures/fig_uncertainty.svg",
+  "paper/figures/fig_uncertainty.pdf"
+ ],
+ "interactive": null
+}

@@ -1,0 +1,124 @@
+{
+ "id": "chem_epr_frozen_catalyst",
+ "name": "Frozen-sample EPR of a transition-metal catalyst: X-band CW at 77 K in a liquid-nitrogen finger dewar and Q-band pulsed HYSCORE at 40 K and 1224.1 mT",
+ "plain_name": "Detect unpaired electrons in a deep-frozen catalyst sample",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "Chromium-doped silicoaluminophosphate molecular sieves are characterised by continuous-wave X-band EPR (about 9.5 GHz) with the sample cell in a liquid-nitrogen finger dewar at 77 K, and by Q-band (about 33.8 GHz) pulsed HYSCORE at 1224.1 mT and 40 K, to locate the chromium site and its coordination. Freezing the sample is what narrows the lines and makes the hyperfine couplings resolvable.",
+ "keywords": [
+  "Detect unpaired electrons in a deep-frozen catalyst sample",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "Y.-K. Liao, P. C. Bruzzese, M. Hartmann, A. Pöppl, M. Chiesa, Chromium Environment within Cr-Doped Silico-Aluminophosphate Molecular Sieves from Spin Density Studies, The Journal of Physical Chemistry C 125 (2021)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8162410/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Bruker EMX EPR spectrometer equipped with a super-high-Q cavity",
+  "finger Dewar filled with liquid nitrogen"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 40000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 50000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The study needs both the 77 K continuous-wave measurement and the 40 K pulsed measurement, so the sample space must cover 40-77 K.",
+   "evidence_ids": [
+    "v4e_chem_epr_frozen_catalyst_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 40000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The pulsed HYSCORE experiments are run at 40 K, which a liquid-nitrogen bath alone cannot reach; the machine must get to 40 K or below.",
+   "evidence_ids": [
+    "v4e_chem_epr_frozen_catalyst_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1224.1",
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Q-band pulsed measurements are made at a field of 1224.1 mT, so the magnet around the cold sample must reach at least that field.",
+   "evidence_ids": [
+    "v4e_chem_epr_frozen_catalyst_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the 77 K part of the work is done by immersing the EPR cell in a liquid-nitrogen finger dewar; a closed-cycle variable-temperature insert could reach 77 K without liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_chem_epr_frozen_catalyst_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "33.8",
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Microwaves from X-band (about 9.5 GHz) to Q-band (about 33.8 GHz) must be delivered to the cold sample for the combined CW and pulsed measurements.",
+   "evidence_ids": [
+    "v4e_chem_epr_frozen_catalyst_4"
+   ],
+   "conditions": [],
+   "key": "rf.frequency.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,85 @@
+{
+ "id": "env_medusa_halocarbon_monitoring",
+ "name": "In-situ Medusa-GCMS measurement of atmospheric halocarbons, PFCs, SF6 and NMHCs with dual adsorbent traps cooled to -165 C by a Cryotiger",
+ "plain_name": "Monitor ozone-depleting and greenhouse gases at a remote air station",
+ "industry": "environmental_science",
+ "description": "Two-litre whole-air samples are preconcentrated on adsorbent micro-traps cooled to -165 C by a closed-cycle Cryotiger cooler, selectively flushed at -70/-125 C to remove CO2, Xe and bulk air, desorbed at +100 C and transferred to a GC-MS, giving 12 air measurements per day of PFCs, SF6, HFCs, HCFCs, CFCs and halons at AGAGE stations.",
+ "keywords": [
+  "Monitor ozone-depleting and greenhouse gases at a remote air station",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "Medusa-GCMS - Atmospheric Chemistry Research Group instruments, University of Bristol",
+   "url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Medusa-GCMS",
+  "Cryotiger"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 108150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Adsorbent traps must reach -165 C (108.15 K) to retain the most volatile species.",
+   "evidence_ids": [
+    "v4e_env_medusa_halocarbon_monitoring_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 108150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 373150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each cycle runs the trap between -165 C trapping and +100 C desorption.",
+   "evidence_ids": [
+    "v4e_env_medusa_halocarbon_monitoring_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Preconcentrated analytes are separated and detected by the coupled GC-MS.",
+   "evidence_ids": [
+    "v4e_env_medusa_halocarbon_monitoring_2"
+   ],
+   "conditions": [],
+   "key": "module.gc_ms"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

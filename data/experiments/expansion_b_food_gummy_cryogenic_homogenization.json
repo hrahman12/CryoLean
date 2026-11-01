@@ -1,0 +1,77 @@
+{
+  "id": "expansion_b_food_gummy_cryogenic_homogenization",
+  "name": "Cryogenic homogenization of gummy confectionery for analysis",
+  "plain_name": "Grind a sticky food sample",
+  "industry": "food_and_agriculture",
+  "description": "Mechanical sample preparation for compositional analysis, distinct from observing ice crystals or removing water by sublimation.",
+  "keywords": [
+    "Grind a sticky food sample",
+    "food_cryomilling",
+    "food_and_agriculture"
+  ],
+  "sources": [
+    {
+      "citation": "RETSCH primary application: gummy bears inMM400/CryoKit",
+      "url": "https://www.retsch.com/files/15592/white-paper-cryogenic-preparation-of-sample-materials.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "RETSCHMM400,CryoKit,two50mL steel jars,25mm balls"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.cryogenic_milling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The sample requires mechanical cryogenic comminution; a static cold chamber cannot meet this capability merely by temperature.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    },
+    {
+      "key": "milling.frequency.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "30",
+          "unit": "Hz"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The published application runs at30Hz.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    },
+    {
+      "key": "milling.jar_volume",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "0.05",
+          "unit": "L"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The published application explicitly uses50mL steel jars.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The source's observed final fineness is an application result, not a universal guaranteed capability.",
+    "The MM400 does not continuously maintain LN2 temperature; no constant -196 C sample claim is made."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

@@ -1,0 +1,117 @@
+{
+ "id": "med_meg_reliquefier_squid",
+ "name": "Whole-head 150-channel LTS-SQUID magnetoencephalography in a magnetically shielded room with a liquid-helium helmet dewar kept at 4.2 K by a 1.4 W pulse-tube reliquefier",
+ "plain_name": "Record brain magnetic signals with helium-cooled SQUID sensors",
+ "industry": "healthcare_and_medicine",
+ "description": "MEG of spontaneous brain activity: low-Tc SQUID gradiometers in the vacuum space of a 90 L liquid-helium helmet dewar inside a magnetically shielded room; evaporated helium is reliquefied continuously by a Cryomech PT415RM (1.4 W at 4.2 K), giving 3.5 fT/rtHz white noise.",
+ "keywords": [
+  "Record brain magnetic signals with helium-cooled SQUID sensors",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Lee Y H, Kwon H, Yu K K, Kim J M, Lee S K, Kim M-Y, Kim K. Low-noise magnetoencephalography system cooled by a continuously operating reliquefier. Supercond. Sci. Technol. 30 (2017) 084003. DOI 10.1088/1361-6668/aa718e",
+   "url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Cryomech model PT415RM",
+  "helmet dewar (150-channel MEG)",
+  "magnetically shielded room (MSR)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 4200,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The SQUID gradiometers are cooled by the liquid-helium helmet at 4.2 K.",
+   "evidence_ids": [
+    "v4e_med_meg_reliquefier_squid_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The sensors are cooled by direct thermal contact with a liquid-helium bath that the reliquefier refills.",
+   "evidence_ids": [
+    "v4e_med_meg_reliquefier_squid_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Femtotesla brain fields are recorded inside a magnetically shielded room (MSR).",
+   "evidence_ids": [
+    "v4e_med_meg_reliquefier_squid_2"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "1.4",
+     "unit": "W"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reported reliquefier capacity (1.4 W at 4.2 K), stated to be more than sufficient for the 13-14 L/day boil-off; informative, not a hard minimum.",
+   "evidence_ids": [
+    "v4e_med_meg_reliquefier_squid_3"
+   ],
+   "conditions": [],
+   "key": "cooling_power.at_4200mK"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 90,
+     "unit": "L"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reported helmet-dewar reservoir capacity (informative).",
+   "evidence_ids": [
+    "v4e_med_meg_reliquefier_squid_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.dewar_volume"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

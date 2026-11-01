@@ -1,0 +1,39 @@
+{
+  "configuration_id": "expa_nasa_chamber_a_documented",
+  "machine_file": "data/cryostats/expansion_a_nasa_chamber_a.json",
+  "rows": [
+    {
+      "key": "temperature.optical_bench.range",
+      "result": "still_unknown",
+      "reasoning": "Searched the record's NASA Chamber A article (WebFetch) and the OTIS cryo test paper (Kimble et al., Proc. SPIE 10698, 1069805, 2018; NTRS 20190002255, cached research/v5/cache/86ac49ae15c4d606.txt). Documented temperatures are the He shroud (20 K in the paper, about 11 K in the NASA article), the payload (~40 K, telescope around 37 K), near-IR instruments 35-42 K (flight), and MIRI at 6 K on a GSE cryocooler. None is described as an optical-bench temperature, and the optical GSE (COCOA) was kept at room temperature. Calling any of these the bench temperature would be invented. An optical structure does exist (ISIM metering structure, MIRI optics), so absence cannot be claimed either.",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20190002255/downloads/20190002255.pdf",
+      "document_title": "Kimble et al. 2018, JWST OTIS cryogenic test program and results (Proc. SPIE 10698, 1069805)"
+    },
+    {
+      "key": "module.mid_ir_detector_characterization",
+      "result": "value",
+      "value": {"kind": "flag", "b": true},
+      "install": "installed",
+      "evidence_status": "experimental_observation",
+      "quote": "Meanwhile, the GSE cryocooler brought the MIRI down to its 6K operating temperature. ... The MIRI Medium Resolution Spectrograph accomplished many calibration goals using a PAAH continuum source. Detector darks were acquired.",
+      "value_as_printed": "MIRI at 6K operating temperature; MRS calibration with PAAH continuum source; detector darks acquired",
+      "location": "Sec. 3.2.2 (cooldown), p. 1069805-10, and Sec. 3.2.3 (cryo-stable operations, days 41-75), p. 1069805-11",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20190002255/downloads/20190002255.pdf",
+      "document_title": "Kimble et al. 2018, JWST OTIS cryogenic test program and results (Proc. SPIE 10698, 1069805)",
+      "reasoning": "In this exact configuration (OTIS in Chamber A), the mid-IR instrument MIRI was cooled to 6 K, and its detectors took illuminated (PAAH continuum source) and dark exposures. That documents mid-IR detector operation and characterization in the chamber. Caveat: this applies only to the flight MIRI arrays inside the integrated payload, not to a general facility for characterizing other arrays."
+    },
+    {
+      "key": "module.internal_offner_relay",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "Numerous small light sources were fiber-fed to or located at that image plane. Some were aimed inward toward the Tertiary Mirror and Fine Steering Mirror (FSM) and ultimately the science instruments; this was the so-called Half-Pass (HP) light path.",
+      "value_as_printed": "Instrument focal planes illuminated via ASPA sources through the flight Tertiary Mirror/FSM (Half-Pass) or via SM/PM/ACFs (Pass-and-a-Half)",
+      "location": "Sec. 2.1 Overview of the ground support equipment (GSE), p. 1069805-5",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20190002255/downloads/20190002255.pdf",
+      "document_title": "Kimble et al. 2018, JWST OTIS cryogenic test program and results (Proc. SPIE 10698, 1069805)",
+      "reasoning": "The paper's GSE overview describes the optical test hardware of this configuration: COCOA interferometer, three autocollimating flats, photogrammetry cameras, and the AOS Source Plate Assembly. It also states how the instrument focal planes were illuminated: through the flight telescope's own optics (HP and PAAH light paths). No internal Offner relay appears. Chamber A in this configuration is an integrated-telescope test chamber, not a detector-test dewar with an internal relay like MITTEN's."
+    }
+  ]
+}

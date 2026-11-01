@@ -1,0 +1,99 @@
+{
+ "id": "metro_niobium_rrr",
+ "name": "Residual resistivity ratio of high-purity niobium (273 K / 4.2 K) with field suppression of superconductivity and Kohler extrapolation",
+ "plain_name": "Grade niobium purity by comparing its electrical resistance at ice and liquid-helium temperatures",
+ "industry": "metrology_and_calibration",
+ "description": "NIST compared RRR methods on 14 Nb samples, using voltage-tap resistance at 273 K and 4.2 K with fields up to 5-8 T.",
+ "keywords": [
+  "Grade niobium purity by comparing its electrical resistance at ice and liquid-helium temperatures",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "Splett, Vecchia, Goodrich, J. Res. NIST 116(1) 489-504 (2011)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 4200,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 273000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "RRR uses resistance at 273 K and at 4.2 K.",
+   "evidence_ids": [
+    "v4e_metro_niobium_rrr_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 5000,
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Field data up to 5 T were used to suppress superconductivity and extrapolate.",
+   "evidence_ids": [
+    "v4e_metro_niobium_rrr_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Resistance is measured between voltage taps.",
+   "evidence_ids": [
+    "v4e_metro_niobium_rrr_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The low point is the liquid-helium boiling point; a dry 4.2 K system would also work.",
+   "evidence_ids": [
+    "v4e_metro_niobium_rrr_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,1078 @@
+{
+ "industry": "energy_and_hydrogen",
+ "experiments": [
+  {
+   "id": "energy_rebco_tape_ic_ln2_iec61788_26",
+   "industry": "energy_and_hydrogen",
+   "name": "DC critical-current measurement of short REBCO coated-conductor specimens immersed in a liquid-nitrogen bath at ambient pressure without external field (IEC 61788-26:2020)",
+   "plain_name": "Measure how much current a superconducting power tape carries in liquid nitrogen",
+   "description": "Standard acceptance test for the HTS tape used in cables, fault-current limiters and generators: a short (<300 mm) REBCO tape specimen with Ic below 300 A is immersed in liquid nitrogen at ambient pressure (about 77 K) without an applied field, and its DC voltage-current curve is measured with four-terminal contacts to determine Ic and n-value.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The standard test condition is a specimen immersed in a liquid-nitrogen bath at ambient pressure.",
+     "source_url": "https://webstore.iec.ch/en/publication/59863",
+     "document_title": "IEC 61788-26:2020 Superconductivity - Part 26: Critical current measurement - DC critical current of RE-Ba-Cu-O composite superconductors",
+     "location": "Abstract / scope",
+     "quote": "the test specimen is immersed in liquid nitrogen bath at ambient pressure",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "A liquid-nitrogen bath at ambient pressure holds the tape at about 77 K, the reference temperature of HTS tape Ic data.",
+     "source_url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+     "document_title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "location": "Section I Introduction, p. 1",
+     "quote": "operate at higher temperatures, e.g., in liquid nitrogen (at 77 K)",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300,
+       "unit": "A"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The method covers specimens with critical current up to 300 A; the current leads/supply must carry the full Ic to trace the V-I transition of any in-scope specimen.",
+     "source_url": "https://webstore.iec.ch/en/publication/59863",
+     "document_title": "IEC 61788-26:2020 Superconductivity - Part 26: Critical current measurement - DC critical current of RE-Ba-Cu-O composite superconductors",
+     "location": "Abstract / scope",
+     "quote": "critical current less than 300 A and n-values larger than 5",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "DC critical current is determined from transport V-I measurements, so current and voltage connections to the specimen are needed.",
+     "source_url": "https://webstore.iec.ch/en/publication/59863",
+     "document_title": "IEC 61788-26:2020 Superconductivity - Part 26: Critical current measurement - DC critical current of RE-Ba-Cu-O composite superconductors",
+     "location": "Abstract / scope",
+     "quote": "specifies a test method for determining the DC critical current of short RE (rare earth)-Ba-Cu-O (REBCO) composite superconductor specimens",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.length.max",
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300,
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: to accept the longest in-scope specimen the holder/bath must take a tape approaching 300 mm.",
+     "source_url": "https://webstore.iec.ch/en/publication/59863",
+     "document_title": "IEC 61788-26:2020 Superconductivity - Part 26: Critical current measurement - DC critical current of RE-Ba-Cu-O composite superconductors",
+     "location": "Abstract / scope",
+     "quote": "applies to test specimens shorter than 300 mm",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "IEC 61788-26:2020 Superconductivity - Part 26: Critical current measurement - DC critical current of RE-Ba-Cu-O composite superconductors",
+     "url": "https://webstore.iec.ch/en/publication/59863"
+    },
+    {
+     "citation": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "energy_rebco_ic_axial_strain_77k",
+   "industry": "energy_and_hydrogen",
+   "name": "Critical current and n-value versus applied uniaxial axial strain of commercial REBCO tapes soldered to a Ti-6Al-4V U-spring at 77 K, self-field",
+   "plain_name": "Find how far a superconducting tape can be stretched before it stops carrying current",
+   "description": "Tapes from several manufacturers are soldered (45 mm) onto a Ti-6Al-4V U-shaped bending spring; at 77 K in self-field the applied compressive/tensile strain is stepped and Ic and n-value are measured from four-probe V-I curves (10 uV/m) to locate the irreversible strain limit (~0.4%), as needed for HTS cable design.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All Ic-strain measurements were made at 77 K.",
+     "source_url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+     "document_title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "location": "Abstract, p. 1",
+     "quote": "Ic measurements were performed at 77 K in self-field with the sample tapes soldered to the U-shaped bending spring (U-spring).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Ic is measured by four-point transport, requiring current and voltage-tap wiring to the sample.",
+     "source_url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+     "document_title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "location": "Section III.A U-Spring, p. 2",
+     "quote": "The Ic is measured by the standard four-point probe method using a 10 μV/m criterion.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 80,
+       "unit": "A"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: a 4 A spread equal to 5% implies tape Ic of about 80 A at 77 K self-field, which the current leads must carry.",
+     "source_url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+     "document_title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "location": "Section IV.A, p. 3",
+     "quote": "The difference of measured Ic under same applied strain between different samples is less than 4 A (i.e., 5%)",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.length.max",
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 45,
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the tape is soldered over a 45 mm length of the U-spring.",
+     "source_url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+     "document_title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "location": "Section III.A U-Spring, p. 2",
+     "quote": "Fixation by soldering of the 45 mm tape length allows applying both compressive as well as tensile strain.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis; IEEE Trans. Appl. Supercond. 26(4) 8401304, 2016)",
+     "url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Ti-6Al-4V U-shaped bending spring (U-spring)",
+    "precise vertical linear motor stage (PVLS)"
+   ]
+  },
+  {
+   "id": "energy_rebco_ic_surface_4k_20k_19t",
+   "industry": "energy_and_hydrogen",
+   "name": "Transport critical-current surface of full-width REBCO tapes at 4.2 K (liquid helium) and 20 K (helium gas flow) in fields up to 19 T",
+   "plain_name": "Map how much current superconducting tapes carry at 4 K and 20 K in very strong magnetic fields",
+   "description": "Full-width commercial REBCO tapes (125 mm samples on dedicated adapters) are measured with a high-current probe in liquid helium at 4.2 K and in helium gas flow at 20 K, in magnetic fields up to 19 T, to build Ic(B,T) scaling relations for compact fusion and high-field magnets.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 4200,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 20000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Ic was measured at both 4.2 K and 20 K.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Abstract",
+     "quote": "We measured the transport critical current of full-width tapes at 4.2 K and 20 K in magnetic fields up to 19 T",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 19000,
+       "unit": "mT"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The Ic surface extends to 19 T.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Abstract",
+     "quote": "We measured the transport critical current of full-width tapes at 4.2 K and 20 K in magnetic fields up to 19 T",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Transport Ic measurements need current and voltage connections to the tape.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Section 2 Experimental details",
+     "quote": "we have designed a custom setup for high-current, high-precision critical current measurements",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1000,
+       "unit": "A"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the probe used for full-width tapes carries up to 1 kA in helium gas flow (20 K) and 2 kA in liquid helium.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Section 2 Experimental details",
+     "quote": "This setup allows for testing currents up to 2 kA in liquid helium and up to 1 kA in helium gas flow",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the 4.2 K data were taken in liquid helium (20 K in helium gas flow).",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Section 2 Experimental details",
+     "quote": "This setup allows for testing currents up to 2 kA in liquid helium and up to 1 kA in helium gas flow",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.height.max",
+      "sample.length.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 125,
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: samples are 125 mm long on the measurement adapters.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+     "document_title": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "location": "Section 2 Experimental details",
+     "quote": "on special adapters that host 125 mm-long samples",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations (Senatore, Bonura, Bagni; Supercond. Sci. Technol., 2024)",
+     "url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95"
+    }
+   ],
+   "reported_equipment": [
+    "custom setup for high-current, high-precision critical current measurements (University of Geneva)"
+   ]
+  },
+  {
+   "id": "energy_sfcl_subcooled_ln2_cooling_test",
+   "industry": "energy_and_hydrogen",
+   "name": "Performance test of the cryogenic cooling system (Stirling cryocooler, subcooling cryostat, pressure builder, main cryostat) of a superconducting fault current limiter at 71 K and 500 kPa",
+   "plain_name": "Check that a power-grid fault-current limiter's nitrogen cooling holds 71 K under pressure",
+   "description": "The SFCL modules are submerged in pressurised sub-cooled liquid nitrogen; the test verifies that the cooling system (Stirling cryocooler, subcooling cryostat, pressure builder) keeps the main cryostat at its normal operating condition of 71 K and 500 kPa.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 71000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Normal operating temperature of the SFCL main cryostat.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/101/1/012030",
+     "document_title": "Performance test of the cryogenic cooling system for the superconducting fault current limiter (Hong, In, Yeom, Kim, Kim; IOP Conf. Ser.: Mater. Sci. Eng. 101 012030, 2015)",
+     "location": "Abstract",
+     "quote": "The normal operation condition of the main cryostat is 71 K and 500 kPa.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 500000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The main cryostat operates pressurised at 500 kPa, so the vessel must be rated for at least that pressure.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/101/1/012030",
+     "document_title": "Performance test of the cryogenic cooling system for the superconducting fault current limiter (Hong, In, Yeom, Kim, Kim; IOP Conf. Ser.: Mater. Sci. Eng. 101 012030, 2015)",
+     "location": "Abstract",
+     "quote": "The normal operation condition of the main cryostat is 71 K and 500 kPa.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The superconducting modules are immersed in sub-cooled liquid nitrogen.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/101/1/012030",
+     "document_title": "Performance test of the cryogenic cooling system for the superconducting fault current limiter (Hong, In, Yeom, Kim, Kim; IOP Conf. Ser.: Mater. Sci. Eng. 101 012030, 2015)",
+     "location": "Abstract",
+     "quote": "they are submerged in sub-cooled liquid nitrogen for their stable thermal characteristics",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Performance test of the cryogenic cooling system for the superconducting fault current limiter (Hong, In, Yeom, Kim, Kim; IOP Conf. Ser.: Mater. Sci. Eng. 101 012030, 2015)",
+     "url": "https://iopscience.iop.org/article/10.1088/1757-899X/101/1/012030"
+    }
+   ],
+   "reported_equipment": [
+    "Stirling cryocooler",
+    "subcooling cryostat",
+    "pressure builder",
+    "main cryostat"
+   ]
+  },
+  {
+   "id": "energy_sfcl_hall_current_mapping_77k",
+   "industry": "energy_and_hydrogen",
+   "name": "Pulsed fault-current sharing and three-dimensional Hall-array current mapping of a BSCCO-2223 tube resistive SFCL prototype with copper shunt in liquid nitrogen at 77 K",
+   "plain_name": "Watch how current shifts inside a prototype grid fault-current limiter during a simulated fault",
+   "description": "A 12 cm BSCCO-2223 tube (Ic 125-160 A at 77 K) with a parallel copper shunt is immersed vertically in an 80 L liquid-nitrogen cryostat; pulsed transport currents up to 200 A mimic a fault while an array of Hall sensors around the tube maps the local current distribution and the fraction diverted into the shunt.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Measurements are made at liquid-nitrogen temperature.",
+     "source_url": "https://arxiv.org/abs/2112.00433",
+     "document_title": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "location": "Section II (Hall sensor array description)",
+     "quote": "although in the present case, we operate down to liquid Nitrogen temperature of 77 K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The SFCL prototype is immersed in a liquid-nitrogen bath cryostat.",
+     "source_url": "https://arxiv.org/abs/2112.00433",
+     "document_title": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "location": "Section II (cryostat description)",
+     "quote": "The cryostat holds up to 80 liters of liquid Nitrogen with a loss rate of 3 liters per hour.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 200,
+       "unit": "A"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Fault-like pulses reached a total current of 200 A through the superconductor-shunt combination.",
+     "source_url": "https://arxiv.org/abs/2112.00433",
+     "document_title": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "location": "Section III Results (Fig. 3(c) discussion)",
+     "quote": "at I T = 200 A only ~ 20% of I T current flows through the SC (~ 40 A < I C ) while 80% of I T flows through the shunt (~ 160 A).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 120,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 12 cm superconducting tube is mounted along the vertical axis of the bath cryostat.",
+     "source_url": "https://arxiv.org/abs/2112.00433",
+     "document_title": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "location": "Section II (SCFCL prototype)",
+     "quote": "The length of the superconducting cylinder used in our design is 12 cm.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Current leads plus a series-wired Hall-sensor array are read out from inside the bath.",
+     "source_url": "https://arxiv.org/abs/2112.00433",
+     "document_title": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "location": "Section II (Hall sensor array readout)",
+     "quote": "The Hall sensors array is connected in series, and the V H is readout sequentially from each sensor in the array using a Keysight multichannel scanner",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Demonstration of a three-dimensional current mapping technique around a superconductor in a prototype of a conventional superconducting fault current limiter (Ali, Banerjee; arXiv:2112.00433)",
+     "url": "https://arxiv.org/abs/2112.00433"
+    }
+   ],
+   "reported_equipment": [
+    "home built doubled-walled chamber cryostat made from stainless steel (80 L liquid nitrogen)",
+    "Keysight 34980A multichannel scanner"
+   ]
+  },
+  {
+   "id": "energy_lh2_cbrs_boiloff_reduction",
+   "industry": "energy_and_hydrogen",
+   "name": "Liquid-hydrogen boil-off reduction test of a 1.22 m tank with a 90 K broad-area-cooled shield and reverse turbo-Brayton cryocooler in the SMiRF vacuum chamber (1e-6 torr, 220 K cryoshroud)",
+   "plain_name": "Test how much an actively cooled shield cuts hydrogen evaporation from a space propellant tank",
+   "description": "A 1.37 m3 stainless tank (1.22 m ID x 1.4 m) of LH2 at 25 psia, insulated with SOFI and MLI and wrapped by a broad-area-cooled shield held near 90 K by a 15 W / 90 K class reverse turbo-Brayton cryocooler, is placed in a vacuum chamber at 1e-6 torr with a 220 K cryoshroud simulating low Earth orbit; boil-off with the cooler on and off gives the heat-leak reduction (~60%).",
+   "requirements": [
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Tests replicate space vacuum around the tank.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section IV Testing, p. 8",
+     "quote": "These tests were conducted with the vacuum of 1x10-6 torr or better and the cryoshroud was set at 220 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.000001",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Chamber vacuum of 1e-6 torr or better was maintained during all tests.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section IV Testing, p. 8",
+     "quote": "These tests were conducted with the vacuum of 1x10-6 torr or better and the cryoshroud was set at 220 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.shroud.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 220000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cryoshroud provided a 220 K LEO thermal background.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section IV Testing, p. 8",
+     "quote": "These tests were conducted with the vacuum of 1x10-6 torr or better and the cryoshroud was set at 220 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_hydrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The test tank stores liquid hydrogen; the facility must handle LH2.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section IV Testing, p. 8",
+     "quote": "The CBRS LH2 tests were all performed at a storage pressure of 25 psia, a nominal pressure for pump-fed engines",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1220,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The test tank alone is 1.22 m inside diameter (more with insulation and shield), so the chamber must accept at least that.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section III Hardware Description, p. 4",
+     "quote": "Inside the cryoshroud is the stainless steel test tank, 1.22 m inside diameter by 1.4 m tall, with a 0.95 cm wall and a tank volume of 1.37 m3.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1400,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The test tank is 1.4 m tall.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf",
+     "document_title": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "location": "Section III Hardware Description, p. 4",
+     "quote": "Inside the cryoshroud is the stainless steel test tank, 1.22 m inside diameter by 1.4 m tall, with a 0.95 cm wall and a tank volume of 1.37 m3.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryogenic Boil-Off Reduction System Testing (Plachta, Johnson, Feller; NASA Glenn/Ames, NTRS 20150000134)",
+     "url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Small Multi-Purpose Research Facility (SMIRF) vacuum chamber",
+    "Alaska Cryocooler System 2SD two-stage cryocooler (modified)"
+   ]
+  },
+  {
+   "id": "energy_lh2_iras_zero_boiloff",
+   "industry": "energy_and_hydrogen",
+   "name": "Zero-boil-off control of a 125,000 L liquid-hydrogen storage tank by integrated refrigeration and storage (IRAS) with a 20 K closed-loop helium refrigerator",
+   "plain_name": "Keep a large liquid-hydrogen storage tank from losing any hydrogen to evaporation",
+   "description": "Ground-storage demonstration at NASA KSC: a vacuum-jacketed, MLI-insulated 125,000 L LH2 tank with an internal heat exchanger is cooled by cold helium from a Linde LR1620 refrigerator (390 W at 20 K without LN2 pre-cooling); the ~300 W tank heat leak is removed so the tank is held at constant pressure (set points 16.5-18.5 psia) with zero boil-off.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_hydrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The stored fluid is liquid hydrogen.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf",
+     "document_title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "location": "Abstract, p. 1",
+     "quote": "The LH2 tank is a horizontal cylindrical geometry with a vacuum-jacketed, multilayer insulation system and a capacity of 125,000 liters.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "chamber.volume"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 125000,
+       "unit": "L"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The demonstration was made on a 125,000 L tank.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf",
+     "document_title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "location": "Abstract, p. 1",
+     "quote": "The LH2 tank is a horizontal cylindrical geometry with a vacuum-jacketed, multilayer insulation system and a capacity of 125,000 liters.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cooling_power.at_20000mK"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300,
+       "unit": "W"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Zero boil-off requires refrigeration at LH2 temperature at least equal to the measured ~300 W tank heat leak.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf",
+     "document_title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "location": "Section 3 (IRAS tank), p. 4",
+     "quote": "vacuum-jacketed with 80 layers of multi-layer insulation, and has a steady-state heat leak of approximately 300 W (verified by LH2 boil-off testing).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 20000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The liquid hydrogen is held and refrigerated at about 20 K.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf",
+     "document_title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "location": "Abstract, p. 1",
+     "quote": "The closed-loop helium refrigeration system was a Linde LR1620 capable of 390W cooling at 20K (without any liquid nitrogen pre-cooling).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 127554,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The highest control set point, 18.5 psia (127553.01 Pa, rounded up), must be within the tank rating.",
+     "source_url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf",
+     "document_title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "location": "Section 4 (ZBO pressure-control test), p. 5",
+     "quote": "then decrease the control pressure to 17.5 psia, wait for at least 24 hours after stabilization, then increase the control pressure to 18.5 psia",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks using Integrated Refrigeration and Storage (Notardonato, Swanger, Fesmire, Jumper, Johnson, Tomsik; NTRS 20170006481)",
+     "url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Linde LR1620 helium refrigerator",
+    "RSX helium compressor",
+    "GODU-LH2 125,000 liter IRAS tank"
+   ]
+  },
+  {
+   "id": "energy_opc_plate_fin_hx_30_80k",
+   "industry": "energy_and_hydrogen",
+   "name": "Continuous catalytic ortho-para hydrogen conversion in a helium-cooled single-channel plate-fin heat exchanger (~2 kg catalyst) at 30-80 K and up to 2.1 MPa",
+   "plain_name": "Test the catalyst that converts hydrogen to its liquefaction-ready spin form inside a cold heat exchanger",
+   "description": "Intermediate-scale liquefier test platform: a single hydrogen channel packed with about 2 kg of ortho-para catalyst is sandwiched between two helium coolant channels; hydrogen at 0-1 g/s, up to 2.1 MPa and 25-50% para inlet concentration is converted while the channel operates between 30 K and 80 K, giving conversion, heat-transfer and pressure-drop data for liquefier heat-exchanger design.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 30000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 80000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The heat-exchanger platform operates across 30-80 K.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/1344/1/012046",
+     "document_title": "Test platforms for ortho-para hydrogen conversion at cryogenic conditions (Wei et al.; IOP Conf. Ser.: Mater. Sci. Eng. 1344 012046)",
+     "location": "Abstract",
+     "quote": "This setup operates between 30 K and 80 K, with mass flowrates ranging from 0 g/s to 1 g/s, pressures up to 2.1 MPa",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 2100000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Hydrogen is fed at pressures up to 2.1 MPa.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/1344/1/012046",
+     "document_title": "Test platforms for ortho-para hydrogen conversion at cryogenic conditions (Wei et al.; IOP Conf. Ser.: Mater. Sci. Eng. 1344 012046)",
+     "location": "Abstract",
+     "quote": "This setup operates between 30 K and 80 K, with mass flowrates ranging from 0 g/s to 1 g/s, pressures up to 2.1 MPa",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.mass.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 2,
+       "unit": "kg"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the catalyst channel holds about 2 kg of catalyst.",
+     "source_url": "https://iopscience.iop.org/article/10.1088/1757-899X/1344/1/012046",
+     "document_title": "Test platforms for ortho-para hydrogen conversion at cryogenic conditions (Wei et al.; IOP Conf. Ser.: Mater. Sci. Eng. 1344 012046)",
+     "location": "Abstract",
+     "quote": "a single hydrogen flow channel containing approximately 2 kg of catalyst, sandwiched between two helium coolant channels.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Test platforms for ortho-para hydrogen conversion at cryogenic conditions (Wei et al.; IOP Conf. Ser.: Mater. Sci. Eng. 1344 012046)",
+     "url": "https://iopscience.iop.org/article/10.1088/1757-899X/1344/1/012046"
+    }
+   ],
+   "reported_equipment": [
+    "intermediate-scale single-channel plate-fin heat exchanger test platform"
+   ]
+  },
+  {
+   "id": "energy_316plus_h_embrittlement_77k_20k",
+   "industry": "energy_and_hydrogen",
+   "name": "Tensile testing of electrochemically hydrogen-precharged 316plus (EN 1.4420) stainless steel at 77 K and 20 K in a gas-cooled Dewar environmental chamber (ISO 6892-4)",
+   "plain_name": "Check whether absorbed hydrogen makes a hydrogen-tank stainless steel brittle at 77 K and 20 K",
+   "description": "Flat specimens (64 mm gauge, 10 x 2 mm) charged for 100 days in 3.5 wt.% NaCl at 60 C are pulled at 1 mm/min (2.6e-4 1/s) on an Instron 3369 with a cryogenic rig; the specimen is enclosed in a silvered vacuum-insulated glass Dewar cooled by nitrogen gas (77 K) or helium gas (20 K) boiled from LN2/LHe, comparing uncharged and charged ductility for LH2 storage materials.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 20000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Tests were run at both 77 K and 20 K.",
+     "source_url": "https://arxiv.org/html/2604.08751v2",
+     "document_title": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) stainless steel at 77 K and 20 K (Li, Zafra, Armendariz, Wang, Bailey, Martinez-Paneda, Afshan; arXiv:2604.08751v2)",
+     "location": "Section 2.3 Mechanical testing",
+     "quote": "Cryogenic nitrogen and helium gases were injected into the chamber to cool the specimens to the target temperatures of 77 K and 20 K, respectively.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "module.cryogenic_tensile",
+      "module.cryogenic_tensile_test"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "A uniaxial tensile load train operating inside the cold chamber is required.",
+     "source_url": "https://arxiv.org/html/2604.08751v2",
+     "document_title": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) stainless steel at 77 K and 20 K (Li, Zafra, Armendariz, Wang, Bailey, Martinez-Paneda, Afshan; arXiv:2604.08751v2)",
+     "location": "Section 2.3 Mechanical testing",
+     "quote": "Uniaxial tensile testing was conducted using an Instron 50 kN 3369 electromechanical testing machine. A dedicated cryogenic test rig was designed and manufactured to accommodate low-temperature testing.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.height.max",
+      "sample.length.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 64,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold zone must accommodate at least the 64 mm gauge length along the loading axis.",
+     "source_url": "https://arxiv.org/html/2604.08751v2",
+     "document_title": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) stainless steel at 77 K and 20 K (Li, Zafra, Armendariz, Wang, Bailey, Martinez-Paneda, Afshan; arXiv:2604.08751v2)",
+     "location": "Section 2.2 Specimens",
+     "quote": "The flat-necked specimens had a gauge length of 64 mm and a rectangular gauge cross-section of 10 mm × 2 mm",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen",
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the cooling gases were generated by boiling LN2 and LHe.",
+     "source_url": "https://arxiv.org/html/2604.08751v2",
+     "document_title": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) stainless steel at 77 K and 20 K (Li, Zafra, Armendariz, Wang, Bailey, Martinez-Paneda, Afshan; arXiv:2604.08751v2)",
+     "location": "Section 2.3 Mechanical testing",
+     "quote": "The gases were produced by boiling liquid nitrogen (LN2) and liquid helium (LHe) from storage vessels using an auxiliary heater",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) stainless steel at 77 K and 20 K (Li, Zafra, Armendariz, Wang, Bailey, Martinez-Paneda, Afshan; arXiv:2604.08751v2)",
+     "url": "https://arxiv.org/html/2604.08751v2"
+    }
+   ],
+   "reported_equipment": [
+    "Instron 50 kN 3369 electromechanical testing machine",
+    "environmental chamber constructed from silvered, vacuum-insulated glass (Dewar type)"
+   ]
+  },
+  {
+   "id": "energy_racc_roebel_cable_77k",
+   "industry": "energy_and_hydrogen",
+   "name": "DC transport-current test of a 35 cm DyBCO Roebel-assembled coated-conductor (RACC) cable at 77 K, self-field",
+   "plain_name": "Check how much current a transposed superconducting cable for transformers and generators carries at 77 K",
+   "description": "Meander-shaped 4 mm Roebel strands cut from 10 mm THEVA DyBCO tape are assembled into 5- and 16-strand cables 35 cm long; DC V-I curves at 77 K self-field with pressed indium current contacts and spring-tip voltage taps show >300 A (5 strands) and 500 A (16 strands), a feasibility step toward low-AC-loss >1 kA conductors for transformers, motors and generators.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cable transport currents were measured at 77 K.",
+     "source_url": "https://arxiv.org/abs/cond-mat/0510149",
+     "document_title": "High current DyBCO-ROEBEL Assembled Coated Conductor (RACC) (Goldacker, Nast, Kotzyba, Schlachter, Frank, Ringsdorf, Schmidt, Komarek; EUCAS2005, arXiv:cond-mat/0510149)",
+     "location": "Abstract",
+     "quote": "The 5 strand cable was tested and carried a transport current of > 300 Amps DC at 77 K, equivalent to the sum of the individual strand transport critical currents.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 500,
+       "unit": "A"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 16-strand cable carried 500 A DC, which the current leads must supply.",
+     "source_url": "https://arxiv.org/abs/cond-mat/0510149",
+     "document_title": "High current DyBCO-ROEBEL Assembled Coated Conductor (RACC) (Goldacker, Nast, Kotzyba, Schlachter, Frank, Ringsdorf, Schmidt, Komarek; EUCAS2005, arXiv:cond-mat/0510149)",
+     "location": "Section 4 Results",
+     "quote": "For the 16 strand cable with 10 strands having a thinner cap layer a transport current of 500 A was measured",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.height.max",
+      "sample.length.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 350,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cable sample is 35 cm long.",
+     "source_url": "https://arxiv.org/abs/cond-mat/0510149",
+     "document_title": "High current DyBCO-ROEBEL Assembled Coated Conductor (RACC) (Goldacker, Nast, Kotzyba, Schlachter, Frank, Ringsdorf, Schmidt, Komarek; EUCAS2005, arXiv:cond-mat/0510149)",
+     "location": "Section 5 Conclusions and Outlook",
+     "quote": "The first ROEBEL assembled coated conductor (RACC) cable with a length of 35 cm and twist pitch of 18 cm was presented",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Transport measurements need current contacts and voltage taps on the cable.",
+     "source_url": "https://arxiv.org/abs/cond-mat/0510149",
+     "document_title": "High current DyBCO-ROEBEL Assembled Coated Conductor (RACC) (Goldacker, Nast, Kotzyba, Schlachter, Frank, Ringsdorf, Schmidt, Komarek; EUCAS2005, arXiv:cond-mat/0510149)",
+     "location": "Section 3 Experimental",
+     "quote": "Current contacts were applied with pressed Indium foil, voltage taps worked with spring tips.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "High current DyBCO-ROEBEL Assembled Coated Conductor (RACC) (Goldacker, Nast, Kotzyba, Schlachter, Frank, Ringsdorf, Schmidt, Komarek; EUCAS2005, arXiv:cond-mat/0510149)",
+     "url": "https://arxiv.org/abs/cond-mat/0510149"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ]
+}

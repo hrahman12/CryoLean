@@ -1,0 +1,2332 @@
+{
+ "source": "docs/forensics/cryolean-forensics.json (for-all-dev/forensics extractor, toolchain 4.35.0), lean/audit-axioms.json (44 audited theorems)",
+ "nodes": [
+  {
+   "name": "CryoLean.verdict_accept_sound",
+   "short": "verdict_accept_sound",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_accept_sound {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.verdict cfg e = CryoLean.Verdict.accept) : CryoLean.AcceptSpec cfg e",
+   "doc": "**Main soundness theorem.** ACCEPT implies the independent specification: every\napplicable mandatory requirement and every applicable mandatory coupled constraint holds\n(or is excluded by a definitely-false condition), and at least one genuinely passes. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 823
+  },
+  {
+   "name": "CryoLean.accept_all_coupled",
+   "short": "accept_all_coupled",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.accept_all_coupled {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.verdict cfg e = CryoLean.Verdict.accept) (c : CryoLean.Coupled) :\n  c ∈ e.coupled → c.mandatory = true → c.applicable = true → CryoLean.CoupledOK cfg e c",
+   "doc": "Every applicable mandatory coupled constraint passed (or is excluded by a false condition). ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 874
+  },
+  {
+   "name": "CryoLean.verdict_accept_complete",
+   "short": "verdict_accept_complete",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_accept_complete {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.AcceptSpec cfg e) : CryoLean.verdict cfg e = CryoLean.Verdict.accept",
+   "doc": "**Completeness.** If the specification holds, the checker accepts. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 846
+  },
+  {
+   "name": "CryoLean.verdict_accept_iff",
+   "short": "verdict_accept_iff",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_accept_iff (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) :\n  CryoLean.verdict cfg e = CryoLean.Verdict.accept ↔ CryoLean.AcceptSpec cfg e",
+   "doc": "ACCEPT holds exactly when the independent specification holds. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 861
+  },
+  {
+   "name": "CryoLean.verdict_reject_sound",
+   "short": "verdict_reject_sound",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_reject_sound {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.verdict cfg e = CryoLean.Verdict.reject) : CryoLean.RejectSpec cfg e",
+   "doc": "REJECT implies a documented violation exists. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 886
+  },
+  {
+   "name": "CryoLean.verdict_reject_complete",
+   "short": "verdict_reject_complete",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_reject_complete {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.RejectSpec cfg e) : CryoLean.verdict cfg e = CryoLean.Verdict.reject",
+   "doc": "REJECT is complete: a documented violation (spec level) always yields REJECT. ",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 903
+  },
+  {
+   "name": "CryoLean.accept_no_unknown",
+   "short": "accept_no_unknown",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.accept_no_unknown {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.verdict cfg e = CryoLean.Verdict.accept) (o : CryoLean.Outcome) :\n  o ∈ CryoLean.outcomes cfg e → o ≠ CryoLean.Outcome.unknown ∧ o ≠ CryoLean.Outcome.unsupported",
+   "doc": "Missing information (`unknown`) or an unsupported requirement or physical model on\nany applicable mandatory item blocks ACCEPT. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 866
+  },
+  {
+   "name": "CryoLean.missing_capability_unknown",
+   "short": "missing_capability_unknown",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.missing_capability_unknown {cfg : CryoLean.Configuration} {k : CryoLean.Constraint} {key : String}\n  (h : CryoLean.lookup cfg key = none) : CryoLean.keyOutcome cfg k key = CryoLean.Outcome.unknown",
+   "doc": "A capability that is not recorded at all is `unknown`, never `pass`. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 246
+  },
+  {
+   "name": "CryoLean.unknown_value_never_passes",
+   "short": "unknown_value_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.unknown_value_never_passes (k : CryoLean.Constraint) :\n  CryoLean.checkValue k CryoLean.CapValue.unknown ≠ CryoLean.Outcome.pass",
+   "doc": null,
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 54
+  },
+  {
+   "name": "CryoLean.estimate_never_passes",
+   "short": "estimate_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.estimate_never_passes {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : c.evidence = CryoLean.EvidenceStatus.inferredEstimate) : CryoLean.checkCapability k c ≠ CryoLean.Outcome.pass",
+   "doc": "An inferred estimate is never treated as a verified specification. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 213
+  },
+  {
+   "name": "CryoLean.no_provenance_never_passes",
+   "short": "no_provenance_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.no_provenance_never_passes {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : c.evidence = CryoLean.EvidenceStatus.unknown) : CryoLean.checkCapability k c ≠ CryoLean.Outcome.pass",
+   "doc": "A fact with no recorded provenance never passes. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 219
+  },
+  {
+   "name": "CryoLean.cap_not_usable_missing",
+   "short": "cap_not_usable_missing",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.cap_not_usable_missing {cfg : CryoLean.Configuration} {e : CryoLean.Experiment} {key : String}\n  {s : CryoLean.Sel} {c : CryoLean.Capability} (hl : CryoLean.lookup cfg key = some c)\n  (hu : CryoLean.usable c = false) : CryoLean.evalExpr cfg e (CryoLean.Expr.cap key s) = CryoLean.EvalR.missing key",
+   "doc": "A capability that is not installed (or not trusted) can never feed a coupled calculation. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 569
+  },
+  {
+   "name": "CryoLean.fail_implies_reject",
+   "short": "fail_implies_reject",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.fail_implies_reject {cfg : CryoLean.Configuration} {e : CryoLean.Experiment} (hc : e.confirmed = true)\n  (h : CryoLean.Outcome.fail ∈ CryoLean.outcomes cfg e) : CryoLean.verdict cfg e = CryoLean.Verdict.reject",
+   "doc": "A demonstrable failure of an applicable mandatory requirement or coupled constraint forces REJECT. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 880
+  },
+  {
+   "name": "CryoLean.violation_prevents_accept",
+   "short": "violation_prevents_accept",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.violation_prevents_accept {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (h : CryoLean.RejectSpec cfg e) : CryoLean.verdict cfg e ≠ CryoLean.Verdict.accept",
+   "doc": "A confirmed incompatibility can never be accepted. ",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 912
+  },
+  {
+   "name": "CryoLean.verdict_ignores_optional",
+   "short": "verdict_ignores_optional",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_ignores_optional (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) :\n  CryoLean.verdict cfg (CryoLean.dropOptional e) = CryoLean.verdict cfg e",
+   "doc": "Optional requirements never influence the verdict (so they cannot block acceptance). ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1004
+  },
+  {
+   "name": "CryoLean.verdict_ignores_nonapplicable",
+   "short": "verdict_ignores_nonapplicable",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_ignores_nonapplicable (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) :\n  CryoLean.verdict cfg (CryoLean.dropNonApplicable e) = CryoLean.verdict cfg e",
+   "doc": "Requirements flagged not applicable never influence the verdict (no false failures). ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1014
+  },
+  {
+   "name": "CryoLean.condition_false_not_applicable",
+   "short": "condition_false_not_applicable",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.condition_false_not_applicable {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  {r : CryoLean.Requirement} (h : ∃ c, c ∈ r.conditions ∧ CryoLean.CondFails cfg e c) :\n  CryoLean.checkRequirement cfg e r = CryoLean.Outcome.notApplicable",
+   "doc": "A requirement whose condition is definitely false is not applicable — never a failure. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 716
+  },
+  {
+   "name": "CryoLean.not_installed_never_passes",
+   "short": "not_installed_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.not_installed_never_passes {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : c.install = CryoLean.InstallStatus.optionalNotInstalled) (hk : k ≠ CryoLean.Constraint.flagIs false) :\n  CryoLean.checkCapability k c ≠ CryoLean.Outcome.pass",
+   "doc": "An optional accessory that is not fitted never passes a requirement that needs it\n(it only satisfies a requirement that the item be ABSENT). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 201
+  },
+  {
+   "name": "CryoLean.unknown_install_never_passes",
+   "short": "unknown_install_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.unknown_install_never_passes {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : c.install = CryoLean.InstallStatus.unknown) : CryoLean.checkCapability k c ≠ CryoLean.Outcome.pass",
+   "doc": "Unknown installation status never passes. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 208
+  },
+  {
+   "name": "CryoLean.fail_needs_trusted",
+   "short": "fail_needs_trusted",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.fail_needs_trusted {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : CryoLean.checkCapability k c = CryoLean.Outcome.fail) : CryoLean.TrustedEvidence c.evidence",
+   "doc": "A capability verdict of `fail` always rests on trusted evidence: records with no provenance,\nunknown provenance or only an inferred estimate can never cause DOES_NOT_MEET_REQUIREMENTS. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 147
+  },
+  {
+   "name": "CryoLean.untrusted_never_passes",
+   "short": "untrusted_never_passes",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.untrusted_never_passes {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : ¬CryoLean.TrustedEvidence c.evidence) : CryoLean.checkCapability k c ≠ CryoLean.Outcome.pass",
+   "doc": "Untrusted evidence never passes, whatever the install status (generalises the\nestimate / no-provenance lemmas, as suggested by the forensics statement-generality judge). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 153
+  },
+  {
+   "name": "CryoLean.untrusted_never_fails",
+   "short": "untrusted_never_fails",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.untrusted_never_fails {k : CryoLean.Constraint} {c : CryoLean.Capability}\n  (h : ¬CryoLean.TrustedEvidence c.evidence) : CryoLean.checkCapability k c ≠ CryoLean.Outcome.fail",
+   "doc": "Untrusted evidence never fails either: it can only yield `unknown`/`unsupported`. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 160
+  },
+  {
+   "name": "CryoLean.run_binds_inputs",
+   "short": "run_binds_inputs",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.run_binds_inputs (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) :\n  (CryoLean.run cfg e).configurationId = cfg.id ∧\n    (CryoLean.run cfg e).equipmentId = cfg.equipmentId ∧\n      (CryoLean.run cfg e).experimentId = e.id ∧ (CryoLean.run cfg e).verdict = CryoLean.verdict cfg e",
+   "doc": "A result carries the ids of exactly the inputs it was computed from. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 1044
+  },
+  {
+   "name": "CryoLean.verdict_deterministic",
+   "short": "verdict_deterministic",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_deterministic {cfg cfg' : CryoLean.Configuration} {e e' : CryoLean.Experiment} (h₁ : cfg = cfg')\n  (h₂ : e = e') : CryoLean.verdict cfg e = CryoLean.verdict cfg' e'",
+   "doc": "Plain congruence: `verdict` is a pure, total Lean function, so equal inputs give equal verdicts.\n(Forensics judge note: this is not a deep fact; it is listed only so the audit records that no\nhidden state — time, randomness, network, Z3, an LLM — can enter the verdict. Purity itself is\nguaranteed by `verdict` being an ordinary Lean definition, checked by the kernel.) ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 1036
+  },
+  {
+   "name": "CryoLean.run_reports_everything",
+   "short": "run_reports_everything",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.run_reports_everything (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) :\n  List.map (fun x => x.requirement) (CryoLean.run cfg e).reqs = e.requirements ∧\n    List.map (fun x => x.coupled) (CryoLean.run cfg e).coupled = e.coupled",
+   "doc": "Every requirement and coupled constraint of the experiment is reported. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1050
+  },
+  {
+   "name": "CryoLean.candidates_accept_sound",
+   "short": "candidates_accept_sound",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.candidates_accept_sound (cs : List CryoLean.Configuration) (e : CryoLean.Experiment) (r : CryoLean.Result) :\n  r ∈ CryoLean.checkCandidates cs e →\n    r.verdict = CryoLean.Verdict.accept → ∃ c, c ∈ cs ∧ r.configurationId = c.id ∧ CryoLean.AcceptSpec c e",
+   "doc": "Candidates proposed by an untrusted search (Z3) are each re-checked: any candidate the\nLean checker reports as accepted satisfies the specification, and its result names it. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1056
+  },
+  {
+   "name": "CryoLean.candidates_verdicts_are_lean",
+   "short": "candidates_verdicts_are_lean",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.candidates_verdicts_are_lean (cs : List CryoLean.Configuration) (e : CryoLean.Experiment) :\n  List.map (fun x => x.verdict) (CryoLean.checkCandidates cs e) = List.map (fun c => CryoLean.verdict c e) cs",
+   "doc": "Z3 cannot override a Lean rejection: the verdict reported for every candidate is the\nchecker's own verdict on that exact configuration. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 1065
+  },
+  {
+   "name": "CryoLean.verdict_industry_irrelevant",
+   "short": "verdict_industry_irrelevant",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_industry_irrelevant (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (s : String) :\n  CryoLean.verdict cfg\n      { id := e.id, name := e.name, industry := s, params := e.params, requirements := e.requirements,\n        coupled := e.coupled, confirmed := e.confirmed } =\n    CryoLean.verdict cfg e",
+   "doc": "The industry label is opaque: relabelling an experiment with ANY industry, including\none never registered before, cannot change the verdict.  New industries cannot bypass the gate. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1024
+  },
+  {
+   "name": "CryoLean.verdict_name_irrelevant",
+   "short": "verdict_name_irrelevant",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.verdict_name_irrelevant (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (s : String) :\n  CryoLean.verdict cfg\n      { id := e.id, name := s, industry := e.industry, params := e.params, requirements := e.requirements,\n        coupled := e.coupled, confirmed := e.confirmed } =\n    CryoLean.verdict cfg e",
+   "doc": null,
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 1030
+  },
+  {
+   "name": "CryoLean.pass_implies_dims_match",
+   "short": "pass_implies_dims_match",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.pass_implies_dims_match {q m : CryoLean.Quantity}\n  (h : CryoLean.checkValue (CryoLean.Constraint.atLeast q) (CryoLean.CapValue.max m) = CryoLean.Outcome.pass) :\n  m.dim = q.dim",
+   "doc": "Special case kept for the guarantee table: an `atLeast` against a documented maximum. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 94
+  },
+  {
+   "name": "CryoLean.coupled_pass_dims_match",
+   "short": "coupled_pass_dims_match",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.coupled_pass_dims_match {cfg : CryoLean.Configuration} {e : CryoLean.Experiment} {a b : CryoLean.Expr}\n  (h : CryoLean.checkLe cfg e a b = CryoLean.Outcome.pass) :\n  ∃ x y,\n    CryoLean.evalExpr cfg e a = CryoLean.EvalR.ok x ∧ CryoLean.evalExpr cfg e b = CryoLean.EvalR.ok y ∧ x.dim = y.dim",
+   "doc": "A coupled comparison that passes was made in identical dimensions. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 618
+  },
+  {
+   "name": "CryoLean.pass_dims_all_match",
+   "short": "pass_dims_all_match",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.pass_dims_all_match {k : CryoLean.Constraint} {v : CryoLean.CapValue}\n  (h : CryoLean.checkValue k v = CryoLean.Outcome.pass) :\n  ∃ D, (∀ (d : CryoLean.Dim), d ∈ k.dims → d = D) ∧ ∀ (d : CryoLean.Dim), d ∈ CryoLean.comparedDims k v → d = D",
+   "doc": "EVERY passing comparison (all numeric constraint shapes) happened in one single dimension:\nall quantities of the constraint and every compared bound share it (no silent unit conversion). ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 75
+  },
+  {
+   "name": "CryoLean.Q.le_scale_left",
+   "short": "Q.le_scale_left",
+   "kind": "theorem",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.le_scale_left (a b : CryoLean.Q) (k : Nat) (hk : 0 < k) : (a.scale k).le b ↔ a.le b",
+   "doc": "The comparison does not depend on the representation of the left operand. ",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 32
+  },
+  {
+   "name": "CryoLean.Q.le_scale_right",
+   "short": "Q.le_scale_right",
+   "kind": "theorem",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.le_scale_right (a b : CryoLean.Q) (k : Nat) (hk : 0 < k) : a.le (b.scale k) ↔ a.le b",
+   "doc": "The comparison does not depend on the representation of the right operand. ",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 47
+  },
+  {
+   "name": "CryoLean.evalExpr_sound",
+   "short": "evalExpr_sound",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.evalExpr_sound {cfg : CryoLean.Configuration} {e : CryoLean.Experiment} {x : CryoLean.Expr}\n  {q : CryoLean.Quantity} : CryoLean.evalExpr cfg e x = CryoLean.EvalR.ok q → CryoLean.Denotes cfg e x q",
+   "doc": null,
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 489
+  },
+  {
+   "name": "CryoLean.evalExpr_complete",
+   "short": "evalExpr_complete",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.evalExpr_complete {cfg : CryoLean.Configuration} {e : CryoLean.Experiment} {x : CryoLean.Expr}\n  {q : CryoLean.Quantity} (h : CryoLean.Denotes cfg e x q) : CryoLean.evalExpr cfg e x = CryoLean.EvalR.ok q",
+   "doc": null,
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 554
+  },
+  {
+   "name": "CryoLean.satisfies_spec_exclusive",
+   "short": "satisfies_spec_exclusive",
+   "kind": "theorem",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.satisfies_spec_exclusive {cfg : CryoLean.Configuration} {e : CryoLean.Experiment}\n  (ha : CryoLean.AcceptSpec cfg e) (hr : CryoLean.RejectSpec cfg e) : False",
+   "doc": "The ACCEPT and REJECT specifications are mutually exclusive. ",
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 929
+  },
+  {
+   "name": "CryoLean.validSchedule_sound",
+   "short": "validSchedule_sound",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_sound {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} (h : CryoLean.validSchedule cfg exps slots L = true) :\n  CryoLean.ScheduleOK cfg exps slots L",
+   "doc": null,
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 81
+  },
+  {
+   "name": "CryoLean.validSchedule_complete",
+   "short": "validSchedule_complete",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_complete {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} (h : CryoLean.ScheduleOK cfg exps slots L) :\n  CryoLean.validSchedule cfg exps slots L = true",
+   "doc": null,
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 91
+  },
+  {
+   "name": "CryoLean.validSchedule_bounds",
+   "short": "validSchedule_bounds",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_bounds {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} (h : CryoLean.validSchedule cfg exps slots L = true) :\n  ∃ ps cd,\n    CryoLean.resolve exps slots = some ps ∧\n      CryoLean.cooldownOf cfg = some cd ∧ ∀ (p : CryoLean.Placed), p ∈ ps → cd.val.le p.start ∧ p.stop.le L.val",
+   "doc": "Every slot of a valid schedule lies inside [cooldown, run length]. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 99
+  },
+  {
+   "name": "CryoLean.validSchedule_disjoint",
+   "short": "validSchedule_disjoint",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_disjoint {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} (h : CryoLean.validSchedule cfg exps slots L = true) :\n  ∃ ps, CryoLean.resolve exps slots = some ps ∧ List.Pairwise CryoLean.Disjoint ps",
+   "doc": "The slots of a valid schedule are pairwise disjoint. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 107
+  },
+  {
+   "name": "CryoLean.validSchedule_only_accepted",
+   "short": "validSchedule_only_accepted",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_only_accepted {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} (h : CryoLean.validSchedule cfg exps slots L = true)\n  (e : CryoLean.Experiment) : e ∈ exps → CryoLean.AcceptSpec cfg e",
+   "doc": "Only experiments that the proven checker ACCEPTS on this configuration can be scheduled. ",
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "audited": true,
+   "line": 114
+  },
+  {
+   "name": "CryoLean.validSchedule_rejects_unaccepted",
+   "short": "validSchedule_rejects_unaccepted",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule_rejects_unaccepted {cfg : CryoLean.Configuration} {exps : List CryoLean.Experiment}\n  {slots : List CryoLean.Slot} {L : CryoLean.Quantity} {e : CryoLean.Experiment} (he : e ∈ exps)\n  (hv : CryoLean.verdict cfg e ≠ CryoLean.Verdict.accept) : CryoLean.validSchedule cfg exps slots L = false",
+   "doc": "A schedule that includes an experiment Lean does not accept is always rejected. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 120
+  },
+  {
+   "name": "CryoLean.resolve_ids",
+   "short": "resolve_ids",
+   "kind": "theorem",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.resolve_ids {exps : List CryoLean.Experiment} {slots : List CryoLean.Slot} {ps : List CryoLean.Placed} :\n  CryoLean.resolve exps slots = some ps → List.map (fun x => x.experimentId) ps = List.map (fun x => x.id) exps",
+   "doc": "Resolution respects order and ids: the i-th slot belongs to the i-th experiment. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": true,
+   "line": 128
+  },
+  {
+   "name": "CryoLean.Q.le",
+   "short": "Q.le",
+   "kind": "def",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.le (a b : CryoLean.Q) : Prop",
+   "doc": "`a ≤ b` for rationals with positive denominators. ",
+   "axioms": [],
+   "audited": false,
+   "line": 13
+  },
+  {
+   "name": "CryoLean.Q.scale",
+   "short": "Q.scale",
+   "kind": "def",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.scale (a : CryoLean.Q) (k : Nat) : CryoLean.Q",
+   "doc": "Scaling a representation by a positive factor. ",
+   "axioms": [],
+   "audited": false,
+   "line": 24
+  },
+  {
+   "name": "CryoLean.Q.add",
+   "short": "Q.add",
+   "kind": "def",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.add (a b : CryoLean.Q) : CryoLean.Q",
+   "doc": null,
+   "axioms": [],
+   "audited": false,
+   "line": 18
+  },
+  {
+   "name": "CryoLean.Q.mul",
+   "short": "Q.mul",
+   "kind": "def",
+   "module": "CryoLean.Num",
+   "signature": "CryoLean.Q.mul (a b : CryoLean.Q) : CryoLean.Q",
+   "doc": null,
+   "axioms": [],
+   "audited": false,
+   "line": 19
+  },
+  {
+   "name": "CryoLean.lookup",
+   "short": "lookup",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.lookup (cfg : CryoLean.Configuration) (key : String) : Option CryoLean.Capability",
+   "doc": "Find the capability stored under `key` (first match). ",
+   "axioms": [],
+   "audited": false,
+   "line": 14
+  },
+  {
+   "name": "CryoLean.trustedB",
+   "short": "trustedB",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.trustedB : CryoLean.EvidenceStatus → Bool",
+   "doc": "Evidence classes a verified result may rest on. ",
+   "axioms": [],
+   "audited": false,
+   "line": 22
+  },
+  {
+   "name": "CryoLean.usable",
+   "short": "usable",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.usable (c : CryoLean.Capability) : Bool",
+   "doc": "Installed and backed by trusted evidence. ",
+   "axioms": [],
+   "audited": false,
+   "line": 32
+  },
+  {
+   "name": "CryoLean.checkValue",
+   "short": "checkValue",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkValue : CryoLean.Constraint → CryoLean.CapValue → CryoLean.Outcome",
+   "doc": "Compare a constraint with a documented value.  Dimensions must match exactly. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 38
+  },
+  {
+   "name": "CryoLean.checkCapability",
+   "short": "checkCapability",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkCapability (k : CryoLean.Constraint) (c : CryoLean.Capability) : CryoLean.Outcome",
+   "doc": "Check a constraint against one capability, honouring install status and provenance. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 64
+  },
+  {
+   "name": "CryoLean.keyOutcome",
+   "short": "keyOutcome",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.keyOutcome (cfg : CryoLean.Configuration) (k : CryoLean.Constraint) (key : String) : CryoLean.Outcome",
+   "doc": "Outcome for one key. A missing capability is `unknown`. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 75
+  },
+  {
+   "name": "CryoLean.combineAny",
+   "short": "combineAny",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.combineAny (os : List CryoLean.Outcome) : CryoLean.Outcome",
+   "doc": "Disjunction over alternative keys: pass if any passes, fail only if all fail. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 81
+  },
+  {
+   "name": "CryoLean.evalCond",
+   "short": "evalCond",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.evalCond (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Condition → CryoLean.CondR",
+   "doc": "Evaluate one applicability condition. Untrusted or missing information gives `unknown`, never `holds`/`fails`. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 101
+  },
+  {
+   "name": "CryoLean.condsResult",
+   "short": "condsResult",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.condsResult (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (cs : List CryoLean.Condition) :\n  CryoLean.CondR",
+   "doc": "A conjunction of conditions: any definite failure makes the item not applicable. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 123
+  },
+  {
+   "name": "CryoLean.checkRequirement",
+   "short": "checkRequirement",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkRequirement (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (r : CryoLean.Requirement) :\n  CryoLean.Outcome",
+   "doc": "Outcome of one requirement: its conditions decide applicability, then any of its keys may satisfy it. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 131
+  },
+  {
+   "name": "CryoLean.evalExpr",
+   "short": "evalExpr",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.evalExpr (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Expr → CryoLean.EvalR",
+   "doc": "Evaluate an expression using only usable (installed, trusted) capabilities and trusted parameters; additions require equal dimensions. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 158
+  },
+  {
+   "name": "CryoLean.checkLe",
+   "short": "checkLe",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkLe (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (a b : CryoLean.Expr) : CryoLean.Outcome",
+   "doc": "`a ≤ b` evaluated exactly with a dimension check. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 195
+  },
+  {
+   "name": "CryoLean.validityOutcome",
+   "short": "validityOutcome",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.validityOutcome (cfg : CryoLean.Configuration) (e : CryoLean.Experiment)\n  (vs : List (CryoLean.Expr × CryoLean.Expr)) : CryoLean.Outcome",
+   "doc": "All validity bounds of a model must hold; otherwise the model is unsupported (or unknown). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 204
+  },
+  {
+   "name": "CryoLean.checkCoupled",
+   "short": "checkCoupled",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkCoupled (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (c : CryoLean.Coupled) : CryoLean.Outcome",
+   "doc": "Outcome of one coupled multiphysics constraint `lhs ≤ rhs`, including its validity-range checks. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 210
+  },
+  {
+   "name": "CryoLean.relevantReqs",
+   "short": "relevantReqs",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.relevantReqs (e : CryoLean.Experiment) : List CryoLean.Requirement",
+   "doc": "Mandatory, applicable requirements. ",
+   "axioms": [],
+   "audited": false,
+   "line": 222
+  },
+  {
+   "name": "CryoLean.relevantCoupled",
+   "short": "relevantCoupled",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.relevantCoupled (e : CryoLean.Experiment) : List CryoLean.Coupled",
+   "doc": "Mandatory, applicable coupled constraints. ",
+   "axioms": [],
+   "audited": false,
+   "line": 226
+  },
+  {
+   "name": "CryoLean.outcomes",
+   "short": "outcomes",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.outcomes (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : List CryoLean.Outcome",
+   "doc": "Every outcome that can influence the verdict. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 230
+  },
+  {
+   "name": "CryoLean.verdict",
+   "short": "verdict",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.verdict (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Verdict",
+   "doc": "The verdict.  Unconfirmed profiles are never accepted; any mandatory failure\nrejects; acceptance needs every relevant outcome to pass (or be not applicable by\na definitely-false condition) and at least one to pass. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 234
+  },
+  {
+   "name": "CryoLean.run",
+   "short": "run",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.run (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Result",
+   "doc": "Run the checker: the verdict plus every requirement and coupled constraint outcome, bound to the input ids. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 281
+  },
+  {
+   "name": "CryoLean.checkCandidates",
+   "short": "checkCandidates",
+   "kind": "def",
+   "module": "CryoLean.Checker",
+   "signature": "CryoLean.checkCandidates (cs : List CryoLean.Configuration) (e : CryoLean.Experiment) : List CryoLean.Result",
+   "doc": "Check every candidate proposed by an untrusted search (Z3). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 286
+  },
+  {
+   "name": "CryoLean.TrustedEvidence",
+   "short": "TrustedEvidence",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.TrustedEvidence : CryoLean.EvidenceStatus → Prop",
+   "doc": "Evidence classes a verified verdict may rest on.  Estimates and unknowns are excluded. ",
+   "axioms": [],
+   "audited": false,
+   "line": 16
+  },
+  {
+   "name": "CryoLean.ValueMeets",
+   "short": "ValueMeets",
+   "kind": "inductive",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ValueMeets : CryoLean.Constraint → CryoLean.CapValue → Prop",
+   "doc": "\"documented value `v` meets constraint `k`\" ",
+   "axioms": [],
+   "audited": false,
+   "line": 26
+  },
+  {
+   "name": "CryoLean.ValueFails",
+   "short": "ValueFails",
+   "kind": "inductive",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ValueFails : CryoLean.Constraint → CryoLean.CapValue → Prop",
+   "doc": "\"documented value `v` demonstrably conflicts with constraint `k`\" (comparable dimensions, limit excludes it) ",
+   "axioms": [],
+   "audited": false,
+   "line": 43
+  },
+  {
+   "name": "CryoLean.SatisfiesKey",
+   "short": "SatisfiesKey",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.SatisfiesKey (cfg : CryoLean.Configuration) (k : CryoLean.Constraint) (key : String) : Prop",
+   "doc": "The capability under `key` is installed, trusted and meets the constraint — or the constraint\nasks for the item to be ABSENT and it is documented (trusted) as an option that is not fitted. ",
+   "axioms": [],
+   "audited": false,
+   "line": 60
+  },
+  {
+   "name": "CryoLean.ViolatesKey",
+   "short": "ViolatesKey",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ViolatesKey (cfg : CryoLean.Configuration) (k : CryoLean.Constraint) (key : String) : Prop",
+   "doc": "The capability under `key` is documented (trusted) as an option that is not fitted (and the\nconstraint needs it), or is fitted, trusted and demonstrably conflicts.  Every violation rests on\ntrusted evidence: untrusted records can only ever lead to NEED_MORE_INFORMATION. ",
+   "axioms": [],
+   "audited": false,
+   "line": 67
+  },
+  {
+   "name": "CryoLean.CondHolds",
+   "short": "CondHolds",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.CondHolds (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Condition → Prop",
+   "doc": "A condition definitely holds, judged only from trusted, installed (or trusted not-fitted) records and trusted parameters. ",
+   "axioms": [],
+   "audited": false,
+   "line": 79
+  },
+  {
+   "name": "CryoLean.CondFails",
+   "short": "CondFails",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.CondFails (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Condition → Prop",
+   "doc": "A condition definitely fails, judged only from trusted evidence (the requirement it guards is then not applicable). ",
+   "axioms": [],
+   "audited": false,
+   "line": 87
+  },
+  {
+   "name": "CryoLean.Denotes",
+   "short": "Denotes",
+   "kind": "inductive",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.Denotes (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : CryoLean.Expr → CryoLean.Quantity → Prop",
+   "doc": "Big-step semantics of coupled-constraint expressions: `Denotes cfg e x q`\nmeans `x` denotes the quantity `q` using only installed, trusted capabilities,\ntrusted parameters, and dimensionally consistent additions. ",
+   "axioms": [],
+   "audited": false,
+   "line": 95
+  },
+  {
+   "name": "CryoLean.LeHolds",
+   "short": "LeHolds",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.LeHolds (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (a b : CryoLean.Expr) : Prop",
+   "doc": "`a ≤ b` holds for the denoted quantities, in equal dimensions. ",
+   "axioms": [],
+   "audited": false,
+   "line": 119
+  },
+  {
+   "name": "CryoLean.LeFails",
+   "short": "LeFails",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.LeFails (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (a b : CryoLean.Expr) : Prop",
+   "doc": "`a ≤ b` demonstrably fails for the denoted quantities, in equal dimensions. ",
+   "axioms": [],
+   "audited": false,
+   "line": 123
+  },
+  {
+   "name": "CryoLean.ReqPasses",
+   "short": "ReqPasses",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ReqPasses (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (r : CryoLean.Requirement) : Prop",
+   "doc": "A requirement genuinely passes: all its conditions hold and some alternative key satisfies it. ",
+   "axioms": [],
+   "audited": false,
+   "line": 127
+  },
+  {
+   "name": "CryoLean.ReqOK",
+   "short": "ReqOK",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ReqOK (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (r : CryoLean.Requirement) : Prop",
+   "doc": "A requirement is fine: a condition definitely fails (so it does not apply) or it passes. ",
+   "axioms": [],
+   "audited": false,
+   "line": 131
+  },
+  {
+   "name": "CryoLean.ReqViolated",
+   "short": "ReqViolated",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.ReqViolated (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (r : CryoLean.Requirement) : Prop",
+   "doc": "A requirement is violated: it applies and every alternative key demonstrably violates it. ",
+   "axioms": [],
+   "audited": false,
+   "line": 135
+  },
+  {
+   "name": "CryoLean.CoupledPasses",
+   "short": "CoupledPasses",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.CoupledPasses (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (c : CryoLean.Coupled) : Prop",
+   "doc": "A coupled constraint genuinely passes: it applies, its model is valid here, and `lhs ≤ rhs`. ",
+   "axioms": [],
+   "audited": false,
+   "line": 139
+  },
+  {
+   "name": "CryoLean.CoupledOK",
+   "short": "CoupledOK",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.CoupledOK (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (c : CryoLean.Coupled) : Prop",
+   "doc": "A coupled constraint is satisfied, or is not mandatory/applicable and so imposes nothing. ",
+   "axioms": [],
+   "audited": false,
+   "line": 143
+  },
+  {
+   "name": "CryoLean.CoupledViolated",
+   "short": "CoupledViolated",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.CoupledViolated (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) (c : CryoLean.Coupled) : Prop",
+   "doc": "A coupled constraint is violated: it applies, its model is valid here, and `lhs > rhs`. ",
+   "axioms": [],
+   "audited": false,
+   "line": 147
+  },
+  {
+   "name": "CryoLean.AcceptSpec",
+   "short": "AcceptSpec",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.AcceptSpec (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : Prop",
+   "doc": "What ACCEPT is supposed to mean. ",
+   "axioms": [],
+   "audited": false,
+   "line": 151
+  },
+  {
+   "name": "CryoLean.RejectSpec",
+   "short": "RejectSpec",
+   "kind": "def",
+   "module": "CryoLean.Spec",
+   "signature": "CryoLean.RejectSpec (cfg : CryoLean.Configuration) (e : CryoLean.Experiment) : Prop",
+   "doc": "What REJECT is supposed to mean. ",
+   "axioms": [],
+   "audited": false,
+   "line": 159
+  },
+  {
+   "name": "CryoLean.dropOptional",
+   "short": "dropOptional",
+   "kind": "def",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.dropOptional (e : CryoLean.Experiment) : CryoLean.Experiment",
+   "doc": "Remove every optional requirement and optional coupled constraint. ",
+   "axioms": [],
+   "audited": false,
+   "line": 994
+  },
+  {
+   "name": "CryoLean.dropNonApplicable",
+   "short": "dropNonApplicable",
+   "kind": "def",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.dropNonApplicable (e : CryoLean.Experiment) : CryoLean.Experiment",
+   "doc": "Remove every requirement and coupled constraint flagged not applicable. ",
+   "axioms": [],
+   "audited": false,
+   "line": 999
+  },
+  {
+   "name": "CryoLean.comparedDims",
+   "short": "comparedDims",
+   "kind": "def",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.comparedDims : CryoLean.Constraint → CryoLean.CapValue → List CryoLean.Dim",
+   "doc": "Dimensions of the documented bounds `checkValue` actually compares for this constraint/value pair. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 65
+  },
+  {
+   "name": "CryoLean.Constraint.dims",
+   "short": "Constraint.dims",
+   "kind": "def",
+   "module": "CryoLean.Soundness",
+   "signature": "CryoLean.Constraint.dims : CryoLean.Constraint → List CryoLean.Dim",
+   "doc": "Dimensions of the quantities a constraint mentions. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 57
+  },
+  {
+   "name": "CryoLean.cooldownOf",
+   "short": "cooldownOf",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.cooldownOf (cfg : CryoLean.Configuration) : Option CryoLean.Quantity",
+   "doc": "The documented cooldown time of the configuration (a `min`-shaped bound, lower is better). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 35
+  },
+  {
+   "name": "CryoLean.durationOf",
+   "short": "durationOf",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.durationOf (e : CryoLean.Experiment) : Option CryoLean.Q",
+   "doc": "The experiment's trusted `run_duration` parameter, in seconds. ",
+   "axioms": [],
+   "audited": false,
+   "line": 41
+  },
+  {
+   "name": "CryoLean.resolve",
+   "short": "resolve",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.resolve : List CryoLean.Experiment → List CryoLean.Slot → Option (List CryoLean.Placed)",
+   "doc": "Pair slots with experiments in order; ids must match and every duration must be known. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 47
+  },
+  {
+   "name": "CryoLean.Disjoint",
+   "short": "Disjoint",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.Disjoint (a b : CryoLean.Placed) : Prop",
+   "doc": "Two placed slots do not overlap. ",
+   "axioms": [],
+   "audited": false,
+   "line": 58
+  },
+  {
+   "name": "CryoLean.ScheduleOK",
+   "short": "ScheduleOK",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.ScheduleOK (cfg : CryoLean.Configuration) (exps : List CryoLean.Experiment) (slots : List CryoLean.Slot)\n  (runLength : CryoLean.Quantity) : Prop",
+   "doc": "**Specification** of a valid schedule. ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 63
+  },
+  {
+   "name": "CryoLean.validSchedule",
+   "short": "validSchedule",
+   "kind": "def",
+   "module": "CryoLean.Schedule",
+   "signature": "CryoLean.validSchedule (cfg : CryoLean.Configuration) (exps : List CryoLean.Experiment) (slots : List CryoLean.Slot)\n  (runLength : CryoLean.Quantity) : Bool",
+   "doc": "**Checker** (what the `cryolean check-schedule` command runs). ",
+   "axioms": [
+    "propext"
+   ],
+   "audited": false,
+   "line": 71
+  }
+ ],
+ "statement_edges": [
+  [
+   "CryoLean.Q.le_scale_left",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.Q.le_scale_left",
+   "CryoLean.Q.scale"
+  ],
+  [
+   "CryoLean.Q.le_scale_right",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.Q.le_scale_right",
+   "CryoLean.Q.scale"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.CoupledOK"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.accept_no_unknown",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.accept_no_unknown",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.candidates_accept_sound",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.candidates_accept_sound",
+   "CryoLean.checkCandidates"
+  ],
+  [
+   "CryoLean.candidates_verdicts_are_lean",
+   "CryoLean.checkCandidates"
+  ],
+  [
+   "CryoLean.candidates_verdicts_are_lean",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.cap_not_usable_missing",
+   "CryoLean.evalExpr"
+  ],
+  [
+   "CryoLean.cap_not_usable_missing",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.cap_not_usable_missing",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.condition_false_not_applicable",
+   "CryoLean.CondFails"
+  ],
+  [
+   "CryoLean.condition_false_not_applicable",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.checkLe"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.evalExpr"
+  ],
+  [
+   "CryoLean.estimate_never_passes",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.evalExpr_complete",
+   "CryoLean.Denotes"
+  ],
+  [
+   "CryoLean.evalExpr_complete",
+   "CryoLean.evalExpr"
+  ],
+  [
+   "CryoLean.evalExpr_sound",
+   "CryoLean.Denotes"
+  ],
+  [
+   "CryoLean.evalExpr_sound",
+   "CryoLean.evalExpr"
+  ],
+  [
+   "CryoLean.fail_implies_reject",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.fail_implies_reject",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.fail_needs_trusted",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.fail_needs_trusted",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.missing_capability_unknown",
+   "CryoLean.keyOutcome"
+  ],
+  [
+   "CryoLean.missing_capability_unknown",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.no_provenance_never_passes",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.not_installed_never_passes",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.pass_dims_all_match",
+   "CryoLean.Constraint.dims"
+  ],
+  [
+   "CryoLean.pass_dims_all_match",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.pass_dims_all_match",
+   "CryoLean.comparedDims"
+  ],
+  [
+   "CryoLean.pass_implies_dims_match",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.resolve_ids",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.run_binds_inputs",
+   "CryoLean.run"
+  ],
+  [
+   "CryoLean.run_binds_inputs",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.run_reports_everything",
+   "CryoLean.run"
+  ],
+  [
+   "CryoLean.satisfies_spec_exclusive",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.satisfies_spec_exclusive",
+   "CryoLean.RejectSpec"
+  ],
+  [
+   "CryoLean.unknown_install_never_passes",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.unknown_value_never_passes",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.untrusted_never_fails",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.untrusted_never_fails",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.untrusted_never_passes",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.untrusted_never_passes",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.validSchedule"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_accept_iff",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.verdict_accept_iff",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.AcceptSpec"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_deterministic",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_ignores_nonapplicable",
+   "CryoLean.dropNonApplicable"
+  ],
+  [
+   "CryoLean.verdict_ignores_nonapplicable",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_ignores_optional",
+   "CryoLean.dropOptional"
+  ],
+  [
+   "CryoLean.verdict_ignores_optional",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_industry_irrelevant",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_name_irrelevant",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.RejectSpec"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.RejectSpec"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.violation_prevents_accept",
+   "CryoLean.RejectSpec"
+  ],
+  [
+   "CryoLean.violation_prevents_accept",
+   "CryoLean.verdict"
+  ]
+ ],
+ "proof_edges": [
+  [
+   "CryoLean.AcceptSpec",
+   "CryoLean.CoupledOK"
+  ],
+  [
+   "CryoLean.AcceptSpec",
+   "CryoLean.CoupledPasses"
+  ],
+  [
+   "CryoLean.AcceptSpec",
+   "CryoLean.ReqOK"
+  ],
+  [
+   "CryoLean.AcceptSpec",
+   "CryoLean.ReqPasses"
+  ],
+  [
+   "CryoLean.CondFails",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.CondFails",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.CondFails",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.CondHolds",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.CondHolds",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.CondHolds",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.CoupledOK",
+   "CryoLean.CondFails"
+  ],
+  [
+   "CryoLean.CoupledOK",
+   "CryoLean.CoupledPasses"
+  ],
+  [
+   "CryoLean.CoupledPasses",
+   "CryoLean.CondHolds"
+  ],
+  [
+   "CryoLean.CoupledPasses",
+   "CryoLean.LeHolds"
+  ],
+  [
+   "CryoLean.CoupledViolated",
+   "CryoLean.CondHolds"
+  ],
+  [
+   "CryoLean.CoupledViolated",
+   "CryoLean.LeFails"
+  ],
+  [
+   "CryoLean.CoupledViolated",
+   "CryoLean.LeHolds"
+  ],
+  [
+   "CryoLean.Disjoint",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.LeFails",
+   "CryoLean.Denotes"
+  ],
+  [
+   "CryoLean.LeFails",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.LeHolds",
+   "CryoLean.Denotes"
+  ],
+  [
+   "CryoLean.LeHolds",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.RejectSpec",
+   "CryoLean.CoupledViolated"
+  ],
+  [
+   "CryoLean.RejectSpec",
+   "CryoLean.ReqViolated"
+  ],
+  [
+   "CryoLean.ReqOK",
+   "CryoLean.CondFails"
+  ],
+  [
+   "CryoLean.ReqOK",
+   "CryoLean.ReqPasses"
+  ],
+  [
+   "CryoLean.ReqPasses",
+   "CryoLean.CondHolds"
+  ],
+  [
+   "CryoLean.ReqPasses",
+   "CryoLean.SatisfiesKey"
+  ],
+  [
+   "CryoLean.ReqViolated",
+   "CryoLean.CondHolds"
+  ],
+  [
+   "CryoLean.ReqViolated",
+   "CryoLean.ViolatesKey"
+  ],
+  [
+   "CryoLean.SatisfiesKey",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.SatisfiesKey",
+   "CryoLean.ValueMeets"
+  ],
+  [
+   "CryoLean.SatisfiesKey",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.ScheduleOK",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.ScheduleOK",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.ScheduleOK",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.ScheduleOK",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.ScheduleOK",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.ViolatesKey",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.ViolatesKey",
+   "CryoLean.ValueFails"
+  ],
+  [
+   "CryoLean.ViolatesKey",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.CoupledPasses"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.ReqOK"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.ReqPasses"
+  ],
+  [
+   "CryoLean.accept_all_coupled",
+   "CryoLean.verdict_accept_sound"
+  ],
+  [
+   "CryoLean.candidates_accept_sound",
+   "CryoLean.run"
+  ],
+  [
+   "CryoLean.candidates_accept_sound",
+   "CryoLean.verdict_accept_sound"
+  ],
+  [
+   "CryoLean.checkCandidates",
+   "CryoLean.run"
+  ],
+  [
+   "CryoLean.checkCapability",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.checkCapability",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.checkCoupled",
+   "CryoLean.checkLe"
+  ],
+  [
+   "CryoLean.checkCoupled",
+   "CryoLean.condsResult"
+  ],
+  [
+   "CryoLean.checkCoupled",
+   "CryoLean.validityOutcome"
+  ],
+  [
+   "CryoLean.checkLe",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.checkLe",
+   "CryoLean.evalExpr"
+  ],
+  [
+   "CryoLean.checkRequirement",
+   "CryoLean.combineAny"
+  ],
+  [
+   "CryoLean.checkRequirement",
+   "CryoLean.condsResult"
+  ],
+  [
+   "CryoLean.checkRequirement",
+   "CryoLean.keyOutcome"
+  ],
+  [
+   "CryoLean.checkValue",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.condition_false_not_applicable",
+   "CryoLean.combineAny"
+  ],
+  [
+   "CryoLean.condition_false_not_applicable",
+   "CryoLean.condsResult"
+  ],
+  [
+   "CryoLean.condition_false_not_applicable",
+   "CryoLean.keyOutcome"
+  ],
+  [
+   "CryoLean.condsResult",
+   "CryoLean.evalCond"
+  ],
+  [
+   "CryoLean.cooldownOf",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.cooldownOf",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.Denotes"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.LeHolds"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.coupled_pass_dims_match",
+   "CryoLean.evalExpr_complete"
+  ],
+  [
+   "CryoLean.estimate_never_passes",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.estimate_never_passes",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.evalCond",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.evalCond",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.evalCond",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.evalCond",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.evalExpr",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.evalExpr",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.evalExpr_complete",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.evalExpr_complete",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.evalExpr_complete",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.evalExpr_sound",
+   "CryoLean.TrustedEvidence"
+  ],
+  [
+   "CryoLean.evalExpr_sound",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.evalExpr_sound",
+   "CryoLean.usable"
+  ],
+  [
+   "CryoLean.fail_needs_trusted",
+   "CryoLean.ValueFails"
+  ],
+  [
+   "CryoLean.keyOutcome",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.keyOutcome",
+   "CryoLean.lookup"
+  ],
+  [
+   "CryoLean.missing_capability_unknown",
+   "CryoLean.checkCapability"
+  ],
+  [
+   "CryoLean.no_provenance_never_passes",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.no_provenance_never_passes",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.not_installed_never_passes",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.not_installed_never_passes",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.outcomes",
+   "CryoLean.checkCoupled"
+  ],
+  [
+   "CryoLean.outcomes",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.outcomes",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.outcomes",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.pass_dims_all_match",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.pass_dims_all_match",
+   "CryoLean.ValueMeets"
+  ],
+  [
+   "CryoLean.pass_implies_dims_match",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.pass_implies_dims_match",
+   "CryoLean.ValueMeets"
+  ],
+  [
+   "CryoLean.resolve",
+   "CryoLean.durationOf"
+  ],
+  [
+   "CryoLean.resolve_ids",
+   "CryoLean.durationOf"
+  ],
+  [
+   "CryoLean.run",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.satisfies_spec_exclusive",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.satisfies_spec_exclusive",
+   "CryoLean.verdict_accept_complete"
+  ],
+  [
+   "CryoLean.satisfies_spec_exclusive",
+   "CryoLean.verdict_reject_complete"
+  ],
+  [
+   "CryoLean.unknown_install_never_passes",
+   "CryoLean.checkValue"
+  ],
+  [
+   "CryoLean.unknown_install_never_passes",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.untrusted_never_fails",
+   "CryoLean.fail_needs_trusted"
+  ],
+  [
+   "CryoLean.untrusted_never_passes",
+   "CryoLean.ValueMeets"
+  ],
+  [
+   "CryoLean.usable",
+   "CryoLean.trustedB"
+  ],
+  [
+   "CryoLean.validSchedule",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.validSchedule_sound"
+  ],
+  [
+   "CryoLean.validSchedule_bounds",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_complete",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.validSchedule_sound"
+  ],
+  [
+   "CryoLean.validSchedule_disjoint",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.validSchedule_sound"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validSchedule_only_accepted",
+   "CryoLean.verdict_accept_sound"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.ScheduleOK"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_rejects_unaccepted",
+   "CryoLean.validSchedule_sound"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.Disjoint"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.Q.le"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.cooldownOf"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.resolve"
+  ],
+  [
+   "CryoLean.validSchedule_sound",
+   "CryoLean.verdict"
+  ],
+  [
+   "CryoLean.validityOutcome",
+   "CryoLean.checkLe"
+  ],
+  [
+   "CryoLean.verdict",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.CoupledOK"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.CoupledPasses"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.ReqOK"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.ReqPasses"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.checkCoupled"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_accept_complete",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_accept_iff",
+   "CryoLean.verdict_accept_complete"
+  ],
+  [
+   "CryoLean.verdict_accept_iff",
+   "CryoLean.verdict_accept_sound"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.CondFails"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.CoupledOK"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.CoupledPasses"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.ReqOK"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.ReqPasses"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.checkCoupled"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_accept_sound",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_ignores_nonapplicable",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_ignores_nonapplicable",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_ignores_optional",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_ignores_optional",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_industry_irrelevant",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_industry_irrelevant",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_name_irrelevant",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_name_irrelevant",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.CoupledViolated"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.ReqViolated"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.checkCoupled"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.fail_implies_reject"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_reject_complete",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.CoupledViolated"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.ReqViolated"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.checkCoupled"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.checkRequirement"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.outcomes"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.relevantCoupled"
+  ],
+  [
+   "CryoLean.verdict_reject_sound",
+   "CryoLean.relevantReqs"
+  ],
+  [
+   "CryoLean.violation_prevents_accept",
+   "CryoLean.verdict_reject_complete"
+  ]
+ ],
+ "proof_edges_transitive": 395,
+ "n_theorems": 44,
+ "n_defs": 52,
+ "n_decls_total": 839
+}

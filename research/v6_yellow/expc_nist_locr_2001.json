@@ -1,0 +1,43 @@
+{
+  "configuration_id": "expc_nist_locr_2001",
+  "rows": [
+    {
+      "key": "module.acoustic_gas_thermometry",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Electrical-substitution cryogenic radiometer for laser power; no acoustic resonator or transducers",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The LOCR is one of several electrically calibrated, primary reference standards used by the Optoelectronics Division for laser power and energy measurements.",
+      "document_title": "Houston and Livigni (2001), Comparison of Two Cryogenic Radiometers at NIST, J. Res. NIST 106, 641-647",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4862825/",
+      "location": "Section 1 Introduction (cached research/v5/cache/d8e16b89ccfd2107.txt line 133); corroborated by NIST SP 250-62 sec. 3.2.1-3.2.2 (cached research/v5/cache/e1ac56010481a43e.txt)",
+      "reasoning": "The operator positively states what the LOCR is: an electrical-substitution cryogenic radiometer optimized for laser power, whose optical receiver cavity sits in high vacuum behind a Brewster window (NIST SP 250-62: 'high vacuum inside the radiometer to insulate the cold interior ... eliminates any convective heat flow'). Primary acoustic gas thermometry requires a gas-filled acoustic resonator with transducers; the described instrument is a different kind of instrument with an evacuated interior. Scope-based absence, not silence."
+    },
+    {
+      "key": "module.resistance_thermometry_bridge",
+      "result": "value",
+      "value": {"kind": "flag", "b": true},
+      "value_as_printed": "Germanium resistance thermometers read by precision ac bridge circuitry in the LOCR base",
+      "install": "installed",
+      "evidence_status": "experimental_observation",
+      "quote": "The temperatures at the receiver and heat sink are sensed with germanium resistance thermometers (GRTs). The GRT resistance is measured using precision alternating-current bridge circuitry, located in the LOCR's base.",
+      "document_title": "Livigni (2003), High-Accuracy Laser Power and Energy Meter Calibration Service, NIST Special Publication 250-62",
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication250-62.pdf",
+      "location": "Sec. 3.2.3 LOCR electrical calibration, PDF page ~31 (cached research/v5/cache/e1ac56010481a43e.txt lines 1655-1657); also J. Res. NIST 106 (2001): 'LOCR uses ac bridge electronics located directly under the cryostat'",
+      "reasoning": "NIST's own service document for this exact apparatus states that the LOCR's receiver and heat-sink GRTs are measured with a precision ac resistance bridge, and the 2001 comparison paper confirms LOCR's temperature measurement uses ac bridge electronics under the cryostat. That is an installed resistance-thermometer measurement bridge in the documented configuration. Caveat: it is the radiometer's built-in temperature-control bridge, not a standalone metrology bridge with documented ratio accuracy; the acoustic-thermometry experiment still fails on the absent acoustic module, so this does not create a false pass."
+    },
+    {
+      "key": "pressure.operating.range",
+      "result": "documented_absence",
+      "value_as_printed": "No sample/resonator gas-handling system: receiver cavity operates in high vacuum",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "high vacuum inside the radiometer to insulate the cold interior from the external environment, which also eliminates any convective heat flow inside the device, but necessitates the use of a window that allows the light to enter the device.",
+      "document_title": "Livigni (2003), High-Accuracy Laser Power and Energy Meter Calibration Service, NIST Special Publication 250-62",
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication250-62.pdf",
+      "location": "Sec. 3.2.1 Basic cryogenic radiometer operating principle, PDF page ~30 (cached research/v5/cache/e1ac56010481a43e.txt lines 1553-1555); LOCR-specific vacuum by cryopumping, carbon getter and ion pump in sec. 3.2.2",
+      "reasoning": "The vocabulary defines this key as the pressure interval of the sample/resonator gas-handling system. The LOCR's measurement volume is deliberately kept at high vacuum (cryopumping, carbon getter, ion pump) and light enters through a Brewster window; there is no sample gas or resonator gas-handling system whose pressure could be set over 30-120 kPa. The function does not exist on this machine, so no numeric value is given (same convention as other v6_yellow numeric absences). The LN2/LHe reservoirs 'exposed to atmospheric pressure' are cryogen baths, not a sample-gas operating range."
+    }
+  ]
+}

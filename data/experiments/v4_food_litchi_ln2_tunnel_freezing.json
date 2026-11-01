@@ -1,0 +1,124 @@
+{
+ "id": "food_litchi_ln2_tunnel_freezing",
+ "name": "Liquid-nitrogen spray tunnel freezing of whole litchi at -40 to -70 °C (full-cone vs hollow-cone nozzles, 800/1200 rpm fans) to a -18 °C core",
+ "plain_name": "Quick-freeze whole litchi fruit in a liquid-nitrogen spray tunnel without cracking the peel",
+ "industry": "food_and_agriculture",
+ "description": "Taguchi optimisation on a liquid-nitrogen quick-freezing tunnel (Shenzhen De jie li Cryogenic Technology): pre-treated whole litchis (35.2 mm average diameter, 36.09 mm height, 23.9 g) were frozen at tunnel temperatures of -40, -50, -60 and -70 °C with two nozzle types and two fan speeds until the core reached -18 °C; crack ratio, freezing time and nitrogen consumption fell as the tunnel temperature was lowered.",
+ "keywords": [
+  "Quick-freeze whole litchi fruit in a liquid-nitrogen spray tunnel without cracking the peel",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "Abdeen MA, Zheng Z, Cheng X, et al., Wu W (2025). Enhancing rapid nitrogen freezer performance for Litchi fruit: a Taguchi-based approach to reduce cracking, time, and nitrogen consumption. Scientific Reports 15:11186. doi:10.1038/s41598-025-95215-3",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11961673/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "liquid nitrogen freezing unit (Shenzhen De jie li Cryogenic Technology Co., Ltd.): feeding chain, freezing tunnel, PLC control unit, tunnel cover, distributing fans",
+  "Hollow-cone and Full-cone nitrogen spraying nozzles"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 203150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 233150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The design uses tunnel temperatures from -70 °C (203.15 K) to -40 °C (233.15 K).",
+   "evidence_ids": [
+    "v4e_food_litchi_ln2_tunnel_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cooling is by liquid nitrogen sprayed through nozzles in the tunnel; consumption is metered on the nitrogen pipe.",
+   "evidence_ids": [
+    "v4e_food_litchi_ln2_tunnel_freezing_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "35.2",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Whole fruits averaging 35.2 mm in diameter must pass through the freezing space.",
+   "evidence_ids": [
+    "v4e_food_litchi_ln2_tunnel_freezing_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "36.09",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Whole fruits averaging 36.09 mm in height must fit the clearance of the freezing space.",
+   "evidence_ids": [
+    "v4e_food_litchi_ln2_tunnel_freezing_3"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 255150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Freezing continues until the fruit core reaches -18 °C (255.15 K), so the space must be colder than that.",
+   "evidence_ids": [
+    "v4e_food_litchi_ln2_tunnel_freezing_4"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

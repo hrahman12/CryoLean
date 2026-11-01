@@ -1,0 +1,131 @@
+{
+ "id": "astro_ge_ccd_nir_95k",
+ "name": "Dark current, read noise and x-ray response of a germanium CCD prototype (256 x 256, 8.1 um) at 94.7 K on an LN2-cooled cold plate below 5e-5 torr",
+ "plain_name": "Check a new germanium camera chip for infrared astronomy while it sits at about 95 K",
+ "industry": "astronomy_and_astrophysics",
+ "description": "The MIT Lincoln Laboratory Ge-CCD GEDI7_-1_0 is mounted on an LN2-cooled cold plate inside a vacuum chamber at BNL (pressure below 5e-5 torr), cooled at no more than 3.5 K/min to a base of ~95 K with +/-0.03 K stability, and read out by an Archon controller; dark frames (1-20 s) at 94.69 K and x-ray pulse-height spectra are recorded.",
+ "keywords": [
+  "Check a new germanium camera chip for infrared astronomy while it sits at about 95 K",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "S. C. Herrmann, 'Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation', arXiv:2610.22785 [hep-ex] (2026)",
+   "url": "https://arxiv.org/html/2610.22785v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "BNL Ge-CCD test system: LN2-cooled cold plate in a vacuum chamber",
+  "MIT Lincoln Laboratory Ge-CCD GEDI7_-1_0",
+  "Archon CCD controller"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "94.69",
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Dark current and x-ray response are measured at 94.69 K.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The packaged device sits on a cold plate inside a vacuum chamber.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00005",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber pressure was kept below 5e-5 torr during the measurements.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "CCD clocks, biases and video output pass through the chamber to the Archon controller.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 30,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: temperature was stable within +/-0.03 K during the dark-current measurements.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_4"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: this test system cools the cold plate with liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_astro_ge_ccd_nir_95k_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

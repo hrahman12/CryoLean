@@ -1,0 +1,23 @@
+{
+  "configuration_id": "bluefors_ld400_hdw",
+  "rows": [
+    {
+      "key": "magnetic_field.vector",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+      "document_title": "LD System | Dilution Refrigerator Measurement System - Bluefors.com",
+      "location": "Options section (cached as research/v5/cache/982db37c801ede32.txt line 1075); vector magnets sold separately per https://bluefors.com/products/magnets/vector-magnets/",
+      "quote": "The LD System has the largest amount of available options and different magnet configurations that allow it to be customized for different experiments and uses.",
+      "value_as_printed": "magnet configurations are options",
+      "reasoning": "Bluefors states magnets on the LD are purchasable options, and vector magnets are a separate product line (two- and three-axis, up to 9 T). This configuration is defined as LD400sl + High-Density Wiring in one side-loading port; it does not include a magnet option, and the record already marks magnetic_field.max as optional_not_installed. So no vector field is available on this configuration. Flag false with install optional_not_installed (not not_available, because a vector magnet can be bought for Bluefors systems; LD-frame compatibility of specific vector models is not stated). Caveat for reviewer: the absence rests on the configuration's enumerated option set plus the manufacturer statement that magnets are options, not on a sentence naming this exact configuration."
+    },
+    {
+      "key": "magnetic_field.max",
+      "result": "still_unknown",
+      "reasoning": "No magnet is part of this configuration (record: optional_not_installed). Magnets exist as options for Bluefors systems, so the function is not absent from the machine family and documented_absence for a numeric key is not allowed. Searched: cached Bluefors Solenoid Magnets page (research/v5/cache/adbdb31ccaad0c2d.txt: models 0.25-16 T, notes restrict some to SD or XLDsl only, none name LD), Vector Magnets page (3da318bcaa055bff.txt: 0.25-9 T models, two marked XLDsl-only, none name LD), LD System page (982db37c801ede32.txt: only says magnet configurations are options), 2022 LD User Manual (only 'optional superconducting solenoid magnets', no field). No source gives a field for an LD400/LD450sl magnet. Tavily extract was unavailable (plan limit). Note: if magnetic_field.vector is accepted as false, the vector-field experiment is decided without this key."
+    }
+  ]
+}

@@ -1,0 +1,494 @@
+{
+ "family": "cryogen-free closed-cycle-refrigerator optical cryostat, sample in vacuum, bottom-loading",
+ "accessed": "2026-11-01",
+ "records": [
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400"
+   ],
+   "key": "temperature.base",
+   "kind": "value",
+   "value": {
+    "kind": "min",
+    "q": {
+     "value": 4000,
+     "unit": "mK"
+    }
+   },
+   "install": "installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Documented lowest temperature of CCS-100, CCS-300S and CCS-400 is below 4 K (recorded conservatively as 4000 mK); far above the <=50 mK / <=20 mK required by the millikelvin experiments.",
+   "value_as_printed": "<4 K",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+   "location": "Specification table, row 'Temperature range', columns CCS-100, CCS-300S, CCS-400",
+   "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+   "reasoning": "Lower end of the documented temperature range is the base temperature. Datasheet p.2 'Minimum temp options' table (word-coordinate read) confirms <4 K for the 408/415/418 heads on CCS-100/300S/300ST and CCS-400, matching the 408 head assumed by these configurations.",
+   "found_via": "tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_400h"
+   ],
+   "key": "temperature.base",
+   "kind": "value",
+   "value": {
+    "kind": "min",
+    "q": {
+     "value": 5000,
+     "unit": "mK"
+    }
+   },
+   "install": "installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Documented lowest temperature of the CCS-400H (800 K model) is below 5 K (recorded as 5000 mK).",
+   "value_as_printed": "<5 K",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+   "location": "Specification table, row 'Temperature range', column CCS-400H",
+   "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+   "reasoning": "Datasheet p.2 'Minimum temp options' table: in the CCS-400H column the 408/415/418 merged cell reads '<5 K' and the 101 row reads a dash. The spec web page states '<5 K to 800 K' explicitly.",
+   "found_via": "tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_400h"
+   ],
+   "key": "temperature.range",
+   "kind": "value",
+   "value": {
+    "kind": "range",
+    "lo": {
+     "value": 5000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 800000,
+     "unit": "mK"
+    }
+   },
+   "install": "installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "CCS-400H temperature range is <5 K to 800 K (not <4 K as on the family overview page).",
+   "value_as_printed": "<5 K to 800 K",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+   "location": "Specification table, row 'Temperature range', column CCS-400H",
+   "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+   "reasoning": "The technical-specification table and the datasheet per-cold-head table (CCS-400H with 408/415/418: '<5 K') agree; the overview page's '<4 K' for CCS-400H is a family-level summary. With a 5 K floor the CCS-400H fails range_within lo=4 K (photoluminescence) but still satisfies lo=5 K (VSM range).",
+   "found_via": "tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab; datasheet p.2 word coordinates",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "magnetic_field.max",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "The CCS cryostat has no magnet: the datasheet's complete configuration list (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, M81-SSM, software, sensors) contains no magnet or field source, and a CCR cold-finger cryostat produces no field, so no magnetic field is available at the sample.",
+   "value_as_printed": "(no magnet in complete options list)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Scope sentence defines the product as a sample-in-vacuum CCR cryostat; the full ordering list has no magnet; the only field-related item is a 'magnetic field independent' Cernox sensor accessory, which implies use near external fields but is not a field source.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "magnetic_field.vector",
+   "kind": "absence",
+   "value": {
+    "kind": "flag",
+    "b": false
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "No vector (multi-axis) field capability: the CCS has no magnet at all (complete datasheet configuration list contains none).",
+   "value_as_printed": "(no magnet in complete options list)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Follows from the magnet absence.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_300s"
+   ],
+   "key": "magnetic_field.max",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "The CCS cryostat has no magnet: the datasheet's complete configuration list (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, M81-SSM, software, sensors) contains no magnet or field source, and a CCR cold-finger cryostat produces no field, so no magnetic field is available at the sample. The legacy Lake Shore 10 K CCS datasheet describes the CCS-300S window block as sized 'to fit between poles of a magnet', i.e. for a customer-supplied external magnet; the cryostat itself supplies no field.",
+   "value_as_printed": "(no magnet in complete options list)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Scope sentence defines the product as a sample-in-vacuum CCR cryostat; the full ordering list has no magnet; the only field-related item is a 'magnetic field independent' Cernox sensor accessory, which implies use near external fields but is not a field source.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "medium",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_300s"
+   ],
+   "key": "magnetic_field.vector",
+   "kind": "absence",
+   "value": {
+    "kind": "flag",
+    "b": false
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "No vector (multi-axis) field capability: the CCS has no magnet at all (complete datasheet configuration list contains none). The legacy Lake Shore 10 K CCS datasheet describes the CCS-300S window block as sized 'to fit between poles of a magnet', i.e. for a customer-supplied external magnet; the cryostat itself supplies no field.",
+   "value_as_printed": "(no magnet in complete options list)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Follows from the magnet absence.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "medium",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "module.vsm",
+   "kind": "absence",
+   "value": {
+    "kind": "flag",
+    "b": false
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "No vibrating sample magnetometer: the CCS datasheet's complete configuration list offers sample holders, cold heads, windows, pumps, wiring, M81-SSM source-measure and software but no VSM drive/pickup or magnet; a VSM is outside this sample-in-vacuum optical cryostat category.",
+   "value_as_printed": "(no VSM in complete options list)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Lake Shore sells VSMs as a separate product line; none is an option of the CCS configurator.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "section_thickness.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome, cryochamber or specimen head, so 'section_thickness.range' (a sectioning-cryostat property) does not exist on this instrument.",
+   "value_as_printed": "(no microtome / sectioning function)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "temperature.chamber.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome, cryochamber or specimen head, so 'temperature.chamber.range' (a sectioning-cryostat property) does not exist on this instrument.",
+   "value_as_printed": "(no microtome / sectioning function)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "temperature.specimen_head.range",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Not applicable: the CCS is a closed-cycle sample-in-vacuum optical cryostat with no microtome, cryochamber or specimen head, so 'temperature.specimen_head.range' (a sectioning-cryostat property) does not exist on this instrument.",
+   "value_as_printed": "(no microtome / sectioning function)",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.1 intro (scope) and p.4 'Configure your cryostat' steps 1-8 (cryostat, sample holders, cold head, windows, compressor, pump, wiring, support, measurement instrumentation, software, accessories)",
+   "quote": "These Lake Shore closed-cycle refrigerator cryostats cool the sample in vacuum and are bottom-loading. With a wide range of electrical feedthrough and window options, they are a versatile choice for making cryogenic measurements without using liquid helium.",
+   "reasoning": "Physically outside the instrument category: the complete configuration list contains no sectioning hardware.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "mxc_wiring_heat_budget",
+   "kind": "absence",
+   "value": {
+    "kind": "unknown"
+   },
+   "install": "not_available",
+   "evidence_status": "manufacturer_specification",
+   "claim": "No mixing-chamber stage: the CCS is a closed-cycle cryocooler cryostat with documented minimum <4 K (<5 K for CCS-400H) and no dilution unit, so there is no MXC wiring heat budget.",
+   "value_as_printed": "Cooling type | CCR",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "document_title": "Cryogen-free vacuum cryostats - CCR vacuum cryostat specifications (Technical Specifications tab)",
+   "location": "Specification table, rows 'Cooling type' and 'Temperature range'",
+   "quote": "Cooling type | CCR | Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K",
+   "reasoning": "A mixing chamber exists only in dilution refrigerators; the cold-head options (101/204/204N/408/415/418) are bare cryocoolers rated at 4.2-20 K. Key is not in capability_vocabulary.json; reported as absence with unknown value.",
+   "found_via": "tavily_extract + in-memory HTML fetch of the Lake Shore Technical Specifications tab",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "module.electrical_transport",
+   "kind": "option_not_installed",
+   "value": {
+    "kind": "flag",
+    "b": true
+   },
+   "install": "optional_not_installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "AC/DC electrical transport is a purchasable option: the M81-SSM source-measure system (DC and 100 kHz AC with lock-in) and the SH-RESISTIVITY-1.5-STD resistivity sample holder are optional add-ons not included in these catalog configurations.",
+   "value_as_printed": "M81-SSM ... DC, 100 kHz AC, and mixed DC + AC sourcing and measuring",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+   "document_title": "Lake Shore CCR Vacuum Cryostats: Cryogen-free Sample in vacuum cryostats <4 K to 800 K (datasheet code 102126)",
+   "location": "PDF p.3 'Complete your setup - Source + measure + lock-in - Optional add-on'; p.4 steps 2 (Sample holders) and 6 (Measurement instrumentation)",
+   "quote": "The Lake Shore M81-SSM provides highly synchronized DC, 100 kHz AC, and mixed DC + AC sourcing and measuring— including both voltage and current lock-in measurement capabilities—for low-temperature material research performed in your cryostat.",
+   "reasoning": "Configurations name only cryostat + 408 head; the datasheet marks M81-SSM 'Optional add-on' and lists the resistivity holder as an orderable sample holder. mat_electrical_resistance_low_temperature also needs 2 K, which no CCS reaches.",
+   "found_via": "tavily_extract of datasheet PDF plus in-memory PyMuPDF word-coordinate read of p.2 table",
+   "confidence": "high",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "electrical.coax_lines",
+   "kind": "option_not_installed",
+   "value": {
+    "kind": "count",
+    "n": 6
+   },
+   "install": "optional_not_installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Coaxial wiring is an orderable option: a breakout box with 6 SMA (or BNC) feedthroughs and 6 coaxial cables installed; no coax is included by default. 6 is the largest single coax wiring option listed; the total per cryostat depends on spare ports and is not documented.",
+   "value_as_printed": "6 coaxial cables installed",
+   "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatfeedthroughs.pdf?sfvrsn=d6b74e27_7",
+   "document_title": "Cryostat Feedthroughs and Wiring (Lake Shore)",
+   "location": "'Hermetic feedthroughs with installed wiring' list, item WH-SMA-6-G",
+   "quote": "WH-SMA-6-G  Breakout box with 6 jack-to-jack SMA feedthroughs and 6 coaxial cables installed  — grounded flange and shields",
+   "reasoning": "The CCS datasheet step 4 'Select cryostat wiring' points to this guide; the Lake Shore CCS-series datasheet (083022, hosted by QD Europe) lists 'Installed wiring (1), (2), or (6) coaxial cables, SMA CABLEASSY-63340' and 'three spare o-ring sealed ports'. Far below the 124 lines of quantum_mxc_wiring_heat_budget; satisfies the optional >=2 of transmon only if ordered.",
+   "found_via": "tavily_extract of Lake Shore feedthrough guide and QD-Europe-hosted CCS datasheet",
+   "confidence": "medium",
+   "accessed": "2026-11-01"
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "optical.window_count",
+   "kind": "value",
+   "value": {
+    "kind": "count",
+    "n": 4
+   },
+   "install": "installed",
+   "evidence_status": "manufacturer_specification",
+   "claim": "Standard optical CCS cryostats (CCS-100, CCS-300S, CCS-400/400H) have four optical window ports (four-way sample chamber); a fifth window port is an extra selection.",
+   "value_as_printed": "Four optical window ports",
+   "source_url": "https://qd-europe.com/fileadmin/Mediapool/products/lake-shore/_pdf/10_K_CCR_CCS_series_fr.pdf",
+   "document_title": "CCS-100, CCS-200, CCS-300S, and CCS-400 10 K optical cryostats (Lake Shore datasheet 083022, hosted by Quantum Design Europe)",
+   "location": "p.2 Key features; p.3 Featured components ('Optical vacuum shroud with four o-ring sealed quartz windows'); p.4 Additional selections ('Fifth window port')",
+   "quote": "Four optical window ports for optical measurements from UV to IR",
+   "reasoning": "This is the 10 K-cold-head edition of the same CCS cryostat bodies; window-block sizes (3.25-3.75 in square; 1.5 in square for CCS-300S) are identical to the current <4 K datasheet, so the shroud/window layout is the same and only the cold head differs. Not in the gap list; supplied to close the existing optical.window_count unknown.",
+   "found_via": "tavily_search + tavily_extract",
+   "confidence": "medium",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "not_found": [
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "sample.diameter.max",
+   "searched": "Lake Shore CCS datasheet 102126 (all pages), Technical Specifications tab, CCS-100/300/400 product pages, Lake Shore cryostat-sample-holders page (no dimensions), feedthrough guide, QD-Europe-hosted 10 K CCS datasheet 083022, qd-latam CCS page, Tavily and WebSearch for 'SH-OPTICAL-1.5-STD' and CCS sample-mount diameter, Lune paper search. Only part numbers 'SH-...-1.5-STD' appear; '1.5' is plausibly 1.5 in but no document states a sample or mount dimension."
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "sample.length.max",
+   "searched": "Same sources as sample.diameter.max; no sample length or sample-space dimensions are published for the CCS series."
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "sample.width.max",
+   "searched": "Same sources as sample.diameter.max; no sample width published."
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_400h"
+   ],
+   "key": "sample.height.max",
+   "searched": "Same sources as sample.diameter.max; no sample height published."
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "electrical.coax_bandwidth.max",
+   "searched": "Lake Shore feedthrough and wiring guide, CCS datasheets (current 102126 and 10 K edition 083022), spec tab: SMA/BNC/triax feedthroughs and cables are listed without any frequency or bandwidth rating."
+  },
+  {
+   "configuration_ids": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h"
+   ],
+   "key": "module.magnetic_shielding",
+   "searched": "Complete CCS configuration list (datasheet p.4), spec tab, 10 K edition datasheet: no magnetic shielding option is listed, but shielding is not physically excluded for an optical cryostat, so an absence record is not justified (transmon experiment is in any case blocked by temperature.base)."
+  }
+ ],
+ "corrections": [
+  {
+   "configuration_id": "lakeshore_ccs_400h",
+   "key": "temperature.range",
+   "current": "range lo 4000 mK, hi 800000 mK (inferred_estimate)",
+   "proposed": "range lo 5000 mK, hi 800000 mK (manufacturer_specification); also add temperature.base min 5000 mK",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "quote": "Temperature range | <4 K to 325 K | <4 K to 325 K | <4 K to 325 K | <4 K to 500 K | <5 K to 800 K"
+  },
+  {
+   "configuration_id": "lakeshore_ccs_100",
+   "key": "cooldown_time.max",
+   "current": "1 h to 2 h (7200 s), evidence_status inferred_estimate (column mapping unverified)",
+   "proposed": "value unchanged 1 h to 2 h (7200 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h"
+  },
+  {
+   "configuration_id": "lakeshore_ccs_300s",
+   "key": "cooldown_time.max",
+   "current": "1.5 h to 2.5 h (9000 s), evidence_status inferred_estimate (column mapping unverified)",
+   "proposed": "value unchanged 1.5 h to 2.5 h (9000 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h"
+  },
+  {
+   "configuration_id": "lakeshore_ccs_400",
+   "key": "cooldown_time.max",
+   "current": "1.5 h to 3 h (10800 s), evidence_status inferred_estimate (column mapping unverified)",
+   "proposed": "value unchanged 1.5 h to 3 h (10800 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h"
+  },
+  {
+   "configuration_id": "lakeshore_ccs_400h",
+   "key": "cooldown_time.max",
+   "current": "2 h to 2.5 h (9000 s), evidence_status inferred_estimate (column mapping unverified)",
+   "proposed": "value unchanged 2 h to 2.5 h (9000 s); evidence_status manufacturer_specification (column mapping verified by the HTML spec table and PDF word coordinates)",
+   "source_url": "https://www.lakeshore.com/products/categories/specification/environment-by-janis/cryogen-free-cryostats/ccr-vacuum-cryostats",
+   "quote": "Cooldown | 1 h to 2 h | 1.5 h to 2.5 h | 1.5 h to 2.5 h | 1.5 h to 3 h | 2 h to 2.5 h"
+  }
+ ],
+ "notes": [
+  "Opening the datasheet in the built-in browser triggered a save dialog and was abandoned; the PDF was read via tavily_extract and an in-memory fetch (no file saved).",
+  "Lake Shore overview page lists CCS-400H min temp '<4 K'; the Technical Specifications tab and datasheet per-head table give '<5 K'.",
+  "Lune paper search returned no relevant peer-reviewed measurements on the CCS series."
+ ]
+}

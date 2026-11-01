@@ -1,0 +1,176 @@
+{
+ "id": "mi_6820t",
+ "manufacturer": "Measurements International (MI)",
+ "model": "6820T Compact Dry (Graphene) QHR Measurement System",
+ "family": "tabletop cryogen-free quantum Hall resistance system",
+ "description": "Tabletop low-vibration (<10 nm) cryogen-free QHR system for graphene devices: 5 T superconducting solenoid (+/-0.2 % 1 cm DSV), pulse-tube cryocooler (0.9 W at 4.2 K, base < 3.6 K), operation < 4 K, three LC44/TO8 sample mounts, 6-7 h cool-down; used with the 6200A CCC or 6020Q DCC bridge.",
+ "documents": [
+  {
+   "id": "doc_mi_6820t_0",
+   "url": "https://mintl.com/wp-content/uploads/6820T.pdf",
+   "title": "6820T Graphene QHR Measurement System data sheet (Measurements International, 2023-06-27)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_mi_6820t_1",
+   "url": "https://mintl.com/products/compact-dry-quantum-hall-system/",
+   "title": "6820T Compact Dry QHR System (Measurements International product page)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "mi_6820t_5t_standard",
+   "name": "6820T with 5 T standard system magnet and three LC44/TO8 sample mounts",
+   "configuration_basis": "Standard 6820T system (5 T magnet, secure stand, 3 sample mounts); the measurement bridge (6200A CCC or 6020Q DCC) is not counted as part of the cryogenic configuration. Data sheet 2023-06-27 and product page.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 4000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 5000,
+       "unit": "mT"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "magnetic_field.uniformity",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 2000,
+       "unit": "ppm"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_magnetic_field.uniformity"
+     ]
+    },
+    {
+     "key": "vibration.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 10,
+       "unit": "nm"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_vibration.max"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 25200,
+       "unit": "s"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_cooldown_time.max"
+     ]
+    },
+    {
+     "key": "cooling_power.at_4200mK",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 900000000,
+       "unit": "nW"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_cooling_power.at_4200mK"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": []
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_mi_6820t_5t_standard_cryogen.type"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "mi_6820t_5t_standard",
+   "key": "temperature.range",
+   "why": "No variable temperature range is documented. The 3.6 K lower bound is the cryocooler 'Base Temperature < 3.6 K' row under Cryocooler Specifications, not a sample setting, and only 'Operational temperature < 4 K' is stated. A 3.6-4 K controllable range is not supported."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "metrology_and_calibration"
+ ]
+}

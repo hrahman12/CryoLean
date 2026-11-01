@@ -1,0 +1,116 @@
+{
+ "id": "def_integral_stirling_77k_lift",
+ "name": "Heat-lift and cool-down performance check of a tactical integral rotary Stirling cryocooler: 550 mW at 77 K at +71 C ambient, 5 min cool-down of a 250 J load to 80 K",
+ "plain_name": "Check that a small battlefield-camera cooler can pull its heat load down to 77 K quickly",
+ "industry": "defense_and_security",
+ "description": "Performance acceptance of an integral rotary Stirling cooler for thermal-imaging focal planes, using the Ricor K508 ratings as test points: total cooling power 550 mW at a 77 K cold tip at 71 C ambient, cool-down of a 250 J thermal mass to 80 K in about 5 minutes at 23 C, cold-tip stability +/-0.5 K, all on DC electrical input power only.",
+ "keywords": [
+  "Check that a small battlefield-camera cooler can pull its heat load down to 77 K quickly",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+   "url": "https://ricor.com/products/k508",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "K508"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold tip is regulated at 77 K for the lift rating.",
+   "evidence_ids": [
+    "v4e_def_integral_stirling_77k_lift_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 550,
+     "unit": "mW"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Required heat lift at 77 K (rated at +71 C ambient).",
+   "evidence_ids": [
+    "v4e_def_integral_stirling_77k_lift_1"
+   ],
+   "conditions": [],
+   "key": "cooling_power.at_77000mK"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Tactical integral coolers run on DC electrical power alone, with no liquid cryogen.",
+   "evidence_ids": [
+    "v4e_def_integral_stirling_77k_lift_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 5,
+     "unit": "min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cool-down of a 250 J thermal mass to 80 K at 23 C in about 5 min (typical; depends on load mass).",
+   "evidence_ids": [
+    "v4e_def_integral_stirling_77k_lift_3"
+   ],
+   "conditions": [],
+   "key": "cooldown_time.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 500,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cold-tip temperature stability of +/-0.5 K.",
+   "evidence_ids": [
+    "v4e_def_integral_stirling_77k_lift_4"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

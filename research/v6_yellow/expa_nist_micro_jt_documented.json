@@ -1,0 +1,45 @@
+{
+  "configuration_id": "expa_nist_micro_jt_documented",
+  "file": "data/cryostats/expansion_a_nist_micro_jt.json",
+  "rows": [
+    {
+      "key": "module.stable_thz_detector_operation",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://trc.nist.gov/cryogenics/Papers/Joule-Thomson_Cryocoolers/2012-Temperature_Instability_Comparison_of_JT_Coolers.pdf",
+      "document_title": "Bradley, Radebaugh, Lewis, Lin, Lee, Temperature instability comparison of micro- and meso-scale Joule-Thomson cryocoolers employing mixed refrigerants (NIST/CU, 2012)",
+      "location": "Abstract, p. 1 (proceedings p. 689); corroborated by NIST project page Description and Major Accomplishments",
+      "quote": "Previously we demonstrated cryogenic cooling in a Joule-Thomson (JT) microcryocooler (MCC) with mixed refrigerants operating at pressure ratios of 16:1 that achieved stable temperatures of 140 K, with transient temperatures down to 76 K, with precooling of the refrigerant to 240 K.",
+      "value_as_printed": "stable temperatures of 140 K, with transient temperatures down to 76 K",
+      "reasoning": "The developers' own report positively states this prototype was stable only at 140 K and reached 76-77 K only transiently; the NIST project page likewise says temperature oscillations occur below about 140 K and lists the accomplishment as cooling to 77 K and stable cooling to 140 K. The 2009 paper (trc.nist.gov 2009-Development_of_a_Mixed-Refrigerant_JT.pdf) shows the cold-head test tip carried a Nb-on-silicon resistance temperature/heat sensor, not a THz detector, and that the thermoelectric precooler was still to be integrated later. So the documented configuration does not provide stable 77 K THz-detector operation. This is a measured negative (not silence)."
+    },
+    {
+      "key": "rf.frequency.range",
+      "result": "documented_absence",
+      "value": {"kind": "unknown"},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://trc.nist.gov/cryogenics/Papers/Joule-Thomson_Cryocoolers/2009-Development_of_a_Mixed-Refrigerant_JT.pdf",
+      "document_title": "Bradley, Radebaugh, Huber, Lin, Lee, Development of a Mixed-Refrigerant Joule-Thomson Microcryocooler (2009)",
+      "location": "Section 'MCC - Cold Head Testing - Evaluating performance', p. 7",
+      "quote": "The system is instrumented to provide temperature, pressure, and flow measurements as indicated, particularly across the cold head. ... A Nb on silicon resistance temperature/heat sensor is attached to the tip of the cold head",
+      "value_as_printed": "instrumented to provide temperature, pressure, and flow measurements",
+      "reasoning": "The documented apparatus is a micro-JT cold head plus a thermal test rig whose instrumentation is positively described as temperature, pressure and flow, with a resistance temperature/heat sensor on the cold tip. No RF launch, coax, or network-analyzer fixture exists in the documented configuration, so there is no RF measurement frequency interval at all (the function does not exist), not merely an unstated value. The NIST project page also describes the device's objective as delivering 3 mW of refrigeration at 77 K, i.e. a cooler, not an RF test fixture."
+    },
+    {
+      "key": "module.cryogenic_microwave_transmission",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://trc.nist.gov/cryogenics/Papers/Joule-Thomson_Cryocoolers/2009-Development_of_a_Mixed-Refrigerant_JT.pdf",
+      "document_title": "Bradley, Radebaugh, Huber, Lin, Lee, Development of a Mixed-Refrigerant Joule-Thomson Microcryocooler (2009)",
+      "location": "Section 'MCC - Cold Head Testing - Evaluating performance', p. 7",
+      "quote": "The system is instrumented to provide temperature, pressure, and flow measurements as indicated, particularly across the cold head.",
+      "value_as_printed": "temperature, pressure, and flow measurements",
+      "reasoning": "The source positively defines the instrumented scope of this prototype's test system (temperature, pressure, flow) and the cold-tip payload (a resistance temperature/heat sensor). The machine is a ~4 cm3 mixed-refrigerant micro-JT cold head whose stated objective (NIST project page) is 3 mW net refrigeration at 77 K with <500 mW input; it has no microwave transmission launches or readout. A YBCO filter S21 measurement fixture is a different kind of instrument."
+    }
+  ]
+}

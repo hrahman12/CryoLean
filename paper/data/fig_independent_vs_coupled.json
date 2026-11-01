@@ -1,0 +1,251 @@
+{
+ "demo_b": {
+  "configuration": "bluefors_ld400_hdw",
+  "experiment": "quantum_mxc_wiring_heat_budget",
+  "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+  "checks": [
+   {
+    "label": "temperature.base",
+    "outcome": "pass",
+    "margin": 0.5,
+    "documented": "1/100",
+    "required": "1/50",
+    "explanation": "'temperature.base' needs 20 mK or lower; this configuration has a documented minimum of 10 mK (manufacturer specification). Requirement met."
+   },
+   {
+    "label": "electrical.coax_lines",
+    "outcome": "pass",
+    "margin": 0.3548387096774194,
+    "documented": "168",
+    "required": "124",
+    "explanation": "'electrical.coax_lines' needs at least 124; this configuration has a documented count of 168 (manufacturer specification). Requirement met."
+   },
+   {
+    "label": "heat budget",
+    "outcome": "fail",
+    "margin": -0.216,
+    "cooling_power_W": "3/250000",
+    "heat_load_W": "57/3906250",
+    "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met."
+   }
+  ],
+  "coupled_lhs_W": "57/3906250",
+  "coupled_rhs_W": "3/250000"
+ },
+ "z3_repair": {
+  "parameter": "n_flux_lines",
+  "current": "50",
+  "suggested": "39",
+  "direction": "decrease",
+  "lean_verdict": "REQUIREMENTS_MET",
+  "verified": true,
+  "coupled_after": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 11.985 µW ≤ 12 µW. Constraint met."
+ },
+ "after_repair": {
+  "verdict": "REQUIREMENTS_MET",
+  "coupled_outcome": "pass",
+  "coupled_lhs_W": "2397/200000000",
+  "margin": 0.00125
+ },
+ "grid_all_single_pass": [
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "lakeshore_ccs_100",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "lakeshore_ccs_300s",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "lakeshore_ccs_400",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "lakeshore_crx_4k",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "lakeshore_crx_vf",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "linkam_thms600_lnp96_t96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "linkam_thmsel600_lnp96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryo_fluorescence_vitrified",
+   "configuration": "oxford_optistatdry_blv",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryosection_frozen_tissue",
+   "configuration": "leica_cm1950_dualecotec_standard",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "bio_cryosection_frozen_tissue",
+   "configuration": "leica_cm1950_genA_vacuum_motor_objcool",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_low_temperature_raman",
+   "configuration": "lakeshore_crx_4k",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_low_temperature_raman",
+   "configuration": "lakeshore_crx_vf",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_low_temperature_raman",
+   "configuration": "linkam_thms600_lnp96_t96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_low_temperature_raman",
+   "configuration": "linkam_thmsel600_lnp96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_phase_transition_pom",
+   "configuration": "lakeshore_ccs_400",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_phase_transition_pom",
+   "configuration": "lakeshore_crx_vf",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_phase_transition_pom",
+   "configuration": "linkam_thms600_lnp96_t96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "chem_phase_transition_pom",
+   "configuration": "linkam_thmsel600_lnp96",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": []
+  },
+  {
+   "experiment": "mat_magnetometry_vsm",
+   "configuration": "qd_dynacool_12T_vsm",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": [
+    [
+     "magnet_ramp_time",
+     "unknown",
+     false
+    ]
+   ]
+  },
+  {
+   "experiment": "mat_magnetometry_vsm",
+   "configuration": "qd_dynacool_14T_eto_vsm_hc",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled": [
+    [
+     "magnet_ramp_time",
+     "unknown",
+     false
+    ]
+   ]
+  },
+  {
+   "experiment": "quantum_mxc_wiring_heat_budget",
+   "configuration": "bluefors_ld400_hdw",
+   "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+   "coupled": [
+    [
+     "mxc_wiring_heat_budget",
+     "fail",
+     true
+    ]
+   ]
+  }
+ ],
+ "grid_all_single_pass_breakdown": {
+  "no mandatory coupled constraint": 20,
+  "coupled fails": 1
+ },
+ "grid_coupled_outcomes": {
+  "joule_heating_vs_cooling_power": {
+   "mandatory": false,
+   "experiment": "mat_electrical_resistance_low_temperature",
+   "outcomes": {
+    "unknown": 26
+   }
+  },
+  "magnet_ramp_time": {
+   "mandatory": false,
+   "experiment": "mat_magnetometry_vsm",
+   "outcomes": {
+    "unknown": 26
+   }
+  },
+  "mxc_wiring_heat_budget": {
+   "mandatory": true,
+   "experiment": "quantum_mxc_wiring_heat_budget",
+   "outcomes": {
+    "fail": 3,
+    "unknown": 23
+   }
+  }
+ },
+ "grid_coupled_failures": [
+  {
+   "configuration": "bluefors_ld250_manual_v2",
+   "model": "mxc_wiring_heat_budget",
+   "lhs": "14.592 µW",
+   "rhs": "10 µW",
+   "rhs_W": 1e-05,
+   "verdict": "DOES_NOT_MEET_REQUIREMENTS"
+  },
+  {
+   "configuration": "bluefors_ld400_hdw",
+   "model": "mxc_wiring_heat_budget",
+   "lhs": "14.592 µW",
+   "rhs": "12 µW",
+   "rhs_W": 1.2e-05,
+   "verdict": "DOES_NOT_MEET_REQUIREMENTS"
+  },
+  {
+   "configuration": "bluefors_ld450_current",
+   "model": "mxc_wiring_heat_budget",
+   "lhs": "14.592 µW",
+   "rhs": "14 µW",
+   "rhs_W": 1.4e-05,
+   "verdict": "DOES_NOT_MEET_REQUIREMENTS"
+  }
+ ],
+ "note_joule": "joule_heating_vs_cooling_power is an advisory (non-mandatory) check of mat_electrical_resistance_low_temperature; measurement_current and sample_resistance are left for the user, so its left-hand side is missing in every pair."
+}

@@ -1,0 +1,395 @@
+{
+ "id": "micromeritics_3flex",
+ "manufacturer": "Micromeritics Instrument Corporation",
+ "model": "3Flex 3-port surface characterization (physisorption) analyzer",
+ "family": "gas-sorption analyzer with LN2 analysis dewar or closed-cycle GM cryostat",
+ "description": "Three-port volumetric gas-sorption analyzer used for hydrogen-storage material isotherms and porosity; samples in evacuated sample tubes either immersed in a 3.2 L LN2 analysis dewar (77 K, >70 h hold) or held by the Cryostat I closed-cycle GM accessory (25-350 K, ±0.005 K).",
+ "documents": [
+  {
+   "id": "doc_micromeritics_3flex_0",
+   "url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+   "title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_micromeritics_3flex_1",
+   "url": "https://micromeritics.com/products/3flex/",
+   "title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "micromeritics_3flex_cryostat_i",
+   "name": "3Flex physisorption with Cryostat I closed-cycle GM accessory",
+   "configuration_basis": "3Flex physisorption analyzer with the Cryostat I single-stage GM cryocooler accessory installed in place of the LN2 analysis dewar (25-350 K). Chiller Dewar, ISO Controller and chemisorption options not installed.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 25000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 350000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 25000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_temperature.base"
+     ]
+    },
+    {
+     "key": "temperature.stability",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 5,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_temperature.stability"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 3600,
+       "unit": "s"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_cooldown_time.max"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": []
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_cryogen.type"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_cryostat_i_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.height.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    }
+   ]
+  },
+  {
+   "id": "micromeritics_3flex_ln2_dewar",
+   "name": "3Flex physisorption with standard 3.2 L LN2 analysis dewar",
+   "configuration_basis": "Standard 3Flex physisorption analyzer with its 3.2 L cryogen (LN2) analysis dewar and isothermal jacket (77 K). Cryostat I, Chiller Dewar, ISO Controller and chemisorption options not installed.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 77000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_temperature.base"
+     ]
+    },
+    {
+     "key": "holding_time.static",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 70,
+       "unit": "h"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_holding_time.static"
+     ]
+    },
+    {
+     "key": "cryogen.dewar_volume",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": "3.2",
+       "unit": "L"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_cryogen.dewar_volume"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": [
+       "liquid_nitrogen"
+      ]
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_cryogen.type"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_micromeritics_3flex_ln2_dewar_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.height.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "micromeritics_3flex_cryostat_i",
+   "key": "pressure.base",
+   "why": "'1 x 10-6 to 900 torr' is the analysis range in the 3Flex CHEMISORPTION column, confirmed on the rendered brochure spec table and the product page. The physisorption-only column says '1.3 x 10-9 to 1.0 P/P0'. The cited quote is misattributed. A lower analysis-range bound is not a documented base or ultimate pressure, and no ultimate vacuum is stated. Leave as unknown."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_cryostat_i",
+   "key": "sample.diameter.max",
+   "why": "Honest unknown. I also found no sample-tube dimensions in the brochure or product page."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_cryostat_i",
+   "key": "sample.height.max",
+   "why": "Honest unknown; not stated in the sources."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_ln2_dewar",
+   "key": "pressure.base",
+   "why": "Same error: '1 x 10-6 to 900 torr' is the CHEMISORPTION-column analysis range, not the physisorption one ('1.3 x 10-9 to 1.0 P/P0'), and it is not a base or ultimate pressure. No ultimate vacuum is documented. Should be unknown."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_ln2_dewar",
+   "key": "sample.diameter.max",
+   "why": "Honest unknown."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_ln2_dewar",
+   "key": "sample.height.max",
+   "why": "Honest unknown."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "energy_and_hydrogen"
+ ]
+}

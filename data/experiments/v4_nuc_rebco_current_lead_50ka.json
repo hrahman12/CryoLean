@@ -1,0 +1,117 @@
+{
+ "id": "nuc_rebco_current_lead_50ka",
+ "name": "Qualification of 50 kA binary LN2-cooled REBCO current leads (Ic(77 K, self-field) 58.4 kA) with LN2 subcooled to 65 K in a vacuum cryostat",
+ "plain_name": "Push 50,000 amps through liquid-nitrogen-cooled superconducting power leads that feed a fusion magnet",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "Commissioning (41 kA) and post-test qualification (stable at 50 kA) of the ~3 m tall binary current leads of the MIT TFMC facility: copper heat-exchanger section cooled by boil-off N2, LN2 boiling chamber pumpable to 65 K, and six-petal REBCO section (Ic 58.4 kA at 77 K self-field).",
+ "keywords": [
+  "Push 50,000 amps through liquid-nitrogen-cooled superconducting power leads that feed a fusion magnet",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Hartwig et al., The SPARC Toroidal Field Model Coil Program, arXiv:2308.12301 (2023)",
+   "url": "https://arxiv.org/pdf/2308.12301",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "50 kA binary LN2-cooled REBCO current leads (MIT PSFC)",
+  "current lead vacuum cryostat",
+  "Alpha Scientific Electronics 50 kA power supply"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 50000,
+     "unit": "A"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Qualification demonstrated stable operation at 50 kA.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_current_lead_50ka_0"
+   ],
+   "conditions": [],
+   "key": "electrical.current_leads.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Leads are LN2-cooled.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_current_lead_50ka_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Leads housed in an evacuated current-lead cryostat.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_current_lead_50ka_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 65000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional subcooling of LN2 to 65 K.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_current_lead_50ka_3"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3,
+     "unit": "m"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each lead is ~3 m tall.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_current_lead_50ka_4"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

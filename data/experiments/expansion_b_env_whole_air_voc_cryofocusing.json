@@ -1,0 +1,89 @@
+{
+  "id": "expansion_b_env_whole_air_voc_cryofocusing",
+  "name": "Cryogenic preconcentration of whole-air volatile organic compounds",
+  "plain_name": "Trap trace air pollutants before GC-MS",
+  "industry": "environmental_science",
+  "description": "Trace-air analytical system with cold trapping and hot desorption; it does not expose a bulk experiment to the trap's entire thermal cycle.",
+  "keywords": [
+    "Trap trace air pollutants before GC-MS",
+    "voc_cryofocusing",
+    "environmental_science"
+  ],
+  "sources": [
+    {
+      "citation": "EPA research SOPJ-AMCD-AAB-SOP-5188-0,AppendixB",
+      "url": "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "Entech7200A,Entech7016D,Agilent8890/5977B"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.cryogenic_preconcentration",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The procedure requires gas traps and programmed cryofocusing,not a generic cold sample chamber.",
+      "evidence_ids": [
+        "expb_epa_voc"
+      ]
+    },
+    {
+      "key": "module.gc_ms",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "An interfaced GC-MSD is explicitly part of the actual research system.",
+      "evidence_ids": [
+        "expb_epa_voc"
+      ]
+    },
+    {
+      "key": "trap.precool.temperature",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": "93.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Module3 precool is-180 C in the selected long-method screenshot.",
+      "evidence_ids": [
+        "expb_epa_voc"
+      ]
+    },
+    {
+      "key": "trap.inject.temperature",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "353.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Module3 injection setting is80 C; desorption is part of the same trap method.",
+      "evidence_ids": [
+        "expb_epa_voc"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "This is the EPA's internal laboratory research SOP,not an officially approved EPA method or a guarantee of regulatory method compliance.",
+    "Calibration,recovery,water removal and detection limits require the method's separate QC; no fake chromatogram is generated."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

@@ -1,0 +1,100 @@
+{
+ "id": "phys_nb3sn_wire_mqe",
+ "name": "Minimum quench energy of HL-LHC RRP Nb3Sn wires with high-heat-capacity tape at 4.2 K and 15 T",
+ "plain_name": "Measure the smallest heat pulse that makes an accelerator-magnet wire stop superconducting at 15 T",
+ "industry": "physics_and_particle_accelerators",
+ "description": "Strand test for Nb3Sn accelerator-magnet conductor: a reacted wire on a Ti-6Al-4V barrel is cooled in boiling helium at 4.2 K in transverse field, its Ic is measured with a voltage-tap pair, then at a fixed fraction of Ic heat pulses from strain-gauge heaters are increased until the wire quenches (MQE).",
+ "keywords": [
+  "Measure the smallest heat pulse that makes an accelerator-magnet wire stop superconducting at 15 T",
+  "physics_and_particle_accelerators"
+ ],
+ "sources": [
+  {
+   "citation": "Minimum Quench Energy of Nb3Sn Wires with High Specific Heat Tape (Barzi et al., FERMILAB-PUB-22-133-TD, arXiv:2204.05378)",
+   "url": "https://arxiv.org/pdf/2204.05378",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "FNAL strand test facility (boiling He, transverse field)",
+  "Ti-6Al-4V barrels",
+  "Micro-Measurements WK-09-125BT350 strain gauges (heaters)",
+  "BPO KEPCO 200-1 power supply"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4200,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ic and MQE are measured at 4.2 K.",
+   "evidence_ids": [
+    "v4e_phys_nb3sn_wire_mqe_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The wire is cooled by a boiling helium bath, which sets the heat removal relevant to MQE.",
+   "evidence_ids": [
+    "v4e_phys_nb3sn_wire_mqe_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 15,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "MQE results are reported at 15 T (and 14 T).",
+   "evidence_ids": [
+    "v4e_phys_nb3sn_wire_mqe_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Transport current, voltage taps and heater leads must reach the sample.",
+   "evidence_ids": [
+    "v4e_phys_nb3sn_wire_mqe_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

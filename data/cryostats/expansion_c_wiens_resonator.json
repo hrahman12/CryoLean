@@ -1,0 +1,67 @@
+{
+  "id": "expc_wiens_resonator",
+  "manufacturer": "Leiden Cryogenics / Wiens et al. published apparatus",
+  "model": "CF-1K with Si5 cryogenic optical resonator breadboard",
+  "family": "optical_resonator",
+  "description": "Wiens 2020 Leiden CF-1K, 1.5–3.6 K silicon-resonator apparatus. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_wiens_resonator",
+      "title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112",
+      "url": "https://arxiv.org/html/2004.01552v3",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_leiden_cf1k_si5_2020",
+      "name": "Wiens 2020 Leiden CF-1K, 1.5–3.6 K silicon-resonator apparatus",
+      "configuration_basis": "Exact published CF-1K pulse-tube/Joule-Thomson apparatus with Si5 resonator and frequency-interrogation instrumentation. The50 mm silicon resonator and optical breadboard are installed components of the paper's apparatus, not catalog options assumed on a bare CF-1K. No achieved stability is promoted to a guaranteed machine specification.",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "1500",
+              "unit": "mK"
+            },
+            "hi": {
+              "value": "3600",
+              "unit": "mK"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_resonator_temperatures"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_resonator_optical"
+          ]
+        },
+        {
+          "key": "module.optical_resonance_interrogation",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_resonator_scan"
+          ]
+        }
+      ]
+    }
+  ]
+}

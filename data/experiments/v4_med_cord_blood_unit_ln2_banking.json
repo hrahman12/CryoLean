@@ -1,0 +1,84 @@
+{
+ "id": "med_cord_blood_unit_ln2_banking",
+ "name": "Public cord-blood-unit banking: controlled-rate freezing in 10% DMSO and long-term storage in the liquid phase of liquid nitrogen at -196 C",
+ "plain_name": "Bank umbilical cord blood for transplants in liquid nitrogen",
+ "industry": "healthcare_and_medicine",
+ "description": "Red-cell- and plasma-depleted cord blood units with DMSO/dextran cryoprotectant are frozen at a controlled rate and stored (up to 19 years) immersed in liquid nitrogen at -196 C, well below the ~-130 C glass transition of water.",
+ "keywords": [
+  "Bank umbilical cord blood for transplants in liquid nitrogen",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Roh et al., Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank, Stem Cells Transl Med. DOI 10.1093/stcltm/szag075",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "controlled-rate freezer (model not stated)",
+  "liquid phase of liquid nitrogen storage (model not stated)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Units are stored immersed in the liquid phase of liquid nitrogen at -196 C.",
+   "evidence_ids": [
+    "v4e_med_cord_blood_unit_ln2_banking_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Liquid-phase storage requires a vessel that holds liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_med_cord_blood_unit_ln2_banking_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 143150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Physical basis: below the ~-130 C glass transition of water biological activity stops; informative lower bound for any acceptable store.",
+   "evidence_ids": [
+    "v4e_med_cord_blood_unit_ln2_banking_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

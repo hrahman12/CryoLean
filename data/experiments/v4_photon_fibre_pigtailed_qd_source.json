@@ -1,0 +1,80 @@
+{
+ "id": "photon_fibre_pigtailed_qd_source",
+ "name": "Operation of a fibre-pigtailed, bias-tuned quantum-dot micropillar single-photon source in a compact 2.4 K two-stage G-M cryocooler",
+ "plain_name": "Run a plug-and-play fibre-connected quantum-dot light source inside a compact 2.4 K cooler",
+ "industry": "photonics_and_telecommunications",
+ "description": "Margaria et al. (C2N/Quandela) attach a single-mode fibre directly to a deterministic QD micropillar whose p-i-n junction is bias-tuned through electrical contact ridges, then operate it in a rack-mounted compact two-stage Gifford-McMahon cryocooler at 2.4 K for ten-hour stability runs (fibre brightness 20.8%, indistinguishability 97.5%).",
+ "keywords": [
+  "Run a plug-and-play fibre-connected quantum-dot light source inside a compact 2.4 K cooler",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Efficient fibre-pigtailed source of indistinguishable single photons (Margaria et al., Nature Communications 16:7553, 2025)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354681/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "compact two-stage Gifford-McMahon cryocooler",
+  "Single Quantum superconducting nanowires single-photon detectors",
+  "Excelitas single-photon avalanche diodes",
+  "Swabian Instruments time tagger"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2400,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The pigtailed source was operated at the cryocooler base temperature of 2.4 K (the 5 K free-space setup gave lower indistinguishability).",
+   "evidence_ids": [
+    "v4e_photon_fibre_pigtailed_qd_source_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The QD charge state and emission wavelength are set by a bias voltage through electrical contacts on the chip.",
+   "evidence_ids": [
+    "v4e_photon_fibre_pigtailed_qd_source_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the deployable source runs in a closed-cycle G-M cryocooler without liquid cryogens.",
+   "evidence_ids": [
+    "v4e_photon_fibre_pigtailed_qd_source_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

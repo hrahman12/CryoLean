@@ -1,0 +1,76 @@
+{
+  "id": "expc_lne_agt",
+  "manufacturer": "LCM-LNE-Cnam research apparatus",
+  "model": "Pan et al. cryogen-free primary acoustic gas thermometer",
+  "family": "cryogenic_calibration",
+  "description": "LCM-LNE-Cnam acoustic gas thermometer,2019 published configuration. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_lne_agt",
+      "title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_lne_cnam_agt_2019",
+      "name": "LCM-LNE-Cnam acoustic gas thermometer,2019 published configuration",
+      "configuration_basis": "Published complete research apparatus at LCM-LNE-Cnam with Cryomech PT405 pulse-tube cooler, copper quasi-sphere and F18 bridge. No guaranteed temperature-control interval is supplied by the paper; the neon thermodynamic result is not reused as a machine capability. Historical published apparatus, not a claim of commercial availability.",
+      "capabilities": [
+        {
+          "key": "module.acoustic_gas_thermometry",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_agt_resonator"
+          ]
+        },
+        {
+          "key": "module.resistance_thermometry_bridge",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_agt_bridge"
+          ]
+        },
+        {
+          "key": "pressure.operating.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "30000",
+              "unit": "Pa"
+            },
+            "hi": {
+              "value": "120000",
+              "unit": "Pa"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expc_agt_pressure"
+          ]
+        },
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": []
+        }
+      ]
+    }
+  ]
+}

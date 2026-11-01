@@ -1,0 +1,127 @@
+{
+ "id": "astro_arecibo_wideband_feed_15k",
+ "name": "Wideband (2.5-14 GHz) cryogenic feed receiver: quad-ridged flared horn, high-pass filter, noise coupler and LNAs cooled to 15 K in a GM cryostat with Mylar RF window; Y-factor receiver temperature with 295 K absorber",
+ "plain_name": "Cool an entire radio antenna feed horn to 15 K and measure how much noise it adds",
+ "industry": "astronomy_and_astrophysics",
+ "description": "Arecibo 12 m telescope receiver: the QRFH, 2.5 GHz high-pass filters, noise couplers and Citcryo1-12D LNAs are enclosed in a cryostat built around a two-stage GM cryocooler (Trillium 350CS cold head, M600 compressor) and cooled to 15 K; signals enter through a Mylar window under a dry-air radome; receiver temperature (median 25 K over 2.5-14 GHz) is measured by the Y-factor method with a 295 K absorber as hot load and the sky as cold load.",
+ "keywords": [
+  "Cool an entire radio antenna feed horn to 15 K and measure how much noise it adds",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "D. A. Roshi, P. Perillat, F. Fernandez, H. Mani et al., 'A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope', Radio Science (2023), arXiv:2308.05826",
+   "url": "https://arxiv.org/pdf/2308.05826v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Trillium 350CS cold head",
+  "M600 helium compressor",
+  "Quadruple-Ridged Flared Horn (QRFH)",
+  "Citcryo1-12D3 cryogenic LNA",
+  "Keysight Fieldfox N9916A spectrum analyzer"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 15,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The horn, filter, coupler and LNA are cooled to 15 K.",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Sky and hot-load radiation reach the cold horn through the cryostat RF window (Mylar).",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_1"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 14,
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold RF chain must carry 2.5-14 GHz.",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold components are in an evacuated cryostat monitored by a vacuum gauge.",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_3"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "LNA gate/drain bias and monitoring wiring must reach the cold amplifiers.",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the cryostat uses a two-stage GM cryocooler (no liquid cryogen), suited to a telescope-mounted receiver.",
+   "evidence_ids": [
+    "v4e_astro_arecibo_wideband_feed_15k_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

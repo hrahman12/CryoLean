@@ -1,0 +1,84 @@
+{
+ "id": "auto_starter_battery_cold_cranking",
+ "name": "Cold-cranking test of 12 V lead-acid and LFP starter batteries (EN 50342-1 pulse 9 A/Ah to 8 V, 10 s pause, 5.4 A/Ah to 6 V) at 0, -10, -18 and -30 C after 24 h cold soak, with C20 capacity at 25, 0 and -18 C",
+ "plain_name": "Test whether a 12 V car starter battery can crank an engine at -30 C",
+ "industry": "automotive_and_transportation",
+ "description": "Six 12 V starter batteries (two AGM lead-acid, 50 Ah and 92 Ah; four LFP packs) are soaked for 24 h in a climate chamber at the target temperature, then C20 capacity (25, 0, -18 C) and the EN 50342-1 cold-cranking pulse sequence (0, -10, -18, -30 C) are run inside the same chamber.",
+ "keywords": [
+  "Test whether a 12 V car starter battery can crank an engine at -30 C",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "Bauknecht S. et al., Comparing the Cold-Cranking Performance of Lead-Acid and Lithium Iron Phosphate Batteries at Temperatures below 0 C, Batteries 2023, 9(3), 176, doi:10.3390/batteries9030176",
+   "url": "https://www.mdpi.com/2313-0105/9/3/176",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "climate chamber (model not named in the retrieved text)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 243150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 298150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Capacity and cranking tests span 25 C (298.15 K) down to -30 C (243.15 K).",
+   "evidence_ids": [
+    "v4e_auto_starter_battery_cold_cranking_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "High-current discharge pulses are drawn from the battery while it sits in the chamber.",
+   "evidence_ids": [
+    "v4e_auto_starter_battery_cold_cranking_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 250,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the chamber used held the test temperature with an accuracy of +/-0.25 C.",
+   "evidence_ids": [
+    "v4e_auto_starter_battery_cold_cranking_2"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -90,8 +90,10 @@ class Catalog:
                 if iid not in self.industries:
                     self.industries[iid] = {"id": iid, "name": iid.replace("_", " ").capitalize(), "description": "", "source": "from_experiment"}
             for ind in self.industries.values():
-                ind["experiment_ids"] = sorted(e for e, x in self.experiments.items() if x.get("industry") == ind["id"])
+                ind["experiment_ids"] = sorted(set(ind.get("coverage_experiment_ids", [])) | {e for e, x in self.experiments.items() if x.get("industry") == ind["id"]})
                 ind["status"] = "researched" if ind["experiment_ids"] else ("registered" if ind["source"] == "registered" else "known")
+            for ex in self.experiments.values():
+                ex["industries"] = sorted({ex.get("industry", "unspecified")} | {i["id"] for i in self.industries.values() if ex["id"] in i["experiment_ids"]})
             self.version = db.content_hash(con)
         finally:
             con.close()

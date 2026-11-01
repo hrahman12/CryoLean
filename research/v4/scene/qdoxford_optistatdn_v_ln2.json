@@ -1,0 +1,49 @@
+{
+  "configuration_id": "qdoxford_optistatdn_v_ln2",
+  "archetype": "ln2_optical_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 450, "unit": "mm", "quote": "Dimensions W x D x H (mm) 175 x 175 x 450", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf", "location": "Section 7.3 Physical, Optistat DN-V Operators Manual Issue 2.0 (Dec 2020); also Table 3-5"},
+    "width_or_diameter": {"value": 175, "unit": "mm", "quote": "Optistat DN-V Cryostat 175 175 450 5", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf", "location": "Table 3-5 Weights and dimensions of system components (Length/Width/Height mm, Weight kg)"},
+    "depth": {"value": 175, "unit": "mm", "quote": "Dimensions W x D x H (mm) 175 x 175 x 450", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf", "location": "Section 7.3 Physical"},
+    "color_note": "Stainless-steel OVC with painted surfaces: manual 8.2 'All stainless-steel surfaces may be cleaned with water or IPA... All painted surfaces and labels should be cleaned with warm soap and water'. Weight 5 kg."
+  },
+  "stages": [
+    {"name": "Liquid nitrogen reservoir (1.2 L, surrounds central heat-exchanger support tube)", "temperature_K": 77.2, "quote": "The cryostat's liquid nitrogen is stored in a reservoir, which surrounds the central heat exchanger support tube, but is thermally isolated from it.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"name": "Heat exchanger with heater and PT100 sensor (sample holder bolts to it; 77.2-500 K)", "temperature_K": 77.2, "quote": "Liquid nitrogen is supplied to the heat exchanger through a capillary tube connected to the reservoir. The flow of liquid is aided by gravity, but the flow rate is controlled by the exhaust valve at the top of the cryostat.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"name": "Outer vacuum chamber (OVC), room temperature, pumped < 1e-4 mbar, held by charcoal sorb on reservoir", "temperature_K": 293, "quote": "The reservoir and sample holder are thermally isolated from the room temperature surroundings by the outer vacuum chamber (OVC). This space is pumped to a high vacuum before the cryostat is cooled down, and the vacuum is maintained by a small sorption pump fitted to the reservoir.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "cylinder (20 mm diameter max sample space) in vacuum; sample on 20 x 50 mm holder hanging from heat exchanger at window height",
+    "description": "Sample in vacuum on a plain reflectance or 15 mm-aperture transmission sample holder, thermally linked to the heat exchanger below the LN2 reservoir, centred on the four radial windows. Max sample space 20 mm diameter; sample holder 20 mm wide x 50 mm long. No cold (radiation-shield) windows.",
+    "diameter_or_width": {"value": 20, "unit": "mm", "quote": "Maximum sample space 20 mm diameter", "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf", "location": "OptistatDN-V specification column"},
+    "height": {"value": 50, "unit": "mm", "quote": "Sample holder dimensions 20 mm wide x 50 mm long", "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf", "location": "OptistatDN-V specification column (holder length, not a documented max sample height)"}
+  },
+  "wiring": [
+    {"kind": "dc_loom", "count": 10, "from": "experimental 10-pin connector on OVC top plate", "to": "16-pin Harwin pin ring above the sample holder (pins 1-10 used; 2 x 34 SWG Cu, 8 x 40 SWG Cu)", "quote": "The experimental connector is wired to the Harwin pin ring above the sample holder. The pin configuration for the 16-pin Harwin pin ring is shown in Figure 3-4.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"kind": "heater_lead", "count": 2, "from": "diagnostic 10-pin connector (pins A/B)", "to": "heat exchanger Firerod heater (20 ohm)", "quote": "A Heat Exchanger Heater H+ Firerod heater", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"kind": "thermometer_lead", "count": 4, "from": "diagnostic 10-pin connector (pins C-F)", "to": "PT100 platinum resistance thermometer on heat exchanger", "quote": "The calibrations for the calibrated sensor on the system, a platinum resistance thermometer, will have been loaded onto the MercuryiTC in the factory when tested.", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"kind": "heater_lead", "count": 2, "from": "diagnostic 10-pin connector (pins K/L)", "to": "150 ohm charcoal sorb heater on reservoir", "quote": "L Sorb Heater S+ Sorb heater", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"}
+  ],
+  "windows": {
+    "count": 5,
+    "axis": "multiple",
+    "diameter_mm": 35,
+    "quote": "Every cryostat is supplied with 4 x Spectrosil WF windows, fitted radially, and 1 x blank fitted axially. All windows are user changeable.",
+    "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf"
+  },
+  "moving_parts": [
+    {"part": "ln2_boiloff_vapour", "quote": "The flow of liquid is aided by gravity, but the flow rate is controlled by the exhaust valve at the top of the cryostat.", "rate": "continuous; 1.2 L reservoir lasts >= 15 h at 77 K", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"},
+    {"part": "turbo_pump", "quote": "For the pumping system, Oxford Instruments recommends that you use a turbo-molecular pump", "rate": "customer-provided; used before cooldown and for >300 K operation, sorb holds vacuum otherwise", "source_url": "https://andor.oxinst.com/downloads/uploads/optistatdn-v-user-guide.pdf"}
+  ],
+  "cryogen": "liquid_nitrogen_bath",
+  "not_found": [
+    "stages[*].diameter_mm (reservoir, heat exchanger and OVC diameters not published; only the 175 mm overall footprint)",
+    "windows physical diameter for DN-V (35 mm is the clear aperture; the estore 42 mm quartz 'Optistat CF/DN new style' part is not explicitly stated for DN-V)",
+    "sample_space.height.max (only holder length 20 x 50 mm published)",
+    "reservoir height and position of windows along the 450 mm height",
+    "f/1 window-to-sample distance"
+  ],
+  "notes": "Compact tabletop LN2 bath optical cryostat, 175 x 175 x 450 mm, 5 kg (manual Table 3-5 and 7.3). Top: LN2 fill/vent pipe, nitrogen exhaust flow needle valve, two 10-pin connectors (diagnostic, experimental) on the OVC top plate, DN16NW OVC evacuation port with pressure-relief plates. Inside: 1.2 L LN2 reservoir around a central heat-exchanger support tube; capillary feeds a gravity-fed heat exchanger carrying heater + PT100; sample holder (20 x 50 mm) bolts beneath, sample in vacuum ('No cold windows', no radiation-shield windows). Four radial Spectrosil WF windows + one axial blank, each held by four nylon screws and an O-ring, 35 mm clear aperture, f/1 (QD Oxford page: 'Large illumination area: 35 mm diameter window aperture'; 'Weight: 5 kg'). Charcoal sorb with 150 ohm heater on the reservoir keeps the OVC below 1e-4 mbar. 77.2-500 K, +/-0.1 K, cooldown 20 min, hold >= 15 h. No cryocooler, no magnet; only motion is LN2 boil-off vapour at the vent and the optional external pump. Sources: QD Oxford Optistat matrix PDF (OPTSS 0926 R5, cache c73e273061693731), QD Oxford product page https://www.qd-oxford.com/products/optistat_spectroscopy.html (cache 295cbbaf14723ca3), Oxford Instruments Optistat family brochure (cache d52046bdb551703d), Oxford Instruments Optistat DN-V Operators Manual Issue 2.0 Dec 2020 (andor.oxinst.com robots.txt disallows the snapshot script; PDF fetched via WebFetch and text extracted locally with pypdf into the session scratchpad)."
+}

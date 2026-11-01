@@ -1,0 +1,78 @@
+{
+ "id": "photon_qkd_250km_sspd",
+ "name": "Coherent-one-way quantum key distribution over 250 km of ultra-low-loss fibre with NbN SSPDs at 2.5 K in a cryogen-free closed-cycle cryostat",
+ "plain_name": "Send secret quantum encryption keys over 250 km of optical fibre using cold superconducting detectors",
+ "industry": "photonics_and_telecommunications",
+ "description": "Stucki et al. (Geneva/Corning) run a 625 MHz COW QKD prototype over 250 km of SMF-28 ULL fibre; Bob uses two fibre-coupled NbN meander SSPDs at 2.5 K in a cryogen-free pulse-tube cryostat, biased at 26.5 uA for 2.65% efficiency at a 5 Hz dark-count rate.",
+ "keywords": [
+  "Send secret quantum encryption keys over 250 km of optical fibre using cold superconducting detectors",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "High rate, long-distance quantum key distribution over 250km of ultra low loss fibres (Stucki et al., arXiv:0903.3907, New J. Phys. 2009)",
+   "url": "https://arxiv.org/pdf/0903.3907",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Closed cycle pulse tube cryostat",
+  "fibre-coupled superconducting single photon detectors (SSPDs)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2500,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The detector efficiency/dark-count trade-off used for the 250 km key exchange was characterised and operated at 2.5 K.",
+   "evidence_ids": [
+    "v4e_photon_qkd_250km_sspd_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Two SSPDs (data line and monitoring line) must be current-biased and read out electrically.",
+   "evidence_ids": [
+    "v4e_photon_qkd_250km_sspd_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the prototype deliberately used a cryogen-free closed-cycle cryostat instead of liquid-helium cooling for practical field integration.",
+   "evidence_ids": [
+    "v4e_photon_qkd_250km_sspd_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

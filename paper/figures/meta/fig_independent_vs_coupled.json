@@ -1,0 +1,18 @@
+{
+ "name": "fig_independent_vs_coupled",
+ "title": "Independent requirements pass, coupled physics fails",
+ "question": "Can every requirement be met individually while the combined physics is violated, how often does that happen on the real grid, and can the solver repair it under the verified checker?",
+ "model": "Margins: (limit - documented)/limit for at_most, (documented - required)/required for counts, (P_cool - Q_load)/P_cool for the coupled relation margin*(n_drive q_drive + n_flux (q_flux + p_flux_dc) + n_out q_out) <= P_cool(20 mK) (model mxc_wiring_heat_budget, status validated). Repair: Z3 parameter search (verifier.check with suggestions), re-checked by Lean.",
+ "data": "Lean batch run over the 286-pair grid (verifier.build_documents); Demo B lhs/rhs are the exact rationals returned by Lean; Z3 repair from verifier.check(..., suggestions=True) and an explicit Lean re-check of the repaired document; sourced parameters from data/experiments/quantum_mxc_wiring_heat_budget.json and cooling power from data/cryostats (Bluefors evidence ev_bf_0006). Saved in paper/data/fig_independent_vs_coupled.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "(a) Demo B: the base-temperature and line-count requirements pass with 50.0 % and 35.5 % slack, but the coupled mixing-chamber heat budget fails (14.592 µW > 12 µW, -21.6 %); Z3 proposes reducing n_flux_lines from 50 to 39 and Lean accepts the repaired profile with 0.125 % slack. (b) Coupled-check outcomes over the grid: the heat budget can be evaluated for the three configurations with a sourced 20 mK cooling power and fails for all three; of the 21 pairs that pass every single-capability requirement, 1 fails a coupled constraint. The Joule-heating check is advisory and not evaluable in 26/26 pairs (current and resistance are user inputs), so the grid contains no Joule-heating example. Verdicts and margins are computed by the Lean checker from sourced specifications.",
+ "section": "main",
+ "script": "paper/scripts/fig_baselines.py",
+ "command": "python paper/scripts/fig_baselines.py",
+ "files": [
+  "paper/figures/fig_independent_vs_coupled.png",
+  "paper/figures/fig_independent_vs_coupled.svg",
+  "paper/figures/fig_independent_vs_coupled.pdf"
+ ],
+ "interactive": null
+}

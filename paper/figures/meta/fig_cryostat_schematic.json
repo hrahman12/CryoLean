@@ -1,0 +1,18 @@
+{
+ "name": "fig_cryostat_schematic",
+ "title": "Dilution-refrigerator stack and where the heat budget applies",
+ "question": "Where in the refrigerator does the Demo B heat-budget constraint act, and which documented numbers enter it?",
+ "model": "Schematic only (no physics computed); the boxed total and verdict are the Lean output for Demo B.",
+ "data": "Numbers from data/cryostats/bluefors_ld.json (bluefors_ld400_hdw: temperature.base ev_bf_0003, cooling_power.at_20mK ev_bf_0006, cooling_power.at_100mK ev_bf_0007, electrical.coax_lines) and data/experiments/quantum_mxc_wiring_heat_budget.json (line counts hl_033, per-line loads hl_011, hl_017, hl_019, hl_029); total and verdict from paper/data/fig_heat_budget.json (Lean).",
+ "claim": "ILLUSTRATIVE+SOURCED+COMPUTED",
+ "caption": "Illustrative stack of a cryogen-free dilution refrigerator (plates drawn as discs, wiring as vertical lines; geometry, plate spacing and line positions are not to scale). Annotated numbers are the sourced LD400 specifications in CryoLean's catalog and the per-line loads of the Demo B heat-budget profile; the heat-budget constraint is evaluated at the mixing-chamber plate, where the Lean checker compares the margin-weighted wiring load (14.592 µW) with the documented cooling power at 20 mK (12 µW).",
+ "section": "supplement",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_cryostat_schematic.png",
+  "paper/figures/fig_cryostat_schematic.svg",
+  "paper/figures/fig_cryostat_schematic.pdf"
+ ],
+ "interactive": "paper/interactive/fig_cryostat_schematic.html"
+}

@@ -1,0 +1,90 @@
+{
+ "id": "bio_mx_cryocrystallography_100k",
+ "name": "Macromolecular X-ray diffraction data collection at 100 K on a loop-mounted, liquid-nitrogen flash-cooled protein crystal in an Oxford Cryostream",
+ "plain_name": "Collect X-ray diffraction from a protein crystal kept at 100 K",
+ "industry": "biology_and_biotechnology",
+ "description": "A cryoprotected protein crystal mounted in a nylon loop is flash-cooled in liquid nitrogen and kept at 100 K in an open-flow nitrogen gas stream on the goniometer while diffraction images are recorded; cooling below the glass transition of water (about 136-155 K) limits radiation damage.",
+ "keywords": [
+  "Collect X-ray diffraction from a protein crystal kept at 100 K",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Kumar A, Karthikeyan S (2018). Crystal structure of the MSMEG_4306 gene product from Mycobacterium smegmatis. Acta Crystallographica Section F. doi:10.1107/s2053230x18002236",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5947703/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Pflugrath JW (2015). Practical macromolecular cryocrystallography. Acta Crystallographica Section F. doi:10.1107/s2053230x15008304",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4461322/fullTextXML",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Oxford Cryostream",
+  "Rigaku MicroMax-007 HF rotating-anode X-ray generator",
+  "MAR345 image-plate detector"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 100000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Diffraction data are collected with the crystal at 100 K.",
+   "evidence_ids": [
+    "v4e_bio_mx_cryocrystallography_100k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 136000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The crystal must be held below the lower bound of the water glass-transition range (about 136 K).",
+   "evidence_ids": [
+    "v4e_bio_mx_cryocrystallography_100k_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Crystals are flash-cooled in liquid nitrogen before data collection.",
+   "evidence_ids": [
+    "v4e_bio_mx_cryocrystallography_100k_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,946 @@
+{
+ "industry": "defense_and_security",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "def_mil810_502_cold_operation_c2",
+   "name": "MIL-STD-810H Method 502.7 Procedure II low-temperature operation test at the Cold (C2) design extreme, -46 C, with at least 2 h soak after stabilization",
+   "plain_name": "Prove military equipment still switches on and works after soaking at -46 C",
+   "industry": "defense_and_security",
+   "description": "Procedure II (Operation) of MIL-STD-810H Method 502.7: the test item, in its operational configuration and installed in the chamber, is brought to its low operating temperature at no more than 3 C/min, held for at least two hours after temperature stabilization, and then given an operational checkout. The operating point used here is the Cold (C2) climatic design type of Table 502.7-I, whose ambient-air cycle reaches -46 C (Canada, Alaska excluding the interior).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 227150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The chamber air must be held at the C2 low extreme of -46 C (227.15 K) for the operating soak.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-4, Table 502.7-I, row Cold (C2), ambient-air and induced columns",
+     "quote": "Cold (C2) Canada, Alaska (excluding the interior); -37 to -46 -37 to -46",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 227150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The machine's lowest temperature must be -46 C (227.15 K) or colder; lets machines documented by a base temperature decide.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-4, Table 502.7-I, row Cold (C2)",
+     "quote": "Cold (C2) Canada, Alaska (excluding the interior); -37 to -46 -37 to -46",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 2,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The low temperature is held for at least two hours after the test item stabilizes (plus the stabilization time).",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-8, para 4.5.3 Procedure II - Operation, Step 1",
+     "quote": "Maintain this for at least two hours following temperature stabilization of the test item.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "The item is checked out operating inside the chamber; mains- or bench-powered items need a cable port, battery items do not, so this is optional.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-8, para 4.5.3 Procedure II - Operation, Step 1",
+     "quote": "With the test item in its operational configuration and installed in the test chamber, adjust the chamber air temperature to the low operating temperature of the test item as specified in the test plan at a rate not to exceed 3°C/min (5°F/min).",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "def_mil810_502_munitions_storage_c3",
+   "name": "MIL-STD-810H Method 502.7 Procedure I low-temperature storage of explosives/munitions at the Severe Cold (C3) extreme, -51 C, for at least 72 h after stabilization",
+   "plain_name": "Store explosives and munitions at -51 C for three days to check they stay safe",
+   "industry": "defense_and_security",
+   "description": "Procedure I (Storage) of MIL-STD-810H Method 502.7 applied to explosives, munitions, rubber and plastics, which the method says may keep deteriorating after temperature stabilization and therefore need a minimum storage period of 72 hours. The storage temperature is the Severe Cold (C3) design value of -51 C from Table 502.7-I (also the 20 % frequency-of-occurrence extreme of Table 502.7-II), reached at no more than 3 C/min, followed by return to ambient, visual examination and operational checkout.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 222150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The item is stored at the C3 storage/transit temperature of -51 C (222.15 K).",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-4, Table 502.7-I, row Severe Cold (C3), ambient-air and induced columns",
+     "quote": "Northern Asia (some areas), -51 -51",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 222150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The machine's lowest temperature must be -51 C (222.15 K) or colder.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-4, Table 502.7-II",
+     "quote": "-51 °C1 (-60 °F) 20 percent",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 72,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Explosives/munitions need at least 72 h at -51 C after stabilization, so the chamber must run unattended that long; continuous-run capability is rarely documented, so not mandatory.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-5, para 2.3.2 b",
+     "quote": "Use a minimum storage period of 72 hours following temperature stabilization of the test item.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "def_mil810_503_cold_region_shock",
+   "name": "MIL-STD-810H Method 503.7 Procedure I-D temperature shock between a -46 C cold-region exterior and an 18-24 C heated enclosure, transfer within one minute",
+   "plain_name": "Carry a military device between arctic outdoors and a heated shelter to check sudden temperature change does not crack it",
+   "industry": "defense_and_security",
+   "description": "Ground-transfer temperature shock per MIL-STD-810H Method 503.7 (Procedure I-D, shocks to and from controlled ambient): the item is stabilized at the cold-region exterior extreme, selected from Method 502.7 Table 502.7-I Cold (C2) = -46 C, and transferred in no more than one minute to the cold-regions enclosure condition of 18-24 C at 30-50 % RH (and back), stabilizing after each transfer. The method calls for two chambers or a two-celled chamber that re-stabilizes within five minutes after transfer.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 227150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 297150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The (two-zone) machine must provide both the -46 C cold extreme and the 24 C upper end of the heated-enclosure condition (227.15-297.15 K).",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-503.7-Temperature-Shock.pdf",
+     "document_title": "MIL-STD-810H Method 503.7 Temperature Shock (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 503.7-5, para 2.3.2 c (1) Cold regions",
+     "quote": "Typically, conditions for cold regions enclosures are indoor air at 18 °C to 24 °C (65 °F to 75 °F), with an accompanying RH of 30 to 50%",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 227150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold side must reach the Method 502.7 Cold (C2) ambient extreme of -46 C (227.15 K), which Method 503.7 says to select from the 502.7 tables for cold-region ground transfer.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "document_title": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 502.7-4, Table 502.7-I, row Cold (C2)",
+     "quote": "Cold (C2) Canada, Alaska (excluding the interior); -37 to -46 -37 to -46",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "humidity.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 30,
+       "unit": "percent"
+      },
+      "hi": {
+       "value": 50,
+       "unit": "percent"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The heated-enclosure condition carries 30-50 % RH; humidity control is optional for the shock itself.",
+     "source_url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-503.7-Temperature-Shock.pdf",
+     "document_title": "MIL-STD-810H Method 503.7 Temperature Shock (Department of Defense Test Method Standard, 31 January 2019)",
+     "location": "p. 503.7-5, para 2.3.2 c (1) Cold regions",
+     "quote": "indoor air at 18 °C to 24 °C (65 °F to 75 °F), with an accompanying RH of 30 to 50%",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "MIL-STD-810H Method 503.7 Temperature Shock (Department of Defense Test Method Standard, 31 January 2019)",
+     "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-503.7-Temperature-Shock.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+     "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "def_ansi_n4234_rid_ambient_temperature",
+   "name": "ANSI N42.34-2006 clause 7.1 ambient-temperature influence test of an externally powered handheld radionuclide identifier from -20 C to +50 C",
+   "plain_name": "Check a handheld radiation identifier still names radioactive sources correctly from -20 C to +50 C",
+   "industry": "defense_and_security",
+   "description": "Homeland-security radionuclide-identifier qualification per ANSI N42.34-2006 clause 7.1: the switched-on instrument, powered from an external source, stabilizes at 22 C for 2 h in an environmental chamber, then is stepped at 10 C/h up to +50 C and down to -20 C with 1.5 h stabilization at each 10 C step and 8 h at each extreme, with Am-241/Co-60 identification trials and Cf-252 neutron checks at each plateau. The device envelope used for the size requirements is the ORTEC Detective-X HPGe identifier (39.5 x 16 x 21 cm), which is rated for -20 C to +50 C.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 253150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 323150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The chamber must cover the full -20 C to +50 C operating range (253.15-323.15 K).",
+     "source_url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+     "document_title": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+     "location": "p. 22, clause 7.1.1 Requirements",
+     "quote": "The instrument shall be operational at temperatures from -20 °C to +50 °C.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The instrument runs from an external power source while inside the chamber, so a cable port/feedthrough to the test item is needed.",
+     "source_url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+     "document_title": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+     "location": "p. 22, clause 7.1.2 Test method",
+     "quote": "With the instrument powered from an external power source, switch the instrument on and place it in an environmental chamber.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 427,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Circumscribed diameter of the Detective-X footprint 39.5 cm x 16 cm (sqrt(395^2 + 160^2) = 426.2 mm, rounded up to 427 mm) must fit the chamber cross-section.",
+     "source_url": "https://www.htds.fr/wp-content/uploads/2019/04/detective-x.pdf",
+     "document_title": "ORTEC Detective-X Ultra High Resolution HPGe Radioisotope Identification Device (data sheet)",
+     "location": "p. 7, Physical Specifications",
+     "quote": "Maximum Overall Dimensions (including handle and Ge detector endcap) 15.5 in L x 6.25 in W x 8.25 in H (39.5 cm L x 16 cm W x 21 cm H).",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 21,
+       "unit": "cm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 21 cm instrument height must fit the chamber's usable height.",
+     "source_url": "https://www.htds.fr/wp-content/uploads/2019/04/detective-x.pdf",
+     "document_title": "ORTEC Detective-X Ultra High Resolution HPGe Radioisotope Identification Device (data sheet)",
+     "location": "p. 7, Physical Specifications",
+     "quote": "Maximum Overall Dimensions (including handle and Ge detector endcap) 15.5 in L x 6.25 in W x 8.25 in H (39.5 cm L x 16 cm W x 21 cm H).",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 167,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The chamber ramps at 10 C/h (166.7 mK/min, rounded up to 167 mK/min); any programmable chamber does this.",
+     "source_url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+     "document_title": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+     "location": "p. 22, clause 7.1.2 Test method",
+     "quote": "Remove the source and increase the temperature in the chamber at a rate of 10 °C /h to +50 °C.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 8,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Each temperature extreme is held for 8 h with the instrument operating.",
+     "source_url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+     "document_title": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+     "location": "p. 22, clause 7.1.2 Test method",
+     "quote": "At the high temperature limit of +50 °C, the instrument shall be exposed for a period of 8 h with exposure rate readings recorded",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "ANSI N42.34-2006 American National Standard Performance Criteria for Hand-Held Instruments for the Detection and Identification of Radionuclides (IEEE, 22 January 2007)",
+     "url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "ORTEC Detective-X Ultra High Resolution HPGe Radioisotope Identification Device (data sheet)",
+     "url": "https://www.htds.fr/wp-content/uploads/2019/04/detective-x.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "def_hpge_stirling_incident_body_monitor",
+   "name": "Incident-response whole-body and thyroid gamma monitoring with a Stirling-cooled coaxial HPGe radionuclide identifier (crystal at liquid-nitrogen temperature without liquid nitrogen)",
+   "plain_name": "Check people for swallowed or inhaled radioactivity after an incident with a portable electrically cooled germanium detector",
+   "industry": "defense_and_security",
+   "description": "After a radiological incident, an ORTEC Detective portable radionuclide identifier, whose ~50 mm x 30 mm coaxial hyper-pure germanium crystal is cooled electrically by a low-power Stirling cooler (no liquid nitrogen, important for transport), is calibrated and used as a rapidly deployable whole-body and I-131 thyroid monitor running about 3 h on its internal battery. Germanium detectors must be operated at liquid-nitrogen temperature (77 K) in an evacuated cryostat.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The germanium crystal must be held at liquid-nitrogen temperature, 77 K.",
+     "source_url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "document_title": "Environmental Radioactivity Measuring Methods No.7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment June 2021)",
+     "location": "PDF p. 28, section 4.1.2 Cooling equipment",
+     "quote": "Because a germanium crystal cannot be used at room temperature due to its narrow-forbidden band (0.665 eV), it must be used at the liquid nitrogen temperature (77 K, -196°C).",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Deployment by one person in an ordinary car relies on electrical Stirling cooling; liquid nitrogen is explicitly not used.",
+     "source_url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf",
+     "document_title": "HPA-RPD-045 The Use of a High-resolution Radionuclide Identifier as a Portable Whole Body Monitor (M J Youngman, Health Protection Agency, 2008)",
+     "location": "p. 1, section 2 Detector",
+     "quote": "The detector is cooled electrically using a low power Stirling cooler. This is important for transport reasons as liquid nitrogen is not required.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The germanium crystal sits in an evacuated cryostat; loss of cryostat vacuum degrades the detector.",
+     "source_url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "document_title": "Environmental Radioactivity Measuring Methods No.7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment June 2021)",
+     "location": "PDF p. 32, section 4.1.6, item (5) Weight scale",
+     "quote": "the detector's deterioration by heat insulation caused by the decrease in the vacuum pressure of the cryostat.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cold crystal must be biased and read out by the integral acquisition electronics, so electrical connections to the cooled element are needed.",
+     "source_url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf",
+     "document_title": "HPA-RPD-045 The Use of a High-resolution Radionuclide Identifier as a Portable Whole Body Monitor (M J Youngman, Health Protection Agency, 2008)",
+     "location": "p. 1, section 2 Detector",
+     "quote": "The instrument has integral data acquisition electronics and can acquire and store spectra.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 3,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The monitor ran about 3 h on its internal battery in the field (8 h with the external battery).",
+     "source_url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf",
+     "document_title": "HPA-RPD-045 The Use of a High-resolution Radionuclide Identifier as a Portable Whole Body Monitor (M J Youngman, Health Protection Agency, 2008)",
+     "location": "p. 1, section 2 Detector",
+     "quote": "The detector will operate for about 3 hours on an internal battery and can also be powered from a vehicle battery",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "HPA-RPD-045 The Use of a High-resolution Radionuclide Identifier as a Portable Whole Body Monitor (M J Youngman, Health Protection Agency, 2008)",
+     "url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf",
+     "accessed": "2026-11-01"
+    },
+    {
+     "citation": "Environmental Radioactivity Measuring Methods No.7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment June 2021)",
+     "url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Ortec Detective"
+   ]
+  },
+  {
+   "id": "def_integral_stirling_77k_lift",
+   "name": "Heat-lift and cool-down performance check of a tactical integral rotary Stirling cryocooler: 550 mW at 77 K at +71 C ambient, 5 min cool-down of a 250 J load to 80 K",
+   "plain_name": "Check that a small battlefield-camera cooler can pull its heat load down to 77 K quickly",
+   "industry": "defense_and_security",
+   "description": "Performance acceptance of an integral rotary Stirling cooler for thermal-imaging focal planes, using the Ricor K508 ratings as test points: total cooling power 550 mW at a 77 K cold tip at 71 C ambient, cool-down of a 250 J thermal mass to 80 K in about 5 minutes at 23 C, cold-tip stability +/-0.5 K, all on DC electrical input power only.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold tip is regulated at 77 K for the lift rating.",
+     "source_url": "https://ricor.com/products/k508",
+     "document_title": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "location": "Specifications, Total cooling power",
+     "quote": "Total cooling power: 900mW@110K@71°C 550mW@77K@71°C",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cooling_power.at_77000mK"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 550,
+       "unit": "mW"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Required heat lift at 77 K (rated at +71 C ambient).",
+     "source_url": "https://ricor.com/products/k508",
+     "document_title": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "location": "Specifications, Total cooling power",
+     "quote": "Total cooling power: 900mW@110K@71°C 550mW@77K@71°C",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Tactical integral coolers run on DC electrical power alone, with no liquid cryogen.",
+     "source_url": "https://ricor.com/products/k508",
+     "document_title": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "location": "Specifications, input power",
+     "quote": "Steady state input power (200mW@80K@23°C): 5.5Wdc typ. Maximum input power: 18Wdc typ.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cooldown_time.max"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 5,
+       "unit": "min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Cool-down of a 250 J thermal mass to 80 K at 23 C in about 5 min (typical; depends on load mass).",
+     "source_url": "https://ricor.com/products/k508",
+     "document_title": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "location": "Specifications, Cool down time",
+     "quote": "Cool down time: (250J@80K@23°C): 5 min. typ.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 500,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Cold-tip temperature stability of +/-0.5 K.",
+     "source_url": "https://ricor.com/products/k508",
+     "document_title": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "location": "Specifications",
+     "quote": "Temperature stability: ±0.5K",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Ricor K508 integral rotary Stirling cryocooler, product specification page",
+     "url": "https://ricor.com/products/k508",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "K508"
+   ]
+  },
+  {
+   "id": "def_hot_mwir_idca_120k",
+   "name": "Operating a high-operating-temperature (HOT) T2SL MWIR focal-plane array at about 120 K in a vacuum dewar cooled by a linear Stirling cryocooler (integrated dewar cooler assembly)",
+   "plain_name": "Keep a thermal-sight camera's infrared chip near 120 K inside a sealed vacuum package with a long-life cooler",
+   "industry": "defense_and_security",
+   "description": "Cooled MWIR camera modules (Teledyne FLIR Neutrino) put the focal-plane array, cold shield and cold filter in a vacuum dewar with hermetically sealed electrical feedthroughs, cooled by a mechanical linear cryocooler (FL-100) in an Integrated Dewar Cooler Assembly. HOT barrier (T2SL) detectors operate at approximately 120 K, versus about 77 K for InSb and most HgCdTe; the FL-100 MTTF is about 27,000 h from lifetime tests and Weibull analysis.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 120000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The HOT barrier FPA operates at approximately 120 K.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 3, Infrared camera module and system introduction",
+     "quote": "Hot MWIR Barrier Infrared (e.g., T2SL) detectors are considered high operating temperature (HOT) at approximately 120K operation",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The FPA is housed in a vacuum dewar.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 3, Dewar bullet",
+     "quote": "Dewar: The Dewar is a vacuum package containing the FPA, coldshield (defines the f/number and prevents stray light) and the coldfilter",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Infrared photons must reach the FPA through the cold shield and cold filter.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 3, Dewar bullet",
+     "quote": "coldfilter (determines the wavelengths of the photons at the detector).",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "ROIC signals leave the dewar through hermetic electrical feedthroughs.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 3, Dewar bullet",
+     "quote": "The electrical signals between the ROIC and the camera electronics are provided via hermetically sealed feedthroughs.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Cooling is by a mechanical cryocooler integrated with the dewar; no liquid cryogen in the field.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 4, Cryocooler bullet",
+     "quote": "Cryocooler: Mechanical cryocoolers provide extended duration cooling to IR FPAs. Modern designs integrate directly to the Dewar as part of an Integrated Dewar Cooler Assembly (IDCA).",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 27000,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Maintenance-free life target: approximately 27,000 h MTTF for current production FL-100 coolers.",
+     "source_url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "document_title": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "location": "p. 2",
+     "quote": "the estimated mean time to failure (MTTF) of the Teledyne FLIR FL-100 cryocooler has increased from approximately 17,000 hours at prototype introduction to approximately 27,000 hours for current production units",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Teledyne FLIR, Understanding Cryocooled Infrared System Reliability (white paper, Rev. 100, 2021)",
+     "url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Teledyne FLIR FL-100 cryocooler",
+    "Neutrino"
+   ]
+  },
+  {
+   "id": "def_hts_degaussing_ln2_77_85k",
+   "name": "Cold operation of a 1:5-scale HTS naval degaussing coil demonstrator held at 77-85 K in (subcooled) liquid nitrogen",
+   "plain_name": "Run superconducting cables that hide a warship's magnetic signature, cooled by liquid nitrogen",
+   "industry": "defense_and_security",
+   "description": "University of Twente naval degaussing demonstrator: HTS degaussing coils, which cancel the magnetic signature of a steel hull by opposing the Earth's field (full-size systems need up to 1-2 kA-turns), are built on a 1:5 m laboratory demonstrator and kept at 77-85 K by a dedicated (subcooled) liquid-nitrogen cooling system; much of the cooling power goes to parasitic heat loads.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 77000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 85000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The superconductors are maintained between 77 and 85 K.",
+     "source_url": "https://research.utwente.nl/en/publications/cryogenics-for-an-hts-degaussing-system-demonstrator",
+     "document_title": "Cryogenics for an HTS degaussing system demonstrator (I. Hanse, D.P. Wikkerink, C. Vermeer, H.J. Holland, M.M.J. Dhalle, H.J.M. ter Brake; INEC 2020, doi:10.24868/issn.2515-818X.2020.068)",
+     "location": "Abstract",
+     "quote": "maintains the superconductors at a temperature of 77-85K using (subcooled) liquid nitrogen",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The cooling system uses (subcooled) liquid nitrogen.",
+     "source_url": "https://research.utwente.nl/en/publications/cryogenics-for-an-hts-degaussing-system-demonstrator",
+     "document_title": "Cryogenics for an HTS degaussing system demonstrator (I. Hanse, D.P. Wikkerink, C. Vermeer, H.J. Holland, M.M.J. Dhalle, H.J.M. ter Brake; INEC 2020, doi:10.24868/issn.2515-818X.2020.068)",
+     "location": "Abstract",
+     "quote": "maintains the superconductors at a temperature of 77-85K using (subcooled) liquid nitrogen",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The degaussing coils carry transport current (kA-turn class in full-size systems), so current connections to the cold coils are needed.",
+     "source_url": "https://research.utwente.nl/en/publications/cryogenics-for-an-hts-degaussing-system-demonstrator",
+     "document_title": "Cryogenics for an HTS degaussing system demonstrator (I. Hanse, D.P. Wikkerink, C. Vermeer, H.J. Holland, M.M.J. Dhalle, H.J.M. ter Brake; INEC 2020, doi:10.24868/issn.2515-818X.2020.068)",
+     "location": "Abstract",
+     "quote": "Degaussing systems for large naval vessels typically need currents of up to 1 or 2 kAturns,",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryogenics for an HTS degaussing system demonstrator (I. Hanse, D.P. Wikkerink, C. Vermeer, H.J. Holland, M.M.J. Dhalle, H.J.M. ter Brake; INEC 2020, doi:10.24868/issn.2515-818X.2020.068)",
+     "url": "https://research.utwente.nl/en/publications/cryogenics-for-an-hts-degaussing-system-demonstrator",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "def_hts_squid_mad_tensor_77k",
+   "name": "Magnetic anomaly detection with an 8-element 77 K HTS SQUID tensor gradiometer cooled by liquid nitrogen",
+   "plain_name": "Find a hidden metal object from the tiny dent it makes in the Earth's magnetic field using nitrogen-cooled SQUID sensors",
+   "industry": "defense_and_security",
+   "description": "Passive magnetic anomaly detection (MAD) with Tristan Technologies HTS SQUID systems that use liquid nitrogen (77 K) as refrigerant for cost and portability: the T877 8-element tensor gradiometer was designed specifically for magnetic anomaly measurements; an HTS planar gradiometer in a tail-mounted stinger on a Cessna Caravan recorded the signature of a vehicle; the G377 3-axis 77 K system reaches better than 100 fT/sqrt(Hz).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The HTS SQUIDs operate at 77 K.",
+     "source_url": "https://tristantech.com/general",
+     "document_title": "Tristan Technologies, General Geophysical Devices (HTS SQUID magnetometer systems)",
+     "location": "G377 product paragraph",
+     "quote": "Tristan’s model G377 3-axis (Bx, By, Bz) 77K Geophysical Magnetometer SQUID System",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Eight SQUID gradiometer elements must be biased and read out from the cold space.",
+     "source_url": "https://tristantech.com/general",
+     "document_title": "Tristan Technologies, General Geophysical Devices (HTS SQUID magnetometer systems)",
+     "location": "T877 paragraph",
+     "quote": "Tristan’s T877 8-element tensor gradiometer system was specifically designed for magnetic anomaly measurements.",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Tristan cools these systems with liquid nitrogen for cost and portability; a cryocooler could also reach 77 K, so not mandatory.",
+     "source_url": "https://tristantech.com/general",
+     "document_title": "Tristan Technologies, General Geophysical Devices (HTS SQUID magnetometer systems)",
+     "location": "HTS systems paragraph",
+     "quote": "using liquid nitrogen as a refrigerant for reduced cost and portability",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Tristan Technologies, General Geophysical Devices (HTS SQUID magnetometer systems)",
+     "url": "https://tristantech.com/general",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "T877",
+    "G377"
+   ]
+  },
+  {
+   "id": "def_jt_spray_seeker_fast_cooldown",
+   "name": "Fast cool-down of a pivoted missile-seeker IR detector to 100 K within 2.3 s from a +50 C soak with a two-stage argon / CF4 (or CH4) Joule-Thomson spray cooler",
+   "plain_name": "Chill a missile's infrared eye to 100 K in about two seconds with expanding high-pressure argon",
+   "industry": "defense_and_security",
+   "description": "For surface-to-air IR missiles that must be ready within seconds, a two-stage fast cool-down dual-gas spray cooler sprays argon, pre-cooled by a CF4 or CH4 first-stage Joule-Thomson cooler, through a nozzle onto the back of the gimbal-mounted detector plate; the detector reached 100 K (-173 C) in less than 2.3 s from an ambient soak of 323 K (+50 C).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 100000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The detector is cooled to 100 K.",
+     "source_url": "https://consensus.app/papers/details/4c9311de7aeb5c109e070eee78726472/",
+     "document_title": "Fast-cool-down dual gas spray-cooler for pivoted IR detectors (U. Hingst, 2003), abstract",
+     "location": "Abstract",
+     "quote": "a fast-cool-down of the IR-detector to 100K (-173°C) has been achieved within less than 2.3 seconds from an ambient soak temperature of 323 K (+50°C).",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cooldown_time.max"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "2.3",
+       "unit": "s"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Mission readiness requires reaching 100 K in under 2.3 s from a +50 C soak.",
+     "source_url": "https://consensus.app/papers/details/4c9311de7aeb5c109e070eee78726472/",
+     "document_title": "Fast-cool-down dual gas spray-cooler for pivoted IR detectors (U. Hingst, 2003), abstract",
+     "location": "Abstract",
+     "quote": "a fast-cool-down of the IR-detector to 100K (-173°C) has been achieved within less than 2.3 seconds from an ambient soak temperature of 323 K (+50°C).",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "compressed_argon_jt"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The second stage expands highly pressurized, pre-cooled argon through a nozzle onto the detector plate.",
+     "source_url": "https://consensus.app/papers/details/4c9311de7aeb5c109e070eee78726472/",
+     "document_title": "Fast-cool-down dual gas spray-cooler for pivoted IR detectors (U. Hingst, 2003), abstract",
+     "location": "Abstract",
+     "quote": "With such a \"Fast Cool-down Dual Gas Spray Cooler-System\" with Argon and CF4 or alternatively CH4 a fast-cool down of the IR-detector to 100K (-173°C) has been achieved",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Fast-cool-down dual gas spray-cooler for pivoted IR detectors (U. Hingst, 2003), abstract",
+     "url": "https://consensus.app/papers/details/4c9311de7aeb5c109e070eee78726472/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ],
+ "notes": "Tavily (plan limit), WebSearch (turn budget) and Lune (daily quota) were exhausted during this run, so sources were read with WebFetch plus local pdftotext of the fetched PDFs, and one Consensus search. Quotes from layout-extracted PDFs have collapsed whitespace; the PDF degree glyphs were restored as the degree sign. MIL-STD-810H does not fix single temperatures: the -46 C (C2) and -51 C (C3) operating points are the tailored values from Table 502.7-I, and Method 503.7 directs users to those tables for cold-region ground transfer. The ANSI N42.34 size requirements use the ORTEC Detective-X envelope as the device under test (circumscribed footprint diameter 426.2 mm rounded up to 427 mm). The Ricor K508 profile uses the manufacturer's rating points as the acceptance test. The Hingst JT spray-cooler source is the published abstract (Consensus record); the DOI could not be confirmed with the tools available. The Twente degaussing quotes are from the abstract on the University of Twente publication page (the full PDF returned 403). The HPGe 77 K requirement is sourced to the Japanese NRA germanium-spectrometry method because the HPA report gives no crystal temperature."
+}

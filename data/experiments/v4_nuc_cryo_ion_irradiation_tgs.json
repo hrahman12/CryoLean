@@ -1,0 +1,137 @@
+{
+ "id": "nuc_cryo_ion_irradiation_tgs",
+ "name": "In situ transient grating spectroscopy of thermal diffusivity and SAW speed of Cu-110 during 12.4 MeV Cu6+ ion irradiation at 30 K (variable 30-300 K, high vacuum)",
+ "plain_name": "Shine lasers on a copper magnet material while an ion beam damages it at 30 K to see how its heat conduction degrades",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "MIT fusion-magnet-materials facility: 13 x 15 x 2 mm sample on a copper strap cooled by a CVi CGR409 cryocooler in a ~1e-4 Pa chamber on the CLASS 1.7 MV Tandetron; TGS laser beams and ion beam overlap on the sample during irradiation at 30 K (apparatus 30-300 K).",
+ "keywords": [
+  "Shine lasers on a copper magnet material while an ion beam damages it at 30 K to see how its heat conduction degrades",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Aurora et al., A facility for thermo-mechanical characterization of fusion magnet materials during cryogenic ion irradiation, arXiv:2506.17358 (2025)",
+   "url": "https://arxiv.org/pdf/2506.17358",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "CVi CGR409 cryocooler",
+  "Technology Applications Inc. P50-502 copper thermal strap",
+  "MIT CLASS 1.7 MV Tandetron accelerator with SNICS source",
+  "LakeShore Cernox 1070 HT sensor"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 30000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Irradiation and in situ TGS at 30 K.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 30000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 300000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reference measurements over 30-300 K.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Laser TGS beams must reach the sample with the ion beam.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Evacuated chamber.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_3"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.0001",
+     "unit": "Pa"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reported 1e-4 Pa range.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_4"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "19.85",
+     "unit": "mm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "13 x 15 mm footprint, circumscribed diameter 19.85 mm rounded up to 20 mm.",
+   "evidence_ids": [
+    "v4e_nuc_cryo_ion_irradiation_tgs_5"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

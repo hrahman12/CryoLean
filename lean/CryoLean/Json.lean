@@ -105,6 +105,8 @@ def installStatusFromJson (j : Json) : Except String InstallStatus := do
   match ← j.getStr? with
   | "installed"              => pure .installed
   | "optional_not_installed" => pure .optionalNotInstalled
+  -- the instrument does not provide this capability at all (documented absence); same semantics: absent
+  | "not_available"          => pure .optionalNotInstalled
   | "unknown"                => pure .unknown
   | s => throw s!"unknown install status '{s}'"
 

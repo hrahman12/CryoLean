@@ -1,0 +1,18 @@
+{
+ "name": "fig_lean_scaling",
+ "title": "Lean checker runtime vs document size",
+ "question": "How does the compiled Lean checker's wall time grow with the number of mandatory requirements and coupled constraints, and what does batching buy?",
+ "model": "Wall-clock timing (time.perf_counter) of lean_runner.check (one Lean process per check), of the Lean process alone on a pre-written input, and of lean_runner.check_batch over 100 identical pairs (per pair); median and IQR of 7 interleaved repeats after warm-up; OLS fit of log10(time) on log10(size) over the upper decade, 95% CI from the t distribution.",
+ "data": "paper/data/bench_lean_scaling.json (raw timings) and paper/data/fig_lean_scaling.json (summaries), written by paper/scripts/fig_benchmarks.py. (a) SYNTHETIC documents: N = 1..2000 mandatory requirements over N matching documented capabilities (5 constraint shapes, all pass; Lean verdict REQUIREMENTS_MET for every N). (b) the real Demo B documents (quantum_mxc_wiring_heat_budget on bluefors_ld400_hdw) with the real mxc_wiring_heat_budget relation repeated k = 1..1000 times (Lean verdict DOES_NOT_MEET_REQUIREMENTS for every k: each copy fails as in Demo B); batches only up to k = 200. Machine: Intel(R) Core(TM) i9-14900HX (24 cores / 32 threads, 29.7 GiB), Windows-11-10.0.26200-SP0, Python 3.12.10, cryolean v2 (Lean 4.35.0), Z3 5.3.3.",
+ "claim": "MEASURED",
+ "caption": "Wall time of the compiled Lean checker per experiment-configuration check versus (a) the number of mandatory requirements in synthetic documents and (b) the number of coupled constraints (the real Demo B heat-budget relation repeated). Points are the 7 repeats, markers the median, bars the IQR; the grey band is the Lean process start (cryolean version, median 99 ms). One process per check costs 142 ms at N = 1 and 382 ms at N = 2000 (upper-decade log-log slope 0.36 [0.23, 0.48]), because process start dominates; inside a 100-pair batch the per-pair cost rises from 1.4 ms to 341 ms (slope 1.20 [1.12, 1.28]), so the advantage of batching shrinks from 99x at N = 1 to 1.12x at N = 2000. Coupled constraints cost more per item (954 ms for k = 1000; slopes 0.64 [0.53, 0.74] single, 1.06 [0.97, 1.15] batch). Dashed lines are power-law fits over the upper decade. All times are measured; verdicts come from the Lean checker. The machine was not idle: median whole-system CPU utilisation during this benchmark was 38% (other desktop applications, antivirus scanning and other sessions' jobs).",
+ "section": "supplement",
+ "script": "paper/scripts/fig_benchmarks.py",
+ "command": "python paper/scripts/fig_benchmarks.py",
+ "files": [
+  "paper/figures/fig_lean_scaling.png",
+  "paper/figures/fig_lean_scaling.svg",
+  "paper/figures/fig_lean_scaling.pdf"
+ ],
+ "interactive": null
+}

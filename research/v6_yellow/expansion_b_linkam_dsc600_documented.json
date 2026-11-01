@@ -1,0 +1,28 @@
+{
+  "configuration_id": "expansion_b_linkam_dsc600_documented",
+  "rows": [
+    {
+      "key": "process.deep_cryogenic_treatment",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Single cell calorimetry microscope stage (crucible/DSC-pan samples); not a metal-part cryogenic treatment system",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Linkam's optical DSC600 is a single cell calorimetry system which overcomes the problem of baseline drift due to different heat flows into the sample and reference crucible. ... Compact size of the stage means it can be easily mounted on to FT-IR and Laser Raman and confocal microscopes",
+      "document_title": "Linkam Scientific, Optical DSC600 product page",
+      "source_url": "https://www.linkam.co.uk/dsc600",
+      "location": "Product overview text (cached research/v5/cache/7e687738e66ea0c5.txt)",
+      "reasoning": "The manufacturer positively describes the DSC600 as a single-cell calorimetry stage for microscopes/spectrometers, with a 109 x 92 x 24 mm stage body (specifications page) and samples held in aluminium/sapphire crucibles. The stage manual (Diamond-hosted DSC 600 Stage Manual, research/v5/cache/848ca0121f135f7a.txt, p.14) says the crucible sits in a silver chamber on the DSC element and the LN2 supply is a 2 litre desktop dewar; DND-CAT (https://www.dnd.aps.anl.gov/saxswaxs/text8.html) says the DSC600 'uses 6 mm DSC pans and is useful for heat flow experiments'. It is a measurement stage for milligram samples, not a controlled sub-zero treatment process for steel tooling parts (the experiment's own rationale: 'not only a cold measurement stage'). Scope-based absence, same kind as cryoprobe vs vitrification."
+    },
+    {
+      "key": "dwell.duration.max",
+      "result": "still_unknown",
+      "reasoning": "Searched the Linkam DSC600 product and specification pages, the DSC 600 Stage Manual (Diamond Light Source copy, 26 pp., cached research/v5/cache/848ca0121f135f7a.txt), the McCrone Optical DSC600 page, and web searches for the T96/LINK hold-time limit. The manual only says the temperature profile table takes 'Rate, Limit and Time values' and that ramp 1 should have 'at least a 2 minute Hold Time'; no maximum hold is stated. Linkam's LINK software description mentions hold time across up to 100 ramps without a maximum; the 0-9999 min hold range found applies to the older TMS94/TP94 programmers, not the T96, so it was not used. The cryogenic hold would also be limited by the documented 2 litre D2L desktop dewar, whose endurance is not specified. Hold function exists, so documented_absence is not appropriate for this numeric key. Note: the pairing that needs it (steel deep cryogenic treatment) is already decided by process.deep_cryogenic_treatment = documented_absence."
+    },
+    {
+      "key": "module.dynamic_nitrogen_purge",
+      "result": "still_unknown",
+      "reasoning": "Evidence found but not sufficient for a 'dynamic' purge during measurement. The DSC 600 Stage Manual (cached research/v5/cache/848ca0121f135f7a.txt, pp.11-13) shows a 'Gas inlet valve', 'Gas outlet valve' and 'Purging tube' and gives a pre-run 'Flushing the stage' procedure that pressurises the chamber with nitrogen from the LNP so 'the majority of the air is evacuated from the chamber'; step 7 then removes the valve-opening insert (closing the outlet valve) before the run, i.e. the documented procedure is a pre-run flush, not a continuous flowing-N2 atmosphere during the scan. DND-CAT (https://www.dnd.aps.anl.gov/saxswaxs/text8.html) says the stage has 'a gas tight chamber for atmospheric control' but gives no flow. Searched Linkam DSC600 pages, McCrone page, and web for papers using the DSC600 under nitrogen flow (none found; Tavily over quota). Not documented_absence because the stage does have gas inlet/outlet valves; a continuous purge may be possible but is not documented."
+    }
+  ]
+}

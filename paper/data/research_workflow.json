@@ -1,0 +1,960 @@
+{
+ "refs": {
+  "references": [
+   {
+    "key": "necula1997",
+    "authors": "George C. Necula",
+    "title": "Proof-carrying code",
+    "venue": "POPL 1997 (24th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages), pp. 106-119",
+    "year": 1997,
+    "doi": "10.1145/263699.263712",
+    "url": "https://doi.org/10.1145/263699.263712",
+    "topic": "1. Certified checkers / proof-carrying results",
+    "relevance": "The original architecture in which an untrusted producer ships a proof and a small trusted consumer-side checker decides; CryoLean's 'Z3/LLM propose, Lean decides' split follows this pattern.",
+    "difference": "PCC certifies memory and type safety of mobile code, while CryoLean certifies physical-feasibility verdicts (requirements met / not met / need more information) over sourced engineering data, and its checker is itself proved sound and complete against an independent specification.",
+    "found_via": "Lune search_papers_many (via Agora, OOPSLA 2025 discussion of PCC); DOI confirmed by WebSearch (Crossref reference lists)"
+   },
+   {
+    "key": "mcconnell2011",
+    "authors": "Ross M. McConnell, Kurt Mehlhorn, Stefan Näher, Pascal Schweitzer",
+    "title": "Certifying algorithms",
+    "venue": "Computer Science Review 5(2):119-161",
+    "year": 2011,
+    "url": "https://researchportalplus.anu.edu.au/en/publications/certifying-algorithms/",
+    "topic": "1. Certifying algorithms",
+    "relevance": "Defines algorithms that return an easy-to-check witness with each output, which is the role of CryoLean's re-checked Z3 proposals (alternative cryostats, parameter fixes, schedules checked by validSchedule).",
+    "difference": "Certifying algorithms usually pair a witness with a hand-written checker, while CryoLean's checker is a Lean function with machine-checked soundness and completeness theorems, and its witnesses come from an external SMT solver rather than from the algorithm itself.",
+    "found_via": "WebSearch (bibliographic details confirmed; DOI not shown in the results, so the ANU portal URL is used)"
+   },
+   {
+    "key": "demoura2008",
+    "authors": "Leonardo de Moura, Nikolaj Bjørner",
+    "title": "Z3: An Efficient SMT Solver",
+    "venue": "TACAS 2008, LNCS (Springer)",
+    "year": 2008,
+    "doi": "10.1007/978-3-540-78800-3_24",
+    "url": "https://doi.org/10.1007/978-3-540-78800-3_24",
+    "topic": "2. SMT solvers",
+    "relevance": "The standard reference for Z3, which CryoLean uses (cryolean/smt.py, schedule.py) for unsat cores, alternative cryostats, parameter repairs and minimum-makespan campaign packing.",
+    "difference": "CryoLean never trusts Z3's answers: every proposal is re-decided by the Lean checker, so Z3 serves only as a search and explanation heuristic.",
+    "found_via": "WebSearch (DOI confirmed across Microsoft Research and ETAPS Test-of-Time pages)"
+   },
+   {
+    "key": "bohme2010",
+    "authors": "Sascha Böhme, Tjark Weber",
+    "title": "Fast LCF-Style Proof Reconstruction for Z3",
+    "venue": "ITP 2010, LNCS 6172, pp. 179-194",
+    "year": 2010,
+    "doi": "10.1007/978-3-642-14052-5_14",
+    "url": "https://doi.org/10.1007/978-3-642-14052-5_14",
+    "topic": "2. SMT + interactive theorem provers (proof reconstruction)",
+    "relevance": "Reconstructs Z3 unsatisfiability proofs inside Isabelle/HOL and HOL4 so that the kernel, not the solver, is trusted, which is the same trust goal CryoLean has.",
+    "difference": "CryoLean does not replay Z3 proof objects; it recomputes the verdict with a verified decision procedure over exact rationals, so Z3 unsat cores serve only as human-facing explanations and never as evidence.",
+    "found_via": "WebSearch (DOI from Tjark Weber's publication page)"
+   },
+   {
+    "key": "ekici2017",
+    "authors": "Burak Ekici, Alain Mebsout, Cesare Tinelli, Chantal Keller, Guy Katz, Andrew Reynolds, Clark Barrett",
+    "title": "SMTCoq: A Plug-In for Integrating SMT Solvers into Coq",
+    "venue": "CAV 2017, LNCS (Springer), pp. 126-133",
+    "year": 2017,
+    "doi": "10.1007/978-3-319-63390-9_7",
+    "url": "https://doi.org/10.1007/978-3-319-63390-9_7",
+    "topic": "2. SMT + interactive theorem provers (certified witness checking)",
+    "relevance": "Checks SAT/SMT solver certificates with a checker verified in Coq; Lune also surfaced its use as a trusted runtime checker in verified HLS (Herklotz et al., OOPSLA 2021).",
+    "difference": "SMTCoq checks proof witnesses for general SMT logics, while CryoLean checks domain verdicts and schedules in a units-aware model and accepts Z3's models and cores only after independent re-decision.",
+    "found_via": "Lune search_papers_many (SMTCoq query; CoqQFBV and Herklotz et al. hits); DOI via WebSearch (Univ. Iowa record; page and volume differ slightly across sources)"
+   },
+   {
+    "key": "blanchette2016",
+    "authors": "Jasmin C. Blanchette, Cezary Kaliszyk, Lawrence C. Paulson, Josef Urban",
+    "title": "Hammering towards QED",
+    "venue": "Journal of Formalized Reasoning 9(1):101-148",
+    "year": 2016,
+    "doi": "10.6092/issn.1972-5787/4593",
+    "url": "https://doi.org/10.6092/issn.1972-5787/4593",
+    "topic": "2. Sledgehammer-style integration",
+    "relevance": "Surveys hammers that use external ATPs and SMT solvers skeptically, as relevance filters whose output is reconstructed in the kernel, which is the same skepticism CryoLean applies to Z3.",
+    "difference": "Hammers help prove user-stated theorems, while CryoLean uses the solver to propose concrete engineering artefacts (substitute cryostats, parameter fixes, packed schedules) that a fixed decision procedure then accepts or rejects.",
+    "found_via": "Lune search_papers_many (Sledgehammer query via Thor, NeurIPS 2022); DOI via WebSearch"
+   },
+   {
+    "key": "mohamed2025",
+    "authors": "Abdalrhman Mohamed, Tomaz Mascarenhas, Harun Khan, Haniel Barbosa, Andrew Reynolds, Yicheng Qian, Cesare Tinelli, Clark Barrett",
+    "title": "Lean-SMT: An SMT Tactic for Discharging Proof Goals in Lean",
+    "venue": "CAV 2025, LNCS 15931, pp. 197-212",
+    "year": 2025,
+    "doi": "10.1007/978-3-031-98682-6_11",
+    "url": "https://doi.org/10.1007/978-3-031-98682-6_11",
+    "topic": "2. SMT + Lean",
+    "relevance": "The closest Lean 4 counterpart for using SMT inside Lean with proof reconstruction (cvc5 proofs replayed as Lean proofs).",
+    "difference": "Lean-SMT discharges proof goals, while CryoLean keeps Z3 entirely outside Lean as an untrusted optimiser (for example minimum makespan) and validates only its output, so no SMT proof terms are reconstructed.",
+    "found_via": "WebSearch (after Lune surfaced Lean SMT integration in Pertseva et al., CAV 2026)"
+   },
+   {
+    "key": "qian2025",
+    "authors": "Yicheng Qian, Joshua Clune, Clark Barrett, Jeremy Avigad",
+    "title": "Lean-Auto: An Interface Between Lean 4 and Automated Theorem Provers",
+    "venue": "CAV 2025, LNCS 15931, pp. 175-196",
+    "year": 2025,
+    "doi": "10.1007/978-3-031-98682-6_10",
+    "url": "https://doi.org/10.1007/978-3-031-98682-6_10",
+    "topic": "2. ATP/SMT + Lean",
+    "relevance": "Bridges Lean 4 to external provers (Z3, cvc5, Zipperposition) with a verified checker for native-prover reconstruction, which is the same trusted-kernel discipline.",
+    "difference": "Lean-Auto targets Mathlib-style theorem proving, while CryoLean's Lean code is a domain decision procedure whose verdicts are the product and whose external solver outputs are data to check.",
+    "found_via": "Lune search_papers_many (proof reconstruction query); DOI via WebSearch"
+   },
+   {
+    "key": "demoura2021",
+    "authors": "Leonardo de Moura, Sebastian Ullrich",
+    "title": "The Lean 4 Theorem Prover and Programming Language",
+    "venue": "CADE-28, LNAI 12699, pp. 625-635",
+    "year": 2021,
+    "doi": "10.1007/978-3-030-79876-5_37",
+    "url": "https://doi.org/10.1007/978-3-030-79876-5_37",
+    "topic": "Foundation (Lean 4)",
+    "relevance": "Lean 4 is both the programming language for CryoLean's checker and the logic for its soundness and completeness theorems; '#print axioms' in the Gatekeeper relies on Lean's small trusted kernel.",
+    "difference": "This is the system paper for the tool, not related work in CryoLean's application domain.",
+    "found_via": "WebSearch (DOI confirmed from the author PDF and the KIT repository)"
+   },
+   {
+    "key": "wu2022",
+    "authors": "Yuhuai Wu, Albert Q. Jiang, Wenda Li, Markus N. Rabe, Charles Staats, Mateja Jamnik, Christian Szegedy",
+    "title": "Autoformalization with Large Language Models",
+    "venue": "NeurIPS 2022",
+    "year": 2022,
+    "url": "https://arxiv.org/abs/2205.12615",
+    "topic": "3. LLMs proposing formal artefacts",
+    "relevance": "Established that LLMs can translate informal statements into Isabelle/HOL that a proof assistant can then check, which is the precedent for CryoLean's LLM rule and data proposals passing through a Lean Gatekeeper.",
+    "difference": "Autoformalization targets competition mathematics, while CryoLean's LLM proposes engineering rules and sourced data that are admitted only if they compile with standard axioms, and the verdict always comes from the fixed verified checker, never from the LLM.",
+    "found_via": "Lune search_papers_many (autoformalization query); arXiv ID and NeurIPS venue confirmed by WebSearch"
+   },
+   {
+    "key": "zhou2024",
+    "authors": "Jin Peng Zhou, Charles Staats, Wenda Li, Christian Szegedy, Kilian Q. Weinberger, Yuhuai Wu",
+    "title": "Don't Trust: Verify - Grounding LLM Quantitative Reasoning with Autoformalization",
+    "venue": "ICLR 2024",
+    "year": 2024,
+    "url": "https://arxiv.org/abs/2403.18120",
+    "topic": "3. LLM + verifier; 8. vacuity",
+    "relevance": "Uses Isabelle to accept or reject LLM answers ('the verifier decides') and explicitly filters vacuous formalizations whose hypotheses are contradictory, the failure mode that CryoLean's independent Spec.lean and forensic audit guard against.",
+    "difference": "DTV verifies quantitative answers to math word problems with heuristic faithfulness filters, while CryoLean proves its checker equivalent to a separately written specification and had that core audited externally.",
+    "found_via": "Lune search_papers_many (vacuity and misaligned-specification queries); arXiv/ICLR confirmed by WebSearch"
+   },
+   {
+    "key": "ammanamanchi2026",
+    "authors": "Pawan Sasanka Ammanamanchi, Siddharth Bhat, Stella Biderman",
+    "title": "Faults in Our Formal Benchmarking: Dataset Defects and Evaluation Failures in Lean Theorem Proving",
+    "venue": "ICML 2026 (PMLR vol. 306)",
+    "year": 2026,
+    "url": "https://proceedings.mlr.press/v306/ammanamanchi26a.html",
+    "topic": "8. Auditing proofs that prove the wrong thing",
+    "relevance": "Documents that Lean-checked statements are often unfaithful (missing hypotheses, vacuous theorems, unsound axioms), which motivates CryoLean's separate Spec.lean, axiom checks and external for-all-dev/forensics audit.",
+    "difference": "The paper audits benchmark datasets after the fact, while CryoLean builds statement-level safeguards into the pipeline (independent spec, soundness plus completeness, Gatekeeper axiom check) for a single domain checker.",
+    "found_via": "Lune search_papers_many (misaligned specification query); PMLR/arXiv 2606.29493 confirmed by WebSearch"
+   },
+   {
+    "key": "kupferman2003",
+    "authors": "Orna Kupferman, Moshe Y. Vardi",
+    "title": "Vacuity detection in temporal model checking",
+    "venue": "International Journal on Software Tools for Technology Transfer 4(2):224-233",
+    "year": 2003,
+    "doi": "10.1007/s100090100062",
+    "url": "https://doi.org/10.1007/s100090100062",
+    "topic": "8. Vacuity",
+    "relevance": "The classic treatment of specifications that are satisfied for trivial reasons, a risk CryoLean faces if, for example, a requirement's hypotheses were unsatisfiable.",
+    "difference": "Vacuity detection checks temporal-logic properties of models, while CryoLean addresses the analogous risk by proving completeness (every spec-true verdict is reached) as well as soundness, and by keeping NEED_MORE_INFORMATION as an explicit third verdict.",
+    "found_via": "WebSearch (DOI confirmed)"
+   },
+   {
+    "key": "kennedy1997",
+    "authors": "Andrew Kennedy",
+    "title": "Relational Parametricity and Units of Measure",
+    "venue": "POPL 1997",
+    "year": 1997,
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/1997/01/relationalparametricityandunitsofmeasure.pdf",
+    "topic": "4. Units of measure in type systems",
+    "relevance": "The foundational type-theoretic treatment of units of measure (dimensional invariance), which underlies CryoLean's SI dimension vectors on every quantity.",
+    "difference": "Kennedy's units are static types in an ML-like language, while CryoLean carries dimension vectors as data on exact rationals inside a verified checker over sourced evidence records, and proves verdict-level soundness rather than type safety.",
+    "found_via": "WebSearch (Microsoft Research hosted PDF; the separate CEFP 2009 'Types for Units-of-Measure' search did not yield a verifiable DOI)"
+   },
+   {
+    "key": "bobbin2025",
+    "authors": "Bobbin et al.",
+    "title": "Formalizing Dimensional Analysis Using the Lean Theorem Prover",
+    "venue": "arXiv preprint 2509.13142",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2509.13142",
+    "topic": "4. Formalized dimensional analysis in Lean",
+    "relevance": "Formalizes dimensions as an abelian group of exponent maps in Lean 4, with dimensional homogeneity and the Buckingham Pi theorem, which is the closest formal analogue to CryoLean's dimension vectors.",
+    "difference": "It formalizes the mathematics of dimensional analysis, while CryoLean uses dimension-checked rationals operationally to decide instrument-experiment compatibility over real datasheet values.",
+    "found_via": "WebSearch (after Lune returned no direct hit for 'dimensional analysis formalized in a proof assistant')"
+   },
+   {
+    "key": "toobysmith2025",
+    "authors": "Joseph Tooby-Smith",
+    "title": "HepLean: Digitalising high energy physics",
+    "venue": "Computer Physics Communications 308, 109457",
+    "year": 2025,
+    "doi": "10.1016/j.cpc.2024.109457",
+    "url": "https://doi.org/10.1016/j.cpc.2024.109457",
+    "topic": "Physics in Lean 4 (context for 3 and 4)",
+    "relevance": "Shows Lean 4 being used to formalise physics results with AI-assisted creation in mind, which is the nearest prior use of Lean as a physics checker.",
+    "difference": "HepLean formalises theoretical high-energy physics, while CryoLean formalises experimental-apparatus constraints (temperatures, fields, heat budgets, sample limits) and returns operational verdicts.",
+    "found_via": "WebSearch"
+   },
+   {
+    "key": "junker2004",
+    "authors": "Ulrich Junker",
+    "title": "QUICKXPLAIN: Preferred Explanations and Relaxations for Over-Constrained Problems",
+    "venue": "AAAI 2004, pp. 167-172",
+    "year": 2004,
+    "url": "https://mlanthology.org/aaai/2004/junker2004aaai-quickxplain",
+    "topic": "2/7. Conflict explanation in configuration",
+    "relevance": "The standard algorithm for minimal conflict sets explaining why user requirements are unsatisfiable, which is the role of Z3 unsat cores as explanations in CryoLean.",
+    "difference": "QuickXplain's conflicts are the final explanation, while CryoLean treats cores as untrusted hints and attaches the authoritative Lean verdict and sourced evidence records.",
+    "found_via": "Lune search_papers_many (INFORMEDQX, AAAI 2024 describes QuickXplain); bibliographic details via WebSearch"
+   },
+   {
+    "key": "felfernig2004",
+    "authors": "Alexander Felfernig, Gerhard Friedrich, Dietmar Jannach, Markus Stumptner",
+    "title": "Consistency-based diagnosis of configuration knowledge bases",
+    "venue": "Artificial Intelligence 152(2):213-234",
+    "year": 2004,
+    "doi": "10.1016/S0004-3702(03)00117-6",
+    "url": "https://doi.org/10.1016/S0004-3702(03)00117-6",
+    "topic": "7. Knowledge-based / constraint-based product configuration",
+    "relevance": "Frames configuration as checking user requirements against a constraint knowledge base and diagnosing inconsistencies, which is the closest established framing of CryoLean's requirement-compatibility check.",
+    "difference": "Configurator diagnosis trusts the constraint solver and knowledge base, while CryoLean's verdicts come from a proof-checked decision procedure with an explicit NEED_MORE_INFORMATION outcome for undocumented capabilities, and every datum is tied to a sourced record.",
+    "found_via": "Lune search_papers_many (configuration queries returned FASTDIAGP/INFORMEDQX by the same group); DOI via WebSearch"
+   },
+   {
+    "key": "krinner2019",
+    "authors": "S. Krinner, S. Storz, P. Kurpiers, P. Magnard, J. Heinsoo, R. Keller, J. Lütolf, C. Eichler, A. Wallraff",
+    "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+    "venue": "EPJ Quantum Technology 6, article 2",
+    "year": 2019,
+    "doi": "10.1140/epjqt/s40507-019-0072-0",
+    "url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+    "topic": "6. Dilution-refrigerator wiring heat load",
+    "relevance": "Confirmed as the source for passive (stainless steel and NbTi coax) and active (attenuator dissipation) heat loads per stage, which feed CryoLean's mixing-chamber heat-budget model.",
+    "difference": "Krinner et al. measure and engineer one ETH setup, while CryoLean encodes such measured loads as sourced evidence and decides, with proofs, whether a given fridge configuration can carry a requested wiring load.",
+    "found_via": "Consensus search (listed as 2018, the arXiv year); DOI and 2019 journal year confirmed by WebSearch"
+   },
+   {
+    "key": "bartkowiak2020",
+    "authors": "Maciej Bartkowiak, Karel Prokeš, Michael Fromme, Anne Budack, Juliane Dirlick, Oleksandr Prokhnenko",
+    "title": "EXEQ and InEXEQ: software tools for experiment planning at the Extreme Environment Diffractometer",
+    "venue": "Journal of Applied Crystallography 53:1613-1619",
+    "year": 2020,
+    "doi": "10.1107/S1600576720011942",
+    "url": "https://doi.org/10.1107/S1600576720011942",
+    "topic": "6. Instrument-to-experiment feasibility checking",
+    "relevance": "A facility tool that checks whether a proposed experiment is geometrically feasible given a 26 T magnet and sample environment, and that was mandatory for proposals; it is the closest prior 'can this instrument do my experiment?' tool we found.",
+    "difference": "EXEQ is unverified, single-instrument geometry software, while CryoLean spans 26 cryostat configurations with multiphysics constraints and returns machine-checked three-valued verdicts.",
+    "found_via": "Consensus search (instrument/experiment matching query); DOI via WebSearch"
+   },
+   {
+    "key": "abolhasani2023",
+    "authors": "Milad Abolhasani, Eugenia Kumacheva",
+    "title": "The rise of self-driving labs in chemical and materials sciences",
+    "venue": "Nature Synthesis 2(6):483-492",
+    "year": 2023,
+    "doi": "10.1038/s44160-022-00231-0",
+    "url": "https://doi.org/10.1038/s44160-022-00231-0",
+    "topic": "5. Self-driving labs",
+    "relevance": "A review of autonomous experimentation that situates CryoLean's feasibility checking and campaign scheduling within lab automation.",
+    "difference": "Self-driving labs optimise which experiment to run next, while CryoLean decides upstream whether a given apparatus can physically run the experiment at all, with certified verdicts.",
+    "found_via": "WebSearch (after Lune surfaced SDL papers citing it, e.g. BioProAgent, ACL 2026)"
+   },
+   {
+    "key": "mcdannald2026",
+    "authors": "Austin McDannald, Julia Tisaranni, Howie Joress",
+    "title": "Optimal Resource Utilization for Autonomous Laboratory Orchestrators",
+    "venue": "arXiv preprint 2607.01188",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2607.01188",
+    "topic": "5. Lab instrument scheduling / makespan",
+    "relevance": "Schedules autonomous-lab robot tasks as a job-shop problem with constraint programming (OR-Tools) to minimise total time under hardware capacities, which is directly comparable to CryoLean's minimum-makespan campaign packing.",
+    "difference": "Their CP schedule is trusted as produced, while CryoLean's Z3 schedule is an untrusted proposal accepted only if Lean's validSchedule holds.",
+    "found_via": "alphaXiv discover_papers; details via WebSearch"
+   },
+   {
+    "key": "guo2026",
+    "authors": "Lulu Guo, Ming Mao, Wenting Guan, Xin Yang, Yi Luo, et al. (author list differs across mirrors)",
+    "title": "A computable representation of the physical laboratory enables verifiable workflows",
+    "venue": "arXiv preprint 2609.03621",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2609.03621",
+    "topic": "5. Formal/verifiable laboratory workflows",
+    "relevance": "Represents the lab as typed research objects with capability-bound operations and checks operation preconditions and lab constraints by stateful simulation before dispatch, the nearest 'verify before you run' lab work we found.",
+    "difference": "It verifies by simulation inside a robotic workflow algebra, while CryoLean verifies by machine-checked proof (Lean) over sourced physical data and SI dimensions, and it targets cryogenic apparatus feasibility rather than robotic protocol execution.",
+    "found_via": "alphaXiv discover_papers; abstract and authors via WebSearch (only third-party mirrors were reachable)"
+   }
+  ],
+  "first_claim": "To our knowledge, CryoLean is the first system that decides whether a specific cryogenic apparatus configuration can physically perform a specified experiment with verdicts produced only by a proof-assistant-checked decision procedure (Lean 4, exact rationals carrying SI dimension vectors, with soundness and completeness proved against an independently written specification), while treating an SMT solver (Z3) and LLMs strictly as untrusted proposers whose explanations, alternatives, repairs and schedules are re-checked in Lean. The closest prior work we found either certifies solver or LLM output for mathematics and software (proof-carrying code, SMTCoq, Lean-SMT/Lean-Auto, LLM autoformalization), encodes units in type systems or formalizes dimensional analysis without an application decision procedure, or plans and schedules laboratory experiments (constraint-programming lab schedulers, simulation-verified lab workflows, the EXEQ facility planner) without machine-checked guarantees. This claim is limited by the coverage of the tools used: scite was unavailable because it needs a paid plan, and Consensus was rate-limited.",
+  "gaps_searched_nothing_found": [
+   "Peer-reviewed work on selecting or configuring cryostats/dilution refrigerators for a given experiment (decision tools or formal checking): only vendor buying guides (Lake Shore, Oxford Instruments, Quantum Design/Janis) and a public tender surfaced, with no academic matching or verification paper.",
+   "Formal verification (proof-assistant level) of instrument-to-experiment compatibility or scientific-instrument capability claims: nothing beyond the simulation-based lab-workflow verification (guo2026) and the unverified EXEQ planner.",
+   "Proof-checked laboratory or instrument scheduling, where SMT/CP-generated schedules or makespans are validated by a theorem prover: lab schedulers found (McDannald et al. with OR-Tools; Geibinger et al., AAAI 2021, constraint logic programming for test-lab scheduling) trust the solver.",
+   "A units-of-measure or dimensional-analysis library in Isabelle/HOL: none found; only Lean 4 (Bobbin et al. 2025; the community lean-units library) and PVS (Hocking & Aiello, AFM 2017) appeared.",
+   "Z3 unsat cores used as human explanations with the verdict re-decided by a verified checker: unsat-core and MUS diagnosis work (e.g. Feng, Marsso, Chechik, ASE 2024; QuickXplain; FastDiag) treats the core itself as the explanation and the solver as trusted, and no stable DOI/URL was retrieved for the ASE 2024 paper, so it is not listed.",
+   "LLM-proposed domain rules or data admitted through a compile-plus-axiom-check gatekeeper outside mathematics: LLM+Lean work found is overwhelmingly about mathematical theorem proving and autoformalization.",
+   "Machine-checked multiphysics feasibility models (for example a mixing-chamber heat budget for qubit wiring): engineering papers (Krinner et al. 2019, cryo-RF-photonics scaling analyses) give the numbers, but no formal or verified treatment was found.",
+   "Andrew Kennedy's CEFP 2009 'Types for Units-of-Measure: Theory and Practice': the search could not confirm a DOI, so the POPL 1997 paper is cited instead.",
+   "Tool-access limits: scite search_literature returned a paywall error and Consensus was rate-limited after one query, so DOI confirmation relied on WebSearch."
+  ]
+ },
+ "vrefs": {
+  "results": [
+   {
+    "key": "necula1997",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms: G. C. Necula, 'Proof-carrying code', Proc. 24th ACM SIGPLAN-SIGACT POPL '97, pp. 106-119, 1997, DOI 10.1145/263699.263712. Relevance (untrusted producer and small trusted checker) is a fair description of PCC."
+   },
+   {
+    "key": "mcconnell2011",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms Computer Science Review 5(2):119-161, May 2011. A DOI exists and should be used in place of the ANU portal URL: 10.1016/j.cosrev.2010.09.009.",
+    "corrected": {
+     "doi": "10.1016/j.cosrev.2010.09.009",
+     "url": "https://doi.org/10.1016/j.cosrev.2010.09.009"
+    }
+   },
+   {
+    "key": "demoura2008",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms TACAS 2008, LNCS, DOI 10.1007/978-3-540-78800-3_24. Add the missing detail: LNCS 4963, pp. 337-340.",
+    "corrected": {
+     "venue": "TACAS 2008, LNCS 4963 (Springer), pp. 337-340"
+    }
+   },
+   {
+    "key": "bohme2010",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms ITP 2010, LNCS, pp. 179-194, DOI 10.1007/978-3-642-14052-5_14, with authors Böhme and Weber. The relevance is accurate: Z3 proofs are reconstructed in Isabelle/HOL (and HOL4)."
+   },
+   {
+    "key": "ekici2017",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": false,
+    "note": "Crossref confirms CAV 2017, LNCS (vol. 10427), pp. 126-133, DOI 10.1007/978-3-319-63390-9_7, and the seven authors. The core relevance (a Coq-verified checker for SAT/SMT certificates) is accurate. The side claim that SMTCoq is 'used as a trusted runtime checker in verified HLS (Herklotz et al., OOPSLA 2021)' is not supported. Lune shows Vericert (OOPSLA 2021) and its scheduling follow-up (Herklotz and Wickerson, PLDI 2024), which validates schedules with a Coq-verified validator that calls a SAT solver. Neither source says SMTCoq is used. Drop that parenthetical.",
+    "corrected": {
+     "venue": "CAV 2017, LNCS 10427 (Springer), pp. 126-133"
+    }
+   },
+   {
+    "key": "blanchette2016",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "The DOI 10.6092/issn.1972-5787/4593 resolves to jfr.unibo.it/article/view/4593 (Journal of Formalized Reasoning). Vol. 9(1):101-148 (2016) is the standard citation. Crossref has no JSON record for it, but it resolves through doi.org. The relevance is a reasonable summary of how hammers use external provers skeptically and reconstruct their proofs."
+   },
+   {
+    "key": "mohamed2025",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms CAV 2025, LNCS, pp. 197-212, DOI 10.1007/978-3-031-98682-6_11, and all eight authors. The official title is written in lowercase as 'lean-smt: An SMT Tactic for Discharging Proof Goals in Lean'.",
+    "corrected": {
+     "title": "lean-smt: An SMT Tactic for Discharging Proof Goals in Lean"
+    }
+   },
+   {
+    "key": "qian2025",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms CAV 2025, LNCS, pp. 175-196, DOI 10.1007/978-3-031-98682-6_10 (arXiv 2505.14929). The full text says Lean-auto reconstructs proofs only for native provers (Duper), 'utilizing a verified checker'. Z3 and cvc5 are used without reconstruction, so the relevance wording is accurate."
+   },
+   {
+    "key": "demoura2021",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms CADE-28, LNCS (LNAI 12699), pp. 625-635, DOI 10.1007/978-3-030-79876-5_37."
+   },
+   {
+    "key": "wu2022",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "arXiv 2205.12615 confirms the title and all seven authors in the order given. It appeared at NeurIPS 2022. The abstract confirms translation of competition problems into Isabelle/HOL (25.3% exactly correct)."
+   },
+   {
+    "key": "zhou2024",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "arXiv 2403.18120 (comment: ICLR 2024) confirms the title and authors. The full text has a 'Vacuous statement filter' that discards formalizations whose hypotheses are contradictory, by replacing the goal with False. The relevance is accurate. The arXiv title uses a double dash: 'Don't Trust: Verify -- Grounding LLM Quantitative Reasoning with Autoformalization'."
+   },
+   {
+    "key": "ammanamanchi2026",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "The PMLR page proceedings.mlr.press/v306/ammanamanchi26a.html resolves, with this title, as Proceedings of the 43rd ICML. arXiv 2606.29493 confirms the authors and 'Accepted at ICML 2026'. The abstract confirms vacuous theorems, unsound axioms and missing hypotheses."
+   },
+   {
+    "key": "kupferman2003",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms STTT 4(2):224-233, issue dated Feb 2003, DOI 10.1007/s100090100062. The relevance is a fair analogy. Note that proving completeness does not by itself rule out vacuous requirements, so the 'difference' text should not imply that it does."
+   },
+   {
+    "key": "kennedy1997",
+    "exists": true,
+    "metadata_correct": false,
+    "relevance_accurate": true,
+    "note": "Crossref confirms A. Kennedy, 'Relational parametricity and units of measure', POPL '97, pp. 442-455. It has a DOI, which the entry lacks: 10.1145/263699.263761. Use the DOI rather than only the MSR PDF URL.",
+    "corrected": {
+     "authors": "Andrew Kennedy",
+     "title": "Relational Parametricity and Units of Measure",
+     "venue": "POPL 1997 (24th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages), pp. 442-455",
+     "year": 1997,
+     "doi": "10.1145/263699.263761",
+     "url": "https://doi.org/10.1145/263699.263761"
+    }
+   },
+   {
+    "key": "bobbin2025",
+    "exists": true,
+    "metadata_correct": false,
+    "relevance_accurate": true,
+    "note": "arXiv 2509.13142 confirms it, but 'Bobbin et al.' should be the full author list: Maxwell P. Bobbin, Colin Jones, John Velkey, Tyler R. Josephson. The arXiv title casing is 'Formalizing dimensional analysis using the Lean theorem prover'. The abstract confirms the relevance: dimensions as exponent maps forming an abelian group, homogeneity theorems, SI units and Buckingham Pi.",
+    "corrected": {
+     "authors": "Maxwell P. Bobbin, Colin Jones, John Velkey, Tyler R. Josephson",
+     "title": "Formalizing dimensional analysis using the Lean theorem prover",
+     "venue": "arXiv preprint 2509.13142",
+     "year": 2025,
+     "url": "https://arxiv.org/abs/2509.13142"
+    }
+   },
+   {
+    "key": "toobysmith2025",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms Computer Physics Communications 308, article 109457 (March 2025), DOI 10.1016/j.cpc.2024.109457. Calling it 'the nearest prior use of Lean as a physics checker' is a judgement call, since Bobbin et al. is arguably as close. Consider softening to 'a prior use'."
+   },
+   {
+    "key": "junker2004",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "This is the well-known AAAI 2004 paper, pp. 167-172. The mlanthology URL returns a 301 redirect, so give the canonical AAAI proceedings URL if possible. The relevance (minimal conflict sets for over-constrained problems) is accurate."
+   },
+   {
+    "key": "felfernig2004",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms Artificial Intelligence 152(2):213-234, Feb 2004, DOI 10.1016/S0004-3702(03)00117-6, with all four authors."
+   },
+   {
+    "key": "krinner2019",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms EPJ Quantum Technology 6(1), published 2019-05-28, DOI 10.1140/epjqt/s40507-019-0072-0, with all nine authors (article 2). The paper does discuss passive heat loads from coax cables and active heat loads from attenuators per stage."
+   },
+   {
+    "key": "bartkowiak2020",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms J. Appl. Cryst. 53(6):1613-1619 (2020), DOI 10.1107/S1600576720011942, with all six authors. The 26 T hybrid magnet at EXED/HZB is correct. I did not independently check the statement that EXEQ was mandatory for proposals, so confirm it from the paper text."
+   },
+   {
+    "key": "abolhasani2023",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "Crossref confirms Nature Synthesis 2(6):483-492 (2023), DOI 10.1038/s44160-022-00231-0."
+   },
+   {
+    "key": "mcdannald2026",
+    "exists": true,
+    "metadata_correct": true,
+    "relevance_accurate": true,
+    "note": "arXiv 2607.01188 confirms the title and the three authors. The abstract confirms constraint programming that minimises total time under hardware capacities, for a metal-organic framework synthesis platform. The abstract does not mention OR-Tools or job-shop by name, so check the full text before citing those specifics. The abstract says nothing about formally verifying the schedule."
+   },
+   {
+    "key": "guo2026",
+    "exists": true,
+    "metadata_correct": false,
+    "relevance_accurate": true,
+    "note": "arXiv 2609.03621 exists with this title, but the author list is wrong: Lulu Guo is not first author. The arXiv record lists Xiaobo Li, Luyao Ge, Xiaohui Li, Lulu Guo, Ming Mao, Jiwang Zheng, Wenting Guan, Xin Yang, Yi Luo, Jun Jiang, Linjiang Chen. Change the key or citation to Li et al. 2026. The abstract confirms the relevance: typed research objects, capability-bound operations, and stateful simulation that verifies preconditions and lab constraints before dispatch.",
+    "corrected": {
+     "authors": "Xiaobo Li, Luyao Ge, Xiaohui Li, Lulu Guo, Ming Mao, Jiwang Zheng, Wenting Guan, Xin Yang, Yi Luo, Jun Jiang, Linjiang Chen",
+     "title": "A computable representation of the physical laboratory enables verifiable workflows",
+     "venue": "arXiv preprint 2609.03621",
+     "year": 2026,
+     "url": "https://arxiv.org/abs/2609.03621"
+    }
+   }
+  ],
+  "first_claim_ok": true,
+  "first_claim_revised": "To our knowledge, CryoLean is the first system to decide whether a specific cryogenic apparatus configuration can physically perform a specified experiment using only verdicts from a decision procedure checked in a proof assistant. The procedure is written in Lean 4 over exact rationals that carry SI dimension vectors, and it is proved sound and complete against a separately written Lean specification. An SMT solver (Z3) and LLMs act only as untrusted proposers, and Lean re-checks every explanation, alternative, repair and schedule they suggest. The closest prior work we found falls into three groups: work that certifies solver or LLM output for mathematics and software (proof-carrying code, SMTCoq, lean-smt and Lean-auto, LLM autoformalization); work that encodes units in type systems or formalizes dimensional analysis without an application-level decision procedure; and work that plans or schedules laboratory experiments without machine-checked guarantees (constraint-programming lab schedulers, simulation-checked lab workflows, the EXEQ planner at the Extreme Environment Diffractometer). We did not find a system that combines these elements, but our search was limited: we used Lune, alphaXiv, web search and a partial Consensus search (rate-limited), and could not use scite. Our guarantees are also only as good as the formal specification and the sourced data it is checked against."
+ },
+ "math_cited": [
+  {
+   "name": "Q.le (definition)",
+   "file": "lean/CryoLean/Num.lean",
+   "line": 14
+  },
+  {
+   "name": "Q.le_scale_left",
+   "file": "lean/CryoLean/Num.lean",
+   "line": 33
+  },
+  {
+   "name": "Q.le_scale_right",
+   "file": "lean/CryoLean/Num.lean",
+   "line": 48
+  },
+  {
+   "name": "Dim (structure)",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 26
+  },
+  {
+   "name": "Q (structure)",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 42
+  },
+  {
+   "name": "Quantity (structure)",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 48
+  },
+  {
+   "name": "EvidenceStatus",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 54
+  },
+  {
+   "name": "InstallStatus",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 67
+  },
+  {
+   "name": "CapValue",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 74
+  },
+  {
+   "name": "Constraint",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 103
+  },
+  {
+   "name": "Condition",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 132
+  },
+  {
+   "name": "Requirement",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 143
+  },
+  {
+   "name": "Expr",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 161
+  },
+  {
+   "name": "Coupled",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 173
+  },
+  {
+   "name": "Experiment",
+   "file": "lean/CryoLean/Model.lean",
+   "line": 189
+  },
+  {
+   "name": "trustedB",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 23
+  },
+  {
+   "name": "checkValue",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 39
+  },
+  {
+   "name": "checkCapability",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 65
+  },
+  {
+   "name": "keyOutcome",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 76
+  },
+  {
+   "name": "combineAny",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 82
+  },
+  {
+   "name": "evalCond",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 102
+  },
+  {
+   "name": "condsResult",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 124
+  },
+  {
+   "name": "checkRequirement",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 132
+  },
+  {
+   "name": "evalExpr",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 159
+  },
+  {
+   "name": "checkLe",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 196
+  },
+  {
+   "name": "checkCoupled",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 211
+  },
+  {
+   "name": "verdict",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 237
+  },
+  {
+   "name": "run",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 282
+  },
+  {
+   "name": "checkCandidates",
+   "file": "lean/CryoLean/Checker.lean",
+   "line": 287
+  },
+  {
+   "name": "TrustedEvidence",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 17
+  },
+  {
+   "name": "ValueMeets",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 27
+  },
+  {
+   "name": "ValueFails",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 44
+  },
+  {
+   "name": "SatisfiesKey",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 62
+  },
+  {
+   "name": "ViolatesKey",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 70
+  },
+  {
+   "name": "Denotes",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 98
+  },
+  {
+   "name": "ReqPasses",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 128
+  },
+  {
+   "name": "ReqOK",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 132
+  },
+  {
+   "name": "ReqViolated",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 136
+  },
+  {
+   "name": "CoupledPasses",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 140
+  },
+  {
+   "name": "CoupledViolated",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 148
+  },
+  {
+   "name": "AcceptSpec",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 152
+  },
+  {
+   "name": "RejectSpec",
+   "file": "lean/CryoLean/Spec.lean",
+   "line": 160
+  },
+  {
+   "name": "pass_dims_all_match",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 77
+  },
+  {
+   "name": "fail_needs_trusted",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 149
+  },
+  {
+   "name": "untrusted_never_passes",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 155
+  },
+  {
+   "name": "untrusted_never_fails",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 161
+  },
+  {
+   "name": "evalExpr_sound",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 489
+  },
+  {
+   "name": "evalExpr_complete",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 554
+  },
+  {
+   "name": "coupled_pass_dims_match",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 619
+  },
+  {
+   "name": "verdict_accept_sound",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 826
+  },
+  {
+   "name": "verdict_accept_complete",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 847
+  },
+  {
+   "name": "verdict_accept_iff",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 862
+  },
+  {
+   "name": "accept_no_unknown",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 868
+  },
+  {
+   "name": "verdict_reject_sound",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 887
+  },
+  {
+   "name": "verdict_reject_complete",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 904
+  },
+  {
+   "name": "satisfies_spec_exclusive",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 930
+  },
+  {
+   "name": "empty_not_accept",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 941
+  },
+  {
+   "name": "dropOptional (definition)",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 995
+  },
+  {
+   "name": "verdict_ignores_optional",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 1005
+  },
+  {
+   "name": "verdict_industry_irrelevant",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 1026
+  },
+  {
+   "name": "verdict_deterministic",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 1040
+  },
+  {
+   "name": "run_binds_inputs",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 1045
+  },
+  {
+   "name": "candidates_accept_sound",
+   "file": "lean/CryoLean/Soundness.lean",
+   "line": 1058
+  },
+  {
+   "name": "resolve",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 48
+  },
+  {
+   "name": "Disjoint",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 59
+  },
+  {
+   "name": "ScheduleOK",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 64
+  },
+  {
+   "name": "validSchedule",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 72
+  },
+  {
+   "name": "validSchedule_sound",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 81
+  },
+  {
+   "name": "validSchedule_complete",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 91
+  },
+  {
+   "name": "validSchedule_bounds",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 100
+  },
+  {
+   "name": "validSchedule_disjoint",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 108
+  },
+  {
+   "name": "validSchedule_only_accepted",
+   "file": "lean/CryoLean/Schedule.lean",
+   "line": 115
+  },
+  {
+   "name": "Axiom audit (#print axioms, 44 theorems)",
+   "file": "lean/Audit.lean",
+   "line": 13
+  }
+ ],
+ "math_problems": [
+  {
+   "where": "Intro, last sentence",
+   "problem": "The claim that no definition or theorem mentions an industry, manufacturer or physical property is false for the six-file core. Schedule.lean hard-codes the capability key `cooldown_time.max`, the parameter `run_duration` and `secDim` (seconds). The `Experiment` structure and `verdict_industry_irrelevant` also mention industry, although only as an opaque label.",
+   "fix": "Say that no definition or theorem refers to a particular industry or manufacturer, and that apart from the schedule check (cooldown_time.max, run_duration, seconds) none refers to a particular physical property."
+  },
+  {
+   "where": "Intro, first sentence",
+   "problem": "Schedule acceptance is decided by `validSchedule`, not only by `verdict`, so 'every verdict is computed by one function' leaves out the schedule check.",
+   "fix": "Add that campaign schedules are also checked by `validSchedule`."
+  },
+  {
+   "where": "The checker, checkRequirement",
+   "problem": "Wrong mapping. Conditions were listed as (holds, fails, unknown), and the text then says these map 'respectively' to notApplicable, unknown and combineAny. That would mean holds gives notApplicable. In Checker.lean the mapping is fails to notApplicable, unknown to unknown, holds to combineAny.",
+   "fix": "State the mapping explicitly: `fails` to `notApplicable`, `unknown` to `unknown`, `holds` to `combineAny` over the keys."
+  },
+  {
+   "where": "Trust base, JSON codec item",
+   "problem": "Overclaim. Json.lean fails closed only on missing *mandatory* fields. Optional fields take documented defaults: `applicable` defaults to true, and `conditions`, `params`, `coupled`, `evidence_ids`, `rationale` and the dimension exponents default to empty or zero. The decoder also rejects duplicate capability keys and duplicate parameter names, which the text does not mention.",
+   "fix": "Say 'missing mandatory fields', name the defaults (for example applicable=true), and add that duplicate keys and parameter names are rejected."
+  },
+  {
+   "where": "Trust base, axiom audit",
+   "problem": "The text says Audit.lean covers 'every theorem named above'. But `empty_not_accept` is named in Main theorems and is not among the 44 `#print axioms` lines in Audit.lean, nor in audit-axioms.json.",
+   "fix": "Say 'every theorem named above except `empty_not_accept`' (or add it to Audit.lean)."
+  },
+  {
+   "where": "The checker, evalExpr",
+   "problem": "Incomplete. `selValue` returns `missing` for a capability whose value is `unknown` and `bad` for a selector that does not match the value's shape. In add, sub and mul, a missing operand takes precedence over a bad one.",
+   "fix": "Add bullets for the unknown value (missing), the shape mismatch (bad) and missing-before-bad precedence."
+  },
+  {
+   "where": "The checker, checkLe",
+   "problem": "Ambiguous when one side is bad and the other is missing. The code returns `unknown` whenever either side is missing; `unsupported` happens only when neither side is missing.",
+   "fix": "Say: `unknown` if either side is missing; otherwise `unsupported` on a bad side or a dimension mismatch, and pass/fail on equal dimensions."
+  },
+  {
+   "where": "The checker, checkCoupled",
+   "problem": "'The result of the validity checks' hides that `validityOutcome` only returns pass, unknown or unsupported. A violated validity bound gives `unsupported`, never `fail`, and readers may assume otherwise.",
+   "fix": "State that a failed validity check gives `unknown` if any check is unknown, otherwise `unsupported`, so a violated validity bound never yields fail."
+  },
+  {
+   "where": "The checker, checkValue results",
+   "problem": "The list of deciding relations is incomplete. flagIs uses Boolean equality and countEquals uses equality on Nat, not only <=, membership or inclusion.",
+   "fix": "Say 'by $<=$ or $=$ on $NN$, by equality of Booleans, by list membership or by set inclusion'."
+  },
+  {
+   "where": "The checker, verdict cases",
+   "problem": "The cases are not stated to be ordered. The checker uses an if-chain and needMoreInfo for unconfirmed profiles takes priority. The lines happen to be disjoint after the first, but the reject and accept lines rely on confirmed = true implicitly.",
+   "fix": "Add 'taking the first line that applies'."
+  },
+  {
+   "where": "Data model, Configurations",
+   "problem": "A `Configuration` is not just a list of capabilities. It also has `id`, `equipmentId` and `name`, and `run_binds_inputs` later relies on `cfg.id` and `cfg.equipmentId`.",
+   "fix": "Say that it has an id, an equipment id, a name and a list of capabilities, and note that duplicates are rejected by the decoder, so first-match is unique for decoded input."
+  },
+  {
+   "where": "Independent specification, ValueMeets/ValueFails",
+   "problem": "'Each constructor carries its dimension equalities and its <=_QQ premise' is false for the flagIs, countAtLeast, countEquals, enumIn and setContains constructors. They have no dimension or Q.le premise.",
+   "fix": "Restrict the statement to the numeric constructors and describe the premises of the others."
+  },
+  {
+   "where": "Independent specification, SatisfiesKey/ViolatesKey formulas",
+   "problem": "Type-incorrect transcription. `lookup` returns `Option Capability`, so the Lean has `lookup cfg key = some c`, and ValueMeets/ValueFails apply to `c.value`, not to the capability `x`.",
+   "fix": "Write `\"lookup\"(c, kappa) = \"some\" x` and `\"ValueMeets\"(k, \"value\"(x))` / `\"ValueFails\"(k, \"value\"(x))`."
+  },
+  {
+   "where": "Campaign schedules, ScheduleOK formula",
+   "problem": "Type-loose transcription. In the Lean, resolve and cooldownOf return Options (`= some ps`, `= some cd`), the bounds compare `cd.val` and `runLength.val` (Q, not Quantity), and the end bound uses `Placed.stop = Q.add start dur`. Slot start times are bare Q with no dimension; seconds are assumed and not checked. resolve also requires equal list lengths.",
+   "fix": "Use `= \"some\" P`, `= \"some\" \"cd\"`, `\"val\"(\"cd\")`, `\"stop\"(p) <=_QQ \"val\"(L)`, define stop. Note that start times are dimensionless rationals read as seconds and that resolve needs equal lengths."
+  },
+  {
+   "where": "Trust base, test suite sentence",
+   "problem": "Slight overclaim. The test (lean_runner.theorem_inventory) is a regex scan of lean/CryoLean/*.lean for `sorry`, `admit`, lines starting with `axiom`, and `native_decide`. It does not detect 'new axioms' semantically; that is what the axiom audit does.",
+   "fix": "Say that the test suite scans the sources for `sorry`, `admit`, `axiom` declarations and `native_decide`."
+  },
+  {
+   "where": "Typst syntax (whole section)",
+   "problem": "No compile problem found. The $ delimiters are balanced (146 outside raw spans), there are no #imports or packages, and all math identifiers (and, or, not, forall, exists, kappa, rho, upright, cases, <==>, ==>, :=) are valid. The corrected text was compiled with the typst Python package without errors.",
+   "fix": "None needed."
+  }
+ ],
+ "math_typst": "= Formalization\n\nEvery CryoLean verdict is computed by one Lean 4 function, `verdict`, compiled into the `cryolean` binary (toolchain `v4.35.0`); campaign schedules are additionally checked by `validSchedule`. The trusted core is about 1,960 lines in six files: `Model.lean` (vocabulary), `Num.lean` (exact arithmetic), `Checker.lean` (executable checker), `Spec.lean` (specification), `Soundness.lean` (proofs) and `Schedule.lean` (campaign schedules). Z3, the LLM and Lanyon only produce _inputs_ to this function. No definition or theorem refers to a particular industry or manufacturer, and apart from the schedule check (which reads the capability key `cooldown_time.max`, the parameter `run_duration` and the unit second) none refers to a particular physical property: those are data.\n\n== Data model\n\n*Numbers.* A rational is a pair `Q` with `num : Int` and `den : Nat`. Rationals are compared by cross-multiplication over $ZZ$:\n$ a <=_QQ b quad <==> quad \"num\"(a) dot \"den\"(b) <= \"num\"(b) dot \"den\"(a). $\n`Q.add`, `Q.mul`, `Q.neg` and `Q.sub` use the usual formulas and never normalise. This relation is the rational order only if $\"den\" > 0$. The type does not enforce that. The JSON decoder does: it rejects a zero denominator. `Q.le_scale_left` and `Q.le_scale_right` prove that the comparison does not depend on the representation: for every $k > 0$, multiplying numerator and denominator of either operand by $k$ leaves $<=_QQ$ unchanged. There is no floating point anywhere in the core.\n\n*Dimensions.* `Dim` holds seven integer exponents (K, m, kg, s, A, mol, cd). `Dim.mul` adds them component by component. A `Quantity` is a pair $(\"val\" : QQ, \"dim\" : \"Dim\")$. `Quantity.mul` multiplies the values and dimensions. `Quantity.add` and `Quantity.sub` keep the left operand's dimension and check nothing themselves. Every caller that adds, subtracts or compares quantities checks that the dimensions are equal first, and units are never converted.\n\n*Evidence.* `EvidenceStatus` has seven classes. `trustedB` holds for `manufacturerSpecification`, `experimentalObservation`, `referenceData`, `certifiedSimulation` and `userEntered`, and fails for `inferredEstimate` and `unknown`. Two consequences are part of the design and should be stated. First, values the user types in count as trusted. Second, the `certifiedSimulation` label is assigned outside Lean, by the Gatekeeper and the data layer. Lean trusts the label; it does not check the certificate.\n\n*Configurations.* A `Capability` has a key, a `CapValue` (`range lo hi`, `max q`, `min q`, `flag b`, `count n`, `enum s`, `set xs` or `unknown`), an `InstallStatus` (`installed`, `optionalNotInstalled` or `unknown`), an evidence class and evidence ids. A `Configuration` has an id, an equipment id, a name and a list of capabilities. `lookup` returns the _first_ capability with a given key; the JSON decoder rejects duplicate capability keys (and duplicate parameter names), so for decoded inputs the match is unique.\n\n*Requirements.* A `Constraint` is one of nine shapes: `pointWithin q`, `rangeWithin lo hi`, `atLeast q`, `atMost q`, `flagIs b`, `countAtLeast n`, `countEquals n`, `enumIn allowed` and `setContains needed`. A `Requirement` has a list of alternative `keys` (a disjunction), a constraint, `mandatory` and `applicable` flags, and a list of `Condition`s: `capFlag key b`, `paramAtMost name q` or `paramAtLeast name q`. Parameters (`Param`) carry an optional quantity and their own evidence class. The `origin`, `rationale` and evidence ids of a requirement are kept for reports; the checker never reads them.\n\n*Coupled constraints.* `Expr` has seven forms: literals, capability selectors (`lo`, `hi`, `max`, `min`, `count`), parameters, `add`, `sub`, `mul` and `neg`. There is deliberately no division, so relations are written multiplied out. A `Coupled` constraint states $\"lhs\" <= \"rhs\"$ and holds only inside a validity region, which is a list of pairs $(a_i, b_i)$ with the obligation $a_i <= b_i$. An `Experiment` bundles parameters, requirements, coupled constraints, a `confirmed` flag and an `industry` string that the checker never reads.\n\n== The checker\n\n`checkValue k v` compares a constraint with a documented value. Its results are:\n- `unknown` if the value is `unknown`.\n- `unsupported` on any dimension mismatch, on an ill-formed request range ($not(\"rlo\" <=_QQ \"rhi\")$), or on a constraint and value of different shapes.\n- Otherwise `pass` or `fail`, decided exactly by $<=_QQ$, by $<=$ or $=$ on $NN$, by equality of Booleans, by list membership or by set inclusion.\n\n`checkCapability k c` takes the install status and the evidence class into account:\n- `installed` with trusted evidence: the result is `checkValue k c.value`.\n- `optionalNotInstalled` with trusted evidence: the result is `pass` exactly when $k = \"flagIs false\"$ (the item must be absent), and `fail` otherwise.\n- Untrusted evidence or unknown install status: the result is `unknown`.\n\nThe forensics audit added the rule that a \"not fitted\" record must itself be trusted before it can cause a failure. `keyOutcome` returns `unknown` for a missing key.\n\n`combineAny` merges the outcomes of the alternative keys. It returns `pass` if any key passes. It returns `fail` only if the list is non-empty and _every_ key fails. Otherwise it returns `unknown` if any key is unknown, and `unsupported` in the remaining cases.\n\nConditions are evaluated with three values (`holds`, `fails`, `unknown`). `evalCond` reads only installed, trusted capabilities, trusted \"not fitted\" records and trusted parameters (`paramValue` returns nothing for an untrusted parameter). Anything else gives `unknown`. `condsResult` returns `fails` if any condition definitely fails, `holds` if all hold, and `unknown` otherwise.\n\n`checkRequirement` maps `fails` to `notApplicable`, `unknown` to `unknown`, and `holds` to `combineAny` over the keys. `evalExpr` evaluates an expression to `ok q`, `missing` or `bad`:\n- A capability that is absent or not `usable` (installed and trusted), or whose value is `unknown`, is `missing`.\n- A selector that does not match the capability's shape is `bad`.\n- `add` and `sub` require equal dimensions; a mismatch is `bad`.\n- A literal or parameter with a zero denominator is `bad`.\n- In a compound expression, a `missing` operand takes precedence over a `bad` one.\n\n`checkLe` returns `unknown` if either side is `missing`; otherwise `unsupported` on a `bad` side or a dimension mismatch, and `pass` or `fail` on equal dimensions. `checkCoupled` returns `notApplicable` or `unknown` from the conditions. Otherwise, if every validity check passes, it returns `checkLe` on lhs and rhs; if not, it returns `unknown` when some validity check is `unknown` and `unsupported` otherwise. A violated validity bound therefore never yields `fail`. Let $O(c, e)$ be the outcomes of the mandatory, applicable requirements and coupled constraints. Then, taking the first line that applies,\n$ \"verdict\"(c, e) = cases(\n  \"needMoreInfo\" & \"if confirmed\"(e) = \"false\",\n  \"reject\" & \"if fail\" in O(c, e),\n  \"accept\" & \"if\" (forall o in O(c, e). space o = \"pass\" or o = \"notApplicable\") and \"pass\" in O(c, e),\n  \"needMoreInfo\" & \"otherwise\"\n) $\nAs a result, `unknown` and `unsupported` can never produce an accept. They lead to a reject only through another item that genuinely fails. The binary prints the three verdicts as `REQUIREMENTS_MET`, `DOES_NOT_MEET_REQUIREMENTS` and `NEED_MORE_INFORMATION`.\n\n== Independent specification\n\n`Spec.lean` defines what each verdict should mean, using inductive relations and propositions rather than the checker's functions. Write $T(x)$ for \"the evidence class of $x$ is trusted\" (`TrustedEvidence`). `ValueMeets` and `ValueFails` give one constructor per comparable constraint–value pair. Each numeric constructor carries its dimension equalities and its $<=_QQ$ premise (or the negation of that premise); the flag, count, enum and set constructors carry the corresponding equality, order, membership or inclusion premise (or its negation). For a configuration $c$, a constraint $k$ and a key $kappa$:\n$ \"SatisfiesKey\"(c, k, kappa) := exists x. \"lookup\"(c, kappa) = \"some\" x and [(x \"installed\" and T(x) and \"ValueMeets\"(k, \"value\"(x))) or (x \"not fitted\" and T(x) and k = \"flagIs false\")] $\n$ \"ViolatesKey\"(c, k, kappa) := exists x. \"lookup\"(c, kappa) = \"some\" x and [(x \"not fitted\" and T(x) and k != \"flagIs false\") or (x \"installed\" and T(x) and \"ValueFails\"(k, \"value\"(x)))] $\n`CondHolds` and `CondFails` are defined in the same style. `Denotes` gives a big-step semantics for `Expr` that uses only installed, trusted capabilities and trusted parameters, and requires equal dimensions for `add` and `sub`. `LeHolds` and `LeFails` hold when both sides denote quantities $x$ and $y$ with the same dimension and $x <=_QQ y$ (respectively $not(x <=_QQ y)$). For a requirement $r$ and a coupled constraint $g$:\n$ \"ReqPasses\"(r) &:= (forall d in \"conds\"(r). \"CondHolds\"(d)) and exists kappa in \"keys\"(r). \"SatisfiesKey\"(kappa) \\\n  \"ReqViolated\"(r) &:= (forall d in \"conds\"(r). \"CondHolds\"(d)) and \"keys\"(r) != [] and forall kappa in \"keys\"(r). \"ViolatesKey\"(kappa) \\\n  \"CoupledPasses\"(g) &:= (forall d in \"conds\"(g). \"CondHolds\"(d)) and (forall (a, b) in \"validity\"(g). \"LeHolds\"(a, b)) and \"LeHolds\"(\"lhs\"(g), \"rhs\"(g)) $\n`CoupledViolated` replaces the last conjunct with `LeFails`. `ReqOK` and `CoupledOK` add one more way to be fine: some condition definitely fails. Write $R^*$ and $C^*$ for the mandatory, applicable items. Then\n$ \"AcceptSpec\" &:= \"confirmed\" and (forall r in R^*. \"ReqOK\"(r)) and (forall g in C^*. \"CoupledOK\"(g)) and (exists r in R^*. \"ReqPasses\"(r) or exists g in C^*. \"CoupledPasses\"(g)) \\\n  \"RejectSpec\" &:= \"confirmed\" and (exists r in R^*. \"ReqViolated\"(r) or exists g in C^*. \"CoupledViolated\"(g)) $\nThe specification is not entirely separate from the checker. It shares `lookup` and `findParam` (first match), the order $<=_QQ$, and the operations on `Quantity`. A mistake in those shared pieces would affect both sides equally.\n\n== Main theorems\n\nAll of the following are in `Soundness.lean` unless noted otherwise. Free variables are universally quantified.\n\n*Verdict correctness.* `verdict_accept_iff` states $\"verdict\"(c, e) = \"accept\" <==> \"AcceptSpec\"(c, e)$. It is assembled from `verdict_accept_sound` and `verdict_accept_complete`. `verdict_reject_sound` and `verdict_reject_complete` together give $\"verdict\"(c, e) = \"reject\" <==> \"RejectSpec\"(c, e)$. Because the verdict has three values, it follows that $\"verdict\" = \"needMoreInfo\"$ exactly when neither specification holds. That characterisation is not stated as a separate theorem. `satisfies_spec_exclusive` proves that AcceptSpec and RejectSpec are never both true, and `empty_not_accept` rules out vacuous acceptance: if $O(c, e)$ is empty, the verdict is not accept.\n\n*Missing information.* `accept_no_unknown` states $\"verdict\" = \"accept\" ==> forall o in O(c, e). space o != \"unknown\" and o != \"unsupported\"$.\n\n*Provenance.* `fail_needs_trusted` states $\"checkCapability\"(k, x) = \"fail\" ==> T(x)$. `untrusted_never_passes` and `untrusted_never_fails` state that $not T(x)$ implies $\"checkCapability\"(k, x) != \"pass\"$ and $\"checkCapability\"(k, x) != \"fail\"$, whatever the install status. All three are stated at the capability level. At the verdict level, the same property follows through `verdict_reject_sound`, since `ViolatesKey` requires $T$.\n\n*Dimensions.* `pass_dims_all_match` states that if $\"checkValue\"(k, v) = \"pass\"$, then there is one $D$ such that every quantity in $k$ and every documented bound that was compared has dimension $D$. `coupled_pass_dims_match` states that if $\"checkLe\"(a, b) = \"pass\"$, both sides evaluate to quantities $x$ and $y$ with $\"dim\"(x) = \"dim\"(y)$. `evalExpr_sound` and `evalExpr_complete` together give $\"evalExpr\"(x) = \"ok\" q <==> \"Denotes\"(x, q)$.\n\n*Invariance.* `verdict_ignores_optional` states $\"verdict\"(c, \"dropOptional\"(e)) = \"verdict\"(c, e)$, where `dropOptional` removes every non-mandatory requirement and coupled constraint. `verdict_industry_irrelevant` states that for every string $s$, $\"verdict\"(c, e[\"industry\" := s]) = \"verdict\"(c, e)$. In particular, a newly invented industry label cannot open a bypass.\n\n*Untrusted proposers.* `candidates_accept_sound` covers the candidates Z3 proposes. For each result $rho$ in `checkCandidates cs e` with $\"verdict\"(rho) = \"accept\"$, there is a $c in \"cs\"$ with $\"configurationId\"(rho) = \"id\"(c)$ and $\"AcceptSpec\"(c, e)$. `run_binds_inputs` states that a result carries `cfg.id`, `cfg.equipmentId`, `e.id` and `verdict cfg e`. It is proved by `rfl`.\n\nSome names promise more than the theorems prove. `verdict_deterministic` states only that $c = c'$ and $e = e'$ imply equal verdicts, which is mere congruence. The source says so itself. Its value is a reminder that `verdict` is an ordinary pure function, with no access to time, randomness, Z3 or an LLM. `run_binds_inputs` holds by definition.\n\n== Campaign schedules\n\nZ3 proposes how to pack several experiments into one cooldown, as a list of `Slot`s (an experiment id and a start time, a bare rational in $QQ$ with no dimension attached, read as seconds). `resolve` pairs the slots with the experiments in order, requires the two lists to have the same length and their ids to match, and reads each duration from the trusted `run_duration` parameter, which must be in seconds. `cooldownOf` reads the usable, `min`-shaped capability stored under the key `cooldown_time.max`. The specification (`Schedule.lean`) is\n$ \"ScheduleOK\"(c, E, S, L) := & exists P, \"cd\". space \"resolve\"(E, S) = \"some\" P and \"cooldownOf\"(c) = \"some\" \"cd\" and \"dim\"(\"cd\") = \"dim\"(L) = upright(s) \\\n  & and (forall e in E. \"verdict\"(c, e) = \"accept\") and (forall p in P. \"val\"(\"cd\") <=_QQ \"start\"(p) and \"stop\"(p) <=_QQ \"val\"(L)) and \"Pairwise\"(\"Disjoint\", P) $\nHere $\"stop\"(p) = \"start\"(p) + \"dur\"(p)$, and $\"Disjoint\"(p, q)$ means that $\"stop\"(p) <=_QQ \"start\"(q)$ or $\"stop\"(q) <=_QQ \"start\"(p)$.\n\n- `validSchedule_sound` and `validSchedule_complete` show that the Boolean checker `validSchedule` returns true exactly when `ScheduleOK` holds. Since `ScheduleOK` is the propositional mirror of the Boolean conjunction, these two are close to restatements.\n- `validSchedule_bounds` and `validSchedule_disjoint` project out the window and disjointness facts.\n- `validSchedule_only_accepted` is the substantive result: it carries acceptance through `verdict_accept_sound` to $forall e in E. \"AcceptSpec\"(c, e)$.\n\nLean does _not_ prove that Z3's makespan is minimal; it proves only that the schedule is valid. It also does not require durations to be positive.\n\n== Trust base and axiom audit\n\nThe guarantees above depend on the following components being correct:\n+ The Lean kernel.\n+ The Lean compiler and runtime that turn the proven definitions into the `cryolean` binary. The theorems are about the definitions themselves, not the machine code.\n+ The JSON codec (`Json.lean`). It fails closed on unknown enum strings, missing mandatory fields, zero denominators and duplicate capability keys or parameter names, and it ignores any injected `\"verdict\"` field. A few optional fields take documented defaults (for example `applicable` defaults to true and `conditions` to the empty list). It is tested but not proved.\n+ The Python serializer that turns the SQLite evidence records into JSON.\n\nNone of the theorems claims that a datasheet value is physically correct. They relate verdicts to the decoded records. `Audit.lean` runs `#print axioms` on 44 theorems, including every theorem named above except `empty_not_accept`. Under toolchain `v4.35.0` every one of them depends only on `propext`, `Classical.choice` and `Quot.sound`, many on `propext` alone. None uses `sorryAx`. The test suite scans the sources for `sorry`, `admit`, `axiom` declarations and `native_decide` and fails if any appear.\n"
+}

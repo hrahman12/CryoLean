@@ -1,0 +1,18 @@
+{
+ "name": "fig_joule_surface_3d",
+ "title": "Joule heating surface against the documented cooling power of a dilution refrigerator",
+ "question": "Which combinations of excitation current and sample resistance keep the Joule heating within the documented mixing-chamber cooling power, and does the checker's verdict follow the physical boundary?",
+ "model": "P = I^2 R (exact) against P_cool(T_doc) of the joule_heating_vs_cooling_power model; analytic boundary I = sqrt(P_cool / R).",
+ "data": "330 Lean checks (check_batch, 1.0 s) for bluefors_ld400_hdw at T_op = 20 mK and 100 mK on a 11 x 15 (I, R) grid; cooling power 12 uW @ 20 mK and 400 uW @ 100 mK from data/cryostats/bluefors_ld.json. paper/data/fig_joule_surface_3d.json.",
+ "claim": "COMPUTED+MODELED+SOURCED",
+ "caption": "The surface is the Joule power P = I^2R over current and sample resistance (log axes), coloured by the margin to the documented cooling power of a Bluefors LD400 at 20 mK (a) and 100 mK (b), which is drawn as a horizontal plane. The black curve is the analytic intersection I^2R = P_cool (model overlay, projected on the floor). Markers are Lean checker verdicts of the Joule coupled model at sampled (I, R) points; all 330 of 330 sampled verdicts agree with the analytic boundary.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_physics3d.py",
+ "command": "python paper/scripts/fig_physics3d.py",
+ "files": [
+  "paper/figures/fig_joule_surface_3d.png",
+  "paper/figures/fig_joule_surface_3d.svg",
+  "paper/figures/fig_joule_surface_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig_joule_surface_3d.html"
+}

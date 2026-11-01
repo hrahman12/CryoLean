@@ -1,0 +1,908 @@
+{
+ "industry": "geology_and_oceanography",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "geo_noble_gas_he_ne_cryotrap",
+   "industry": "geology_and_oceanography",
+   "name": "Cryogenic He/Ne separation for groundwater noble-gas and 3H/3He dating: Ne adsorbed on a 14 K sintered-steel cold trap (+/-0.1 K), released at 100 K, in a UHV extraction line with LN2 traps",
+   "plain_name": "Separate helium from neon in groundwater gas with a 14 K cold trap",
+   "description": "Noble gases extracted from about 45 g of groundwater sealed in copper tubes are purified in an ultrahigh-vacuum line; water vapour and heavy gases are frozen onto liquid-nitrogen traps, and He is separated from Ne on a computer-controlled cryogenic cold trap held at 14 K (Ne adsorbed, He measured), then warmed to 100 K to release Ne, before magnetic-sector mass spectrometry (Eawag/ETH system).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 14,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 100,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold trap must hold 14 K for Ne adsorption and then be heated to 100 K to release Ne, so the trap temperature must span 14-100 K.",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, He-Ne measurement (p. 2044)",
+     "quote": "the He and Ne phase is transferred to a cryogenic cold trap (CCT) at 14 K ... After 20 min the He fraction is transferred to the spectrometer and the CCT is heated to 100 K to release Ne"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 14,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Quantitative Ne adsorption needs the trap at 14 K or colder.",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, He-Ne measurement (p. 2044)",
+     "quote": "the He and Ne phase is transferred to a cryogenic cold trap (CCT) at 14 K containing a high porosity filter of sintered stainless steel (Nupro SS-2FE-5, 0.5 um) that adsorbs Ne quantitatively"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.1",
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The trap temperature is computer-set and must stay within 0.1 K during Ne adsorption.",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, He-Ne measurement (p. 2044)",
+     "quote": "The temperature of the CCT can be set by computer control and is stable within ±0.1 K or better during Ne adsorption."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cold trap sits in the all-metal ultrahigh-vacuum extraction and purification line.",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, Gas Extraction (p. 2043)",
+     "quote": "the copper tube is directly connected to the ultrahigh vacuum (UHV) extraction and purification line by means of a device which presses the front of the copper tube UHV-tight onto a metal cutting edge"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.0000001",
+       "unit": "mbar"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The extraction line is pumped to about 1e-7 mbar before the sample is opened (approximate figure, so optional).",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, Gas Extraction (p. 2043)",
+     "quote": "Finally, a combination of a diaphragm (DP2) and turbomolecular pump (TP2, Pfeiffer TPU 050) reduces the pressure to about 10 -7 mbar."
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Water vapour and condensable gases are frozen onto an all-metal trap and a zeolite trap cooled by liquid nitrogen (separate traps on the same line).",
+     "source_url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "document_title": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "location": "Experimental Section, Gas Extraction (p. 2043)",
+     "quote": "The water vapor and the extracted gases are adsorbed on an all-metal trap (T1) and a trap filled with zeolite (ZEO1, Varian, molecular sieve of 5 A pore diameter), both cooled by liquid nitrogen."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Beyerle et al. (2000) A Mass Spectrometric System for the Analysis of Noble Gases and Tritium from Water Samples, Environ. Sci. Technol. 34, 2042-2050",
+     "url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "cryogenic cold trap (CCT) with Nupro SS-2FE-5 sintered stainless-steel filter",
+    "SAES GP 50 getter",
+    "Pfeiffer TPU 050 turbomolecular pump",
+    "noncommercial 90 degree magnetic sector mass spectrometers MS1/MS2"
+   ]
+  },
+  {
+   "id": "geo_57fe_ferrihydrite_soil_mossbauer",
+   "industry": "geology_and_oceanography",
+   "name": "Variable-temperature 57Fe Mossbauer spectroscopy (140 K to <=5 K) of 57Fe-labelled ferrihydrite transformation in anoxic paddy-soil incubations",
+   "plain_name": "Track how iron rust minerals change in soil by cooling them toward 5 K for gamma-ray spectra",
+   "description": "57Fe-ferrihydrite (65 mg) is mixed into 15 g of soil and incubated anoxically; solids are frozen in liquid nitrogen, freeze-dried and measured by 57Fe Mossbauer spectroscopy at 140, 77, 45, 25, 15, 10 and <=5 K, because magnetic ordering of ferrihydrite and secondary Fe(II)/Fe(III) phases only appears at the lowest temperatures.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 5,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 140,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The temperature profile runs from 140 K down to 5 K; the cryostat must cover this whole window.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339716/",
+     "document_title": "Notini et al. (2023) A New Approach for Investigating Iron Mineral Transformations in Soils and Sediments Using 57Fe-Labeled Minerals and 57Fe Mossbauer Spectroscopy, Environ. Sci. Technol. 57, 10008-10018",
+     "location": "Results, fitting of temperature-profile spectra; Figure 3 caption",
+     "quote": "Spectra collected at 140, 77, 45, 25, and 15 K were fitted using the extended Voigt-based fitting (xVBF) model. ... Spectra were collected at 25, 10, and ≤5 K."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 5,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The Fe(II) octet only forms below 15 K and the decisive spectra were taken at <=5 K.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339716/",
+     "document_title": "Notini et al. (2023) A New Approach for Investigating Iron Mineral Transformations in Soils and Sediments Using 57Fe-Labeled Minerals and 57Fe Mossbauer Spectroscopy, Environ. Sci. Technol. 57, 10008-10018",
+     "location": "Results, additional soils",
+     "quote": "The 5 K Mössbauer spectra of samples incubated for 12 weeks revealed the formation of octets"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 77,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Routine incubation-series spectra were collected at 77 K.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339716/",
+     "document_title": "Notini et al. (2023) A New Approach for Investigating Iron Mineral Transformations in Soils and Sediments Using 57Fe-Labeled Minerals and 57Fe Mossbauer Spectroscopy, Environ. Sci. Technol. 57, 10008-10018",
+     "location": "Figure 2 caption",
+     "quote": "Spectra were collected at 77 K."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Notini et al. (2023) A New Approach for Investigating Iron Mineral Transformations in Soils and Sediments Using 57Fe-Labeled Minerals and 57Fe Mossbauer Spectroscopy, Environ. Sci. Technol. 57, 10008-10018, doi:10.1021/acs.est.3c00434",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339716/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "MBraun anoxic glovebox (N2 atmosphere, <5 ppm O2)",
+    "57Fe Mossbauer spectrometer and cryostat (models given only in the Supporting Information, not in the main text)"
+   ]
+  },
+  {
+   "id": "geo_seawater_nutrient_frozen_storage",
+   "industry": "geology_and_oceanography",
+   "name": "GO-SHIP seawater nutrient (N, P, Si) sample preservation by rapid freezing in a deep freezer at -20 C or colder",
+   "plain_name": "Freeze seawater samples so their nutrients can be measured back on land",
+   "description": "When nutrient samples from hydrographic cruises cannot be analysed within two to three days, the 3/4-filled, capped bottles are frozen as soon and as rapidly as possible in a deep freezer at -20 C or colder with good air circulation, kept in gridded racks, and thawed in air before continuous-flow analysis.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The storage space must reach -20 C (253.15 K) or colder.",
+     "source_url": "https://www.go-ship.org/Manual/Hydes_et_al_Nutrients.pdf",
+     "document_title": "Hydes et al. (2010) Determination of dissolved nutrients (N, P, Si) in seawater with high precision and inter-comparability using gas-segmented continuous flow analysers, GO-SHIP Repeat Hydrography Manual (IOCCP Report 14)",
+     "location": "Section 5.1 Sample storage with freezing",
+     "quote": "Before freezing ensure that sample bottles are no more than 3/4 full and firmly capped. A deep freezer (at least -20 oC) should be used."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Lowest achievable storage temperature must be -20 C or colder.",
+     "source_url": "https://www.go-ship.org/Manual/Hydes_et_al_Nutrients.pdf",
+     "document_title": "Hydes et al. (2010) Determination of dissolved nutrients (N, P, Si) in seawater with high precision and inter-comparability using gas-segmented continuous flow analysers, GO-SHIP Repeat Hydrography Manual (IOCCP Report 14)",
+     "location": "Section 5.1 Sample storage with freezing",
+     "quote": "A deep freezer (at least -20 oC) should be used. Good air circulation around the bottles in the freezer is important."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": false
+     },
+     "mandatory": false,
+     "rationale": "Freezing relies on air circulation around the bottles in an atmospheric freezer, not an evacuated chamber.",
+     "source_url": "https://www.go-ship.org/Manual/Hydes_et_al_Nutrients.pdf",
+     "document_title": "Hydes et al. (2010) Determination of dissolved nutrients (N, P, Si) in seawater with high precision and inter-comparability using gas-segmented continuous flow analysers, GO-SHIP Repeat Hydrography Manual (IOCCP Report 14)",
+     "location": "Section 5.1 Sample storage with freezing",
+     "quote": "A deep freezer (at least -20 oC) should be used. Good air circulation around the bottles in the freezer is important."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Hydes et al. (2010) Determination of dissolved nutrients (N, P, Si) in seawater with high precision and inter-comparability using gas-segmented continuous flow analysers, GO-SHIP Repeat Hydrography Manual (IOCCP Report 14)",
+     "url": "https://www.go-ship.org/Manual/Hydes_et_al_Nutrients.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "deep freezer (at least -20 C)",
+    "gas-segmented continuous flow analyser"
+   ]
+  },
+  {
+   "id": "geo_methane_hydrate_ice_gas_synthesis",
+   "industry": "geology_and_oceanography",
+   "name": "Isobaric-isothermal synthesis of sI methane hydrate from sieved ice powder and CH4 at 3.5-15 MPa and 268-271 K for 3 weeks, quenched in liquid nitrogen",
+   "plain_name": "Grow methane ice-cage crystals from frozen water and gas under high pressure",
+   "description": "Ice spheres made by spraying water into liquid nitrogen are loaded into a 6.7 mm Al vial inside a precooled pressure vessel whose temperature is held by a circulating cryostat bath, pressurized with CH4 (3.5-15 MPa) at 268 K (H2O) or 271 K (D2O) for 3 weeks, then quenched in liquid nitrogen, depressurized, ground under LN2 and stored under LN2 for diffraction and Raman analysis.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 268,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "H2O-based hydrates were formed at 268 K (Table 1 formation temperature).",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Table 1 (synthesis conditions), row 5",
+     "quote": "5 H2O 268 3.5 8.28 11.85474(2) 98.3(3) 85.6(4)"
+    },
+    {
+     "keys": [
+      "pressure.max_working"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 15000000,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The highest formation pressure was 15 MPa, which the sample vessel must withstand.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Table 1 (synthesis conditions), row 8",
+     "quote": "8 H2O 268 15 8.53 11.85484(4) 100.0(5)"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 504,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Each formation reaction ran for 3 weeks (504 h) at constant pressure and temperature.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section",
+     "quote": "During the reaction, pressure was manually maintained to the set point within 0.1-0.2 MPa. All formation reactions ran for 3 weeks."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "6.7",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Ice powder is loaded in an Al vial with 6.7 mm inner diameter inside the pressure vessel.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section",
+     "quote": "Ice particles were filled into an Al-vial with an inner diameter of 6.7 mm or in a larger PFA-jar, which was inserted into a precooled custom-built pressure vessel where temperature was controlled by a circulating cryostat bath."
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Ice spheres are made in LN2 and the cell is quenched in LN2 at the end (separate dewar step).",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section",
+     "quote": "At the completion of the reaction, the pressure cell was rapidly quenched in liq. N 2 and pressure was concomitantly released."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "url": "https://arxiv.org/abs/1803.02244",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "custom-built pressure vessel with circulating cryostat bath",
+    "Ashcroft pressure transducer",
+    "Heise gauge"
+   ]
+  },
+  {
+   "id": "geo_methane_hydrate_raman_113k",
+   "industry": "geology_and_oceanography",
+   "name": "Confocal Raman determination of methane large/small cage occupancy in recovered hydrate on a Linkam THMS600 stage at 113 +/- 0.1 K",
+   "plain_name": "Count methane molecules trapped in ice cages with laser light at 113 K",
+   "description": "Recovered methane hydrate, stored under liquid nitrogen, is placed on a Linkam THMS600 cooling stage and measured at 113 +/- 0.1 K with a LabRAM HR800 (488 nm, 50x long-working-distance objective); the C-H stretching band splits at about 2901 and 2913 cm-1 into large- and small-cage contributions.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 113,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Spectra are taken with the hydrate held at 113 K so it does not decompose.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section, Raman",
+     "quote": "Hydrate samples were placed in a cooling stage (Linkam THMS600) and measured at 113±0.1 K under the ambient pressure of liq. N 2."
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.1",
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Measurement temperature held to +/-0.1 K.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section, Raman",
+     "quote": "Hydrate samples were placed in a cooling stage (Linkam THMS600) and measured at 113±0.1 K under the ambient pressure of liq. N 2."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The laser is focused through a 50x long-working-distance objective onto the sample and collected in backscattering.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section, Raman",
+     "quote": "50x long-working distance objective (Olympus) and 100 um confocal hole. The laser beam focused on the surface of hydrate samples within a diameter of around 1.1 um"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Samples are ground, sieved and stored under liquid nitrogen before measurement.",
+     "source_url": "https://arxiv.org/abs/1803.02244",
+     "document_title": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "location": "Experimental Section",
+     "quote": "The recovered samples were ground and sieved under liq. N 2 for the following synchrotron powder diffraction and Raman measurements, and stored under liquid N 2."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+     "url": "https://arxiv.org/abs/1803.02244",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Linkam THMS600",
+    "LabRAM HR800 (Horiba Jobin Yvon)",
+    "Andor DU 420A CCD",
+    "Coherent Innova 90C Ar+ laser"
+   ]
+  },
+  {
+   "id": "geo_hydrate_sediment_lt_magnetism_5t",
+   "industry": "geology_and_oceanography",
+   "name": "FC/ZFC/LTC remanence, AC susceptibility and low-temperature hysteresis (5-300 K, 5 T SIRM) of gas-hydrate-bearing sediments from IODP Site U1519C on an MPMS XL-7",
+   "plain_name": "Read the magnetic minerals in deeply buried gas-hydrate mud between 5 K and room temperature",
+   "description": "Thirteen sediment samples from 587-618 mbsf are given a 5 T SIRM (field-cooled, zero-field-cooled and room-temperature low-temperature-cycling protocols) and measured between 5 and 300 K; a subset gets AC susceptibility (1, 10, 111 Hz) and hysteresis loops at 5, 70, 130 and 300 K to +/-1 T, to identify magnetite and iron sulfides.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 5,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 300,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All protocols cool to 5 K and warm back to 300 K.",
+     "source_url": "https://doi.org/10.3389/feart.2025.1661858",
+     "document_title": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+     "location": "Section 2.3 Low-temperature magnetic measurements",
+     "quote": "For the FC measurements, samples were cooled from 300 K to 5 K in a 5 T field to impart a saturation isothermal remanent magnetization (SIRM), after which the remanence was recorded during zero-field warming to 300 K."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 5,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The lowest measurement temperature is 5 K.",
+     "source_url": "https://doi.org/10.3389/feart.2025.1661858",
+     "document_title": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+     "location": "Section 2.3 Low-temperature magnetic measurements",
+     "quote": "For the ZFC protocol, samples were first cooled to 5 K in zero field, then subjected to a 5 T pulse to impart a SIRM, with remanence subsequently measured during warming in zero field."
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 5,
+       "unit": "T"
+      }
+     },
+     "mandatory": true,
+     "rationale": "SIRM is imparted in a 5 T field.",
+     "source_url": "https://doi.org/10.3389/feart.2025.1661858",
+     "document_title": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+     "location": "Section 2.3 Low-temperature magnetic measurements",
+     "quote": "The LTC procedure involved magnetizing samples at 300 K in a 5 T field, cooling them to 5 K in zero field, and then measuring remanence during stepwise warming to 300 K in 2 K increments."
+    },
+    {
+     "keys": [
+      "module.acms"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "AC susceptibility at 1-111 Hz was measured on a subset of nine samples.",
+     "source_url": "https://doi.org/10.3389/feart.2025.1661858",
+     "document_title": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+     "location": "Section 2.3 Low-temperature magnetic measurements",
+     "quote": "AC susceptibility was measured on this subset at frequencies of 1, 10, and 111 Hz during warming after zero-field cooling to 5 K."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Liu, Li and Xu (2025) Low-temperature magnetic properties of deeply buried gas hydrate bearing sediments: a case study from IODP expedition 375 site U1519C in the Hikurangi subduction zone, New Zealand, Frontiers in Earth Science",
+     "url": "https://doi.org/10.3389/feart.2025.1661858",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Quantum Design MPMS XL-7"
+   ]
+  },
+  {
+   "id": "geo_nankai_iron_sulfide_ltsirm_2p5t",
+   "industry": "geology_and_oceanography",
+   "name": "Room-temperature SIRM cycling and 5 K LT-SIRM (ZFC/FC, 2.5 T) of iron-sulfide-bearing gas-hydrate sediments, IODP Site C0008, Nankai Trough",
+   "plain_name": "Detect magnetic iron-sulfide grains in seafloor mud by cooling them to 5 K in a 2.5 T field",
+   "description": "Twenty-one selected sediment samples are given a 2.5 T SIRM at 300 K and cycled to 5 K in near-zero field, then a 2.5 T LT-SIRM is imparted at 5 K (ZFC) and after cooling in 2.5 T (FC) and measured on warming to 300 K in a Quantum Design MPMS; NRM/ARM of 7 cc cubes are measured on a 2G SQUID cryogenic magnetometer in a shielded room.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 5,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 300,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Remanence is cycled between room temperature (300 K) and 5 K.",
+     "source_url": "https://doi.org/10.1186/s40623-015-0287-y",
+     "document_title": "Kars and Kodama (2015) Rock magnetic characterization of ferrimagnetic iron sulfides in gas hydrate-bearing marine sediments at Site C0008, Nankai Trough, Pacific Ocean, off-coast Japan, Earth, Planets and Space",
+     "location": "Methods, p. 3",
+     "quote": "The sample is then cooled down to 5 K in a 2.5 T magnetic field, and the LT-SIRM is measured during warming to 300 K (FC for field cooled)."
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 5,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "LT-SIRM is imparted at 5 K.",
+     "source_url": "https://doi.org/10.1186/s40623-015-0287-y",
+     "document_title": "Kars and Kodama (2015) Rock magnetic characterization of ferrimagnetic iron sulfides in gas hydrate-bearing marine sediments at Site C0008, Nankai Trough, Pacific Ocean, off-coast Japan, Earth, Planets and Space",
+     "location": "Methods, p. 3",
+     "quote": "A low temperature (LT)-SIRM was imparted at 5 K at 2.5 T."
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "2.5",
+       "unit": "T"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All SIRMs are imparted at 2.5 T.",
+     "source_url": "https://doi.org/10.1186/s40623-015-0287-y",
+     "document_title": "Kars and Kodama (2015) Rock magnetic characterization of ferrimagnetic iron sulfides in gas hydrate-bearing marine sediments at Site C0008, Nankai Trough, Pacific Ocean, off-coast Japan, Earth, Planets and Space",
+     "location": "Methods, p. 3",
+     "quote": "A cooling-warming cycle of a saturation isothermal remanent magnetization (SIRM) imparted at room temperature (300 K) at 2.5 T was first measured in a zero magnetic field (trapped field <150 uT)."
+    },
+    {
+     "keys": [
+      "module.magnetic_shielding"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "NRM and ARM are measured in a SQUID cryogenic magnetometer inside a shielded room (separate instrument from the MPMS).",
+     "source_url": "https://doi.org/10.1186/s40623-015-0287-y",
+     "document_title": "Kars and Kodama (2015) Rock magnetic characterization of ferrimagnetic iron sulfides in gas hydrate-bearing marine sediments at Site C0008, Nankai Trough, Pacific Ocean, off-coast Japan, Earth, Planets and Space",
+     "location": "Methods, p. 2",
+     "quote": "Natural remanent magnetization (NRM) and anhysteretic remanent magnetization (ARM) were measured with a 2G SQUID cryogenic magnetometer in the shielded room (noise level ~10-10 Am2)."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Kars and Kodama (2015) Rock magnetic characterization of ferrimagnetic iron sulfides in gas hydrate-bearing marine sediments at Site C0008, Nankai Trough, Pacific Ocean, off-coast Japan, Earth, Planets and Space",
+     "url": "https://doi.org/10.1186/s40623-015-0287-y",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Quantum Design Magnetic Properties Measurements System (MPMS)",
+    "2G SQUID cryogenic magnetometer"
+   ]
+  },
+  {
+   "id": "geo_sea_ice_growth_walkin_freezer",
+   "industry": "geology_and_oceanography",
+   "name": "Laboratory sea-ice growth from natural seawater in a ~1 m3 tank inside a walk-in freezer at -15, -25 and -40 C (carbonate system and CO2 fluxes)",
+   "plain_name": "Grow a metre-sized block of sea ice in a walk-in freezer to follow its carbon",
+   "description": "Filtered, UV-sterilized open-ocean seawater in a 105 x 95 x 99 cm tank is frozen from the surface in a walk-in freezer (Institute of Ocean Sciences, Sidney BC) at ambient temperatures of -15, -25 or -40 C until the ice is about 20 cm thick (1.8-22.5 days), to relate growth rate to inorganic carbon rejection.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 258150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The freezer air must be held at each of -15, -25 and -40 C (258.15 to 233.15 K).",
+     "source_url": "https://doi.org/10.3389/feart.2018.00234",
+     "document_title": "Konig, Miller, Simpson and Vagle (2018) Carbon Dynamics During the Formation of Sea Ice at Different Growth Rates, Frontiers in Earth Science 6:234",
+     "location": "Methods, Ice Growth Experiments",
+     "quote": "Three ambient temperatures (−15°C, −25°C, and −40°C) were chosen to cover a wide range of ice growth rates within a temperature range observable in nature, and to be sufficiently cold to reach the desired thickness."
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 99,
+       "unit": "cm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold space must take the 99 cm tall seawater tank.",
+     "source_url": "https://doi.org/10.3389/feart.2018.00234",
+     "document_title": "Konig, Miller, Simpson and Vagle (2018) Carbon Dynamics During the Formation of Sea Ice at Different Growth Rates, Frontiers in Earth Science 6:234",
+     "location": "Methods, Ice Growth Experiments",
+     "quote": "The cold lab contained a water tank (ca. 105 × 95 × 99 cm; Figure 1A) holding natural, open ocean seawater"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1416,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Circumscribed diameter of the 105 x 95 cm tank footprint is sqrt(105^2+95^2) = 141.6 cm (rounded up to 1416 mm).",
+     "source_url": "https://doi.org/10.3389/feart.2018.00234",
+     "document_title": "Konig, Miller, Simpson and Vagle (2018) Carbon Dynamics During the Formation of Sea Ice at Different Growth Rates, Frontiers in Earth Science 6:234",
+     "location": "Methods, Ice Growth Experiments",
+     "quote": "The cold lab contained a water tank (ca. 105 × 95 × 99 cm; Figure 1A) holding natural, open ocean seawater"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Konig, Miller, Simpson and Vagle (2018) Carbon Dynamics During the Formation of Sea Ice at Different Growth Rates, Frontiers in Earth Science 6:234",
+     "url": "https://doi.org/10.3389/feart.2018.00234",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "walk-in freezer with three refrigeration condensers (Institute of Ocean Sciences, Sidney, BC)"
+   ]
+  },
+  {
+   "id": "geo_sea_ice_column_contaminant_uptake",
+   "industry": "geology_and_oceanography",
+   "name": "Top-down growth of artificial sea ice in 6.55 cm columns under a -5.1 C cryothermostat-cooled plate to quantify incorporation of particulate contaminants",
+   "plain_name": "Freeze small columns of seawater to see how plastic particles get trapped in sea ice",
+   "description": "Columns (6.55 cm diameter, 44 cm tall) of artificial seawater (31.28 g/L) on an orbital shaker in a 1 C room are frozen from the top for 19 h by an aluminium cooling element fed by a cryothermostat bath at -5.1 +/- 0.1 C; the ice is lifted out, centrifuged and some cores are kept at -20 C for micro-CT.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 268050,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The circulating cryothermostat must hold the cooling element at -5.1 C (268.05 K).",
+     "source_url": "https://doi.org/10.1038/s41467-025-59608-2",
+     "document_title": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+     "location": "Methods, Artificial sea ice production and processing",
+     "quote": "The cooling elements, cooled by circulation of cooling liquid from a cryothermostat bath, had a bottom of the temperature of −5.1 ± 0.1 °C."
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.1",
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cooling-element temperature controlled to +/-0.1 C.",
+     "source_url": "https://doi.org/10.1038/s41467-025-59608-2",
+     "document_title": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+     "location": "Methods, Artificial sea ice production and processing",
+     "quote": "The cooling elements, cooled by circulation of cooling liquid from a cryothermostat bath, had a bottom of the temperature of −5.1 ± 0.1 °C."
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 19,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Freezing runs 19 h continuously.",
+     "source_url": "https://doi.org/10.1038/s41467-025-59608-2",
+     "document_title": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+     "location": "Methods, Artificial sea ice production and processing",
+     "quote": "Freezing lasted 19 h to ensure that the ice thickness attained a plateau which was typical for sea ice grown under constant temperature forcings (Fig. S8)."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Some centrifuged ice cores are stored at -20 C for micro-CT (separate freezer).",
+     "source_url": "https://doi.org/10.1038/s41467-025-59608-2",
+     "document_title": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+     "location": "Methods, Artificial sea ice production and processing",
+     "quote": "To characterize the structure of the sea ice, several centrifugated ice cores were set aside at −20 °C and scanned by micro-X-ray-tomography (μCT)43."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+     "url": "https://doi.org/10.1038/s41467-025-59608-2",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "cryothermostat bath with aluminium cooling elements",
+    "orbital shaker KS 15 A (Huber Lab)",
+    "polymethyl pentene columns"
+   ]
+  },
+  {
+   "id": "geo_lava_ltd_tsunakawa_shaw",
+   "industry": "geology_and_oceanography",
+   "name": "Low-temperature demagnetization (10 min liquid-nitrogen soak, zero field) of one-inch lava cores in Tsunakawa-Shaw paleointensity experiments",
+   "plain_name": "Dunk lava rock cores in liquid nitrogen to strip weak magnetism before measuring ancient field strength",
+   "description": "Before each stepwise AF demagnetization of NRM, ARM and laboratory TRM, one-inch Hawaiian lava specimens are soaked in liquid nitrogen for 10 min and warmed at room temperature for 30 min in zero field (low-temperature demagnetization, LTD), removing multidomain magnetite remanence; remanence is measured with DSPIN/ASPIN spinner magnetometers with AF to 180 mT.",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "LTD is done by soaking the specimen in liquid nitrogen.",
+     "source_url": "https://doi.org/10.3389/feart.2018.00048",
+     "document_title": "Yamamoto and Yamaoka (2018) Paleointensity Study on the Holocene Surface Lavas on the Island of Hawaii Using the Tsunakawa-Shaw Method, Frontiers in Earth Science 6:48",
+     "location": "Materials and Methods, Tsunakawa-Shaw Paleointensity Experiment, p. 3",
+     "quote": "low-temperature demagnetization (LTD; Ozima et al., 1964) was conducted on a specimen by soaking it in liquid nitrogen for 10 min and then leaving it at room temperature for 30 min in a zero field."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1,
+       "unit": "inch"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Specimens are cut from standard one-inch paleomagnetic cores.",
+     "source_url": "https://doi.org/10.3389/feart.2018.00048",
+     "document_title": "Yamamoto and Yamaoka (2018) Paleointensity Study on the Holocene Surface Lavas on the Island of Hawaii Using the Tsunakawa-Shaw Method, Frontiers in Earth Science 6:48",
+     "location": "Materials and Methods, Tsunakawa-Shaw Paleointensity Experiment, p. 2",
+     "quote": "We applied the Tsunakawa–Shaw method (Tsunakawa and Shaw, 1994; Yamamoto et al., 2003) to 169 specimens cut from one-inch cores of all sites"
+    },
+    {
+     "keys": [
+      "module.magnetic_shielding"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cooling/warming cycle must happen in zero field so no new remanence is acquired.",
+     "source_url": "https://doi.org/10.3389/feart.2018.00048",
+     "document_title": "Yamamoto and Yamaoka (2018) Paleointensity Study on the Holocene Surface Lavas on the Island of Hawaii Using the Tsunakawa-Shaw Method, Frontiers in Earth Science 6:48",
+     "location": "Materials and Methods, Tsunakawa-Shaw Paleointensity Experiment, p. 3",
+     "quote": "by soaking it in liquid nitrogen for 10 min and then leaving it at room temperature for 30 min in a zero field."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Yamamoto and Yamaoka (2018) Paleointensity Study on the Holocene Surface Lavas on the Island of Hawaii Using the Tsunakawa-Shaw Method, Frontiers in Earth Science 6:48",
+     "url": "https://doi.org/10.3389/feart.2018.00048",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "DSPIN automated spinner magnetometer with AF demagnetizer (Natsuhara Giken)",
+    "ASPIN-A spinner magnetometer (Natsuhara Giken)",
+    "DEM-8601C AF demagnetizer (Natsuhara Giken)",
+    "TDS-1 thermal demagnetizer (Natsuhara Giken)"
+   ]
+  }
+ ],
+ "notes": "Quotes were read from the full texts (Eawag PDF text extraction, PMC page, GO-SHIP PDF text extraction, arXiv full text, and Undermind full-text readers for the Frontiers/EPS/Nature Communications papers); PDF text-extraction artifacts were normalised (e.g. '±' rendered as '(' in the Beyerle PDF). Web search, Tavily and Lune quotas were exhausted during this run, so the 2G 755 u-channel SRM, Stanley 2009 WHOI noble-gas, Hirai 2001 methane-hydrate DAC (repository under maintenance) and the CGS hydrate PXRD (403) ideas could not be sourced verbatim and were replaced. Liquid-nitrogen steps that happen in a separate dewar (quench, LN2 traps, storage) are marked mandatory=false so they do not exclude the main cryogenic machine. Kon18 tank footprint 105 x 95 cm is converted to a circumscribed diameter of 141.6 cm per the shared sample.diameter.max rule."
+}

@@ -1,0 +1,18 @@
+{
+ "name": "fig_proof_graph",
+ "title": "Proof dependency graph of the trusted Lean core",
+ "question": "Which executable definitions and which specifications does each audited theorem talk about, and how do the proofs build on each other?",
+ "model": "Directed graph extracted statically from the elaborated Lean environment: an edge T->D is drawn solid when D occurs in the statement (type) of T and thin when D occurs only in its proof term or definition body (direct valueDeps restricted to the drawn nodes). Columns follow the module structure; order within a column minimises crossings (barycentre heuristic).",
+ "data": "docs/forensics/cryolean-forensics.json (839 declarations, for-all-dev/forensics extractor); nodes = the 44 theorems in lean/audit-axioms.json + 52 key definitions; 82 statement edges, 195 direct proof/definition edges (395 if followed through undrawn helper lemmas). Data: paper/data/fig_proof_graph.json.",
+ "claim": "PROVEN+COMPUTED",
+ "caption": "Dependency structure of CryoLean's trusted Lean 4 core: the 44 axiom-audited theorems (circles) and 52 definitions they build on (squares), coloured by module. Solid edges are statement dependencies, thin grey edges direct proof or definitional dependencies; both are extracted from the elaborated environment by the forensics tool, not drawn by hand. The soundness theorems connect the executable checker (Checker) to an independent specification (Spec: AcceptSpec, RejectSpec), and the schedule theorems reuse the verdict. Bold labels mark headline theorems.",
+ "section": "main",
+ "script": "paper/scripts/fig_formal.py",
+ "command": "python paper/scripts/fig_formal.py",
+ "files": [
+  "paper/figures/fig_proof_graph.png",
+  "paper/figures/fig_proof_graph.svg",
+  "paper/figures/fig_proof_graph.pdf"
+ ],
+ "interactive": "paper/interactive/fig_proof_graph.html"
+}

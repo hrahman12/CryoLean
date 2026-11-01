@@ -1,0 +1,80 @@
+{
+ "id": "semi_si_nanowire_cryo_icp_etch",
+ "name": "Cryogenic SF6/O2 ICP-RIE of vertical Si nanowire arrays at -95 C and 1.0 Pa",
+ "plain_name": "Carve tall silicon nanowires with a plasma while the wafer is chilled to -95 C",
+ "industry": "semiconductors_and_electronics",
+ "description": "Lithographically masked n-type Si(100) is etched in a SENTECH SI 500C cryogenic ICP-RIE with the default recipe -95 C, 1.0 Pa, SF6 118 sccm / O2 13 sccm, ICP 500 W, RF 6 W, 5 min, using thermally conductive oil between sample and holder; the SiOxFy passivation formed at low temperature yields 15-21 um nanowires with near-vertical sidewalls.",
+ "keywords": [
+  "Carve tall silicon nanowires with a plasma while the wafer is chilled to -95 C",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryogenic SI 500C plasma etcher from SENTECH Instruments GmbH"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 178150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The default recipe runs the substrate holder at -95 C = 178.15 K.",
+   "evidence_ids": [
+    "v4e_semi_si_nanowire_cryo_icp_etch_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The plasma etch runs in an evacuated chamber at 1.0 Pa.",
+   "evidence_ids": [
+    "v4e_semi_si_nanowire_cryo_icp_etch_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 1,
+     "unit": "Pa"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chamber must be able to reach and hold the 1.0 Pa process pressure.",
+   "evidence_ids": [
+    "v4e_semi_si_nanowire_cryo_icp_etch_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,74 @@
+{
+  "id": "expc_semiconductor_dlts",
+  "name": "Deep-level transient spectroscopy of nitrogen-containing float-zone silicon Schottky diodes,36–300 K",
+  "plain_name": "Measure semiconductor defect traps through capacitance transients",
+  "industry": "semiconductors_and_electronics",
+  "description": "Measure semiconductor defect traps through capacitance transients. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "semiconductor_dlts",
+    "semiconductors_and_electronics"
+  ],
+  "sources": [
+    {
+      "id": "src_dlts",
+      "citation": "Scheffler et al. (2023), Comparison of the Properties of Defect States in Nitrogen-Containing n- and p-Type Float-Zone Silicon: A Combined Deep-Level Transient Spectroscopy and Minority-Carrier Transient Spectroscopy Study",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/pssa.202200633",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "300 K down to36 K",
+      "normalized": null,
+      "evidence_id": "expc_dlts_temperatures"
+    }
+  ],
+  "reported_equipment": [
+    "closed-cycle helium cryostat",
+    "Boonton7200 capacitance meter"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "36000",
+          "unit": "mK"
+        },
+        "hi": {
+          "value": "300000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the published DLTS temperature scan. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_dlts_temperatures"
+      ]
+    },
+    {
+      "key": "module.capacitance_transient_spectroscopy",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A capacitance bridge/meter and trap-filling transient measurement electronics are essential; electrical probe arms alone do not supply DLTS. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_dlts_function"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Trap-filling/reverse bias, rate window, excitation pulse widths, diode contact quality and leakage must be reviewed; no defect activation energy is predicted.",
+    "The source's separate80–310 K optically excited MCTS apparatus is not merged into this DLTS profile."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

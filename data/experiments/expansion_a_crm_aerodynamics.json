@@ -1,0 +1,77 @@
+{
+  "id": "expa_crm_aerodynamics",
+  "name": "Cryogenic aircraft-model force and pressure testing, 117–302 K",
+  "plain_name": "Cryogenic aircraft-model force and pressure testing, 117–302 K",
+  "industry": "aerospace_and_space_exploration",
+  "description": "Reproduce the bounded NASA Common Research Model aerodynamic temperature sweep; aerodynamic force/pressure instrumentation is essential.",
+  "keywords": [
+    "crm aerodynamics",
+    "cryogenic wind tunnel"
+  ],
+  "sources": [
+    {
+      "citation": "NASA Common Research Model: Experimental Approach",
+      "url": "https://www.nasa.gov/common_research_model/high-speed-crm/experimental-approach/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "citation": "NASA National Transonic Facility virtual tour",
+      "url": "https://www.nasa.gov/langley/virtual-tour/ntf/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "between 302 K and 117 K",
+      "evidence_id": "expa_crm"
+    }
+  ],
+  "reported_equipment": [
+    "NASA National Transonic Facility"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "117",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "302",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported campaign used 117–302 K tunnel conditions.",
+      "evidence_ids": [
+        "expa_crm"
+      ]
+    },
+    {
+      "key": "module.aerodynamic_force_pressure_test",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "A cold sample chamber cannot substitute for a flow tunnel, sting balance and pressure acquisition.",
+      "evidence_ids": [
+        "expa_crm"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Source campaign pressure/Reynolds correlations, model blockage, balance calibration and aeroelastic loading are not yet encoded as coupled checks."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

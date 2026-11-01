@@ -1,0 +1,77 @@
+{
+ "id": "mat_tension_liquid_helium_e1450",
+ "name": "Tension testing of structural alloys fully submerged in liquid helium (ASTM E1450, 4 K, strain rate <= 1e-3 s-1)",
+ "plain_name": "Pull a metal test bar apart while it sits in liquid helium",
+ "industry": "materials_and_nanotechnology",
+ "description": "Standard tensile test (yield strength, tensile strength, elongation, reduction of area) of structural alloys with the specimen fully submerged in normal liquid helium (He I) inside a cryostat, under crosshead displacement control at a nominal strain rate of 1e-3 s-1 or less. The standard designates the test temperature 4 K (He I boils at 4.2 K at sea level, 4.0 K at 1677 m).",
+ "keywords": [
+  "Pull a metal test bar apart while it sits in liquid helium",
+  "materials_and_nanotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "ASTM E1450-92(1998), Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium, ASTM International, DOI 10.1520/E1450-92R98 (scope as published on the ASTM store page; accessed 2026-11-01)",
+   "url": "https://store.astm.org/e1450-92r98.html",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The specimen must be fully submerged in a normal liquid-helium (He I) bath; a dry or conduction-cooled stage does not satisfy the method.",
+   "evidence_ids": [
+    "v4e_mat_tension_liquid_helium_e1450_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "4.2",
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The test temperature is the He I boiling point, 4.2 K at sea level (4.0 K at 1677 m); the sample space must reach it.",
+   "evidence_ids": [
+    "v4e_mat_tension_liquid_helium_e1450_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "A tension load train acting on the specimen inside the cryostat is required (special apparatus for cryogenic tension testing).",
+   "evidence_ids": [
+    "v4e_mat_tension_liquid_helium_e1450_2"
+   ],
+   "conditions": [],
+   "key": "module.cryogenic_tensile_test"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

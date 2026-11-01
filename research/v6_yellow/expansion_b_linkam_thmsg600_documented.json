@@ -1,0 +1,56 @@
+{
+  "configuration_id": "expansion_b_linkam_thmsg600_documented",
+  "rows": [
+    {
+      "key": "process.temperature_cycling",
+      "result": "value",
+      "value": {"kind": "flag", "b": true},
+      "value_as_printed": "T96-LinkPad programmes a temperature profile; LNP96 cooling 0.01-150 C/min; heating up to 150 C/min",
+      "install": "installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The T96-LinkPad temperature controller with LCD touch screen is used to quickly programme a temperature profile by simply tapping the onscreen controls. Heating rates have also been increased up to 150°C/min to enable even faster characterisation.",
+      "document_title": "THMSG600 - Geology System (Linkam Scientific product features page)",
+      "source_url": "https://www.linkam.co.uk/thmsg600",
+      "location": "Features page body text, final paragraph (cached research/v5/cache/f3096c742ac0b54f.txt)",
+      "reasoning": "The documented configuration (THMSG600 + LNP96 + T96) includes a controller that programmes temperature profiles, and the same page documents controlled LN2 cooling (0.01-150 C/min) and heating (up to 150 C/min); a profile is a sequence of heating/cooling ramps with limits and holds (third-party T96/LINK listings say up to 100 ramps), so programmable heat-cool cycling is documented. Caveat: the word 'cycling' itself is not on the Linkam page, and the cycling applies only to a 22 mm microscope sample area, not a bulk soil chamber. This does not rescue the permafrost experiment, which also needs module.complex_resistivity (documented absent below)."
+    },
+    {
+      "key": "module.complex_resistivity",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Geology fluid-inclusion microscope stage; specification lists no electrical connections or electrodes",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The THMSG600 is based on the design of Linkam's highly successful THMS600 stage and has been modified specifically for geological applications. Unrivalled accuracy and temperature control enable the user to characterise fluid inclusions to better than 0.1°C and hold a stability of <0.01°C.",
+      "document_title": "THMSG600 - Geology System (Linkam Scientific product features page); THMSG600 specifications page",
+      "source_url": "https://www.linkam.co.uk/thmsg600",
+      "location": "Features page body text (cached research/v5/cache/f3096c742ac0b54f.txt); full spec list at https://www.linkam.co.uk/thmsg600-specifications (cached research/v5/cache/18c6230eadd7f166.txt)",
+      "reasoning": "The manufacturer positively describes the instrument as an optical heating/freezing stage for characterising fluid inclusions on a quartz cover slip under a microscope. Its complete published specification list (temperature range, rates, XY manipulation, 22 mm sample area, gas valves, Pt100 sensor, 1.3 mm light aperture, 0.17 mm lid window, lens working distances, Raman/X-ray suitability) contains no electrical feedthroughs, sample electrodes or impedance/resistivity measurement chain; Linkam sells electrical-probe stages as separate products. A complex-resistivity measurement chain is therefore not part of this configuration."
+    },
+    {
+      "key": "process.freeze_drying",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Geology fluid-inclusion stage; Linkam's freeze-drying product is the separate FDCS196",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "THMSG600 - Geology System. Temperature and environmental control from < -195°C to 600°C optimised for earth sciences ... modified specifically for geological applications. Unrivalled accuracy and temperature control enable the user to characterise fluid inclusions",
+      "document_title": "THMSG600 - Geology System (Linkam Scientific product features page)",
+      "source_url": "https://www.linkam.co.uk/thmsg600",
+      "location": "Features page heading and body text (cached research/v5/cache/f3096c742ac0b54f.txt)",
+      "reasoning": "The manufacturer defines the THMSG600 as a microscope stage for fluid-inclusion microthermometry; its specification lists only 'quick-release gas valves for atmospheric control' and no vacuum pump, vacuum gauge or vapour condenser. Linkam's own freeze-drying instrument is a different product (FDCS196 Freeze Drying Microscope, with a Pirani gauge and controlled chamber pressure, https://www.linkam.co.uk/fdcs196), and even that is microscopy of drying fronts, not bulk sediment lyophilisation. Vacuum freeze drying of pre-frozen bulk sediment is therefore not a function of this configuration."
+    },
+    {
+      "key": "condenser.temperature.min",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "value_as_printed": "No freeze-dryer vapour condenser exists; the only 'condenser' in the spec is the microscope condenser lens (minimum working distance 12.5 mm)",
+      "quote": "The THMSG600 is based on the design of Linkam's highly successful THMS600 stage and has been modified specifically for geological applications. Unrivalled accuracy and temperature control enable the user to characterise fluid inclusions to better than 0.1°C",
+      "document_title": "THMSG600 - Geology System (Linkam Scientific product features page); THMSG600 specifications page",
+      "source_url": "https://www.linkam.co.uk/thmsg600",
+      "location": "Features page body text (cached research/v5/cache/f3096c742ac0b54f.txt); specifications list (cached research/v5/cache/18c6230eadd7f166.txt)",
+      "reasoning": "condenser.temperature.min is the freeze-dryer ice-collector temperature. The THMSG600 is a fluid-inclusion microscope stage with no freeze-drying function (see process.freeze_drying), so no ice condenser/collector exists at all. The specification's 'Condenser lens minimum working distance 12.5mm' refers to the microscope's optical condenser and must not be read as a cold trap. The stage block reaching < -195 C is sample temperature and per the vocabulary must never be substituted for a condenser temperature."
+    }
+  ]
+}

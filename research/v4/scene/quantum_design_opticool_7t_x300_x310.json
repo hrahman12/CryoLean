@@ -1,0 +1,115 @@
+{
+  "configuration_id": "quantum_design_opticool_7t_x300_x310",
+  "archetype": "closed_cycle_optical_cryostat",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {
+      "value": 1.0,
+      "unit": "m",
+      "location": "cryostat on optical table (minimum)",
+      "quote": "Cryostat Footprint: 1 m x 0.5 m (minimum) Cryostat Height: 1 m (minimum)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+    },
+    "width_or_diameter": {
+      "value": 1.0,
+      "unit": "m",
+      "location": "cryostat footprint long side",
+      "quote": "Cryostat Footprint: 1 m x 0.5 m (minimum)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+    },
+    "depth": {
+      "value": 0.5,
+      "unit": "m",
+      "location": "cryostat footprint short side",
+      "quote": "Cryostat Footprint: 1 m x 0.5 m (minimum)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+    },
+    "color_note": "Separate tower (0.75 m x 0.75 m footprint, 2 m tall) and cabinet (1 m x 1 m, 0.68 m tall) stand off the optical table: 'Tower Footprint: 0.75 m x 0.75 m Tower Height: 2 m (minimum) Cabinet (not shown) Footprint: 1 m x 1 m Cabinet (not shown) Height: 0.68 m (minimum)' (same spec sheet). No colour or finish is published."
+  },
+  "stages": [
+    {
+      "name": "sample / temperature control column base",
+      "temperature_K": 1.7,
+      "quote": "stable operation at its base temperature of 1.7 K",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    },
+    {
+      "name": "thermal (radiation) shield",
+      "temperature_K": 50,
+      "quote": "The kit includes an interface to the OptiCool thermal shield to cool the fibers to <50 K before routing to your sample.",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    }
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "vertical cylinder in vacuum at magnet centre, accessed by a removable sample pod plugged into the temperature control column",
+    "description": "Sample sits in the cryostat vacuum space at the centre of the split-coil conical magnet; the removable Sample Pod carries the mounting plate at 12.4 / 32.8 / 56.4 mm (standard pod) below the magnet centre line and plugs into the Temperature Control Column with 5 wiring bays.",
+    "diameter_or_width": {
+      "value": 89,
+      "unit": "mm",
+      "quote": "Maximum Sample Volume: 89 mm diameter by 84 mm tall; Sample Environment: Sample in cryostat vacuum space",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+    },
+    "height": {
+      "value": 84,
+      "unit": "mm",
+      "quote": "Maximum Sample Volume: 89 mm diameter by 84 mm tall",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+    }
+  },
+  "wiring": [
+    {
+      "kind": "dc_twisted_pair",
+      "count": 8,
+      "from": "front-panel 16-pin Fischer connector",
+      "to": "sample pod bay (four 4-pin Min-E-Con)",
+      "quote": "Wire info: Eight 36-gauge (0.13 mm) phosphor-bronze twisted pairs (16 wires)",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    },
+    {
+      "kind": "coax",
+      "count": 4,
+      "from": "front-panel SMA",
+      "to": "sample pod bay (SMPM)",
+      "quote": "Coaxial Wires: Four .047 inch (1.19 mm) semi-rigid copper-nickel coax ... Four RF coax lines for signals up to 20 GHz",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    }
+  ],
+  "windows": {
+    "count": 8,
+    "axis": "multiple",
+    "diameter_mm": 50,
+    "quote": "8 total access ports standard; 1 top and 1 optional bottom window: 50 mm diameter, 41.5 mm clear bore; 7 side windows: 40 mm diameter, 24.5 mm clear bore",
+    "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016_OptiCool_Specifications.pdf"
+  },
+  "moving_parts": [
+    {
+      "part": "pulse_tube_rotary_valve",
+      "quote": "The OptiCool from Quantum Design is equipped with a powerful PT cryo-cooler, as it not only has to generate liquid helium for temperature control up to 1.7 K, but also cools the superconducting 7 T magnet.",
+      "source_url": "https://qd-europe.com/lu/en/news/product-application-news-spectrum/the-difference-between-pulse-tube-and-gifford-mcmahon-cryo-coolers/"
+    },
+    {
+      "part": "gas_flow",
+      "quote": "a unique, single-cooler design that provides cooling for both the magnet and the circulating helium",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    },
+    {
+      "part": "magnet_ramp",
+      "quote": "The bipolar design also allows smooth continuous ramping through zero field.",
+      "source_url": "https://qdusa.com/siteDocs/productBrochures/1318-016.pdf"
+    }
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.weight",
+    "stages[*].diameter_mm (plate diameters not published)",
+    "thermal shield exact temperature (only '<50 K' bound published)",
+    "pulse tube frequency / rotary valve rate",
+    "compressor model",
+    "side window diameter is 40 mm (top is 50 mm); a single diameter_mm field cannot hold both",
+    "vacuum pressure",
+    "cooldown time is published (17 hours typical) but has no schema field",
+    "magnet operating temperature (magnet is cooled by the single cooler but no temperature is published)"
+  ],
+  "notes": "Standard OptiCool 7 T with X300 (16 wires = 8 twisted pairs) and X310 (4 coax to 20 GHz). Geometry: cryostat block on optical table (1 m x 0.5 m x 1 m min), split-coil conical magnet with magnet axis vertical, sample pod inserted from the top into the Temperature Control Column; 7 side windows (40 mm, 24.5 mm clear bore, 13 deg full angle) around the horizontal plane and 1 top window (50 mm, 41.5 mm clear bore, 70 deg full angle at magnet centre). Optional bottom window (X240) not included. Vibration <10 nm horizontal / <4 nm vertical peak-to-peak. Field uniformity 0.3% over a 3 cm DSV. Cooler type (pulse tube) comes from a QD Europe news article, not the QD USA spec sheet, which only says 'single-cooler design'."
+}

@@ -1,0 +1,115 @@
+{
+ "id": "astro_xray_microcalorimeter_42mk",
+ "name": "TES x-ray microcalorimeter (Lynx LXM ultra-high-resolution array) characterization at a 42-50 mK ADR bath with magnetic shielding and microwave-SQUID/HEMT readout",
+ "plain_name": "Test an X-ray detector that measures the energy of single X-ray photons as a tiny temperature rise",
+ "industry": "astronomy_and_astrophysics",
+ "description": "Transition-edge-sensor x-ray microcalorimeter arrays for the Lynx X-ray Microcalorimeter are characterized (R-T, pulses, energy resolution with Al/Mn K-alpha) on a sub-100 mK bath: a 4.5 K cryocooler stage plus a multistage ADR to ~50 mK; the first UHR array, with Tc ~10 mK below the 65 mK target, had to be run at a 42 mK bath. TESs require careful magnetic shielding, and multiplexed readout uses microwave SQUID resonators with a 4-8 GHz HEMT at ~4 K.",
+ "keywords": [
+  "Test an X-ray detector that measures the energy of single X-ray photons as a tiny temperature rise",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "S. R. Bandler, J. A. Chervenak, A. M. Datesman et al., 'Lynx x-ray microcalorimeter', J. Astron. Telesc. Instrum. Syst. 5(2), 021017 (2019), doi:10.1117/1.JATIS.5.2.021017 (PMC7802767)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "multistage adiabatic demagnetization refrigerator (ADR)",
+  "4.5 K cryocooler (ACTDP 4-stage design basis)",
+  "microwave SQUID multiplexer",
+  "Low Noise Factory LNF-LNC4_8DRPA 4-8 GHz cryogenic LNA"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 42,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The UHR array had to be characterized at a 42 mK bath temperature (nominal 50 mK).",
+   "evidence_ids": [
+    "v4e_astro_xray_microcalorimeter_42mk_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "TES microcalorimeters are sensitive to magnetic fields; the focal plane needs magnetic shielding.",
+   "evidence_ids": [
+    "v4e_astro_xray_microcalorimeter_42mk_1"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "TES bias and SQUID readout lines must reach the array.",
+   "evidence_ids": [
+    "v4e_astro_xray_microcalorimeter_42mk_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8,
+     "unit": "GHz"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the microwave SQUID multiplexer is amplified by a 4-8 GHz HEMT at ~4 K, so coax lines rated to 8 GHz are needed for this readout (a DC-SQUID TDM readout would not need them).",
+   "evidence_ids": [
+    "v4e_astro_xray_microcalorimeter_42mk_3"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 50,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the nominal operating bath is 50 mK, provided by an ADR below a 4.5 K cryocooler stage.",
+   "evidence_ids": [
+    "v4e_astro_xray_microcalorimeter_42mk_4"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,134 @@
+{
+ "id": "chem_cryo_ion_ir_spectroscopy",
+ "name": "Cryogenic messenger-tagging infrared ion spectroscopy in a 30-45 K trap at 2e-6 mbar",
+ "plain_name": "Identify a molecule by chilling its ions and shining infrared on them",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "Mass- and mobility-selected ions are stored in a cryogenic ion trap held between 30 and 45 K by a closed-cycle helium cryostat, where a pulsed 20% N2/80% He gas mixture forms weakly bound messenger-tagged complexes at about 2e-6 mbar; a tunable mid-IR source is stepped in 2 cm-1 steps from 990 to 1810 cm-1 and tag loss gives a diagnostic vibrational fingerprint. This is how isomeric small molecules, glycans and drug metabolites are distinguished when mass spectrometry alone cannot.",
+ "keywords": [
+  "Identify a molecule by chilling its ions and shining infrared on them",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "G. P. Szekeres, J. S. Jordan, J. Riedel, J. Horlebein, G. R. D. Prabhu, M. Götze, S. Daly, S. Warnke, K. Pagel, Cryogenic Gas-phase IR Spectroscopy on a Commercial Ion Mobility-Mass Spectrometry Platform, Analytical Chemistry 98(20):14800-14808 (2026)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13217366/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "closed-cycle helium cryostat (single-stage 0/40 coldhead)",
+  "Synapt G2-S",
+  "1064 nm Nd/YAG laser (Surelite EX)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 30000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 45000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The trap is operated between 30 and 45 K, tuned for the analyte; outside that window the messenger tag either does not bind or does not detach cleanly.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 30000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Tagging requires the trap to be able to reach 30 K; a machine with a higher base temperature cannot condense the N2 messenger onto the ions.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The ions are stored in an evacuated trap chamber; the experiment is impossible in an atmospheric-pressure cold space.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.000002",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Typical operation is at about 2e-6 mbar inside the trap chamber, so the machine must pump at least that low with the tagging gas pulsed in.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The tunable mid-IR beam has to enter the cold trap and overlap the stored ion cloud, which requires an optical window into the cold space.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_4"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the trap is cooled by a closed-cycle helium cryostat with a single-stage coldhead, so no liquid cryogen is consumed; a bath-cooled implementation would also reach the required temperature.",
+   "evidence_ids": [
+    "v4e_chem_cryo_ion_ir_spectroscopy_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

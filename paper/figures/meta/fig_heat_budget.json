@@ -1,0 +1,18 @@
+{
+ "name": "fig_heat_budget",
+ "title": "Demo B mixing-chamber heat budget before and after the Z3 repair",
+ "question": "Why does the 50-qubit wiring plan fail on a Bluefors LD400, and what single change repairs it?",
+ "model": "margin x (n_drive q_drive + n_flux (q_flux + p_flux_dc) + n_out q_out) <= P_cool(20 mK); coupled model mxc_wiring_heat_budget (data/physics/coupled_models.json), exact rationals.",
+ "data": "Parameters from data/experiments/quantum_mxc_wiring_heat_budget.json (Krinner et al., EPJ Quantum Technology 2019, evidence hl_010, hl_011, hl_017, hl_019, hl_029, hl_033); cooling power 12 µW at 20 mK from bluefors_ld400_hdw (ev_bf_0006). Totals and verdicts from 2 Lean runs now (lhs 14.592 µW / 11.985 µW, identical to paper/data/e5_heat.json); Z3 suggestion n_flux_lines = 39 from e5_heat.json. Per-contribution split computed with exact rationals and asserted to sum to Lean's lhs.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Stacked mixing-chamber heat load (each contribution multiplied by the design margin 3) for the sourced 50-qubit wiring plan on bluefors_ld400_hdw. With 50 flux lines the Lean checker computes 14.592 µW against the documented 12 µW and returns does not meet requirements; the Z3-proposed reduction to 39 flux lines gives 11.985 µW, which Lean accepts. Per-line loads are measured central values from Krinner et al. (2019); their uncertainties are not propagated here.",
+ "section": "main",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_heat_budget.png",
+  "paper/figures/fig_heat_budget.svg",
+  "paper/figures/fig_heat_budget.pdf"
+ ],
+ "interactive": null
+}

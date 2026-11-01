@@ -1,0 +1,47 @@
+{
+  "configuration_id": "expa_nasa_xrcf_documented",
+  "rows": [
+    {
+      "key": "temperature.gradient.max",
+      "result": "value",
+      "value": {"kind": "min", "q": {"value": "3.69", "unit": "K"}},
+      "value_as_printed": "average axial gradient (facesheet - backsheet) was -3.69 K",
+      "install": "installed",
+      "evidence_status": "experimental_observation",
+      "quote": "During the 38 K measurements, the average axial gradient (facesheet - backsheet) was -3.69 K (i.e. facesheet colder).",
+      "document_title": "UAH, Subscale Beryllium Mirror Demonstrator Testing Support, Final Report 521134-FR",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20010070993/downloads/20010070993.pdf",
+      "location": "Section on the 46 K reverse-gradient measurement (report p. ~13-14); cached research/v5/cache/eeebe569b2b068a9.txt",
+      "reasoning": "This configuration is defined as the SBMD-3 37.87 K (38 K average) XRCF test. The same report states the specimen gradient during exactly those 38 K measurements: magnitude 3.69 K (sign only gives direction). Encoded as min 3.69 K (best gradient documented for this configuration), which exceeds the experiment's 3 K bound from the same report's procedure ('no gradients exceeding 3 K'). Caveat for the integrator: it is an observed average, not a facility limit; a separate 46 K run with a heater reached 1.39 K and a 99 K run 0.52 K, but those are different temperatures/configurations and are not used here."
+    },
+    {
+      "key": "module.mid_ir_detector_characterization",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The OTS consists of a WaveScope Shack-Hartmann sensor from Adaptive Optics Associates as the main instrument, a Point Diffraction Interferometer (PDI), a Point Spread Function (PSF) imager, an alignment laser, a Leica Disto Pro distance measurement instrument, and a laser source pallet (632.8 nm wavelength)",
+      "document_title": "UAH, Subscale Beryllium Mirror Demonstrator Testing Support, Final Report 521134-FR",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20010070993/downloads/20010070993.pdf",
+      "location": "Section 3.0 The Optical Testing System, p. 3",
+      "reasoning": "The report positively lists the complete Optical Testing System of this documented configuration: a 632.8 nm visible-laser mirror-figure/radius-of-curvature test set (Shack-Hartmann, PDI, PSF imager, alignment laser, distance meter). The specimen is a mirror; there is no detector under test and no mid-IR detector acquisition/readout. The NASA XRCF page describes detector testing only for grazing-incidence x-ray optics/detectors, not mid-IR arrays."
+    },
+    {
+      "key": "module.internal_offner_relay",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The return beam is collimated using an achromatic doublet lens with a focal length of 550 mm. The beam enters the test chamber through a BK7 window",
+      "document_title": "UAH, Subscale Beryllium Mirror Demonstrator Testing Support, Final Report 521134-FR",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20010070993/downloads/20010070993.pdf",
+      "location": "Section 3.0 The Optical Testing System, pp. 3-4",
+      "reasoning": "The report describes the full optical path of this configuration: a fiber point source and collimating doublet on the Wavefront Sensor Pallet, which sits in the XRCF guide tube outside the test chamber ('All of this equipment is located in the guide tube of the XRCF during operation'), looking in through a window at the mirror's center of curvature. There is no internal relay illuminating a detector inside the cold volume; the listed instrument set (Section 3.0) contains no Offner relay."
+    },
+    {
+      "key": "temperature.optical_bench.range",
+      "result": "still_unknown",
+      "reasoning": "This configuration has an optical breadboard (the Wavefront Sensor Pallet), but the report places it in the XRCF guide tube outside the cryogenic test chamber, behind a BK7 window, and gives no temperature for it. The 37.87 K figure is the mirror (specimen) temperature, not a bench. So reaching 16 K is very unlikely, but no bench temperature is documented, and the bench itself exists, so documented_absence does not fit. Searched: the SBMD final report (NTRS 20010070993, full text), the NASA Marshall Optics/XRCF page and the MSFC Optical Systems capabilities PDF (terms bench, infrared, detector, temperature/Kelvin). None gives an optical-bench operating temperature."
+    }
+  ]
+}

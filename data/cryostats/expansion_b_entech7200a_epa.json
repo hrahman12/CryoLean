@@ -1,0 +1,78 @@
+{
+  "id": "expansion_b_entech7200a_epa",
+  "manufacturer": "Entech / Agilent",
+  "model": "7200A + 8890/5977B GC-MSD (EPA SOP5188)",
+  "family": "cryogenic_gas_preconcentrator",
+  "description": "A real installed EPA research system; this is the documented method, not an assertion that every7200A installation includes a GC-MS. EPA labels the SOP internal research, not an officially approved EPA method.",
+  "documents": [
+    {
+      "id": "expb_doc_entech7200a_epa",
+      "title": "EPA installed VOC-analysis system and method",
+      "url": "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_entech7200a_epa_documented",
+      "name": "Entech / Agilent 7200A + 8890/5977B GC-MSD (EPA SOP5188)",
+      "configuration_basis": "Actual EPA laboratory configuration from SOP5188, including Agilent8890/5977B and cryogenic focusing. Only demonstrated method setpoints are represented; no continuous temperature envelope is inferred.",
+      "capabilities": [
+        {
+          "key": "process.cryogenic_preconcentration",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_epa_voc"
+          ]
+        },
+        {
+          "key": "module.gc_ms",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_epa_voc"
+          ]
+        },
+        {
+          "key": "trap.precool.temperature",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": "93.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_epa_voc"
+          ]
+        },
+        {
+          "key": "trap.inject.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": "353.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expb_epa_voc"
+          ]
+        }
+      ]
+    }
+  ]
+}

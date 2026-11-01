@@ -1,0 +1,1888 @@
+{
+ "equipment": [
+  {
+   "id": "linde_kryotechnik_lr280",
+   "manufacturer": "Linde Kryotechnik AG",
+   "model": "LR280 standard helium refrigerator (L280/LR280 series)",
+   "family": "helium refrigerator (Claude cycle, gas-bearing turbo-expanders)",
+   "description": "Turbine-based helium refrigerator that supplies 4.4 K refrigeration through a transfer line to a customer cryostat (superconducting magnet, fusion coil or conductor test cryostat, cryopump circuit). LR280 refrigeration at 4.4 K: 445-640 W without and 560-900 W with LN2 pre-cooling depending on compressor (DSDX/160 kW, ESD/200 kW, ESD/250 kW). Two TED gas-bearing turbo expanders; coldbox 2.0 x 1.6 x 2.6 m.",
+   "documents": [
+    {
+     "title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+     "url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "linde_kryotechnik_lr280_ln2_esd250",
+     "name": "LR280 refrigerator with ESD/250 kW compressor and LN2 pre-cooling (900 W at 4.4 K)",
+     "configuration_basis": "Standard scope of supply of the LR280 (vacuum-insulated coldbox with transfer-line connection to/from the cryostat, control cabinet, aluminium plate-fin heat exchangers with LN2 pre-cooling facility, two TED turbo expanders, oil-injected recycle compressor, oil removal system / gas management panel) with the ESD/250 kW compressor, operated with LN2 pre-cooling: 900 W refrigeration at 4.4 K per the datasheet. The customer cryostat and the optional LHe dewar are not included. The 4.4 K rating is not stored under cooling_power.at_4200mK because it is not a 4.2 K value.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 4400,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 4400,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The LR280 refrigeration capacity is rated at a single temperature, 4.4 K (stored lo = hi).",
+       "value_as_printed": "LR280 refrigeration performance at 4.4 K",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR280 refrigeration performance at 4.4 K without LN pre-cooling 445 Watt 510 Watt 640 Watt with LN pre-cooling 560 Watt 640 Watt 900 Watt compressor/power rating DSDX/160 kW ESD/200 kW ESD/250 kW"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 4400,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest documented operating temperature is the 4.4 K rating point.",
+       "value_as_printed": "4.4 K",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR280 refrigeration performance at 4.4 K without LN pre-cooling 445 Watt 510 Watt 640 Watt with LN pre-cooling 560 Watt 640 Watt 900 Watt compressor/power rating DSDX/160 kW ESD/200 kW ESD/250 kW"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The standard scope of supply (coldbox, control cabinet, heat exchangers, turbo expanders, recycle compressor, oil removal) contains no magnet.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The vacuum is the coldbox insulation; the LR version delivers refrigeration through a transfer line to the customer's cryostat and has no evacuated sample space.",
+       "value_as_printed": "Vacuum insulated coldbox ... transfer line connection to/from the cryostat",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space in the standard scope of supply, so no sample-space base pressure exists.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport onto a sample in the standard scope of supply.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs in the standard scope of supply (refrigeration is delivered to the customer's cryostat).",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The refrigerator has no sample space of its own; the load sits in the customer's cryostat.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The refrigerator has no sample space of its own; the load sits in the customer's cryostat.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L280) or transfer line connection to/from the cryostat (LR280)"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "This configuration is operated with the built-in LN2 pre-cooling facility, so it consumes liquid nitrogen.",
+       "value_as_printed": "LN2 pre-cooling facility",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 1, introduction",
+       "quote": "All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity."
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "LN2 pre-cooling is used in this configuration.",
+       "value_as_printed": "with LN pre-cooling",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 1, introduction",
+       "quote": "All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_helium",
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Uses LN2 for pre-cooling and delivers 4.4 K helium refrigeration (liquid helium) to the cryostat through the transfer line.",
+       "value_as_printed": "LN2 pre-cooling facility; transfer line connection to/from the cryostat (LR)",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l280-lr280-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L280/LR280 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 1, introduction",
+       "quote": "All standard coldboxes are equipped with a LN2 pre-cooling facility, which allows a significant increase in capacity."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "linde_kryotechnik_lr140",
+   "manufacturer": "Linde Kryotechnik AG",
+   "model": "LR140 standard helium refrigerator (L140/LR140 series)",
+   "family": "helium refrigerator (Claude cycle, gas-bearing turbo-expanders)",
+   "description": "Turbine-based helium refrigerator supplying 4.4 K refrigeration to a customer cryostat through a transfer line. LR140 refrigeration at 4.4 K: 210-290 W without and 225-400 W with LN2 pre-cooling depending on compressor (CSDX/90 kW, DSD/110 kW, DSD/132 kW); coldbox 1.6 x 1.3 x 2.6 m.",
+   "documents": [
+    {
+     "title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+     "url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "linde_kryotechnik_lr140_noln2_dsd132",
+     "name": "LR140 refrigerator with DSD/132 kW compressor, without LN2 pre-cooling (290 W at 4.4 K)",
+     "configuration_basis": "Standard scope of supply of the LR140 (vacuum-insulated coldbox with transfer-line connection to/from the cryostat, control cabinet, plate-fin heat exchangers, two TED turbo expanders, oil-injected recycle compressor, oil removal system / gas management panel) with the DSD/132 kW compressor, operated WITHOUT the LN2 pre-cooling facility: 290 W refrigeration at 4.4 K per the datasheet. Customer cryostat and LHe dewar not included. The 4.4 K rating is not stored under cooling_power.at_4200mK because it is not a 4.2 K value.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 4400,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 4400,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The LR140 refrigeration capacity is rated at a single temperature, 4.4 K (stored lo = hi).",
+       "value_as_printed": "LR140 refrigeration performance at 4.4 K",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR140 refrigeration performance at 4.4 K without LN pre-cooling 210 Watt 250 Watt 290 Watt with LN pre-cooling 225 Watt 325 Watt 400 Watt compressor/power rating CSDX/90 kW DSD/110 kW DSD/132 kW"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 4400,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest documented operating temperature is the 4.4 K rating point.",
+       "value_as_printed": "4.4 K",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR140 refrigeration performance at 4.4 K without LN pre-cooling 210 Watt 250 Watt 290 Watt with LN pre-cooling 225 Watt 325 Watt 400 Watt compressor/power rating CSDX/90 kW DSD/110 kW DSD/132 kW"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The standard scope of supply (coldbox, control cabinet, heat exchangers, turbo expanders, recycle compressor, oil removal) contains no magnet.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The vacuum is the coldbox insulation; the LR version delivers refrigeration through a transfer line to the customer's cryostat and has no evacuated sample space.",
+       "value_as_printed": "Vacuum insulated coldbox ... transfer line connection to/from the cryostat",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space in the standard scope of supply, so no sample-space base pressure exists.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport onto a sample in the standard scope of supply.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs in the standard scope of supply (refrigeration is delivered to the customer's cryostat).",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The refrigerator has no sample space of its own; the load sits in the customer's cryostat.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The refrigerator has no sample space of its own; the load sits in the customer's cryostat.",
+       "value_as_printed": "standard scope of supply",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Operated without LN2 pre-cooling (column 'without LN pre-cooling'); the helium cycle needs no external liquid cryogen supply.",
+       "value_as_printed": "without LN pre-cooling",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR140 refrigeration performance at 4.4 K without LN pre-cooling 210 Watt 250 Watt 290 Watt with LN pre-cooling 225 Watt 325 Watt 400 Watt compressor/power rating CSDX/90 kW DSD/110 kW DSD/132 kW"
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No LN2 pre-cooling in this configuration.",
+       "value_as_printed": "without LN pre-cooling",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Technical specification table",
+       "quote": "LR140 refrigeration performance at 4.4 K without LN pre-cooling 210 Watt 250 Watt 290 Watt with LN pre-cooling 225 Watt 325 Watt 400 Watt compressor/power rating CSDX/90 kW DSD/110 kW DSD/132 kW"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_helium"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Delivers 4.4 K helium refrigeration (liquid helium) to the customer's cryostat through the transfer line; no LN2 used in this configuration.",
+       "value_as_printed": "transfer line connection to/from the cryostat (LR)",
+       "source_url": "https://assets.linde.com/-/media/global/kryotechnik/kryotechnik/products/datasheet_l140-lr140-en.pdf",
+       "document_title": "Standard helium liquefier/refrigerator L140/LR140 (Linde Kryotechnik datasheet 66103_LCS_1124)",
+       "location": "p. 2, Standard scope of supply",
+       "quote": "The standard helium liquefier/refrigerator comprises: Vacuum insulated coldbox, either with integrated automatic purifier (L140) or transfer line connection to/from the cryostat (LR140)"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bluefors_cryomech_al630",
+   "manufacturer": "Bluefors (Cryomech brand)",
+   "model": "AL630 Gifford-McMahon cryocooler with CPA1114 compressor",
+   "family": "closed-cycle cryocooler (single-stage Gifford-McMahon, 20 K class)",
+   "description": "Highest-capacity Cryomech 20 K single-stage GM cryocooler: 100 W at 20 K certified (60 Hz), 17 K no-load, reference operating range to 40 K. Marketed for HTS magnets, hydrogen liquefaction and fusion energy research (cooling superconducting field coils) and as the cold source of cold helium circulation systems.",
+   "documents": [
+    {
+     "title": "AL630 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 5 March 2024)",
+     "url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf"
+    },
+    {
+     "title": "AL630 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+     "url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al630-gifford-mcmahon-cryocooler/"
+    },
+    {
+     "title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+     "url": "https://bluefors.com/products/cold-helium-circulation-systems/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "bluefors_cryomech_al630_cpa1114_60hz",
+     "name": "AL630 cold head with water-cooled CPA1114 compressor, 3 m flexible lines, 60 Hz supply",
+     "configuration_basis": "Standard AL630 system per the specification sheet: AL630 (CH1A630A) cold head, CPA1114 water-cooled helium compressor package, standard 10 ft (3 m) flexible lines and motor cord, 60 Hz (440/480 VAC) supply at which the 100 W at 20 K capacity is certified (capacity is reduced at 50 Hz). No vacuum vessel, radiation shield, thermometry or sample stage is included; the user integrates the cold head into a cryostat.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 17000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 40000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cold-head temperature spans 17 K (no load) up to 40 K, the warmest point of the published reference operating range.",
+       "value_as_printed": "17 K with no load; reference operating range ... 265 W at 40 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "AL630 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 5 March 2024)",
+       "location": "p. 1, Cold head rows",
+       "quote": "Certified cooling capacity at 60 Hz* 100 W at 20 K Reference operating range 150 W at 25 K 200 W at 30 K 265 W at 40 K *reduced capacity at 50 Hz 17 K with no load"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 17000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Base temperature at most 17 K.",
+       "value_as_printed": "Base Temperature ≤ 17 K",
+       "source_url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al630-gifford-mcmahon-cryocooler/",
+       "document_title": "AL630 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+       "location": "Technical Specifications table",
+       "quote": "Cooling Capacity 100 W @ 20 K Base Temperature ≤ 17 K Cool Down Time < 1 hour to base temperature"
+      },
+      {
+       "key": "cooling_power.at_20000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 100,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Certified cooling capacity 100 W at 20 K (60 Hz supply).",
+       "value_as_printed": "100 W at 20 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "AL630 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 5 March 2024)",
+       "location": "p. 1, Certified cooling capacity at 60 Hz",
+       "quote": "Certified cooling capacity at 60 Hz* 100 W at 20 K Reference operating range 150 W at 25 K 200 W at 30 K 265 W at 40 K *reduced capacity at 50 Hz 17 K with no load"
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 1,
+         "unit": "h"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down to base temperature in less than 1 hour.",
+       "value_as_printed": "< 1 hour to base temperature",
+       "source_url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al630-gifford-mcmahon-cryocooler/",
+       "document_title": "AL630 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+       "location": "Technical Specifications table",
+       "quote": "Cooling Capacity 100 W @ 20 K Base Temperature ≤ 17 K Cool Down Time < 1 hour to base temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The AL630 system consists only of cold head, helium compressor(s), gas lines and cables; there is no magnet.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The AL630 is a bare cold head plus compressor; no vacuum vessel or evacuated sample space is supplied (the user's cryostat provides it).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is part of the supplied system, so there is no sample-space base pressure.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport is part of the supplied system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs are part of the supplied system (only cold-head motor/power cables).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle GM cryocooler running on electrical power with helium gas sealed in the compressor/cold-head circuit; no liquid cryogen supply is part of the system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid nitrogen supply among the system components.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the supplied system (closed-cycle).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bluefors_cryomech_al600",
+   "manufacturer": "Bluefors (Cryomech brand)",
+   "model": "AL600 Gifford-McMahon cryocooler with CPA1114 compressor",
+   "family": "closed-cycle cryocooler (single-stage Gifford-McMahon, 80 K class)",
+   "description": "Highest-capacity Cryomech 80 K single-stage GM cryocooler: 600 W at 80 K certified (60 Hz), 25 K no-load. Marketed for LN2/LAr condensation, liquid-nitrogen-free cooling of HTS cables and fault current limiters, and as the cold source of Cryomech cold helium circulation systems (magnet pre-cooling).",
+   "documents": [
+    {
+     "title": "AL600 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 28 October 2024)",
+     "url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf"
+    },
+    {
+     "title": "AL600 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+     "url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al600-gifford-mcmahon-cryocooler/"
+    },
+    {
+     "title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+     "url": "https://bluefors.com/products/cold-helium-circulation-systems/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "bluefors_cryomech_al600_cpa1114_60hz",
+     "name": "AL600 cold head with water-cooled CPA1114 compressor, 3 m flexible lines, 60 Hz supply",
+     "configuration_basis": "Standard AL600 system per the specification sheet: AL600 (CH1A600) cold head, CPA1114 water-cooled helium compressor package, standard 10 ft (3 m) flexible lines and motor cord, 60 Hz (440/480 VAC) supply at which 600 W at 80 K is certified (reduced at 50 Hz). The printed reference point '430 W at 600 K' is a datasheet typo for the 60 K point and is not used. No vacuum vessel, shield or sample stage included.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 25000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 80000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cold-head temperature spans 25 K (no load) up to the 80 K certified rating point.",
+       "value_as_printed": "25 K with no load; 600 W at 80 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "AL600 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 28 October 2024)",
+       "location": "p. 1, Cold head rows",
+       "quote": "Certified cooling capacity at 60 Hz* 600 W at 80 K Reference operating range 350 W at 50 K 430 W at 600 K 510 W at 70 K *reduced capacity at 50 Hz 25 K with no load"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 25000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Base temperature at most 25 K.",
+       "value_as_printed": "Base Temperature ≤ 25K",
+       "source_url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al600-gifford-mcmahon-cryocooler/",
+       "document_title": "AL600 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+       "location": "Technical Specifications table",
+       "quote": "Cooling Capacity 600W @ 80K Base Temperature ≤ 25K Cool Down Time < 1 hour to base temperature"
+      },
+      {
+       "key": "cooling_power.at_80000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 600,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Certified cooling capacity 600 W at 80 K (60 Hz supply).",
+       "value_as_printed": "600 W at 80 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "AL600 with CPA1114 Cryocooler Specification Sheet (Bluefors Cryocooler Technologies, 28 October 2024)",
+       "location": "p. 1, Certified cooling capacity at 60 Hz",
+       "quote": "Certified cooling capacity at 60 Hz* 600 W at 80 K Reference operating range 350 W at 50 K 430 W at 600 K 510 W at 70 K *reduced capacity at 50 Hz 25 K with no load"
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 1,
+         "unit": "h"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down to base temperature in less than 1 hour.",
+       "value_as_printed": "< 1 hour to base temperature",
+       "source_url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al600-gifford-mcmahon-cryocooler/",
+       "document_title": "AL600 Gifford-McMahon Cryocooler (Bluefors/Cryomech product page)",
+       "location": "Technical Specifications table",
+       "quote": "Cooling Capacity 600W @ 80K Base Temperature ≤ 25K Cool Down Time < 1 hour to base temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The AL600 system consists only of cold head, helium compressor(s), gas lines and cables; there is no magnet.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The AL600 is a bare cold head plus compressor; no vacuum vessel or evacuated sample space is supplied (the user's cryostat provides it).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is part of the supplied system, so there is no sample-space base pressure.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport is part of the supplied system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs are part of the supplied system (only cold-head motor/power cables).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle GM cryocooler running on electrical power with helium gas sealed in the compressor/cold-head circuit; no liquid cryogen supply is part of the system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid nitrogen supply among the system components.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the supplied system (closed-cycle).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://bluefors.com/products/cold-helium-circulation-systems/",
+       "document_title": "Cold Helium Circulation Systems (Bluefors/Cryomech product page)",
+       "location": "Section 2.0 Closed-Loop CHCS Systems",
+       "quote": "The compressor package, the cold head, two flexible lines and motor cord make up the components of the Gifford-McMahon Cycle Cryocooler."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shi_cryogenics_ch_160d3lt",
+   "manufacturer": "Sumitomo Heavy Industries (SHI Cryogenics Group)",
+   "model": "CH-160D3LT 20K single-stage GM cryocooler",
+   "family": "closed-cycle cryocooler (single-stage Gifford-McMahon, 20 K class)",
+   "description": "SHI's highest-capacity 20 K cryocooler: 90/100 W at 20 K (50/60 Hz) with two F-70 compressors, minimum <17 K (reference). Intended for liquid hydrogen generation/liquefaction and HTS applications (cables, fault current limiters, accelerator magnets).",
+   "documents": [
+    {
+     "title": "CH-160D3LT 20K Cryocooler Series datasheet (SHI Cryogenics Group, 8/26)",
+     "url": "https://shicryogenics.com/wp-content/uploads/2025/07/CH-160D3LT_Datasheet_English_A4_08.26_Web.pdf"
+    },
+    {
+     "title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+     "url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "shi_cryogenics_ch_160d3lt_2xf70_50hz",
+     "name": "CH-160D3LT cold head with two F-70 water-cooled compressors, 50 Hz supply",
+     "configuration_basis": "Standard Scope of Supply per the product page: CH-160D3LT cold head, two F-70LP/H water-cooled helium compressors, helium gas lines, cold-head cable, power cables, tandem interlock cable, manifolds, tool kit. 50 Hz supply chosen as the conservative rating (90 W at 20 K). No vacuum vessel, shield or sample stage included. temperature.range is limited to the documented points (<17 K minimum and the 20 K rating); the capacity map plots higher temperatures graphically but prints no values.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 17000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 20000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Documented cold-stage operating points: minimum below 17 K (reference) and the 20 K capacity rating point; no warmer operating limit is printed, so the range is limited to the documented points.",
+       "value_as_printed": "Minimum Temperature <17 K; 90 W @ 20 K",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2025/07/CH-160D3LT_Datasheet_English_A4_08.26_Web.pdf",
+       "document_title": "CH-160D3LT 20K Cryocooler Series datasheet (SHI Cryogenics Group, 8/26)",
+       "location": "p. 1, Performance Specifications",
+       "quote": "1st Stage Capacity 90 W @ 20 K 100 W @ 20 K Minimum Temperature1 <17 K Cooldown Time to 77 K1 <30 Minutes"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 17000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Minimum temperature below 17 K (SHI marks it 'for reference only').",
+       "value_as_printed": "<17 K",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2025/07/CH-160D3LT_Datasheet_English_A4_08.26_Web.pdf",
+       "document_title": "CH-160D3LT 20K Cryocooler Series datasheet (SHI Cryogenics Group, 8/26)",
+       "location": "p. 1, Performance Specifications, footnote 1",
+       "quote": "1st Stage Capacity 90 W @ 20 K 100 W @ 20 K Minimum Temperature1 <17 K Cooldown Time to 77 K1 <30 Minutes"
+      },
+      {
+       "key": "cooling_power.at_20000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 90,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "First-stage capacity 90 W at 20 K at 50 Hz (100 W at 60 Hz); the conservative 50 Hz value is stored.",
+       "value_as_printed": "90 W @ 20 K (50 Hz)",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2025/07/CH-160D3LT_Datasheet_English_A4_08.26_Web.pdf",
+       "document_title": "CH-160D3LT 20K Cryocooler Series datasheet (SHI Cryogenics Group, 8/26)",
+       "location": "p. 1, Performance Specifications",
+       "quote": "1st Stage Capacity 90 W @ 20 K 100 W @ 20 K Minimum Temperature1 <17 K Cooldown Time to 77 K1 <30 Minutes"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The CH-160D3LT system consists only of cold head, helium compressor(s), gas lines and cables; there is no magnet.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The CH-160D3LT is a bare cold head plus compressor; no vacuum vessel or evacuated sample space is supplied (the user's cryostat provides it).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is part of the supplied system, so there is no sample-space base pressure.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport is part of the supplied system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs are part of the supplied system (only cold-head motor/power cables).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle GM cryocooler running on electrical power with helium gas sealed in the compressor/cold-head circuit; no liquid cryogen supply is part of the system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid nitrogen supply among the system components.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the supplied system (closed-cycle).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/ch-160d3lt-20k-cryocooler-series/",
+       "document_title": "CH-160D3LT 20K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply",
+       "quote": "CH-160D3LT Cold Head (2) F-70LP/H Compressors Helium Gas Lines – 3 m (10 ft.) + 6 m (20 ft.) Cold Head Cable – 6 m (20 ft.) Power Cable – (2) 5 m (16.5 ft.) 1 or (2) 2-8 m (6-27 ft.) 2 Tandem Interlock Cable Manifolds Tool Kit"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shi_cryogenics_rdk_415d2",
+   "manufacturer": "Sumitomo Heavy Industries (SHI Cryogenics Group)",
+   "model": "RDK-415D2 4K two-stage GM cryocooler",
+   "family": "closed-cycle cryocooler (two-stage Gifford-McMahon, 4 K class)",
+   "description": "Two-stage 4 K GM cryocooler: 1.5 W at 4.2 K second stage (50/60 Hz), 35/45 W at 50 K first stage, minimum <3.5 K (reference). Cold source for superconducting magnets, liquefiers, accelerator and laboratory cryostats and 4 K cryopanel test set-ups.",
+   "documents": [
+    {
+     "title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+     "url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/"
+    },
+    {
+     "title": "Cryocooler Product Catalogue, English A4 (SHI Cryogenics Group, 06.23)",
+     "url": "https://shicryogenics.com/wp-content/uploads/2023/08/Cryocooler_Product_Catalogue_English_A4_06.23.pdf"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "shi_cryogenics_rdk_415d2_f70l_50hz",
+     "name": "RDK-415D2 cold head with F-70L water-cooled compressor, 20 m gas lines, 50 Hz supply",
+     "configuration_basis": "Standard Scope of Supply per the product page with the F-70L compressor option: RDK-415D2 cold head, F-70L compressor, 20 m helium gas lines, cold-head cable, power cable, tool kit; 50 Hz supply (second stage 1.5 W at 4.2 K at both 50 and 60 Hz; first stage 35 W at 50 K at 50 Hz). No vacuum vessel, shield or sample stage included. temperature.range is limited to the documented second-stage points (<3.5 K minimum and the 4.2 K rating).",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 3500,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 4200,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Documented second-stage operating points: minimum below 3.5 K (reference) and the 4.2 K capacity rating point; no warmer second-stage limit is printed.",
+       "value_as_printed": "<3.5 K; 1.5 W @ 4.2 K",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2023/08/Cryocooler_Product_Catalogue_English_A4_06.23.pdf",
+       "document_title": "Cryocooler Product Catalogue, English A4 (SHI Cryogenics Group, 06.23)",
+       "location": "PDF p. 14, RDK-415D2 Performance Specifications (values column in row order: 2nd stage capacity, 1st stage capacity 50/60 Hz, minimum temperature, cooldown time to 4.2 K)",
+       "quote": "1.5 W @ 4.2 K 35 W @ 50 K 45 W @ 50 K <3.5 K <60 Minutes"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 3500,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Minimum second-stage temperature below 3.5 K (reference only).",
+       "value_as_printed": "<3.5 K",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2023/08/Cryocooler_Product_Catalogue_English_A4_06.23.pdf",
+       "document_title": "Cryocooler Product Catalogue, English A4 (SHI Cryogenics Group, 06.23)",
+       "location": "PDF p. 14, RDK-415D2 Performance Specifications (values column in row order: 2nd stage capacity, 1st stage capacity 50/60 Hz, minimum temperature, cooldown time to 4.2 K)",
+       "quote": "1.5 W @ 4.2 K 35 W @ 50 K 45 W @ 50 K <3.5 K <60 Minutes"
+      },
+      {
+       "key": "cooling_power.at_4200mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": "1.5",
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Second-stage capacity 1.5 W at 4.2 K at both 50 and 60 Hz.",
+       "value_as_printed": "1.5 W @ 4.2 K (50/60 Hz)",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "About the RDK-415D2",
+       "quote": "The RDK-415D2 two-stage Gifford-McMahon Cryocooler is one of SHI’s higher-capacity 4K Cryocoolers, with a second-stage capacity of 1.5 W @ 4.2 K (50/60 Hz)."
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 60,
+         "unit": "min"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down to 4.2 K in less than 60 minutes (reference only).",
+       "value_as_printed": "<60 Minutes",
+       "source_url": "https://shicryogenics.com/wp-content/uploads/2023/08/Cryocooler_Product_Catalogue_English_A4_06.23.pdf",
+       "document_title": "Cryocooler Product Catalogue, English A4 (SHI Cryogenics Group, 06.23)",
+       "location": "PDF p. 14, RDK-415D2 Performance Specifications (values column in row order: 2nd stage capacity, 1st stage capacity 50/60 Hz, minimum temperature, cooldown time to 4.2 K)",
+       "quote": "1.5 W @ 4.2 K 35 W @ 50 K 45 W @ 50 K <3.5 K <60 Minutes"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The RDK-415D2 system consists only of cold head, helium compressor(s), gas lines and cables; there is no magnet.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The RDK-415D2 is a bare cold head plus compressor; no vacuum vessel or evacuated sample space is supplied (the user's cryostat provides it).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is part of the supplied system, so there is no sample-space base pressure.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport is part of the supplied system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring or feedthroughs are part of the supplied system (only cold-head motor/power cables).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone cryocooler: no sample space; the load is mounted on the user's own cold stage inside the user's cryostat.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle GM cryocooler running on electrical power with helium gas sealed in the compressor/cold-head circuit; no liquid cryogen supply is part of the system.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid nitrogen supply among the system components.",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the supplied system (closed-cycle).",
+       "value_as_printed": "standard scope of supply / cryocooler components",
+       "source_url": "https://shicryogenics.com/product/rdk-415d2-4k-cryocooler-series/",
+       "document_title": "RDK-415D2 4K Cryocooler Series (SHI Cryogenics product page)",
+       "location": "Standard Scope of Supply (list continues: cold head cable, power cable, hose nipples, tool kit)",
+       "quote": "Standard Scope of Supply RDK-415D2 Cold Head E-77NL/NH, E-77VL/VH, F-70L/H, FA-50L/H or FA-70L/H Compressor Helium Gas Lines – 20 m (66 ft.) 1,2,3,4"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ortec_ics_p4",
+   "manufacturer": "ORTEC (AMETEK)",
+   "model": "ICS-P4 Integrated Cryocooling System with GEM PopTop coaxial HPGe detector",
+   "family": "electrically cooled HPGe gamma spectrometer (Stirling cryocooler)",
+   "description": "Mechanically (AMETEK Sunpower Stirling) cooled cryostat for ORTEC PopTop HPGe capsules; LN2-free operation, multi-orientation, 80 W typical power. Marketed for gamma spectrometry in nuclear power and industrial plants, waste management and field remediation, health physics, safeguards and environmental labs.",
+   "documents": [
+    {
+     "title": "ICS Integrated Cryocooling Systems brochure (ORTEC/AMETEK, 24-1024)",
+     "url": "https://www.ortec-online.com/-/media/ametekortec/brochures/i/ics.pdf"
+    },
+    {
+     "title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+     "url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "ortec_ics_p4_gem_poptop",
+     "name": "GEM P-type coaxial PopTop HPGe capsule on CFG-ICS-P4 integrated cryocooling system",
+     "configuration_basis": "ORTEC GEM PopTop detector capsule (standard Al endcap, cup and mount, resistive-feedback preamplifier) mounted on the CFG-ICS-P4 Integrated Cryocooling System for PopTop detectors (conventional cryostat with molecular sieve, AMETEK Sunpower cooler). Optional ICS STAND 2 and lead shield not included. Crystal operating temperature is not published, so the temperature keys are unknown.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Germanium crystal operating temperature is not printed in the ORTEC GEM configuration guide, ICS brochure/manuals or MÖBIUS brochure/manual.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Germanium crystal operating temperature is not printed in the ORTEC GEM configuration guide, ICS brochure/manuals or MÖBIUS brochure/manual.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete list of configurable detector-system elements (capsule, crystal, endcap/window, mount, preamplifier, HV filter, cables, cooling system) contains no magnet.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The vacuum is internal to the detector capsule/cryostat; the measured sample is placed outside the endcap in air, so no evacuated sample space exists.",
+       "value_as_printed": "capsule/cryostat vacuum only",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 1, PopTop or Streamline (non-PopTop) Configuration",
+       "quote": "The actual PopTop capsule has its own vacuum. It can be mounted on any of the available cryostats, cryostat/dewar combinations, or ICS-P4 mechanical cooling system."
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space (vacuum is internal to the detector cryostat).",
+       "value_as_printed": "capsule/cryostat vacuum only",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 1, PopTop or Streamline (non-PopTop) Configuration",
+       "quote": "The actual PopTop capsule has its own vacuum. It can be mounted on any of the available cryostats, cryostat/dewar combinations, or ICS-P4 mechanical cooling system."
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport onto a sample; the endcap window is a gamma-ray entrance window, not optical access.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Electrical connections serve the detector (preamplifier, high voltage, cables); there is no wiring to the measured sample.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "The sample is placed outside the detector endcap (in a user-supplied shield); the ORTEC documents define no sample-space dimensions.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "The sample is placed outside the detector endcap (in a user-supplied shield); the ORTEC documents define no sample-space dimensions.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "ICS mechanical cooling (AMETEK Sunpower Stirling cooler) provides LN2-free operation.",
+       "value_as_printed": "LN2 free operation",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/i/ics.pdf",
+       "document_title": "ICS Integrated Cryocooling Systems brochure (ORTEC/AMETEK, 24-1024)",
+       "location": "p. 2, Introduction",
+       "quote": "ORTEC's newest integrated, mechanically cooled system for HPGe radiation detectors exploits the latest generation in cryogenic technology to provide LN2 free operation with premium detector performance."
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No LN2 needed.",
+       "value_as_printed": "LN2 free operation",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/i/ics.pdf",
+       "document_title": "ICS Integrated Cryocooling Systems brochure (ORTEC/AMETEK, 24-1024)",
+       "location": "p. 2, Introduction",
+       "quote": "ORTEC's newest integrated, mechanically cooled system for HPGe radiation detectors exploits the latest generation in cryogenic technology to provide LN2 free operation with premium detector performance."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen used (electrically cooled).",
+       "value_as_printed": "LN2 free operation",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/i/ics.pdf",
+       "document_title": "ICS Integrated Cryocooling Systems brochure (ORTEC/AMETEK, 24-1024)",
+       "location": "p. 2, Introduction",
+       "quote": "ORTEC's newest integrated, mechanically cooled system for HPGe radiation detectors exploits the latest generation in cryogenic technology to provide LN2 free operation with premium detector performance."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ortec_mobius",
+   "manufacturer": "ORTEC (AMETEK)",
+   "model": "MÖBIUS Recycler (MOBIUS-ST) with GEM Streamline coaxial HPGe detector on CFG-SV cryostat",
+   "family": "LN2-cooled HPGe gamma spectrometer with LN2-recondensing dewar",
+   "description": "25 L liquid-nitrogen dewar with an AMETEK Sunpower cryocooler that recondenses the nitrogen boil-off; runs 2 years or longer without refilling and keeps a Streamline detector cold for approximately 7-10 days after power loss. Used for long, unattended laboratory HPGe gamma spectrometry where power failures occur.",
+   "documents": [
+    {
+     "title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+     "url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf"
+    },
+    {
+     "title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+     "url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "ortec_mobius_st_gem_streamline_cfg_sv",
+     "name": "GEM Streamline HPGe detector on CFG-SV vertical dipstick cryostat in MOBIUS-ST recycler dewar",
+     "configuration_basis": "ORTEC GEM Streamline detector capsule with CFG-SV vertical dipstick cryostat and the optional MOBIUS-ST recycler dewar (listed as an optional dewar for CFG-SV in the GEM configuration guide); 25 L LN2 dewar with Sunpower cryocooler. Lead shield not included. Crystal operating temperature is not published, so the temperature keys are unknown.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Germanium crystal operating temperature is not printed in the ORTEC GEM configuration guide, ICS brochure/manuals or MÖBIUS brochure/manual.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Germanium crystal operating temperature is not printed in the ORTEC GEM configuration guide, ICS brochure/manuals or MÖBIUS brochure/manual.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete list of configurable detector-system elements (capsule, crystal, endcap/window, mount, preamplifier, HV filter, cables, cooling system) contains no magnet.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The vacuum is internal to the detector capsule/cryostat; the measured sample is placed outside the endcap in air, so no evacuated sample space exists.",
+       "value_as_printed": "capsule/cryostat vacuum only",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 1, PopTop or Streamline (non-PopTop) Configuration",
+       "quote": "In Streamline systems, the detector capsule is NOT demountable. Detector capsule and cryostat share the same vacuum."
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space (vacuum is internal to the detector cryostat).",
+       "value_as_printed": "capsule/cryostat vacuum only",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 1, PopTop or Streamline (non-PopTop) Configuration",
+       "quote": "In Streamline systems, the detector capsule is NOT demountable. Detector capsule and cryostat share the same vacuum."
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No window or viewport onto a sample; the endcap window is a gamma-ray entrance window, not optical access.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Electrical connections serve the detector (preamplifier, high voltage, cables); there is no wiring to the measured sample.",
+       "value_as_printed": "detector model configuration elements",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/g/gem.pdf",
+       "document_title": "GEM Series Coaxial HPGe Detector Product Configuration Guide (ORTEC/AMETEK)",
+       "location": "p. 2, Steps to Configure Your ORTEC HPGe Detector, 1) Configure the Detector Model",
+       "quote": "Capsule type (PopTop or Streamline) • Ge Crystal efficiency and specifications • Endcap and window • Mount • Preamplifier • High Voltage Filter • Cable Package • Integrated Cryocooling System (ICS)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "The sample is placed outside the detector endcap (in a user-supplied shield); the ORTEC documents define no sample-space dimensions.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "The sample is placed outside the detector endcap (in a user-supplied shield); the ORTEC documents define no sample-space dimensions.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The MÖBIUS is a liquid-nitrogen dewar whose Stirling cooler re-condenses the boil-off; it must be filled with LN2.",
+       "value_as_printed": "Condensing Liquid Nitrogen; LN2 is topped off",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf",
+       "document_title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+       "location": "p. 5, Performance Specifications, Refill Period",
+       "quote": "After the detector is cool and the LN2 is topped off, the Möbius system can run for 2 years or longer without filling."
+      },
+      {
+       "key": "cryogen.liquid_nitrogen_required",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Initial LN2 fill required.",
+       "value_as_printed": "LN2 is topped off",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf",
+       "document_title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+       "location": "p. 5, Performance Specifications, Refill Period",
+       "quote": "After the detector is cool and the LN2 is topped off, the Möbius system can run for 2 years or longer without filling."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Holds liquid nitrogen (recondensed by the cryocooler).",
+       "value_as_printed": "Condensing Liquid Nitrogen",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf",
+       "document_title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+       "location": "p. 5, Performance Specifications, Refill Period",
+       "quote": "After the detector is cool and the LN2 is topped off, the Möbius system can run for 2 years or longer without filling."
+      },
+      {
+       "key": "cryogen.dewar_volume",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 25,
+         "unit": "L"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Dewar capacity 25 L excluding the detector dipstick volume.",
+       "value_as_printed": "25 Liters",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf",
+       "document_title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+       "location": "p. 5, Electrical and Mechanical Specifications",
+       "quote": "Dewar Capacity 25 Liters, excluding detector dipstick volume."
+      },
+      {
+       "key": "holding_time.static",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 168,
+         "unit": "h"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "After a power loss (cooler off) a full MÖBIUS keeps a typical Streamline detector cold for approximately 7-10 days; the lower bound, 7 days = 168 h, is stored.",
+       "value_as_printed": "Approximately 7–10 days for a typical detector in a Streamline cryostat",
+       "source_url": "https://www.ortec-online.com/-/media/ametekortec/brochures/m/mobius.pdf",
+       "document_title": "MÖBIUS Recycler Condensing Liquid Nitrogen HPGe Detector Cooling System brochure (ORTEC/AMETEK)",
+       "location": "p. 5, Performance Specifications, LN2 Holding Time (in case of power loss)",
+       "quote": "Approximately 7–10 days for a typical detector in a Streamline cryostat if Möbius is full. Approximately 4–7days for a typical detector in a PopTop cryostat if Möbius is full."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "not_found": [
+  {
+   "configuration_id": "ortec_ics_p4_gem_poptop",
+   "key": "temperature.range",
+   "searched": "ORTEC ICS brochure (24-1024), ICS manual (806281B), ICS-P4 manual (embedded font unreadable), MOBIUS brochure and manual (9-300197), GEM configuration guide, Gamma Gage brochure and manual: no germanium crystal or cold-finger operating temperature is printed (only '77 K' for LN2 in safety text). Mirion pages were unreachable (403/moved); web-search and paper-search quotas were exhausted, so no peer-reviewed measurement on this exact model was found."
+  },
+  {
+   "configuration_id": "ortec_ics_p4_gem_poptop",
+   "key": "temperature.base",
+   "searched": "ORTEC ICS brochure (24-1024), ICS manual (806281B), ICS-P4 manual (embedded font unreadable), MOBIUS brochure and manual (9-300197), GEM configuration guide, Gamma Gage brochure and manual: no germanium crystal or cold-finger operating temperature is printed (only '77 K' for LN2 in safety text). Mirion pages were unreachable (403/moved); web-search and paper-search quotas were exhausted, so no peer-reviewed measurement on this exact model was found."
+  },
+  {
+   "configuration_id": "ortec_ics_p4_gem_poptop",
+   "key": "sample.diameter.max",
+   "searched": "ORTEC GEM configuration guide and ICS/MOBIUS brochures and manuals: the sample sits outside the endcap in a user-supplied shield; the detector system defines no sample-space diameter or height (a not_available entry would wrongly reject large samples such as Marinelli beakers)."
+  },
+  {
+   "configuration_id": "ortec_ics_p4_gem_poptop",
+   "key": "sample.height.max",
+   "searched": "ORTEC GEM configuration guide and ICS/MOBIUS brochures and manuals: the sample sits outside the endcap in a user-supplied shield; the detector system defines no sample-space diameter or height (a not_available entry would wrongly reject large samples such as Marinelli beakers)."
+  },
+  {
+   "configuration_id": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "key": "temperature.range",
+   "searched": "ORTEC ICS brochure (24-1024), ICS manual (806281B), ICS-P4 manual (embedded font unreadable), MOBIUS brochure and manual (9-300197), GEM configuration guide, Gamma Gage brochure and manual: no germanium crystal or cold-finger operating temperature is printed (only '77 K' for LN2 in safety text). Mirion pages were unreachable (403/moved); web-search and paper-search quotas were exhausted, so no peer-reviewed measurement on this exact model was found."
+  },
+  {
+   "configuration_id": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "key": "temperature.base",
+   "searched": "ORTEC ICS brochure (24-1024), ICS manual (806281B), ICS-P4 manual (embedded font unreadable), MOBIUS brochure and manual (9-300197), GEM configuration guide, Gamma Gage brochure and manual: no germanium crystal or cold-finger operating temperature is printed (only '77 K' for LN2 in safety text). Mirion pages were unreachable (403/moved); web-search and paper-search quotas were exhausted, so no peer-reviewed measurement on this exact model was found."
+  },
+  {
+   "configuration_id": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "key": "sample.diameter.max",
+   "searched": "ORTEC GEM configuration guide and ICS/MOBIUS brochures and manuals: the sample sits outside the endcap in a user-supplied shield; the detector system defines no sample-space diameter or height (a not_available entry would wrongly reject large samples such as Marinelli beakers)."
+  },
+  {
+   "configuration_id": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "key": "sample.height.max",
+   "searched": "ORTEC GEM configuration guide and ICS/MOBIUS brochures and manuals: the sample sits outside the endcap in a user-supplied shield; the detector system defines no sample-space diameter or height (a not_available entry would wrongly reject large samples such as Marinelli beakers)."
+  }
+ ],
+ "notes": "8 configurations from 4 manufacturers (Linde Kryotechnik, Bluefors/Cryomech, SHI Cryogenics, ORTEC/AMETEK), accessed 2026-11-01. Tavily, WebSearch and Lune quotas were exhausted, so manufacturer pages and PDFs were read directly (curl + pdftotext, built-in browser); Mirion (Cryo-Pulse 5 Plus) pages returned 403 or 'page moved'. Not included: SULTAN-type conductor facilities and ITER cryopump test stands (bespoke facilities, already in the catalog as expansion_a_epfl_sultan and expansion_a_iter_cryopump_test), pellet injectors and hydrogen-isotope distillation columns (no commercial datasheets), commercial cryopumps (the SHI Marathon CP datasheet gives pumping speeds and capacities but no cryopanel temperature or base pressure) and in-situ irradiation cryostats (no manufacturer page reachable). Absences use install=not_available with the complete standard-scope-of-supply / component list as the scope-defining quote (flags b=false, other shapes kind unknown); closed-cycle machines carry cryogen.type = []. Linde LR refrigerators are rated at 4.4 K, so their capacity is not stored under cooling_power.at_4200mK; temperature.range is lo = hi = 4.4 K. SHI marks its minimum temperatures 'for reference only'; for the SHI coolers temperature.range spans only the documented points (minimum and rating temperature), which may under-state the warm end because the capacity maps are graphical. The Cryomech AL600 sheet prints '430 W at 600 K' (typo for 60 K), not used. Conservative values: CH-160D3LT 90 W at 20 K (50 Hz); AL630/AL600 values are certified at 60 Hz and the configurations state a 60 Hz supply; MOBIUS hold time stored as the lower bound 7 days. HPGe configurations: crystal temperature and sample-space size are not published, so temperature.range/base and sample size are unknown (listed in not_found); all other passport keys are documented."
+}

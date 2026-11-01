@@ -1,0 +1,96 @@
+{
+ "cases": [
+  {
+   "case": "clean proof",
+   "admitted": true,
+   "escape_hatches": [],
+   "compiled": true,
+   "compile_errors": 0,
+   "nonstandard": {},
+   "reason": null,
+   "seconds": 1.6528556999983266
+  },
+  {
+   "case": "uses sorry",
+   "admitted": false,
+   "escape_hatches": [
+    "sorry"
+   ],
+   "compiled": true,
+   "compile_errors": 0,
+   "nonstandard": {
+    "gk_sorry": [
+     "sorryAx"
+    ]
+   },
+   "reason": "escape hatches: sorry; non-standard axioms: {\"gk_sorry\": [\"sorryAx\"]}",
+   "seconds": 1.7068292000330985
+  },
+  {
+   "case": "native_decide",
+   "admitted": false,
+   "escape_hatches": [
+    "native_decide"
+   ],
+   "compiled": true,
+   "compile_errors": 0,
+   "nonstandard": {
+    "gk_native": [
+     "gk_native._native.native_decide.ax_1_1"
+    ]
+   },
+   "reason": "escape hatches: native_decide; non-standard axioms: {\"gk_native\": [\"gk_native._native.native_decide.ax_1_1\"]}",
+   "seconds": 1.458378300012555
+  },
+  {
+   "case": "custom axiom",
+   "admitted": false,
+   "escape_hatches": [
+    "axiom declaration"
+   ],
+   "compiled": true,
+   "compile_errors": 0,
+   "nonstandard": {
+    "gk_axiom": [
+     "cheat"
+    ]
+   },
+   "reason": "escape hatches: axiom declaration; non-standard axioms: {\"gk_axiom\": [\"cheat\"]}",
+   "seconds": 1.3826476999674924
+  },
+  {
+   "case": "false statement",
+   "admitted": false,
+   "escape_hatches": [],
+   "compiled": false,
+   "compile_errors": 2,
+   "nonstandard": {
+    "gk_false": [
+     "sorryAx"
+    ]
+   },
+   "reason": "does not compile (2 Lean error(s); first: line 1:0: error: Not a definitional equality: the left-hand side | line 1:36: error: Type mismatch); non-standard axioms: {\"gk_false\": [\"sorryAx\"]}",
+   "seconds": 1.206629200023599
+  },
+  {
+   "case": "clean, about the checker",
+   "admitted": true,
+   "escape_hatches": [],
+   "compiled": true,
+   "compile_errors": 0,
+   "nonstandard": {},
+   "reason": null,
+   "seconds": 1.2508085999870673
+  },
+  {
+   "case": "Lanyon exported proof (Mathlib)",
+   "admitted": false,
+   "escape_hatches": [],
+   "compiled": false,
+   "compile_errors": 54,
+   "nonstandard": {},
+   "reason": "does not compile (54 Lean error(s); first: line 453:25: error(lean.unknownIdentifier): Unknown identifier `f` | line 453:61: error(lean.unknownIdentifier): Unknown identifier `f` | line 453:65: error(lean.unknownIdentifier): Unknown identifier `f_L`)",
+   "seconds": 41.280993000022136
+  }
+ ]
+}

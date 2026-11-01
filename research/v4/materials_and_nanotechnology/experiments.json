@@ -1,0 +1,870 @@
+{
+  "industry": "materials_and_nanotechnology",
+  "accessed": "2026-11-01",
+  "experiments": [
+    {
+      "id": "mat_tension_liquid_helium_e1450",
+      "name": "Tension testing of structural alloys fully submerged in liquid helium (ASTM E1450, 4 K, strain rate <= 1e-3 s-1)",
+      "plain_name": "Pull a metal test bar apart while it sits in liquid helium",
+      "industry": "materials_and_nanotechnology",
+      "description": "Standard tensile test (yield strength, tensile strength, elongation, reduction of area) of structural alloys with the specimen fully submerged in normal liquid helium (He I) inside a cryostat, under crosshead displacement control at a nominal strain rate of 1e-3 s-1 or less. The standard designates the test temperature 4 K (He I boils at 4.2 K at sea level, 4.0 K at 1677 m).",
+      "requirements": [
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The specimen must be fully submerged in a normal liquid-helium (He I) bath; a dry or conduction-cooled stage does not satisfy the method.",
+          "source_url": "https://store.astm.org/e1450-92r98.html",
+          "document_title": "ASTM E1450-92(1998) Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium",
+          "location": "Scope 1.2",
+          "quote": "To conduct a tension test by this standard, the specimen in a cryostat is fully submerged in normal liquid helium (He I) and tested using crosshead displacement control at a nominal strain rate of 10 -3 s -1 or less."
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "4.2",
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The test temperature is the He I boiling point, 4.2 K at sea level (4.0 K at 1677 m); the sample space must reach it.",
+          "source_url": "https://store.astm.org/e1450-92r98.html",
+          "document_title": "ASTM E1450-92(1998) Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium",
+          "location": "Scope, Note 1",
+          "quote": "The boiling point of normal liquid helium (He I) at sea level is 4.2 K (-452.1°F or 7.6°R)."
+        },
+        {
+          "keys": [
+            "module.cryogenic_tensile_test"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "A tension load train acting on the specimen inside the cryostat is required (special apparatus for cryogenic tension testing).",
+          "source_url": "https://store.astm.org/e1450-92r98.html",
+          "document_title": "ASTM E1450-92(1998) Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium",
+          "location": "Scope 1.1",
+          "quote": "This test method describes procedures for the tension testing of structural alloys in liquid helium. The format is similar to that of other ASTM tension test standards, but the contents include modifications for cryogenic testing which requires special apparatus, smaller specimens"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "ASTM E1450-92(1998), Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium, ASTM International, DOI 10.1520/E1450-92R98 (scope as published on the ASTM store page)",
+          "url": "https://store.astm.org/e1450-92r98.html",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": []
+    },
+    {
+      "id": "mat_charpy_impact_ln2_high_mn_steel",
+      "name": "Charpy V-notch impact toughness of austenitic Fe-32Mn-0.6C steel from 25 C to -196 C (liquid-nitrogen soak)",
+      "plain_name": "Strike a notched steel bar after chilling it in liquid nitrogen to see how brittle it gets",
+      "industry": "materials_and_nanotechnology",
+      "description": "Half-size Charpy V-notch specimens (5 x 10 x 55 mm) of a cryogenic high-manganese steel are soaked for more than 30 min at 0 to -150 C in a cryogenic apparatus or in liquid nitrogen (-196 C), quickly removed with tongs and impacted; impact energy fell from 120 J at 25 C to 13 J at -196 C.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 77150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 298150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The toughness curve spans 25 C (298.15 K) down to -196 C (77.15 K); the conditioning equipment must reach every test temperature.",
+          "source_url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "document_title": "Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel (Materials 2025, 18, 2845)",
+          "location": "Abstract, p.1",
+          "quote": "The Charpy impact toughness of single-phase austenitic Fe-32Mn-0.6C steel was systematically investigated across a wide temperature spectrum from 25 °C to −196 °C using Charpy V-notch impact tests."
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The -196 C condition is realised by soaking the specimens in a liquid-nitrogen bath.",
+          "source_url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "document_title": "Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel (Materials 2025, 18, 2845)",
+          "location": "Section 2, p.3",
+          "quote": "specimens were soaked for more than 30 min in a cryogenic apparatus set to the designated temperatures (0 °C, −25 °C, −50 °C, −75 °C, −100 °C, and −150 °C) or in liquid nitrogen (−196 °C) to ensure that the specimens reached the specified temperatures."
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 55,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 55 mm specimen length must fit along the loading axis of the bath or chamber.",
+          "source_url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "document_title": "Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel (Materials 2025, 18, 2845)",
+          "location": "Section 2, p.2",
+          "quote": "Half-size Charpy V-notch specimens with dimensions of 5 mm (thickness) × 10 mm (width) × 55 mm (length) were used in this study."
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "11.19",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Circumscribed diameter of the 5 mm x 10 mm cross-section (sqrt(125) = 11.18 mm, rounded up) must pass the opening perpendicular to loading.",
+          "source_url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "document_title": "Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel (Materials 2025, 18, 2845)",
+          "location": "Section 2, p.2",
+          "quote": "Half-size Charpy V-notch specimens with dimensions of 5 mm (thickness) × 10 mm (width) × 55 mm (length) were used in this study."
+        },
+        {
+          "keys": [
+            "holding_time.static"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "0.5",
+              "unit": "h"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the cold bath must hold its temperature through the >30 min soak before each strike.",
+          "source_url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "document_title": "Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel (Materials 2025, 18, 2845)",
+          "location": "Section 2, p.3",
+          "quote": "specimens were soaked for more than 30 min in a cryogenic apparatus set to the designated temperatures"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Xiong J., Cui Y., Wang X., Liu C., Barella S., Belfi M., Gruttadauria A., Wang Y., Peng Y., Mapelli C. Temperature-Dependent Charpy Impact Toughness and Deformation Mechanisms of Austenitic Fe-32Mn-0.6C Steel. Materials 2025, 18, 2845. doi:10.3390/ma18122845",
+          "url": "https://re.public.polimi.it/bitstream/11311/1293454/1/materials-18-02845.pdf",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "MTS impact testing machine equipped with a cryogenic chamber"
+      ]
+    },
+    {
+      "id": "mat_thermal_expansion_tma_130_800k",
+      "name": "Linear thermal expansion (CTE) of borosilicate glasses LK5 and Borofloat 33 from 130 K to 800 K by push-rod thermomechanical analysis",
+      "plain_name": "Measure how much a glass shrinks and grows between -143 C and 526 C",
+      "industry": "materials_and_nanotechnology",
+      "description": "20 mm glass samples stand under a quartz push-rod probe (0.2 N) in a thermomechanical analyser; the chamber is pre-cooled and then heated at 10 K/min from about 130 K to 800 K while the length change is logged; CTE polynomials are fitted for anodic silicon-glass bonding (MEMS) design.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 130,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 800,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The CTE data set covers 130 K to 800 K; the sample space must span both ends.",
+          "source_url": "https://arxiv.org/pdf/1801.01181",
+          "document_title": "Linear thermal expansion coefficient (at temperatures from 130 to 800 K) of borosilicate glasses applicable for coupling with silicon in microelectronics",
+          "location": "Abstract (English), p.1",
+          "quote": "The linear thermal expansion of glass samples have been determined in the temperature range 130 to 800 K (–143 to 526 °С) using thermomechanical analyzer TMA7100."
+        },
+        {
+          "keys": [
+            "sample.height.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 20,
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "20 mm long samples stand on the pedestal under the vertical push rod, so the usable length along the loading axis must be at least 20 mm.",
+          "source_url": "https://arxiv.org/pdf/1801.01181",
+          "document_title": "Linear thermal expansion coefficient (at temperatures from 130 to 800 K) of borosilicate glasses applicable for coupling with silicon in microelectronics",
+          "location": "p.2, measurement procedure (original Russian text)",
+          "quote": "В работе измеряли по три образца длиной 20 мм для каждой марки стекла, результаты измерений затем усреднялись."
+        },
+        {
+          "keys": [
+            "temperature.sweep_rate.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 10000,
+              "unit": "mK_per_min"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the heating run was made at 10 K/min.",
+          "source_url": "https://arxiv.org/pdf/1801.01181",
+          "document_title": "Linear thermal expansion coefficient (at temperatures from 130 to 800 K) of borosilicate glasses applicable for coupling with silicon in microelectronics",
+          "location": "p.2, measurement procedure (original Russian text)",
+          "quote": "Последующий нагрев проводили со скоростью 10 K/мин."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Sinev L. S., Petrov I. D. Linear thermal expansion coefficient (at temperatures from 130 to 800 K) of borosilicate glasses applicable for coupling with silicon in microelectronics. Steklo i Keramika 2016 no.1 35-38; Glass and Ceramics 73 (2016) 32-35, doi:10.1007/s10717-016-9820-0 (arXiv:1801.01181)",
+          "url": "https://arxiv.org/pdf/1801.01181",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "TMA 7100 SII Nanotechnology thermomechanical analyzer"
+      ]
+    },
+    {
+      "id": "mat_lowtemp_xrd_phase_transitions_ttk600",
+      "name": "In-situ low-temperature powder XRD of ammonium nitrate phase transitions from -190 C to 135 C in a TTK 600 chamber",
+      "plain_name": "Watch a powder's crystal structure change with X-rays while it is cooled to -190 C",
+      "industry": "materials_and_nanotechnology",
+      "description": "Powder X-ray diffraction in reflection or transmission geometry in a liquid-nitrogen-cooled non-ambient chamber; five ammonium nitrate phases (Pm-3m, P4bm, Pnma, Pmmm, Pccn) are tracked between 135 C and -40 C and the Pccn phase is followed down to -190 C, which the chamber reaches only under vacuum (1e-2 mbar).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 83150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 408150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The phase sequence is recorded from 135 C (408.15 K) down to -190 C (83.15 K).",
+          "source_url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+          "document_title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (Anton Paar / PANalytical brochure PN10467)",
+          "location": "p.1, Application example",
+          "quote": "Five phases of ammonia nitrate detected in the temperature range from -40 °C to 135 °C. The Pccn phase remains stable down to -190 °C"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "-190 C is reached only with the sample space evacuated; with gas atmospheres the LN2-cooled stage stops at -150 C.",
+          "source_url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+          "document_title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (Anton Paar / PANalytical brochure PN10467)",
+          "location": "p.2, Heating/cooling plate",
+          "quote": "With liquid nitrogen cooling • -150 °C to +450 °C (dry air, inert gas) • -190 °C to +600 °C (vacuum10-2 mbar)"
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "0.01",
+              "unit": "mbar"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the documented low-temperature vacuum condition is 1e-2 mbar.",
+          "source_url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+          "document_title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (Anton Paar / PANalytical brochure PN10467)",
+          "location": "p.2, Atmospheres",
+          "quote": "Air Vacuum 10-2 mbar Inert gases"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Optional: the chamber reached -190 C with liquid-nitrogen cooling; another cooling method reaching 83 K would also do.",
+          "source_url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+          "document_title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (Anton Paar / PANalytical brochure PN10467)",
+          "location": "p.1, Benefits",
+          "quote": "Choice between liquid nitrogen and compressed air cooling"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Anton Paar / PANalytical, TTK 600 - low-temperature chamber, non-ambient attachment for XRD, brochure PN10467 (2009)",
+          "url": "https://www.malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "Anton Paar TTK 600 low-temperature chamber",
+        "Empyrean",
+        "X'Pert3 Powder"
+      ]
+    },
+    {
+      "id": "mat_zfc_fc_magnetite_nanoparticles",
+      "name": "ZFC/FC magnetization (5-280 K, 100 Oe) and 5 T hysteresis of 5-110 nm Fe3O4 nanoparticles in a SQUID magnetometer",
+      "plain_name": "Find the temperature at which magnetic nanoparticles freeze their magnetism by cooling with and without a field",
+      "industry": "materials_and_nanotechnology",
+      "description": "Powder samples of naked and silica-coated magnetite nanoparticles are zero-field cooled to 5 K, measured on warming to 280 K in 100 Oe, then field cooled and re-measured (blocking temperature, size-shifted Verwey transition); hysteresis loops between 5 and 280 K up to 5 T.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 5,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 280,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "ZFC and FC curves span 5 K to 280 K.",
+          "source_url": "https://arxiv.org/pdf/0901.3891",
+          "document_title": "Magnetic Nanoparticles for Power Absorption: optimizing size, shape and magnetic properties",
+          "location": "Section II.B, p.5",
+          "quote": "Zero-field-cooled (ZFC) and field-cooled (FC) curves were measured using a Superconducting Quantum Interference Device (MPMS XL, Quantum Design), between 5 K and 280 K, with cooling field HFC = 100 Oe."
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 5,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The ZFC protocol starts from a 5 K base temperature.",
+          "source_url": "https://arxiv.org/pdf/0901.3891",
+          "document_title": "Magnetic Nanoparticles for Power Absorption: optimizing size, shape and magnetic properties",
+          "location": "Section II.B, p.5",
+          "quote": "Data were obtained by first cooling the sample from room temperature in zero applied field (ZFC process) to the basal temperature (5 K)."
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 5,
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Low-temperature hysteresis loops were taken in fields up to 5 T.",
+          "source_url": "https://arxiv.org/pdf/0901.3891",
+          "document_title": "Magnetic Nanoparticles for Power Absorption: optimizing size, shape and magnetic properties",
+          "location": "Section II.B, p.5",
+          "quote": "Low-temperature hysteresis loops (5-280 K) were obtained in applied fields up to 5 T."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Gonzalez-Fernandez M. A., Torres T., Andres-Verges M., Costo R., de la Presa P., Serna C. J., Morales M. P., Marquina C., Ibarra M. R., Goya G. F. Magnetic nanoparticles for power absorption: optimizing size, shape and magnetic properties (arXiv:0901.3891; J. Solid State Chem. 2009)",
+          "url": "https://arxiv.org/pdf/0901.3891",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "MPMS XL, Quantum Design",
+        "VSM 9 MagLab 9 T, Oxford Instruments"
+      ]
+    },
+    {
+      "id": "mat_magnetite_verwey_remanence_cycling",
+      "name": "Low-temperature hysteresis and SIRM cycling (300-5-300 K, 2.5 T) of submicron and mm magnetite across the Verwey transition",
+      "plain_name": "Track how magnetite's stored magnetism changes when it is cooled through its 120 K transition",
+      "industry": "materials_and_nanotechnology",
+      "description": "Submicron (0.037-0.22 um) magnetite dispersions and a 1.3 mm crystal: hysteresis loops to 1.5 T from about 15 K to 295 K (AGFM with liquid-He cryostat) and saturation isothermal remanence given in 2.5 T at 300 K, zero-field cooled to 5 K and warmed back to 300 K in an MPMS-2 SQUID magnetometer, to follow coercivity and domain-state changes at the Verwey transition (about 120 K).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 5,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 300,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Remanence cycling runs from 300 K to 5 K and back.",
+          "source_url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf",
+          "document_title": "Changes in remanence, coercivity and domain state at low temperature in magnetite (Earth Planet. Sci. Lett. 194 (2002) 343-358)",
+          "location": "Section 4, p.348",
+          "quote": "Samples were given a saturation isothermal remanent magnetization (SIRM) in a field of 2.5 T at room temperature, then cooled in zero field to 5 K and back to 300 K."
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 5,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The cooling leg reaches 5 K.",
+          "source_url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf",
+          "document_title": "Changes in remanence, coercivity and domain state at low temperature in magnetite (Earth Planet. Sci. Lett. 194 (2002) 343-358)",
+          "location": "Section 4, p.348",
+          "quote": "then cooled in zero field to 5 K and back to 300 K."
+        },
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "2.5",
+              "unit": "T"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The SIRM is imparted in a 2.5 T field (the hysteresis loops need 1.5 T).",
+          "source_url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf",
+          "document_title": "Changes in remanence, coercivity and domain state at low temperature in magnetite (Earth Planet. Sci. Lett. 194 (2002) 343-358)",
+          "location": "Section 4, p.348",
+          "quote": "Samples were given a saturation isothermal remanent magnetization (SIRM) in a field of 2.5 T at room temperature"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Optional: the hysteresis loops were taken in a liquid-helium cryostat.",
+          "source_url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf",
+          "document_title": "Changes in remanence, coercivity and domain state at low temperature in magnetite (Earth Planet. Sci. Lett. 194 (2002) 343-358)",
+          "location": "Section 3, p.345",
+          "quote": "using a Princeton Measurements Corporation AGFM (MicroMag Model 2900) with a liquid He cryostat."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Ozdemir O., Dunlop D. J., Moskowitz B. M. Changes in remanence, coercivity and domain state at low temperature in magnetite. Earth Planet. Sci. Lett. 194 (2002) 343-358",
+          "url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "Princeton Measurements Corporation AGFM (MicroMag Model 2900) with a liquid He cryostat",
+        "Quantum Design MPMS-2 SQUID magnetometer"
+      ]
+    },
+    {
+      "id": "mat_lt_stm_fe_adatoms_bi2te3",
+      "name": "Low-temperature UHV STM/STS of single Fe adatoms on cleaved Bi2Te3(111) at 4.5 K",
+      "plain_name": "Image single iron atoms on a crystal surface with a microscope cooled to 4.5 K",
+      "industry": "materials_and_nanotechnology",
+      "description": "A Bi2Te3 crystal is cleaved in ultrahigh vacuum, cooled to 4.5 K in the STM, dosed with about 0.2% of a monolayer of Fe from an in-situ e-beam evaporator while held at 4.5 K, then imaged and probed by lock-in dI/dV spectroscopy and mapping (877 Hz bias modulation).",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": "4.5",
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Imaging, spectroscopy and Fe deposition are all done with the sample at 4.5 K.",
+          "source_url": "https://arxiv.org/pdf/2608.02770",
+          "document_title": "Broken site symmetry of Fe adatoms on Bi2Te3",
+          "location": "Section II Methods, p.1",
+          "quote": "All STM measurements were conducted at 4.5 K in an ultrahigh vacuum (UHV) system (10−11 mbar) using a CreaTec LT-STM system."
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The cleaved surface and single adatoms require an ultrahigh-vacuum sample space.",
+          "source_url": "https://arxiv.org/pdf/2608.02770",
+          "document_title": "Broken site symmetry of Fe adatoms on Bi2Te3",
+          "location": "Section II Methods, p.1",
+          "quote": "All STM measurements were conducted at 4.5 K in an ultrahigh vacuum (UHV) system (10−11 mbar) using a CreaTec LT-STM system."
+        },
+        {
+          "keys": [
+            "pressure.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": "0.00000000001",
+              "unit": "mbar"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the reported system pressure was 1e-11 mbar.",
+          "source_url": "https://arxiv.org/pdf/2608.02770",
+          "document_title": "Broken site symmetry of Fe adatoms on Bi2Te3",
+          "location": "Section II Methods, p.1",
+          "quote": "All STM measurements were conducted at 4.5 K in an ultrahigh vacuum (UHV) system (10−11 mbar) using a CreaTec LT-STM system."
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Tunnelling bias and lock-in modulation must be applied to the sample.",
+          "source_url": "https://arxiv.org/pdf/2608.02770",
+          "document_title": "Broken site symmetry of Fe adatoms on Bi2Te3",
+          "location": "Section II Methods, p.1",
+          "quote": "Scanning tunneling spectra (dI/dV) were acquired via lock-in detection with an AC bias modulation at 877 Hz and sweeping voltage with the feedback loop disabled."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Nguyen D., Paudyal H., Sink J. R., Flatte M. E., Gupta J. A. Broken site symmetry of Fe adatoms on Bi2Te3. arXiv:2608.02770 (2026)",
+          "url": "https://arxiv.org/pdf/2608.02770",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "CreaTec LT-STM system"
+      ]
+    },
+    {
+      "id": "mat_monolayer_wse2_lowtemp_photoluminescence",
+      "name": "Confocal steady-state and time-resolved photoluminescence of exfoliated monolayer WSe2 at 4 K (4-120 K series)",
+      "plain_name": "Record the light given off by a one-atom-thick semiconductor cooled to 4 K",
+      "industry": "materials_and_nanotechnology",
+      "description": "Monolayer WSe2 on 90 nm SiO2/Si is excited at 525 nm through a 0.82 NA objective inside a closed-cycle helium cryostat; exciton, trion, biexciton, dark-trion and defect emission (747 nm) are resolved at 4 K and their time-resolved decays followed up to 120 K.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 4,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The five-peak spectrum and defect lifetimes are taken at a 4 K sample temperature.",
+          "source_url": "https://arxiv.org/pdf/2607.18423",
+          "document_title": "Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature",
+          "location": "Section 4.2, p.10",
+          "quote": "The sample and objective is in cryostat chamber (attoDRY800 closed Helium cryostat with base temperature of 4 kelvin on sample)."
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 4,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 120,
+              "unit": "K"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: the temperature-dependent TRPL series spans 4-120 K (above 77 K the authors also used an LN2-cooled stage).",
+          "source_url": "https://arxiv.org/pdf/2607.18423",
+          "document_title": "Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature",
+          "location": "Abstract, p.1",
+          "quote": "We investigate the recombination dynamics of localized defect emission in monolayer WSe2 using time-resolved photoluminescence over the temperature range from 4 to 120 K."
+        },
+        {
+          "keys": [
+            "optical_access"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The laser must reach the flake and the PL must be collected optically.",
+          "source_url": "https://arxiv.org/pdf/2607.18423",
+          "document_title": "Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature",
+          "location": "Section 4.2, p.10",
+          "quote": "The 525 nm laser was beam expanded and passed through objective (NA-0.82,working distance -0.64 mm,focal length=2.88 mm) and focussed onto monolayer flake."
+        },
+        {
+          "keys": [
+            "optical.numerical_aperture"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "0.82",
+              "unit": "NA"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Optional: high-NA (0.82) collection partially captures dark-exciton emission.",
+          "source_url": "https://arxiv.org/pdf/2607.18423",
+          "document_title": "Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature",
+          "location": "Section 4.2, p.10",
+          "quote": "passed through objective (NA-0.82,working distance -0.64 mm,focal length=2.88 mm) and focussed onto monolayer flake."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Thekkooden I., Jana S., Deka M., Nanda B. R. K., Bhallamudi V. P. Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature. arXiv:2607.18423 (2026)",
+          "url": "https://arxiv.org/pdf/2607.18423",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "attoDRY800 closed Helium cryostat",
+        "SpectraPro SP2150 spectrograph (Teledyne Princeton Instruments)",
+        "Excilitas SPCM-AQRH-14-FC SPAD",
+        "Linkam cryostat (liquid nitrogen-cooled)"
+      ]
+    },
+    {
+      "id": "mat_thermal_conductivity_orthoferrite_crystals",
+      "name": "Steady-state longitudinal thermal conductivity of RFeO3 (R = Eu-Yb) single crystals from 300 K down to the 7 K anomaly in a PPMS",
+      "plain_name": "Measure how well magnetic oxide crystals carry heat from room temperature down to 7 K",
+      "industry": "materials_and_nanotechnology",
+      "description": "One-heater/two-thermometer steady-state method on 5 x 1 x 0.5 mm rare-earth orthoferrite crystals (10 kOhm surface-mount heater, bare-chip Cernox thermometers) inside a Quantum Design PPMS, with companion heat capacity; reveals the singlet-driven suppression and 7 K peak of TmFeO3.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 300,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The kappa(T) curves start at 300 K.",
+          "source_url": "https://arxiv.org/pdf/2507.12608",
+          "document_title": "Suppression of Thermal Conductivity via Singlet-Dominated Scattering in TmFeO3",
+          "location": "p.4, results",
+          "quote": "At 300 K we find that 𝜅(𝑇) is approximately 6-10 W/m·K."
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 7,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The TmFeO3 anomaly at 7 K (and the 15-20 K phonon peaks) must be reached.",
+          "source_url": "https://arxiv.org/pdf/2507.12608",
+          "document_title": "Suppression of Thermal Conductivity via Singlet-Dominated Scattering in TmFeO3",
+          "location": "p.4, results",
+          "quote": "In TmFeO3, however, 𝜅(𝑇) decreases on cooling below 135 K until a minimum is reached at 25 K followed by a small peak of 5.5 W/m·K at 7 K."
+        },
+        {
+          "keys": [
+            "electrical.sample_connections"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "The sample carries a resistive heater and two Cernox thermometers that must be wired out.",
+          "source_url": "https://arxiv.org/pdf/2507.12608",
+          "document_title": "Suppression of Thermal Conductivity via Singlet-Dominated Scattering in TmFeO3",
+          "location": "p.4, methods",
+          "quote": "A 10-kΩ surface-mount resistor acted as the heater and bare element Cernox resistors were used as thermometers."
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "5.1",
+              "unit": "mm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The 5 mm x 1 mm footprint (circumscribed diameter sqrt(26) = 5.10 mm) must fit on the sample platform.",
+          "source_url": "https://arxiv.org/pdf/2507.12608",
+          "document_title": "Suppression of Thermal Conductivity via Singlet-Dominated Scattering in TmFeO3",
+          "location": "p.3, samples",
+          "quote": "with a typical sample geometry of 5 mm x 1 mm x 0.5 mm."
+        }
+      ],
+      "sources": [
+        {
+          "citation": "McLanahan M. L., Lederman D., Ramirez A. P. Suppression of Thermal Conductivity via Singlet-Dominated Scattering in TmFeO3. arXiv:2507.12608 (2025)",
+          "url": "https://arxiv.org/pdf/2507.12608",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "Quantum Design PPMS",
+        "Quantum Design MPMS3"
+      ]
+    },
+    {
+      "id": "mat_cryo_tem_cdw_nanoflakes",
+      "name": "In-situ cryogenic nanobeam electron diffraction of CDW melting in 1T-TiSe2 nanoflakes from 20 K through the 210-230 K bulk transition",
+      "plain_name": "Watch charge-density-wave order melt in tiny flakes inside a cooled electron microscope",
+      "industry": "materials_and_nanotechnology",
+      "description": "Liquid-exfoliated 1T-TiSe2 nanoflakes on TEM grids are cooled to 20 K (liquid-helium flow holder) or 100 K (liquid-nitrogen holder), then warmed in 10-20 K steps to room temperature while 2x2 superlattice peaks are tracked by nanobeam electron diffraction at 60 kV, revealing melting-point depression for flakes below 100 nm effective radius.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 20,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The smallest flakes only order (or are shown not to order) at the 20 K base temperature of the liquid-helium holder.",
+          "source_url": "https://arxiv.org/pdf/2509.16730",
+          "document_title": "Melting point depression of charge density wave in 1T-TiSe2 due to size effects",
+          "location": "Results, p.5",
+          "quote": "We first cool the flakes to base temperature (either 20 K or 100 K using liquid helium or liquid nitrogen cryo-TEM holders, respectively) to induce the CDW phase."
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 20,
+              "unit": "K"
+            },
+            "hi": {
+              "value": 230,
+              "unit": "K"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Warming must pass through the bulk CDW transition (210-230 K) to locate each flake's melting temperature.",
+          "source_url": "https://arxiv.org/pdf/2509.16730",
+          "document_title": "Melting point depression of charge density wave in 1T-TiSe2 due to size effects",
+          "location": "Introduction, p.3",
+          "quote": "We study nanoflakes of 1T-TiSe2, a prototypical CDW material with CDW transition temperature ranging between 210 K and 230 K for bulk samples."
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "Optional: the 20 K base was reached with continuous liquid-helium flow.",
+          "source_url": "https://arxiv.org/pdf/2509.16730",
+          "document_title": "Melting point depression of charge density wave in 1T-TiSe2 due to size effects",
+          "location": "Results, p.5",
+          "quote": "The ultra cold liquid helium cryo-TEM holder uses continuous liquid helium flow to provide high stability across intermediate temperatures"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Siddique S., Kiani M. T., Lesser O., et al., Cha J. J. Melting point depression of charge density wave in 1T-TiSe2 due to size effects. arXiv:2509.16730 (2025)",
+          "url": "https://arxiv.org/pdf/2509.16730",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "reported_equipment": [
+        "liquid helium cryo-TEM holder (continuous flow)",
+        "liquid nitrogen cryo-TEM holder",
+        "TEM operated at 60 kV"
+      ]
+    }
+  ],
+  "notes": "10 materials and nanotechnology profiles, each from a published procedure read in full text (open PDFs/arXiv via the alphaXiv page reader; ASTM E1450 scope from the public store page). All quotes verbatim (<=50 words); Celsius converted exactly to mK. Caveats: no vocabulary key distinguishes the probe instrument for XRD, STM, TEM, TMA/dilatometry and PL, so those profiles rely on temperature, vacuum, optical-access, wiring and size gates (a cryostat that meets them would also 'meet' e.g. the STM profile); a future module key (module.stm, module.electron_beam, module.xrd, module.dilatometer) would make them stricter. ASTM E1450's free scope gives no specimen dimensions, so no size gate. The TMA sample-length and heating-rate quotes are verbatim Russian from the original paper (the English abstract gives 130-800 K). Charpy sample diameter = circumscribed diameter of the 5x10 mm section rounded up (11.19 mm); thermal-conductivity footprint 5x1 mm -> 5.1 mm. Avoided duplicates of existing expa_relaxation_heat_capacity, expc_energy_insulation_boiloff, expc_semiconductor_cryo_hall, hydrogen tensile profiles and mat_magnetometry_vsm."
+}

@@ -1,0 +1,80 @@
+{
+ "id": "quantum_spin_qubit_wafer_cryoprobing",
+ "name": "Cryogenic probing of 300-mm Si/SiGe spin-qubit wafers at 1.6 K for single-electron operating-voltage statistics",
+ "plain_name": "Test whole 300 mm silicon qubit wafers for single-electron behaviour below 2 K",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Load full 300-mm Intel Si/Si0.7Ge0.3 spin-qubit wafers into a cryo-prober (1.0 K at the chuck, 1.6 K electron temperature, about 2 h cooldown), lift device pads into contact with a probe-pin array and map single-electron transitions, gate-line resistance and superconducting process monitors across the wafer.",
+ "keywords": [
+  "Test whole 300 mm silicon qubit wafers for single-electron behaviour below 2 K",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Probing single electrons across 300 mm spin qubit wafers (Neyens et al., arXiv:2307.04812v2; Nature 629, 80-85, 2024)",
+   "url": "https://arxiv.org/html/2307.04812v2",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryo-prober manufactured by Bluefors and AEM Afore"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 1600,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Single-electron operation and validation of the superconducting process rely on the 1.6 K base temperature of the cryo-prober.",
+   "evidence_ids": [
+    "v4e_quantum_spin_qubit_wafer_cryoprobing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 300000,
+     "unit": "um"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Whole 300 mm wafers are loaded and cooled.",
+   "evidence_ids": [
+    "v4e_quantum_spin_qubit_wafer_cryoprobing_1"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Device pads must be electrically contacted by probe pins at temperature.",
+   "evidence_ids": [
+    "v4e_quantum_spin_qubit_wafer_cryoprobing_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

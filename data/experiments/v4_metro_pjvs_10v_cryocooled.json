@@ -1,0 +1,101 @@
+{
+ "id": "metro_pjvs_10v_cryocooled",
+ "name": "Cryogen-free operation of a NIST 10 V programmable Josephson voltage standard at 4.3 K on a cryocooler with a supercritical-helium buffer",
+ "plain_name": "Run the quantum volt standard on a cryocooler instead of liquid helium",
+ "industry": "metrology_and_calibration",
+ "description": "The chip gave a 1.32 mA step width at 4.3 K with about 270 mW of net cooling, and kept quantum accuracy up to 4.8 K.",
+ "keywords": [
+  "Run the quantum volt standard on a cryocooler instead of liquid helium",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "Rufenacht et al., Cryocooled 10 V Programmable Josephson Voltage Standard, IEEE TIM 64(6) (2015)",
+   "url": "https://doi.org/10.1109/TIM.2014.2374697",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "NIST publication record for the same paper",
+   "url": "https://www.nist.gov/publications/cryocooled-10-v-programmable-josephson-voltage-standard",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "NIST 10 V PJVS",
+  "cryocooler with a 3 kW water-cooled compressor"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4300,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The step margins were measured at 4.3 K.",
+   "evidence_ids": [
+    "v4e_metro_pjvs_10v_cryocooled_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 4800,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Quantum accuracy is lost above 4.8 K.",
+   "evidence_ids": [
+    "v4e_metro_pjvs_10v_cryocooled_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The procedure is defined as cryocooler operation.",
+   "evidence_ids": [
+    "v4e_metro_pjvs_10v_cryocooled_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The subarrays are current-biased and read out.",
+   "evidence_ids": [
+    "v4e_metro_pjvs_10v_cryocooled_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

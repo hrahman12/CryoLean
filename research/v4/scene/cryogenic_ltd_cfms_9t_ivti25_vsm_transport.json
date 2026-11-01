@@ -1,0 +1,51 @@
+{
+  "configuration_id": "cryogenic_ltd_cfms_9t_ivti25_vsm_transport",
+  "archetype": "ppms_magnet_platform",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 632, "unit": "mm", "location": "COMPRESSOR only (W450 x L500 x H632 mm, 115 kg); cryostat height NOT published", "quote": "Compressor dimensions W450mm, L500mm, H632mm, 115Kg", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    "width_or_diameter": {"value": 450, "unit": "mm", "location": "COMPRESSOR only (width); cryostat diameter NOT published", "quote": "Compressor dimensions W450mm, L500mm, H632mm, 115Kg", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    "depth": {"value": 500, "unit": "mm", "location": "COMPRESSOR only (length)", "quote": "Compressor dimensions W450mm, L500mm, H632mm, 115Kg", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    "color_note": "Cryogenic Ltd drawing 'Complete Measurement System with VSM' (cfm_drawings_0.pdf, image-only, no dimension figures) shows a green-painted vertical cylindrical cryostat with a grey top plate standing on four grey legs beneath a raised square platform that carries the VSM head on a tall vertical rail; a separate green gas-handling cylinder and a Sumitomo compressor stand beside it (sheet 'Overall assembly Sumitomo rp-082b')."
+  },
+  "stages": [
+    {"name": "cryocooler first stage (40 K)", "temperature_K": 40, "quote": "Sumitomo SRDK408: Cooling powers at 50Hz 34W @ 40K 1.0W @ 4.2K", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    {"name": "cryocooler second stage / magnet (4 K)", "temperature_K": 4, "quote": "Cooling powers at 60Hz 42W @ 40K 1.0W @ 4.2K Base temperature <4K", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    {"name": "CFVTI sample stage (gas-flow VTI)", "temperature_K": 1.6, "quote": "CFVTI Sample Base Temperature 1.6K ... Temperature range 1.6 to 400K with continuous gas flow in VTI", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"}
+  ],
+  "sample_space": {
+    "position": "centre_of_bore",
+    "shape": "vertical cylindrical bore of the Integrated Variable Temperature Insert inside the magnet bore; probes top-load through an airlock (drawing: NW40 gate valve, 1/2 in or 5/8 in sample tube access)",
+    "description": "25 mm CFVTI bore (IVTI-25) at the magnet field centre; VSM pick-up coils sit inside the VTI within the magnet bore; VSM sample <5 mm; homogeneity 0.1% over 10 mm dsv (spec) / 0.01% over 3 cm x 1 cm dia cylinder for VSM (brochure).",
+    "diameter_or_width": {"value": 25, "unit": "mm", "location": "CFVTI bore / sample space", "quote": "CFVTI bore 25mm ... Sample Space 25mm as standard", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"}
+  },
+  "wiring": [
+    {"kind": "dc_loom", "count": 6, "from": "top-loading resistivity probe head", "to": "6-pin sample chip at the probe end (field centre)", "quote": "6 pin sample chip and probe end", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"kind": "dc_loom", "count": 8, "from": "top-loading resistivity probe head", "to": "8-pin sample chip (10 x 10 mm platform)", "quote": "8 pin sample chip and probe end", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"kind": "dc_loom", "count": 20, "from": "multi-sample probe head", "to": "LCC20 20-pin sample chip", "quote": "20 pin sample chip Multi sample probe and probe end", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"}
+  ],
+  "windows": {"count": 0, "axis": "none", "quote": "The VTI base may, as an option, include optical access in line with the sample column axis to allow for sample illumination from below the cryostat.", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+  "moving_parts": [
+    {"part": "vsm_vibrator", "rate": "20 Hz typical, 2 mm amplitude, vertical, in the VSM head above the cryostat", "quote": "VSM frequency 20 Hz typical VSM amplitude 2 mm", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"part": "gas_flow", "rate": "continuous helium gas flow through the VTI; automatic needle valve", "quote": "Temperature range (with continuous gas flow in VTI) 1.6 K to 400 K", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"part": "pulse_tube_rotary_valve", "rate": "not published (brochure VSM key item 5 'Pulse Tube Cryocooler'; drawing sheet titled 'Overall assembly Sumitomo rp-082b'; the 10-18 T spec instead lists a Sumitomo SRDK408 GM cold head for 7 T and 9 T models)", "quote": "Key 1. VSM Vibrator 2. Vibration Compensation Unit 3. Vertical Translation 4. Perspex Airlock 5. Pulse Tube Cryocooler 6. High Homogenity Magnet", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"part": "compressor", "rate": "50/60 Hz mains, 7.5 kVA 3-phase, water cooled 7 L/min; separate unit W450 x L500 x H632 mm, 115 kg", "quote": "Mains power requirement 7.5 KVA, 3-phase (200V, 25A) Water cooling 7L/min 5oC to 30oC", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"},
+    {"part": "stage_translation", "rate": "VSM vertical translation of the sample rod (rate not published)", "quote": "3. Vertical Translation", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed.pdf"},
+    {"part": "magnet_ramp", "rate": "120 A for 9 T, 20-bit power supply; swept or persistent mode; ramp rate not published", "quote": "Imax for Bmax 120A ... A superconducting switch is fitted to allow operation in the persistent mode.", "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.height (cryostat body)",
+    "outer.width_or_diameter (cryostat body)",
+    "outer.depth (cryostat body)",
+    "cryostat weight",
+    "stages[*].diameter_mm",
+    "magnet operating temperature",
+    "sample_space.height (usable length of VTI sample space)",
+    "wiring line counts per kind for the standard probe (twisted pair / coax / triax options listed without numbers)",
+    "pulse tube / cold head frequency",
+    "magnet ramp rate",
+    "overall installed height / ceiling requirement"
+  ],
+  "notes": "Sources: Cryogenic Ltd 10-18 T CFMS specification PDF (research/v5/cache/0a7d9545d8850630.txt), CFMS brochure v5.2 (research/v5/cache/8126d89197e64581.txt), product page (research/v5/cache/64cfe4e2f810e86e.txt), and drawings PDF cfm_drawings_0.pdf (snapshot research/v5/cache/a42b1692a66d21e4, image-only, three sheets: 'Complete Measurement System with VSM', 'Overall assembly Sumitomo rp-082b', 'Airlock and Wiper Seal' with NW40 gate valve; no dimension figures). The outer height/width/depth fields hold the COMPRESSOR dimensions, the only published outer dimensions; the cryostat body dimensions are not published anywhere found (web search, TU Dresden facility page, Cryogenic site) and are listed in not_found, so the renderer must not treat 632 x 450 x 500 mm as the cryostat. Cryocooler type is inconsistent across sources: brochure says 'Pulse Tube Cryocooler' and the drawing names Sumitomo RP-082B (pulse tube), while the 10-18 T spec sheet lists Sumitomo SRDK408 (GM, 1.0 W at 4.2 K, 34 W at 40 K) for 7 T and 9 T models; cold-head rate treated as unpublished. VTI sample space: spec says 25 mm for the IVTI-25 configuration; the brochure's generic CFMS table says 30 mm. Optical access, He-3 insert, DR insert, heat capacity (turbo-pumped relaxation probe) and heated probes are NOT fitted in this configuration."
+}

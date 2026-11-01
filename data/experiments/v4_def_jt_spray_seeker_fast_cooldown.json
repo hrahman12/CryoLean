@@ -1,0 +1,81 @@
+{
+ "id": "def_jt_spray_seeker_fast_cooldown",
+ "name": "Fast cool-down of a pivoted missile-seeker IR detector to 100 K within 2.3 s from a +50 C soak with a two-stage argon / CF4 (or CH4) Joule-Thomson spray cooler",
+ "plain_name": "Chill a missile's infrared eye to 100 K in about two seconds with expanding high-pressure argon",
+ "industry": "defense_and_security",
+ "description": "For surface-to-air IR missiles that must be ready within seconds, a two-stage fast cool-down dual-gas spray cooler sprays argon, pre-cooled by a CF4 or CH4 first-stage Joule-Thomson cooler, through a nozzle onto the back of the gimbal-mounted detector plate; the detector reached 100 K (-173 C) in less than 2.3 s from an ambient soak of 323 K (+50 C).",
+ "keywords": [
+  "Chill a missile's infrared eye to 100 K in about two seconds with expanding high-pressure argon",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "Fast-cool-down dual gas spray-cooler for pivoted IR detectors (U. Hingst, 2003), abstract",
+   "url": "https://consensus.app/papers/details/4c9311de7aeb5c109e070eee78726472/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 100000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The detector is cooled to 100 K.",
+   "evidence_ids": [
+    "v4e_def_jt_spray_seeker_fast_cooldown_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "2.3",
+     "unit": "s"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Mission readiness requires reaching 100 K in under 2.3 s from a +50 C soak.",
+   "evidence_ids": [
+    "v4e_def_jt_spray_seeker_fast_cooldown_1"
+   ],
+   "conditions": [],
+   "key": "cooldown_time.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "compressed_argon_jt"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The second stage expands highly pressurized, pre-cooled argon through a nozzle onto the detector plate.",
+   "evidence_ids": [
+    "v4e_def_jt_spray_seeker_fast_cooldown_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

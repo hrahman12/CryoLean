@@ -1,0 +1,84 @@
+{
+ "id": "bio_freezer_mill_tissue_rna",
+ "name": "Cryogenic impact grinding of cartilage tissue for total-RNA extraction in a SPEX large Freezer/Mill (vials immersed in liquid nitrogen, about -196 °C)",
+ "plain_name": "Grind frozen cartilage into powder for RNA extraction",
+ "industry": "biology_and_biotechnology",
+ "description": "Cartilage samples sealed in grinding vials with a magnetically driven impactor are pre-cooled and pulverized while immersed in liquid nitrogen (held at about -196 °C), up to four samples at once with the multi-vial adapter, keeping tissue far below -80 °C so RNA is not degraded.",
+ "keywords": [
+  "Grind frozen cartilage into powder for RNA extraction",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "SPEX SamplePrep 14th Edition Handbook: Freezer/Mill section and application notes (SP002, SP005)",
+   "url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "large Freezer/Mill",
+  "6875 Freezer/Mill"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "Samples are held at about -196 °C (77.15 K) in the liquid-nitrogen bath during pre-cooling and grinding.",
+   "evidence_ids": [
+    "v4e_bio_freezer_mill_tissue_rna_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 193150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "Tissue for RNA or protein extraction must stay at -80 °C or colder throughout.",
+   "evidence_ids": [
+    "v4e_bio_freezer_mill_tissue_rna_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "manufacturer_specification",
+   "rationale": "Grinding vials are immersed in liquid nitrogen throughout the grinding cycle.",
+   "evidence_ids": [
+    "v4e_bio_freezer_mill_tissue_rna_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

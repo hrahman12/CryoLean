@@ -1,0 +1,80 @@
+{
+ "id": "food_cumin_cryogenic_grinding",
+ "name": "Cryogenic grinding of cumin seed (genotypes GC 4 and RZ 209) with liquid-nitrogen pre-cooling to a -30 °C set point in a Fine Impact Mill 100UPZ, 50-100 um powder",
+ "plain_name": "Grind cumin seeds into spice powder while liquid nitrogen keeps their aroma in",
+ "industry": "food_and_agriculture",
+ "description": "ICAR-National Research Centre on Seed Spices: cumin seed is chilled by liquid nitrogen sprayed and blended directly onto it until it reaches a -30 °C set point, then ground in a pin (impact) mill to 50-100 um; cryo-grinding raised volatile-oil recovery by 33.9-43.5% over a conventional mixer grinder.",
+ "keywords": [
+  "Grind cumin seeds into spice powder while liquid nitrogen keeps their aroma in",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "Sharma LK, Agarwal D, Rathore SS, Malhotra SK, Saxena SN (2016). Effect of cryogenic grinding on volatile and fatty oil constituents of cumin (Cuminum cyminum L.) genotypes. J Food Sci Technol 53(6):2827-2834. doi:10.1007/s13197-016-2258-0",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4951436/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Fine Impact Mill 100UPZ (Spectra cryogenics, India)",
+  "Sujata Dynamix mixer grinder, 810 W (non-cryogenic comparison)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The procedure is mechanical comminution with cryogenic cooling; a machine without a grinding function cannot perform it.",
+   "evidence_ids": [
+    "v4e_food_cumin_cryogenic_grinding_0"
+   ],
+   "conditions": [],
+   "key": "process.cryogenic_milling"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 243150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The seed is cooled to a predetermined set point of -30 °C (243.15 K) before milling.",
+   "evidence_ids": [
+    "v4e_food_cumin_cryogenic_grinding_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cooling is by liquid nitrogen sprayed directly onto the seed.",
+   "evidence_ids": [
+    "v4e_food_cumin_cryogenic_grinding_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

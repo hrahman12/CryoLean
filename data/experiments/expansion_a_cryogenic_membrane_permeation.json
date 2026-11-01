@@ -1,0 +1,73 @@
+{
+  "id": "expa_cryogenic_membrane_permeation",
+  "name": "Helium permeability of thin cryogenic tank-barrier polymers at 20 K",
+  "plain_name": "Helium permeability of thin cryogenic tank-barrier polymers at 20 K",
+  "industry": "automotive_and_transportation",
+  "description": "Measure helium transport/leak rate through PET, PEEK or PEI thin-film tank barriers at the low endpoint of the actual CCC's controlled 20–200 K permeation procedure. This is distinct from a cold-reach demonstration and from mechanical-strength testing.",
+  "keywords": [
+    "cryogenic membrane permeation",
+    "permeation cell"
+  ],
+  "sources": [
+    {
+      "citation": "Washington State University HYPER, Cubic Cryo Chamber",
+      "url": "https://hydrogen.wsu.edu/ccc/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "test cell (and any ongoing permeation test) ... 20 – 200 K",
+      "evidence_id": "expa_ccc"
+    },
+    {
+      "key": "sample.diameter.max",
+      "as_printed": "4.73 in membrane discs",
+      "evidence_id": "expa_ccc"
+    }
+  ],
+  "reported_equipment": [
+    "WSU Cubic Cryo Chamber thin-polymer helium-permeation apparatus"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "20",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The source explicitly says the test cell and ongoing permeation test are modulated over 20–200 K; this profile selects the documented 20 K endpoint.",
+      "evidence_ids": [
+        "expa_ccc"
+      ]
+    },
+    {
+      "key": "module.cryogenic_gas_permeation",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Separate upstream/downstream volumes and a leak detector are essential.",
+      "evidence_ids": [
+        "expa_ccc"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Temperature stability, helium differential pressure, permeation area, background leak and detector calibration need confirmation. The source reports rates below detector sensitivity below 100 K, so an undetectable signal must not be represented as measured zero permeability. The separate approximately 5 K hardware reach is not an established permeation condition."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

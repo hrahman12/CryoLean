@@ -1,0 +1,102 @@
+{
+  "id": "expansion_b_linkam_dsc600",
+  "manufacturer": "Linkam",
+  "model": "DSC600 with LN2 cooling",
+  "family": "calorimeter",
+  "description": "An actual differential scanning calorimeter stage with distinct sample and reference pans. Heating-rate specifications are not reused as cooling-rate guarantees.",
+  "documents": [
+    {
+      "id": "expb_doc_linkam_dsc600",
+      "title": "DSC600 specifications",
+      "url": "https://www.linkam.co.uk/dsc600-specifications",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "expb_doc_dsc600_lnp",
+      "url": "https://www.linkam.co.uk/dsc600",
+      "title": "OpticalDSC600 system and LNP96 cooling requirement",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_linkam_dsc600_documented",
+      "name": "Linkam DSC600 with LN2 cooling",
+      "configuration_basis": "DSC600 stage,T96 controller,and documented optionalLNP96 explicitly included to reach the cryogenic range. This is a catalog configuration,not a claim of a lab installation.",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "78.15",
+              "unit": "K"
+            },
+            "hi": {
+              "value": "873.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_dsc600"
+          ]
+        },
+        {
+          "key": "temperature.heating_rate.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "0.1",
+              "unit": "K_per_min"
+            },
+            "hi": {
+              "value": "130",
+              "unit": "K_per_min"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_dsc600"
+          ]
+        },
+        {
+          "key": "process.dsc",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_dsc600"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_dsc600"
+          ]
+        },
+        {
+          "key": "module.dynamic_nitrogen_purge",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "A documented installed dynamic-N2 purge configuration has not been established from this specification."
+        }
+      ]
+    }
+  ]
+}

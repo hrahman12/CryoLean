@@ -1,0 +1,109 @@
+{
+ "id": "med_ffp_contact_shock_freezing",
+ "name": "Rapid freezing of fresh frozen plasma in a contact shock freezer (core -30 C within 1 h, freezer at -50 C) and frozen storage at -40 C",
+ "plain_name": "Quick-freeze donated plasma so its clotting factors survive",
+ "industry": "healthcare_and_medicine",
+ "description": "Blood-bank FFP preparation: plasma bags are frozen in a contact shock freezer operating at -50 C so the core reaches -30 C within 40 min (guideline: within 1 h), then kept stacked in a -40 C deep freezer; AABB requires -18 C or colder.",
+ "keywords": [
+  "Quick-freeze donated plasma so its clotting factors survive",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Dhantole L, Dubey A, Sonker A. A study on factors influencing the hemostatic potential of fresh frozen plasma. Asian J Transfus Sci 2019. DOI 10.4103/ajts.AJTS_139_17",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+   "url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "contact shock freezer (CSF) (Dometic MBF 21, Luxembourg)",
+  "deep freezer (M/S Sanyo, Japan)",
+  "blood bank MF (M/S Sanyo, Japan)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 243150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Plasma must be brought to a core temperature of -30 C or below, so the freezer must reach -30 C or colder.",
+   "evidence_ids": [
+    "v4e_med_ffp_contact_shock_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 255150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Regulatory minimum for FFP: frozen at -18 C or colder.",
+   "evidence_ids": [
+    "v4e_med_ffp_contact_shock_freezing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 233150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Operating point used for storage in the study: -40 C deep freezer (any -18 C or colder store meets the AABB rule).",
+   "evidence_ids": [
+    "v4e_med_ffp_contact_shock_freezing_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 223150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The contact shock freezer used operates at -50 C, which achieved the -30 C core in 40 min.",
+   "evidence_ids": [
+    "v4e_med_ffp_contact_shock_freezing_3"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

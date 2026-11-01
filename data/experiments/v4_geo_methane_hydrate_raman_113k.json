@@ -1,0 +1,100 @@
+{
+ "id": "geo_methane_hydrate_raman_113k",
+ "name": "Confocal Raman determination of methane large/small cage occupancy in recovered hydrate on a Linkam THMS600 stage at 113 +/- 0.1 K",
+ "plain_name": "Count methane molecules trapped in ice cages with laser light at 113 K",
+ "industry": "geology_and_oceanography",
+ "description": "Recovered methane hydrate, stored under liquid nitrogen, is placed on a Linkam THMS600 cooling stage and measured at 113 +/- 0.1 K with a LabRAM HR800 (488 nm, 50x long-working-distance objective); the C-H stretching band splits at about 2901 and 2913 cm-1 into large- and small-cage contributions.",
+ "keywords": [
+  "Count methane molecules trapped in ice cages with laser light at 113 K",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Qin, Hartmann and Kuhs, Cage occupancies of methane hydrates: results from synchrotron X-ray diffraction and Raman spectroscopy, Proc. 8th Int. Conf. on Gas Hydrates (ICGH8-2014), Beijing (arXiv:1803.02244)",
+   "url": "https://arxiv.org/abs/1803.02244",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Linkam THMS600",
+  "LabRAM HR800 (Horiba Jobin Yvon)",
+  "Andor DU 420A CCD",
+  "Coherent Innova 90C Ar+ laser"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 113,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Spectra are taken with the hydrate held at 113 K so it does not decompose.",
+   "evidence_ids": [
+    "v4e_geo_methane_hydrate_raman_113k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.1",
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Measurement temperature held to +/-0.1 K.",
+   "evidence_ids": [
+    "v4e_geo_methane_hydrate_raman_113k_1"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The laser is focused through a 50x long-working-distance objective onto the sample and collected in backscattering.",
+   "evidence_ids": [
+    "v4e_geo_methane_hydrate_raman_113k_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Samples are ground, sieved and stored under liquid nitrogen before measurement.",
+   "evidence_ids": [
+    "v4e_geo_methane_hydrate_raman_113k_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

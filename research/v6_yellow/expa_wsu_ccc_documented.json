@@ -1,0 +1,39 @@
+{
+  "configuration_id": "expa_wsu_ccc_documented",
+  "rows": [
+    {
+      "key": "module.cryogenic_tensile_test",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://hydrogen.wsu.edu/ccc/",
+      "document_title": "Washington State University HYPER, Cubic Cryo Chamber",
+      "location": "CCC page, '2016-2020: Kjell Westra and Helium Permeation Through Thin Polymer Films' section (snapshot research/v5/cache/17a87d62bef4d9ee.txt)",
+      "quote": "The top and bottom faces of the sample are subjected to 35 psi of helium and vacuum, respectively, and the resulting pressure gradient drives the permeation of helium through the sample, the rate of which is tracked by an ASDM Graph D+ leak detector.",
+      "reasoning": "This configuration is the HYPER lab's thin-film helium-permeation test cell. Its own description says it is a pressure-gradient permeation cell read out by a leak detector. It is not a load frame. The lab does its cryogenic tensile, compressive and fatigue testing on a separate instrument, CRAFT (https://hydrogen.wsu.edu/craft/), whose page says 'CRAFT allows for the tensile, compressive, and fatigue testing of polymer composites' and that it uses an MTS Acumen 12 load frame. The CCC specification list names no load frame or force sensor. It lists only a leak detector, RTDs and a pressure transducer."
+    },
+    {
+      "key": "module.cryogenic_fatigue_test",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://hydrogen.wsu.edu/ccc/",
+      "document_title": "Washington State University HYPER, Cubic Cryo Chamber",
+      "location": "CCC page, '2016-2020: Kjell Westra and Helium Permeation Through Thin Polymer Films' section",
+      "quote": "The top and bottom faces of the sample are subjected to 35 psi of helium and vacuum, respectively, and the resulting pressure gradient drives the permeation of helium through the sample, the rate of which is tracked by an ASDM Graph D+ leak detector.",
+      "reasoning": "This is the same scope evidence as for tensile testing: the configuration is a static gas-permeation cell. The HYPER lab's cryogenic fatigue capability belongs to a different instrument, CRAFT ('CRyogenic Accelerated Fatigue Tester ... the first fully electric load frame capable of fatigue testing polymeric materials in a liquefied hydrogen environment', https://hydrogen.wsu.edu/craft/), which the lab's navigation lists separately as 'CRAFT – Cryogenic fatigue testing'. The CCC permeation configuration has no cyclic loading hardware in its specification list. CRAFT data must not be assigned to this record."
+    },
+    {
+      "key": "module.liquid_hydrogen_handling",
+      "result": "still_unknown",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://hydrogen.wsu.edu/ccc/",
+      "document_title": "Washington State University HYPER, Cubic Cryo Chamber",
+      "location": "CCC page, Specifications / Thermodynamic State Point Delivery",
+      "quote": "Inlet Fluid Phase Type: vapor, liquid. Testing Fluid: H2, He",
+      "reasoning": "The sources neither establish nor rule out this function. The general CCC specification list gives liquid as an inlet phase and H2 and He as testing fluids, but it never says that liquid hydrogen is delivered to or handled in this permeation configuration. The permeation cell description names only 35 psi helium gas. Per a web search snippet, the Westra thesis (WSU) and Westra & Leachman, Cryogenics 155 (2026) 104279 report gas-phase helium and hydrogen permeation from about 190-210 K down to 30 K (full text not retrieved); no liquid hydrogen is mentioned there. Because the listing includes liquid and H2, documented absence cannot be claimed, and a positive value would be an inference. Searched: the CCC page, the CRAFT page (LH2 is documented for CRAFT, not CCC), and a web search for the Westra/Leachman permeation work. Tavily search was unavailable (quota). Note: the experiment that needs this key (expa_hydrogen_composite_fatigue) also requires module.cryogenic_fatigue_test, which is documented absent above."
+    }
+  ]
+}

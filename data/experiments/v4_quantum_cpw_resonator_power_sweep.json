@@ -1,0 +1,116 @@
+{
+ "id": "quantum_cpw_resonator_power_sweep",
+ "name": "Internal quality factor of niobium quarter-wave CPW resonators (4-8 GHz) versus drive power down to the single-photon level at 10 mK",
+ "plain_name": "Measure how much microwave energy a superconducting resonator chip loses, down to single photons",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Wire-bond a 5 x 7 mm chip of niobium coplanar-waveguide quarter-wavelength resonators (4-8 GHz) into a sample box, cool it to 10 mK in a cryogen-free dilution refrigerator and sweep the VNA drive power over about 90 dB (roughly 1e-2 to 1e7 photons) through 60 dB of cold attenuation and a 4 K HEMT to extract internal and loaded Q, as in the Chalmers resonator-optimisation thesis.",
+ "keywords": [
+  "Measure how much microwave energy a superconducting resonator chip loses, down to single photons",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Characterisation and optimisation of superconducting microwave resonators (T. Boehme, MSc thesis, Chalmers University of Technology, 2016)",
+   "url": "https://publications.lib.chalmers.se/records/fulltext/238574/238574.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "helium-3 (3He)/helium-4 (4He) cryogen-free dilution refrigerator",
+  "pulse tube cryocooler",
+  "vector network analyser (VNA)",
+  "high electron mobility transistor (HEMT) amplifier of about 35 dB at the 4 K stage"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 10,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The resonators were measured at 10 mK, far below Tc, to suppress thermal quasiparticles and thermal photons; the fridge base must reach 10 mK.",
+   "evidence_ids": [
+    "v4e_quantum_cpw_resonator_power_sweep_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8000000,
+     "unit": "kHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Resonance frequencies span 4-8 GHz, so the cold coaxial input/output chain must transmit up to 8 GHz.",
+   "evidence_ids": [
+    "v4e_quantum_cpw_resonator_power_sweep_1"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 8603,
+     "unit": "um"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chip is 5 mm x 7 mm; its circumscribed diameter is sqrt(5^2+7^2) = 8.602 mm, rounded up to 8603 um, which the sample space must accept.",
+   "evidence_ids": [
+    "v4e_quantum_cpw_resonator_power_sweep_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The chip is wire bonded to a PCB in a sample box with K connectors; RF connections to the sample are required.",
+   "evidence_ids": [
+    "v4e_quantum_cpw_resonator_power_sweep_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source used a pulse-tube-precooled (cryogen-free) dilution refrigerator; a wet fridge reaching 10 mK would also work.",
+   "evidence_ids": [
+    "v4e_quantum_cpw_resonator_power_sweep_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

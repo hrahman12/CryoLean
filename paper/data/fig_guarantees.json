@@ -1,0 +1,1520 @@
+{
+ "rows": [
+  {
+   "num": "1",
+   "text": "ACCEPT ⇒ every applicable mandatory requirement passes (or is excluded by a definitely-false condition)",
+   "short": "ACCEPT => every applicable mandatory requirement passes",
+   "theorems": [
+    "verdict_accept_sound",
+    "verdict_accept_iff"
+   ],
+   "theorems_in_lean": [
+    "verdict_accept_sound",
+    "verdict_accept_iff"
+   ],
+   "audited": [
+    "verdict_accept_sound",
+    "verdict_accept_iff"
+   ],
+   "standard_axioms_only": [
+    "verdict_accept_sound",
+    "verdict_accept_iff"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "verdict_accept_sound",
+    "verdict_accept_iff"
+   ],
+   "tests": [
+    "test_control_all_documented_accepts",
+    "test_01_temperature_compatibility",
+    "test_15_lean_accepts_valid_candidate",
+    "test_lean1_absent_requirement_met_by_option_not_installed"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 4,
+   "test_cases": {
+    "test_control_all_documented_accepts": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_01_temperature_compatibility": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_15_lean_accepts_valid_candidate": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_lean1_absent_requirement_met_by_option_not_installed": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "2",
+   "text": "Missing mandatory information cannot produce ACCEPT",
+   "short": "Missing mandatory information cannot give ACCEPT",
+   "theorems": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "theorems_in_lean": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "audited": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "standard_axioms_only": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "axioms_union": [
+    "propext"
+   ],
+   "forensics_clean": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "tests": [
+    "test_unknown_capabilities_never_supported",
+    "test_11_missing_mandatory_manufacturer_data",
+    "test_unconfirmed_profile_never_accepted",
+    "test_f2_confirmation_is_strict"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 7,
+   "test_cases": {
+    "test_unknown_capabilities_never_supported": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_11_missing_mandatory_manufacturer_data": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_unconfirmed_profile_never_accepted": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_f2_confirmation_is_strict": {
+     "passed": 4,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": "e4_faults"
+  },
+  {
+   "num": "3",
+   "text": "Unsupported mandatory requirements (dimension/shape mismatch, model invalid here) cannot produce ACCEPT",
+   "short": "Unsupported requirements (dimension/shape/model) cannot give ACCEPT",
+   "theorems": [
+    "accept_no_unknown",
+    "pass_dims_all_match",
+    "coupled_pass_dims_match"
+   ],
+   "theorems_in_lean": [
+    "accept_no_unknown",
+    "pass_dims_all_match",
+    "coupled_pass_dims_match"
+   ],
+   "audited": [
+    "accept_no_unknown",
+    "pass_dims_all_match",
+    "coupled_pass_dims_match"
+   ],
+   "standard_axioms_only": [
+    "accept_no_unknown",
+    "pass_dims_all_match",
+    "coupled_pass_dims_match"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "accept_no_unknown",
+    "pass_dims_all_match",
+    "coupled_pass_dims_match"
+   ],
+   "tests": [
+    "test_12_unsupported_physical_requirements",
+    "test_lean2_3_4_decoder_fails_closed",
+    "test_exact_units_no_floats",
+    "test_f5_internal_num_den_and_floats_refused_from_users"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 7,
+   "test_cases": {
+    "test_12_unsupported_physical_requirements": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_lean2_3_4_decoder_fails_closed": {
+     "passed": 4,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    },
+    "test_exact_units_no_floats": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_f5_internal_num_den_and_floats_refused_from_users": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "4",
+   "text": "A confirmed mandatory failure prevents ACCEPT; every REJECT rests on trusted evidence",
+   "short": "A confirmed mandatory failure prevents ACCEPT; REJECT rests on trusted evidence",
+   "theorems": [
+    "fail_implies_reject",
+    "violation_prevents_accept",
+    "verdict_reject_complete",
+    "verdict_reject_sound",
+    "fail_needs_trusted"
+   ],
+   "theorems_in_lean": [
+    "fail_implies_reject",
+    "violation_prevents_accept",
+    "verdict_reject_complete",
+    "verdict_reject_sound",
+    "fail_needs_trusted"
+   ],
+   "audited": [
+    "fail_implies_reject",
+    "violation_prevents_accept",
+    "verdict_reject_complete",
+    "verdict_reject_sound",
+    "fail_needs_trusted"
+   ],
+   "standard_axioms_only": [
+    "fail_implies_reject",
+    "violation_prevents_accept",
+    "verdict_reject_complete",
+    "verdict_reject_sound",
+    "fail_needs_trusted"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+   ],
+   "forensics_clean": [
+    "fail_implies_reject",
+    "violation_prevents_accept",
+    "verdict_reject_complete",
+    "verdict_reject_sound",
+    "fail_needs_trusted"
+   ],
+   "tests": [
+    "test_04_magnetic_field_incompatibility",
+    "test_05_missing_measurement_accessory",
+    "test_10_vacuum_incompatibility",
+    "test_untrusted_not_installed_record_never_rejects"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 6,
+   "test_cases": {
+    "test_04_magnetic_field_incompatibility": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_05_missing_measurement_accessory": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_10_vacuum_incompatibility": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_untrusted_not_installed_record_never_rejects": {
+     "passed": 3,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_pipeline_extensions"
+    }
+   },
+   "evaluation": "e4_faults"
+  },
+  {
+   "num": "5",
+   "text": "Every applicable mandatory coupled constraint passes before ACCEPT",
+   "short": "Every applicable mandatory coupled constraint passes before ACCEPT",
+   "theorems": [
+    "accept_all_coupled",
+    "verdict_accept_sound"
+   ],
+   "theorems_in_lean": [
+    "accept_all_coupled",
+    "verdict_accept_sound"
+   ],
+   "audited": [
+    "accept_all_coupled",
+    "verdict_accept_sound"
+   ],
+   "standard_axioms_only": [
+    "accept_all_coupled",
+    "verdict_accept_sound"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "accept_all_coupled",
+    "verdict_accept_sound"
+   ],
+   "tests": [
+    "test_03_insufficient_cooling_power",
+    "test_07_thermal_load_exceeds_cooling_capacity",
+    "test_17_independent_checks_pass_coupled_fails",
+    "test_09_thermal_contraction_constraint"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 4,
+   "test_cases": {
+    "test_03_insufficient_cooling_power": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_07_thermal_load_exceeds_cooling_capacity": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_17_independent_checks_pass_coupled_fails": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_09_thermal_contraction_constraint": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "6",
+   "text": "Optional requirements do not block acceptance",
+   "short": "Optional requirements do not block acceptance",
+   "theorems": [
+    "verdict_ignores_optional"
+   ],
+   "theorems_in_lean": [
+    "verdict_ignores_optional"
+   ],
+   "audited": [
+    "verdict_ignores_optional"
+   ],
+   "standard_axioms_only": [
+    "verdict_ignores_optional"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "verdict_ignores_optional"
+   ],
+   "tests": [
+    "test_optional_requirement_does_not_block",
+    "test_smt2_optional_unknown_value_agrees_with_lean"
+   ],
+   "tests_passed": 2,
+   "test_cases_run": 2,
+   "test_cases": {
+    "test_optional_requirement_does_not_block": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_smt2_optional_unknown_value_agrees_with_lean": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "7",
+   "text": "Non-applicable requirements do not cause false failures",
+   "short": "Non-applicable requirements cause no false failures",
+   "theorems": [
+    "verdict_ignores_nonapplicable",
+    "condition_false_not_applicable"
+   ],
+   "theorems_in_lean": [
+    "verdict_ignores_nonapplicable",
+    "condition_false_not_applicable"
+   ],
+   "audited": [
+    "verdict_ignores_nonapplicable",
+    "condition_false_not_applicable"
+   ],
+   "standard_axioms_only": [
+    "verdict_ignores_nonapplicable",
+    "condition_false_not_applicable"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "verdict_ignores_nonapplicable",
+    "condition_false_not_applicable"
+   ],
+   "tests": [
+    "test_conditional_requirement_not_applicable_is_not_a_failure"
+   ],
+   "tests_passed": 1,
+   "test_cases_run": 1,
+   "test_cases": {
+    "test_conditional_requirement_not_applicable_is_not_a_failure": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "8",
+   "text": "Installed accessories are distinguished from optional ones",
+   "short": "Installed accessories are distinguished from optional ones",
+   "theorems": [
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "theorems_in_lean": [
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "audited": [
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "standard_axioms_only": [
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "axioms_union": [
+    "propext"
+   ],
+   "forensics_clean": [
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "cap_not_usable_missing"
+   ],
+   "tests": [
+    "test_installed_documented_vs_proposed_modifications",
+    "test_05_missing_measurement_accessory",
+    "test_lean1_absent_requirement_met_by_option_not_installed",
+    "test_f8_cooling_slot_uses_installed_capabilities_only"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 4,
+   "test_cases": {
+    "test_installed_documented_vs_proposed_modifications": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_05_missing_measurement_accessory": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_lean1_absent_requirement_met_by_option_not_installed": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    },
+    "test_f8_cooling_slot_uses_installed_capabilities_only": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": "e4_faults"
+  },
+  {
+   "num": "9",
+   "text": "A verdict applies only to the exact configuration and experiment",
+   "short": "A verdict applies only to the exact configuration and experiment",
+   "theorems": [
+    "run_binds_inputs",
+    "run_reports_everything",
+    "verdict_deterministic"
+   ],
+   "theorems_in_lean": [
+    "run_binds_inputs",
+    "run_reports_everything",
+    "verdict_deterministic"
+   ],
+   "audited": [
+    "run_binds_inputs",
+    "run_reports_everything",
+    "verdict_deterministic"
+   ],
+   "standard_axioms_only": [
+    "run_binds_inputs",
+    "run_reports_everything",
+    "verdict_deterministic"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "run_binds_inputs",
+    "run_reports_everything",
+    "verdict_deterministic"
+   ],
+   "tests": [
+    "test_16_equipment_switching_invalidates_results",
+    "test_16b_stored_result_refused_after_catalog_change",
+    "test_f1_alternatives_and_search_respect_modifications"
+   ],
+   "tests_passed": 3,
+   "test_cases_run": 3,
+   "test_cases": {
+    "test_16_equipment_switching_invalidates_results": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_16b_stored_result_refused_after_catalog_change": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_f1_alternatives_and_search_respect_modifications": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "10",
+   "text": "AI cannot bypass the gate",
+   "short": "AI cannot bypass the gate",
+   "theorems": [],
+   "theorems_in_lean": [],
+   "audited": [],
+   "standard_axioms_only": [],
+   "axioms_union": [],
+   "forensics_clean": [],
+   "tests": [
+    "test_ai_cannot_weaken_or_invent",
+    "test_injected_verdict_in_document_is_ignored",
+    "test_ai_matching_examples"
+   ],
+   "tests_passed": 3,
+   "test_cases_run": 3,
+   "test_cases": {
+    "test_ai_cannot_weaken_or_invent": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_injected_verdict_in_document_is_ignored": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    },
+    "test_ai_matching_examples": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "11",
+   "text": "Z3 cannot override a Lean rejection",
+   "short": "Z3 cannot override a Lean rejection",
+   "theorems": [
+    "candidates_verdicts_are_lean",
+    "candidates_accept_sound"
+   ],
+   "theorems_in_lean": [
+    "candidates_verdicts_are_lean",
+    "candidates_accept_sound"
+   ],
+   "audited": [
+    "candidates_verdicts_are_lean",
+    "candidates_accept_sound"
+   ],
+   "standard_axioms_only": [
+    "candidates_verdicts_are_lean",
+    "candidates_accept_sound"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "candidates_verdicts_are_lean",
+    "candidates_accept_sound"
+   ],
+   "tests": [
+    "test_13_14_z3_proposes_invalid_configuration_lean_rejects",
+    "test_15_lean_accepts_valid_candidate"
+   ],
+   "tests_passed": 2,
+   "test_cases_run": 2,
+   "test_cases": {
+    "test_13_14_z3_proposes_invalid_configuration_lean_rejects": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_15_lean_accepts_valid_candidate": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    }
+   },
+   "evaluation": "e3_search"
+  },
+  {
+   "num": "12",
+   "text": "New industries cannot bypass mandatory checking",
+   "short": "New industries cannot bypass mandatory checking",
+   "theorems": [
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant"
+   ],
+   "theorems_in_lean": [
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant"
+   ],
+   "audited": [
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant"
+   ],
+   "standard_axioms_only": [
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant"
+   ],
+   "tests": [
+    "test_18_register_previously_unknown_industry",
+    "test_19_same_lean_core_across_industries",
+    "test_19b_industry_label_cannot_change_verdict"
+   ],
+   "tests_passed": 3,
+   "test_cases_run": 3,
+   "test_cases": {
+    "test_18_register_previously_unknown_industry": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_19_same_lean_core_across_industries": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    },
+    "test_19b_industry_label_cannot_change_verdict": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_required_scenarios"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "13",
+   "text": "A campaign schedule is accepted only if every slot lies after cooldown and before the end of the run, slots do not overlap, and every experiment was accepted",
+   "short": "A campaign schedule is accepted only if bounds, disjointness and acceptance hold",
+   "theorems": [
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_only_accepted",
+    "validSchedule_rejects_unaccepted"
+   ],
+   "theorems_in_lean": [
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_only_accepted",
+    "validSchedule_rejects_unaccepted"
+   ],
+   "audited": [
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_only_accepted",
+    "validSchedule_rejects_unaccepted"
+   ],
+   "standard_axioms_only": [
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_only_accepted",
+    "validSchedule_rejects_unaccepted"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound"
+   ],
+   "forensics_clean": [
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_only_accepted",
+    "validSchedule_rejects_unaccepted"
+   ],
+   "tests": [
+    "test_schedule_packs_only_accepted_and_lean_validates",
+    "test_lean_rejects_tampered_schedules",
+    "test_schedule_refuses_rejected_experiment_in_lean",
+    "test_schedule_too_long_gives_unsat_core"
+   ],
+   "tests_passed": 4,
+   "test_cases_run": 7,
+   "test_cases": {
+    "test_schedule_packs_only_accepted_and_lean_validates": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_pipeline_extensions"
+    },
+    "test_lean_rejects_tampered_schedules": {
+     "passed": 4,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_pipeline_extensions"
+    },
+    "test_schedule_refuses_rejected_experiment_in_lean": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_pipeline_extensions"
+    },
+    "test_schedule_too_long_gives_unsat_core": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_pipeline_extensions"
+    }
+   },
+   "evaluation": "e6_schedule"
+  },
+  {
+   "num": "A",
+   "text": "ACCEPT and REJECT specifications are exclusive; evaluation of coupled expressions is sound and complete w.r.t. the big-step semantics",
+   "short": "ACCEPT/REJECT specs exclusive; coupled-expression evaluation sound and complete",
+   "theorems": [
+    "satisfies_spec_exclusive",
+    "evalExpr_sound",
+    "evalExpr_complete"
+   ],
+   "theorems_in_lean": [
+    "satisfies_spec_exclusive",
+    "evalExpr_sound",
+    "evalExpr_complete"
+   ],
+   "audited": [
+    "satisfies_spec_exclusive",
+    "evalExpr_sound",
+    "evalExpr_complete"
+   ],
+   "standard_axioms_only": [
+    "satisfies_spec_exclusive",
+    "evalExpr_sound",
+    "evalExpr_complete"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+   ],
+   "forensics_clean": [
+    "satisfies_spec_exclusive",
+    "evalExpr_sound",
+    "evalExpr_complete"
+   ],
+   "tests": [
+    "test_smt6_inverted_range_is_not_satisfiable_in_z3"
+   ],
+   "tests_passed": 1,
+   "test_cases_run": 1,
+   "test_cases": {
+    "test_smt6_inverted_range_is_not_satisfiable_in_z3": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_review_regressions"
+    }
+   },
+   "evaluation": null
+  },
+  {
+   "num": "B",
+   "text": "The rational order does not depend on the representation",
+   "short": "The rational order is independent of representation",
+   "theorems": [
+    "Q.le_scale_left",
+    "Q.le_scale_right"
+   ],
+   "theorems_in_lean": [
+    "Q.le_scale_left",
+    "Q.le_scale_right"
+   ],
+   "audited": [
+    "Q.le_scale_left",
+    "Q.le_scale_right"
+   ],
+   "standard_axioms_only": [
+    "Q.le_scale_left",
+    "Q.le_scale_right"
+   ],
+   "axioms_union": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+   ],
+   "forensics_clean": [
+    "Q.le_scale_left",
+    "Q.le_scale_right"
+   ],
+   "tests": [
+    "test_exact_units_no_floats"
+   ],
+   "tests_passed": 1,
+   "test_cases_run": 1,
+   "test_cases": {
+    "test_exact_units_no_floats": {
+     "passed": 1,
+     "failed": 0,
+     "skipped": 0,
+     "file": "tests.test_guarantees"
+    }
+   },
+   "evaluation": null
+  }
+ ],
+ "tests": {
+  "command": "python -m pytest -m 'not slow'",
+  "returncode": 0,
+  "seconds": 72.44984090002254,
+  "tests": 91,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "deselected_slow": []
+ },
+ "forensics_summary": {
+  "forensics_commit": "e5b80ca2590bab3129013cbdf61ec67a32fd9e2c",
+  "declarations": 839,
+  "nonstandard_axioms": [],
+  "statement_smells": [],
+  "unsafe_flags": [],
+  "clean": true
+ },
+ "failing_tests": [],
+ "audit_count": 44,
+ "audit_all_standard": true,
+ "audit_source_hash": "3120e7563625e9c379f1c47948b996dee141ec6e73132ec90ea509c58970b5c9",
+ "audit_freshness": {
+  "status": "current",
+  "modified_after_audit": [],
+  "binary_rebuilt_after_audit": false,
+  "theorem_import_closure": [
+   "Checker",
+   "Model",
+   "Num",
+   "Schedule",
+   "Soundness",
+   "Spec"
+  ],
+  "modified_in_closure": []
+ },
+ "tests_raw": {
+  "command": "python -m pytest -m 'not slow'",
+  "returncode": 0,
+  "seconds": 72.44984090002254,
+  "tests": 91,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "deselected_slow": [],
+  "by_test": {
+   "test_catalog_validates": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_initial_equipment_and_six_experiments_present": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_every_manufacturer_value_has_traceable_source": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_forty_properties_and_honest_status": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_coverage_does_not_overclaim": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_required_bridge_methods_exist": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_compare_equipment": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_equipment_details_show_unknowns_and_options": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_result_has_all_required_sections": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_data_and_bridge"
+   },
+   "test_unknown_capabilities_never_supported": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_control_all_documented_accepts": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_unconfirmed_profile_never_accepted": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_optional_requirement_does_not_block": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_conditional_requirement_not_applicable_is_not_a_failure": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_ai_cannot_weaken_or_invent": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_injected_verdict_in_document_is_ignored": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_lean_unavailable_gives_no_verdict": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_installed_documented_vs_proposed_modifications": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_exact_units_no_floats": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_ai_matching_examples": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_guarantees"
+   },
+   "test_no_sorry_admit_axiom_or_native_decide": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_lean_proofs"
+   },
+   "test_required_theorems_present": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_lean_proofs"
+   },
+   "test_runtime_binary_selftest": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_lean_proofs"
+   },
+   "test_audit_cache_matches_sources": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_lean_proofs"
+   },
+   "test_untrusted_not_installed_record_never_rejects": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_verdict_card_on_every_result": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_card_theorems_exist_in_lean_sources": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_schedule_packs_only_accepted_and_lean_validates": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_schedule_too_long_gives_unsat_core": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_lean_rejects_tampered_schedules": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_schedule_refuses_rejected_experiment_in_lean": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_schedule_missing_cooldown_is_reported": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_bridge_schedule_campaign": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_gatekeeper_catches_hidden_axiom_even_without_keyword": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_lanyon_client_is_pinned": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_certified_simulation_needs_certificate_fields": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_certified_simulation_is_trusted_in_lean": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_not_available_is_a_documented_absence": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_not_available_requires_trusted_evidence": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_not_available_is_never_offered_as_an_option": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_refinement_never_changes_a_decided_verdict": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_pipeline_extensions"
+   },
+   "test_01_temperature_compatibility": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_02_sample_size_incompatibility": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_03_insufficient_cooling_power": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_04_magnetic_field_incompatibility": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_05_missing_measurement_accessory": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_06_electrical_feedthrough_limitation": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_07_thermal_load_exceeds_cooling_capacity": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_08_optical_working_distance_incompatibility": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_09_thermal_contraction_constraint": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_10_vacuum_incompatibility": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_11_missing_mandatory_manufacturer_data": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_12_unsupported_physical_requirements": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_13_14_z3_proposes_invalid_configuration_lean_rejects": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_15_lean_accepts_valid_candidate": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_16_equipment_switching_invalidates_results": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_16b_stored_result_refused_after_catalog_change": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_17_independent_checks_pass_coupled_fails": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_18_register_previously_unknown_industry": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_19_same_lean_core_across_industries": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_19b_industry_label_cannot_change_verdict": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_20_offline_verification_from_local_data": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_required_scenarios"
+   },
+   "test_lean1_absent_requirement_met_by_option_not_installed": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_lean2_3_4_decoder_fails_closed": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_dp_data_corrections": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_smt1_duplicate_requirement_keys_do_not_crash": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_smt2_optional_unknown_value_agrees_with_lean": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_smt3_any_of_with_unknown_key_is_not_a_conflict": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_smt5_coupled_core_names_the_machine_fact": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_smt6_inverted_range_is_not_satisfiable_in_z3": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f1_alternatives_and_search_respect_modifications": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f2_confirmation_is_strict": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f3_compare_and_find_default_unconfirmed": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f4_promotion_cannot_overwrite_trusted_records": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f5_internal_num_den_and_floats_refused_from_users": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f6_negative_parameters_never_help": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f7_material_temperature_is_derived_and_required": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   },
+   "test_f8_cooling_slot_uses_installed_capabilities_only": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "file": "tests.test_review_regressions"
+   }
+  }
+ },
+ "statuses": [
+  {
+   "num": "1",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "2",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "3",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "4",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "5",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "6",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "7",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "8",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "9",
+   "lean": "partial",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "partial"
+  },
+  {
+   "num": "10",
+   "lean": "none",
+   "audit": "none",
+   "tests": "covered",
+   "forensics": "none"
+  },
+  {
+   "num": "11",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "12",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "13",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "A",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  },
+  {
+   "num": "B",
+   "lean": "covered",
+   "audit": "covered",
+   "tests": "covered",
+   "forensics": "covered"
+  }
+ ],
+ "rows_fully_covered": 11,
+ "rows_numbered": 13
+}

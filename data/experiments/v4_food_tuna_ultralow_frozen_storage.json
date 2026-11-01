@@ -1,0 +1,67 @@
+{
+ "id": "food_tuna_ultralow_frozen_storage",
+ "name": "Long-term ultra-low-temperature frozen storage of tuna meat at -45 °C or lower to prevent metmyoglobin (browning) formation",
+ "plain_name": "Store sashimi tuna deep-frozen cold enough that its red colour does not turn brown",
+ "industry": "food_and_agriculture",
+ "description": "Nakazawa et al. (Int. J. Refrigeration 2020) stored low-pH and high-pH tuna meat at a range of frozen-storage temperatures over long periods: metMb% rose in low-pH meat held warmer than -40 °C, while no increase occurred at -45 °C or lower regardless of pH, supporting ultra-low-temperature storage of tuna.",
+ "keywords": [
+  "Store sashimi tuna deep-frozen cold enough that its red colour does not turn brown",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "Nakazawa N, Wada R, Fukushima H, Tanaka R, Kono S, Okazaki E (2020). Effect of long-term storage, ultra-low temperature, and freshness on the quality characteristics of frozen tuna meat. Int J Refrigeration 112:270-280. doi:10.1016/j.ijrefrig.2019.12.012",
+   "url": "https://iifiir.org/en/fridoc/effect-of-long-term-storage-ultra-low-temperature-and-freshness-on-142126",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 228150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Colour stability (no metMb increase) needs storage at -45 °C (228.15 K) or colder; either a documented range reaching that low or a documented lowest temperature settles it.",
+   "evidence_ids": [
+    "v4e_food_tuna_ultralow_frozen_storage_0"
+   ],
+   "conditions": [],
+   "keys": [
+    "temperature.range",
+    "temperature.base"
+   ]
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 233150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Storage warmer than -40 °C (233.15 K) increased metMb in low-pH meat; optional because the -45 °C requirement already covers it.",
+   "evidence_ids": [
+    "v4e_food_tuna_ultralow_frozen_storage_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

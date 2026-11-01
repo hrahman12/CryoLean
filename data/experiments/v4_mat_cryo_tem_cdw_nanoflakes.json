@@ -1,0 +1,89 @@
+{
+ "id": "mat_cryo_tem_cdw_nanoflakes",
+ "name": "In-situ cryogenic nanobeam electron diffraction of CDW melting in 1T-TiSe2 nanoflakes from 20 K through the 210-230 K bulk transition",
+ "plain_name": "Watch charge-density-wave order melt in tiny flakes inside a cooled electron microscope",
+ "industry": "materials_and_nanotechnology",
+ "description": "Liquid-exfoliated 1T-TiSe2 nanoflakes on TEM grids are cooled to 20 K (liquid-helium flow holder) or 100 K (liquid-nitrogen holder), then warmed in 10-20 K steps to room temperature while 2x2 superlattice peaks are tracked by nanobeam electron diffraction at 60 kV, revealing melting-point depression for flakes below 100 nm effective radius.",
+ "keywords": [
+  "Watch charge-density-wave order melt in tiny flakes inside a cooled electron microscope",
+  "materials_and_nanotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Siddique S., Kiani M. T., Lesser O., et al., Cha J. J. Melting point depression of charge density wave in 1T-TiSe2 due to size effects. arXiv:2509.16730 (2025)",
+   "url": "https://arxiv.org/pdf/2509.16730",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "liquid helium cryo-TEM holder (continuous flow)",
+  "liquid nitrogen cryo-TEM holder",
+  "TEM operated at 60 kV"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 20,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The smallest flakes only order (or are shown not to order) at the 20 K base temperature of the liquid-helium holder.",
+   "evidence_ids": [
+    "v4e_mat_cryo_tem_cdw_nanoflakes_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 20,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 230,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Warming must pass through the bulk CDW transition (210-230 K) to locate each flake's melting temperature.",
+   "evidence_ids": [
+    "v4e_mat_cryo_tem_cdw_nanoflakes_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the 20 K base was reached with continuous liquid-helium flow.",
+   "evidence_ids": [
+    "v4e_mat_cryo_tem_cdw_nanoflakes_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

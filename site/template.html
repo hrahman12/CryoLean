@@ -1,0 +1,366 @@
+<title>CryoLean</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=Red+Hat+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one fixed 1536 x 1024 landscape stage (the reference poster), scaled to the window: wordmark and question
+   on top, three numbered panels side by side (industry -> cryostat -> check) joined by arrows, tagline at the bottom.
+   Evidence opens in a dialog so the stage stays one screen. */
+:root {
+  --bg: #eef4fb; --bg-2: #dfe9f6; --panel: #f7fbff; --panel-solid: #ffffff; --line: #c9dbf2; --ink: #0b2a55; --ink-2: #33507a;
+  --muted: #6b82a3; --accent: #1468e8; --accent-ink: #ffffff; --chip: #e3edf9;
+  --met: #1f9d4c; --met-soft: #e3f5e9; --fail: #d33a3a; --fail-soft: #fbe5e5; --info: #e39a12; --info-soft: #fdf3dc;
+  --steel: #8fa3bb; --screen: #ffffff; --bezel: #1b2433; --stage-hi: #ffffff; --stage-lo: #dde6f0; --sample-lo: #cfd8e3;
+  --shadow: 0 1px 2px rgba(11,42,85,.06), 0 10px 30px rgba(11,42,85,.08);
+  --display: "Red Hat Display", "Segoe UI", system-ui, sans-serif;
+  --body: "Red Hat Text", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #07101d; --bg-2: #0c1a2e; --panel: #0f1d31; --panel-solid: #12233a; --line: #23406a; --ink: #e7f0fc; --ink-2: #b2c5df;
+  --muted: #7f97b7; --accent: #4b93ff; --accent-ink: #04101f; --chip: #15294a;
+  --met: #4ccb7a; --met-soft: #0f2e1b; --fail: #ff7b7b; --fail-soft: #3a1619; --info: #f3b545; --info-soft: #3a2a0d;
+  --screen: #0d1828; --bezel: #02060c; --stage-hi: #22324a; --stage-lo: #0b1626; --sample-lo: #0d1828; --shadow: 0 1px 2px rgba(0,0,0,.5); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #07101d; --bg-2: #0c1a2e; --panel: #0f1d31; --panel-solid: #12233a; --line: #23406a; --ink: #e7f0fc; --ink-2: #b2c5df;
+  --muted: #7f97b7; --accent: #4b93ff; --accent-ink: #04101f; --chip: #15294a;
+  --met: #4ccb7a; --met-soft: #0f2e1b; --fail: #ff7b7b; --fail-soft: #3a1619; --info: #f3b545; --info-soft: #3a2a0d;
+  --screen: #0d1828; --bezel: #02060c; --stage-hi: #22324a; --stage-lo: #0b1626; --sample-lo: #0d1828; --shadow: 0 1px 2px rgba(0,0,0,.5); color-scheme: dark }
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body { background: radial-gradient(120% 80% at 50% 0%, var(--bg), var(--bg-2)); background-color: var(--bg); color: var(--ink);
+  font: 16px/1.4 var(--body); overflow-x: hidden; padding-left: max(0px, env(safe-area-inset-left, 0px)); padding-right: max(0px, env(safe-area-inset-right, 0px)) }
+.viewport { width: 100%; overflow: hidden; display: flex; justify-content: center }
+.stage { width: 1536px; height: 1024px; flex: none; transform-origin: top center; position: relative; padding: 16px 20px 0 }
+button, select { font-family: inherit }
+button:focus-visible, select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+
+header.top { text-align: center; height: 172px }
+.wordmark { font: 900 116px/.92 var(--display); letter-spacing: -.04em; color: var(--ink); margin: 0 }
+.question { font: 700 40px/1.1 var(--display); margin: 6px 0 0; color: var(--ink) }
+
+.row { display: grid; grid-template-columns: 455px 44px 516px 44px minmax(0, 1fr); gap: 0 4px; height: 748px }
+.arrow { display: grid; place-items: center; color: var(--accent) } .arrow svg { width: 52px; height: 52px }
+.card { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
+  padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 13px; min-width: 0; position: relative }
+.card h2 { margin: 0; display: flex; align-items: center; gap: 16px; font: 800 33px/1 var(--display); color: var(--ink) }
+.num { width: 58px; height: 58px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center;
+  font: 800 32px var(--display); flex: none; box-shadow: 0 4px 10px rgba(20,104,232,.3) }
+.tag { position: absolute; z-index: 3; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 10px;
+  font: 700 20px/1.15 var(--display); padding: 9px 16px; color: var(--ink); box-shadow: var(--shadow) }
+
+.sample { height: 290px; border-radius: 14px; overflow: hidden; position: relative; background: radial-gradient(90% 90% at 50% 35%, var(--stage-hi), var(--sample-lo)) }
+.sample svg { position: absolute; inset: 0; width: 100%; height: 100% }
+.sample .tag { left: 50%; top: 20px; transform: translateX(-50%); white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis }
+.field { display: grid; gap: 6px }
+.lbl { font: 700 13px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+.selectwrap { position: relative }
+.selectwrap select { appearance: none; width: 100%; font: 800 23px var(--display); color: var(--accent-ink); background: var(--accent);
+  border: 0; border-radius: 12px; padding: 13px 48px 13px 18px; cursor: pointer; box-shadow: 0 6px 16px rgba(20,104,232,.25) }
+.selectwrap select option { color: #0b2a55; background: #ffffff }
+.selectwrap::after { content: ""; position: absolute; right: 20px; top: 50%; width: 12px; height: 12px; margin-top: -9px;
+  border-right: 3px solid var(--accent-ink); border-bottom: 3px solid var(--accent-ink); transform: rotate(45deg); pointer-events: none }
+.exps { display: grid; gap: 9px }
+.exp { text-align: left; background: var(--chip); border: 1.5px solid var(--line); border-radius: 12px; padding: 9px 14px; cursor: pointer;
+  color: var(--ink); font: 700 18px/1.2 var(--display); min-height: 66px; display: grid; align-content: center; gap: 2px }
+.exp .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
+.exp small { font: 500 13px/1.25 var(--body); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden }
+.exp:hover { border-color: var(--accent) }
+.exp[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
+.exp[aria-pressed="true"] small { color: var(--accent-ink); opacity: .85 }
+
+.machine { height: 455px; border-radius: 14px; position: relative; overflow: hidden; background: radial-gradient(80% 70% at 50% 40%, var(--stage-hi), var(--stage-lo)) }
+.machine .gl { position: absolute; inset: 0; cursor: grab } .machine .gl:active { cursor: grabbing } .machine canvas { display: block; touch-action: none }
+.machine .tag { right: 16px; top: 150px; font-size: 18px }
+.machine .kind { position: absolute; left: 14px; bottom: 54px; font: 700 12px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); z-index: 2; max-width: 60% }
+.machine .name { position: absolute; left: 14px; right: 14px; bottom: 52px; font: 800 16px/1.2 var(--display); color: var(--ink); z-index: 2 }
+.tools { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; justify-content: space-between; z-index: 2 }
+.seg { display: inline-flex; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 9px; overflow: hidden }
+.seg button { border: 0; background: transparent; color: var(--ink-2); font: 700 13px var(--body); padding: 6px 12px; cursor: pointer }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink) }
+.icon { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel-solid); color: var(--ink); cursor: pointer; font-size: 16px; margin-left: 6px }
+.fallback { position: absolute; inset: 0; display: grid; place-items: center }
+.switch { background: var(--panel-solid); border: 1.5px solid var(--line); border-radius: 14px; padding: 8px 10px 10px; display: grid; grid-template-rows: auto 1fr; gap: 6px; flex: 1; min-height: 0 }
+.switch h3 { margin: 0; text-align: center; font: 700 21px var(--display) }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; min-height: 0 }
+.tile { border: 2px solid var(--line); border-radius: 12px; background: var(--panel); cursor: pointer; padding: 4px 6px 7px; display: grid;
+  grid-template-rows: minmax(0, 1fr) auto; justify-items: center; color: var(--ink); min-width: 0 }
+.tile img { width: 100%; height: 100%; max-height: 112px; object-fit: contain }
+.tile .lab { font: 700 15px/1.15 var(--display); display: flex; align-items: center; gap: 6px; max-width: 100% }
+.tile .lab .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.tile .dot { width: 10px; height: 10px; border-radius: 50%; flex: none }
+.tile[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset }
+
+.laptop { display: grid; justify-items: center; padding: 0 14px }
+.lid { width: 100%; background: var(--bezel); border-radius: 18px 18px 6px 6px; padding: 14px 14px 18px }
+.screen { background: var(--screen); border-radius: 6px; padding: 16px 18px; display: grid; gap: 10px }
+.screen .brand { font: 800 27px var(--display); color: var(--accent) }
+.screen .claim { margin: 0; font: 800 25px/1.18 var(--display); color: var(--ink) }
+.qs { list-style: none; margin: 0; padding: 12px; display: grid; gap: 9px; background: var(--chip); border-radius: 10px }
+.q { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start }
+.box { width: 32px; height: 32px; border: 2.5px solid var(--ink-2); border-radius: 7px; display: grid; place-items: center; font: 900 19px var(--display); background: var(--panel-solid) }
+.box.pass { border-color: var(--met); color: var(--met) } .box.fail { border-color: var(--fail); color: var(--fail) }
+.box.unknown { border-color: var(--info); color: var(--info) } .box.none { border-color: var(--line); color: var(--muted) }
+.q b { font: 600 20px/1.15 var(--body); color: var(--ink); display: block }
+.q .d { font: 500 12.5px/1.3 var(--body); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
+.base { width: 104%; height: 22px; background: linear-gradient(#a9b7c8, #5d6f86); border-radius: 0 0 26px 26px; margin-top: -2px }
+.base::before { content: ""; display: block; width: 18%; height: 7px; margin: 0 auto; background: #4a5a70; border-radius: 0 0 8px 8px }
+.verdicts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
+.v { border-radius: 12px; padding: 12px 6px; display: grid; justify-items: center; gap: 7px; text-align: center; font: 600 16px/1.2 var(--body);
+  border: 2.5px solid transparent; opacity: .42; color: var(--ink) }
+.v .c { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 900 24px var(--display) }
+.v.met { background: var(--met-soft) } .v.met .c { background: var(--met) }
+.v.fail { background: var(--fail-soft) } .v.fail .c { background: var(--fail) }
+.v.info { background: var(--info-soft) } .v.info .c { background: var(--info) }
+.v.on { opacity: 1 } .v.met.on { border-color: var(--met) } .v.fail.on { border-color: var(--fail) } .v.info.on { border-color: var(--info) }
+.why { align-self: center; border: 0; background: none; color: var(--accent); font: 700 15px var(--body); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; margin-top: auto }
+
+footer.bottom { display: grid; justify-items: center; align-content: center; gap: 2px; height: 74px }
+footer.bottom .tl { font: 800 32px/1.1 var(--display); color: var(--ink) }
+footer.bottom .small { justify-self: end; font: 500 13px var(--body); color: var(--ink-2) }
+
+dialog { border: 1px solid var(--line); border-radius: 16px; background: var(--panel-solid); color: var(--ink); padding: 0; width: min(1100px, 94vw); max-height: 88vh; box-shadow: var(--shadow) }
+dialog::backdrop { background: rgba(5,15,30,.5) }
+.dlg { padding: 20px 22px; display: grid; gap: 16px; max-height: 88vh; overflow: auto }
+.dlg h3 { margin: 0; font: 800 22px var(--display) }
+.dlg .x { justify-self: end; border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 6px 12px; cursor: pointer; color: var(--ink); font-weight: 700 }
+.two { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 20px; align-items: start }
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr) } }
+.matrix { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 12.5px }
+.matrix .h { font-weight: 600; color: var(--ink-2); align-self: center; overflow-wrap: anywhere }
+.cell { border: 0; border-radius: 8px; padding: 10px 2px; cursor: pointer; font: 700 12px var(--body); color: #fff }
+.cell.met { background: var(--met) } .cell.fail { background: var(--fail) } .cell.info { background: var(--info) }
+.cell.sel { outline: 3px solid var(--ink); outline-offset: 1px }
+.tablebox { overflow-x: auto }
+table.checks { width: 100%; border-collapse: collapse; font-size: 13.5px }
+table.checks th { text-align: left; font: 700 11.5px var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--line) }
+table.checks td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top }
+table.checks td.k { font-family: var(--mono); font-size: 12.5px; overflow-wrap: anywhere; min-width: 140px }
+.pill { display: inline-block; border-radius: 99px; padding: 2px 9px; font: 700 11.5px var(--body); white-space: nowrap }
+.pill.pass { background: var(--met-soft); color: var(--met) } .pill.fail { background: var(--fail-soft); color: var(--fail) } .pill.unknown { background: var(--info-soft); color: var(--info) }
+td .ex { color: var(--ink-2); font-size: 12.5px; margin-top: 3px }
+.meta { font-size: 13.5px; color: var(--ink-2); display: grid; gap: 4px } .meta a { color: var(--accent) }
+.totals { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-2) } .totals b { font: 600 18px var(--mono); color: var(--ink) }
+.totals .g b { color: var(--met) } .totals .r b { color: var(--fail) } .totals .y b { color: var(--info) }
+@media (prefers-reduced-motion: no-preference) { .v, .exp, .tile, .cell { transition: opacity .2s, background-color .2s, border-color .2s } }
+</style>
+
+<div class="viewport" id="viewport">
+<div class="stage" id="stage">
+  <header class="top">
+    <h1 class="wordmark">CryoLean</h1>
+    <p class="question">Can this cryostat do my experiment?</p>
+  </header>
+
+  <div class="row">
+    <section class="card" aria-labelledby="h1">
+      <h2 id="h1"><span class="num">1</span>Choose an industry</h2>
+      <div class="sample" aria-hidden="true">
+        <span class="tag" id="sampletag">Your sample</span>
+        <svg viewBox="0 0 420 290" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="brassA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ecc672"/><stop offset=".55" stop-color="#c99437"/><stop offset="1" stop-color="#8f5f1f"/></linearGradient>
+            <linearGradient id="brassTop" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f6dc96"/><stop offset="1" stop-color="#c7953a"/></linearGradient>
+            <linearGradient id="chipG" x1="0" x2="1"><stop offset="0" stop-color="#5d6672"/><stop offset="1" stop-color="#2f3640"/></linearGradient>
+          </defs>
+          <ellipse cx="210" cy="262" rx="250" ry="62" fill="url(#brassA)"/>
+          <rect x="-40" y="214" width="500" height="48" fill="url(#brassA)"/>
+          <ellipse cx="210" cy="214" rx="250" ry="62" fill="url(#brassTop)"/>
+          <ellipse cx="210" cy="208" rx="150" ry="34" fill="#e4bd67"/>
+          <ellipse cx="210" cy="205" rx="118" ry="26" fill="url(#brassTop)"/>
+          <g fill="#4b5563"><circle cx="40" cy="222" r="10"/><circle cx="380" cy="222" r="10"/><circle cx="118" cy="250" r="8"/><circle cx="302" cy="250" r="8"/></g>
+          <g fill="#9aa5b1"><circle cx="40" cy="220" r="5"/><circle cx="380" cy="220" r="5"/></g>
+          <polygon points="172,170 236,170 252,184 188,184" fill="#7b8592"/>
+          <polygon points="172,170 188,184 188,212 172,198" fill="url(#chipG)"/>
+          <polygon points="188,184 252,184 252,212 188,212" fill="#3d4550"/>
+          <path d="M238 92 L214 160" stroke="#1468e8" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M204 146 L213 164 L226 150" stroke="#1468e8" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="field">
+        <label class="lbl" for="industry">Industry · 20</label>
+        <div class="selectwrap"><select id="industry"></select></div>
+      </div>
+      <div class="field">
+        <span class="lbl" id="explbl">Experiment · 3 per industry</span>
+        <div class="exps" id="experiments" role="group" aria-labelledby="explbl"></div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h10V4l9 8-9 8v-5H3z" fill="currentColor"/></svg></div>
+
+    <section class="card" aria-labelledby="h2">
+      <h2 id="h2"><span class="num">2</span>Choose a cryostat</h2>
+      <div class="machine" id="machine">
+        <span class="kind" id="kind"></span>
+        <span class="tag" id="stagetag">Sample goes here</span>
+        <div class="gl" id="gl" role="img" aria-label="3D model of the selected cryostat. Drag to orbit, scroll to zoom."></div>
+        <div class="fallback" id="fallback" hidden><svg viewBox="0 0 320 250" width="300"><rect x="70" y="28" width="180" height="16" rx="4" fill="#24324a"/><rect x="100" y="44" width="120" height="150" fill="#e7edf0"/><rect x="140" y="160" width="40" height="12" fill="#deb869"/><rect x="62" y="214" width="196" height="16" rx="4" fill="#24324a"/></svg></div>
+        <div class="tools">
+          <div class="seg" role="group" aria-label="View"><button id="view-out" aria-pressed="true">Outside</button><button id="view-in" aria-pressed="false">Inside</button></div>
+          <span><button class="icon" id="orb-l" aria-label="Orbit left">&#8630;</button><button class="icon" id="orb-r" aria-label="Orbit right">&#8631;</button><button class="icon" id="orb-0" aria-label="Reset view">&#8634;</button></span>
+        </div>
+      </div>
+      <div class="switch">
+        <h3 id="swlbl">Switch cryostat</h3>
+        <div class="tiles" id="configs" role="group" aria-labelledby="swlbl"></div>
+      </div>
+    </section>
+
+    <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h10V4l9 8-9 8v-5H3z" fill="currentColor"/></svg></div>
+
+    <section class="card" aria-labelledby="h3">
+      <h2 id="h3"><span class="num">3</span>Check the setup</h2>
+      <div class="laptop">
+        <div class="lid"><div class="screen">
+          <span class="brand">CryoLean</span>
+          <p class="claim">Z3 suggests a setup.<br>Lean checks the proof.</p>
+          <ul class="qs" id="questions"></ul>
+        </div></div>
+        <div class="base"></div>
+      </div>
+      <div class="verdicts" role="status" aria-live="polite">
+        <div class="v met" id="v-met"><span class="c">&#10003;</span>Meets requirements</div>
+        <div class="v fail" id="v-fail"><span class="c">&#10005;</span>Does not meet requirements</div>
+        <div class="v info" id="v-info"><span class="c">?</span>Need more information</div>
+      </div>
+      <button class="why" id="whybtn">Why this verdict? See every requirement and source</button>
+    </section>
+  </div>
+
+  <footer class="bottom">
+    <span class="tl">Switch the cryostat. Keep the experiment. Check again.</span>
+    <span class="small" id="stamp">Verdicts decided by the Lean 4 checker</span>
+  </footer>
+</div>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgtitle">
+  <div class="dlg">
+    <button class="x" id="dlgclose">Close</button>
+    <h3 id="dlgtitle">Why this verdict</h3>
+    <div class="meta" id="pairmeta"></div>
+    <div class="tablebox"><table class="checks"><thead><tr><th>Property</th><th>Experiment needs</th><th>Machine documents</th><th>Outcome</th></tr></thead><tbody id="checks"></tbody></table></div>
+    <div class="two">
+      <div><h3 id="gridtitle" style="font-size:18px;margin-bottom:8px">All 9 pairings</h3><div class="matrix" id="matrix"></div></div>
+      <div style="display:grid;gap:10px"><h3 style="font-size:18px">Whole catalog</h3><div class="totals" id="alltotals"></div>
+        <p class="meta" id="stamp2" style="margin:0"></p></div>
+    </div>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>__CRYO3D__</script>
+<script type="application/json" id="cryolean-data">__DATA__</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById("cryolean-data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const CLS = { REQUIREMENTS_MET: "met", DOES_NOT_MEET_REQUIREMENTS: "fail", NEED_MORE_INFORMATION: "info" };
+  const SHORT = { REQUIREMENTS_MET: "Meets", DOES_NOT_MEET_REQUIREMENTS: "Fails", NEED_MORE_INFORMATION: "More info" };
+  const GROUPS = [["cold", "Cold enough?"], ["fit", "Does the sample fit?"], ["equipment", "Right equipment for the experiment?"]];
+  const OUT = { pass: "Met", fail: "Not met", unknown: "Not documented" };
+
+  // scale the 1536 x 1024 landscape stage to the window (whole stage on screen on desktops, full width on phones)
+  const stage = $("stage"), vp = $("viewport");
+  function fit() {
+    const w = document.documentElement.clientWidth, h = window.innerHeight;
+    const s = w >= 900 && h > 300 ? Math.min(w / 1536, h / 1024) : w / 1536;
+    stage.style.transform = `scale(${s})`; vp.style.height = Math.ceil(1024 * s) + "px";
+    stage.style.margin = `0 ${(1536 * s - 1536) / 2}px`;
+  }
+  addEventListener("resize", fit); fit();
+
+  const st = { ind: 0, exp: 0, cfg: 0 };
+  try { Object.assign(st, JSON.parse(localStorage.getItem("cryolean-state") || "{}")) } catch (e) {}
+  const hi = D.industries.findIndex((i) => i.id === location.hash.slice(1));
+  if (hi >= 0) Object.assign(st, { ind: hi, exp: 0, cfg: 0 });
+  if (!D.industries[st.ind] || !D.industries[st.ind].experiments[st.exp] || !D.industries[st.ind].configurations[st.cfg]) Object.assign(st, { ind: 0, exp: 0, cfg: 0 });
+  const save = () => { try { localStorage.setItem("cryolean-state", JSON.stringify(st)) } catch (e) {} };
+
+  const sel = $("industry");
+  D.industries.forEach((ind, i) => { const o = document.createElement("option"); o.value = i; o.textContent = ind.name; sel.appendChild(o) });
+  sel.addEventListener("change", () => { Object.assign(st, { ind: +sel.value, exp: 0, cfg: 0 }); render() });
+  const verdictOf = (e, c) => D.verdicts[e.id + "|" + c.id];
+
+  const has3d = !!(window.Cryo3D && Cryo3D.mount($("gl")));
+  if (!has3d) { $("gl").hidden = true; $("fallback").hidden = false; document.querySelector(".tools").hidden = true; }
+  const view = (inside) => { $("view-in").setAttribute("aria-pressed", inside); $("view-out").setAttribute("aria-pressed", !inside); if (has3d) Cryo3D.setInside(inside) };
+  $("view-in").onclick = () => view(true); $("view-out").onclick = () => view(false);
+  $("orb-l").onclick = () => has3d && Cryo3D.orbit(0.35); $("orb-r").onclick = () => has3d && Cryo3D.orbit(-0.35); $("orb-0").onclick = () => has3d && Cryo3D.reset();
+  const thumbs = {};
+  const thumbOf = (kind, verdict) => { const k = kind + "|" + verdict; if (!(k in thumbs)) { try { thumbs[k] = has3d ? Cryo3D.thumb(kind, verdict) : null } catch (e) { thumbs[k] = null } } return thumbs[k] };
+
+  function render() {
+    save();
+    const ind = D.industries[st.ind], ex = ind.experiments[st.exp], cfg = ind.configurations[st.cfg];
+    sel.value = st.ind;
+    $("experiments").innerHTML = ind.experiments.map((e, i) =>
+      `<button class="exp" aria-pressed="${i === st.exp}" data-i="${i}" title="${esc(e.name)}"><span class="t">${esc(e.plain_name)}</span>${e.name && e.name !== e.plain_name ? `<small>${esc(e.name)}</small>` : ""}</button>`).join("");
+    $("experiments").querySelectorAll("button").forEach((b) => b.onclick = () => { st.exp = +b.dataset.i; render() });
+    $("sampletag").textContent = ex.sample ? ex.sample.charAt(0).toUpperCase() + ex.sample.slice(1) : "Your sample";
+
+    $("configs").innerHTML = ind.configurations.map((c, i) => {
+      const v = verdictOf(ex, c), kind = has3d ? Cryo3D.archetype(c) : "", img = thumbOf(kind, CLS[v.verdict]);
+      return `<button class="tile" aria-pressed="${i === st.cfg}" data-i="${i}" title="${esc((c.manufacturer || "") + " " + c.name)}">` +
+        (img ? `<img alt="" src="${img}">` : `<span></span>`) +
+        `<span class="lab"><span class="dot" style="background:var(--${CLS[v.verdict]})"></span><span class="n">${esc(c.manufacturer || ("Cryostat " + "ABC"[i]))}</span></span></button>`;
+    }).join("");
+    $("configs").querySelectorAll("button").forEach((b) => b.onclick = () => { st.cfg = +b.dataset.i; render() });
+
+    const v = verdictOf(ex, cfg), kind = has3d ? Cryo3D.archetype(cfg) : "";
+    $("kind").textContent = has3d ? Cryo3D.label(kind) + " · illustrative" : "";
+    $("kind").title = `${cfg.manufacturer || ""} · ${cfg.name}`;
+    $("stagetag").textContent = "Sample goes here";
+    if (has3d) Cryo3D.show(kind, CLS[v.verdict]);
+
+    $("questions").innerHTML = GROUPS.map(([g, label]) => {
+      const cs = v.checks.filter((c) => c.group === g && c.mandatory);
+      const s = cs.some((c) => c.outcome === "fail") ? "fail" : cs.some((c) => c.outcome === "unknown") ? "unknown" : cs.length ? "pass" : "none";
+      const mark = { pass: "&#10003;", fail: "&#10005;", unknown: "?", none: "" }[s];
+      const f = cs.find((c) => c.outcome === s) || cs[0];
+      const req = f ? f.required.charAt(0).toUpperCase() + f.required.slice(1) : "";
+      const d = s === "none" ? "Not a requirement of this experiment" : `${req} · machine: ${f.available || "nothing documented"}`;
+      return `<li class="q"><span class="box ${s}">${mark}</span><span><b>${label}</b><span class="d">${esc(d)}</span></span></li>`;
+    }).join("");
+    ["met", "fail", "info"].forEach((k) => $("v-" + k).classList.toggle("on", CLS[v.verdict] === k));
+
+    $("pairmeta").innerHTML = `<b>${esc(ex.plain_name)}</b> on <b>${esc(cfg.manufacturer || "")} ${esc(cfg.model || "")}</b><span>${esc(v.summary)}</span>` +
+      (ex.sources || []).filter((s) => s.citation && s.url).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">Experiment source: ${esc(s.citation)}</a>`).join("") +
+      (cfg.documents || []).filter((d) => d.url).map((d) => `<a href="${esc(d.url)}" target="_blank" rel="noopener">Machine source: ${esc(d.title || d.url)}</a>`).join("");
+    $("checks").innerHTML = v.checks.map((c) =>
+      `<tr><td class="k">${esc(c.keys.join(" or "))}${c.mandatory ? "" : " <small>(optional)</small>"}</td><td>${esc(c.required)}</td><td>${esc(c.available || "—")}</td>` +
+      `<td><span class="pill ${c.outcome}">${OUT[c.outcome] || esc(c.outcome)}</span><div class="ex">${esc(c.explanation)}</div></td></tr>`).join("");
+    $("gridtitle").textContent = `All 9 pairings in ${ind.name.toLowerCase()}`;
+    let m = `<span></span>` + ind.configurations.map((c, j) => `<span class="h" title="${esc(c.name)}"><b>${"ABC"[j]}</b> ${esc((c.manufacturer || "").split(/[ ,(]/)[0])}</span>`).join("");
+    ind.experiments.forEach((e, i) => {
+      m += `<span class="h">${esc(e.plain_name)}</span>`;
+      ind.configurations.forEach((c, j) => {
+        const vv = verdictOf(e, c);
+        m += `<button class="cell ${CLS[vv.verdict]}${i === st.exp && j === st.cfg ? " sel" : ""}" data-e="${i}" data-c="${j}">${SHORT[vv.verdict]}</button>`;
+      });
+    });
+    $("matrix").innerHTML = m;
+    $("matrix").querySelectorAll(".cell").forEach((b) => b.onclick = () => { st.exp = +b.dataset.e; st.cfg = +b.dataset.c; render() });
+  }
+
+  const C = D.counts || {};
+  const K = D.catalog || {}, fmt = (n) => (n || 0).toLocaleString("en-US");
+  $("alltotals").innerHTML = `<span style="flex-basis:100%">The ${D.pairings} featured pairings (3 experiments x 3 machines per industry):</span>` +
+    `<span class="g"><b>${C.REQUIREMENTS_MET || 0}</b> meet</span><span class="r"><b>${C.DOES_NOT_MEET_REQUIREMENTS || 0}</b> do not meet</span><span class="y"><b>${C.NEED_MORE_INFORMATION || 0}</b> need information</span>` +
+    (K.pairs ? `<span style="flex-basis:100%;margin-top:6px">Whole catalog: ${fmt(K.experiments)} experiments x ${fmt(K.configurations)} machines = ${fmt(K.pairs)} pairs, every one decided by Lean:</span>` +
+      `<span class="g"><b>${fmt(K.met)}</b> meet</span><span class="r"><b>${fmt(K.not_met)}</b> do not meet</span><span class="y"><b>${fmt(K.need_info)}</b> need information</span>` : "");
+  $("stamp2").innerHTML = `Generated ${esc(D.generated)} · ${esc(D.lean_version || "Lean checker")} · source hash <code>${esc((D.lean_source_hash || "").slice(0, 16))}</code>. Verdicts are precomputed by the Lean checker; the page decides nothing.`;
+  $("stamp").textContent = (K.pairs ? `${fmt(K.pairs)} experiment-machine pairs` : `${D.pairings} pairings`) + ` decided by the Lean 4 checker · 3D models are illustrative`;
+  const dlg = $("dlg");
+  $("whybtn").onclick = () => { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "") };
+  $("dlgclose").onclick = () => dlg.close ? dlg.close() : dlg.removeAttribute("open");
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close() });
+  render();
+})();
+</script>

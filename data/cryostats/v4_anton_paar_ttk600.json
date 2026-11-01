@@ -1,0 +1,179 @@
+{
+ "id": "anton_paar_ttk600",
+ "manufacturer": "Anton Paar",
+ "model": "TTK 600 Low-Temperature Chamber (part number 159900)",
+ "family": "low-temperature non-ambient chamber for powder X-ray diffraction",
+ "description": "Non-ambient XRD attachment for reflection and transmission powder diffraction from -190 C to 600 C with liquid-nitrogen cooling (-20 C with compressed-air cooling); vacuum (1e-2 mbar), air or inert gas; nickel sample holder for 14 x 10 mm samples.",
+ "documents": [
+  {
+   "id": "doc_anton_paar_ttk600_0",
+   "url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/",
+   "title": "Low-Temperature Chamber: TTK 600 (Anton Paar product page, Specifications)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_anton_paar_ttk600_1",
+   "url": "https://malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf",
+   "title": "TTK 600 - low-temperature chamber, Non-ambient attachment for XRD (PANalytical/Anton Paar leaflet, 2009)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "anton_paar_ttk600_ln2_vacuum",
+   "name": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "configuration_basis": "Standard TTK 600 with the liquid-nitrogen cooling option, standard (reflection) nickel sample holder, operated in vacuum (10^-2 mbar), which is the condition for the full -190 C to 600 C range (in dry air/inert gas the LN2 range is -150 C to 450 C). Antechamber and in-operando battery holders not fitted.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 83150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 873150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 83150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "0.01",
+       "unit": "mbar"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_pressure.base"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 10000,
+       "unit": "um"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_sample.diameter.max"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": [
+       "liquid_nitrogen"
+      ]
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_cryogen.type"
+     ]
+    },
+    {
+     "key": "pressure.max_working",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 200000,
+       "unit": "Pa"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_anton_paar_ttk600_ln2_vacuum_pressure.max_working"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "key": "magnetic_field.max",
+   "why": "This absence rests only on the silence of a 7-row specification block on a marketing product page; no explicit statement and no complete technical specification. The chamber is almost certainly non-magnetic, but under the evidence rule it should be left unknown and not stored as not_available."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "materials_and_nanotechnology"
+ ]
+}

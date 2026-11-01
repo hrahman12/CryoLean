@@ -1,0 +1,83 @@
+{
+  "id": "expansion_b_bio_pbmc_controlled_freezing",
+  "name": "Controlled-rate freezing of peripheral blood mononuclear cells",
+  "plain_name": "Preserve living immune cells",
+  "industry": "biology_and_biotechnology",
+  "description": "Initial PBMC preservation thermal program, distinct from frozen tissue slicing and fluorescence microscopy. Compatibility concerns the stated equipment requirements; no viability claim is fabricated.",
+  "keywords": [
+    "Preserve living immune cells",
+    "controlled_rate_freezing",
+    "biology_and_biotechnology"
+  ],
+  "sources": [
+    {
+      "citation": "Angel et al.2016, Biopreservation and Biobanking, DOI10.1089/bio.2016.0046",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5180082/fullTextXML",
+      "accessed": "2026-10-31",
+      "doi": "10.1089/bio.2016.0046"
+    }
+  ],
+  "reported_equipment": [
+    "ThermoFisher MrFrosty freezing containers"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.controlled_rate_freezing",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Freezing viable cell suspensions requires the selected cooling program, not simply a low base temperature.",
+      "evidence_ids": [
+        "expb_pbmc"
+      ]
+    },
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "193.15",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "277.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the reported +4 to-80 C initial freezing window.",
+      "evidence_ids": [
+        "expb_pbmc"
+      ]
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "1",
+          "unit": "K_per_min"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the reported1 C/min cooling magnitude.",
+      "evidence_ids": [
+        "expb_pbmc"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The study used MrFrosty containers; a programmable freezer is an alternative thermal implementation, not a published biological-equivalence result.",
+    "Cryomedium,1mL fill,cell density and post-thaw functional assays are essential procedural conditions outside Lean's current quantitative acceptance scope.",
+    "Subsequent storage below-135 C requires separate verified equipment."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

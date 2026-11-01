@@ -1,0 +1,155 @@
+{
+ "id": "phys_srf_vertical_q0_eacc",
+ "name": "Vertical-dewar Q0 versus accelerating-gradient qualification of bare 1.3 GHz niobium SRF cavities in a 2 K helium bath",
+ "plain_name": "Check how well a bare accelerator cavity stores energy as its field is raised, in a 2 K helium bath",
+ "industry": "physics_and_particle_accelerators",
+ "description": "Acceptance test of bare (undressed) superconducting RF cavities in a below-grade vertical dewar: the cavity is immersed in liquid helium pumped to 2 K inside a magnetically shielded cryostat and driven with low-power CW RF while the unloaded quality factor Q0 is mapped against accelerating gradient (and against temperature down to ~1.5 K), as done at the Fermilab VTS.",
+ "keywords": [
+  "Check how well a bare accelerator cavity stores energy as its field is raised, in a 2 K helium bath",
+  "physics_and_particle_accelerators"
+ ],
+ "sources": [
+  {
+   "citation": "Design and Commissioning of Fermilab's Vertical Test Stand for ILC SRF Cavities (Ozelis et al., PAC07, WEPMN106)",
+   "url": "https://proceedings.jacow.org/p07/PAPERS/WEPMN106.PDF",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Initial Results from Fermilab's Vertical Test Stand for SRF Cavities (Ozelis et al., SRF2007, WEP15)",
+   "url": "https://proceedings.jacow.org/srf2007/PAPERS/WEP15.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Fermilab Vertical Test Stand (VTS) cryostat",
+  "Vertical Cavity Test Facility (VCTF)",
+  "Lakeshore Cernox CX-1030-SD",
+  "American Magnetics Model 135-2K"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cavities are tested in a nominal 2 K liquid-helium bath.",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cavity is immersed in (pumped) liquid helium; Q0 is measured in the LHe bath.",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "1.3",
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The RF system must drive and phase-lock to the 1.3 GHz cavity resonance.",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_2"
+   ],
+   "conditions": [],
+   "key": "rf.frequency.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Trapped flux degrades Q0, so the cryostat must shield the cavity from ambient field during cool-down (design goal <10 mG).",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_3"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "RF input/pickup cables and instrumentation must pass into the dewar to the cavity.",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 500,
+     "unit": "W"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Full high-power test of a 9-cell cavity used a 500 W CW RF amplifier (needed only for high-gradient runs).",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_5"
+   ],
+   "conditions": [],
+   "key": "rf.power.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "1.5",
+     "unit": "K"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Q versus T sweeps extend below 2 K; the facility operates down to 1.5 K.",
+   "evidence_ids": [
+    "v4e_phys_srf_vertical_q0_eacc_6"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

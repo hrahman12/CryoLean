@@ -1,0 +1,120 @@
+{
+  "id": "expansion_b_linkam_lts120",
+  "manufacturer": "Linkam",
+  "model": "LTS120 with documented optional water chiller",
+  "family": "optical_cold_stage",
+  "description": "A flat optical temperature stage; the optional external chiller is explicitly part of this configuration.",
+  "documents": [
+    {
+      "id": "expb_doc_linkam_lts120",
+      "title": "LTS120 specifications",
+      "url": "https://www.linkam.co.uk/lts120-specifications",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expansion_b_linkam_lts120_documented",
+      "name": "Linkam LTS120 with documented optional water chiller",
+      "configuration_basis": "Optional water chiller explicitly included, as required by the source for operation below -25 C. Dew-point conditioning and microscope camera are unverified ancillary items.",
+      "capabilities": [
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "233.15",
+              "unit": "K"
+            },
+            "hi": {
+              "value": "393.15",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_lts120"
+          ]
+        },
+        {
+          "key": "optical_access",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_lts120"
+          ]
+        },
+        {
+          "key": "temperature.stability",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": "0.01",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_lts120"
+          ]
+        },
+        {
+          "key": "sample.width.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": "40",
+              "unit": "mm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_lts120"
+          ]
+        },
+        {
+          "key": "sample.length.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": "40",
+              "unit": "mm"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expb_lts120"
+          ]
+        },
+        {
+          "key": "module.dewpoint_control",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "Gas valves are documented; an installed bubbler, flow controllers and hygrometer are not established."
+        },
+        {
+          "key": "temperature.cooling_rate.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": [],
+          "note": "The maximum 30 C/min is documented, but a continuous controllable interval down to 1 C/min at -40 C is not specified on this page."
+        }
+      ]
+    }
+  ]
+}

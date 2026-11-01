@@ -1,0 +1,82 @@
+{
+ "id": "semi_sic_laplace_dlts",
+ "name": "Conventional DLTS (100-420 K, 3 K/min) and Laplace-DLTS of the Z1/2 carbon-vacancy trap in 4H-SiC Schottky barrier diodes",
+ "plain_name": "Find carbon-vacancy defects in silicon-carbide power diodes by scanning them from cold to hot",
+ "industry": "semiconductors_and_electronics",
+ "description": "Ni/4H-SiC Schottky barrier diodes on 25 um nitrogen-doped epilayers are scanned by conventional DLTS from 100 K to 420 K at 3 K/min (Vr -10 V, 1 ms pulses, 50 s-1 rate window); isothermal Laplace-DLTS near 325-330 K and 220-260 K then resolves the Z1 and Z2 components and their acceptor levels.",
+ "keywords": [
+  "Find carbon-vacancy defects in silicon-carbide power diodes by scanning them from cold to hot",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+   "url": "https://arxiv.org/abs/1812.06462",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 100000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 420000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The DLTS temperature scan covered 100-420 K.",
+   "evidence_ids": [
+    "v4e_semi_sic_laplace_dlts_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the published scan ramped at 3 K/min.",
+   "evidence_ids": [
+    "v4e_semi_sic_laplace_dlts_1"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The diode is reverse biased and pulsed while its capacitance transient is recorded.",
+   "evidence_ids": [
+    "v4e_semi_sic_laplace_dlts_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

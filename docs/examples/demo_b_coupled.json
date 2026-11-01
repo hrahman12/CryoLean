@@ -943,7 +943,7 @@
       "engine": "CryoLean Lean 4 compatibility checker v2",
       "lean_version": "4.35.0",
       "verified_by_lean": true,
-      "lean_input_hash": "3987998938908462003",
+      "lean_input_hash": "1374271774798205963",
       "verdict": "DOES_NOT_MEET_REQUIREMENTS"
     },
     "source_data_validation": {
@@ -1010,9 +1010,9 @@
       "accessed": "2026-10-31"
     }
   ],
-  "fingerprint": "71422dcdcf94cb52757acdc42ec1b446701f6a8ba4229e390cb5e5388e1a0fef",
-  "catalog_version": "b69dd6affd4ff447",
-  "checked_at": "2026-11-01T02:32:22.280773+00:00",
+  "fingerprint": "98e1281f18f6b4f92c13da3073ffed0748459d1ecf200ddaa5d65b5de99f5dd8",
+  "catalog_version": "1aa3dc782a4b0d6e",
+  "checked_at": "2026-11-01T06:46:47.301677+00:00",
   "lean_input": {
     "configuration": {
       "id": "bluefors_ld400_hdw",
@@ -1419,6 +1419,77 @@
           "evidence_status": "unknown",
           "evidence_ids": [
             "ev_bf_0064"
+          ]
+        },
+        {
+          "key": "section_thickness.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0004"
+          ]
+        },
+        {
+          "key": "temperature.chamber.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0006"
+          ]
+        },
+        {
+          "key": "temperature.specimen_head.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0008"
+          ]
+        },
+        {
+          "key": "cooling_power.at_120mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 23,
+              "den": 40000,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0087"
+          ]
+        },
+        {
+          "key": "cooling_power.at_120mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 3,
+              "den": 25,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0087"
           ]
         }
       ]
@@ -1847,8 +1918,8 @@
     },
     "axioms_standard_only": true,
     "axiom_audit": "current",
-    "source_hash": "5262e4e8c30d09e8126695328940be0e7dc3969462a7eef0817873403cac1850",
-    "lean_input_hash": "3987998938908462003",
+    "source_hash": "a1b460f33516d78c570e478e938dd6a99992b3c4f123e5505ce1184b99390f2e",
+    "lean_input_hash": "1374271774798205963",
     "lean_version": "4.35.0",
     "z3_role": "Z3 output is a hint, never a verdict"
   },
@@ -1882,15 +1953,9 @@
           "facts": [
             {
               "kind": "parameter",
-              "name": "n_flux_lines",
-              "text": "n_flux_lines = 50 (experimental_observation)",
-              "label": "param:n_flux_lines"
-            },
-            {
-              "kind": "parameter",
-              "name": "n_output_lines",
-              "text": "n_output_lines = 8 (experimental_observation)",
-              "label": "param:n_output_lines"
+              "name": "design_margin",
+              "text": "design_margin = 3 (experimental_observation)",
+              "label": "param:design_margin"
             },
             {
               "kind": "parameter",
@@ -1906,9 +1971,15 @@
             },
             {
               "kind": "parameter",
-              "name": "design_margin",
-              "text": "design_margin = 3 (experimental_observation)",
-              "label": "param:design_margin"
+              "name": "n_flux_lines",
+              "text": "n_flux_lines = 50 (experimental_observation)",
+              "label": "param:n_flux_lines"
+            },
+            {
+              "kind": "parameter",
+              "name": "n_output_lines",
+              "text": "n_output_lines = 8 (experimental_observation)",
+              "label": "param:n_output_lines"
             },
             {
               "kind": "parameter",
@@ -1938,7 +2009,7 @@
               "label": "fact:cooling_power.at_20mK.max"
             }
           ],
-          "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power cannot hold together with n_flux_lines = 50 (experimental_observation); n_output_lines = 8 (experimental_observation); p_flux_dc = 50 nW (experimental_observation); n_drive_lines = 58 (experimental_observation); design_margin = 3 (experimental_observation); q_output_line = 20 nW (experimental_observation); q_flux_line = 29 nW (experimental_observation); q_drive_line = 13 nW (experimental_observation); cooling_power.at_20mK documented as 12 µW (manufacturer_specification)"
+          "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power cannot hold together with design_margin = 3 (experimental_observation); p_flux_dc = 50 nW (experimental_observation); n_drive_lines = 58 (experimental_observation); n_flux_lines = 50 (experimental_observation); n_output_lines = 8 (experimental_observation); q_output_line = 20 nW (experimental_observation); q_flux_line = 29 nW (experimental_observation); q_drive_line = 13 nW (experimental_observation); cooling_power.at_20mK documented as 12 µW (manufacturer_specification)"
         }
       ],
       "not_encoded": [],
@@ -2000,5 +2071,5 @@
       "largest smallest relative margin over numeric requirements"
     ]
   },
-  "result_id": "res_58fe186f4fd0"
+  "result_id": "res_ed51a32014b3"
 }

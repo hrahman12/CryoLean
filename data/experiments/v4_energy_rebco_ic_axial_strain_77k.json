@@ -1,0 +1,84 @@
+{
+ "id": "energy_rebco_ic_axial_strain_77k",
+ "name": "Critical current and n-value versus applied uniaxial axial strain of commercial REBCO tapes soldered to a Ti-6Al-4V U-spring at 77 K, self-field",
+ "plain_name": "Find how far a superconducting tape can be stretched before it stops carrying current",
+ "industry": "energy_and_hydrogen",
+ "description": "Tapes from several manufacturers are soldered (45 mm) onto a Ti-6Al-4V U-shaped bending spring; at 77 K in self-field the applied compressive/tensile strain is stepped and Ic and n-value are measured from four-probe V-I curves (10 uV/m) to locate the irreversible strain limit (~0.4%), as needed for HTS cable design.",
+ "keywords": [
+  "Find how far a superconducting tape can be stretched before it stops carrying current",
+  "energy_and_hydrogen"
+ ],
+ "sources": [
+  {
+   "citation": "Zhou, Yagotintsev, Gao, Haugan, van der Laan, Nijhuis, Critical Current of Various REBCO Tapes Under Uniaxial Strain, IEEE Trans. Appl. Supercond. 26(4) 8401304 (2016), doi:10.1109/TASC.2016.2535202",
+   "url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Ti-6Al-4V U-shaped bending spring (U-spring)",
+  "precise vertical linear motor stage (PVLS)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All Ic-strain measurements were made at 77 K.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_axial_strain_77k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ic is measured by four-point transport, requiring current and voltage-tap wiring to the sample.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_axial_strain_77k_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 45,
+     "unit": "mm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the tape is soldered over a 45 mm length of the U-spring.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_axial_strain_77k_3"
+   ],
+   "conditions": [],
+   "keys": [
+    "sample.length.max",
+    "sample.height.max"
+   ]
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

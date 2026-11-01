@@ -1,0 +1,285 @@
+{
+ "files": {
+  "Checker": {
+   "lines": 290,
+   "theorems": 0,
+   "defs": 30
+  },
+  "Explain": {
+   "lines": 191,
+   "theorems": 0,
+   "defs": 16
+  },
+  "Json": {
+   "lines": 292,
+   "theorems": 0,
+   "defs": 36
+  },
+  "Model": {
+   "lines": 215,
+   "theorems": 0,
+   "defs": 20
+  },
+  "Num": {
+   "lines": 72,
+   "theorems": 5,
+   "defs": 12
+  },
+  "Report": {
+   "lines": 139,
+   "theorems": 0,
+   "defs": 7
+  },
+  "Schedule": {
+   "lines": 145,
+   "theorems": 7,
+   "defs": 11
+  },
+  "Soundness": {
+   "lines": 1071,
+   "theorems": 98,
+   "defs": 4
+  },
+  "Spec": {
+   "lines": 165,
+   "theorems": 0,
+   "defs": 19
+  }
+ },
+ "e8_snapshot_differs": {
+  "Json": {
+   "e8": {
+    "lines": 290,
+    "theorems": 0,
+    "defs": 36
+   },
+   "now": {
+    "lines": 292,
+    "theorems": 0,
+    "defs": 36
+   }
+  }
+ },
+ "audit_source_hash": "3120e7563625e9c379f1c47948b996dee141ec6e73132ec90ea509c58970b5c9",
+ "audited": 44,
+ "axiom_sets": [
+  {
+   "axioms": [
+    "propext"
+   ],
+   "n": 24,
+   "theorems": [
+    "accept_no_unknown",
+    "missing_capability_unknown",
+    "unknown_value_never_passes",
+    "estimate_never_passes",
+    "no_provenance_never_passes",
+    "cap_not_usable_missing",
+    "fail_implies_reject",
+    "condition_false_not_applicable",
+    "not_installed_never_passes",
+    "unknown_install_never_passes",
+    "fail_needs_trusted",
+    "untrusted_never_passes",
+    "untrusted_never_fails",
+    "run_binds_inputs",
+    "verdict_deterministic",
+    "candidates_verdicts_are_lean",
+    "pass_implies_dims_match",
+    "evalExpr_complete",
+    "validSchedule_sound",
+    "validSchedule_complete",
+    "validSchedule_bounds",
+    "validSchedule_disjoint",
+    "validSchedule_rejects_unaccepted",
+    "resolve_ids"
+   ]
+  },
+  {
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 15,
+   "theorems": [
+    "verdict_accept_sound",
+    "accept_all_coupled",
+    "verdict_accept_complete",
+    "verdict_accept_iff",
+    "verdict_reject_sound",
+    "verdict_ignores_optional",
+    "verdict_ignores_nonapplicable",
+    "run_reports_everything",
+    "candidates_accept_sound",
+    "verdict_industry_irrelevant",
+    "verdict_name_irrelevant",
+    "coupled_pass_dims_match",
+    "pass_dims_all_match",
+    "evalExpr_sound",
+    "validSchedule_only_accepted"
+   ]
+  },
+  {
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 5,
+   "theorems": [
+    "verdict_reject_complete",
+    "violation_prevents_accept",
+    "Q.le_scale_left",
+    "Q.le_scale_right",
+    "satisfies_spec_exclusive"
+   ]
+  }
+ ],
+ "axiom_use": {
+  "propext": 44,
+  "Quot.sound": 20,
+  "Classical.choice": 5
+ },
+ "audit_matches_forensics": 44,
+ "forensics_summary": {
+  "forensics_commit": "e5b80ca2590bab3129013cbdf61ec67a32fd9e2c",
+  "declarations": 839,
+  "nonstandard_axioms": [],
+  "statement_smells": [],
+  "unsafe_flags": [],
+  "clean": true
+ },
+ "forensics_kinds": {
+  "def": 337,
+  "inductive": 15,
+  "constructor": 114,
+  "theorem": 276,
+  "structure": 14,
+  "instance": 83
+ },
+ "forensics_axiom_sets_all": [
+  {
+   "axioms": [],
+   "n": 555
+  },
+  {
+   "axioms": [
+    "propext"
+   ],
+   "n": 169
+  },
+  {
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 75
+  },
+  {
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 40
+  }
+ ],
+ "forensics_axiom_sets_theorems": [
+  {
+   "axioms": [],
+   "n": 123
+  },
+  {
+   "axioms": [
+    "propext"
+   ],
+   "n": 103
+  },
+  {
+   "axioms": [
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 40
+  },
+  {
+   "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "n": 10
+  }
+ ],
+ "forensics_by_module": {
+  "CryoLean.Spec": {
+   "def": 16,
+   "inductive": 4,
+   "constructor": 44,
+   "theorem": 1
+  },
+  "CryoLean.Model": {
+   "inductive": 9,
+   "constructor": 59,
+   "theorem": 135,
+   "def": 164,
+   "structure": 9,
+   "instance": 66
+  },
+  "CryoLean.Checker": {
+   "inductive": 2,
+   "def": 62,
+   "constructor": 9,
+   "theorem": 22,
+   "structure": 3,
+   "instance": 11
+  },
+  "CryoLean.Soundness": {
+   "def": 4,
+   "theorem": 99
+  },
+  "CryoLean.Schedule": {
+   "def": 21,
+   "structure": 2,
+   "constructor": 2,
+   "theorem": 14,
+   "instance": 5
+  },
+  "CryoLean.Num": {
+   "def": 11,
+   "theorem": 5,
+   "instance": 1
+  },
+  "CryoLean.Json": {
+   "def": 36
+  },
+  "CryoLean.Report": {
+   "def": 7
+  },
+  "CryoLean.Explain": {
+   "def": 16
+  }
+ },
+ "source_theorems": 110,
+ "forensics_theorems_handwritten": 110,
+ "forensics_theorems_generated": 166,
+ "generated_theorem_kinds": {
+  "sizeOf_spec": 70,
+  "inj": 43,
+  "injEq": 43,
+  "ofNat_ctorIdx": 6,
+  "eq_def": 2,
+  "brecOn": 1,
+  "eq": 1
+ },
+ "totals_regex": {
+  "lines": 2580,
+  "theorems": 110,
+  "defs": 155
+ },
+ "totals_e8": {
+  "lines": 2578,
+  "theorems": 110,
+  "defs": 155
+ }
+}

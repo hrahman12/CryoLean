@@ -1,0 +1,89 @@
+{
+ "id": "metro_cernox_calibration_1p4_325k",
+ "name": "Calibration of Cernox resistance temperature sensors from 1.4 K to 325 K (Lake Shore CAL-CX-1.4L)",
+ "plain_name": "Produce a temperature-versus-resistance table for a cryogenic sensor from 1.4 K to room temperature",
+ "industry": "metrology_and_calibration",
+ "description": "Commercial calibration of Cernox sensors over 1.4-325 K, read with low excitation.",
+ "keywords": [
+  "Produce a temperature-versus-resistance table for a cryogenic sensor from 1.4 K to room temperature",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "Lake Shore temperature sensor recalibration list",
+   "url": "https://shop.lakeshore.com/service/recalibration/temperature-sensors.html?mode=list",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Lake Shore Cernox specification page",
+   "url": "https://www.lakeshore.com/products/categories/specification/temperature-products/cryogenic-temperature-sensors/cernox",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Cernox (SD package)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 1400,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 325000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The calibration covers 1.4 K to 325 K.",
+   "evidence_ids": [
+    "v4e_metro_cernox_calibration_1p4_325k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 1400,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The lowest point is 1.4 K.",
+   "evidence_ids": [
+    "v4e_metro_cernox_calibration_1p4_325k_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The sensor is read electrically.",
+   "evidence_ids": [
+    "v4e_metro_cernox_calibration_1p4_325k_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

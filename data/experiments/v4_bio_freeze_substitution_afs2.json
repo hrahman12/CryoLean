@@ -1,0 +1,128 @@
+{
+ "id": "bio_freeze_substitution_afs2",
+ "name": "Automated freeze substitution of high-pressure-frozen samples in a Leica AFS2: -90 °C hold, 5 °C/h to -20 °C, 10 °C/h to 20 °C",
+ "plain_name": "Slowly swap ice for solvent in frozen cells before embedding them in resin",
+ "industry": "biology_and_biotechnology",
+ "description": "High-pressure-frozen specimens on 6 mm sapphire disks are transferred into cryotubes of fixative in acetone at -90 °C and warmed under program control (-90 °C for 5-30 h, 5 °C/h to -20 °C, 12 h at -20 °C, 10 °C/h to 20 °C) so that ice is replaced by solvent before resin embedding for electron microscopy.",
+ "keywords": [
+  "Slowly swap ice for solvent in frozen cells before embedding them in resin",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Watanabe S (2016). Flash-and-Freeze. Frontiers in Synaptic Neuroscience. doi:10.3389/fnsyn.2016.00024",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4990539/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Rachid R, Wendt C, de Souza W, Miranda K (2026). Optimisation of freeze substitution protocols for the examination of malaria parasite structure by volumetric electron microscopy. Journal of Microscopy. doi:10.1111/jmi.70007",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12884447/fullTextXML",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Leica AFS2"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 183150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 293150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The programme spans -90 °C (183.15 K) to 20 °C (293.15 K).",
+   "evidence_ids": [
+    "v4e_bio_freeze_substitution_afs2_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 183150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Independent protocol: chamber pre-cooled to -90 °C before samples enter the freeze-substitution medium.",
+   "evidence_ids": [
+    "v4e_bio_freeze_substitution_afs2_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 6,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 6 mm middle plate / sapphire disk is released into acetone pre-cooled in the AFS chamber.",
+   "evidence_ids": [
+    "v4e_bio_freeze_substitution_afs2_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 167,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The fastest programmed warming step is 10 °C/h (166.67 mK/min, rounded up to 167); the unit must ramp at least this fast under control.",
+   "evidence_ids": [
+    "v4e_bio_freeze_substitution_afs2_3"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Frozen specimens and the osmium/glutaraldehyde fixative tubes are kept and transferred under liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_bio_freeze_substitution_afs2_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

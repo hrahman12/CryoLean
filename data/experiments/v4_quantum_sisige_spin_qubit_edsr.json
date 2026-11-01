@@ -1,0 +1,131 @@
+{
+ "id": "quantum_sisige_spin_qubit_edsr",
+ "name": "Second-harmonic electric-dipole spin resonance of a single-electron spin qubit in a Si/SiGe quantum dot (25 mK base, 560.783 mT, 6.44 GHz)",
+ "plain_name": "Flip the spin of one electron trapped in a silicon chip using microwaves",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Form a single quantum dot and charge sensor with 2 accumulation and 10 depletion gates in an undoped Si/SiGe heterostructure with Co micromagnets, anchor it to the mixing chamber of a dilution refrigerator (25 mK base, about 150 mK electron temperature), apply an external field of 560.783 mT and drive Rabi oscillations with microwaves on one gate (second harmonic at 6.44 GHz) and pulses on another, reading out single-shot via the charge sensor.",
+ "keywords": [
+  "Flip the spin of one electron trapped in a silicon chip using microwaves",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Second harmonic coherent driving of a spin qubit in a Si/SiGe quantum dot (Scarlino et al., arXiv:1504.06436; Phys. Rev. Lett. 115, 106802, 2015)",
+   "url": "https://arxiv.org/pdf/1504.06436",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "dilution refrigerator",
+  "undoped Si/SiGe heterostructure quantum dot with Co micromagnets",
+  "room temperature I-V converter",
+  "FPGA"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 25,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Single-shot spin readout used the 25 mK dilution-refrigerator base reported for the measurement.",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "560.783",
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The qubit Zeeman splitting is set by Bext = 560.783 mT; the magnet must reach at least this field.",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 6442890,
+     "unit": "kHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Second-harmonic driving is applied at fMW = 6.44289 GHz, so the microwave line to the gate must carry at least 6.44289 GHz.",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_bandwidth.max"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 2
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Voltage pulses and microwave excitation go to two different gates (2 and 6), requiring at least two high-frequency lines.",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_3"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_lines"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 12
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Two accumulation gates plus ten depletion gates (labelled 1-10) must each be biased, i.e. at least 12 DC lines (ohmic contacts for the sensor come in addition).",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_4"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The gated device must be electrically connected for biasing, driving and charge-sensor readout.",
+   "evidence_ids": [
+    "v4e_quantum_sisige_spin_qubit_edsr_5"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

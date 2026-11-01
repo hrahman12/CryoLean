@@ -1,0 +1,67 @@
+{
+ "states": [
+  {
+   "state": "Demo B",
+   "n_flux_lines": "50",
+   "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+   "coupled_outcome": "fail",
+   "lhs_W": "57/3906250",
+   "rhs_W": "3/250000",
+   "lhs_display": "14.592 µW",
+   "rhs_display": "12 µW",
+   "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.",
+   "parts_W": {
+    "drive": "1131/500000000",
+    "flux": "237/20000000",
+    "output": "3/6250000"
+   },
+   "raw_parts_W": {
+    "drive": "377/500000000",
+    "flux": "79/20000000",
+    "output": "1/6250000"
+   }
+  },
+  {
+   "state": "Z3 repair",
+   "n_flux_lines": "39",
+   "verdict": "REQUIREMENTS_MET",
+   "coupled_outcome": "pass",
+   "lhs_W": "2397/200000000",
+   "rhs_W": "3/250000",
+   "lhs_display": "11.985 µW",
+   "rhs_display": "12 µW",
+   "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 11.985 µW ≤ 12 µW. Constraint met.",
+   "parts_W": {
+    "drive": "1131/500000000",
+    "flux": "9243/1000000000",
+    "output": "3/6250000"
+   },
+   "raw_parts_W": {
+    "drive": "377/500000000",
+    "flux": "3081/1000000000",
+    "output": "1/6250000"
+   }
+  }
+ ],
+ "params": {
+  "operating_temperature": "1/50",
+  "n_drive_lines": "58",
+  "n_flux_lines": "50",
+  "n_output_lines": "8",
+  "q_drive_line": "13/1000000000",
+  "q_flux_line": "29/1000000000",
+  "q_output_line": "1/50000000",
+  "p_flux_dc": "1/20000000",
+  "design_margin": "3"
+ },
+ "slot": {
+  "cooling": "cooling_power.at_20mK"
+ },
+ "z3_suggestion_source": "paper/data/e5_heat.json",
+ "e5_lhs_uW_at": {
+  "39": 11.985,
+  "50": 14.592
+ },
+ "_generated_by": "paper/scripts/fig_physics2d.py",
+ "_seconds": 0.16
+}

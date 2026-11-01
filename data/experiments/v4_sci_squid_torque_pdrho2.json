@@ -1,0 +1,120 @@
+{
+ "id": "sci_squid_torque_pdrho2",
+ "name": "SQUID-amplified piezoresistive cantilever torque magnetometry (dHvA) of PdRhO2 at 700 mK up to 15 T in a dilution refrigerator",
+ "plain_name": "Measure a tiny crystal's magnetic twist with a SQUID-read cantilever",
+ "industry": "scientific_research",
+ "description": "Mount a 300 x 200 x 50 um PdRhO2 crystal on a PRC400 piezoresistive micro-cantilever on a rotator thermally anchored to the mixing chamber of an Oxford Instruments MX400 dilution refrigerator with a 15 + 2 T magnet; read the cantilever Wheatstone bridge with a two-stage dc-SQUID null detector and record de Haas-van Alphen torque at (700 +/- 20) mK during 30 mT/min down-sweeps from 15 T.",
+ "keywords": [
+  "Measure a tiny crystal's magnetic twist with a SQUID-read cantilever",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "F. Arnold, M. Naumann, Th. Lühmann, A.P. Mackenzie, E. Hassinger, 'Application of SQUIDs to low temperature and high magnetic field measurements - Ultra low noise torque magnetometry', arXiv:1706.08350",
+   "url": "https://arxiv.org/pdf/1706.08350",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Oxford Instruments MX400 dilution refrigerator",
+  "15 + 2 T Nb3Sn superconducting magnet",
+  "Swedish rotator",
+  "PRC400 piezo-resistive micro-cantilever",
+  "two-stage dc-SQUID"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 700,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The reported dHvA torque data were taken at (700 +/- 20) mK.",
+   "evidence_ids": [
+    "v4e_sci_squid_torque_pdrho2_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 15,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The field sweeps start at 15 T.",
+   "evidence_ids": [
+    "v4e_sci_squid_torque_pdrho2_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The torque sensor is a piezoresistive cantilever read as a resistance bridge, so electrical leads to the sample stage are required.",
+   "evidence_ids": [
+    "v4e_sci_squid_torque_pdrho2_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "0.5",
+     "unit": "mT_per_s"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the documented down-sweep rate was 30 mT/min (= 0.5 mT/s).",
+   "evidence_ids": [
+    "v4e_sci_squid_torque_pdrho2_3"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.ramp_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 200,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: lower-temperature operation to about 200 mK is possible with reduced excitation.",
+   "evidence_ids": [
+    "v4e_sci_squid_torque_pdrho2_4"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

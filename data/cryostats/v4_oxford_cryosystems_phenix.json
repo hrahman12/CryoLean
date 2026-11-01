@@ -1,0 +1,194 @@
+{
+ "id": "oxford_cryosystems_phenix",
+ "manufacturer": "Oxford Cryosystems",
+ "model": "PheniX closed-cycle helium cryostat for powder XRD",
+ "family": "low-temperature non-ambient chamber for powder X-ray diffraction (closed-cycle GM)",
+ "description": "Two-stage Gifford-McMahon closed-cycle helium cryostat for flat-plate reflection powder XRD from 12 K to 290 K in vacuum (1e-4 mbar), +/-0.1 K stability, 20 mm diameter chromium-plated copper sample mounts, Kapton/mylar X-ray windows, K450 helium compressor.",
+ "documents": [
+  {
+   "id": "doc_oxford_cryosystems_phenix_0",
+   "url": "https://www.oxcryo.com/products/phenix",
+   "title": "Phenix Cryostat (Oxford Cryosystems product page, Benefits and Specs)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_oxford_cryosystems_phenix_1",
+   "url": "https://www.malvernpanalytical.com/de/assets/PheniX_leaflet_tcm57-52135.pdf",
+   "title": "PheniX - low-temperature cryostat, Non-ambient attachment for XRD (PANalytical leaflet, 2009)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "oxford_cryosystems_phenix_standard",
+   "name": "PheniX standard (top-loading) cryostat with K450 compressor and included 20 mm flat/recessed sample mounts",
+   "configuration_basis": "Standard PheniX chamber (not the PheniX FL front loader) with K450 helium compressor and the included 2 flat + 2 recessed 20 mm chromium-plated copper sample stages; water chiller not included.",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 12000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 290000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 12000,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "0.0001",
+       "unit": "mbar"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_pressure.base"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": 20000,
+       "unit": "um"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_sample.diameter.max"
+     ]
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": []
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_cryogen.type"
+     ]
+    },
+    {
+     "key": "temperature.stability",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 100,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_temperature.stability"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 3600,
+       "unit": "s"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_oxford_cryosystems_phenix_standard_cooldown_time.max"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "oxford_cryosystems_phenix_standard",
+   "key": "magnetic_field.max",
+   "why": "This absence rests on the silence of a short marketing spec table (window material, sample mounts, compressor) and a 2009 leaflet. Neither is a complete specification and neither says there is no magnet. Leave it unknown."
+  },
+  {
+   "configuration_id": "oxford_cryosystems_phenix_standard",
+   "key": "electrical.sample_connections",
+   "why": "Absence inferred from a marketing page's silence and a sentence about conduction cooling. There is no complete specification and no explicit statement that sample wiring is unavailable."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "materials_and_nanotechnology"
+ ]
+}

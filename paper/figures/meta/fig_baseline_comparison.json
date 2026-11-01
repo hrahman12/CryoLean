@@ -1,0 +1,18 @@
+{
+ "name": "fig_baseline_comparison",
+ "title": "CryoLean versus independent-property baselines",
+ "question": "How often does a datasheet-style check of each requirement in isolation (ignoring coupled physics and provenance) disagree with the verified CryoLean verdict on real configurations, and why?",
+ "model": "B1: per-requirement comparison of the documented value, coupled constraints and evidence status ignored, missing/unknown never blocks (MET unless a documented violation). B2: same comparison, missing/unknown -> NEED INFO with CryoLean's three-valued rule. CryoLean: compiled Lean 4 checker verdict (requirements + coupled constraints + trusted-provenance rule). Causes are read from per-check outcomes: a mandatory Lean coupled check that does not pass; a requirement decided by the baseline from a value Lean does not trust (provenance); a requirement without usable data that B1 lets pass (missing data).",
+ "data": "11 experiment profiles x 26 configurations = 286 pairs built with verifier.build_documents from data/experiments and data/cryostats; one fresh lean_runner.check_batch run (verdicts identical, pair by pair, to paper/data/e1_grid.json); baselines implemented in paper/scripts/fig_baselines.py; all 23 requirement-level B2/Lean differences involve untrusted evidence (23/23); per-pair results in paper/data/fig_baseline_comparison.json.",
+ "claim": "COMPUTED",
+ "caption": "Verdicts of two unverified baselines against CryoLean on all 286 experiment-configuration pairs. (a) The optimistic baseline B1 checks each requirement in isolation and lets missing data pass; it agrees with Lean on 128 pairs and accepts 149 pairs that Lean does not accept. (b) The conservative baseline B2 differs from CryoLean only by ignoring coupled constraints and provenance; it agrees on 274 pairs and still accepts 3. (c) Disagreements by cause, read from the per-check outcomes; the single coupled-constraint acceptance is Demo B (Bluefors LD400 HDW, 50-qubit wiring heat budget). CryoLean verdicts are computed by the Lean checker; the baselines are Python and not verified.",
+ "section": "main",
+ "script": "paper/scripts/fig_baselines.py",
+ "command": "python paper/scripts/fig_baselines.py",
+ "files": [
+  "paper/figures/fig_baseline_comparison.png",
+  "paper/figures/fig_baseline_comparison.svg",
+  "paper/figures/fig_baseline_comparison.pdf"
+ ],
+ "interactive": null
+}

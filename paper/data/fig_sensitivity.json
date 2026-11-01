@@ -1,0 +1,274 @@
+{
+ "demo_b": {
+  "baseline_verdict": "DOES_NOT_MEET_REQUIREMENTS",
+  "baseline_lhs_W": "57/3906250",
+  "params": {
+   "n_drive_lines": {
+    "baseline_value": "58",
+    "direction": "decrease",
+    "flip_value": null,
+    "flip_relative": null,
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "n_flux_lines": {
+    "baseline_value": "50",
+    "direction": "decrease",
+    "flip_value": 39,
+    "flip_relative": "-11/50",
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "n_output_lines": {
+    "baseline_value": "8",
+    "direction": "decrease",
+    "flip_value": null,
+    "flip_relative": null,
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "q_drive_line": {
+    "baseline_value": "13/1000000000",
+    "direction": "decrease",
+    "flip_relative": null,
+    "note": "no flip over the whole search interval (parameter cannot repair/break the budget alone)"
+   },
+   "q_flux_line": {
+    "baseline_value": "29/1000000000",
+    "direction": "decrease",
+    "bracket_lo": "444354354397/1099511627776",
+    "bracket_hi": "222177177199/549755813888",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": -0.5958620689657437,
+    "analytic_threshold": "293/725",
+    "analytic_threshold_float": 0.40413793103448276,
+    "analytic_relative": -0.5958620689655172,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "lean_inside_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "flip_relative": "-432/725"
+   },
+   "p_flux_dc": {
+    "baseline_value": "1/20000000",
+    "direction": "decrease",
+    "bracket_lo": "5621253197/8589934592",
+    "bracket_hi": "719520409217/1099511627776",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": -0.34560000000010405,
+    "analytic_threshold": "409/625",
+    "analytic_threshold_float": 0.6544,
+    "analytic_relative": -0.3456,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "lean_inside_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "flip_relative": "-216/625"
+   },
+   "q_output_line": {
+    "baseline_value": "1/50000000",
+    "direction": "decrease",
+    "flip_relative": null,
+    "note": "no flip over the whole search interval (parameter cannot repair/break the budget alone)"
+   },
+   "design_margin": {
+    "baseline_value": "3",
+    "direction": "decrease",
+    "bracket_lo": "904203641263/1099511627776",
+    "bracket_hi": "56512727579/68719476736",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": -0.17763157894705728,
+    "analytic_threshold": "125/152",
+    "analytic_threshold_float": 0.8223684210526315,
+    "analytic_relative": -0.17763157894736842,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "lean_inside_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "flip_relative": "-27/152"
+   },
+   "cooling_power": {
+    "baseline_value": "3/250000",
+    "direction": "increase",
+    "bracket_lo": "1337006139375/1099511627776",
+    "bracket_hi": "83562883711/68719476736",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.2159999999998945,
+    "analytic_threshold": "152/125",
+    "analytic_threshold_float": 1.216,
+    "analytic_relative": 0.216,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "lean_inside_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "flip_relative": "27/125"
+   }
+  },
+  "analytic_elasticity_of_lhs": {
+   "n_drive_lines": "377/2432",
+   "q_drive_line": "377/2432",
+   "n_flux_lines": "1975/2432",
+   "q_flux_line": "725/2432",
+   "p_flux_dc": "625/1216",
+   "n_output_lines": "5/152",
+   "q_output_line": "5/152",
+   "design_margin": "1"
+  },
+  "analytic_partial_derivatives_W_per_unit": {
+   "n_drive_lines": "39/1000000000",
+   "n_flux_lines": "237/1000000000",
+   "n_output_lines": "3/50000000",
+   "q_drive_line": "174",
+   "q_flux_line": "150",
+   "p_flux_dc": "150",
+   "q_output_line": "24",
+   "design_margin": "19/3906250",
+   "cooling_power_rhs": "1"
+  }
+ },
+ "z3_repair": {
+  "baseline_verdict": "REQUIREMENTS_MET",
+  "baseline_lhs_W": "2397/200000000",
+  "params": {
+   "n_drive_lines": {
+    "baseline_value": "58",
+    "direction": "increase",
+    "flip_value": 59,
+    "flip_relative": "1/58",
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "n_flux_lines": {
+    "baseline_value": "39",
+    "direction": "increase",
+    "flip_value": 40,
+    "flip_relative": "1/39",
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "n_output_lines": {
+    "baseline_value": "8",
+    "direction": "increase",
+    "flip_value": 9,
+    "flip_relative": "1/8",
+    "note": "first integer count (scanning away from the baseline) at which the Lean verdict differs"
+   },
+   "q_drive_line": {
+    "baseline_value": "13/1000000000",
+    "direction": "increase",
+    "bracket_lo": "1106802818941/1099511627776",
+    "bracket_hi": "553401409471/549755813888",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.0066312997346358316,
+    "analytic_threshold": "759/754",
+    "analytic_threshold_float": 1.006631299734748,
+    "analytic_relative": 0.006631299734748011,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "5/754"
+   },
+   "q_flux_line": {
+    "baseline_value": "29/1000000000",
+    "direction": "increase",
+    "bracket_lo": "552186210943/549755813888",
+    "bracket_hi": "1104372421887/1099511627776",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.0044208664899088035,
+    "analytic_threshold": "1136/1131",
+    "analytic_threshold_float": 1.004420866489832,
+    "analytic_relative": 0.004420866489832007,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "5/1131"
+   },
+   "p_flux_dc": {
+    "baseline_value": "1/20000000",
+    "direction": "increase",
+    "bracket_lo": "137791361045/137438953472",
+    "bracket_hi": "1102330888361/1099511627776",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.002564102564519999,
+    "analytic_threshold": "391/390",
+    "analytic_threshold_float": 1.0025641025641026,
+    "analytic_relative": 0.002564102564102564,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "1/390"
+   },
+   "q_output_line": {
+    "baseline_value": "1/50000000",
+    "direction": "increase",
+    "bracket_lo": "33/32",
+    "bracket_hi": "1133871366145/1099511627776",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.03125000000045475,
+    "analytic_threshold": "33/32",
+    "analytic_threshold_float": 1.03125,
+    "analytic_relative": 0.03125,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "1/32"
+   },
+   "design_margin": {
+    "baseline_value": "3",
+    "direction": "increase",
+    "bracket_lo": "1100887737447/1099511627776",
+    "bracket_hi": "137610967181/137438953472",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": 0.0012515644552877347,
+    "analytic_threshold": "800/799",
+    "analytic_threshold_float": 1.0012515644555695,
+    "analytic_relative": 0.0012515644555694619,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "1/799"
+   },
+   "cooling_power": {
+    "baseline_value": "3/250000",
+    "direction": "decrease",
+    "bracket_lo": "1098137238241/1099511627776",
+    "bracket_hi": "549068619121/549755813888",
+    "bracket_width": 9.094947017729282e-13,
+    "flip_relative_float": -0.0012499999997999112,
+    "analytic_threshold": "799/800",
+    "analytic_threshold_float": 0.99875,
+    "analytic_relative": -0.00125,
+    "analytic_in_lean_bracket": true,
+    "lean_at_threshold": "REQUIREMENTS_MET",
+    "lean_beyond_threshold_by_1e12th": "DOES_NOT_MEET_REQUIREMENTS",
+    "lean_inside_threshold_by_1e12th": "REQUIREMENTS_MET",
+    "flip_relative": "-1/800"
+   }
+  },
+  "analytic_elasticity_of_lhs": {
+   "n_drive_lines": "754/3995",
+   "q_drive_line": "754/3995",
+   "n_flux_lines": "3081/3995",
+   "q_flux_line": "1131/3995",
+   "p_flux_dc": "390/799",
+   "n_output_lines": "32/799",
+   "q_output_line": "32/799",
+   "design_margin": "1"
+  },
+  "analytic_partial_derivatives_W_per_unit": {
+   "n_drive_lines": "39/1000000000",
+   "n_flux_lines": "237/1000000000",
+   "n_output_lines": "3/50000000",
+   "q_drive_line": "174",
+   "q_flux_line": "117",
+   "p_flux_dc": "117",
+   "q_output_line": "24",
+   "design_margin": "799/200000000",
+   "cooling_power_rhs": "1"
+  }
+ },
+ "n_lean_checks": 3843,
+ "cooling_slot": "cooling_power.at_20mK",
+ "_generated_by": "paper/scripts/fig_physics2d.py",
+ "_seconds": 39.27
+}

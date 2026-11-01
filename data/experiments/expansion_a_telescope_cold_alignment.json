@@ -1,0 +1,86 @@
+{
+  "id": "expa_telescope_cold_alignment",
+  "name": "Integrated telescope artificial-star optical alignment near 37 K",
+  "plain_name": "Integrated telescope artificial-star optical alignment near 37 K",
+  "industry": "astronomy_and_astrophysics",
+  "description": "Test the complete primary-secondary-instrument optical train under cryogenic vacuum; this is an end-to-end telescope measurement rather than a single mirror surface test.",
+  "keywords": [
+    "telescope cold alignment",
+    "telescope vacuum chamber"
+  ],
+  "sources": [
+    {
+      "citation": "NASA Apollo-Era Test Chamber Now James Webb Space Telescope Ready",
+      "url": "https://www.nasa.gov/universe/nasas-apollo-era-test-chamber-now-james-webb-space-telescope-ready/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "citation": "NASA Science, Webb's Mirrors",
+      "url": "https://science.nasa.gov/mission/webb/webbs-mirrors/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "approximately 37 kelvins",
+      "evidence_id": "expa_chamber_a"
+    }
+  ],
+  "reported_equipment": [
+    "NASA Chamber A"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "37",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The chamber source identifies approximately 37 K as Webb's operating test regime; encoded 37 K is a nominal point.",
+      "evidence_ids": [
+        "expa_chamber_a"
+      ]
+    },
+    {
+      "key": "module.integrated_telescope_optical_test",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Artificial-star alignment through the complete telescope is indispensable.",
+      "evidence_ids": [
+        "expa_webb_optics"
+      ]
+    },
+    {
+      "key": "vacuum.available",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Cryogenic optical testing is performed under vacuum.",
+      "evidence_ids": [
+        "expa_chamber_a"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The nominal 37 K point is not a tolerance band. Full alignment error budget, chamber geometry, metrology calibration and vibration isolation are not proven by these scalar checks."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

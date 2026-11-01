@@ -1,0 +1,2073 @@
+{
+  "equipment": [
+    {
+      "id": "thermo_fisher_vitrobot_mark_iv",
+      "manufacturer": "Thermo Fisher Scientific",
+      "model": "Vitrobot Mark IV",
+      "family": "plunge freezer for cryo-EM grids (liquid ethane)",
+      "description": "Automated plunge-freezing (vitrification) robot for cryo-EM grids: enclosed climate chamber 4-60 C with ultrasonic humidification up to 100 % rH, automated blotting (1-16 blots), plunging into liquid ethane (-178 C) cooled by liquid nitrogen, semi-automated grid transfer to a grid box under LN2.",
+      "documents": [
+        {
+          "title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+          "url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "thermo_fisher_vitrobot_mark_iv_standard",
+          "name": "Vitrobot Mark IV standard system (climate chamber, blotting device, LN2/ethane coolant container)",
+          "configuration_basis": "Standard instrument as described in the User Manual PN 103261 Rev G; values are the manufacturer's technical specification. Coolant: liquid ethane condensed in the LN2-cooled container (liquid propane is the documented alternative).",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 277150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 333150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The climate (process) chamber in which the grid is held, sample-applied and blotted before plunging is controlled from 4 to 60 C.",
+              "value_as_printed": "range: 4 - 60°C",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 6, section 1.3.1 Key Features (Technical Specification)",
+              "quote": "Temperature: software controlled, direct read out, and range: 4 - 60°C. Peltier type of heating/ cooling."
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 95150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The lowest temperature the specimen reaches is the liquid/solid ethane coolant at -178 C into which the grid is plunged (separately stated, lower than the chamber range).",
+              "value_as_printed": "liquid/solid ethane (-178°C)",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 6, section 1.3.1 Key Features, 'Vitrification'",
+              "quote": "A shutter opens the chamber automatically to give the specimen access to the liquid/solid ethane (-178°C)."
+            },
+            {
+              "key": "humidity.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 85,
+                  "unit": "percent"
+                },
+                "hi": {
+                  "value": 100,
+                  "unit": "percent"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Chamber relative humidity is controllable from room conditions up to 100 % rH; the instrument specification (p. 7) limits the room to 'lower than 85 % rH, not condensing', so 85-100 % rH is always inside the controllable range (lower set-points depend on the room).",
+              "value_as_printed": "room conditions up to 100 % rH",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 6, section 1.3.1 Key Features; ambient limit in Instrument Specifications table p. 7",
+              "quote": "Humidity: software controlled, direct read out, and range: room conditions up to 100 % rH. Ultrasonic humidifier."
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical specification (section 1.3: temperature, humidity, sample application, blotting, vitrification, process control; instrument table: power, dimensions, ambient conditions) contains no magnet; the controllable parameters are listed exhaustively.",
+              "value_as_printed": "no magnet in specification",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 3, section 1 Introduction; section 1.3 pp. 6-7",
+              "quote": "The parameters to be influenced are: temperature, humidity, the number of blots, and a number of critical time settings."
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The grid is held in a humidified climate chamber at ambient pressure with an open pipette side port; the sample space is not evacuated.",
+              "value_as_printed": "side port allowing access to a pipette",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 6, section 1.3.1 Key Features, 'Sample application'",
+              "quote": "Small sample volumes can be applied manually through a side port allowing access to a pipette."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No vacuum: the climate chamber is at room pressure (humidified, open pipette side port), so there is no base pressure.",
+              "value_as_printed": "side port allowing access to a pipette",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 6, section 1.3.1 Key Features",
+              "quote": "Small sample volumes can be applied manually through a side port allowing access to a pipette."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "The manual mentions a chamber light and a chamber door but does not state that the climate chamber has a viewing window onto the grid.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The specimen is an EM grid held in tweezers; the specification lists no electrical connection to the sample (the only parameters are temperature, humidity, blotting and timing).",
+              "value_as_printed": "grid is attached to the tweezer",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 19, section 3.5 Preparation of the Grid",
+              "quote": "A glow-discharged grid (preferably a quantifoil or lacey carbon film grid) is attached to the tweezer."
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "The manual refers to EM grids (quantifoil, lacey carbon) but states no grid diameter or maximum specimen size.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "No usable specimen height is documented for the tweezer/grid holder.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Operation requires liquid nitrogen in the coolant container and liquid ethane (or propane) condensed in its central cup.",
+              "value_as_printed": "LN2 container with a cup filled with liquid ethane",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 11, section 2 Safety, 'Liquid nitrogen (LN2)'",
+              "quote": "The Vitrobot has a LN2 container with a cup filled with liquid ethane to vitrify samples."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen",
+                  "liquid_ethane"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid cryogens used: liquid nitrogen (outer ring) and liquid ethane (plunge coolant; liquid propane is an alternative but has no controlled token).",
+              "value_as_printed": "LN2 container with a cup filled with liquid ethane",
+              "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+              "document_title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+              "location": "p. 11, section 2 Safety, 'Liquid nitrogen (LN2)'",
+              "quote": "The Vitrobot has a LN2 container with a cup filled with liquid ethane to vitrify samples."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leica_em_gp2",
+      "manufacturer": "Leica Microsystems",
+      "model": "EM GP2 Automatic Plunge Freezer",
+      "family": "plunge freezer for cryo-EM grids (liquid ethane)",
+      "description": "Automatic plunge freezer: environmental chamber +4 to +60 C and room humidity to 99 % with LED light, anti-fog heated front window, sensor-guided or timed blotting, plunging into ethane/propane held at 0 to -196 C in a 2.5 ml container cooled by a 1 l LN2 Dewar, transfer under dry GN2 into a cryo-grid box.",
+      "documents": [
+        {
+          "title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+          "url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf"
+        },
+        {
+          "title": "EM GP2 Automatic Plunge Freezer - Specifications (Leica Microsystems product page)",
+          "url": "https://www.leica-microsystems.com/products/sample-preparation-for-electron-microscopy/p/leica-em-gp2/specification/"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "leica_em_gp2_standard",
+          "name": "EM GP2 basic unit (environmental chamber, 1 l LN2 Dewar, ethane container); stereomicroscope viewing system not fitted",
+          "configuration_basis": "Basic unit per Operating Manual V11/2017 and the Leica specification page; the stereomicroscope viewing system and foot switch are options not included. Values are manufacturer specifications.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 277150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 333150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Environmental chamber around the grid before freezing is temperature-controlled from +4 to +60 C.",
+              "value_as_printed": "+4 °C to +60 °C",
+              "source_url": "https://www.leica-microsystems.com/products/sample-preparation-for-electron-microscopy/p/leica-em-gp2/specification/",
+              "document_title": "EM GP2 Automatic Plunge Freezer - Specifications (Leica Microsystems product page)",
+              "location": "Environmental Chamber table (also Operating Manual ch. 9 Technical Data, p. 70)",
+              "quote": "Temperature control: +4 °C to +60 °C"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 77150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The secondary-cryogen (ethane/propane) container into which the grid is plunged is held between 0 and -196 C; -196 C is the lowest documented temperature reached by the specimen environment.",
+              "value_as_printed": "0 to -196 °C",
+              "source_url": "https://www.leica-microsystems.com/products/sample-preparation-for-electron-microscopy/p/leica-em-gp2/specification/",
+              "document_title": "EM GP2 Automatic Plunge Freezer - Specifications (Leica Microsystems product page)",
+              "location": "Preparation Chamber table (also Operating Manual ch. 9, p. 71)",
+              "quote": "Secondary cryogen container temperature: 0 to -196 °C"
+            },
+            {
+              "key": "humidity.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 55,
+                  "unit": "percent"
+                },
+                "hi": {
+                  "value": 99,
+                  "unit": "percent"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Chamber humidity is controlled from room humidity up to 99 %; the operating conditions limit room relative humidity to max. 55 %, so 55-99 % rH is always inside the controllable range (the instrument only actively increases humidity).",
+              "value_as_printed": "room humidity to 99%",
+              "source_url": "https://www.leica-microsystems.com/products/sample-preparation-for-electron-microscopy/p/leica-em-gp2/specification/",
+              "document_title": "EM GP2 Automatic Plunge Freezer - Specifications (Leica Microsystems product page)",
+              "location": "Environmental Chamber table; Operating Conditions table (room relative humidity max. 55%)",
+              "quote": "Humidity control: room humidity to 99%"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete component list (section 2.1) and Technical Data (ch. 9) contain no magnet acting on the sample; the only magnetic item is a holder clamping the filter paper.",
+              "value_as_printed": "no magnet in component list / technical data",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 10, section 2.1 General Overview (component list); ch. 9 Technical Data pp. 70-71",
+              "quote": "1 Environmental chamber with humidity and temperature control 2 Humidifier tank 3 Drip tray 4 Magnetic holder for filter paper 5 Forceps with forceps adapter 6 Viewing system (optional) 7 Moveable ring for contamination protection 8 Freezing chamber with secondary cryogen and cryo transfer container"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The grid is handled in a humidity/temperature-controlled environmental chamber and transferred in a cold dry nitrogen-gas atmosphere; no evacuated sample space exists.",
+              "value_as_printed": "cold and dry GN2 atmosphere",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 11, section 2.1 General Overview",
+              "quote": "Subsequently, the frozen sample is transferred from the cryogen in a cold and dry GN2 atmosphere into a cryo-grid box for storage or transfer to the next instrument."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No vacuum: the specimen environment is the humidified environmental chamber and a dry GN2 atmosphere at ambient pressure.",
+              "value_as_printed": "cold and dry GN2 atmosphere",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 11, section 2.1 General Overview",
+              "quote": "Subsequently, the frozen sample is transferred from the cryogen in a cold and dry GN2 atmosphere into a cryo-grid box for storage or transfer to the next instrument."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The environmental chamber has a heated front window; an optional stereomicroscope viewing system can be mounted on a swivel arm.",
+              "value_as_printed": "front window",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 26, section 5.2.1.3 Chamber window heater",
+              "quote": "The function is to prevent misting of the bottom part of the front window."
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The specimen is an EM grid held by forceps; component list and technical data show no electrical connection to the sample.",
+              "value_as_printed": "grid is picked up with forceps",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 11, section 2.1 General Overview",
+              "quote": "The grid is picked up with forceps fitted with a specialized adapter and connected to the instrument in a defined orientation."
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "Operating manual and specification page refer to EM grids but state no grid diameter or maximum specimen size.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "No usable specimen height is documented.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Operation needs liquid nitrogen in the 1 l Dewar and a liquefied secondary cryogen (ethane or propane).",
+              "value_as_printed": "LN2 Dewar ... liquefy ethane or propane",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 11, section 2.1 General Overview",
+              "quote": "An LN2 Dewar provides cooling to liquefy ethane or propane (\"secondary cryogen\"), while heaters maintain the secondary cryogen at a suitable temperature"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen",
+                  "liquid_ethane"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid cryogens: liquid nitrogen (Dewar) and liquid ethane (secondary cryogen; propane is the documented alternative, no controlled token).",
+              "value_as_printed": "LN2 Dewar ... liquefy ethane or propane",
+              "source_url": "https://labadviser.nanolab.dtu.dk/images/c/cf/Leica_EM_GP2_Operating_manual.pdf",
+              "document_title": "Leica EM GP2 Operating Manual, Version 11/2017 (Leica Mikrosysteme GmbH)",
+              "location": "p. 11, section 2.1 General Overview",
+              "quote": "An LN2 Dewar provides cooling to liquefy ethane or propane (\"secondary cryogen\"), while heaters maintain the secondary cryogen at a suitable temperature"
+            },
+            {
+              "key": "cryogen.dewar_volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 1,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "LN2 Dewar volume 1 l.",
+              "value_as_printed": "1 l",
+              "source_url": "https://www.leica-microsystems.com/products/sample-preparation-for-electron-microscopy/p/leica-em-gp2/specification/",
+              "document_title": "EM GP2 Automatic Plunge Freezer - Specifications (Leica Microsystems product page)",
+              "location": "Dewar table (also Operating Manual ch. 9, p. 70)",
+              "quote": "LN2 volume: 1 l"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oxford_cryosystems_cryostream_800",
+      "manufacturer": "Oxford Cryosystems",
+      "model": "Cryostream 800 Series",
+      "family": "open-flow nitrogen cryostream for crystallography",
+      "description": "Open-flow nitrogen gas-stream cooler for single-crystal and macromolecular crystallography: 80-400 K at the crystal (Plus: 80-500 K), 0.1 K stability, 5 or 10 l/min N2 flow, 0.6-1.2 l/h LN2 consumption, 20 min cool-down to 100 K; sample <1 mm3 in the central 2 mm of the stream, shrouded by dry air from the AD51 unit.",
+      "documents": [
+        {
+          "title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+          "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "oxford_cryosystems_cryostream_800_standard",
+          "name": "Cryostream 800 (standard, 80-400 K) with controller, gas pump, AD51 dry-air unit and Varibeam stand",
+          "configuration_basis": "Standard 800 Series Cryostream Cooler (not the Plus or Compact versions) per section 5.1 Technical Data; values are manufacturer specifications.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 80000,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 400000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Nitrogen gas-stream temperature at the crystal position is controllable from 80 to 400 K (standard 800 Series; the Plus version reaches 500 K).",
+              "value_as_printed": "80-400 Kelvin",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1 Standard Cryostream Technical Data",
+              "quote": "Temperature Range 80-400 Kelvin (or 80-500 Kelvin for Cryostream Plus)"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 80000,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest gas-stream temperature 80 K.",
+              "value_as_printed": "80-400 Kelvin",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1",
+              "quote": "Temperature Range 80-400 Kelvin (or 80-500 Kelvin for Cryostream Plus)"
+            },
+            {
+              "key": "temperature.stability",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 100,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Temperature stability 0.1 K.",
+              "value_as_printed": "0.1 Kelvin",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1",
+              "quote": "Temperature Stability 0.1 Kelvin"
+            },
+            {
+              "key": "gas.flow_rate.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 10,
+                  "unit": "L_per_min"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Nitrogen gas flow selectable 5 or 10 l/min (Normal/Turbo).",
+              "value_as_printed": "5 or 10 litres/minute",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1",
+              "quote": "Nitrogen Gas Flow Rate 5 or 10 litres/minute"
+            },
+            {
+              "key": "cryogen.consumption_rate",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": "0.02",
+                  "unit": "L_per_min"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid nitrogen consumption 1.2 l/h (= 0.02 l/min) at 10 l/min gas flow; 0.6 l/h at 5 l/min. The higher (conservative) figure is stored.",
+              "value_as_printed": "1.2 litres/hour at 10 litres/minute gas flow",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1",
+              "quote": "Liquid Nitrogen Consumption 0.6 litres/hour at 5 litres/minute gas flow 1.2 litres/hour at 10 litres/minute gas flow"
+            },
+            {
+              "key": "cooldown_time.max",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 1200,
+                  "unit": "s"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cool-down time to 100 K is 20 minutes.",
+              "value_as_printed": "20 minutes",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1",
+              "quote": "Cool Down Time to 100 Kelvin 20 minutes"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical data (section 5.1) lists the coldhead, controller, gas pump, AD51 dry-air unit, Varibeam stand and ES60 Dewar; the system is an open-flow gas cooler with no magnet.",
+              "value_as_printed": "no magnet in technical data",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 10, section 5.1 Standard Cryostream Technical Data",
+              "quote": "800 Series Cryostream Coldhead ... 800 Series Controller ... 800 Series Gas Pump ... AD51 Dry Air Unit ... Varibeam Support Stand ... ES60 Dewar vessel"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The sample sits in an open stream of cold nitrogen gas in air; the system must not be enclosed in any chamber, so there is no evacuated sample space.",
+              "value_as_printed": "open stream of gas",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 9, section 4 Outline of Intended Use",
+              "quote": "To cool a sample of less than 1mm3 in an open stream of gas. The nozzle is not designed to be enclosed or to cool samples that are enclosed inside any kind of sample holder, chamber or vessel."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No vacuum: open-flow gas stream at atmospheric pressure.",
+              "value_as_printed": "open stream of gas",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 9, section 4 Outline of Intended Use",
+              "quote": "To cool a sample of less than 1mm3 in an open stream of gas. The nozzle is not designed to be enclosed or to cool samples that are enclosed inside any kind of sample holder, chamber or vessel."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The crystal in the open gas stream is viewed directly with the diffractometer telescope or camera for centring; no window intervenes.",
+              "value_as_printed": "telescope or camera crosshairs to focus sharply on the crystal's position",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 26, section 6.10 Cryostream Nozzle Alignment",
+              "quote": "Correctly align and centre an example crystal or empty loop as normal by using the adjustments on the goniometer head and telescope or camera crosshairs to focus sharply on the crystal's position."
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The Cryostream only delivers a cold gas stream to an unenclosed sample on the goniometer; it provides no sample holder, chamber or wiring.",
+              "value_as_printed": "not designed ... sample holder, chamber or vessel",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 9, section 4 Outline of Intended Use",
+              "quote": "To cool a sample of less than 1mm3 in an open stream of gas. The nozzle is not designed to be enclosed or to cool samples that are enclosed inside any kind of sample holder, chamber or vessel."
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 2,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The crystal must sit in the centre 2 mm of the gas stream (and <1 mm3 in volume, p. 9), so the usable cold cross-section is 2 mm across.",
+              "value_as_printed": "centre 2 mm of the gas stream",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 16, section 6.3 Stage One - Varibeam Set up",
+              "quote": "The crystal should be less than 8 mm from the end of the Cryostream nozzle (optimum distance is 5 mm) in the centre 2 mm of the gas stream; this will help to prevent icing."
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "Only the sample volume (<1 mm3) and the 2 mm stream core are documented; no length along the loading axis is stated.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The cooler consumes liquid nitrogen from an unpressurised Dewar.",
+              "value_as_printed": "liquid nitrogen only",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 9, section 4 Outline of Intended Use",
+              "quote": "To be used with liquid nitrogen only."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Only liquid nitrogen is used.",
+              "value_as_printed": "liquid nitrogen only",
+              "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+              "document_title": "800 Series Cryostream Cooler - Operating & Instruction Guide (Oxford Cryosystems Ltd, 2014)",
+              "location": "p. 9, section 4 Outline of Intended Use",
+              "quote": "To be used with liquid nitrogen only."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chart_mve_heco_815p_190",
+      "manufacturer": "Chart Industries (MVE Biological Solutions)",
+      "model": "MVE HEco 815P-190",
+      "family": "LN2 vapour-phase storage freezer",
+      "description": "High-efficiency vapour-phase liquid-nitrogen freezer for biobanking: -190 C top-box temperature, dry sample storage, 15,600 x 2 ml vials in 12 square racks, 370 l LN2 capacity, static hold 10 days (vapour) / 74 days (liquid full), 317 mm neck opening, 676 mm usable internal height.",
+      "documents": [
+        {
+          "title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+          "url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "chart_mve_heco_815p_190_square_rack",
+          "name": "MVE HEco 815P-190 with square-rack (P) inventory system",
+          "configuration_basis": "Model 815P-190 with the standard square-rack layout (12 racks for 100-cell boxes) as listed on the Chart specification sheet; optional battery backup and double-tier step not considered. Values are manufacturer specifications.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 83150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 83150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Vapour-phase storage with -190 C at the top box (dry storage above the LN2 pool); only the stated top-box temperature is recorded (lo = hi), lower boxes are colder.",
+              "value_as_printed": "-190°C top box temperature",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, Features list",
+              "quote": "-190°C top box temperature"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 83150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest stated storage temperature -190 C (top box).",
+              "value_as_printed": "-190°C top box temperature",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, Features list",
+              "quote": "-190°C top box temperature"
+            },
+            {
+              "key": "storage.capacity.vials_2ml",
+              "value": {
+                "kind": "count",
+                "n": 15600
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum storage capacity of the 815P-190 with square racks: 15,600 x 1.2/2 ml internally threaded vials.",
+              "value_as_printed": "15,600",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Rack Layouts table, Square Rack Layout (P), MVE HEco 815P-190 column",
+              "quote": "Maximum Storage Capacity 1.2 & 2 ml Vials (Internally Threaded) 15,600 18,200 19,500"
+            },
+            {
+              "key": "holding_time.static",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 240,
+                  "unit": "h"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Static hold time in vapour mode 10 days (240 h); liquid-full 74 days. The vapour value is stored as the conservative storage-mode figure.",
+              "value_as_printed": "10 days (vapor)",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Performance, MVE HEco 815P-190 column",
+              "quote": "Static Hold Time—Vapor days 10 11 11 Static Hold Time—Liquid Full days 74 84 92"
+            },
+            {
+              "key": "cryogen.dewar_volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 370,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "LN2 capacity 370 l (without inventory).",
+              "value_as_printed": "370",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Performance, MVE HEco 815P-190 column",
+              "quote": "LN2 Capacity L 370 420 463"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 317,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Items are loaded through the 12.5 in (317 mm) neck opening (inner diameter 731 mm).",
+              "value_as_printed": "12.5 (317)",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Unit Dimensions, 815P-190 column",
+              "quote": "Neck Opening in. (mm) 12.5 (317) 12.5 (317) 12.5 (317)"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 676,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Usable internal height 26.6 in (676 mm).",
+              "value_as_printed": "26.6 (676)",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Unit Dimensions, 815P-190 column",
+              "quote": "Usable Internal Height in. (mm) 26.6 (676) 30.7 (78) 34.5 (877)"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification sheet (features, performance, unit dimensions, rack and bag layouts) describes a passive LN2 vapour storage vessel with no magnet.",
+              "value_as_printed": "no magnet in specification sheet",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, Features list; p. 2 tables",
+              "quote": "Features include: LN2 usage reduction; Fully enclosed wiring and plumbing; Vacuum jacketed transfer hose; Dry sample storage; -190°C top box temperature; Lowest liftover height; Single step standard; Optional removable double-tier step; Optional battery backup"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Samples are stored dry in nitrogen vapour at atmospheric pressure; the vacuum is only the vessel/transfer-hose insulation, not the sample space.",
+              "value_as_printed": "vapor freezers",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, introduction",
+              "quote": "the new MVE HEco 800 Series freezers provide a reduction in LN2 usage, making them the most efficient vapor freezers available."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No evacuated sample space (vapour-phase storage at atmospheric pressure).",
+              "value_as_printed": "vapor freezers",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, introduction",
+              "quote": "the new MVE HEco 800 Series freezers provide a reduction in LN2 usage, making them the most efficient vapor freezers available."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete specification sheet lists a lidded storage vessel (features, neck opening, dimensions) with no viewport onto the stored inventory.",
+              "value_as_printed": "no viewport in specification sheet",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, Features list; p. 2 Unit Dimensions",
+              "quote": "Features include: LN2 usage reduction; Fully enclosed wiring and plumbing; Vacuum jacketed transfer hose; Dry sample storage; -190°C top box temperature; Lowest liftover height; Single step standard; Optional removable double-tier step; Optional battery backup"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The only wiring is the freezer's own controller/plumbing, which is fully enclosed; no electrical connection to the stored samples is provided.",
+              "value_as_printed": "Fully enclosed wiring and plumbing",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 1, Features list",
+              "quote": "Features include: LN2 usage reduction; Fully enclosed wiring and plumbing; Vacuum jacketed transfer hose; Dry sample storage; -190°C top box temperature; Lowest liftover height; Single step standard; Optional removable double-tier step; Optional battery backup"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid-nitrogen storage freezer (370 l LN2 capacity, auto-fill from LN2 supply).",
+              "value_as_printed": "LN2 Capacity L 370",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Performance",
+              "quote": "LN2 Capacity L 370 420 463"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid nitrogen is the only cryogen.",
+              "value_as_printed": "LN2",
+              "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/MVE-HEco-800-Series-Freezers-Spec-Sheet.pdf",
+              "document_title": "MVE HEco 800 Series Freezers specification sheet (Chart Industries, ML-CRYO0032 E, 2015)",
+              "location": "p. 2, Performance",
+              "quote": "LN2 Capacity L 370 420 463"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phc_mdf_du702vh",
+      "manufacturer": "PHC Corporation (PHCbi)",
+      "model": "MDF-DU702VH VIP ECO",
+      "family": "ULT freezer (-86 C)",
+      "description": "Upright ultra-low-temperature freezer with hydrocarbon cascade refrigeration and inverter compressors: -86 to -40 C control range, 729 l, internal 870 x 600 x 1400 mm, 576 two-inch boxes, 3 stainless shelves (515 kg total load), 3 x 17 mm access ports.",
+      "documents": [
+        {
+          "title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+          "url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "phc_mdf_du702vh_standard",
+          "name": "MDF-DU702VH standard cabinet (3 shelves, 2 inner doors), no CO2 back-up",
+          "configuration_basis": "Standard model per PHC data sheet; options (small inner door kits, liquid CO2 back-up MDF-UB7-PW, inventory racks, recorders, communication interfaces) not fitted. Values are manufacturer specifications.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 187150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 233150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cabinet temperature control range -86 to -40 C (air at freezer centre, ambient 30 C, no load).",
+              "value_as_printed": "-86 to -40",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Performance (footnote 3)",
+              "quote": "Temperature control range 3) °C -86 to -40"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 187150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest controlled cabinet temperature -86 C (cooling performance -86 C).",
+              "value_as_printed": "-86",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Performance",
+              "quote": "Temperature control range 3) °C -86 to -40"
+            },
+            {
+              "key": "chamber.volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 729,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Usable volume 729 l.",
+              "value_as_printed": "729",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table",
+              "quote": "Volume litres 729"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 600,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Internal dimensions 870 (W) x 600 (D) x 1400 (H) mm; the smaller cross-section dimension (depth 600 mm) is recorded.",
+              "value_as_printed": "870 x 600 x 1400",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table",
+              "quote": "Internal dimensions (W x D x H) mm 870 x 600 x 1400"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 1400,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Interior height 1400 mm.",
+              "value_as_printed": "870 x 600 x 1400",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table",
+              "quote": "Internal dimensions (W x D x H) mm 870 x 600 x 1400"
+            },
+            {
+              "key": "sample.mass.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 515,
+                  "unit": "kg"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Maximum total load of chamber interior (3 shelves and chamber bottom) 515 kg; 50 kg per shelf.",
+              "value_as_printed": "515",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table (footnote 4)",
+              "quote": "Max. load - total kg 515"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete data sheet (dimensions, performance, control, refrigeration, construction, alarms, electrical, options) describes a compressor-cooled cabinet with no magnet.",
+              "value_as_printed": "no magnet in data sheet",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Construction",
+              "quote": "Exterior material Painted Steel Interior material Painted Steel Outer door qty 1 Outer door lock Y Inner doors qty 2 pieces Shelves qty 3 (stainless steel)"
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Air-filled cabinet at atmospheric pressure; the vacuum release ports equalise the pressure drop after door opening, there is no evacuated sample space.",
+              "value_as_printed": "Vacuum release port 2 (1 automatic, 1 manual)",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Construction",
+              "quote": "Vacuum release port 2 (1 automatic, 1 manual)"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No evacuated sample space (air cabinet with vacuum-release ports).",
+              "value_as_printed": "Vacuum release port",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table",
+              "quote": "Vacuum release port 2 (1 automatic, 1 manual)"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Painted-steel outer door and two inner doors; the data sheet lists no window onto the storage space.",
+              "value_as_printed": "Painted Steel; Outer door qty 1; Inner doors qty 2",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Construction",
+              "quote": "Exterior material Painted Steel Interior material Painted Steel Outer door qty 1 Outer door lock Y Inner doors qty 2 pieces Shelves qty 3 (stainless steel)"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Only three 17 mm access ports (rear x1, bottom x2) for probes/cables are provided; no sample wiring or feedthroughs are part of the cabinet.",
+              "value_as_printed": "Access port qty 3, diameter 17 mm",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Construction",
+              "quote": "Access port qty 3 Access port position 3 locations [rear x 1, bottom x 2] Access port diameter Ø mm 17"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cascade mechanical refrigeration with hydrocarbon refrigerant; no liquid cryogen needed (the liquid-CO2 back-up kit MDF-UB7-PW is an option not fitted).",
+              "value_as_printed": "Cascade; HC",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Refrigeration",
+              "quote": "Refrigeration system Cascade Compressors W 2 x 750 Refrigerant HC"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen in the standard configuration (mechanical cascade refrigeration).",
+              "value_as_printed": "Cascade; HC",
+              "source_url": "https://www.phchd.com/global/-/media/biomedical/global/catalogues/MDF-ULT/MDF_DU702VH_DataSheet_E_0414.pdf",
+              "document_title": "Ultra-low Temperature Freezer MDF-DU702VH VIP ECO - Data Sheet (PHC Corporation)",
+              "location": "p. 1, specification table, Refrigeration",
+              "quote": "Refrigeration system Cascade Compressors W 2 x 750 Refrigerant HC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "martin_christ_epsilon_2_4_lscplus",
+      "manufacturer": "Martin Christ Gefriertrocknungsanlagen",
+      "model": "Epsilon 2-4 LSCplus",
+      "family": "freeze dryer (lyophilizer)",
+      "description": "Single-chamber pilot freeze dryer with directly refrigerated shelf (approx. -75 to +60 C, precision <+/-2 K, >2 K/min), integrated 4 kg ice condenser at approx. -88 C (3 kg/24 h), 41 l chamber, 270 x 400 mm shelf, final vacuum about 0.005 mbar (pump dependent), acrylic door, vial stoppering and PAT options.",
+      "documents": [
+        {
+          "title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+          "url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "martin_christ_epsilon_2_4_lscplus_standard",
+          "name": "Epsilon 2-4 LSCplus base machine, standard single-shelf configuration, with vacuum pump",
+          "configuration_basis": "Base machine with standard shelf configuration (1 shelf, 140 mm spacing) at ambient +10 to +25 C as stated on p. 20 of the brochure, operated with a vacuum pump; PAT options (LyoCam, WTMplus, LyoBalance), hot-gas defrost and LN2 booster not fitted. Values are manufacturer specifications marked 'approx.' where printed so.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 198150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 333150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Shelf (product) temperature range approx. -75 to +60 C for the Epsilon 2-4 LSCplus (second column; Epsilon 1-4: -45 to +60 C).",
+              "value_as_printed": "-75 °C to +60 °C (approx.)",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table, Shelf area system, Epsilon 2-4 LSCplus column",
+              "quote": "Shelf area system: • Dimensions (W x D) 270 mm x 400 mm 270 mm x 400 mm • Temperature range (approx.) -45 °C to +60 °C -75 °C to +60 °C"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 198150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest shelf temperature approx. -75 C.",
+              "value_as_printed": "-75 °C",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table",
+              "quote": "Shelf area system: • Dimensions (W x D) 270 mm x 400 mm 270 mm x 400 mm • Temperature range (approx.) -45 °C to +60 °C -75 °C to +60 °C"
+            },
+            {
+              "key": "temperature.condenser.min",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 185150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Ice-condenser temperature approx. -88 C (Epsilon 2-4 LSCplus column).",
+              "value_as_printed": "-88 °C (approx.)",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table, Ice condenser",
+              "quote": "Ice condenser • Max. Capacity 4 kg 4 kg • Performance 3 kg/24 h 3 kg/24 h • Temperature (approx.) -55 °C -88 °C • Chamber volume (approx.) 41 l 41 l"
+            },
+            {
+              "key": "condenser.ice_capacity",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 4,
+                  "unit": "kg"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Ice-condenser max. capacity 4 kg (performance 3 kg/24 h).",
+              "value_as_printed": "4 kg",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table, Ice condenser",
+              "quote": "Ice condenser • Max. Capacity 4 kg 4 kg • Performance 3 kg/24 h 3 kg/24 h • Temperature (approx.) -55 °C -88 °C • Chamber volume (approx.) 41 l 41 l"
+            },
+            {
+              "key": "chamber.volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 41,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Chamber volume approx. 41 l (single-chamber system).",
+              "value_as_printed": "41 l (approx.)",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table, Ice condenser",
+              "quote": "Ice condenser • Max. Capacity 4 kg 4 kg • Performance 3 kg/24 h 3 kg/24 h • Temperature (approx.) -55 °C -88 °C • Chamber volume (approx.) 41 l 41 l"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": "0.005",
+                  "unit": "mbar"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Final vacuum of Christ freeze dryers about 0.005 mbar, depending on the vacuum pump fitted.",
+              "value_as_printed": "about 0.005 mbar",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 6, Advanced system technology",
+              "quote": "The final vacuum is about 0.005 mbar (depending on the performance of the vacuum pump)."
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Product chamber is evacuated for primary and secondary drying (final vacuum about 0.005 mbar).",
+              "value_as_printed": "final vacuum",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 6, Advanced system technology",
+              "quote": "The final vacuum is about 0.005 mbar (depending on the performance of the vacuum pump)."
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 270,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Shelf area 270 x 400 mm (W x D); the smaller dimension (270 mm) is recorded.",
+              "value_as_printed": "270 mm x 400 mm x 20 mm",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 20, Capacities and shelf dimensions, Epsilon 1-4 LSCplus & Epsilon 2-4 LSCplus",
+              "quote": "Shelf area dimensions (W x D x H): 270 mm x 400 mm x 20 mm"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 140,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "With the standard single shelf the clear spacing above the shelf is 140 mm (430 x 2 ml vials).",
+              "value_as_printed": "Spacing (mm) 140",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 20, Capacities and shelf dimensions, Epsilon 1-4/2-4 table, row '1' shelf",
+              "quote": "Number of shelves Area (m²) Spacing (mm) Max. number of vials a ... 1 0,108 140 430 225 180 120 50 30"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The complete technical data table (ice condenser, shelf system, chiller, dimensions, electrical, defrost, stoppering, process control, PAT tools, software) contains no magnet.",
+              "value_as_printed": "no magnet in technical data",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 18, Technical data table",
+              "quote": "PAT tools: • LyoControl (determining freezing point, product resistance) • Product temperature measurement • WTMplus wireless temperature measurement • Capacitive pressure measurement • Comparative pressure measurement • LyoBalance Scale system • LyoCam camera system"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Pilot units have a transparent acrylic chamber door allowing full-surface product observation (optional film coatings keep it transparent).",
+              "value_as_printed": "product observation through the acrylic door",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 9, Customised solutions",
+              "quote": "Both films enable continued full-surface product observation through the acrylic door."
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The only electrical items reaching the product are product-temperature sensors (PT100 / WTMplus wireless) and PAT sensors; no power or measurement feedthroughs for a device under test are listed (a temperature probe is not sample wiring).",
+              "value_as_printed": "PT100 sensor to measure the product temperature",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "PDF p. 12 (printed page 13), Product temperature",
+              "quote": "Each shelf area can be equipped with WTMPlus and/or a PT100 sensor to measure the product temperature."
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Shelves and ice condenser are refrigerated by a 2 x 0.51 kW cascade chiller; no liquid cryogen in the standard machine (an LN2 booster is a customisation option, not fitted).",
+              "value_as_printed": "A refrigerant cools the large shelf area directly",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 4, Optimal equipment for R&D",
+              "quote": "The single-chamber system has a 4 kg ice condenser integrated in the product chamber. A refrigerant cools the large shelf area directly."
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen in the standard configuration.",
+              "value_as_printed": "refrigerant",
+              "source_url": "https://www.pragolab.cz/files/udalosti/2021-06/Christ_Brosch_Pilot_Freeze_Dryers_EN_10-2017_Web.pdf",
+              "document_title": "Pilot Freeze Dryers - Epsilon series brochure (Martin Christ Gefriertrocknungsanlagen GmbH, EN 10/2017)",
+              "location": "p. 4, Optimal equipment for R&D",
+              "quote": "The single-chamber system has a 4 kg ice condenser integrated in the product chamber. A refrigerant cools the large shelf area directly."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thermo_fisher_cryostar_nx70",
+      "manufacturer": "Thermo Fisher Scientific (now Epredia)",
+      "model": "CryoStar NX70",
+      "family": "cryostat microtome",
+      "description": "Rotary cryostat microtome for frozen sections: specimen head -50 to +10 C and blade holder -35 to -5 C (at +20 C room), cryobar to -60 C, fine sections 0.5-100 um, trimming 5-500 um, 30/40 mm chucks, 64 mm vertical stroke, heated sliding cryochamber window, R404a refrigeration.",
+      "documents": [
+        {
+          "title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+          "url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "thermo_fisher_cryostar_nx70_standard",
+          "name": "CryoStar NX70 with specimen and blade cooling (no Cold D, no Vacutome)",
+          "configuration_basis": "Standard NX70 per Operator Guide 387928 Issue 10 with knife/blade-holder and specimen cooling; optional Cold D disinfection and Vacutome not considered. Temperatures are specified at +20 C room temperature. Values are manufacturer specifications.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 223150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 283150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Specimen (head) temperature control -50 to +10 C at +20 C room temperature; the low end rises 0.7 C per 1 C of room-temperature increase.",
+              "value_as_printed": "-50°C to +10°C at +20°C room Temp.",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Cooling Specifications",
+              "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)"
+            },
+            {
+              "key": "temperature.specimen_head.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 223150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 283150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Specimen temperature control -50 to +10 C at +20 C room temperature.",
+              "value_as_printed": "-50°C to +10°C",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Cooling Specifications",
+              "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 223150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest specimen temperature -50 C (at +20 C room).",
+              "value_as_printed": "-50°C",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Cooling Specifications",
+              "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)"
+            },
+            {
+              "key": "temperature.quick_freeze_shelf.min",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 213150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cryobar (quick-freeze bar) cools to max. -60 C at -35 C blade temperature.",
+              "value_as_printed": "Max. -60°C",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Cooling Specifications",
+              "quote": "Cryobar Cooling Max. -60°C (-76°F) at -35°C blade temperature"
+            },
+            {
+              "key": "section_thickness.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": "0.5",
+                  "unit": "um"
+                },
+                "hi": {
+                  "value": 100,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Fine section thickness range 0.5-100 um (overall section/trim range 0.5-500 um).",
+              "value_as_printed": "0.5 - 100 µm",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Microtome and Sectioning Specifications",
+              "quote": "Fine Section Thickness Range 0.5 - 100 µm"
+            },
+            {
+              "key": "trimming_thickness.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 5,
+                  "unit": "um"
+                },
+                "hi": {
+                  "value": 500,
+                  "unit": "um"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Trimming thickness range 5-500 um.",
+              "value_as_printed": "5 - 500 µm",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Microtome and Sectioning Specifications",
+              "quote": "Trimming Thickness Range 5 - 500 µm"
+            },
+            {
+              "key": "specimen.stroke",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 64,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Vertical specimen stroke 64 mm.",
+              "value_as_printed": "64 mm",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Microtome and Sectioning Specifications",
+              "quote": "Vertical Specimen Stroke 64 mm"
+            },
+            {
+              "key": "specimen.orientation.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 7,
+                  "unit": "deg"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Specimen orientation x/y universal 7 deg (z up to 360 deg).",
+              "value_as_printed": "7°",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Microtome and Sectioning Specifications",
+              "quote": "Specimen Orientation x - and y - axes universal 7° with zero positioning; z - axis up to 360°"
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 40,
+                  "unit": "mm"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Standard specimen chucks are 30 and 40 mm; the larger standard chuck (40 mm) is recorded (special sizes on request not included).",
+              "value_as_printed": "30, 40 mm",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 15, Microtome and Sectioning Specifications",
+              "quote": "Chuck Size 30, 40 mm (additional special sizes are available)"
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "The operator guide gives chuck diameters, the 64 mm vertical stroke and 48 mm horizontal specimen movement, but no maximum specimen height on the chuck.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The instrument features and complete technical specifications (mechanical, electrical, environmental, cooling, microtome) describe a refrigerated rotary cryostat with no magnet acting on the specimen (only a hand-held magnetic blade-removal tool).",
+              "value_as_printed": "no magnet in specifications",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 13, Instrument Features; pp. 14-16 Technical Specifications",
+              "quote": "Knife / Blade Holder cooling. Specimen cooling. Ergonomic height adjustment with integrated ergonomic casing. Colour touch-screen user interface and joystick control. Motorized cutting with variable speed control (from 0 to 256 mm/s)."
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Open cryochamber at room pressure closed only by a heated sliding window; the optional Vacutome is suction for section stretching/cleaning, not an evacuated sample space.",
+              "value_as_printed": "heated sliding window",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 25, Preparation for sectioning",
+              "quote": "The heated sliding window should be closed during periods of inactivity and while preparing specimens to avoid warm air getting into the chamber."
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No evacuated sample space (open cryochamber with sliding window).",
+              "value_as_printed": "heated sliding window",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 25",
+              "quote": "The heated sliding window should be closed during periods of inactivity and while preparing specimens to avoid warm air getting into the chamber."
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The cryochamber has a (heated, sliding) cryochamber window.",
+              "value_as_printed": "Cryochamber Window",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 21, Identification of Parts",
+              "quote": "1 Cryochamber 6 Connections Panel 2 Cryochamber Window 7 Handwheel"
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Features and technical specifications list no electrical connection to the specimen (sectioning instrument with cooled specimen head and blade holder).",
+              "value_as_printed": "no sample wiring in specifications",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 13, Instrument Features; pp. 14-16",
+              "quote": "Knife / Blade Holder cooling. Specimen cooling. Ergonomic height adjustment with integrated ergonomic casing. Colour touch-screen user interface and joystick control. Motorized cutting with variable speed control (from 0 to 256 mm/s)."
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Compressor refrigeration with R404a (400 g); no liquid cryogen.",
+              "value_as_printed": "R404a, filling amount 400g",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 14, Environmental Specifications (Refrigerant)",
+              "quote": "Refrigerant R404a, filling amount 400g"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": []
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No liquid cryogen (mechanical refrigeration).",
+              "value_as_printed": "R404a",
+              "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+              "document_title": "Thermo Scientific CryoStar NX70 Operator Guide, 387928 Issue 10 (Thermo Fisher Scientific, 2016)",
+              "location": "p. 14, Environmental Specifications (Refrigerant)",
+              "quote": "Refrigerant R404a, filling amount 400g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leica_em_afs2",
+      "manufacturer": "Leica Microsystems",
+      "model": "EM AFS2 Automatic Freeze Substitution System",
+      "family": "automated freeze-substitution unit",
+      "description": "LN2-cooled freeze-substitution and progressive-lowering-of-temperature unit: working range -140 to +70 C, programmable warming, 35 l LN2 Dewar filled from outside the chamber (5-day protocols), dry-GN2 transfer function, LED chamber illumination and attached stereomicroscope, optional EM FSP reagent processor with LED UV polymerisation.",
+      "documents": [
+        {
+          "title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+          "url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf"
+        },
+        {
+          "title": "EM AFS2 product family page (Leica Microsystems / Danaher Life Sciences)",
+          "url": "https://lifesciences.danaher.com/us/en/products/family/em-afs2.html"
+        }
+      ],
+      "configurations": [
+        {
+          "id": "leica_em_afs2_standard",
+          "name": "EM AFS2 with stereomicroscope (without EM FSP processor)",
+          "configuration_basis": "EM AFS2 base unit as described in the 04.2024 brochure (35 l Dewar, stereomicroscope, LED illumination); the EM FSP reagent processor is not included. Values are manufacturer specifications; no complete technical data sheet is publicly available.",
+          "capabilities": [
+            {
+              "key": "temperature.range",
+              "value": {
+                "kind": "range",
+                "lo": {
+                  "value": 133150,
+                  "unit": "mK"
+                },
+                "hi": {
+                  "value": 343150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Specimen-chamber working temperature range -140 to +70 C (freeze substitution, PLT, low-temperature embedding).",
+              "value_as_printed": "–140 °C to +70 °C",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 4, 'Discover EM AFS2 and EM FSP unique features'",
+              "quote": "Working temperature range from –140 °C to +70 °C"
+            },
+            {
+              "key": "temperature.base",
+              "value": {
+                "kind": "min",
+                "q": {
+                  "value": 133150,
+                  "unit": "mK"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Lowest working temperature -140 C (a 'deep freeze' transfer mode below -140 C is mentioned without a number).",
+              "value_as_printed": "–140 °C",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 4",
+              "quote": "Working temperature range from –140 °C to +70 °C"
+            },
+            {
+              "key": "cryogen.dewar_volume",
+              "value": {
+                "kind": "max",
+                "q": {
+                  "value": 35,
+                  "unit": "L"
+                }
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "35 l LN2 Dewar, filled from outside the specimen chamber; enough for 5-day protocols.",
+              "value_as_printed": "35l Dewar",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 4",
+              "quote": "35l Dewar, LN2 filling from outside the specimen chamber, LN2 consumption enough for 5 day protocols"
+            },
+            {
+              "key": "cryogen.cryogen_free",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Cooled by liquid nitrogen from the 35 l Dewar.",
+              "value_as_printed": "35l Dewar, LN2",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 4",
+              "quote": "35l Dewar, LN2 filling from outside the specimen chamber, LN2 consumption enough for 5 day protocols"
+            },
+            {
+              "key": "cryogen.type",
+              "value": {
+                "kind": "set",
+                "xs": [
+                  "liquid_nitrogen"
+                ]
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Liquid nitrogen is the cryogen.",
+              "value_as_printed": "LN2",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 4",
+              "quote": "35l Dewar, LN2 filling from outside the specimen chamber, LN2 consumption enough for 5 day protocols"
+            },
+            {
+              "key": "optical_access",
+              "value": {
+                "kind": "flag",
+                "b": true
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "Samples are viewed and positioned through an attached stereomicroscope with LED illumination inside the chamber.",
+              "value_as_printed": "attached stereomicroscope for viewing",
+              "source_url": "https://downloads.leica-microsystems.com/EM%20AFS2/Brochure%20or%20Flyer/EM_AFS2_Brochure_EN.pdf",
+              "document_title": "EM AFS2 Automatic Freeze Substitution System brochure (Leica Microsystems, MC-0007018, 04.2024)",
+              "location": "p. 2",
+              "quote": "The LED illumination from within the chamber and the attached stereomicroscope for viewing and positioning of samples ensures ease of use."
+            },
+            {
+              "key": "vacuum.available",
+              "value": {
+                "kind": "flag",
+                "b": false
+              },
+              "install": "installed",
+              "evidence_status": "manufacturer_specification",
+              "claim": "The specimen chamber is kept dry by a flow of cold nitrogen gas (transfer function excluding humidity and oxygen), i.e. a gas-filled chamber, not an evacuated one.",
+              "value_as_printed": "transfer function of gaseous LN2",
+              "source_url": "https://lifesciences.danaher.com/us/en/products/family/em-afs2.html",
+              "document_title": "EM AFS2 product family page (Leica Microsystems / Danaher Life Sciences)",
+              "location": "Product description, feature list",
+              "quote": "Adjustable transfer function of gaseous LN2 allows the chamber and specimens to remain dry"
+            },
+            {
+              "key": "pressure.base",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "not_available",
+              "evidence_status": "manufacturer_specification",
+              "claim": "No vacuum: the chamber atmosphere is dry nitrogen gas.",
+              "value_as_printed": "gaseous LN2",
+              "source_url": "https://lifesciences.danaher.com/us/en/products/family/em-afs2.html",
+              "document_title": "EM AFS2 product family page (Leica Microsystems / Danaher Life Sciences)",
+              "location": "Product description, feature list",
+              "quote": "Adjustable transfer function of gaseous LN2 allows the chamber and specimens to remain dry"
+            },
+            {
+              "key": "magnetic_field.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "Only the marketing brochure and product page are available; they list features but are not a complete specification, so a magnet absence is not documented.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "electrical.sample_connections",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "Brochure and product page do not state whether any electrical connection to the specimen exists.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "sample.diameter.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "Specimen containers (substitution capsules, flat-embedding and microtube systems) are named without dimensions.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            },
+            {
+              "key": "sample.height.max",
+              "value": {
+                "kind": "unknown"
+              },
+              "install": "unknown",
+              "evidence_status": "unknown",
+              "claim": "No specimen-chamber or container height is documented.",
+              "value_as_printed": "",
+              "source_url": "",
+              "document_title": "",
+              "location": "",
+              "quote": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "not_found": [
+    {
+      "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+      "key": "optical_access",
+      "searched": "Vitrobot Mk IV User Manual PN 103261 Rev G (full text: sections 1.3, 2, 3), Vitrobot Mark IV datasheet DS0032-EN-01-2023, web search for Vitrobot specifications"
+    },
+    {
+      "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+      "key": "sample.diameter.max",
+      "searched": "Vitrobot Mk IV User Manual PN 103261 Rev G (full text: sections 1.3, 2, 3), Vitrobot Mark IV datasheet DS0032-EN-01-2023, web search for Vitrobot specifications"
+    },
+    {
+      "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+      "key": "sample.height.max",
+      "searched": "Vitrobot Mk IV User Manual PN 103261 Rev G (full text: sections 1.3, 2, 3), Vitrobot Mark IV datasheet DS0032-EN-01-2023, web search for Vitrobot specifications"
+    },
+    {
+      "configuration_id": "leica_em_gp2_standard",
+      "key": "sample.diameter.max",
+      "searched": "Leica EM GP2 Operating Manual V11/2017 (full text incl. ch. 2 and ch. 9 Technical Data), Leica EM GP2 specification page, web search"
+    },
+    {
+      "configuration_id": "leica_em_gp2_standard",
+      "key": "sample.height.max",
+      "searched": "Leica EM GP2 Operating Manual V11/2017 (full text incl. ch. 2 and ch. 9 Technical Data), Leica EM GP2 specification page, web search"
+    },
+    {
+      "configuration_id": "oxford_cryosystems_cryostream_800_standard",
+      "key": "sample.height.max",
+      "searched": "800 Series Cryostream Operating & Instruction Guide (sections 4, 5, 6.4, 6.10, 6.11), oxcryo.com product information via web search"
+    },
+    {
+      "configuration_id": "thermo_fisher_cryostar_nx70_standard",
+      "key": "sample.height.max",
+      "searched": "CryoStar NX70 Operator Guide 387928 Issue 10 (Technical Specifications pp. 14-16, specimen handling chapters), web search for NX70 brochure"
+    },
+    {
+      "configuration_id": "leica_em_afs2_standard",
+      "key": "magnetic_field.max",
+      "searched": "Leica EM AFS2 brochure (MC-0007018 04.2024), Leica AFS2 downloads page (no user manual published), Danaher EM AFS2 page, Leica specification page (empty), web search for EM AFS2 operating manual/technical data (cfim.ku.dk and jhtechnologies copies unreachable)"
+    },
+    {
+      "configuration_id": "leica_em_afs2_standard",
+      "key": "electrical.sample_connections",
+      "searched": "Leica EM AFS2 brochure (MC-0007018 04.2024), Leica AFS2 downloads page (no user manual published), Danaher EM AFS2 page, Leica specification page (empty), web search for EM AFS2 operating manual/technical data (cfim.ku.dk and jhtechnologies copies unreachable)"
+    },
+    {
+      "configuration_id": "leica_em_afs2_standard",
+      "key": "sample.diameter.max",
+      "searched": "Leica EM AFS2 brochure (MC-0007018 04.2024), Leica AFS2 downloads page (no user manual published), Danaher EM AFS2 page, Leica specification page (empty), web search for EM AFS2 operating manual/technical data (cfim.ku.dk and jhtechnologies copies unreachable)"
+    },
+    {
+      "configuration_id": "leica_em_afs2_standard",
+      "key": "sample.height.max",
+      "searched": "Leica EM AFS2 brochure (MC-0007018 04.2024), Leica AFS2 downloads page (no user manual published), Danaher EM AFS2 page, Leica specification page (empty), web search for EM AFS2 operating manual/technical data (cfim.ku.dk and jhtechnologies copies unreachable)"
+    }
+  ],
+  "notes": "Biology and biotechnology machines: 8 configurations from 7 manufacturers (Thermo Fisher Scientific x2, Leica Microsystems x2, Oxford Cryosystems, Chart/MVE, PHC, Martin Christ). None duplicates the existing catalog (Leica CM1950, Planer Kryo 560, Retsch CryoMill, Labconco FreeZone 6, Kitazato Cryotop). Temperatures converted exactly from Celsius ((C+273.15)x1000 mK). Absences (install not_available) are only used where a complete technical specification or component list is available (manual technical-data chapters, data sheets); for the Leica EM AFS2 only a brochure exists, so magnet and sample wiring stay unknown. Humidity lower bounds for the plunge freezers are the manufacturers' maximum room humidity (85 % Vitrobot, 55 % EM GP2), because the control range starts at room humidity. Vapour-LN2 storage temperature recorded as the stated -190 C top-box value (lo = hi). Christ final vacuum (about 0.005 mbar) depends on the pump. Not covered because no reachable full specification was found: Leica EM ICE high-pressure freezer (brochure/spec page give no pressure, temperature or carrier data), Leica EM FC7 cryo-ultramicrotome (manual >10 MB, brochure technical pages not retrievable), SPEX Freezer/Mill (electromagnetic coil field at the vial is unspecified), Thermo CryoMed controlled-rate freezer (manual not retrievable). Tavily was unavailable (plan limit); sources were read with WebFetch and pdftotext. accessed 2026-11-01."
+}

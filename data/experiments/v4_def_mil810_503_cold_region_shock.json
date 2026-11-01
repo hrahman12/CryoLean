@@ -1,0 +1,95 @@
+{
+ "id": "def_mil810_503_cold_region_shock",
+ "name": "MIL-STD-810H Method 503.7 Procedure I-D temperature shock between a -46 C cold-region exterior and an 18-24 C heated enclosure, transfer within one minute",
+ "plain_name": "Carry a military device between arctic outdoors and a heated shelter to check sudden temperature change does not crack it",
+ "industry": "defense_and_security",
+ "description": "Ground-transfer temperature shock per MIL-STD-810H Method 503.7 (Procedure I-D, shocks to and from controlled ambient): the item is stabilized at the cold-region exterior extreme, selected from Method 502.7 Table 502.7-I Cold (C2) = -46 C, and transferred in no more than one minute to the cold-regions enclosure condition of 18-24 C at 30-50 % RH (and back), stabilizing after each transfer. The method calls for two chambers or a two-celled chamber that re-stabilizes within five minutes after transfer.",
+ "keywords": [
+  "Carry a military device between arctic outdoors and a heated shelter to check sudden temperature change does not crack it",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "MIL-STD-810H Method 503.7 Temperature Shock (Department of Defense Test Method Standard, 31 January 2019)",
+   "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-503.7-Temperature-Shock.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "MIL-STD-810H Method 502.7 Low Temperature (Department of Defense Test Method Standard, 31 January 2019)",
+   "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 227150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 297150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The (two-zone) machine must provide both the -46 C cold extreme and the 24 C upper end of the heated-enclosure condition (227.15-297.15 K).",
+   "evidence_ids": [
+    "v4e_def_mil810_503_cold_region_shock_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 227150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold side must reach the Method 502.7 Cold (C2) ambient extreme of -46 C (227.15 K), which Method 503.7 says to select from the 502.7 tables for cold-region ground transfer.",
+   "evidence_ids": [
+    "v4e_def_mil810_503_cold_region_shock_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 30,
+     "unit": "percent"
+    },
+    "hi": {
+     "value": 50,
+     "unit": "percent"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The heated-enclosure condition carries 30-50 % RH; humidity control is optional for the shock itself.",
+   "evidence_ids": [
+    "v4e_def_mil810_503_cold_region_shock_2"
+   ],
+   "conditions": [],
+   "key": "humidity.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,18 @@
+{
+ "name": "fig_verdict_flow",
+ "title": "How check outcomes become verdicts",
+ "question": "How do the per-check outcomes produced by the Lean checker combine into the three verdicts over the real catalogue, and does every verdict follow the stated combination rule?",
+ "model": "Combination rule of `verdict` in lean/CryoLean/Checker.lean: unconfirmed -> NEED_MORE_INFORMATION; any mandatory applicable fail -> DOES_NOT_MEET; all pass or not-applicable with at least one pass -> MET; otherwise NEED_MORE_INFORMATION. Outcomes are those of relevantReqs and relevantCoupled.",
+ "data": "Two Lean check_batch runs over all 286 experiment x configuration pairs (11 experiments x 26 configurations), confirmed and unconfirmed; 1118 mandatory applicable checks. Script paper/scripts/fig_formal.py; data paper/data/fig_verdict_flow.json; verdicts agree with paper/data/e1_grid.json for 286/286 pairs.",
+ "claim": "COMPUTED+PROVEN",
+ "caption": "(a) Every mandatory, applicable check outcome produced by the Lean checker over the 286-pair grid, routed to the verdict of its pair (band width = number of checks). (b) The same pairs grouped by the branch of the `verdict` definition they reach, plus the same pairs with unconfirmed profiles. All 572 Lean verdicts match the branch, and confirmed verdicts are 20 MET, 157 NEED INFO and 109 NOT MET; 240 of the checks inside NOT MET pairs are themselves unknown, because one trusted failure suffices to reject. Verdicts and outcomes are computed by Lean; the rule is the definition proven correct by verdict_accept_iff and verdict_reject_sound/complete.",
+ "section": "main",
+ "script": "paper/scripts/fig_formal.py",
+ "command": "python paper/scripts/fig_formal.py",
+ "files": [
+  "paper/figures/fig_verdict_flow.png",
+  "paper/figures/fig_verdict_flow.svg",
+  "paper/figures/fig_verdict_flow.pdf"
+ ],
+ "interactive": null
+}

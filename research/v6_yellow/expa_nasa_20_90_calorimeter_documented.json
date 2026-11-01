@@ -1,0 +1,46 @@
+{
+  "configuration_id": "expa_nasa_20_90_calorimeter_documented",
+  "rows": [
+    {
+      "key": "module.aerodynamic_force_pressure_test",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.nasa.gov/centers-and-facilities/glenn/creek-road-cryogenics-complex/",
+      "document_title": "NASA Creek Road Cryogenics Complex",
+      "location": "Section '20K to 90K Calorimeter Test Bed'",
+      "quote": "The 20K to 90K Calorimeter Test Bed is used to evaluate the performance of different insulation materials. The facility consists of a vacuum vessel 72 inches high by 36 inches in diameter.",
+      "reasoning": "NASA's own facility description defines the test bed as a 72 in x 36 in vacuum vessel used to evaluate insulation materials with guarded warm/cold boundaries and a calibrated conduction rod. It is a heat-leak calorimeter, not a wind tunnel; there is no flow, model support or force balance, so an aerodynamic force/pressure test function does not exist on this machine. The Chato et al. presentation (NTRS 20170003927, p.3) agrees: 'Calorimeter was constructed to measure the performance of MLI using cryocoolers rather than cryogens.'"
+    },
+    {
+      "key": "module.liquid_hydrogen_handling",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://ntrs.nasa.gov/api/citations/20170003927/downloads/20170003927.pdf",
+      "document_title": "Chato, Johnson, Van Dresar, Design and Operation of a Calorimeter for Advanced Multilayer Insulation Testing (AIAA JPC 2016, NTRS 20170003927)",
+      "location": "Slide 3, 'Basic Design of Calorimeter'",
+      "quote": "Calorimeter was constructed to measure the performance of MLI using cryocoolers rather than cryogens. Key advantages include: Not needing to use and top-off with cryogens, Less safety restrictions on unattended operation and location of test rig since volatile cryogens are not present",
+      "reasoning": "The designers state the 20 K boundary is produced by mechanical cryocoolers and that volatile cryogens are not present in the rig; the 20 K value only 'represents' LH2's boiling point (slide 2). The NASA Creek Road page likewise assigns LH2 handling to a different test cell (SMiRF: 'safely handle gaseous and cryogenic propellant ... with LH2 as the test fluid') while the Calorimeter Test Bed uses 'cryocoolers ... to achieve controllable boundary temperatures'. Liquid hydrogen handling is therefore positively absent on this machine."
+    },
+    {
+      "key": "module.propellant_acquisition_transfer",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.nasa.gov/centers-and-facilities/glenn/creek-road-cryogenics-complex/",
+      "document_title": "NASA Creek Road Cryogenics Complex",
+      "location": "Section '20K to 90K Calorimeter Test Bed'",
+      "quote": "Warm and cold guards are used to set the boundary conditions being tested, and cryocoolers are used to achieve controllable boundary temperatures. In addition, the facility makes use of scroll and turbo pumps to maintain a steady vacuum level of 1 x 10-7 torr.",
+      "reasoning": "The facility description lists the test bed's complete hardware (vacuum vessel, warm/cold guards, cryocoolers, scroll/turbo pumps, calibrated conduction rods) for insulation heat-leak measurement. Propellant tank, liquid acquisition device and transfer line functions belong to the separate SMiRF / CCL-7 cells at the same complex. Combined with the Chato et al. statement that no cryogens are present in the rig, no propellant acquisition/transfer can be performed on this machine."
+    },
+    {
+      "key": "temperature.range",
+      "result": "still_unknown",
+      "reasoning": "Searched the record's two documents (NTRS 20170003927 landing page and full PDF; NASA Creek Road Cryogenics Complex page). They document only boundary set points, not a uniform sample/operating temperature range: design cold boundary 20 K and warm boundary 90 K (slides 2-3), with tests at cold 19.9-20.4 K and warm 87.1-107.8 K (slide 12). These are already in the record as temperature.cold_boundary.range and temperature.warm_boundary.range, and the record deliberately does not collapse them into a specimen range because the MLI specimen sits in a gradient between them. No source states an operating range for the apparatus as a whole (e.g. whether the warm boundary can reach 117-302 K). Note: both pairings needing this key (expa_crm_aerodynamics, expa_hydrogen_lad_transfer) also require modules documented absent above, so they are decided without this value."
+    }
+  ]
+}

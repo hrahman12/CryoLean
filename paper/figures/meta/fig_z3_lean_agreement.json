@@ -1,0 +1,18 @@
+{
+ "name": "fig_z3_lean_agreement",
+ "title": "Z3 feasibility classification vs Lean verdicts on the Demo B heat-budget grid",
+ "question": "Does the untrusted Z3 encoding of the coupled heat-budget relation classify (n_flux, n_drive) designs the same way as the Lean checker, including the three-valued outcome?",
+ "model": "mxc_wiring_heat_budget: margin*(n_drive*q_drive + n_flux*(q_flux+p_flux_dc) + n_out*q_out) <= P_cool(20 mK); margin 3, q_drive 13 nW, q_flux 29 nW, p_flux_dc 50 nW, n_out 8, q_out 20 nW (Krinner et al. 2019, data/experiments/quantum_mxc_wiring_heat_budget.json).",
+ "data": "Real documents from verifier.build_documents for quantum_mxc_wiring_heat_budget on bluefors_ld250_manual_v2, bluefors_ld400_hdw, bluefors_ld450_current; n_drive_lines in 0..160 step 2 and n_flux_lines in 0..64 edited in exp_doc (origin user_entered); 15795 pairs. Lean: lean_runner.check_batch (65.2 s total). Z3: smt.evaluate(allow_options=False) (295.2 s total). Data: paper/data/fig_z3_lean_agreement.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Z3 status (top) and Lean verdict (bottom) for every wiring design on three Bluefors refrigerators; each cell is one real experiment document with the drive- and flux-line counts edited. Z3 and Lean agree on 15795/15795 points (Z3 conflict / Lean NOT MET: 10655; Z3 pending_information / Lean NEED INFO: 2228; Z3 satisfiable / Lean MET: 2912); the coupled relation alone agrees on 15795/15795. Where the heat relation holds, the LD250 is NEED INFO because its coax-line count is UNKNOWN in the sourced record, and the LD450 is NOT MET everywhere because its documented coax wiring is an optional accessory that is not installed (the relation alone passes on 3595 of its points). The dashed line is the analytic boundary of the model equation, overlaid for reference only; per-line loads and cooling powers are sourced, the classifications are computed.",
+ "section": "main",
+ "script": "paper/scripts/fig_z3_search.py",
+ "command": "python paper/scripts/fig_z3_search.py",
+ "files": [
+  "paper/figures/fig_z3_lean_agreement.png",
+  "paper/figures/fig_z3_lean_agreement.svg",
+  "paper/figures/fig_z3_lean_agreement.pdf"
+ ],
+ "interactive": null
+}

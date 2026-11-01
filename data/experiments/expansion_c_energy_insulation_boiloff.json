@@ -1,0 +1,84 @@
+{
+  "id": "expc_energy_insulation_boiloff",
+  "name": "Steady-state insulation heat-leak measurement at 78 K / 293 K (NASA Cryostat-100 procedure)",
+  "plain_name": "Measure heat leaking through cryogenic tank insulation",
+  "industry": "energy_and_hydrogen",
+  "description": "Measure heat leaking through cryogenic tank insulation. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "cryogenic_insulation_test",
+    "energy_and_hydrogen"
+  ],
+  "sources": [
+    {
+      "id": "src_nasa_insulation",
+      "citation": "Cryogenics Test Laboratory at NASA Kennedy Space Center: Thermal Insulation Systems Testing (21 April 2015)",
+      "url": "https://ntrs.nasa.gov/api/citations/20150011030/downloads/20150011030.pdf?attachment=true",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "thermal_boundaries",
+      "as_printed": "78 K cold / 293 K warm",
+      "normalized": null,
+      "evidence_id": "expc_nasa_boundaries"
+    }
+  ],
+  "reported_equipment": [
+    "Cryostat-100"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "78000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate NASA's standard cold boundary. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_nasa_boundaries"
+      ]
+    },
+    {
+      "key": "temperature.warm_boundary.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "293000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Independently control the warm boundary; a cold cryostat alone is insufficient. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_nasa_boundaries"
+      ]
+    },
+    {
+      "key": "module.boiloff_calorimetry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The calorimetric boiloff measurement train is essential, rather than temperature capability alone. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_nasa_boiloff"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Insulation thickness, residual gas pressure, steady-state criteria and boiloff calibration must be chosen for the specimen; this profile does not predict conductivity or certify a tank."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

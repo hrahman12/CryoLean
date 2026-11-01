@@ -1,0 +1,87 @@
+{
+  "id": "expansion_b_health_breast_cell_freeze_thaw",
+  "name": "In-vitro breast-cancer cell freeze–thaw injury at −25 C",
+  "plain_name": "Study freezing injury in cancer cells",
+  "industry": "healthcare_and_medicine",
+  "description": "A laboratory thermal-injury experiment with actual plate, bath and logger geometry. The verdict never substitutes a cryoprobe tip temperature for the cell sample temperature.",
+  "keywords": [
+    "Study freezing injury in cancer cells",
+    "cell_freeze_thaw",
+    "healthcare_and_medicine"
+  ],
+  "sources": [
+    {
+      "citation": "Snyder et al.2020, DOI10.1177/1178223420972363",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/1178223420972363",
+      "accessed": "2026-10-31",
+      "doi": "10.1177/1178223420972363"
+    }
+  ],
+  "reported_equipment": [
+    "Neslab/Thermo refrigerated circulating bath, exact model unspecified; Costar8well strips; OmegaHH806AU"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.circulating_bath",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The selected study uses liquid-bath thermal contact; a clinical cryoprobe is not assumed equivalent.",
+      "evidence_ids": [
+        "expb_breast_cell_freeze"
+      ]
+    },
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "248.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select the paper's -25 C bath arm.",
+      "evidence_ids": [
+        "expb_breast_cell_freeze"
+      ]
+    },
+    {
+      "key": "module.eight_well_freezing_block",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The specified aluminum thermal-contact block is needed for the8well strip.",
+      "evidence_ids": [
+        "expb_breast_cell_freeze"
+      ]
+    },
+    {
+      "key": "module.sample_thermometry",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Independent sample temperature logging is specified; bath setpoint alone is insufficient.",
+      "evidence_ids": [
+        "expb_breast_cell_freeze"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The study names Neslab/Thermo but does not state its exact bath model; RTE740 is a real candidate, not falsely reported as the published instrument.",
+    "The custom freezing block and independent sample thermometry remain UNKNOWN unless documented for the selected configuration.",
+    "In-vitro cell results do not establish clinical tumor-ablation outcomes."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

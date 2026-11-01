@@ -1,0 +1,107 @@
+{
+ "id": "food_bull_semen_programmable_freezing",
+ "name": "Programmed freezing of Tris-egg-yolk-glycerol bull semen in 0.5 mL straws (5 to -140 °C at 5/40/20 °C/min, Mini Digitcool UJ400) with plunge into liquid nitrogen",
+ "plain_name": "Freeze bull semen straws for artificial insemination in a programmable freezer",
+ "industry": "food_and_agriculture",
+ "description": "USDA ARS National Animal Germplasm Program protocol: bull semen extended in Tris-egg yolk (final 7% glycerol) is cooled to 5 °C over 2 h, loaded into 0.5 mL straws and frozen in a programmable freezer on a three-segment curve (5 to -10 °C at 5 °C/min, -10 to -110 °C at 40 °C/min, -110 to -140 °C at 20 °C/min), then plunged into liquid nitrogen for storage and later thawed 30 s at 37 °C for artificial insemination of cattle.",
+ "keywords": [
+  "Freeze bull semen straws for artificial insemination in a programmable freezer",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (P. Purdy; created May 2015, modified April 2020)",
+   "url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Cryo Bio System Mini Digitcool UJ400 (IMV Corporation, Minneapolis, MN)",
+  "Hamilton Thorne motility analyzer (Beverly, MA)",
+  "Impact Shipper"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 133150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 278150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The freezing curve starts at 5 °C (278.15 K) and ends at -140 °C (133.15 K) inside the freezer chamber before the plunge, so the chamber must control temperature across that whole span.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_programmable_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 5000,
+     "unit": "mK_per_min"
+    },
+    "hi": {
+     "value": 40000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The curve uses controlled cooling rates of 5, 40 and 20 °C/min, so the freezer must impose rates from 5 °C/min (5000 mK/min) to 40 °C/min (40000 mK/min).",
+   "evidence_ids": [
+    "v4e_food_bull_semen_programmable_freezing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.cooling_rate.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "At -140 °C the straws are plunged into liquid nitrogen for storage; liquid nitrogen must be available at the freezer.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_programmable_freezing_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The method is a programmed, controlled-rate freeze; the core temperature and rate keys already decide most machines, so this documented-process flag is supporting only.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_programmable_freezing_3"
+   ],
+   "conditions": [],
+   "key": "process.controlled_rate_freezing"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

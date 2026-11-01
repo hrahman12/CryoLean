@@ -1,0 +1,97 @@
+{
+ "id": "photon_ybyag_gain_spectroscopy_80_300k",
+ "name": "Gain cross-section and thermo-optic constants of Yb:YAG measured from 80 to 300 K in an LN2-cooled vacuum cryostat",
+ "plain_name": "Measure how a laser crystal's light amplification changes as it is cooled from room temperature to 80 K",
+ "industry": "photonics_and_telecommunications",
+ "description": "Mukhin et al. (IAP RAS) braze a 0.3 mm Yb:YAG crystal to a copper plate in a vacuum cryostat with a liquid-nitrogen-cooled vessel, pump it at ~938 nm through an optical window and record luminescence spectra and thermo-optic constants between 80 and 300 K.",
+ "keywords": [
+  "Measure how a laser crystal's light amplification changes as it is cooled from room temperature to 80 K",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Laser and thermal characteristics of Yb:YAG crystals in the 80-300 K temperature range (Mukhin et al., Quantum Electronics 41(11) 1045-1050, 2011)",
+   "url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "vacuum chamber with a liquid nitrogen-cooled vessel"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 80000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 300000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Spectral and thermo-optical characteristics were measured across 80-300 K.",
+   "evidence_ids": [
+    "v4e_photon_ybyag_gain_spectroscopy_80_300k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cryostat was a vacuum chamber in which the crystal is conductively cooled.",
+   "evidence_ids": [
+    "v4e_photon_ybyag_gain_spectroscopy_80_300k_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The pump beam enters and the luminescence leaves through an optical window.",
+   "evidence_ids": [
+    "v4e_photon_ybyag_gain_spectroscopy_80_300k_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source cryostat used a liquid-nitrogen-cooled vessel.",
+   "evidence_ids": [
+    "v4e_photon_ybyag_gain_spectroscopy_80_300k_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

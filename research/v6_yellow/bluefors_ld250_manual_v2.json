@@ -1,0 +1,31 @@
+{
+  "configuration_id": "bluefors_ld250_manual_v2",
+  "rows": [
+    {
+      "key": "magnetic_field.max",
+      "result": "value",
+      "value": {"kind": "max", "q": {"value": "6000", "unit": "mT"}},
+      "value_as_printed": "up to 6 T in the z direction (in plane field) and up to 1 T in the x-y plane",
+      "install": "optional_not_installed",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://infoscience.epfl.ch/server/api/core/bitstreams/36b7679a-7bde-43bb-9ebc-b8bfb0ef2c44/content",
+      "document_title": "Frasca, Roy, Beaulieu, Scarlino, 'Three-wave-mixing quantum-limited kinetic inductance parametric amplifier operating at 6 T near 1 K', Physical Review Applied 21, 024011 (2024), DOI 10.1103/PhysRevApplied.21.024011",
+      "location": "Appendix B 2 'Magnetic field measurements' (setup described in Sec. III: 'measurements are conducted inside a BlueFors LD250 dilution refrigerator equipped with a fast sample exchange system')",
+      "quote": "Integrated cryogen-free superconducting magnet from American Magnetics Inc. (Cryogen-Free MAxes Vector Magnet), capable of applying magnetic fields up to 6 T in the z direction (in plane field) and up to 1 T in the x-y plane. The magnet is integrated in the Bluefors cryostat at the 4-K stage.",
+      "reasoning": "Peer-reviewed paper operating a device at 6 T inside a BlueFors LD250 fitted with an integrated cryogen-free vector magnet: 6 T main axis = 6000 mT. The Bluefors LD manual v2.0 (which covers LD250) only lists 'optional superconducting solenoid magnets' with no field value, and this configuration is defined as the standard system with no magnet installed, so install stays optional_not_installed (the field is a documented LD250 magnet option, not part of this configuration). 6 T is conservative: other LD250 installations report higher fields (RADES VORTEX arXiv:2607.28883, LD250 magnet 'capable of reaching fields up to 12 T'; National MagLab 14 T SCM Dry Bay 1 uses a Bluefors LD250; PRX 10, 011040 supplement: LD250 with an AMI 9 T + 3 T vector magnet), but the 6-1-1 T vector value is chosen so it describes the same installation as magnetic_field.vector."
+    },
+    {
+      "key": "magnetic_field.vector",
+      "result": "value",
+      "value": {"kind": "flag", "b": true},
+      "value_as_printed": "Cryogen-Free MAxes Vector Magnet ... up to 6 T in the z direction ... and up to 1 T in the x-y plane",
+      "install": "optional_not_installed",
+      "evidence_status": "experimental_observation",
+      "source_url": "https://infoscience.epfl.ch/server/api/core/bitstreams/36b7679a-7bde-43bb-9ebc-b8bfb0ef2c44/content",
+      "document_title": "Frasca, Roy, Beaulieu, Scarlino, 'Three-wave-mixing quantum-limited kinetic inductance parametric amplifier operating at 6 T near 1 K', Physical Review Applied 21, 024011 (2024), DOI 10.1103/PhysRevApplied.21.024011",
+      "location": "Appendix B 2 'Magnetic field measurements'; Sec. III names the cryostat as a BlueFors LD250",
+      "quote": "Integrated cryogen-free superconducting magnet from American Magnetics Inc. (Cryogen-Free MAxes Vector Magnet), capable of applying magnetic fields up to 6 T in the z direction (in plane field) and up to 1 T in the x-y plane. The magnet is integrated in the Bluefors cryostat at the 4-K stage.",
+      "reasoning": "A three-axis (6-1-1 T) vector magnet integrated at the 4 K stage of a BlueFors LD250 is documented in a peer-reviewed paper, so vector-field capability exists for this model as an add-on. Other LD250 vector installations corroborate it (PRX 10, 011040 supplement: LD250 with AMI 9 T + 3 T vector magnet; Delft arXiv:2503.05459: in-house 3-axis vector magnet on the MXC plate of an LD250; UNSW facility page: 'BlueFors cryofree LD250 bottom loader with 6/1/1 vector magnet'). This configuration is the standard system without magnet options (manual: 'optional superconducting solenoid magnets'), so install = optional_not_installed, mirroring the LD450 configuration's treatment."
+    }
+  ]
+}

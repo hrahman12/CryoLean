@@ -1,0 +1,256 @@
+{
+ "configuration": "lakeshore_crx_vf",
+ "run_length_h": 48,
+ "durations_h": {
+  "bio_cryo_fluorescence_vitrified": 6,
+  "chem_low_temperature_raman": 8,
+  "chem_phase_transition_pom": 4,
+  "mat_magnetoresistance_10T": 2
+ },
+ "feasible": [
+  "bio_cryo_fluorescence_vitrified",
+  "chem_low_temperature_raman",
+  "chem_phase_transition_pom"
+ ],
+ "excluded": [
+  {
+   "experiment_id": "mat_magnetoresistance_10T",
+   "lean_verdict": "DOES_NOT_MEET_REQUIREMENTS",
+   "reason": "Does not meet requirements. A documented limitation conflicts with: 'magnetic_field.max', 'temperature.range'."
+  }
+ ],
+ "cooldown_s": "18000",
+ "cooldown_evidence": [
+  "ev_ls_0014"
+ ],
+ "z3": {
+  "status": "sat",
+  "makespan": "23 h"
+ },
+ "slots": [
+  {
+   "experiment_id": "chem_low_temperature_raman",
+   "start_s": "18000",
+   "duration_s": "28800"
+  },
+  {
+   "experiment_id": "bio_cryo_fluorescence_vitrified",
+   "start_s": "46800",
+   "duration_s": "21600"
+  },
+  {
+   "experiment_id": "chem_phase_transition_pom",
+   "start_s": "68400",
+   "duration_s": "14400"
+  }
+ ],
+ "lean_valid": true,
+ "lean_theorems": [
+  "validSchedule_sound",
+  "validSchedule_bounds",
+  "validSchedule_disjoint",
+  "validSchedule_only_accepted"
+ ],
+ "lean_experiment_verdicts": [
+  {
+   "experiment_id": "chem_low_temperature_raman",
+   "verdict": "REQUIREMENTS_MET"
+  },
+  {
+   "experiment_id": "bio_cryo_fluorescence_vitrified",
+   "verdict": "REQUIREMENTS_MET"
+  },
+  {
+   "experiment_id": "chem_phase_transition_pom",
+   "verdict": "REQUIREMENTS_MET"
+  }
+ ],
+ "back_to_back_order": [
+  "chem_low_temperature_raman",
+  "bio_cryo_fluorescence_vitrified",
+  "chem_phase_transition_pom"
+ ],
+ "back_to_back_end_h": 23.0,
+ "back_to_back_lean": [
+  {
+   "run_length_h": 16.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 16.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 17.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 17.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 18.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 18.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'bio_cryo_fluorescence_vitrified' ends after the run",
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 19.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 19.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 20.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 20.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 21.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 21.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 22.0,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 22.5,
+   "lean_valid": false,
+   "reasons": [
+    "slot 'chem_phase_transition_pom' ends after the run"
+   ]
+  },
+  {
+   "run_length_h": 23.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 23.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 24.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 24.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 25.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 25.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 26.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 26.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 27.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 27.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 28.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 28.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 29.0,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 29.5,
+   "lean_valid": true,
+   "reasons": []
+  },
+  {
+   "run_length_h": 30.0,
+   "lean_valid": true,
+   "reasons": []
+  }
+ ],
+ "sweep_and_tamper_source": "paper/data/e6_schedule.json"
+}

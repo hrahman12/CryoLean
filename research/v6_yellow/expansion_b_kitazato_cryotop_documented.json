@@ -1,0 +1,96 @@
+{
+  "configuration_id": "expansion_b_kitazato_cryotop_documented",
+  "machine_file": "data/cryostats/expansion_b_kitazato_cryotop.json",
+  "rows": [
+    {
+      "key": "process.nerve_cryoneurolysis",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 9, Vitrification, STEP4 'Rapid Cooling / Vitrification'",
+      "quote": "Plunge the Cryotop into liquid nitrogen within 1 second for vitrification.",
+      "value_as_printed": "Cryotop plunged into liquid nitrogen for vitrification (carrier for maximum 4 oocytes/embryos)",
+      "reasoning": "Kitazato's own protocol (title 'Vitrification Protocol for Oocytes / Embryos') says what the Cryotop is: a carrier that holds oocytes or embryos ('1 Cryotop is for maximum 4 oocytes/embryos') and is plunged into liquid nitrogen. FDA 510(k) K181469 for the US variants says the same: 'cryopreservation storage devices that are intended for use in vitrification procedures to contain and maintain human oocytes (MII) and embryos.' It is not a surgical cryoprobe and has no use on tissue or peripheral nerves. So peripheral-nerve cryoneurolysis is outside what this device does."
+    },
+    {
+      "key": "probe.temperature.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 9, Vitrification, STEP4 'Rapid Cooling / Vitrification'",
+      "quote": "Plunge the Cryotop into liquid nitrogen within 1 second for vitrification.",
+      "reasoning": "The Cryotop is a passive oocyte/embryo carrier (a film strip on a handle with a cover straw) that is cooled by plunging it into liquid nitrogen. It has no cryoprobe, no cooling element of its own and no control console. The protocol's full Materials Required list (p. 3) names no probe. With no cryoprobe, there is no probe operating temperature envelope, so the function does not exist on this device. No numeric value is given, matching how other v6_yellow results record a numeric absence."
+    },
+    {
+      "key": "probe.freeze_duration.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 9, Vitrification, STEP4 'Rapid Cooling / Vitrification'",
+      "quote": "Plunge the Cryotop into liquid nitrogen within 1 second for vitrification.",
+      "reasoning": "The device has no cryoprobe and no freeze timer. Cooling is one plunge into liquid nitrogen, after which the carrier is capped and stored in the LN2 tank (STEP5-6). The only timer in the protocol is a generic lab count-up timer used for the media equilibration steps, not for probe freeze cycles. No probe freeze-duration setting exists on this device, so the function is absent. No numeric value is given."
+    },
+    {
+      "key": "module.direct_visualization",
+      "result": "still_unknown",
+      "reasoning": "This key means documented direct-visualization equipment for the selected procedure, here thoracoscopic or surgical viewing for intercostal nerve cryoneurolysis. The Cryotop protocol's Materials Required list does include 'Stereo microscope (stage must be turned off)', but that is for watching oocytes and embryos during media equilibration, not for viewing a surgical target. So I cannot record it as a value for the nerve procedure. Because a visualization instrument is in the materials list, I also cannot honestly record a flat absence. I searched the record's protocol PDF (cached as research/v5/cache/66857e247cb8de06.txt), FDA 510(k) summaries K181469, K153027 and K140072, and the Planer distributor page. The cryoneurolysis pairing is already resolved by the documented absence of process.nerve_cryoneurolysis."
+    },
+    {
+      "key": "process.circulating_bath",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 3, PART1 Materials Required and the note below the procedure list",
+      "quote": "Liquid nitrogen / Cooling Rack [Ref. 84014] for liquid nitrogen container ... All vitrification procedures are performed at room temperature.",
+      "value_as_printed": "Liquid nitrogen, cooling rack for LN2 container; procedures at room temperature",
+      "reasoning": "The protocol gives the complete list of materials for the configured system: Cryotop carrier, plates, pipette, timer, liquid nitrogen, cooling rack for the LN2 container, forceps, micropipettes, cryo-storage cane and stereo microscope. It says all vitrification steps are done at room temperature, with cooling only by plunging into liquid nitrogen. There is no refrigerated circulating liquid bath; the only liquid is static LN2 in an open container."
+    },
+    {
+      "key": "temperature.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 3 note under the procedure list and p. 9 STEP4",
+      "quote": "All vitrification procedures are performed at room temperature. ... Plunge the Cryotop into liquid nitrogen within 1 second for vitrification.",
+      "reasoning": "The Cryotop has no temperature control. Samples are handled at room temperature and then plunged straight into liquid nitrogen (about 77 K) for vitrification and storage. There is no chamber, setpoint or controlled intermediate temperature, so a sample held at a set temperature such as 248.15 K (-25 C) is not something this device does. The only temperatures involved are uncontrolled room temperature and the LN2 bath, so no controlled operating range exists. No numeric value is given, matching the v6_yellow convention for numeric absences (see the atricure_cryosphere temperature.range row)."
+    },
+    {
+      "key": "module.eight_well_freezing_block",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 3, PART1 Materials Required",
+      "quote": "Cryotop (1 Cryotop is for maximum 4 oocytes/embryos) ... Liquid nitrogen / Cooling Rack [Ref. 84014] for liquid nitrogen container / Forceps",
+      "value_as_printed": "Cryotop carrier; Cooling Rack [Ref. 84014] for liquid nitrogen container",
+      "reasoning": "The complete materials list for the configured system has a single-carrier Cryotop (at most 4 oocytes/embryos), a cooling rack for the LN2 container, and plates (Oocyte Cryo Plate, Repro Plate) used for room-temperature media drops. None of these is a thermal-contact aluminum block for eight-well strips. The device holds oocytes or embryos on a film strip, not cell suspensions in eight-well strips. The aluminum block Kitazato sells for a different carrier (CryotopSC, FDA K140072) is a separate product and is not part of this configuration."
+    },
+    {
+      "key": "module.sample_thermometry",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "document_title": "Kitazato, Vitrification Protocol for Oocytes / Embryos (Cryotop)",
+      "location": "p. 3, PART1 Materials Required",
+      "quote": "Timer (with count up function) / Liquid nitrogen / Cooling Rack [Ref. 84014] for liquid nitrogen container / Forceps / Micro pipettes: 20μL (for oocytes), 300μL / Cryo storage equipment (cane, etc.) / Stereo microscope",
+      "value_as_printed": "Materials list: timer, liquid nitrogen, cooling rack, forceps, micropipettes, cane, stereo microscope (no thermocouple or logger)",
+      "reasoning": "The manufacturer's complete Materials Required list for the configured Cryotop system names every instrument used. It has a timer but no thermocouple, temperature probe or data logger. The Cryotop is a passive carrier film with no sensors. So independent sample thermometry is not part of this system."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+ "id": "food_seed_genebank_base_collection",
+ "name": "Long-term (base-collection) storage of dried orthodox crop seed at -18 ± 3 °C and 15 ± 3% RH in sealed airtight containers (FAO Genebank Standard 4.2.3)",
+ "plain_name": "Keep a seed bank's master copies of crop seeds in a minus-18 freezer for decades",
+ "industry": "food_and_agriculture",
+ "description": "Genebanks conserve the most-original samples and safety duplicates of orthodox crop seed (maize, wheat, rice, etc.) after drying to equilibrium at 5-20 °C and 10-25% RH, sealing in airtight containers and storing at -18 ± 3 °C. The same -18 °C regime is used at the Svalbard Global Seed Vault (artificial cooling keeps a constant -18 C) and for USDA ARS original (base) seed collections.",
+ "keywords": [
+  "Keep a seed bank's master copies of crop seeds in a minus-18 freezer for decades",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "FAO (2014). Genebank Standards for Plant Genetic Resources for Food and Agriculture. Rome, FAO (I3704E)",
+   "url": "https://www.fao.org/4/i3704e/i3704e.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Svalbard Global Seed Vault: The facility (seedvault.no)",
+   "url": "https://www.seedvault.no/about/the-facility/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "USDA ARS North Central Regional Plant Introduction Station (Ames, Iowa): Storage Conditions",
+   "url": "https://www.ars.usda.gov/midwest-area/ames/plant-introduction-research/home/station-information/storage-conditions/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "single stage standard deep freezer compressor (FAO context for -18 °C)",
+  "Svalbard Global Seed Vault artificial cooling system",
+  "USDA ARS NCRPIS original seed collection storage at -18°C"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 255150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Base collections are stored at a set point of -18 °C (255.15 K).",
+   "evidence_ids": [
+    "v4e_food_seed_genebank_base_collection_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 3000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The standard asks for storage within ±3 °C of the set temperature; optional because it is phrased as best effort with limited excursions allowed.",
+   "evidence_ids": [
+    "v4e_food_seed_genebank_base_collection_1"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

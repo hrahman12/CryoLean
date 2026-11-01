@@ -1,0 +1,84 @@
+{
+ "id": "food_bull_semen_ln2_vapour_box_freezing",
+ "name": "Box (static liquid-nitrogen-vapour) freezing of bull semen straws: 10 min on a rack 4.5 cm above liquid nitrogen, then plunge into liquid nitrogen for storage",
+ "plain_name": "Freeze bull semen straws on a rack held just above a pool of liquid nitrogen",
+ "industry": "food_and_agriculture",
+ "description": "The equipment-light alternative in the USDA ARS National Animal Germplasm Program bull-semen protocol (no programmable freezer): 0.5 mL straws on a rack are held in static liquid-nitrogen vapour 4.5 cm above the liquid surface for 10 min and then plunged into the liquid nitrogen, where they are stored at liquid-nitrogen temperature until thawing at 37 °C for insemination.",
+ "keywords": [
+  "Freeze bull semen straws on a rack held just above a pool of liquid nitrogen",
+  "food_and_agriculture"
+ ],
+ "sources": [
+  {
+   "citation": "USDA ARS National Animal Germplasm Program: Bull Semen Collection, Transportation, Processing and Cryopreservation Protocol (2020)",
+   "url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Youngs CR (2011). Cryopreservation of preimplantation embryos of cattle, sheep, and goats. J Vis Exp (54): e2764. doi:10.3791/2764",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3211119/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "rack in liquid nitrogen vapor (4.5 cm above liquid nitrogen)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Freezing happens in the vapour 4.5 cm above a liquid-nitrogen pool and the straws are then plunged into the liquid nitrogen, so the container must hold liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_ln2_vapour_box_freezing_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The frozen straws end up immersed in liquid nitrogen, whose temperature the livestock-embryo protocol states as -196 °C (77.15 K); the storage space must reach it.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_ln2_vapour_box_freezing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The straws are plunged directly into liquid nitrogen after vapour freezing; supporting flag only.",
+   "evidence_ids": [
+    "v4e_food_bull_semen_ln2_vapour_box_freezing_2"
+   ],
+   "conditions": [],
+   "key": "process.ln2_immersion"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

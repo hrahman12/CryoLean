@@ -172,7 +172,7 @@
       "applicable": true,
       "outcome": "pass",
       "required": "must be able to operate at 2 K",
-      "available": "a documented range of 1.8 K to 400 K",
+      "available": "a documented range of 1.85 K to 400 K",
       "constraint": {
         "kind": "point_within",
         "q": {
@@ -190,14 +190,15 @@
         }
       },
       "conditions": [],
-      "explanation": "'temperature.range' must be able to operate at 2 K; this configuration has a documented range of 1.8 K to 400 K (manufacturer specification). Requirement met.",
+      "explanation": "'temperature.range' must be able to operate at 2 K; this configuration has a documented range of 1.85 K to 400 K (manufacturer specification). Requirement met.",
       "property": 1,
       "per_key": [
         {
-          "available_display": "a documented range of 1.8 K to 400 K",
+          "available_display": "a documented range of 1.85 K to 400 K",
           "capability": {
             "evidence_ids": [
-              "ev_qd_0005"
+              "ev_qd_0005",
+              "ev_v3_c13"
             ],
             "evidence_status": "manufacturer_specification",
             "install": "installed",
@@ -218,7 +219,7 @@
               },
               "kind": "range",
               "lo": {
-                "den": 5,
+                "den": 20,
                 "dim": {
                   "A": 0,
                   "K": 1,
@@ -228,7 +229,7 @@
                   "mol": 0,
                   "s": 0
                 },
-                "num": 9
+                "num": 37
               }
             }
           },
@@ -311,6 +312,32 @@
           "review_status": "unreviewed",
           "source_url": "https://qdusa.com/siteDocs/productBrochures/1307-010.pdf",
           "value_as_printed": "1.8 to 400 K @ 60Hz; 1.85 to 400 K @ 50Hz"
+        },
+        {
+          "accessed": "2026-11-01",
+          "applies_to": "qd_dynacool_9T_eto_res",
+          "claim": "Correction: {\"kind\":\"range\",\"lo\":{\"value\":1850,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}} (1.8 K holds only at 60 Hz mains; 1.85 K is the conservative value when the line frequency is not part of the configuration)",
+          "collected_by": "research agent v3 (correction)",
+          "document_title": "see source",
+          "evidence_status": "manufacturer_specification",
+          "id": "ev_v3_c13",
+          "kind": "correction",
+          "location": "see verifier note",
+          "normalized": {
+            "hi": {
+              "unit": "mK",
+              "value": 400000
+            },
+            "lo": {
+              "unit": "mK",
+              "value": 1850
+            }
+          },
+          "previous": "{\"kind\":\"range\",\"lo\":{\"value\":1800,\"unit\":\"mK\"},\"hi\":{\"value\":400000,\"unit\":\"mK\"}}",
+          "quote": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.",
+          "review_status": "verified by a second agent: 1084-500 Rev. J0, PDF page 3: 'Temperature Range*: 1.8 to 400 K' with the footnote '*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K.' I confirmed this on the rendered page. 1307-010 (ev_qd_0005) says the same. The configuration does not fix the mains frequency, so 1850-400000 mK is the conservative range. Reviewed by the maintainer.",
+          "source_url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+          "value_as_printed": "*Stated 1.8 K is for 60 Hz line frequency; 50 Hz line frequency has a base of 1.85 K."
         }
       ]
     },
@@ -628,7 +655,7 @@
       "engine": "CryoLean Lean 4 compatibility checker v2",
       "lean_version": "4.35.0",
       "verified_by_lean": true,
-      "lean_input_hash": "4122767249582765024",
+      "lean_input_hash": "9521388078161219090",
       "verdict": "DOES_NOT_MEET_REQUIREMENTS"
     },
     "source_data_validation": {
@@ -676,15 +703,22 @@
     },
     {
       "type": "manufacturer_specification",
+      "document_title": "see source",
+      "url": "https://qdusa.com/siteDocs/productBrochures/1084-500.pdf",
+      "doi": null,
+      "accessed": "2026-11-01"
+    },
+    {
+      "type": "manufacturer_specification",
       "document_title": "Compatibility Table / Sub-Kelvin Compatibility Kits (1084-500 Rev. J0)",
       "url": "https://qdusa.com/siteDocs/productBrochures/PPMS_Options_Compatibility_Table.pdf",
       "doi": null,
       "accessed": "2026-10-31"
     }
   ],
-  "fingerprint": "d02aa4808e9d5f460eb08b6353080fed097cc8787fce54cf25dc7ba3fe7c94f2",
-  "catalog_version": "b69dd6affd4ff447",
-  "checked_at": "2026-11-01T02:32:20.985086+00:00",
+  "fingerprint": "459117b18a937ce82178ca2abcc0c013a04066fd07999faa20c4c5bde2609f9a",
+  "catalog_version": "1aa3dc782a4b0d6e",
+  "checked_at": "2026-11-01T06:46:45.421447+00:00",
   "lean_input": {
     "configuration": {
       "id": "qd_dynacool_9T_eto_res",
@@ -696,8 +730,8 @@
           "value": {
             "kind": "range",
             "lo": {
-              "num": 9,
-              "den": 5,
+              "num": 37,
+              "den": 20,
               "dim": {
                 "K": 1
               }
@@ -713,7 +747,8 @@
           "install": "installed",
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
-            "ev_qd_0005"
+            "ev_qd_0005",
+            "ev_v3_c13"
           ]
         },
         {
@@ -721,8 +756,8 @@
           "value": {
             "kind": "min",
             "q": {
-              "num": 9,
-              "den": 5,
+              "num": 37,
+              "den": 20,
               "dim": {
                 "K": 1
               }
@@ -731,7 +766,8 @@
           "install": "installed",
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
-            "ev_qd_0006"
+            "ev_qd_0006",
+            "ev_v3_c16"
           ]
         },
         {
@@ -840,12 +876,13 @@
         {
           "key": "optical_access",
           "value": {
-            "kind": "unknown"
+            "kind": "flag",
+            "b": true
           },
-          "install": "installed",
-          "evidence_status": "unknown",
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
           "evidence_ids": [
-            "ev_qd_0011"
+            "ev_v3_0077"
           ]
         },
         {
@@ -907,8 +944,8 @@
           "value": {
             "kind": "min",
             "q": {
-              "num": 3333,
-              "den": 250000,
+              "num": 4053,
+              "den": 304000,
               "dim": {
                 "m": -1,
                 "kg": 1,
@@ -919,7 +956,8 @@
           "install": "installed",
           "evidence_status": "manufacturer_specification",
           "evidence_ids": [
-            "ev_qd_0018"
+            "ev_qd_0018",
+            "ev_v3_c22"
           ]
         },
         {
@@ -1162,6 +1200,131 @@
           "evidence_ids": [
             "ev_qd_0007"
           ]
+        },
+        {
+          "key": "section_thickness.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "not_available",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0078"
+          ]
+        },
+        {
+          "key": "cooling_power.at_100mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 4000000,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0088"
+          ]
+        },
+        {
+          "key": "cooling_power.at_100mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 10,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0088"
+          ]
+        },
+        {
+          "key": "cooling_power.at_500mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 3,
+              "den": 500000,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0089"
+          ]
+        },
+        {
+          "key": "cooling_power.at_500mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 2,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0089"
+          ]
+        },
+        {
+          "key": "cooling_power.at_1000mK",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 12500,
+              "dim": {
+                "m": 2,
+                "kg": 1,
+                "s": -3
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0090"
+          ]
+        },
+        {
+          "key": "cooling_power.at_1000mK.temperature",
+          "value": {
+            "kind": "max",
+            "q": {
+              "num": 1,
+              "den": 1,
+              "dim": {
+                "K": 1
+              }
+            }
+          },
+          "install": "optional_not_installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "ev_v3_0090"
+          ]
         }
       ]
     },
@@ -1353,8 +1516,8 @@
     },
     "axioms_standard_only": true,
     "axiom_audit": "current",
-    "source_hash": "5262e4e8c30d09e8126695328940be0e7dc3969462a7eef0817873403cac1850",
-    "lean_input_hash": "4122767249582765024",
+    "source_hash": "a1b460f33516d78c570e478e938dd6a99992b3c4f123e5505ce1184b99390f2e",
+    "lean_input_hash": "9521388078161219090",
     "lean_version": "4.35.0",
     "z3_role": "Z3 output is a hint, never a verdict"
   },
@@ -1460,83 +1623,86 @@
         "lean_summary": "Need more information. The available evidence does not establish: 'sample.width.max', 'sample.length.max', 'sample.height.max'."
       },
       {
-        "configuration_id": "leica_cm1950_dualecotec_standard",
-        "equipment_id": "leica_cm1950",
-        "name": "Leica CM1950 with DualEcoTec cooling system (2026), STANDARD configuration (1491950STUS / STEU / STJP)",
+        "configuration_id": "bluefors_ld250_manual_v2",
+        "equipment_id": "bluefors_ld",
+        "name": "Bluefors LD250 (renamed LD350 in 2026), standard system per User Manual v2.0 (2022), no wiring/magnet/optical options installed",
         "z3_status": "pending_information",
         "added_options": [],
         "z3_unknown_items": [
           "req#0:magnetic_field.max",
-          "req#1:temperature.range",
-          "req#2:module.electrical_transport"
-        ],
-        "min_relative_margin": "7.333",
-        "named_in_sources": false,
-        "documented_passes": 3,
-        "hypothetical": false,
-        "lean_verdict": "NEED_MORE_INFORMATION",
-        "verified": false,
-        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport'."
-      },
-      {
-        "configuration_id": "leica_cm1950_genA_standard",
-        "equipment_id": "leica_cm1950",
-        "name": "Leica CM1950 (legacy generation, serial < 20000), STANDARD: no vacuum, no motor, no object head cooling",
-        "z3_status": "pending_information",
-        "added_options": [],
-        "z3_unknown_items": [
-          "req#0:magnetic_field.max",
-          "req#1:temperature.range",
-          "req#2:module.electrical_transport",
-          "req#5:sample.height.max"
-        ],
-        "min_relative_margin": "15.67",
-        "named_in_sources": false,
-        "documented_passes": 2,
-        "hypothetical": false,
-        "lean_verdict": "NEED_MORE_INFORMATION",
-        "verified": false,
-        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport', 'sample.height.max'."
-      },
-      {
-        "configuration_id": "leica_cm1950_genA_vacuum_motor_objcool",
-        "equipment_id": "leica_cm1950",
-        "name": "Leica CM1950 (legacy generation, serial < 20000), VACUUM + MOTOR with object head cooling",
-        "z3_status": "pending_information",
-        "added_options": [],
-        "z3_unknown_items": [
-          "req#0:magnetic_field.max",
-          "req#1:temperature.range",
-          "req#2:module.electrical_transport",
-          "req#5:sample.height.max"
-        ],
-        "min_relative_margin": "15.67",
-        "named_in_sources": false,
-        "documented_passes": 2,
-        "hypothetical": false,
-        "lean_verdict": "NEED_MORE_INFORMATION",
-        "verified": false,
-        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'temperature.range', 'module.electrical_transport', 'sample.height.max'."
-      },
-      {
-        "configuration_id": "oxford_teslatronpt_14T",
-        "equipment_id": "oxford_teslatronpt",
-        "name": "TeslatronPT, 14 T solenoid magnet, standard VTI",
-        "z3_status": "pending_information",
-        "added_options": [],
-        "z3_unknown_items": [
           "req#2:module.electrical_transport",
           "req#3:sample.width.max",
           "req#4:sample.length.max",
           "req#5:sample.height.max"
         ],
-        "min_relative_margin": "0.4",
+        "min_relative_margin": null,
         "named_in_sources": false,
-        "documented_passes": 2,
+        "documented_passes": 1,
         "hypothetical": false,
         "lean_verdict": "NEED_MORE_INFORMATION",
         "verified": false,
-        "lean_summary": "Need more information. The available evidence does not establish: 'module.electrical_transport', 'sample.width.max', 'sample.length.max', 'sample.height.max'."
+        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'module.electrical_transport', 'sample.width.max', 'sample.length.max', 'sample.height.max'."
+      },
+      {
+        "configuration_id": "bluefors_ld400_hdw",
+        "equipment_id": "bluefors_ld",
+        "name": "Bluefors LD400 (renamed LD450) with side-loading ports (LD400sl) and High-Density Wiring in one side-loading port",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#0:magnetic_field.max",
+          "req#2:module.electrical_transport",
+          "req#3:sample.width.max",
+          "req#4:sample.length.max",
+          "req#5:sample.height.max"
+        ],
+        "min_relative_margin": null,
+        "named_in_sources": false,
+        "documented_passes": 1,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'magnetic_field.max', 'module.electrical_transport', 'sample.width.max', 'sample.length.max', 'sample.height.max'."
+      },
+      {
+        "configuration_id": "qd_ppms_classic_16T+module.electrical_transport",
+        "equipment_id": "qd_ppms_classic",
+        "name": "PPMS (classic), 16 T magnet, no measurement options installed (hypothetical: with module.electrical_transport installed)",
+        "z3_status": "pending_information",
+        "added_options": [
+          "module.electrical_transport"
+        ],
+        "z3_unknown_items": [
+          "req#3:sample.width.max",
+          "req#4:sample.length.max"
+        ],
+        "min_relative_margin": "0.6",
+        "named_in_sources": true,
+        "documented_passes": 3,
+        "hypothetical": true,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'sample.width.max', 'sample.length.max'."
+      },
+      {
+        "configuration_id": "qd_ppms_classic_14T+module.electrical_transport",
+        "equipment_id": "qd_ppms_classic",
+        "name": "PPMS (classic), 14 T magnet, no measurement options installed (hypothetical: with module.electrical_transport installed)",
+        "z3_status": "pending_information",
+        "added_options": [
+          "module.electrical_transport"
+        ],
+        "z3_unknown_items": [
+          "req#3:sample.width.max",
+          "req#4:sample.length.max"
+        ],
+        "min_relative_margin": "0.4",
+        "named_in_sources": true,
+        "documented_passes": 3,
+        "hypothetical": true,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'sample.width.max', 'sample.length.max'."
       }
     ],
     "ranking_criteria": [
@@ -1548,5 +1714,5 @@
       "largest smallest relative margin over numeric requirements"
     ]
   },
-  "result_id": "res_d803f78b0688"
+  "result_id": "res_61d304f13177"
 }

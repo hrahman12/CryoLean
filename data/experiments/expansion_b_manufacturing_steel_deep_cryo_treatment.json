@@ -1,0 +1,78 @@
+{
+  "id": "expansion_b_manufacturing_steel_deep_cryo_treatment",
+  "name": "Deep cryogenic treatment of steel tooling",
+  "plain_name": "Treat a steel tool below zero",
+  "industry": "manufacturing_and_industrial_processing",
+  "description": "An industrial thermal treatment of tool steel,scientifically different from rubber comminution and DSC characterization.",
+  "keywords": [
+    "Treat a steel tool below zero",
+    "steel_cryogenic_treatment",
+    "manufacturing_and_industrial_processing"
+  ],
+  "sources": [
+    {
+      "citation": "Messer primary Metal Cryogenic Treatment process documentation",
+      "url": "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "Messer cabinet freezer for metal cryogenic treatment"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.deep_cryogenic_treatment",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The protocol requires a controlled treatment of metal tooling,not only a cold measurement stage.",
+      "evidence_ids": [
+        "expb_messer"
+      ]
+    },
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "113.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select the warm end(-160 C)of the documented typical treatment interval,avoiding the brochure's rounded Fahrenheit/Celsius mismatch.",
+      "evidence_ids": [
+        "expb_messer"
+      ]
+    },
+    {
+      "key": "dwell.duration.max",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "24",
+          "unit": "h"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select24h from the reported typical24–72h treatment; the candidate's loaded hold-duration specification is not established.",
+      "evidence_ids": [
+        "expb_messer"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "This is a source-scoped process profile; material-specific cooling/warming ramps and prior heat treatment are not supplied by the generic brochure.",
+    "The cabinet's verified loaded maximum dwell remains UNKNOWN.",
+    "No hardness,wear improvement or phase-transformation result is fabricated."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

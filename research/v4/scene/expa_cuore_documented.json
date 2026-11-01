@@ -1,0 +1,45 @@
+{
+  "configuration_id": "expa_cuore_documented",
+  "archetype": "bolometer_cryostat",
+  "outer": {
+    "shape": "vertical_cylinder",
+    "height": {"value": 2620, "unit": "mm", "location": "300 K shield (OVC) height, Table II", "quote": "300 K shield 1603 2620 12/15 Cu OFE 1600", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    "width_or_diameter": {"value": 2060, "unit": "mm", "location": "300 K plate diameter (widest element), Table II; 300 K shield diameter is 1603 mm", "quote": "300 K plate 2060 62 - SS 304L 1540", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    "color_note": "300 K plate stainless steel 304L; 300 K vessel copper OFE with stainless upper flange; all inner plates/vessels copper (OFE down to HEX, NOSV for MC and TSP); two lead shields (Roman lead ILS, Top Lead) inside"
+  },
+  "stages": [
+    {"name": "300 K plate", "temperature_K": 300, "diameter_mm": 2060, "quote": "300 K plate 2060 62 - SS 304L 1540", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "40 K plate", "temperature_K": 40, "diameter_mm": 1573, "quote": "40 K plate 1573 20 - Cu OFE 300", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "4 K plate", "temperature_K": 4, "diameter_mm": 1473, "quote": "4 K plate 1473 59 - Cu OFE 830", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "Still plate", "temperature_K": 0.89, "diameter_mm": 1333, "quote": "Still plate 1333 43 - Cu OFE 500 ... with 0.89 K and 55 mK on the Still and HEX stages, respectively", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "HEX (heat exchanger) plate", "temperature_K": 0.055, "diameter_mm": 1070, "quote": "HEX plate 1070 28 - Cu OFE 220 ... 0.89 K and 55 mK on the Still and HEX stages", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "MC (mixing chamber) plate", "temperature_K": 0.008, "diameter_mm": 980, "quote": "MC plate 980 18 - Cu NOSV 110 ... The base temperature achieved on the MC with the full experiment apparatus is 8 mK", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"name": "Tower Support Plate (TSP), detector hangs below", "temperature_K": 0.01, "diameter_mm": 900, "quote": "TSP 900 48 - Cu NOSV 260 ... the CUORE detector is attached to the Tower Support Plate (TSP) placed right below the Top Lead", "source_url": "https://arxiv.org/pdf/1904.05745"}
+  ],
+  "sample_space": {
+    "position": "bottom_of_insert",
+    "shape": "close-packed array of 19 vertical towers (13 floors x 4 crystals of 5x5x5 cm3) hanging from the 900 mm TSP inside the 940 mm MC vessel",
+    "diameter_or_width": {"value": 900, "unit": "mm", "location": "TSP diameter from which detector hangs", "quote": "TSP 900 48 - Cu NOSV 260", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    "description": "988 TeO2 bolometer crystals, 5 x 5 x 5 cm3, 750 g each (742 kg total), in 19 copper-framed towers of 13 floors x 4 crystals, each crystal with an NTD thermistor and heater; operated at ~10 mK (8 mK base). Quote: 'CUORE is composed of 988 5 x 5 x 5 cm3 TeO2 crystals, each having a mass of 750 g' and 'The crystals are arranged into 19 copper-framed towers, with each tower consisting of 13 floors of 4 crystals' (https://arxiv.org/pdf/1710.07988). Tower height is not published in the sources checked."
+  },
+  "wiring": [
+    {"kind": "dc_twisted_pair", "count": 2600, "from": "300 K IVC Wire Tray ports (5 DN40 readout + 1 DN40 heater)", "to": "MC / detector towers", "quote": "The detector wiring consists of woven ribbon cables with twisted pairs of NbTi wires in a NOMEX texture, for a total of ~2600 wires", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"kind": "thermometer_lead", "count": 3, "from": "IVC DN16 ports", "to": "dilution unit sensors", "quote": "3 DN16 ports for the readout of the DU sensors embedded in the DU", "source_url": "https://arxiv.org/pdf/1904.05745"}
+  ],
+  "windows": {"count": 0, "axis": "none", "quote": "All the IVC ports are equipped with radiation baffles that prevent direct line of sight between the 300 K and the 4 K plates", "source_url": "https://arxiv.org/pdf/1904.05745"},
+  "moving_parts": [
+    {"part": "pulse_tube_rotary_valve", "rate": "1.4 Hz pressure wave (valve 0.7 rev/s), five PT415-RM, valves mounted remote from the cryostat", "quote": "This valve makes 0.7 revolutions per second ... results in pressure waves with a frequency that depends on the PT model and which is 1.4 Hz for the CUORE PTs", "source_url": "https://arxiv.org/pdf/1712.02753"},
+    {"part": "compressor", "rate": "five PT compressors ~15 m from the 300 K plate", "quote": "The compressors are located ~15 m away from the 300 K plate and are supported by a metallic structure connected to the concrete ground", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"part": "circulation_pump", "rate": "3He/4He mixture circulation, up to >= 8 mmol/s with both condensing lines", "quote": "The maximum flow rate using both lines is >= 8 mmol s-1", "source_url": "https://arxiv.org/pdf/1904.05745"},
+    {"part": "stage_translation", "rate": "detector on Minus K isolators, 0.5 Hz cut-off; external lead on a movable platform", "quote": "This behavior favors very low natural frequencies for the spring-mass system, with a cut-off frequency of close to 0.5 Hz", "source_url": "https://arxiv.org/pdf/1904.05745"}
+  ],
+  "cryogen": "cryogen_free_pulse_tube",
+  "not_found": [
+    "outer.depth (cylindrical; only diameter published)",
+    "sample_space.height (tower height not published in sources checked)",
+    "windows.diameter_mm (no optical windows; none applicable)",
+    "wiring.coax count (not published)",
+    "stage_translation of sample rotator (none)"
+  ],
+  "notes": "Six nested vessels: 300 K, 40 K, 4 K, Still (~0.8-0.9 K), HEX (~50 mK), MC (~10 mK). Vessel (shield) heights/diameters, Table II of arXiv:1904.05745: 300 K 1603x2620 mm; 40 K 1503x2765 mm; 4 K 1363x2471 mm; Still 1110x1850 mm; HEX 1020x1650 mm; MC 940x1365 mm. Inner Lead Shield (Roman lead, 1157 mm diam x 1568 mm, 60 mm thick, 3920 kg) between 4 K and Still; Top Lead (900 mm diam x 300 mm, 2110 kg) below MC plate above TSP. Cooling: five Cryomech PT415-RM (32 W at 45 K, 1.2 W at 4.2 K nominal each) on 40 K/4 K plates plus a custom dilution unit (~3-6 uW at 10 mK; 2 mW at 100 mK). 300 K plate suspended from a 4.7 m x 4.1 m steel I-beam Main Support Plate; total cold mass >15 t (LNGS page). Plate-to-plate distances Table I: 300K-40K 195 mm, 300K-4K 198 mm, 300K-Still 287 mm, Still-HEX 112 mm, HEX-MC 202 mm. Catalog file lists only the LNGS page; detailed numbers come from the collaboration's cryostat paper (Alduino et al., Cryogenics 2019, arXiv:1904.05745), first-results PRL (arXiv:1710.07988) and the PT noise-cancellation paper (arXiv:1712.02753). Snapshots: research/v5/cache/c34e01804a2bdc72.txt, b655cdaad741f46f.txt, 242dfa72beb0522b.txt, bc3215a32153e0b8.txt."
+}

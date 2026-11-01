@@ -1,0 +1,60 @@
+{
+  "configuration_id": "expansion_b_planer_kryo560_documented",
+  "rows": [
+    {
+      "key": "temperature.chamber.range",
+      "result": "value",
+      "value": {"kind": "range", "lo": {"value": "93150", "unit": "mK"}, "hi": {"value": "303150", "unit": "mK"}},
+      "value_as_printed": "Range +30 C to -180 C (16 litre chamber)",
+      "install": "installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "System Specification: Range +30ºC to -180ºC",
+      "document_title": "Planer Kryo 560-16 specification sheet (Kryo Series precision controlled-rate freezers, V2.0, 2006)",
+      "source_url": "https://planer.com/docs/freezers/K560_V2_0.pdf",
+      "location": "p. 2, System Specification (cached research/v5/cache/d0b214c6e99c2894.txt)",
+      "reasoning": "The Kryo 560 has a real temperature-controlled 16 L chamber, and the datasheet gives its operating range as +30 C to -180 C. Converted exactly: 303.15 K to 93.15 K, which is 93150 to 303150 mK (vocabulary unit mK). Caveat for reviewer: the vocabulary defines this key for the cryochamber of a sectioning cryostat. This freezer has a chamber but no microtome (see the section_thickness and specimen_head rows), so this value does not make the cryosection experiment feasible. Those two absences decide that pairing. If the reviewer prefers to read this key as microtome-only, treat it as documented_absence on the same scope quote."
+    },
+    {
+      "key": "temperature.specimen_head.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "value_as_printed": "Controlled-rate freezer for bags, ampoules and straws; no specimen/object head",
+      "quote": "Freeze samples in bags, ampoules and straws ... Kryo 560 - 16 - fully featured Tissue Bank freezer. Kryo Series precision controlled-rate freezers",
+      "document_title": "Planer Kryo 560-16 specification sheet (Kryo Series precision controlled-rate freezers, V2.0, 2006)",
+      "source_url": "https://planer.com/docs/freezers/K560_V2_0.pdf",
+      "location": "p. 1, feature list and footer title",
+      "reasoning": "A specimen (object) head is the cooled chuck holder of a sectioning cryostat microtome. Planer describes the Kryo 560 as a controlled-rate freezer that freezes samples in bags, ampoules and straws. Its complete chamber specification (p. 2) lists only volume, dimensions and capacities for straws, ampoules and blood bags. The controller displays only demand, sample and chamber temperatures. There is no microtome and no specimen head, so the function does not exist on this machine."
+    },
+    {
+      "key": "section_thickness.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "value_as_printed": "Controlled-rate freezer; no microtome / sectioning function",
+      "quote": "Freeze samples in bags, ampoules and straws ... Kryo 560 - 16 - fully featured Tissue Bank freezer. Kryo Series precision controlled-rate freezers",
+      "document_title": "Planer Kryo 560-16 specification sheet (Kryo Series precision controlled-rate freezers, V2.0, 2006)",
+      "source_url": "https://planer.com/docs/freezers/K560_V2_0.pdf",
+      "location": "p. 1, feature list and footer title; p. 2, complete System/Controller/Chamber specification",
+      "reasoning": "Section thickness is a microtome setting. The manufacturer describes the Kryo 560 positively as a controlled-rate freezer for cryopreserving samples in bags, ampoules and straws. Its full specification (system, controller, chamber and recommended extra equipment: LNP4 pump, LAB 30 dewar, phase separator) contains no cutting or sectioning hardware. The sectioning function does not exist, so bio_cryosection_frozen_tissue cannot run on this machine."
+    },
+    {
+      "key": "optical_access",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "value_as_printed": "Top-opening, cryogenically insulated freezing chamber; no viewing or imaging port",
+      "quote": "The top opening chamber, combined with a unique forced laminar flow pattern of the coolant and cryogenic insulation, ensures even and accurate temperature control in all phases of the protocol",
+      "document_title": "Planer Kryo 560-16 specification sheet (Kryo Series precision controlled-rate freezers, V2.0, 2006)",
+      "source_url": "https://planer.com/docs/freezers/K560_V2_0.pdf",
+      "location": "p. 1, chamber description paragraph",
+      "reasoning": "The Kryo 560 chamber is a closed, insulated, top-lid freezing chamber that is cooled by forced flow of nitrogen coolant and holds racks of bags, ampoules and straws (p. 2 chamber specification). The datasheet describes a freezer for cryopreservation. It is not a microscope cryo-stage and has no window or objective access for fluorescence imaging of a specimen. This rests on the manufacturer's description of what the chamber is, plus the complete specification and option list, which name no optical port."
+    },
+    {
+      "key": "vacuum.available | purge.gas",
+      "result": "still_unknown",
+      "reasoning": "Vacuum: the chamber is a top-opening, insulated chamber cooled by 'forced laminar flow pattern of the coolant' (p. 1), so it works at atmospheric pressure with gas convection, and no vacuum is listed anywhere in the complete specification. Purge gas: the coolant flowing through the chamber is nitrogen from the LNP4 pump, so the chamber does fill with dry nitrogen. The datasheet does not describe this as a purge function, and calling it one would be interpretation. The datasheet does not settle either alternative, so I did not claim true or false. Sources: Planer K560 V2.0 datasheet (research/v5/cache/d0b214c6e99c2894.txt), both pages read in full. The pairing that needs this key (bio_cryo_fluorescence_vitrified) is already decided by the optical_access documented absence."
+    }
+  ]
+}

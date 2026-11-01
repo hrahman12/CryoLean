@@ -1,0 +1,18 @@
+{
+ "name": "fig_sensitivity",
+ "title": "One-at-a-time sensitivity of the Demo B heat budget",
+ "question": "How far must each input of the heat budget move, alone, before the Lean verdict changes?",
+ "model": "For each parameter p, the factor lambda with verdict(p x lambda) != verdict(p): continuous parameters by 8 rounds of 32-point k-section on exact rationals (Lean decides every point), then the analytic threshold lambda* = (P - L_other)/L_p is checked with Lean at lambda* and lambda* +- 1e-12; counts by integer scan.",
+ "data": "3843 Lean runs (check_batch) on documents for quantum_mxc_wiring_heat_budget on bluefors_ld400_hdw; the cooling power is edited in the configuration document (cooling_power.at_20mK). Results, brackets and analytic elasticities in paper/data/fig_sensitivity.json.",
+ "claim": "COMPUTED",
+ "caption": "Relative change of a single input (others at their sourced values) at which the Lean checker's verdict flips, on a log axis. (a) From the failing Demo B plan, only the flux-line count, the per-flux-line loads, the design margin or the cooling power can repair the budget on their own; drive and output lines cannot, even at zero. (b) The Z3-repaired design has only 15 nW of margin-weighted slack, so a 0.125% change of the margin or the cooling power, or one extra drive or flux line, breaks it. Lean brackets contain the exact analytic threshold in every continuous case and Lean returns MET exactly at the threshold (the constraint is <=).",
+ "section": "main",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_sensitivity.png",
+  "paper/figures/fig_sensitivity.svg",
+  "paper/figures/fig_sensitivity.pdf"
+ ],
+ "interactive": null
+}

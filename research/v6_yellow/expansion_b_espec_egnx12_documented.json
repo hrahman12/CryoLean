@@ -1,0 +1,56 @@
+{
+  "configuration_id": "expansion_b_espec_egnx12_documented",
+  "rows": [
+    {
+      "key": "optical_access",
+      "result": "value",
+      "value": {"kind": "flag", "b": true},
+      "value_as_printed": "Viewing window with LED lighting, 380 L: 175 x 260 mm (cabinet option)",
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Cabinet Options ... Viewing window with LED lighting 380 L : 175 x 260mm (7\" x 10.5\")",
+      "document_title": "ESPEC, Temperature Cycling Chambers Global-N Series brochure (ENA-EGN-E-A4, December 2017)",
+      "source_url": "https://espec.com/images/uploads/files/e_globaln-A4.pdf",
+      "location": "p. 12, OPTIONS > Cabinet Options (cached research/v5/cache/268cee2caaa75e55.txt)",
+      "reasoning": "The brochure lists a viewing window as an orderable cabinet option for the 380 L (12 cu. ft.) size, which includes the EGNX12 models. It also offers an inner glass door with hand ports. The window is not among the standard features on p. 3, and the record describes the documented catalog configuration, so the install status is optional_not_installed, not installed. Caveat for the experiment: a 175 x 260 mm chamber viewing window gives a view into a forced-air cabinet. It is not a microscope heating-freezing stage, so even with the option fitted this machine does not provide fluid-inclusion microthermometry optics."
+    },
+    {
+      "key": "module.complex_resistivity",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Temperature/humidity cycling chamber; instrumentation options are interfaces, recorders and product temperature control only",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The Global-N series chambers from ESPEC provide the temperature cycling and humidity performance you need to validate quality and reliability for increasingly sophisticated electronics and other products.",
+      "document_title": "ESPEC, Temperature Cycling Chambers Global-N Series brochure (ENA-EGN-E-A4, December 2017)",
+      "source_url": "https://espec.com/images/uploads/files/e_globaln-A4.pdf",
+      "location": "p. 2 (scope); p. 3 Standard features; p. 12 OPTIONS > Instrumentation Options",
+      "reasoning": "The manufacturer describes the machine as an environmental test chamber that holds the user's specimens at controlled air temperature and humidity. Its standard sample-side provisions are a cable port and a specimen power relay. The full Instrumentation Options list on p. 12 has RS-232C, RS-485, GPIB, a web controller, product temperature control, recorders, a solid-state humidity sensor, time signals and an emergency stop. It offers no electrodes, impedance spectrometer or resistivity measurement chain. So the machine does not provide a complex-resistivity module. A user could run their own instrument through the cable port, but that instrument is not part of this machine."
+    },
+    {
+      "key": "process.freeze_drying",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Atmospheric forced-air temperature/humidity cycling chamber (850 m3/h airflow); no vacuum system",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Innovative high-speed airflow suited for fast temperature cycling applications.",
+      "document_title": "ESPEC, Temperature Cycling Chambers Global-N Series brochure (ENA-EGN-E-A4, December 2017)",
+      "source_url": "https://espec.com/images/uploads/files/e_globaln-A4.pdf",
+      "location": "p. 3 (design); p. 7 EGNX12 specification (Measured Airflow 850 cubic meters per hour, Humidity Range 10 to 95% RH); p. 12 OPTIONS",
+      "reasoning": "The brochure positively describes the EGNX12 as a forced-air chamber. It circulates 850 m3/h of air, controls humidity from 10 to 95% RH, and runs PROGRAM/CONSTANT temperature-humidity profiles. That is an atmospheric-pressure air-conditioning test cabinet. Vacuum freeze drying needs an evacuated chamber and an ice condenser. The specification and complete option list (cabinet, instrumentation and operational options, including LN2 boost and dry-air purge) have no vacuum pump, vacuum chamber or lyophilization function. So this machine cannot freeze-dry samples."
+    },
+    {
+      "key": "condenser.temperature.min",
+      "result": "documented_absence",
+      "value_as_printed": "No freeze-dryer ice collector; the only 'condenser' is the refrigeration heat-rejection condenser (water- or air-cooled)",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Global-N models with 4 or 6-hp refrigeration are available with integrated air-cooling. The condenser is mounted on top with low-speed fans for minimal noise impact.",
+      "document_title": "ESPEC, Temperature Cycling Chambers Global-N Series brochure (ENA-EGN-E-A4, December 2017)",
+      "source_url": "https://espec.com/images/uploads/files/e_globaln-A4.pdf",
+      "location": "p. 4 'Air-cooled models available'; p. 7 EGNX12 specification (Cooling Water Maximum with 30 C Inlet); p. 12 Operational Options",
+      "reasoning": "This key means a freeze-dryer collector (ice condenser) temperature. The brochure's only condenser is the cascade refrigeration system's heat-rejection condenser. It is water-cooled on NWL-suffix models such as the EGNX12-4NWL (30 C inlet cooling water) or air-cooled as an option, and it rejects heat to the room. It is not a cold vapour trap, and the vocabulary forbids substituting it. Because the machine has no freeze-drying function at all (see process.freeze_drying: an atmospheric forced-air chamber with no vacuum system in its specification or option list), the collector does not exist. The absence is therefore recorded with no numeric value. The -70 C chamber air minimum is already in temperature.range and must not be used here."
+    }
+  ]
+}

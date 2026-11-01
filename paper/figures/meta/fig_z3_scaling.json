@@ -1,0 +1,18 @@
+{
+ "name": "fig_z3_scaling",
+ "title": "Z3 proposer scalability",
+ "question": "How does the untrusted Z3 side (equipment ranking, conflict explanation, campaign scheduling) scale with the number of candidate configurations and of experiments, compared with Lean checking?",
+ "model": "Wall-clock timing (time.perf_counter); (a) mean over the 11 catalogued experiments of the time per call, median and IQR over 5 interleaved repeats, OLS slope of log10 time on log10 M; (b) median and IQR over 5 repeats per n, growth factor per added experiment from an OLS fit of log10 time on n for n >= 6.",
+ "data": "paper/data/bench_z3_candidates.json, paper/data/bench_z3_schedule.json, paper/data/fig_z3_scaling.json, written by paper/scripts/fig_benchmarks.py. (a) the 26 real configurations replicated x1, x2, x4, x8, x16 with perturbed ids (<id>~v<j>; documents otherwise identical) for every experiment; smt.rank_alternatives, smt.all_conflicts on every candidate, the find_compatible_equipment search path (rank + Lean check_candidates on <= 10 shown) and Lean check_batch of every candidate. (b) schedule.propose on the documented 5 h cooldown of lakeshore_crx_vf with SYNTHETIC durations (1-8 h, seeded) and run lengths with 25% slack (satisfiable) or 30 min short (unsatisfiable); its feasibility query alone; Lean check-schedule of the found schedule on synthetic copies of an accepted real profile. Machine: Intel(R) Core(TM) i9-14900HX (24 cores / 32 threads, 29.7 GiB), Windows-11-10.0.26200-SP0, Python 3.12.10, cryolean v2 (Lean 4.35.0), Z3 5.3.3.",
+ "claim": "MEASURED",
+ "caption": "Scalability of the Z3 proposer (markers: median of 5 interleaved repeats; bars: IQR). (a) Ranking all candidate configurations is linear in their number (log-log slope 0.99 [0.84, 1.13]; 529 ms for the 26 real configurations, 8.23 s for 416), as is explaining every candidate's conflicts (slope 0.99 [0.86, 1.13]); Lean-checking every candidate in one batch grows more slowly (slope 0.49 [0.35, 0.62]) because one process start is amortised. At the catalogue's current size the search path is dominated by the one-process Lean checks of the ten shown candidates. (b) Finding a feasible campaign schedule takes 95 ms even for 16 experiments, but schedule.propose, which also proves the optimal makespan (satisfiable) or infeasibility (unsatisfiable), grows exponentially (x10.1 and x11.5 per added experiment for n >= 6; 56.57 s and 80.28 s at n = 9; not finished within 300 s at n = 10), while Lean checks a schedule in 102 ms-232 ms. Durations are synthetic; all times are measured. The machine was not idle: median whole-system CPU utilisation during panel (a) was 72% (other desktop applications, antivirus scanning and other sessions' jobs).",
+ "section": "supplement",
+ "script": "paper/scripts/fig_benchmarks.py",
+ "command": "python paper/scripts/fig_benchmarks.py",
+ "files": [
+  "paper/figures/fig_z3_scaling.png",
+  "paper/figures/fig_z3_scaling.svg",
+  "paper/figures/fig_z3_scaling.pdf"
+ ],
+ "interactive": null
+}

@@ -1,0 +1,145 @@
+{
+ "id": "chem_lyophilization_cycle",
+ "name": "Pharmaceutical lyophilization cycle in vials: freezing at -50 C, primary drying at -10 C and 180 mTorr, secondary drying at 40 C",
+ "plain_name": "Freeze-dry a medicine into a shelf-stable powder",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "A nucleic-acid lipid-nanoparticle drug product is frozen on the shelves at -50 C, primary-dried at a shelf temperature of -10 C under 180 mTorr chamber pressure and secondary-dried at 40 C (optimised variant: -15 C primary, 30 C secondary) in a pilot freeze dryer, with the sublimed water captured on the ice condenser. This is the standard cycle structure for parenteral lyophilised drug products.",
+ "keywords": [
+  "Freeze-dry a medicine into a shelf-stable powder",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "T. Alejo, A. Toro-Córdova, L. Fernández, A. Rivero, A. M. Stoian, L. Pérez, V. Navarro, J. Martínez-Oliván, D. de Miguel, Comprehensive Optimization of a Freeze-Drying Process Achieving Enhanced Long-Term Stability and In Vivo Performance of Lyophilized mRNA-LNPs, Int. J. Mol. Sci. 25(19):10603 (2024)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11476828/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "S. Tchessalov, V. Maglio, P. Kazarin, A. Alexeenko, B. Bhatnagar, E. Sahni, E. Shalaev, Practical Advice on Scientific Design of Freeze-Drying Process: 2023 Update, Pharmaceutical Research 40(10):2433-2455 (2023)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10661802/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Virtis Genesis Pilot Freeze Dryer (SP, Warminster, PA, USA)",
+  "LyoStar 2"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 223150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 313150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The shelves must span the whole recipe, from the -50 C freezing step to the 40 C secondary-drying step.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 223150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Freezing is done on the shelves at -50 C; a dryer whose shelves cannot reach -50 C cannot execute this freezing step.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Primary drying is sublimation under vacuum; without an evacuated product chamber there is no lyophilisation.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.05",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Primary drying runs at 180 mTorr (0.18 Torr) chamber pressure, so the dryer must pump at least that low.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The procedure is a freeze-drying cycle: the machine must be a lyophiliser with controllable shelves and an ice condenser, not merely a cold evacuated space.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_4"
+   ],
+   "conditions": [],
+   "key": "process.freeze_drying"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": "0.05",
+     "unit": "Torr"
+    },
+    "hi": {
+     "value": "0.18",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: pharmaceutical primary drying is almost always controlled between 50 and 200 mTorr, so a dryer must be able to hold a set pressure inside that window rather than only pump to its ultimate vacuum.",
+   "evidence_ids": [
+    "v4e_chem_lyophilization_cycle_6"
+   ],
+   "conditions": [],
+   "key": "pressure.operating.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

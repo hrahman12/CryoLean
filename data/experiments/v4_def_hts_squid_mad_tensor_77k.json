@@ -1,0 +1,80 @@
+{
+ "id": "def_hts_squid_mad_tensor_77k",
+ "name": "Magnetic anomaly detection with an 8-element 77 K HTS SQUID tensor gradiometer cooled by liquid nitrogen",
+ "plain_name": "Find a hidden metal object from the tiny dent it makes in the Earth's magnetic field using nitrogen-cooled SQUID sensors",
+ "industry": "defense_and_security",
+ "description": "Passive magnetic anomaly detection (MAD) with Tristan Technologies HTS SQUID systems that use liquid nitrogen (77 K) as refrigerant for cost and portability: the T877 8-element tensor gradiometer was designed specifically for magnetic anomaly measurements; an HTS planar gradiometer in a tail-mounted stinger on a Cessna Caravan recorded the signature of a vehicle; the G377 3-axis 77 K system reaches better than 100 fT/sqrt(Hz).",
+ "keywords": [
+  "Find a hidden metal object from the tiny dent it makes in the Earth's magnetic field using nitrogen-cooled SQUID sensors",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "Tristan Technologies, General Geophysical Devices (HTS SQUID magnetometer systems)",
+   "url": "https://tristantech.com/general",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "T877",
+  "G377"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The HTS SQUIDs operate at 77 K.",
+   "evidence_ids": [
+    "v4e_def_hts_squid_mad_tensor_77k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Eight SQUID gradiometer elements must be biased and read out from the cold space.",
+   "evidence_ids": [
+    "v4e_def_hts_squid_mad_tensor_77k_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Tristan cools these systems with liquid nitrogen for cost and portability; a cryocooler could also reach 77 K, so not mandatory.",
+   "evidence_ids": [
+    "v4e_def_hts_squid_mad_tensor_77k_2"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

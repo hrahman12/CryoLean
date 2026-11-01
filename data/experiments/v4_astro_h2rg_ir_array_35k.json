@@ -1,0 +1,171 @@
+{
+ "id": "astro_h2rg_ir_array_35k",
+ "name": "Cryogenic dark/pinhole characterization of a Teledyne HAWAII-2RG (2048x2048 HgCdTe) infrared array held at 35 K in a closed-cycle test cryostat at ~10 microTorr",
+ "plain_name": "Test a large infrared camera chip for a telescope while it is held at 35 K",
+ "industry": "astronomy_and_astrophysics",
+ "description": "Detector-head cooldowns of the SCALES H2RG imager and IFS arrays in the UCLA closed-cycle test cryostat: the detector is held at a constant 35 K (performance equivalent between 35 and 39 K) by a Lakeshore 336 controller, the cryostat interior is at ~10 microTorr, the head is cooled/warmed at 0.5 K/min, and dark frames and pinhole illumination (light source inside the cryostat) are read out through the SIDECAR ASIC/MACIE chain.",
+ "keywords": [
+  "Test a large infrared camera chip for a telescope while it is held at 35 K",
+  "astronomy_and_astrophysics"
+ ],
+ "sources": [
+  {
+   "citation": "P. Benac, M. P. Fitzgerald, E. Wang et al., 'Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES', arXiv:2508.21168 (2025)",
+   "url": "https://arxiv.org/html/2508.21168v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "UCLA test cryostat (closed-cycle refrigerator system)",
+  "Teledyne HAWAII-2RG (H2RG) HgCdTe arrays",
+  "SIDECAR ASIC",
+  "MACIE controller",
+  "Lakeshore 336 temperature controller"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 35,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The array is held at a constant 35 K during all cryogenic tests; the sample stage must reach and regulate at 35 K.",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 35,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 39,
+     "unit": "K"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: performance was equivalent anywhere from 35 to 39 K, so the full 35-39 K window is useful but not required.",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The detector operates inside an evacuated cryostat (typical pressure ~10 microTorr).",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00001",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cryostat pressure during the tests was about 10 microTorr (1e-5 Torr); the machine must reach at least this vacuum to avoid condensation on the cold array.",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The array is clocked and read out through 4 outputs via a cryogenic SIDECAR ASIC and a buffered cable to the warm MACIE card; cold-to-warm wiring feedthroughs are required.",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 36864,
+     "unit": "um"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional size gate: the array side is 2048 x 18 um = 36.864 mm, so the cold stage must clear at least that width (the packaged detector head is larger; its size is not stated).",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_5"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 500,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the detector head was cooled and warmed under control at 0.5 K per minute.",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_6"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the test cryostat used was a closed-cycle refrigerator system (no liquid cryogen).",
+   "evidence_ids": [
+    "v4e_astro_h2rg_ir_array_35k_7"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

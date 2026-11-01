@@ -1,0 +1,145 @@
+{
+ "id": "sci_arpes_gold_fermi_edge",
+ "name": "Synchrotron/VUV-laser ARPES energy-resolution test on polycrystalline gold at 7 K in UHV below 1E-10 mbar",
+ "plain_name": "Measure electron energies knocked out of a cold surface by light",
+ "industry": "scientific_research",
+ "description": "Cool a sample on a six-axis open-cycle liquid-helium-flow cryomanipulator to 7 K in a UHV analysis chamber kept below 1E-10 mbar, illuminate it with 21.2 eV photons (synchrotron or VUV laser) and fit the gold Fermi edge measured by a DA30 analyzer to obtain the combined energy resolution (2.67 meV); quantum materials are then measured, e.g. at 25 K.",
+ "keywords": [
+  "Measure electron energies knocked out of a cold surface by light",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "Y.-C. Yang, Z.-T. Liu, J.-S. Liu, Z.-H. Liu, W.-L. Liu, X.-L. Lu, H.-P. Mei, A. Li, M. Ye, S. Qiao, D.-W. Shen, 'High-resolution ARPES endstation for in-situ electronic structure investigations at SSRF', arXiv:2102.09915",
+   "url": "https://arxiv.org/pdf/2102.09915",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "six-axis open-cycle cryogenic manipulator (continuous-flow liquid helium cryostat)",
+  "Scienta Omicron DA30 analyzer",
+  "BL03U beamline, Shanghai Synchrotron Radiation Facility"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 7,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The gold Fermi-edge resolution test was performed at 7 K, the manipulator's lowest temperature.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Photoelectron spectroscopy is done under UHV to avoid surface contamination and electron scattering.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.0000000001",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The analysis chamber is kept below 1E-10 mbar.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Synchrotron or VUV-laser photons must reach the cold sample and photoelectrons must reach the analyzer.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_3"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: mu-metal shielding against the geomagnetic field protects low-energy photoelectron trajectories.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_4"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 25,
+     "unit": "K"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the reported quantum-material spectrum was taken at 25 K.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_5"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the reported manipulator is cooled by continuous liquid-helium flow.",
+   "evidence_ids": [
+    "v4e_sci_arpes_gold_fermi_edge_6"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

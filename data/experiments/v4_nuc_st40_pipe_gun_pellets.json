@@ -1,0 +1,111 @@
+{
+ "id": "nuc_st40_pipe_gun_pellets",
+ "name": "Four-barrel all-metal-sealed pipe-gun D2 pellet injector for the ST40 spherical tokamak cooled to ~8 K by a Sumitomo RDK-415 GM cryocooler in a guard vacuum chamber",
+ "plain_name": "Make millimetre-size frozen deuterium pellets inside a vacuum box chilled by a closed-cycle cooler, to refuel a compact spherical tokamak",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "ORNL-Tokamak Energy design (from proven pellet-injector-in-a-suitcase and JET/KSTAR SPI hardware): 1.2-2.0 mm D2 cylinders frozen in barrels at ~8 K by a GM cryocooler inside a guard vacuum chamber pumped to ~1e-2 mbar, fired at 200-500 m/s.",
+ "keywords": [
+  "Make millimetre-size frozen deuterium pellets inside a vacuum box chilled by a closed-cycle cooler, to refuel a compact spherical tokamak",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Baylor & Wilson, Conceptual Design of a Pellet Injector for the ST40, ORNL/Tokamak Energy INFUSE report (2022)",
+   "url": "https://infuse.ornl.gov/wp-content/uploads/2022/06/TE-ORNL_ConceptualDesignReport_PelletInjector_for_ST40_V2.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Sumitomo RDK-415 Gifford-McMahon cryocooler",
+  "ORNL pellet injector in a suitcase",
+  "guard vacuum chamber with 10-inch conflat flanges"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 8000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Barrel cold zones must reach ~8 K.",
+   "evidence_ids": [
+    "v4e_nuc_st40_pipe_gun_pellets_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Guard vacuum chamber provides thermal insulation.",
+   "evidence_ids": [
+    "v4e_nuc_st40_pipe_gun_pellets_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.01",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Guard vacuum must reach ~1e-2 mbar for the cryocooler.",
+   "evidence_ids": [
+    "v4e_nuc_st40_pipe_gun_pellets_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Electrical feedthrough flanges on the chamber.",
+   "evidence_ids": [
+    "v4e_nuc_st40_pipe_gun_pellets_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Closed-cycle GM cryocooler (design choice).",
+   "evidence_ids": [
+    "v4e_nuc_st40_pipe_gun_pellets_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

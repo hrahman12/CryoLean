@@ -1,0 +1,18 @@
+{
+ "name": "fig_contraction",
+ "title": "Sourced integrated thermal contraction of 14 cryostat materials",
+ "question": "How different are the thermal contractions that CryoLean's differential-contraction model can use?",
+ "model": "None (reference data). CryoLean's differential_thermal_contraction model uses |L (eps_sample - eps_holder)| <= delta with these values.",
+ "data": "data/physics/materials.json (14 materials, 11 with a 4 K value); evidence ids tc_001, tc_002, tc_005, tc_006, tc_009, tc_010, tc_012, tc_013, tc_018, tc_019, tc_023, tc_024, tc_025, tc_026, tc_028, tc_029, tc_034, tc_035, tc_036, tc_042, tc_044, tc_047, tc_048, tc_054 (NBS Monograph 29 and NIST cryogenic material fits). The 77-80 K marker is the 80 K row, or 77 K where only that is recorded. Copy in paper/data/fig_contraction.json.",
+ "claim": "SOURCED",
+ "caption": "Integrated linear thermal contraction from room temperature to 4 K (circles) and to 77-80 K (squares) for the 14 materials in CryoLean's reference table, in units of 10^-3. PTFE (about 21 x 10^-3) is off scale and labelled; fused silica expands slightly on cooling; sapphire and the two G-10 directions have only 77 K values because the cited fits are not valid at 4 K. The dashed line marks copper at 4 K for reference.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_contraction.png",
+  "paper/figures/fig_contraction.svg",
+  "paper/figures/fig_contraction.pdf"
+ ],
+ "interactive": null
+}

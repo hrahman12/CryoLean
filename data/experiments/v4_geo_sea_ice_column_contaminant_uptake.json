@@ -1,0 +1,86 @@
+{
+ "id": "geo_sea_ice_column_contaminant_uptake",
+ "name": "Top-down growth of artificial sea ice in 6.55 cm columns under a -5.1 C cryothermostat-cooled plate to quantify incorporation of particulate contaminants",
+ "plain_name": "Freeze small columns of seawater to see how plastic particles get trapped in sea ice",
+ "industry": "geology_and_oceanography",
+ "description": "Columns (6.55 cm diameter, 44 cm tall) of artificial seawater (31.28 g/L) on an orbital shaker in a 1 C room are frozen from the top for 19 h by an aluminium cooling element fed by a cryothermostat bath at -5.1 +/- 0.1 C; the ice is lifted out, centrifuged and some cores are kept at -20 C for micro-CT.",
+ "keywords": [
+  "Freeze small columns of seawater to see how plastic particles get trapped in sea ice",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Pradel et al. (2025) Impact of contaminant size and density on their incorporation into sea ice, Nature Communications",
+   "url": "https://doi.org/10.1038/s41467-025-59608-2",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "cryothermostat bath with aluminium cooling elements",
+  "orbital shaker KS 15 A (Huber Lab)",
+  "polymethyl pentene columns"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 268050,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The circulating cryothermostat must hold the cooling element at -5.1 C (268.05 K).",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_column_contaminant_uptake_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.1",
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cooling-element temperature controlled to +/-0.1 C.",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_column_contaminant_uptake_1"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 19,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Freezing runs 19 h continuously.",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_column_contaminant_uptake_2"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,18 @@
+{
+ "name": "fig_missing_info",
+ "title": "Missing information: what blocks a decision",
+ "question": "When the checker returns NEED_MORE_INFORMATION, which undocumented specifications or model inputs are responsible, and which configurations have the most unknown specifications?",
+ "model": "Counting over Lean results: a key or model is 'missing' in a pair when a mandatory, applicable Lean check on it has outcome unknown or unsupported; an unknown capability 'blocks' when its key is missing in at least one undecided pair of that configuration.",
+ "data": "paper/data/e1_grid.json (157 NEED_MORE_INFORMATION pairs of 286); unknown capabilities from cryolean.coverage.build (121, equal to paper/data/e7_coverage.json); saved in paper/data/fig_missing_info.json",
+ "claim": "COMPUTED",
+ "caption": "(a) Specification keys and coupled-model inputs that the Lean checker found undocumented in the 157 undecided pairs, ranked by the number of pairs they affect; the dark bar counts pairs in which that item is the only missing one. Of the 466 missing items, 331 are keys the configuration's sources never mention, 121 are recorded but unquantified or not installed, and 14 are coupled-model checks lacking an input. (b) The 121 capabilities the catalogue records as unknown, per configuration, split into those whose absence blocks at least one decision in the 11 x 26 grid (47) and those no current profile needs (74). All counts come from Lean results and the sourced catalogue.",
+ "section": "main",
+ "script": "paper/scripts/fig_equipment.py",
+ "command": "python paper/scripts/fig_equipment.py",
+ "files": [
+  "paper/figures/fig_missing_info.png",
+  "paper/figures/fig_missing_info.svg",
+  "paper/figures/fig_missing_info.pdf"
+ ],
+ "interactive": null
+}

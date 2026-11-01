@@ -1,0 +1,93 @@
+{
+ "id": "env_fresh_inp_plate_freezing",
+ "name": "Immersion-freezing INP spectra of filter-collected aerosol in 96-well PCR plates in an ethanol bath (FrESH, 0 to -35 C at 1 C/min)",
+ "plain_name": "Count ice-forming particles from air filters in plate wells",
+ "industry": "environmental_science",
+ "description": "Aerosol filter extracts are pipetted as 50 uL droplets into two 96-well PCR plates floating in a Lauda-chilled ethanol bath, cooled from 0 to -35 C at 1 C/min while a USB camera records backlit images every 10 s to detect each well freezing, giving ice-nucleating particle concentration spectra N_INP(T).",
+ "keywords": [
+  "Count ice-forming particles from air filters in plate wells",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "Perez Fogwill G, Welti A (2026). Temperature uncertainty characterisation of the FrESH droplet-freezing assay. EGUsphere preprint egusphere-2026-3971",
+   "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "EGUsphere preprint landing page",
+   "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "FrESH (Freezing Experiment Setup Helsinki)",
+  "Lauda RE1050",
+  "Lauda RP1845",
+  "Lauda RK20",
+  "MOKOSE USB camera"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 238150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 273150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each run sweeps the sample from 0 C to -35 C (273.15-238.15 K).",
+   "evidence_ids": [
+    "v4e_env_fresh_inp_plate_freezing_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 1000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The calibration and spectra apply to a 1 C/min ramp.",
+   "evidence_ids": [
+    "v4e_env_fresh_inp_plate_freezing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.cooling_rate.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Freezing events are detected optically with a camera viewing the wells.",
+   "evidence_ids": [
+    "v4e_env_fresh_inp_plate_freezing_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

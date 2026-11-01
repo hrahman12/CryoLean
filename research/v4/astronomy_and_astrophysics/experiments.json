@@ -1,0 +1,1282 @@
+{
+ "industry": "astronomy_and_astrophysics",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "astro_h2rg_ir_array_35k",
+   "name": "Cryogenic dark/pinhole characterization of a Teledyne HAWAII-2RG (2048x2048 HgCdTe) infrared array held at 35 K in a closed-cycle test cryostat at ~10 microTorr",
+   "plain_name": "Test a large infrared camera chip for a telescope while it is held at 35 K",
+   "industry": "astronomy_and_astrophysics",
+   "description": "Detector-head cooldowns of the SCALES H2RG imager and IFS arrays in the UCLA closed-cycle test cryostat: the detector is held at a constant 35 K (performance equivalent between 35 and 39 K) by a Lakeshore 336 controller, the cryostat interior is at ~10 microTorr, the head is cooled/warmed at 0.5 K/min, and dark frames and pinhole illumination (light source inside the cryostat) are read out through the SIDECAR ASIC/MACIE chain.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 35,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The array is held at a constant 35 K during all cryogenic tests; the sample stage must reach and regulate at 35 K.",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.3 Cryogenic Testing",
+     "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test, with a bench temperature of approximately 80 K. The detector was held at a constant temperature during testing, typically 35 K."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 35,
+       "unit": "K"
+      },
+      "hi": {
+       "value": 39,
+       "unit": "K"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: performance was equivalent anywhere from 35 to 39 K, so the full 35-39 K window is useful but not required.",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.2 Thermal Control Validation",
+     "quote": "we hold the detector itself at a steady temperature, typically 35 K (although operational performance was equivalent at temperatures between 35 and 39 K)."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The detector operates inside an evacuated cryostat (typical pressure ~10 microTorr).",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.3 Cryogenic Testing",
+     "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.00001",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Cryostat pressure during the tests was about 10 microTorr (1e-5 Torr); the machine must reach at least this vacuum to avoid condensation on the cold array.",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.3 Cryogenic Testing",
+     "quote": "The interior of the cryostat reached a typical pressure of approximately 10 microTorr in each test"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The array is clocked and read out through 4 outputs via a cryogenic SIDECAR ASIC and a buffered cable to the warm MACIE card; cold-to-warm wiring feedthroughs are required.",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 2.1 H2RG Detectors",
+     "quote": "These pixels are read out via 4 separate outputs."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 36864,
+       "unit": "um"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional size gate: the array side is 2048 x 18 um = 36.864 mm, so the cold stage must clear at least that width (the packaged detector head is larger; its size is not stated).",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 2.1 H2RG Detectors",
+     "quote": "These HgCdTe (MCT) arrays feature 2048x2048 pixels (2040x2040 photosensitive, with 4 reference pixels on each external edge) at an 18 μ \\mu m pitch"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 500,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the detector head was cooled and warmed under control at 0.5 K per minute.",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.2 Thermal Control Validation",
+     "quote": "Using the heater and temperature sensors, we are able to stably cool and warm the detector head at a rate of 0.5 K per minute."
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the test cryostat used was a closed-cycle refrigerator system (no liquid cryogen).",
+     "source_url": "https://arxiv.org/html/2508.21168v1",
+     "document_title": "Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES (Benac et al., arXiv:2508.21168)",
+     "location": "Section 4.3 Cryogenic Testing",
+     "quote": "Multiple cooldowns of each detector head were performed in the UCLA test cryostat, cooled by a closed-cycle refrigerator system."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "P. Benac, M. P. Fitzgerald, E. Wang et al., 'Laboratory testing and characterization of a hybrid fast/slow readout mode for the H2RG detectors in SCALES', arXiv:2508.21168 (2025)",
+     "url": "https://arxiv.org/html/2508.21168v1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "UCLA test cryostat (closed-cycle refrigerator system)",
+    "Teledyne HAWAII-2RG (H2RG) HgCdTe arrays",
+    "SIDECAR ASIC",
+    "MACIE controller",
+    "Lakeshore 336 temperature controller"
+   ]
+  },
+  {
+   "id": "astro_megara_ccd_ln2_153k",
+   "name": "LN2 open-cycle bath cryostat operation of the MEGARA e2v CCD231-84 (4k x 4k) at 153 K with >= 40 h hold time and 4e-6 mbar vacuum",
+   "plain_name": "Keep a telescope spectrograph's visible-light camera chip at 153 K for two days on one fill of liquid nitrogen",
+   "industry": "astronomy_and_astrophysics",
+   "description": "Integration and characterization of the MEGARA (GTC) spectrograph CCD cryostat: a deep-depletion e2v CCD231-84-0-E74 (4k x 4k, 15 um pixels, 61.4 x 61.4 mm image field) is held at 153 K by an OFHC strap to a 7.3 L LN2 tank with heater regulation, under a design vacuum of 4e-6 mbar, with a required LN2 hold time of at least 40 h; the last camera lens is the cryostat window.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 153,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The CCD must be regulated at its 153 K operating temperature (low dark current).",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Table 3.1 (Main characteristics and requirements of MEGARA cryostat), p. 40",
+     "quote": "CCD operating temperature at 153K."
+    },
+    {
+     "keys": [
+      "holding_time.static"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 40,
+       "unit": "h"
+      }
+     },
+     "mandatory": true,
+     "rationale": "One LN2 fill must keep the CCD cold for at least 40 h (measured ~50 h) to cover observing runs without refills.",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Section 4.4.1 Dewar Back, p. 70",
+     "quote": "Even so, after doing the preliminary cooling tests (section 5.2), the experimental hold time measured was around 50hrs, which is still over the requirement of 40 hours."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The CCD and LN2 tank sit in an evacuated vacuum jacket.",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Section 3.2.3 Pressure system",
+     "quote": "The cryostat needs to be operated under high-vacuum levels to achieve a stable temperature condition and to maximize the LN2 hold time."
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.000004",
+       "unit": "mbar"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cryostat design vacuum requirement is 4e-6 mbar.",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Chapter 5 (performance analysis: vacuum, cooling and alignment tests), p. 91",
+     "quote": "It was crucial to ensure that the LN2 tank and the vacuum jacket could achieve the vacuum levels requirements according to the design of the cryostat (4x10-6mbar)."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Light from the spectrograph camera reaches the CCD through the cryostat window (the last camera singlet).",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Section 1.1.5 MEGARA subsystems, p. 12",
+     "quote": "The last singlet is also the cryostat window; the cryostat contents the CCD detector. In this way, the image field covered by the camera is 61.4x61.4mm2"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The CCD is clocked and read out through flex cables and a hermetic 61-pin connector to an ARC controller.",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Section 3.2.2 CCD Head",
+     "quote": "At the operating temperature (153K), the dark signal corresponds with 0.02e-pixel-1hr-1 [41]. The CCD has two integral flexribbon cables mounting 37-way"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "61.4",
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional size gate: the imaging area is 61.4 x 61.4 mm, so the cold mount must clear at least 61.4 mm (package and diagonal are larger).",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Section 1.1.5 MEGARA subsystems, p. 12",
+     "quote": "In this way, the image field covered by the camera is 61.4x61.4mm2"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: this implementation is an LN2 open-cycle bath cryostat; a closed-cycle cooler could hold 153 K equally well.",
+     "source_url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "document_title": "MEGARA cryogenic system: integration, characterization and CCD alignment (M. E. Cisneros Gonzalez, MSc thesis, INAOE, 2016)",
+     "location": "Chapter 3 MEGARA cryostat design",
+     "quote": "In this way, the MEGARA cryogenic system consists of a traditional LN2 opencycle cryostat."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "M. E. Cisneros Gonzalez, 'MEGARA cryogenic system: integration, characterization and CCD alignment', MSc thesis, Instituto Nacional de Astrofisica, Optica y Electronica (INAOE), Tonantzintla, December 2016",
+     "url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "MEGARA LN2 open-cycle cryostat (INAOE)",
+    "e2v CCD231-84-0-E74 deep-depletion CCD",
+    "LakeShore 336 temperature controller",
+    "Astronomical Research Cameras (ARC) controller",
+    "Varian TV-301 turbomolecular pump"
+   ]
+  },
+  {
+   "id": "astro_qubic_tes_array_320mk",
+   "name": "Characterization of a 256-pixel NbSi TES bolometer array (CMB, 150 GHz) at ~320 mK with 128:1 SQUID time-domain multiplexing (QUBIC)",
+   "plain_name": "Characterize an array of ultra-sensitive heat detectors for measuring the Big Bang's afterglow",
+   "industry": "astronomy_and_astrophysics",
+   "description": "QUBIC TES focal-plane tests: 256 NbSi transition-edge sensors (Tc ~410 mK) cooled to ~320 mK by a He-3 fridge in a pulse-tube cryostat, read out by 128 SQUIDs at 1 K inside a magnetic shield and a cryogenic SiGe ASIC at ~40 K; Tc, I-V, P-T and NEP are measured, with dark-pixel Tc first measured in an Oxford Instruments dilution fridge. The focal plane is 110 mm in diameter.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 320,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The TES bath must reach ~320 mK, below the ~410 mK critical temperature, for the sensors to operate in electro-thermal feedback.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Abstract",
+     "quote": "The detection chain is currently made of 256 NbSi transition edge sensors (TES) cooled to 320 mK."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 110,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The TES focal plane is 110 mm in diameter and must fit on the sub-K stage.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Section 2 QUBIC detection chain, Figure 1 caption",
+     "quote": "QUBIC cryo-mechanical structure which supports one TES focal plane at 350 mK on top and the SQUID boxes at 1 K below. The focal plane diameter is 110 mm."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "TES bias and SQUID multiplexer lines run from the cold stages to the warm FPGA readout.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Abstract",
+     "quote": "The readout system is a 128:1 time domain multiplexing scheme based on 128 SQUIDs cooled at 1 K that are controlled and amplified by an SiGe application specific integrated circuit at 40 K."
+    },
+    {
+     "keys": [
+      "module.magnetic_shielding"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "Optional: the SQUID boxes at 1 K are surrounded by a Cryophy magnetic shield; a test cryostat needs equivalent shielding for the SQUIDs.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Section 2.2 (SQUID readout)",
+     "quote": "As shown in Figure 1 , 4 stack of 8 SQUID boxes is installed at 1 K below the TESs in the cryo-mechanical structure, surrounded with a Cryophy"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 412,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: dark-pixel critical temperature (~412 mK) is mapped by slowly raising the temperature through the transition, so the stage must regulate around 412 mK.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Section 4.2 Critical Temperature",
+     "quote": "The critical temperature is about 412 mK and some temperature dependence is still present above the transition"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the QUBIC cryostat is pulse-tube cooled (dry); pulse-tube microphonics were the dominant excess noise.",
+     "source_url": "https://arxiv.org/html/2101.06787v2",
+     "document_title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (Piat et al., arXiv:2101.06787)",
+     "location": "Abstract",
+     "quote": "While still limited by microphonics from the pulse tubes and noise aliasing from readout system"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "M. Piat, G. Stankowiak, E. S. Battistelli et al., 'QUBIC IV: Performance of TES Bolometers and Readout Electronics', arXiv:2101.06787v2 (2021), JCAP 2022",
+     "url": "https://arxiv.org/html/2101.06787v2",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "QUBIC cryostat (pulse tubes + 3He fridge)",
+    "Oxford Instruments dilution fridge (dark-pixel test bed)",
+    "NbSi TES array P87",
+    "SQMUX128evo SiGe ASIC",
+    "Cryophy magnetic shield"
+   ]
+  },
+  {
+   "id": "astro_mkid_uvoir_photon_counting_90mk",
+   "name": "Optical/near-IR MKID array photon-counting readout (4-8 GHz frequency-multiplexed) with the array at 90 mK behind a cryostat window",
+   "plain_name": "Count single photons of starlight with a superconducting detector array kept near 0.1 K",
+   "industry": "astronomy_and_astrophysics",
+   "description": "UVOIR microwave kinetic inductance detector arrays (PtSi resonators, 4-8 GHz feedline) are housed at 90 mK inside a dilution refrigerator (MEC uses an ADR at 90 mK), illuminated through the front-plate window by lasers at 405.9, 663.1 and 808.0 nm, and read out by the RFSoC-based MKIDGen3 system via a cryogenic HEMT/paramp signal chain; the readout must run stably for a full observing night (at least 8 h).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 90,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "MKIDs are operated at 90 mK.",
+     "source_url": "https://arxiv.org/html/2406.09764v1",
+     "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+     "location": "Section III.4.4, Figure 4 caption",
+     "quote": "MKIDs (not shown) are housed at 90 mK inside the dilution refrigerator. Light is passed through the window on the dilution refrigerator front plate."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Photons (lasers at 405.9-808 nm in the lab, the telescope beam at the observatory) reach the array through a cryostat window.",
+     "source_url": "https://arxiv.org/html/2406.09764v1",
+     "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+     "location": "Section V (lab measurement setup)",
+     "quote": "Lasers at 405.9 nm, 663.1 nm, and 808.0 nm illuminated the MKID through windows in the the dilution refrigerator."
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 8,
+       "unit": "GHz"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The microwave feedline carries the 4-8 GHz readout comb, so the coaxial wiring must pass at least 8 GHz.",
+     "source_url": "https://arxiv.org/html/2406.09764v1",
+     "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+     "location": "Section III.2 Functional Requirements",
+     "quote": "the system must be able to generate a 4-8 GHz readout waveform with up to 2048 run-time-programmable frequencies and powers."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The feedline input/output and the cryogenic amplifier chain require cold RF connections to the array.",
+     "source_url": "https://arxiv.org/html/2406.09764v1",
+     "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+     "location": "Section III.4.1 Cryogenic Interface and MKID Bandwidth",
+     "quote": "The UVOIR MKIDs are designed with resonance frequencies in the 4-8 GHz band because this is where cryogenic low-noise amplifiers and other specialized components are commercially available."
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 8,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: observing requires continuous cold operation for a typical night of at least eight hours (a limitation for single-shot ADRs, not for continuous dilution refrigerators).",
+     "source_url": "https://arxiv.org/html/2406.09764v1",
+     "document_title": "MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC (Smith, Bailey et al., arXiv:2406.09764)",
+     "location": "Section III.4.4 Setup Time and Stability",
+     "quote": "the readout must be stable and able to continuously observe and record photons for a typical observing night (at least eight hours)."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "J. P. Smith, J. I. Bailey III, A. Cuda, N. Zobrist, B. A. Mazin et al., 'MKIDGen3: Energy-Resolving, Single-Photon-Counting MKID Readout on an RFSoC', arXiv:2406.09764 (2024)",
+     "url": "https://arxiv.org/html/2406.09764v1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "dilution refrigerator (20 mK) with windows",
+    "MKID Exoplanet Camera (MEC) adiabatic demagnetization refrigerator (90 mK)",
+    "Low Noise Factory HEMT amplifier",
+    "RFSoC4x2 board with IF board (MKIDGen3)"
+   ]
+  },
+  {
+   "id": "astro_alma_sis_mixer_4k_yfactor",
+   "name": "Heterodyne noise-temperature (Y-factor) test of ALMA Band 9 Nb/Al-AlN/Nb SIS mixers on a 4 K cartridge cold stage with 4-12 GHz IF",
+   "plain_name": "Measure how quiet a superconducting radio-telescope receiver chip is at 4 K",
+   "industry": "astronomy_and_astrophysics",
+   "description": "New Chalmers Nb/Al-AlN/Nb SIS junctions are mounted in an ALMA Band 9 DSB test cartridge whose cold stage is held at 4 K (as for all ALMA performance tests); receiver noise temperature versus LO frequency and IF (4-12 GHz, cryogenic isolator) is derived from Y-factor measurements, and Josephson noise is suppressed with the mixer magnet coil. DC I-V screening is done beforehand in a 4.2 K liquid-helium dipstick.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 4,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cartridge cold stage holding the SIS mixer is maintained at 4 K.",
+     "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+     "location": "Section 3.2.1 Heterodyne tests, p. 19",
+     "quote": "The cryostat cold stage was maintained at 4K, like for all ALMA performance tests."
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 12,
+       "unit": "GHz"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The IF chain (cryogenic isolator, IF amplifier, coax) covers 4-12 GHz.",
+     "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+     "location": "Section 3.2.1 Heterodyne tests, p. 19",
+     "quote": "The IF configuration is the same as it is used in ALMA band 9, i.e. we use cryogenic isolator in 4-12 GHz band to match the SIS mixer and the IF amplifier."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The 660 GHz LO and the hot/cold-load signal for the Y-factor reach the mixer quasi-optically, which requires a cryostat window transparent at sub-mm wavelengths.",
+     "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+     "location": "Section 3.2.3 Magnetic tuning performance, p. 20",
+     "quote": "The measurements were done at 660 GHz LO at around optimum LO power."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "SIS bias, magnet-coil current and IF output need cold wiring to the mixer block.",
+     "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+     "location": "Section 3.2.3 Magnetic tuning performance, p. 20",
+     "quote": "Magnetic tuning performance has been tested by performing scans of IF output power vs. SIS bias voltage for different magnetic coil currents"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the preceding DC I-V screening uses a dipstick in liquid helium at 4.2 K.",
+     "source_url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "document_title": "SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report (GARD-FEND-05.20.00.00-0074-C-REP, GARD Chalmers / NOVA, 2024-07-01)",
+     "location": "Section 3.1 (Figure 3 caption), p. 11",
+     "quote": "The measurements were performed with a dipstick at 4.2 K liquid helium temperature at atmospheric pressure."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "A. Pavolotsky, V. Belitsky (GARD Chalmers), A. Baryshev (NOVA), 'SIS Process Development to serve Next Generation Receivers for ALMA - Final Study Review report', GARD-FEND-05.20.00.00-0074-C-REP, 2024-07-01",
+     "url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "ALMA band 9 DSB test cartridge",
+    "liquid-helium dipstick (4.2 K)",
+    "cryogenic 4-12 GHz isolator",
+    "VACOFLUX-core mixer magnet coil"
+   ]
+  },
+  {
+   "id": "astro_xray_microcalorimeter_42mk",
+   "name": "TES x-ray microcalorimeter (Lynx LXM ultra-high-resolution array) characterization at a 42-50 mK ADR bath with magnetic shielding and microwave-SQUID/HEMT readout",
+   "plain_name": "Test an X-ray detector that measures the energy of single X-ray photons as a tiny temperature rise",
+   "industry": "astronomy_and_astrophysics",
+   "description": "Transition-edge-sensor x-ray microcalorimeter arrays for the Lynx X-ray Microcalorimeter are characterized (R-T, pulses, energy resolution with Al/Mn K-alpha) on a sub-100 mK bath: a 4.5 K cryocooler stage plus a multistage ADR to ~50 mK; the first UHR array, with Tc ~10 mK below the 65 mK target, had to be run at a 42 mK bath. TESs require careful magnetic shielding, and multiplexed readout uses microwave SQUID resonators with a 4-8 GHz HEMT at ~4 K.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 42,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The UHR array had to be characterized at a 42 mK bath temperature (nominal 50 mK).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+     "location": "Section 3.3 Preliminary Test Results on the UHR Array",
+     "quote": "The transition temperature under bias was about 10 mK lower than the target of 65 mK, and so, this array need to be characterized with a thermal bath temperature of 42 mK instead of 50 mK."
+    },
+    {
+     "keys": [
+      "module.magnetic_shielding"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "TES microcalorimeters are sensitive to magnetic fields; the focal plane needs magnetic shielding.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+     "location": "Section 1.2 Heritage",
+     "quote": "Particular care is needed for shielding magnetic fields for TESs as compared with the silicon thermistor sensors used on the Hitomi SXS."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "TES bias and SQUID readout lines must reach the array.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+     "location": "Section 4.1 Basic Circuits and Readout Design",
+     "quote": "The baseline multiplexed read-out technology for the LXM uses series SQUID microresonator circuits in the GHz frequency range attached to the input feed line to a HEMT"
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 8,
+       "unit": "GHz"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the microwave SQUID multiplexer is amplified by a 4-8 GHz HEMT at ~4 K, so coax lines rated to 8 GHz are needed for this readout (a DC-SQUID TDM readout would not need them).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+     "location": "Section 4.2 High-Electron Mobility Transistors",
+     "quote": "HEMT amplifiers exist with input noise temperatures as low as 1.8 K over the 4 to 8 GHz band."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 50,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the nominal operating bath is 50 mK, provided by an ADR below a 4.5 K cryocooler stage.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "document_title": "Lynx x-ray microcalorimeter (Bandler et al., J. Astron. Telesc. Instrum. Syst. 5(2), 021017, 2019)",
+     "location": "Abstract",
+     "quote": "both for the cryocooler for cooling down to 4.5 K and the adiabatic demagnetization refrigerator (ADR) for cooling from 4.5 K to 50 mK."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "S. R. Bandler, J. A. Chervenak, A. M. Datesman et al., 'Lynx x-ray microcalorimeter', J. Astron. Telesc. Instrum. Syst. 5(2), 021017 (2019), doi:10.1117/1.JATIS.5.2.021017 (PMC7802767)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "multistage adiabatic demagnetization refrigerator (ADR)",
+    "4.5 K cryocooler (ACTDP 4-stage design basis)",
+    "microwave SQUID multiplexer",
+    "Low Noise Factory LNF-LNC4_8DRPA 4-8 GHz cryogenic LNA"
+   ]
+  },
+  {
+   "id": "astro_interstellar_ice_uhv_14k",
+   "name": "UV photoprocessing and FTIR transmission/RAIRS spectroscopy of interstellar ice analogues deposited at 14 K on KBr in a UHV closed-cycle helium cryostat (INFRA-ICE, 1e-10 mbar)",
+   "plain_name": "Make space-like ice at 14 K in ultra-high vacuum and watch it change under UV light",
+   "industry": "astronomy_and_astrophysics",
+   "description": "INFRA-ICE (ICMM-CSIC Stardust machine): ices (CH4, undecane) are background-deposited at 14 K on IR-transparent KBr substrates held in a 9 mm aperture holder on a UHV closed-cycle helium cryostat (13-300 K, 0.1 K stability) at a base pressure of 1e-10 mbar (5e-11 mbar cold), irradiated with a windowless UV discharge lamp and measured by FTIR through wedged ZnSe windows.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 14,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Ices are deposited and processed at 14 K to simulate dark-cloud grain mantles.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section IV (Results: UV processing of CH4 ice)",
+     "quote": "The CH 4 ice was deposited at 14 K on IR transparent KBr substrates through the so-called background deposition method"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The ice must be grown and processed in UHV to avoid contamination by residual gas.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section II (INFRA-ICE description)",
+     "quote": "The INFRA-ICE module (base pressure: 1 × 10 -10 mbar; at low temperature: 5 × 10 -11 mbar) is depicted in Figure 2a-c"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.0000000001",
+       "unit": "mbar"
+      }
+     },
+     "mandatory": true,
+     "rationale": "UHV base pressure of 1e-10 mbar keeps background water accretion negligible during long irradiations.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section II (INFRA-ICE description)",
+     "quote": "The INFRA-ICE module (base pressure: 1 × 10 -10 mbar; at low temperature: 5 × 10 -11 mbar)"
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "FTIR transmission and reflection-absorption spectra are recorded through IR windows (wedged ZnSe) into the UHV chamber.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section II.B (IR spectroscopy)",
+     "quote": "To isolate the spectrometer and coupling optics from the UHV of the chambers, we used ZnSe windows (wedged: 5.8 mrad) bonded to double-sided CF flanges."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 9,
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the KBr substrate sits behind a 9 mm diameter aperture in the sample holder.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section II (sample holder)",
+     "quote": "In particular, a sample holder with a 9 mm diameter hole is used"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 100,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the cryostat regulates the sample with 0.1 K stability.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Section II (cryostat)",
+     "quote": "The cryostat operates in the temperature range 13-300 K at the sample position with a temperature stability of 0.1 K."
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: cooling is by a UHV closed-cycle helium cryostat.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "document_title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (Santoro et al., Rev. Sci. Instrum. 91, 2020)",
+     "location": "Figure 2 key",
+     "quote": "6.- UHV close-cycle helium cryostat"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "G. Santoro, J. M. Sobrado, G. Tajuelo-Castilla et al., 'INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry', Rev. Sci. Instrum. 91, 124101 (2020), doi:10.1063/5.0027920 (PMC7116743)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "INFRA-ICE UHV module of the Stardust machine (ICMM-CSIC)",
+    "UHV closed-cycle helium cryostat",
+    "LakeShore 335 temperature controller",
+    "FTIR spectrometer with MIR/NIR capability",
+    "wedged ZnSe windows",
+    "KBr substrates"
+   ]
+  },
+  {
+   "id": "astro_ge_ccd_nir_95k",
+   "name": "Dark current, read noise and x-ray response of a germanium CCD prototype (256 x 256, 8.1 um) at 94.7 K on an LN2-cooled cold plate below 5e-5 torr",
+   "plain_name": "Check a new germanium camera chip for infrared astronomy while it sits at about 95 K",
+   "industry": "astronomy_and_astrophysics",
+   "description": "The MIT Lincoln Laboratory Ge-CCD GEDI7_-1_0 is mounted on an LN2-cooled cold plate inside a vacuum chamber at BNL (pressure below 5e-5 torr), cooled at no more than 3.5 K/min to a base of ~95 K with +/-0.03 K stability, and read out by an Archon controller; dark frames (1-20 s) at 94.69 K and x-ray pulse-height spectra are recorded.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": "94.69",
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Dark current and x-ray response are measured at 94.69 K.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 3.1 Dark current",
+     "quote": "Dark frames were taken at exposure times between 1 and 20 s, at a CCD temperature of 94.69 ± 0.04 94.69\\pm 0.04 K, with a readout time of 3.25 s per frame."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The packaged device sits on a cold plate inside a vacuum chamber.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 2.2 Cryogenic test system",
+     "quote": "The packaged device is mounted on a cold plate inside a vacuum chamber as shown in Fig. 2 ."
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.00005",
+       "unit": "Torr"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The chamber pressure was kept below 5e-5 torr during the measurements.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 2.2 Cryogenic test system",
+     "quote": "The chamber pressure was below 5 × 10 − 5 5\\times 10^{-5} torr."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "CCD clocks, biases and video output pass through the chamber to the Archon controller.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 2.2 Cryogenic test system",
+     "quote": "The CCD clocks and biases are supplied, and the video signal is digitized, by an Archon CCD controller"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 30,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: temperature was stable within +/-0.03 K during the dark-current measurements.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 2.2 Cryogenic test system",
+     "quote": "The CCD reaches a base temperature of about 95 K, and its temperature was stable to within ± 0.03 \\pm 0.03 K during the dark-current measurements."
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: this test system cools the cold plate with liquid nitrogen.",
+     "source_url": "https://arxiv.org/html/2610.22785v1",
+     "document_title": "Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation (S. C. Herrmann, arXiv:2610.22785)",
+     "location": "Section 2.2 Cryogenic test system",
+     "quote": "The cold plate is cooled with liquid nitrogen through copper thermal links"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "S. C. Herrmann, 'Laboratory Characterization of a Ge-CCD Prototype for Future Near-Infrared Astronomical Instrumentation', arXiv:2610.22785 [hep-ex] (2026)",
+     "url": "https://arxiv.org/html/2610.22785v1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "BNL Ge-CCD test system: LN2-cooled cold plate in a vacuum chamber",
+    "MIT Lincoln Laboratory Ge-CCD GEDI7_-1_0",
+    "Archon CCD controller"
+   ]
+  },
+  {
+   "id": "astro_fast_lband_receiver_15k",
+   "name": "Cryogenic L-band (1.2-1.8 GHz) receiver front end for FAST: OMT at 55 K and Coupling-LNAs at 15 K in a GM-cooled rectangular dewar at 1e-5 Pa behind a film vacuum window",
+   "plain_name": "Cool a giant radio telescope's 1.2-1.8 GHz receiver electronics to 15 K to cut its noise",
+   "industry": "astronomy_and_astrophysics",
+   "description": "The FAST single-beam L-band receiver: a 728.3 mm long conical quad-ridge OMT (189 mm internal aperture) is cooled by the first GM stage to ~55 K and two Coupling-LNAs (noise ~4 K) by the second stage to 15 K inside a rectangular vacuum dewar reaching 1e-5 Pa; the RF enters through a polyimide/Teflon film window. LNA noise at 15 K is measured with the Variable Load Temperature method and the receiver noise (<9 K) with hot/cold loads.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 15,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The Coupling-LNAs must operate at a physical temperature of 15 K.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Abstract",
+     "quote": "Amplification and coupling function circuits are integrated as a single Coupling-LNA with full noise temperature of 4 K at the physical temperature of 15 K."
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.00001",
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The dewar reaches a vacuum of 1e-5 Pa to suppress gas conduction and convection to the cold parts.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Section 2.3 (cryogenic cooling unit)",
+     "quote": "The heat insulation gap, vacuum degree of 10-5 Pa and thermal radiation shield will effectively eliminate the effects of conduction, convection and radiation of heats from dewar walls to cryogenic parts."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The OMT and LNAs sit inside a vacuum dewar.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Section 2.3 (cryogenic cooling unit)",
+     "quote": "The cryogenic cooling unit basing on GM cycle (Thirumaleshwar & Subramanyam 1986) is built to provide vacuum and cryogenic environment for low noise microwave parts in the frontend of receiver."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The sky signal enters the dewar through a large film vacuum window in front of the OMT.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Section 2.3 (cryogenic cooling unit)",
+     "quote": "Polyimide and Teflon bilayers films with Fluorine rubber sealing rings are used to seal vacuum window in view of rather large window diameter corresponding to OMT in L-band"
+    },
+    {
+     "keys": [
+      "sample.height.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "728.3",
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 728.3 mm long OMT must fit inside the cold space.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Figure 4-2 caption",
+     "quote": "The length and internal receiving aperture of OMT are 728.3 mm and 189 mm, respectively."
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 189,
+       "unit": "mm"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The OMT has a 189 mm internal receiving aperture (its outer envelope is larger), which sets the minimum clear diameter.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Figure 4-2 caption",
+     "quote": "The length and internal receiving aperture of OMT are 728.3 mm and 189 mm, respectively."
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "1.8",
+       "unit": "GHz"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cryogenic RF chain carries 1.2-1.8 GHz.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Abstract",
+     "quote": "It covers the frequency range of 1.2 GHz to 1.8 GHz."
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: cooling is by a Gifford-McMahon cold head and helium compressor (no liquid cryogen), as required for a telescope-mounted receiver.",
+     "source_url": "https://arxiv.org/pdf/2103.10677v1",
+     "document_title": "Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope (Liu et al., Res. Astron. Astrophys., arXiv:2103.10677)",
+     "location": "Section 2 (system design)",
+     "quote": "A Gifford-McMahon (GM) Helium cooling system, including vacuum dewar, Helium cold head and compressor, is developed to cool receiver frontend low noise microwave components"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "H.-F. Liu, C. He, J. Wang et al., 'Ultra-Low Noise L-Band Cryogenic Astronomical Receiver for FAST Telescope', Research in Astronomy and Astrophysics (2021), arXiv:2103.10677",
+     "url": "https://arxiv.org/pdf/2103.10677v1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "FAST L-band receiver rectangular cryogenic dewar",
+    "two-stage GM cold head and helium compressor",
+    "Coupling-LNA with Agilent ATF34143 HEMTs",
+    "conical quad-ridge OMT"
+   ]
+  },
+  {
+   "id": "astro_arecibo_wideband_feed_15k",
+   "name": "Wideband (2.5-14 GHz) cryogenic feed receiver: quad-ridged flared horn, high-pass filter, noise coupler and LNAs cooled to 15 K in a GM cryostat with Mylar RF window; Y-factor receiver temperature with 295 K absorber",
+   "plain_name": "Cool an entire radio antenna feed horn to 15 K and measure how much noise it adds",
+   "industry": "astronomy_and_astrophysics",
+   "description": "Arecibo 12 m telescope receiver: the QRFH, 2.5 GHz high-pass filters, noise couplers and Citcryo1-12D LNAs are enclosed in a cryostat built around a two-stage GM cryocooler (Trillium 350CS cold head, M600 compressor) and cooled to 15 K; signals enter through a Mylar window under a dry-air radome; receiver temperature (median 25 K over 2.5-14 GHz) is measured by the Y-factor method with a 295 K absorber as hot load and the sky as cold load.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 15,
+       "unit": "K"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The horn, filter, coupler and LNA are cooled to 15 K.",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Abstract",
+     "quote": "The QRHF, highpass filter, noise coupler and LNA are located inside a cryostat and are cooled to 15 K."
+    },
+    {
+     "keys": [
+      "optical_access"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Sky and hot-load radiation reach the cold horn through the cryostat RF window (Mylar).",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Section 3 (receiver system)",
+     "quote": "Due to the relatively high humidity at Arecibo, we built a radome with Mylar material in front of the cryostat radio frequency window."
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 14,
+       "unit": "GHz"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cold RF chain must carry 2.5-14 GHz.",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Abstract",
+     "quote": "The cryogenic receiver works in the 2.5-14 GHz frequency range."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The cold components are in an evacuated cryostat monitored by a vacuum gauge.",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Section 3 (receiver system)",
+     "quote": "A vacuum gauge was used to report the pressure inside the cryostat."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "LNA gate/drain bias and monitoring wiring must reach the cold amplifiers.",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Section 3 (receiver system)",
+     "quote": "we have installed diode temperature sensors inside the cryostat to monitor the temperature of the two stages, and sensors to monitor the gate, drain, supply voltages and the drain current of the LNAs."
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the cryostat uses a two-stage GM cryocooler (no liquid cryogen), suited to a telescope-mounted receiver.",
+     "source_url": "https://arxiv.org/pdf/2308.05826v1",
+     "document_title": "A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope (Roshi et al., Radio Science, arXiv:2308.05826)",
+     "location": "Section 3 (receiver system)",
+     "quote": "The cryostat was built around a two stage Gifford-MacMohan (GM) cryocooler."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "D. A. Roshi, P. Perillat, F. Fernandez, H. Mani et al., 'A Cryogenic Wideband (2.5 - 14 GHz) Receiver system for the Arecibo 12m Telescope', Radio Science (2023), arXiv:2308.05826",
+     "url": "https://arxiv.org/pdf/2308.05826v1",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Trillium 350CS cold head",
+    "M600 helium compressor",
+    "Quadruple-Ridged Flared Horn (QRFH)",
+    "Citcryo1-12D3 cryogenic LNA",
+    "Keysight Fieldfox N9916A spectrum analyzer"
+   ]
+  }
+ ],
+ "notes": ""
+}

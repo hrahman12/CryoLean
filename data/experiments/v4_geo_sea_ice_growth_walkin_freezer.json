@@ -1,0 +1,88 @@
+{
+ "id": "geo_sea_ice_growth_walkin_freezer",
+ "name": "Laboratory sea-ice growth from natural seawater in a ~1 m3 tank inside a walk-in freezer at -15, -25 and -40 C (carbonate system and CO2 fluxes)",
+ "plain_name": "Grow a metre-sized block of sea ice in a walk-in freezer to follow its carbon",
+ "industry": "geology_and_oceanography",
+ "description": "Filtered, UV-sterilized open-ocean seawater in a 105 x 95 x 99 cm tank is frozen from the surface in a walk-in freezer (Institute of Ocean Sciences, Sidney BC) at ambient temperatures of -15, -25 or -40 C until the ice is about 20 cm thick (1.8-22.5 days), to relate growth rate to inorganic carbon rejection.",
+ "keywords": [
+  "Grow a metre-sized block of sea ice in a walk-in freezer to follow its carbon",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Konig, Miller, Simpson and Vagle (2018) Carbon Dynamics During the Formation of Sea Ice at Different Growth Rates, Frontiers in Earth Science 6:234",
+   "url": "https://doi.org/10.3389/feart.2018.00234",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "walk-in freezer with three refrigeration condensers (Institute of Ocean Sciences, Sidney, BC)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 258150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The freezer air must be held at each of -15, -25 and -40 C (258.15 to 233.15 K).",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_growth_walkin_freezer_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 99,
+     "unit": "cm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold space must take the 99 cm tall seawater tank.",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_growth_walkin_freezer_1"
+   ],
+   "conditions": [],
+   "key": "sample.height.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1416,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Circumscribed diameter of the 105 x 95 cm tank footprint is sqrt(105^2+95^2) = 141.6 cm (rounded up to 1416 mm).",
+   "evidence_ids": [
+    "v4e_geo_sea_ice_growth_walkin_freezer_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

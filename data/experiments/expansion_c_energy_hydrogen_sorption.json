@@ -1,0 +1,71 @@
+{
+  "id": "expc_energy_hydrogen_sorption",
+  "name": "Cryogenic volumetric hydrogen adsorption isotherm in porous powder (ASAP 2020 application method)",
+  "plain_name": "Measure hydrogen uptake by a porous storage material",
+  "industry": "energy_and_hydrogen",
+  "description": "Measure hydrogen uptake by a porous storage material. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "documented_method_class",
+  "keywords": [
+    "cryogenic_sorption",
+    "energy_and_hydrogen"
+  ],
+  "sources": [
+    {
+      "id": "src_asap",
+      "citation": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "sample_environment",
+      "as_printed": "Cryogenic bath: liquid nitrogen or liquid argon",
+      "normalized": null,
+      "evidence_id": "expc_asap_cryo_bath"
+    },
+    {
+      "key": "free_space",
+      "as_printed": "Calculated Free-space",
+      "normalized": null,
+      "evidence_id": "expc_asap_free_space"
+    }
+  ],
+  "reported_equipment": [
+    "ASAP 2020"
+  ],
+  "requirements": [
+    {
+      "key": "module.volumetric_hydrogen_sorption",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Absolute-pressure hydrogen dosing and uptake analysis are essential. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_asap_hydrogen"
+      ]
+    },
+    {
+      "key": "module.liquid_nitrogen_bath",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select the liquid-nitrogen implementation of the documented cryogenic method; liquid argon is a separate user choice. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_asap_cryo_bath"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The application note requires the measured bath temperature to be entered; no exact specimen setpoint is claimed here.",
+    "Sample-specific degassing compatibility, mass, free-space correction, gas purity and the pressure table require confirmation. This profile is not a hydrogen-tank charging procedure."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

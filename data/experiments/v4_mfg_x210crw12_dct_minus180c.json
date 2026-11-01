@@ -1,0 +1,100 @@
+{
+ "id": "mfg_x210crw12_dct_minus180c",
+ "name": "Deep cryogenic treatment of quenched X210CrW12 (AISI D3-type) cold-work tool steel at -180 C for 12-36 h with 2 C/min cooling and heating, followed by 300 C tempering",
+ "plain_name": "Deep-freeze a chromium cold-work tool steel at -180 C for up to a day and a half so it wears more slowly",
+ "industry": "manufacturing_and_industrial_processing",
+ "description": "Quenched X210CrW12 tool steel (austenitised 920 C, 25 min) is cooled at 2 C/min to -180 C, held 12, 18, 24 or 36 h, warmed at 2 C/min and tempered at 300 C for 2 h; hardness, tensile strength and pin-on-disc wear are compared with conventional quench-and-temper. The cryogenic device appears only as a schematic/photo (model not named).",
+ "keywords": [
+  "Deep-freeze a chromium cold-work tool steel at -180 C for up to a day and a half so it wears more slowly",
+  "manufacturing_and_industrial_processing"
+ ],
+ "sources": [
+  {
+   "citation": "Impact of Deep Cryogenic Treatment on X210CrW12 Steel's Wear Behavior and Microstructural Characteristics (Ozbek & Altan Ozbek, Materials 2025, 18(4):879), doi:10.3390/ma18040879",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 93150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The sample space must hold -180 C (93.15 K) during the soak.",
+   "evidence_ids": [
+    "v4e_mfg_x210crw12_dct_minus180c_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 36,
+     "unit": "h"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The longest treatment of the series holds the steel at -180 C for 36 h, so the machine must sustain an uninterrupted 36 h soak.",
+   "evidence_ids": [
+    "v4e_mfg_x210crw12_dct_minus180c_1"
+   ],
+   "conditions": [],
+   "key": "dwell.duration.max"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cooling to the soak temperature is ramped at a controlled 2 C/min (programmable ramp, not plunge immersion).",
+   "evidence_ids": [
+    "v4e_mfg_x210crw12_dct_minus180c_2"
+   ],
+   "conditions": [],
+   "key": "temperature.cooling_rate.range"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Warming back from -180 C is also ramped at 2 C/min.",
+   "evidence_ids": [
+    "v4e_mfg_x210crw12_dct_minus180c_3"
+   ],
+   "conditions": [],
+   "key": "temperature.heating_rate.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,105 @@
+{
+ "id": "mat_monolayer_wse2_lowtemp_photoluminescence",
+ "name": "Confocal steady-state and time-resolved photoluminescence of exfoliated monolayer WSe2 at 4 K (4-120 K series)",
+ "plain_name": "Record the light given off by a one-atom-thick semiconductor cooled to 4 K",
+ "industry": "materials_and_nanotechnology",
+ "description": "Monolayer WSe2 on 90 nm SiO2/Si is excited at 525 nm through a 0.82 NA objective inside a closed-cycle helium cryostat; exciton, trion, biexciton, dark-trion and defect emission (747 nm) are resolved at 4 K and their time-resolved decays followed up to 120 K.",
+ "keywords": [
+  "Record the light given off by a one-atom-thick semiconductor cooled to 4 K",
+  "materials_and_nanotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Thekkooden I., Jana S., Deka M., Nanda B. R. K., Bhallamudi V. P. Long Non-Exponential PL Decay from Localised Defect States in Monolayer WSe2 at Low Temperature. arXiv:2607.18423 (2026)",
+   "url": "https://arxiv.org/pdf/2607.18423",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "attoDRY800 closed Helium cryostat",
+  "SpectraPro SP2150 spectrograph (Teledyne Princeton Instruments)",
+  "Excilitas SPCM-AQRH-14-FC SPAD",
+  "Linkam cryostat (liquid nitrogen-cooled)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The five-peak spectrum and defect lifetimes are taken at a 4 K sample temperature.",
+   "evidence_ids": [
+    "v4e_mat_monolayer_wse2_lowtemp_photoluminescence_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 4,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 120,
+     "unit": "K"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the temperature-dependent TRPL series spans 4-120 K (above 77 K the authors also used an LN2-cooled stage).",
+   "evidence_ids": [
+    "v4e_mat_monolayer_wse2_lowtemp_photoluminescence_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The laser must reach the flake and the PL must be collected optically.",
+   "evidence_ids": [
+    "v4e_mat_monolayer_wse2_lowtemp_photoluminescence_2"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "0.82",
+     "unit": "NA"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: high-NA (0.82) collection partially captures dark-exciton emission.",
+   "evidence_ids": [
+    "v4e_mat_monolayer_wse2_lowtemp_photoluminescence_3"
+   ],
+   "conditions": [],
+   "key": "optical.numerical_aperture"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

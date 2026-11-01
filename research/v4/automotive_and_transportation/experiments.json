@@ -1,0 +1,737 @@
+{
+ "industry": "automotive_and_transportation",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "auto_un383_t2_thermal_cycling",
+   "name": "UN Manual of Tests and Criteria 38.3 Test T.2 thermal cycling of lithium cells/batteries (+72 C / -40 C, 6 h or 12 h dwells, 10 cycles), preceded in the sequence by T.1 altitude simulation at 11.6 kPa",
+   "plain_name": "Bake and freeze a lithium battery ten times to prove it is safe to ship",
+   "industry": "automotive_and_transportation",
+   "description": "Transport-qualification thermal test for lithium-ion cells and EV/automotive batteries: storage for 6 h (12 h for large cells/batteries) at +72 C, then 6 h (12 h) at -40 C, repeated for 10 cycles. In the UN 38.3 sequence the same samples first undergo T.1 altitude simulation (storage at 11.6 kPa for more than 6 h), recorded here only as optional (non-mandatory) requirements for a machine that would run both steps.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 345150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The thermal test alternates the battery between +72 C (345.15 K) and -40 C (233.15 K); the test space must reach both extremes.",
+     "source_url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3",
+     "document_title": "UN/DOT 38.3 testing for lithium cells and batteries (TUV SUD automotive testing services)",
+     "location": "Section 'Un/DOT 38.3 testing capabilities', T2 - Thermal Test",
+     "quote": "Test covers changes in temperature extremes from +72°C to -40°C."
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "Optional: T.1 altitude simulation, run on the same samples before T.2, stores them in an evacuated chamber; only needed if one machine performs both steps.",
+     "source_url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3",
+     "document_title": "UN/DOT 38.3 testing for lithium cells and batteries (TUV SUD automotive testing services)",
+     "location": "Section 'Un/DOT 38.3 testing capabilities', T1 - Altitude Simulation",
+     "quote": "Low pressure testing that simulates unpressurized airplane cargo area at 15,000-meter altitude. After storing batteries at 11.6kPa for >6 hours"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 11600,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: T.1 requires holding the samples at 11.6 kPa (11600 Pa) or lower for more than 6 h.",
+     "source_url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3",
+     "document_title": "UN/DOT 38.3 testing for lithium cells and batteries (TUV SUD automotive testing services)",
+     "location": "Section 'Un/DOT 38.3 testing capabilities', T1 - Altitude Simulation",
+     "quote": "After storing batteries at 11.6kPa for >6 hours, these criteria shall be met: no mass loss, leaking, venting, disassembly, rupture or fire"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "TUV SUD, UN/DOT 38.3 testing for lithium cells and batteries (summary of UN Manual of Tests and Criteria, sub-section 38.3, tests T1-T8)",
+     "url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_iso16750_constant_temperature",
+   "name": "ISO 16750-4:2023 clause 5.1 constant-temperature tests of automotive E/E components: low-temperature storage (-40 C, 24 h, unpowered), low-temperature operation (Tmin, 24 h, powered) and high-temperature storage (85 C, 48 h)",
+   "plain_name": "Leave a car electronic unit at -40 C for a day, then at 85 C for two days",
+   "industry": "automotive_and_transportation",
+   "description": "Constant-temperature climatic tests for road-vehicle electrical/electronic equipment per ISO 16750-4:2023: storage at -40 C for 24 h (IEC 60068-2-1 Test Ab, operating mode 1.1), operation at Tmin for 24 h with the DUT powered (Test Ab/Ad, operating mode 3.3 or 4.3; Tmin = -40 C for code C) and dry-heat storage at 85 C for 48 h (IEC 60068-2-2 Test Bb).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 233150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Low-temperature storage is performed at -40 C (233.15 K) for 24 h.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 5.1.1.1.2 Test method (page 4)",
+     "quote": "Perform the test in accordance with IEC 60068-2-1:2007, 5.2, Test Ab, at a temperature of −40 °C for a duration of 24 h unless otherwise indicated in the DUT specification."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 358150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "High-temperature storage is performed at 85 C (358.15 K) for 48 h.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 5.1.2.1.2 Test method (page 5)",
+     "quote": "Perform the test in accordance with IEC 60068-2-2:2007, 5.2, Test Bb, at a temperature of 85 °C for a duration of 48 h unless otherwise indicated in the DUT specification."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The low-temperature operation test runs the DUT electrically (operating mode 3.3/4.3) at Tmin for 24 h, so supply and signal wiring to the DUT inside the chamber is required.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 5.1.1.2.1 Purpose (page 4)",
+     "quote": "This test simulates the exposure of the systems/components to low temperatures with electrical operation, e.g. the use of the systems/components at very low ambient temperature."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "ISO 16750-4:2023, Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads, 4th ed., ISO (preview pages via iTeh Standards)",
+     "url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_iso16750_temperature_cycling",
+   "name": "ISO 16750-4:2023 clause 5.3.1.2 temperature cycling with specified change rate for small/lightweight DUT (Tmin to Tmax, 30 cycles, powered functional checks), operating-temperature code C (-40 C to 65 C)",
+   "plain_name": "Cycle a powered car electronics module 30 times between -40 C and 65 C",
+   "industry": "automotive_and_transportation",
+   "description": "Temperature cycling of small, lightweight automotive E/E components per IEC 60068-2-14 Test Nb with the ISO 16750-4 profile: RT to Tmin in 60 min, 90 min at Tmin, Tmin to RT in 60 min, RT to Tmax in 90 min, 110 min at Tmax, Tmax to RT in 70 min; 30 cycles; the DUT is operated (modes 3.3/4.3 and 3.4/4.4) with functional tests at the end of the Tmin and Tmax dwells. Operating-temperature code C (Tmin -40 C, Tmax 65 C) is used here.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 338150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Code C sets Tmin = -40 C (233.15 K) and Tmax = 65 C (338.15 K); the chamber must cover both dwell temperatures.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 4, Table 1 - Operating temperature ranges (pages 2-3), row C",
+     "quote": "Code Minimum operating temperature Tmin [°C] Maximum operating temperature Tmax [°C] ... C −40 65"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The DUT is electrically operated and functionally tested at the end of the Tmin and Tmax dwells, so it must be wired through the chamber.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 5.3.1.2 Test method for small and lightweight DUT (page 7)",
+     "quote": "Perform a functional test at the end of Tmin as short as possible with operating mode 3.3 or 4.3 as defined in ISO 16750-1"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1050,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional check (arithmetic on the quoted profile, not a printed rate): moving from RT (23 C per ISO 16750-1, not in this quote) to Tmin = -40 C within t1 = 60 min needs about 63 K / 60 min = 1.05 K/min; the standard itself says to check the change rate against the chamber.",
+     "source_url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "document_title": "ISO 16750-4:2023 Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads (iTeh preview)",
+     "location": "Clause 5.3.1.1 NOTE 2 (page 6) and Table 3 (page 8)",
+     "quote": "NOTE 2 For applying this test, it is important to calculate and check the temperature change rate against available test chamber capabilities."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "ISO 16750-4:2023, Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads, 4th ed., ISO (preview pages via iTeh Standards)",
+     "url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_aecq100_grade0_temperature",
+   "name": "AEC-Q100 Grade 0 integrated-circuit qualification across the -40 C to +150 C ambient operating temperature range",
+   "plain_name": "Check an automotive chip works from -40 C up to 150 C",
+   "industry": "automotive_and_transportation",
+   "description": "Automotive IC qualification to AEC-Q100 temperature Grade 0, which requires the packaged integrated circuit to operate over an ambient range of -40 C to +150 C (Grades 1-3 end at +125, +105 and +85 C). The test fixture must hold the powered device at both ambient extremes.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 233150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Grade 0 lower ambient limit -40 C (233.15 K).",
+     "source_url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018",
+     "document_title": "What is AEC-Q100 and it's Specifications? (Infineon Knowledge Base Article KBA220733)",
+     "location": "Table 1 - Automotive Electronics Council Temperature Grades, Grade 0",
+     "quote": "Grade Ambient operating temperature range 0 -40°C to +150°C"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 423150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Grade 0 upper ambient limit +150 C (423.15 K).",
+     "source_url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018",
+     "document_title": "What is AEC-Q100 and it's Specifications? (Infineon Knowledge Base Article KBA220733)",
+     "location": "Table 1 - Automotive Electronics Council Temperature Grades, Grade 0",
+     "quote": "Grade Ambient operating temperature range 0 -40°C to +150°C"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The grade is an operating range for packaged ICs under qualification test, so the device must be powered and measured at temperature.",
+     "source_url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018",
+     "document_title": "What is AEC-Q100 and it's Specifications? (Infineon Knowledge Base Article KBA220733)",
+     "location": "Article body, 'Role of AEC-Q100'",
+     "quote": "AEC-Q100 is a set of qualification test sequences for integrated circuits developed by the Automotive Electronics Council (AEC)."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Infineon Technologies, Knowledge Base Article KBA220733 'What is AEC-Q100 and it's Specifications?' (AEC-Q100 temperature grades)",
+     "url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_iec62660_low_temp_capacity",
+   "name": "IEC 62660-1:2018 capacity test of EV propulsion lithium-ion cells at 23 +/- 2 C and at low temperature (-20 C option)",
+   "plain_name": "Measure how much charge an electric-car battery cell delivers at -20 C",
+   "industry": "automotive_and_transportation",
+   "description": "Performance test of secondary lithium-ion cells for BEV/HEV propulsion: discharge capacity measured at standard conditions (23 +/- 2 C) and optionally at low temperature (-10 C or -20 C); the -20 C option is used here. Cells are charged/discharged by a cycler while held in a temperature chamber.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Low-temperature capacity option at -20 C (253.15 K).",
+     "source_url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+     "document_title": "IEC 62660-1 (Battery Design summary of IEC 62660-1:2018)",
+     "location": "Key Test Methods - Capacity test",
+     "quote": "Capacity test — Measures discharge capacity at standard conditions (23 ± 2 °C) and optionally at low temperature (−10 °C or −20 °C)."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 296150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Reference capacity at the standard condition 23 C (296.15 K).",
+     "source_url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+     "document_title": "IEC 62660-1 (Battery Design summary of IEC 62660-1:2018)",
+     "location": "Key Test Methods - Capacity test",
+     "quote": "Capacity test — Measures discharge capacity at standard conditions (23 ± 2 °C) and optionally at low temperature (−10 °C or −20 °C)."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Discharge capacity is measured electrically, so the cell must be connected to the cycler inside the chamber.",
+     "source_url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+     "document_title": "IEC 62660-1 (Battery Design summary of IEC 62660-1:2018)",
+     "location": "Key Test Methods - Capacity test",
+     "quote": "Capacity test — Measures discharge capacity at standard conditions (23 ± 2 °C) and optionally at low temperature"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 2000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the standard condition tolerance is +/-2 C, so the chamber should hold the set point within 2 K.",
+     "source_url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+     "document_title": "IEC 62660-1 (Battery Design summary of IEC 62660-1:2018)",
+     "location": "Key Test Methods - Capacity test",
+     "quote": "Measures discharge capacity at standard conditions (23 ± 2 °C)"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Battery Design, 'IEC 62660-1' (summary of IEC 62660-1:2018 Ed. 2.0, Secondary lithium-ion cells for the propulsion of electric road vehicles - Part 1: Performance testing)",
+     "url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_li_plating_subzero_cycling",
+   "name": "Lithium-plating aging study: C/2 charge / D/2 discharge cycling of NCA/SiOx-graphite 18650 cells at -10 C versus 25 C with ICA/DVA/EIS check-ups and post-mortem validation",
+   "plain_name": "Charge and discharge battery cells over and over at -10 C to see metal lithium build up",
+   "industry": "automotive_and_transportation",
+   "description": "Commercial Sanyo NCR 18650GA cells (3.35 Ah, 2.5-4.2 V) are cycled at C/2 charge and D/2 discharge at -10 C (to promote lithium plating) and at 25 C (baseline), three cells per condition, with check-ups every 100 cycles to 80 % SoH and post-mortem CT/SEM/XRD/7Li NMR; motivated by fast, safe charging for electrified transportation.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 263150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Aging temperature -10 C (263.15 K) chosen to promote lithium plating.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13150617/",
+     "document_title": "Advanced Electrochemical Diagnostics Validation for Early Detection of Lithium Plating in Lithium-Ion Batteries (ACS Omega, doi:10.1021/acsomega.5c06081)",
+     "location": "Section 2.1 Aging Matrix and Electrochemical Characterization",
+     "quote": "The −10 °C regime was chosen to promote lithium plating, while 25 °C served as a baseline aging condition for comparison."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 298150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Baseline aging and check-up temperature 25 C (298.15 K).",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13150617/",
+     "document_title": "Advanced Electrochemical Diagnostics Validation for Early Detection of Lithium Plating in Lithium-Ion Batteries (ACS Omega, doi:10.1021/acsomega.5c06081)",
+     "location": "Section 2.1 Aging Matrix and Electrochemical Characterization",
+     "quote": "The −10 °C regime was chosen to promote lithium plating, while 25 °C served as a baseline aging condition for comparison."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Cells are continuously charged and discharged by a battery cycler while at temperature.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13150617/",
+     "document_title": "Advanced Electrochemical Diagnostics Validation for Early Detection of Lithium Plating in Lithium-Ion Batteries (ACS Omega, doi:10.1021/acsomega.5c06081)",
+     "location": "Section 2.1 Aging Matrix and Electrochemical Characterization",
+     "quote": "The cells were repeatedly cycled at a moderate charge/discharge rate (C/2 charge and D/2 discharge)"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Herran A. et al., Advanced Electrochemical Diagnostics Validation for Early Detection of Lithium Plating in Lithium-Ion Batteries, ACS Omega (2026), doi:10.1021/acsomega.5c06081, PMC13150617",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13150617/",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "Binder KB53 climate chamber",
+    "NEWARE CT4000 series battery cycler"
+   ]
+  },
+  {
+   "id": "auto_starter_battery_cold_cranking",
+   "name": "Cold-cranking test of 12 V lead-acid and LFP starter batteries (EN 50342-1 pulse 9 A/Ah to 8 V, 10 s pause, 5.4 A/Ah to 6 V) at 0, -10, -18 and -30 C after 24 h cold soak, with C20 capacity at 25, 0 and -18 C",
+   "plain_name": "Test whether a 12 V car starter battery can crank an engine at -30 C",
+   "industry": "automotive_and_transportation",
+   "description": "Six 12 V starter batteries (two AGM lead-acid, 50 Ah and 92 Ah; four LFP packs) are soaked for 24 h in a climate chamber at the target temperature, then C20 capacity (25, 0, -18 C) and the EN 50342-1 cold-cranking pulse sequence (0, -10, -18, -30 C) are run inside the same chamber.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 243150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 298150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Capacity and cranking tests span 25 C (298.15 K) down to -30 C (243.15 K).",
+     "source_url": "https://www.mdpi.com/2313-0105/9/3/176",
+     "document_title": "Comparing the Cold-Cranking Performance of Lead-Acid and Lithium Iron Phosphate Batteries at Temperatures below 0 C (Batteries 2023, 9(3), 176)",
+     "location": "Abstract",
+     "quote": "tested regarding their capacity at various temperatures (25 °C, 0 °C, and −18 °C) and regarding their cold crank capability at low temperatures (0 °C, −10 °C, −18 °C, and −30 °C)."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "High-current discharge pulses are drawn from the battery while it sits in the chamber.",
+     "source_url": "https://www.mdpi.com/2313-0105/9/3/176",
+     "document_title": "Comparing the Cold-Cranking Performance of Lead-Acid and Lithium Iron Phosphate Batteries at Temperatures below 0 C (Batteries 2023, 9(3), 176)",
+     "location": "Section 2 Materials and Methods, cold-cranking procedure",
+     "quote": "The test procedure defined by the standard includes a first 10 s discharging pulse with a current of 9 A Ah−1 down to a cut-off voltage of 8 V, followed by a 10 s pause"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 250,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the chamber used held the test temperature with an accuracy of +/-0.25 C.",
+     "source_url": "https://www.mdpi.com/2313-0105/9/3/176",
+     "document_title": "Comparing the Cold-Cranking Performance of Lead-Acid and Lithium Iron Phosphate Batteries at Temperatures below 0 C (Batteries 2023, 9(3), 176)",
+     "location": "Section 2 Materials and Methods, capacity test",
+     "quote": "The C20 capacity test is conducted inside the same climate chamber, with an accuracy of ±0.25 °C."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Bauknecht S. et al., Comparing the Cold-Cranking Performance of Lead-Acid and Lithium Iron Phosphate Batteries at Temperatures below 0 C, Batteries 2023, 9(3), 176, doi:10.3390/batteries9030176",
+     "url": "https://www.mdpi.com/2313-0105/9/3/176",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "climate chamber (model not named in the retrieved text)"
+   ]
+  },
+  {
+   "id": "auto_pemfc_system_minus30_cold_start",
+   "name": "Cold start of a 100 kW automotive PEM fuel-cell system from -30 C in an environment cabin (normal operation, on-load shutdown purge at 30 A, cold start with auxiliary heat)",
+   "plain_name": "Start a full-size car fuel-cell power system after it has been frozen to -30 C",
+   "industry": "automotive_and_transportation",
+   "description": "A full-power automotive PEMFC system (stack rated 100 kW at 1.4 A/cm2, up to 120 kW) is operated, purged on load at 30 A at shutdown, soaked and restarted from -30 C inside an environment cabin with auxiliary heating; cold start was achieved within 110 s.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 243150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The system is cold-soaked and started from -30 C (243.15 K).",
+     "source_url": "https://doi.org/10.4271/2022-01-0694",
+     "document_title": "Experimental Analysis of - 30C Cold Start Process for an Automotive PEM Fuel Cell System (SAE Technical Paper 2022-01-0694)",
+     "location": "Abstract",
+     "quote": "a cold start test process in an environment cabin with auxiliary heat was carried out for a full power automotive PEMFC system, including normal operation, shutdown purge and cold start processes analysis from -30°C."
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The system delivers electrical load (100 kW rated stack) during operation and start-up, so load cabling into the cabin is required.",
+     "source_url": "https://doi.org/10.4271/2022-01-0694",
+     "document_title": "Experimental Analysis of - 30C Cold Start Process for an Automotive PEM Fuel Cell System (SAE Technical Paper 2022-01-0694)",
+     "location": "Abstract",
+     "quote": "Rated power of this stack is 100kW at the current density of 1.4A/cm2 and relevant maximum output power can reach to 120kW."
+    },
+    {
+     "keys": [
+      "electrical.current_leads.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 30,
+       "unit": "A"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the shutdown purge draws 30 A from the stack inside the cabin (the full-load current is higher but not stated in the abstract).",
+     "source_url": "https://doi.org/10.4271/2022-01-0694",
+     "document_title": "Experimental Analysis of - 30C Cold Start Process for an Automotive PEM Fuel Cell System (SAE Technical Paper 2022-01-0694)",
+     "location": "Abstract",
+     "quote": "on-load purge with a current of 30A is conducted to removing extra water in stack for improving cold start ability."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Liu P., Xu S., Experimental Analysis of -30C Cold Start Process for an Automotive PEM Fuel Cell System, SAE Technical Paper 2022-01-0694 (2022), doi:10.4271/2022-01-0694",
+     "url": "https://doi.org/10.4271/2022-01-0694",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "environment cabin with auxiliary heat"
+   ]
+  },
+  {
+   "id": "auto_pemfc_stack_rapid_cold_start",
+   "name": "Rapid cold start-up of a 30-cell PEM fuel-cell stack at -20, -25 and -30 C ambient with coolant, end-plate heating and load-voltage cooperative control; 20 repeated start-ups",
+   "plain_name": "Compare ways to quickly start a fuel-cell stack at -20, -25 and -30 C",
+   "industry": "automotive_and_transportation",
+   "description": "A 30-cell PEMFC stack is started from -20 C (within 30 s), -25 C (coolant on, end-plate heating, 60 s) and -30 C (load-voltage cooperative control, 113 s); performance and consistency were unchanged after 20 cold start-up experiments.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 253150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Start-up at -20 C ambient (253.15 K).",
+     "source_url": "https://doi.org/10.1016/j.ijhydene.2021.07.041",
+     "document_title": "Effect of different control strategies on rapid cold start-up of a 30-cell proton exchange membrane fuel cell stack (Int. J. Hydrogen Energy 2021)",
+     "location": "Abstract",
+     "quote": "The test shows that the stack rapidly starts within 30 s at an ambient temperature of −20 °C."
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 248150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Start-up at -25 C ambient (248.15 K).",
+     "source_url": "https://doi.org/10.1016/j.ijhydene.2021.07.041",
+     "document_title": "Effect of different control strategies on rapid cold start-up of a 30-cell proton exchange membrane fuel cell stack (Int. J. Hydrogen Energy 2021)",
+     "location": "Abstract",
+     "quote": "Turning on the coolant at −25 °C show stability of the cell voltage at both ends due to the end-plate heating"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 243150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Start-up at -30 C ambient (243.15 K).",
+     "source_url": "https://doi.org/10.1016/j.ijhydene.2021.07.041",
+     "document_title": "Effect of different control strategies on rapid cold start-up of a 30-cell proton exchange membrane fuel cell stack (Int. J. Hydrogen Energy 2021)",
+     "location": "Abstract",
+     "quote": "The cold start strategy changes to load-voltage cooperative control mode when the ambient temperature reduced to −30 °C"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Load-voltage control and individual cell-voltage monitoring require electrical connections to the stack in the cold environment.",
+     "source_url": "https://doi.org/10.1016/j.ijhydene.2021.07.041",
+     "document_title": "Effect of different control strategies on rapid cold start-up of a 30-cell proton exchange membrane fuel cell stack (Int. J. Hydrogen Energy 2021)",
+     "location": "Abstract",
+     "quote": "the voltage of multiple cells in the middle of the stack fluctuate more drastic, and start-up takes 113 s."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Hu K., Chu T.-K., Li F.-Y., Wang B.-Y., Zhang Z.-H., Liu T., Effect of different control strategies on rapid cold start-up of a 30-cell proton exchange membrane fuel cell stack, International Journal of Hydrogen Energy (2021), doi:10.1016/j.ijhydene.2021.07.041",
+     "url": "https://doi.org/10.1016/j.ijhydene.2021.07.041",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": []
+  },
+  {
+   "id": "auto_lh2_truck_tank_ln2_boiloff",
+   "name": "Thermal performance test of a 500 L horizontal truck liquid-hydrogen tank (ISO 13985 design) with liquid nitrogen as LH2 surrogate: heat leak, vapor-cooled shield, stratification, self-pressurization and lossless storage time",
+   "plain_name": "Fill a truck's liquid-hydrogen fuel tank with liquid nitrogen to measure how fast it boils off",
+   "industry": "automotive_and_transportation",
+   "description": "A 500-liter horizontal vacuum-insulated LH2 fuel tank for heavy-duty trucks, built to ISO 13985, is filled with liquid nitrogen as a substitute for LH2 to measure heat leakage, the effect of a vapor-cooled shield (daily evaporation 1.87 to 1.5 wt%), thermal stratification, self-pressurization and lossless storage time (50 h at 50 % initial fill).",
+   "requirements": [
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The preliminary tank experiments use liquid nitrogen as the working cryogen in place of liquid hydrogen.",
+     "source_url": "https://doi.org/10.1016/j.ijrefrig.2024.10.037",
+     "document_title": "Comprehensive design and preliminary experiments of liquid hydrogen storage tank for trucks (Int. J. Refrigeration 169 (2025) 279-293)",
+     "location": "Abstract",
+     "quote": "Preliminary experiments were conducted using liquid nitrogen as a substitute for liquid hydrogen."
+    },
+    {
+     "keys": [
+      "chamber.volume"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 500,
+       "unit": "L"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The tested vehicle fuel tank holds 500 L; a storage vessel standing in for it must offer at least that inner volume.",
+     "source_url": "https://doi.org/10.1016/j.ijrefrig.2024.10.037",
+     "document_title": "Comprehensive design and preliminary experiments of liquid hydrogen storage tank for trucks (Int. J. Refrigeration 169 (2025) 279-293)",
+     "location": "Abstract",
+     "quote": "This study designed and built a 500-liter horizontal liquid hydrogen tank for vehicle fuel storage, following ISO 13985 standards to ensure practical applicability."
+    },
+    {
+     "keys": [
+      "holding_time.static"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 50,
+       "unit": "h"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional benchmark: the tank reached 50 h of lossless (no-vent) storage with LN2 at 50 % initial fill.",
+     "source_url": "https://doi.org/10.1016/j.ijrefrig.2024.10.037",
+     "document_title": "Comprehensive design and preliminary experiments of liquid hydrogen storage tank for trucks (Int. J. Refrigeration 169 (2025) 279-293)",
+     "location": "Abstract",
+     "quote": "maintaining an initial liquid level of 50% extended the lossless storage time to 50 h in the LN2 scenario."
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Wan C., Shi C., Zhu S., Fang S., Qiu L., Shi G., Li D., Shao S., Wang K., Comprehensive design and preliminary experiments of liquid hydrogen storage tank for trucks, International Journal of Refrigeration 169 (2025) 279-293, doi:10.1016/j.ijrefrig.2024.10.037",
+     "url": "https://doi.org/10.1016/j.ijrefrig.2024.10.037",
+     "accessed": "2026-11-01"
+    }
+   ],
+   "reported_equipment": [
+    "500-liter horizontal liquid hydrogen tank with vapor-cooled shield (in-house, ISO 13985)"
+   ]
+  }
+ ],
+ "notes": "Search budget (WebSearch, Tavily, Lune, scite) was exhausted during this run, so sources were limited to pages reachable directly (TUV SUD, ISO 16750-4 iTeh preview, Infineon KBA, batterydesign.net, PMC, MDPI) plus Consensus abstracts whose DOIs were confirmed via Crossref. Quotes for Liu 2022 (SAE), Hu 2021 (IJHE) and Wan 2025 (IJR) are verbatim publisher abstracts as indexed by Consensus; the publisher pages were captcha-blocked and not opened. UN 38.3 and AEC-Q100 values come from a test-lab page (TUV SUD) and a manufacturer KBA (Infineon) because unece.org and aecouncil.com could not be fetched; AEC-Q100 temperature-cycling (TC) conditions were not retrievable, so that profile is the Grade 0 operating-range check only. IEC 62660-1 is from the batterydesign.net summary (secondary source). ISO 16750-4 code C (Tmin -40 C, Tmax 65 C) was chosen for the cycling profile; its sweep-rate requirement is arithmetic on the quoted profile and is non-mandatory. In Herran 2026 the Binder KB53 is named for the pre-opening 25 C discharge; the retrieved text does not name the chamber used for -10 C aging. Most automotive procedures are climatic-chamber tests whose deciding keys are temperature.range and electrical.sample_connections; no size gate is stated in the sources except the 500 L tank. The existing automotive profiles (20 K membrane permeation, 304L tensile at 20 K, LH2 composite fatigue) are not duplicated."
+}

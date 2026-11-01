@@ -1,0 +1,18 @@
+{
+ "name": "fig_capability_comparison",
+ "title": "Sourced capabilities of the 26 cryostat configurations",
+ "question": "How do the catalogued configurations differ in temperature range, field, sample space, cooldown and cooling power, and where are the specifications missing?",
+ "model": "None: values are read from the catalog and converted exactly to SI (cryolean.units.to_si); evidence class from each capability's evidence_status.",
+ "data": "data/cryostats/*.json (catalog database), keys temperature.range / temperature.chamber.range / temperature.base / magnetic_field.max / sample.bore_diameter / sample.diameter.max / cooldown_time.max / cooling_power.at_4200mK / cooling_power.at_20mK; saved in paper/data/fig_capability_comparison.json",
+ "claim": "SOURCED",
+ "caption": "Manufacturer-specified capabilities of the 26 configurations, grouped by equipment family. Filled markers are manufacturer specifications, hollow dashed markers inferred estimates, and dotted markers values documented for an option that is not installed; 'unknown' marks a capability the catalogue records but no source quantifies, 'not recorded' one the catalogue does not list. Cooling power at 4.2 K is quantified for only 8 of 26 configurations and maximum field for 10 installed magnets; all values are sourced, none are modelled.",
+ "section": "main",
+ "script": "paper/scripts/fig_equipment.py",
+ "command": "python paper/scripts/fig_equipment.py",
+ "files": [
+  "paper/figures/fig_capability_comparison.png",
+  "paper/figures/fig_capability_comparison.svg",
+  "paper/figures/fig_capability_comparison.pdf"
+ ],
+ "interactive": null
+}

@@ -1,0 +1,59 @@
+{
+  "configuration_id": "expansion_b_entech7200a_epa_documented",
+  "rows": [
+    {
+      "key": "process.cryogenic_milling",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "VOC preconcentrator + GC-MSD for whole-air canister samples; no milling/comminution function",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "This standard operating procedure (SOP) is applicable to the determination of volatile organic compounds (VOC) using an Entech 7200A universal preconcentrator interfaced with an Entech 7016D autosampler and an Agilent 8890/5977B inert plus extractor electron impact (EI) source gas chromatograph-mass selective detector (GC-MSD) system.",
+      "document_title": "EPA SOP 5188: Analysis of Volatile Organic Compounds in Whole Air Samples Using the Entech 7200A Preconcentrator and Agilent 8890/5977B GC-MSD",
+      "source_url": "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf",
+      "location": "Section 1.0 Scope and Application, p. 3 (cached research/v5/cache/f580c75f9b830d13.txt)",
+      "reasoning": "The installed system's own scope statement defines it as a gas-phase VOC preconcentrator feeding a GC-MSD; samples are whole air in canisters that are preconcentrated onto cold traps (Section 1.0 continues: VOCs in whole air samples collected in canisters are preconcentrated onto the focusing trap and injected into the GC). Its liquid nitrogen cools the traps and the GC oven (Section 8.1.2). Nothing in the configuration grinds or comminutes solid samples, so cryogenic milling of soil is not a function of this machine."
+    },
+    {
+      "key": "temperature.base",
+      "result": "still_unknown",
+      "reasoning": "The only cold elements are the LN2-cooled preconcentrator traps and the GC oven. The record already holds the lowest documented method setpoint (Module 3 precool -180 C = 93.15 K, trap.precool.temperature, from the SOP Appendix B screenshot), but that is a method setpoint, not a documented instrument base-temperature limit, and it is not a specimen temperature. Searched: the full SOP text (scope, 8.1.2 Liquid Nitrogen, appendices as text), web searches for an Entech 7200A specification sheet with trap minimum temperature (the Entech 7200A brochure on labrulez returned HTTP 403; secondary results only cite a -150 C focusing step for the older 7200 and 'cools to trapping temperatures in under 2 minutes'). No manufacturer base-temperature figure was found. This does not keep the soil-preparation pairing yellow, because process.cryogenic_milling is documented as not available."
+    },
+    {
+      "key": "temperature.range",
+      "result": "still_unknown",
+      "reasoning": "No documented continuous sample/operating temperature range exists for this configuration; the SOP gives only discrete trap setpoints (precool -180 C, transfer -160 C, inject +80 C) and GC-oven settings, which the record deliberately does not turn into an envelope. A trap-temperature range would not be a specimen range for droplet freezing anyway. Searched the SOP text and web for an Entech 7200A specification sheet (brochure blocked, 403); none found. The marine-aerosol ice-nucleation pairing is still resolved by optical_access and module.dewpoint_control, both documented as not available."
+    },
+    {
+      "key": "optical_access",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Closed gas-phase preconcentrator/GC-MSD; detection by mass spectrometry, no sample viewing",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "The Entech 7200A VOC preconcentrator-Agilent 8890/5977B inert plus extractor EI source GC-MSD system is used to determine VOCs in whole air samples collected in specially prepared canisters.",
+      "document_title": "EPA SOP 5188: Analysis of Volatile Organic Compounds in Whole Air Samples Using the Entech 7200A Preconcentrator and Agilent 8890/5977B GC-MSD",
+      "source_url": "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf",
+      "location": "Section 2.0 Summary of Method, p. 3 (cached research/v5/cache/f580c75f9b830d13.txt)",
+      "reasoning": "The facility's own method summary states what the machine does: gas from canisters is trapped in internal tubing traps and identified/quantified by mass spectrometry. There is no sample stage or window; the analyte is a gas inside sealed traps and a capillary column, so optical observation of a specimen (as needed to watch droplets freeze) is outside the instrument's scope."
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "result": "still_unknown",
+      "reasoning": "No documented controlled cooling-rate magnitudes for this configuration were found. The SOP gives trap setpoints only, and the only secondary statement located (an Entech/Agilent application note cited in search results: cools to trapping temperature in under 2 minutes) is neither a controlled-ramp specification nor confirmed from a primary page (the Entech 7200A brochure returned HTTP 403). The ice-nucleation pairing is decided by optical_access and module.dewpoint_control, which are documented as not available."
+    },
+    {
+      "key": "module.dewpoint_control",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Analytical VOC system; humidified air prepared off-instrument under separate SOPs",
+      "install": "not_available",
+      "evidence_status": "experimental_observation",
+      "quote": "All canisters must be tested for cleanliness before use by filling clean, evacuated canisters (J-AMCD-AAB-SOP-3914-2 or J-AMCD-AAB-SOP-3915-2) with humidified scientific air (HSA) (J-AMCD-AAB-SOP-3907-1 or J-AMCD-AAB-SOP-3920-1), allowing the humidified air mixture to age in the canister for a minimum of 24 hours",
+      "document_title": "EPA SOP 5188: Analysis of Volatile Organic Compounds in Whole Air Samples Using the Entech 7200A Preconcentrator and Agilent 8890/5977B GC-MSD",
+      "source_url": "https://www.epa.gov/system/files/documents/2023-12/sop-5188-entech-7200a-agilent-5977b_508-compliant.pdf",
+      "location": "Section 5.4, and Section 2.0 Summary of Method, p. 3 (cached research/v5/cache/f580c75f9b830d13.txt)",
+      "reasoning": "The SOP scope and method summary define the installed system as a canister VOC preconcentrator + GC-MSD. The only humidified gas in the method is prepared off-instrument in canisters under separate SOPs (Sections 5.4 and 14.1), and the instrument then analyzes it; the configuration contains no humidified/dry gas mixing chain or dew-point hygrometer controlling a sample environment, which is what the ice-nucleation experiment requires."
+    }
+  ]
+}

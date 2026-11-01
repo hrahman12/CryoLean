@@ -1,0 +1,81 @@
+{
+  "id": "expa_hydrogen_composite_fatigue",
+  "name": "Liquid-hydrogen polymer-composite cyclic fatigue at 20 K",
+  "plain_name": "Liquid-hydrogen polymer-composite cyclic fatigue at 20 K",
+  "industry": "automotive_and_transportation",
+  "description": "Characterize fatigue damage under repeated mechanical loading of a polymer composite in the 20 K liquid-hydrogen environment documented for CRAFT.",
+  "keywords": [
+    "hydrogen composite fatigue",
+    "tensile tester"
+  ],
+  "sources": [
+    {
+      "citation": "Washington State University HYPER, CRyogenic Accelerated Fatigue Testing",
+      "url": "https://hydrogen.wsu.edu/craft/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "liquid hydrogen (20 K)",
+      "evidence_id": "expa_craft"
+    }
+  ],
+  "reported_equipment": [
+    "WSU CRAFT"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "20",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The documented liquid-hydrogen test-bath point is 20 K; cold reach alone cannot satisfy specimen operation at that point.",
+      "evidence_ids": [
+        "expa_craft"
+      ]
+    },
+    {
+      "key": "module.cryogenic_fatigue_test",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Cyclic force/extension testing is indispensable.",
+      "evidence_ids": [
+        "expa_craft"
+      ]
+    },
+    {
+      "key": "module.liquid_hydrogen_handling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The selected exposure is actual liquid hydrogen, beyond a helium-cooled coupon.",
+      "evidence_ids": [
+        "expa_craft"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Frequency, load ratio, cycle count, coupon geometry and measured fatigue life are protocol-specific and not synthesized from the frame's 100 Hz maximum."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

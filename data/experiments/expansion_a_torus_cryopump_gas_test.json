@@ -1,0 +1,81 @@
+{
+  "id": "expa_torus_cryopump_gas_test",
+  "name": "Fusion torus cryopump gas-injection test near 5 K",
+  "plain_name": "Fusion torus cryopump gas-injection test near 5 K",
+  "industry": "nuclear_engineering_and_fusion",
+  "description": "Measure response to test-gas injection on a precooled pre-production ITER cryopump, following the actual commissioning sequence.",
+  "keywords": [
+    "torus cryopump gas test",
+    "cryopump test facility"
+  ],
+  "sources": [
+    {
+      "citation": "ITER, Let there be cold",
+      "url": "https://www.iter.org/node/20687/let-there-be-cold",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "approximately 5 K",
+      "evidence_id": "expa_iter_pump"
+    }
+  ],
+  "reported_equipment": [
+    "ITER cryopump test facility"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "5",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported commissioning cold point is approximately 5 K; encoded 5 K is nominal.",
+      "evidence_ids": [
+        "expa_iter_pump"
+      ]
+    },
+    {
+      "key": "module.cryopump_gas_injection_test",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "A cryopump test stand with controlled gas admission is indispensable.",
+      "evidence_ids": [
+        "expa_iter_pump"
+      ]
+    },
+    {
+      "key": "vacuum.available",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The pumping measurement needs a vacuum vessel.",
+      "evidence_ids": [
+        "expa_iter_pump"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Gas composition/flow, sorbent capacity, regeneration, pumping speed and tritium suitability are not established by the scalar model."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

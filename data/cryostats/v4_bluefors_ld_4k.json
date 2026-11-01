@@ -1,0 +1,165 @@
+{
+ "id": "bluefors_ld_4k",
+ "manufacturer": "Bluefors",
+ "model": "LD-4K Measurement System",
+ "family": "cryogen-free pulse-tube 4 K measurement cryostat (LD platform without dilution unit)",
+ "description": "Pulse-tube-cooled 4 K measurement system built on the LD dilution-refrigerator platform without the dilution unit: <3.2 K base, 1.35 W at 4.2 K (PT415-ENH), <8 h cooldown, 330 mm base flange, 2 x ISO-K63 and 5 x KF40 wiring ports, upgradeable to a dilution refrigerator; options include superconducting magnets, magnetic shielding and optical access ports. Used for 4 K detector, SIS/LNA and cryo-electronics testing.",
+ "documents": [
+  {
+   "id": "doc_bluefors_ld_4k_0",
+   "url": "https://bluefors.com/products/4k-systems/ld-4k-measurement-system/",
+   "title": "LD-4K Measurement System (Bluefors product page, Technical Specifications)",
+   "accessed": "2026-11-01"
+  },
+  {
+   "id": "doc_bluefors_ld_4k_1",
+   "url": "https://bluefors.com/products/cryogenic-measurement-system-options/optical-access-ports/",
+   "title": "Optical Access Ports - Cryogenic Measurement System Option (Bluefors)",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "bluefors_ld_4k_pt415",
+   "name": "LD-4K with PT415-ENH pulse tube, standard experimental space and shield set, no options",
+   "configuration_basis": "Bluefors LD-4K Measurement System with the PT415-ENH pulse tube (first column of the technical specifications), standard experimental space and shield set, Bluefors temperature controller. Experimental wiring (Measurement Infrastructure), superconducting magnets, magnetic shielding, optical access ports, 4K heater and other options are NOT included.",
+   "capabilities": [
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 3200,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_temperature.base"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "module.magnetic_shielding",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_module.magnetic_shielding"
+     ]
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_optical_access"
+     ]
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "optional_not_installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": []
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_cryogen.type"
+     ]
+    },
+    {
+     "key": "cooling_power.at_4200mK",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 28800,
+       "unit": "s"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_bluefors_ld_4k_pt415_cooldown_time.max"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "bluefors_ld_4k_pt415",
+   "key": "sample.diameter.max",
+   "why": "330 mm is the base flange diameter of the cryostat stage stack, measured with the standard shield set. It is not a documented maximum sample size: the inner diameter of the experimental space and the room taken by wiring and ports are not given. The existing bluefors_ld record likewise leaves sample.diameter.max unknown and does not map the flange diameter."
+  },
+  {
+   "configuration_id": "bluefors_ld_4k_pt415",
+   "key": "cooling_power.at_4200mK",
+   "why": "1.35 W is the 'Cooling power at 2nd stage at 4.2 K' of the PT415-ENH, which is the pulse-tube stage itself. The same table gives much lower power at the experimental 4K Flange: ~50 mW at 3 K and ~1000 mW at 5 K without load. So 1.35 W overstates the power available at the sample stage at 4.2 K. There is no 4K-flange value at 4.2 K to substitute."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "astronomy_and_astrophysics"
+ ]
+}

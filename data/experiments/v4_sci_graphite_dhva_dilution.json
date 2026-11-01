@@ -1,0 +1,137 @@
+{
+ "id": "sci_graphite_dhva_dilution",
+ "name": "Millikelvin torsion-balance de Haas-van Alphen and Hall/SdH magnetotransport of HOPG graphite, 30 mK-3.8 K, up to 12 T",
+ "plain_name": "Detect quantum oscillations in graphite's magnetism near absolute zero",
+ "industry": "scientific_research",
+ "description": "Measure the de Haas-van Alphen effect of a 10 x 5.5 x 0.5 mm HOPG piece with a capacitive torsion-balance magnetometer, then Hall and Shubnikov-de Haas resistance on the same sample (six-terminal Hall bar, AC currents below 10 uA), in the mixing chamber of a low-vibration dilution refrigerator from 30 mK to 3.8 K in a superconducting magnet up to 12 T.",
+ "keywords": [
+  "Detect quantum oscillations in graphite's magnetism near absolute zero",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "S.B. Hubbard, T.J. Kershaw, A. Usher, A.K. Savchenko, A. Shytov, 'Millikelvin de Haas-van Alphen and Magnetotransport studies of Graphite', arXiv:1007.2573 (2010)",
+   "url": "https://arxiv.org/pdf/1007.2573",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "low-vibration dilution refrigerator",
+  "superconducting magnet",
+  "millikelvin torsion-balance magnetometer"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 30,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The lowest measurement temperature (30 mK, where all FFT and phase analyses were done) must be reachable at the sample.",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 30,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 3800,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Cyclotron masses come from the temperature dependence of the oscillation amplitude over 30 mK-3.8 K (data at 30, 485, 980 and 3830 mK).",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 12,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The magnetization and transport sweeps extend to 12 T.",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Hall and SdH resistance were measured on the sample in six-terminal geometry, so wired sample contacts are needed (the torsion balance is also read out electrically as a capacitance).",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 6
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional detail: the six-terminal Hall bar needs at least six sample leads.",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_4"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "11.42",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The 10 mm x 5.5 mm HOPG footprint has a circumscribed diameter of 11.42 mm (sqrt(10^2+5.5^2) = 11.413 mm, rounded up), which the sample space must clear.",
+   "evidence_ids": [
+    "v4e_sci_graphite_dhva_dilution_5"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

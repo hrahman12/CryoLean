@@ -121,7 +121,7 @@ def explainKey (k : Constraint) (key : String) (cap : Option Capability) (o : Ou
   | some c, .pass => s!"{what}; this configuration has {describeCapValue c.value} ({describeEvidence c.evidence})."
   | some c, .fail =>
       match c.install with
-      | .optionalNotInstalled => s!"{what}, but '{key}' is an option that is not installed in this configuration."
+      | .optionalNotInstalled => s!"{what}, but '{key}' is documented as not fitted or not available in this configuration ({describeEvidence c.evidence})."
       | _ => s!"{what}, but this configuration has {describeCapValue c.value} ({describeEvidence c.evidence})."
   | some c, .unknown =>
       if c.value == .unknown && c.install != .unknown then

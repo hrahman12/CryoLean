@@ -1,0 +1,82 @@
+{
+ "id": "geo_lava_ltd_tsunakawa_shaw",
+ "name": "Low-temperature demagnetization (10 min liquid-nitrogen soak, zero field) of one-inch lava cores in Tsunakawa-Shaw paleointensity experiments",
+ "plain_name": "Dunk lava rock cores in liquid nitrogen to strip weak magnetism before measuring ancient field strength",
+ "industry": "geology_and_oceanography",
+ "description": "Before each stepwise AF demagnetization of NRM, ARM and laboratory TRM, one-inch Hawaiian lava specimens are soaked in liquid nitrogen for 10 min and warmed at room temperature for 30 min in zero field (low-temperature demagnetization, LTD), removing multidomain magnetite remanence; remanence is measured with DSPIN/ASPIN spinner magnetometers with AF to 180 mT.",
+ "keywords": [
+  "Dunk lava rock cores in liquid nitrogen to strip weak magnetism before measuring ancient field strength",
+  "geology_and_oceanography"
+ ],
+ "sources": [
+  {
+   "citation": "Yamamoto and Yamaoka (2018) Paleointensity Study on the Holocene Surface Lavas on the Island of Hawaii Using the Tsunakawa-Shaw Method, Frontiers in Earth Science 6:48",
+   "url": "https://doi.org/10.3389/feart.2018.00048",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "DSPIN automated spinner magnetometer with AF demagnetizer (Natsuhara Giken)",
+  "ASPIN-A spinner magnetometer (Natsuhara Giken)",
+  "DEM-8601C AF demagnetizer (Natsuhara Giken)",
+  "TDS-1 thermal demagnetizer (Natsuhara Giken)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "LTD is done by soaking the specimen in liquid nitrogen.",
+   "evidence_ids": [
+    "v4e_geo_lava_ltd_tsunakawa_shaw_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1,
+     "unit": "inch"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Specimens are cut from standard one-inch paleomagnetic cores.",
+   "evidence_ids": [
+    "v4e_geo_lava_ltd_tsunakawa_shaw_1"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cooling/warming cycle must happen in zero field so no new remanence is acquired.",
+   "evidence_ids": [
+    "v4e_geo_lava_ltd_tsunakawa_shaw_2"
+   ],
+   "conditions": [],
+   "key": "module.magnetic_shielding"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

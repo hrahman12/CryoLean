@@ -1,0 +1,121 @@
+{
+ "id": "chem_cryomilling_amorphization",
+ "name": "Cryogenic impact milling of a crystalline drug under liquid nitrogen for 2.5 h at 9 impacts per second to produce the amorphous form",
+ "plain_name": "Grind a medicine into powder while liquid nitrogen keeps it brittle",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "Crystalline bosentan is milled in a stainless-steel grinding vessel immersed in liquid nitrogen in a Retsch CryoMill at an impact frequency of 9 cycles per second for a total of 2.5 h, converting it to the amorphous state without the thermal degradation that ambient milling or melt-quenching would cause. The amorphous product is then compared with the melt-quenched glass.",
+ "keywords": [
+  "Grind a medicine into powder while liquid nitrogen keeps it brittle",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "A. Minecka, K. Chmiel, K. Jurkiewicz, et al., Studies on the Vitrified and Cryomilled Bosentan, Molecular Pharmaceutics 19(1):80-90 (2022)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8728735/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "RETSCH GmbH CryoMill equipment data sheet, reproduced on AZoM (equipment ID 9856)",
+   "url": "https://www.azom.com/equipment-details.aspx?EquipID=9856",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "CryoMill ~100-240 V-50/60 Hz, Retsch GmbH, Germany",
+  "stainless steel grinding vessel"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The grinding jar is held at liquid-nitrogen temperature (-196 C = 77150 mK) throughout, which is what embrittles the drug and stops it recrystallising or degrading during milling.",
+   "evidence_ids": [
+    "v4e_chem_cryomilling_amorphization_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The procedure consumes liquid nitrogen: the milling vessel is physically immersed in it, so a purely mechanical or electrically cooled machine cannot reproduce the process.",
+   "evidence_ids": [
+    "v4e_chem_cryomilling_amorphization_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The machine has to be a cryogenic impact mill: the amorphisation comes from mechanical impact delivered while the sample is at cryogenic temperature.",
+   "evidence_ids": [
+    "v4e_chem_cryomilling_amorphization_2"
+   ],
+   "conditions": [],
+   "key": "process.cryogenic_milling"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 9,
+     "unit": "Hz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Milling was carried out at 9 impacts per second (9 Hz), which must lie inside the mill's selectable frequency range.",
+   "evidence_ids": [
+    "v4e_chem_cryomilling_amorphization_3"
+   ],
+   "conditions": [],
+   "key": "milling.frequency.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 720,
+     "unit": "s"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Full amorphisation needed 2.5 h (9000 s) of milling, so the machine's programmable grinding time (with intermediate cooling cycles) must reach that total.",
+   "evidence_ids": [
+    "v4e_chem_cryomilling_amorphization_4"
+   ],
+   "conditions": [],
+   "key": "milling.duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

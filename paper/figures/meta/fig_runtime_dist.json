@@ -1,0 +1,18 @@
+{
+ "name": "fig_runtime_dist",
+ "title": "Runtime distributions",
+ "question": "How long does each stage of a CryoLean check take, how variable is it, and where does a full check spend its time?",
+ "model": "Wall-clock timing (time.perf_counter) of repeated calls interleaved in random order; violins are Gaussian KDEs of log10(time); boxes are IQR and median. The breakdown uses timing wrappers around the calls verifier.check makes (lean_runner.check, lean_runner.axiom_audit, smt.*), behaviour unchanged.",
+ "data": "paper/data/bench_runtime_dist.json and paper/data/fig_runtime_dist.json, written by paper/scripts/fig_benchmarks.py; 40 repeats per row after 2 warm-up rounds. Pairs: MET = mat_magnetometry_vsm/qd_dynacool_14T_eto_vsm_hc, NOT MET = mat_magnetoresistance_10T/qd_dynacool_9T_eto_res (Demo A), NEED INFO = mat_magnetoresistance_10T/qd_dynacool_14T_eto_vsm_hc; batch = all 286 pairs of the 11 x 26 grid in one check_batch. Verdicts re-computed by Lean in every repeat. Machine: Intel(R) Core(TM) i9-14900HX (24 cores / 32 threads, 29.7 GiB), Windows-11-10.0.26200-SP0, Python 3.12.10, cryolean v2 (Lean 4.35.0), Z3 5.3.3.",
+ "claim": "MEASURED",
+ "caption": "Distributions of 40 interleaved repeats of each stage. A single Lean check costs about one process start (210 ms for the MET pair), batching the 286-pair grid brings it to 2.5 ms per pair, and a Z3 conflict explanation takes 11 ms. A full check with suggestions takes 367 ms to 1.59 s; panel (b) attributes it to the Lean verdict, Z3 suggestions, Lean re-checks of the five suggested alternatives (one process each), and the verdict card's axiom-audit freshness test, which re-hashes the 107 MB checker binary on every check. All values are measured; every repeat's verdict came from Lean. The machine was not idle: median whole-system CPU utilisation during this benchmark was 36% (other desktop applications, antivirus scanning and other sessions' jobs).",
+ "section": "main",
+ "script": "paper/scripts/fig_benchmarks.py",
+ "command": "python paper/scripts/fig_benchmarks.py",
+ "files": [
+  "paper/figures/fig_runtime_dist.png",
+  "paper/figures/fig_runtime_dist.svg",
+  "paper/figures/fig_runtime_dist.pdf"
+ ],
+ "interactive": null
+}

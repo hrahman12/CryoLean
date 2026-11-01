@@ -1,0 +1,137 @@
+{
+ "id": "nuc_h2_d2_cryogenic_distillation",
+ "name": "Total-reflux H2-D2 cryogenic distillation (HETP of ICSI B5 ordered packing, 50 mm column) at 21-23 K and ~1 bar in a vacuum cold box with an LH2-fed condenser",
+ "plain_name": "Separate heavy hydrogen from ordinary hydrogen by distilling the liquid at about 20 K, as done for tritium removal plants",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "Laboratory-scale detritiation/fusion fuel-cycle isotope-separation column at ICSI Rm. Valcea: 0.3 m3 vacuum cold box (1e-5 mbar), condenser cooled by LH2 from a Stirling PPH liquefier, electric boiler for reflux, H2-D2 mixtures at 0.9-1.2 bar sampled for GC.",
+ "keywords": [
+  "Separate heavy hydrogen from ordinary hydrogen by distilling the liquid at about 20 K, as done for tritium removal plants",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Lazar et al., Preliminary tests on a hydrogen isotope separation cryogenic facility, at the laboratory scale, within the Cryogenic Laboratory from ICSI Rm. Valcea, Progress of Cryogenics and Isotopes Separation 22(2) (2019) 5-12",
+   "url": "https://www.energ-en.ro/assets/pdfsc/56bebb64b97a15ee30502ea7f6501e23.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Stirling hydrogen liquefier type PPH",
+  "ICSI 316L cold-box (ASME VIII)",
+  "Agilent TwisTorr 304 FS turbo pumping system",
+  "SCION 456-GC gas chromatograph",
+  "ICSI B5 ordered packing column (50 mm)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 21000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 23000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Column ran at 21-23 K.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_hydrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Condenser cooled with liquid hydrogen.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Vacuum-insulated cold box.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00001",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Operation starts only at 1e-5 mbar.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Electric boiler controls reflux.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 300,
+     "unit": "L"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "About 0.3 m3 free cold-box space.",
+   "evidence_ids": [
+    "v4e_nuc_h2_d2_cryogenic_distillation_6"
+   ],
+   "conditions": [],
+   "key": "chamber.volume"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,18 @@
+{
+ "name": "fig_architecture",
+ "title": "CryoLean system architecture",
+ "question": "How do untrusted proposers (Z3, an LLM, a simulation service) relate to the trusted Lean decision procedure?",
+ "model": "Schematic of the implemented components and data flow (cryolean/bridge.py, verifier.py, smt.py, schedule.py, gatekeeper.py, lanyon.py; lean/CryoLean/*.lean).",
+ "data": "Counts from paper/data/e7_coverage.json and the theorem names in lean/CryoLean/Soundness.lean and Schedule.lean.",
+ "claim": "ILLUSTRATIVE",
+ "caption": "System architecture. Inputs reach the trusted Lean kernel only as serialised exact-rational documents. Z3, an LLM and a simulation service propose; their outputs pass through verdict, validSchedule or the Gatekeeper before they reach the user as a verdict card.",
+ "section": "main",
+ "script": "paper/scripts/fig_architecture.py",
+ "command": "python paper/scripts/fig_architecture.py",
+ "files": [
+  "paper/figures/fig_architecture.png",
+  "paper/figures/fig_architecture.svg",
+  "paper/figures/fig_architecture.pdf"
+ ],
+ "interactive": null
+}

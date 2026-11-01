@@ -34,7 +34,9 @@ def test_forty_properties_and_honest_status(api):
 
 def test_coverage_does_not_overclaim(api):
     cov = data(api.get_research_coverage())
-    assert cov["industries"]["researched"] < cov["industries"]["registered_or_known"]
+    researched = {e["industry"] for e in data(api.list_experiments())["experiments"]}
+    assert cov["industries"]["researched"] <= cov["industries"]["registered_or_known"]
+    assert cov["industries"]["researched"] == len(researched)   # counts industries with real profiles, nothing more
     assert cov["missing_scientific_data"]["unknown_capabilities"]
     assert "does not mean every experiment" in cov["disclaimer"]
 

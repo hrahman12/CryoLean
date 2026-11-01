@@ -65,3 +65,8 @@ open CryoLean
 #print axioms validSchedule_only_accepted
 #print axioms validSchedule_rejects_unaccepted
 #print axioms resolve_ids
+-- information monotonicity: refining a configuration never changes a decided verdict
+#print axioms verdict_refines
+#print axioms accept_preserved_by_refinement
+#print axioms reject_preserved_by_refinement
+#print axioms needMoreInfo_of_refined

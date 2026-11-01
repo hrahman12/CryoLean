@@ -1,0 +1,4098 @@
+{
+  "_comment": "CryoLean v4 shared property vocabulary for the 20-industry expansion. Written by the vocabulary designer agent. Proposal only: data/capability_vocabulary.json is NOT modified; the integrator adds new_keys there. Experiment ideas are candidates with one real source each; profile authors must re-read the source and quote values verbatim before writing requirements.",
+  "accessed": "2026-11-01",
+  "decision_semantics": "Lean decides a pair when every mandatory requirement key has trusted data. A documented absence (install=not_available with trusted evidence) passes 'absent' constraints and FAILS every other constraint, so documenting absences turns NEED_MORE_INFORMATION into DOES_NOT_MEET. range-shaped capabilities accept point_within/range_within/at_least/at_most; max accepts at_least; min accepts at_most; flag accepts present/absent/flag_is; count accepts count_*; set accepts set_contains.",
+  "core_passport": [
+    {
+      "key": "temperature.range",
+      "shape": "range",
+      "unit": "mK",
+      "why": "The single most discriminating property in all 20 industries: every machine holds its sample/product/test article between a documented lowest and highest temperature (DR mixing-chamber plate, PPMS sample chamber, freezer cabinet set-point range, LN2 dewar storage space e.g. -196 C liquid to -190 C top box, freeze-dryer shelf, TVAC platen/test-article interface, microtome specimen head, probe-station chuck, Stirling cold tip). Experiments use point_within / range_within / at_most / at_least on it, so one documented range decides most pairs, and a documented range that excludes the needed temperature yields DOES_NOT_MEET immediately. Already documented on 25/26 configurations.",
+      "how_to_document": "Range of the SAMPLE position as the manufacturer states it. If only a single storage/operating temperature is stated (e.g. LN2 liquid phase -196 C), use lo = hi = that value. Convert Celsius exactly (T[mK] = (C + 273.15) x 1000)."
+    },
+    {
+      "key": "temperature.base",
+      "shape": "min",
+      "unit": "mK",
+      "why": "Lowest documented temperature; the existing mK experiments (transmon, vector-field transport, wiring heat budget) are written as temperature.base at_most X. Every machine has a lowest temperature, so it is always documentable; keeping it lets the existing quantum profiles decide against new machines (e.g. a -80 C freezer immediately fails 'base <= 20 mK').",
+      "how_to_document": "Equal to temperature.range.lo from the same source unless the source states a separate (lower) base temperature."
+    },
+    {
+      "key": "magnetic_field.max",
+      "shape": "max",
+      "unit": "mT",
+      "why": "Field is a hard requirement in magnetometry, quantum transport, NMR/MRI, conductor testing and DNP; for the majority of new machines (freezers, dewars, freeze dryers, TVAC, cryocoolers) the honest value is a documented absence, which makes field-requiring experiments decide as DOES_NOT_MEET instead of NEED_MORE_INFORMATION.",
+      "how_to_document": "Value of the installed magnet, optional magnet as optional_not_installed, or install=not_available with evidence when the complete specification/component list shows no magnet."
+    },
+    {
+      "key": "vacuum.available",
+      "shape": "flag",
+      "unit": "",
+      "why": "Splits the equipment world in two: evacuated sample spaces (cryostats, TVAC, freeze dryers, cryo-FIB, ARPES/UHV, matrix isolation, boil-off calorimeters) versus atmospheric/vapour storage (freezers, dewars, microtomes, climatic chambers, Charpy baths). Many procedures (GEVS TVAC, lyophilisation, ice analogues, ARPES) require it; many others forbid it.",
+      "how_to_document": "Flag b=true/false with a source that describes the sample space (e.g. 'shroud ... vacuum ATM to 1e-7 Torr' or 'vapour-phase storage at atmospheric pressure')."
+    },
+    {
+      "key": "pressure.base",
+      "shape": "min",
+      "unit": "uPa",
+      "why": "Quantifies the vacuum: GEVS asks for < 1.33e-3 Pa, freeze-drying runs at 10-30 Pa (or ~13 Pa = 100 mTorr), UHV ice analogue / ARPES work needs ~1e-8 Pa. Machines without vacuum document a sourced absence (not_available), which decides vacuum-requiring experiments.",
+      "how_to_document": "Ultimate/base pressure of the sample space. Torr and mbar convert exactly (Torr = 101325/760 Pa)."
+    },
+    {
+      "key": "optical_access",
+      "shape": "flag",
+      "unit": "",
+      "why": "Needed by every spectroscopy, microscopy, photonics, laser, detector, solar-simulation and visual-inspection experiment; trivially documentable (windows/viewports/door window or none).",
+      "how_to_document": "true when a window/viewport onto the sample is part of the documented configuration (an observation window in a freezer/freeze-dryer door counts only if it views the sample space)."
+    },
+    {
+      "key": "electrical.sample_connections",
+      "shape": "flag",
+      "unit": "",
+      "why": "Any powered/biased/measured device under test (DUT in TVAC or climatic chamber, transport sample, detector, qubit, battery cell, HTS tape) needs feedthroughs; storage equipment usually has none, or only a sensor access port.",
+      "how_to_document": "true only when wiring/feedthroughs to the sample are documented; a temperature-probe access port alone is not sample wiring."
+    },
+    {
+      "key": "sample.diameter.max",
+      "shape": "max",
+      "unit": "um",
+      "why": "Universal size gate: wafer diameter (51/150/200/300 mm), vial/straw/can/box footprint, puck/bore, test-article envelope in a TVAC chamber, cryo-EM grid/carrier (3 mm), HPF carrier (6 mm). Existing sample.width.max/length.max are documented on only 3 and 1 of 26 configurations and caused NEED_MORE_INFORMATION; one lateral clear dimension is documentable for every machine.",
+      "how_to_document": "Clear diameter of the usable sample space perpendicular to the loading direction; for a rectangular space use the SMALLER of the two documented cross-section dimensions (the quote must contain it). Experiments state the diameter of the circle that circumscribes their sample footprint (conservative)."
+    },
+    {
+      "key": "sample.height.max",
+      "shape": "max",
+      "unit": "um",
+      "why": "Second universal size gate (usable depth along the loading axis): freezer/dewar inside height, rack height, TVAC chamber length, puck/stage clearance, shelf spacing of a freeze dryer.",
+      "how_to_document": "Usable length of the sample space along the loading/insertion axis (vertical for top-/bottom-loading cryostats, freezers, dewars; horizontal depth for front-loading chambers)."
+    },
+    {
+      "key": "cryogen.cryogen_free",
+      "shape": "flag",
+      "unit": "",
+      "why": "Documented on all 26 existing configurations; every machine either runs on electricity alone (closed-cycle, mechanical cascade, Stirling) or consumes a liquid cryogen. Field, space, MRI-siting, defense and helium-shortage experiments state it as a requirement.",
+      "how_to_document": "true when no liquid cryogen supply is needed in operation (a sealed, factory-filled inventory such as a 7 L sealed MRI magnet still counts as cryogen-free operation only if the source says no refills are needed)."
+    },
+    {
+      "key": "cryogen.type",
+      "shape": "set",
+      "unit": "",
+      "why": "Already in the vocabulary but never filled. A set of the liquid cryogens the machine uses/holds lets bath and immersion procedures decide: ASTM E1450 needs liquid_helium, Charpy at -196 C / IEC 61788-26 / BS 6364-type valve tests need liquid_nitrogen, cryo-EM plunge freezing needs liquid_ethane (cooled by liquid_nitrogen), LH2 materials tests need liquid_hydrogen, ProtoDUNE needs liquid_argon. A purely mechanical/closed-cycle machine documents the empty set [] (decides any set_contains requirement as not met).",
+      "how_to_document": "Use only these tokens: liquid_nitrogen, liquid_helium, liquid_argon, liquid_hydrogen, liquid_oxygen, liquid_neon, lng, liquid_ethane, dry_ice, compressed_argon_jt (Joule-Thomson cryoprobes), compressed_helium_jt. Empty list = no liquid cryogen."
+    }
+  ],
+  "passport_rules": [
+    "Every new equipment configuration documents ALL core-passport keys: a value, or install=not_available with a trusted source that shows the absence (complete spec sheet / component list), or optional_not_installed for an option that exists but is not fitted.",
+    "Experiment profiles write mandatory requirements on passport keys whenever the physics allows; family keys are added only when the procedure truly needs them (e.g. condenser temperature for lyophilisation).",
+    "Never write a mandatory requirement on a key that no machine family documents; check the family_mapping first."
+  ],
+  "passport_excluded": [
+    {
+      "key": "cooldown_time.max",
+      "reason": "Not documentable for passive storage dewars and dry shippers (they have no cool-down specification, only a charge/hold time) and rarely a mandatory experiment requirement; keep as a family key for cryostats, cryocoolers, freezers (pull-down time) and TVAC."
+    },
+    {
+      "key": "cooling_power.*",
+      "reason": "Every family rates cooling power at a different temperature (20 mK, 100 mK, 4.2 K, 77 K, 80 K) and storage/thermal-test equipment does not rate it at all; a single passport cooling-power key would be unknown for most machines. Use the temperature-specific family keys (existing at_20mK ... at_20000mK plus the new at_77000mK and at_80000mK)."
+    },
+    {
+      "key": "temperature.stability",
+      "reason": "Freezers document uniformity/stability, dewars and dry shippers do not; useful family key, not universal."
+    },
+    {
+      "key": "sample.width.max / sample.length.max",
+      "reason": "Documented on only 3/1 of 26 existing configurations; superseded for new work by the two universal size keys sample.diameter.max and sample.height.max (existing profiles that use width/length remain valid)."
+    }
+  ],
+  "new_keys": [
+    {
+      "key": "chamber.volume",
+      "shape": "max",
+      "unit": "L",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Usable internal volume of the sample/storage/test space (freezer cabinet, controlled-rate-freezer chamber, environmental or thermal-vacuum chamber, freeze-dryer product chamber, cold room/archive freezer).",
+      "used_by": [
+        "healthcare",
+        "biology",
+        "food",
+        "environmental",
+        "automotive",
+        "aerospace",
+        "semiconductors"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Chamber volume 16 litres (Planer Kryo 560-16)",
+        "url": "https://cryo-products.com/wp-content/uploads/2018/05/CryoP_PlanerKryo560.pdf"
+      }
+    },
+    {
+      "key": "storage.capacity.vials_2ml",
+      "shape": "count",
+      "unit": "count",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented maximum number of 1.2/2.0 mL cryovials the storage space holds with the standard inventory system (LN2 freezers, dewars, controlled-rate freezers, ULT freezers when stated in vials).",
+      "used_by": [
+        "healthcare",
+        "biology",
+        "food",
+        "chemistry"
+      ],
+      "documentable_example": {
+        "value_as_printed": "1.2 & 2ML VIALS 15,600 (MVE HEco 815P-190)",
+        "url": "https://mvebio.com/our-products/life-science-freezers/mve-heco-series"
+      }
+    },
+    {
+      "key": "storage.capacity.straws_0_5ml",
+      "shape": "count",
+      "unit": "count",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented maximum number of 0.5 mL (1/2 cc) straws the storage/shipping vessel holds (semen and embryo banking, IVF, livestock genetics).",
+      "used_by": [
+        "food",
+        "healthcare"
+      ],
+      "documentable_example": {
+        "value_as_printed": "store over 22,000 1/2cc straws (MVE HE 800 C)",
+        "url": "https://finance.yahoo.com/news/cryoports-mve-biological-solutions-expands-123000159.html"
+      }
+    },
+    {
+      "key": "holding_time.static",
+      "shape": "max",
+      "unit": "h",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented static holding time: how long one cryogen charge keeps the storage/sample space at its rated temperature without refill and without external power (LN2 dewars, vapour freezers, dry shippers, LHe cryostats). Days convert exactly (1 d = 24 h).",
+      "used_by": [
+        "healthcare",
+        "biology",
+        "food",
+        "energy",
+        "nuclear"
+      ],
+      "documentable_example": {
+        "value_as_printed": "STATIC HOLD TIME (EXCLUDING INVENTORY) 18 DAYS (MVE dry shipper)",
+        "url": "https://documents.thermofisher.com/TFS-Assets/ANZ/Catalogs/mve-bio-cryopreservation-catalogue.pdf"
+      }
+    },
+    {
+      "key": "temperature.shroud.range",
+      "shape": "range",
+      "unit": "mK",
+      "better": "none",
+      "vocabulary_better": "range",
+      "description": "Temperature range of the thermal shroud / cold wall that surrounds the test article in a thermal-vacuum or space-simulation chamber (the radiative environment; the platen/test-article interface range is temperature.range).",
+      "used_by": [
+        "aerospace",
+        "astronomy",
+        "defense"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Shroud temperature control range: -180 to +150 C",
+        "url": "https://genesisesi.com/wp-content/uploads/2024/11/TVAC_Technical_Specifications.pdf"
+      }
+    },
+    {
+      "key": "temperature.condenser.min",
+      "shape": "min",
+      "unit": "mK",
+      "better": "lower",
+      "vocabulary_better": "lower",
+      "description": "Lowest documented temperature of the ice condenser / cold trap of a freeze dryer or cryogenic trap (decides aqueous (-50 C) versus solvent/low-collapse (-80 to -85 C) lyophilisation).",
+      "used_by": [
+        "chemistry",
+        "biology",
+        "food",
+        "environmental",
+        "geology"
+      ],
+      "documentable_example": {
+        "value_as_printed": "ice condenser temperature with a minimum of -55 C and -85 C respectively (Christ Epsilon 1-4 / 2-4)",
+        "url": "https://www.pragolab.cz/documents/Laboratory%20and%20Pilot%20Freeze%20Dryers%20Advanced%20Processes.pdf"
+      }
+    },
+    {
+      "key": "condenser.ice_capacity",
+      "shape": "max",
+      "unit": "kg",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented maximum ice load of the freeze-dryer condenser before defrost, in kg (capacities printed in litres are a different dimension and must NOT be converted).",
+      "used_by": [
+        "chemistry",
+        "biology",
+        "food",
+        "geology"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Ice condenser capacity - capacity (max. kg) (Christ freeze dryer table)",
+        "url": "https://www.pragolab.cz/documents/Laboratory%20and%20Pilot%20Freeze%20Dryers%20Advanced%20Processes.pdf"
+      }
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "shape": "range",
+      "unit": "mK_per_min",
+      "better": "none",
+      "vocabulary_better": "range",
+      "description": "Range of controlled (programmable) cooling rates the machine can impose on the sample, as magnitudes (controlled-rate freezers, cryo-stages, DSC, climatic chambers). point_within checks protocols such as -1 C/min cell freezing or 0.3 C/min slow embryo freezing; existing temperature.cooling_rate.max only bounds the fast end.",
+      "used_by": [
+        "healthcare",
+        "biology",
+        "food",
+        "chemistry",
+        "materials"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Cooling Rates -0.01 C/min to -50 C/min (Planer Kryo 560)",
+        "url": "https://cryo-products.com/wp-content/uploads/2018/05/CryoP_PlanerKryo560.pdf"
+      }
+    },
+    {
+      "key": "cooling_power.at_77000mK",
+      "shape": "max",
+      "unit": "nW",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented cooling power (lift) at 77 K (tactical IR Stirling coolers, HTS cable/SFCL coolers, LNG/LN2 reliquefiers). Record the ambient/reject condition in the evidence.",
+      "used_by": [
+        "defense",
+        "energy",
+        "photonics",
+        "aerospace",
+        "nuclear"
+      ],
+      "documentable_example": {
+        "value_as_printed": "550mW@77K@71C (Ricor K508)",
+        "url": "https://ricor.com/products/k508"
+      }
+    },
+    {
+      "key": "cooling_power.at_80000mK",
+      "shape": "max",
+      "unit": "nW",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Documented cooling power at 80 K (the standard rating point of space and long-life pulse-tube/Stirling coolers for IR focal planes).",
+      "used_by": [
+        "aerospace",
+        "astronomy",
+        "defense"
+      ],
+      "documentable_example": {
+        "value_as_printed": "nominal cooling capacity of 7 W at 80 K with 400 W input power (NICMOS cryocooler)",
+        "url": "https://ntrs.nasa.gov/api/citations/20040068196/downloads/20040068196.pdf"
+      }
+    },
+    {
+      "key": "pressure.max_working",
+      "shape": "max",
+      "unit": "Pa",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Maximum allowable working pressure of the sample vessel/chamber/flow loop (cryogenic test vessels, supercritical-helium loops, high-pressure freezers, hydrate cells, LH2/LNG tanks). bar converts exactly (1 bar = 100000 Pa); psi has no terminating-decimal Pa value, so a psi rating can only be stored as a lower bound rounded DOWN with the printed value kept in the quote.",
+      "used_by": [
+        "biology",
+        "energy",
+        "nuclear",
+        "aerospace",
+        "geology",
+        "automotive"
+      ],
+      "documentable_example": {
+        "value_as_printed": "An air-driven intensifier pressurizes the liquid nitrogen to 2100 bar (Leica EM HPM100)",
+        "url": "https://www.helsinki.fi/assets/drupal/s3fs-public/migrated-generic-group-long-pages/files/91050-leica_emhpm100_brochure_en.pdf"
+      }
+    },
+    {
+      "key": "cryogen.flow_rate.max",
+      "shape": "max",
+      "unit": "L_per_min",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Maximum flow of LIQUID cryogen the machine can deliver to the process or meter under test (cryogenic machining nozzles, LN2 tunnel freezers, LNG/LN2 flow-calibration rigs, transfer systems). Gas flow stays in gas.flow_rate.max. m3/h values convert exactly only when divisible by 3 (1 m3/h = 50/3 L/min); otherwise store a value rounded DOWN and keep the printed value in the quote.",
+      "used_by": [
+        "manufacturing",
+        "energy",
+        "food",
+        "automotive"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Flow rates span ... m3/h (LNG dynamic metering per ISO 21903; agent must quote a facility spec)",
+        "url": "https://cdn.standards.iteh.ai/samples/72128/116234b79aca434c85d0a9cbee4cbfb9/ISO-21903-2020.pdf"
+      }
+    },
+    {
+      "key": "electrical.current_leads.max",
+      "shape": "max",
+      "unit": "A",
+      "better": "higher",
+      "vocabulary_better": "higher",
+      "description": "Maximum transport current of the installed current leads/power circuit to the sample (HTS tape and cable critical-current tests, magnet and fusion-conductor tests). Different from electrical.current.max, which is the excitation current of a measurement module.",
+      "used_by": [
+        "energy",
+        "nuclear",
+        "physics",
+        "metrology"
+      ],
+      "documentable_example": {
+        "value_as_printed": "50 kA capacity, nitrogen-cooled, demountable current leads for the SPARC Toroidal Field Model Coil",
+        "url": "https://arxiv.org/pdf/2308.12301"
+      }
+    },
+    {
+      "key": "humidity.range",
+      "shape": "range",
+      "unit": "percent",
+      "better": "none",
+      "vocabulary_better": "range",
+      "description": "Controllable relative-humidity range of the sample chamber (cryo-EM plunge freezers, climatic/damp-heat chambers, AIDA-type cloud chambers).",
+      "used_by": [
+        "biology",
+        "automotive",
+        "semiconductors",
+        "photonics",
+        "environmental",
+        "defense"
+      ],
+      "documentable_example": {
+        "value_as_printed": "Humidity 100%, Temperature 4 C - 22 C (Vitrobot SOP typical settings)",
+        "url": "https://nccat.nysbc.org/wp-content/uploads/2025/05/CombinedVitrobotSOPv1.2.pdf"
+      }
+    }
+  ],
+  "reuse_existing_keys": {
+    "cooldown_time.max": "Pull-down time of freezers, cool-down of TVAC shroud, cryocooler cool-down (e.g. Ricor K508 '5 min typ' to 80 K).",
+    "temperature.gradient": "Cabinet/shelf/platen uniformity (e.g. freeze-dryer shelf uniformity, freezer uniformity).",
+    "temperature.stability": "Set-point stability (Cryostream +/-0.1 K, Ricor +/-0.5 K).",
+    "temperature.sweep_rate.max": "Fastest heating/cooling or transition rate of climatic/thermal-shock chambers, temperature forcing systems and TVAC ramps.",
+    "temperature.cooling_rate.max": "Fast end of a controlled-rate freezer (kept for existing profiles; new profiles prefer temperature.cooling_rate.range).",
+    "sample.mass.max": "Payload capacity of TVAC/space chambers and load capacity of sample holders (lb converts exactly: 1 lb = 0.45359237 kg).",
+    "gas.flow_rate.max": "Cold-gas streams (Cryostream 5 or 10 L/min N2) and purge flows.",
+    "cryogen.consumption_rate": "Static evaporation rate of dewars (L/day -> L/min exactly: divide by 1440, store as exact decimal only if terminating, else round UP for a 'lower is better' key).",
+    "cryogen.dewar_volume": "LN2 capacity of dewars/freezers.",
+    "operating_duration.max": "Continuous run time when documented (e.g. ADR hold time at 50 mK).",
+    "vibration.max": "Stage vibration of probe stations, ion-trap and SNSPD cryostats.",
+    "module.magnetic_shielding": "MEG rooms, qubit cans, CCC shields.",
+    "rf.power.max / electrical.coax_lines / electrical.coax_bandwidth.max": "RF-tested detectors, qubits, LNAs, SRF cavities.",
+    "optical.transmission_range / optical.clear_aperture / optical.window_count": "Spectroscopy, solar simulation through TVAC windows, IR detector test dewars.",
+    "electrical.dc_lines / electrical.probe_arms": "Feedthrough counts in TVAC/climatic chambers and probe stations.",
+    "cooling_power.at_20000mK": "LH2-temperature lift (SPARC 600 W at 20 K helium system, LH2 zero-boil-off coolers).",
+    "cooling_power.at_4200mK": "MEG/MRI reliquefiers, PJVS cryocoolers (0.5 W at 4 K needed), ion-trap cryostats."
+  },
+  "family_mapping": [
+    {
+      "family": "dilution refrigerator / He-3 / ADR",
+      "temperature.range": "mixing-chamber (or ADR stage) plate range",
+      "sample.diameter.max": "plate diameter or documented sample-space diameter",
+      "sample.height.max": "experimental space height below the coldest plate",
+      "typical_absences": "optical_access (unless windowed), cryogen.type [] for dry systems"
+    },
+    {
+      "family": "closed-cycle cryocooler (GM, pulse tube, Stirling) as a stand-alone cooler",
+      "temperature.range": "cold-tip/cold-head range (e.g. Ricor K508 65-110 K)",
+      "sample.diameter.max": "cold-tip/cold-finger interface diameter if documented",
+      "typical_absences": "vacuum.available false unless the cooler is supplied with a vacuum shroud; magnetic_field.max not_available"
+    },
+    {
+      "family": "optical cryostat / probe station / PPMS-type platform",
+      "temperature.range": "sample stage / chuck / sample chamber range",
+      "sample.diameter.max": "puck/bore/wafer diameter",
+      "sample.height.max": "clearance above the stage or puck height"
+    },
+    {
+      "family": "ULT freezer / -150 C mechanical freezer / blood-plasma freezer / climatic chamber",
+      "temperature.range": "cabinet set-point range",
+      "sample.diameter.max": "smaller of interior width and depth",
+      "sample.height.max": "interior height",
+      "typical_absences": "vacuum.available false, pressure.base not_available, magnetic_field.max not_available, cryogen.type [] (mechanical) unless LN2/CO2 backup"
+    },
+    {
+      "family": "LN2 storage dewar / vapour-phase freezer / dry shipper",
+      "temperature.range": "storage-space range (liquid -196 C; vapour '-190 C top box')",
+      "sample.diameter.max": "neck opening or canister/rack footprint as documented",
+      "sample.height.max": "usable inside height / canister height",
+      "typical_absences": "vacuum.available false (the vacuum is insulation, not sample space), electrical.sample_connections false",
+      "family_keys": [
+        "holding_time.static",
+        "storage.capacity.vials_2ml",
+        "storage.capacity.straws_0_5ml",
+        "cryogen.dewar_volume",
+        "cryogen.consumption_rate"
+      ]
+    },
+    {
+      "family": "controlled-rate freezer",
+      "temperature.range": "chamber range (e.g. +30 C to -180 C)",
+      "family_keys": [
+        "temperature.cooling_rate.range",
+        "chamber.volume",
+        "storage.capacity.vials_2ml",
+        "storage.capacity.straws_0_5ml"
+      ]
+    },
+    {
+      "family": "freeze dryer (lyophilizer)",
+      "temperature.range": "SHELF temperature range (manifold-only units: not_available with source)",
+      "pressure.base": "ultimate chamber vacuum",
+      "family_keys": [
+        "temperature.condenser.min",
+        "condenser.ice_capacity",
+        "chamber.volume",
+        "temperature.gradient"
+      ]
+    },
+    {
+      "family": "thermal-vacuum / space-simulation chamber",
+      "temperature.range": "platen / test-article interface range",
+      "sample.diameter.max": "usable chamber (shroud) diameter",
+      "sample.height.max": "usable chamber length/depth",
+      "family_keys": [
+        "temperature.shroud.range",
+        "sample.mass.max",
+        "chamber.volume",
+        "temperature.sweep_rate.max"
+      ]
+    },
+    {
+      "family": "cryogenic test dewar / bath cryostat / conductor and magnet test facility",
+      "temperature.range": "bath or sample-holder range",
+      "family_keys": [
+        "cryogen.type",
+        "electrical.current_leads.max",
+        "pressure.max_working",
+        "magnetic_field.max"
+      ]
+    },
+    {
+      "family": "cryostat microtome / cryo-ultramicrotome",
+      "temperature.range": "specimen-head range (chamber range stays in temperature.chamber.range)",
+      "family_keys": [
+        "temperature.chamber.range",
+        "temperature.specimen_head.range",
+        "section_thickness.range"
+      ]
+    },
+    {
+      "family": "cryogenic grinder / cryomill / LN2 process equipment (machining, shrink-fit, deflashing, tunnel freezer)",
+      "temperature.range": "documented process/grinding temperature range",
+      "family_keys": [
+        "cryogen.type",
+        "cryogen.flow_rate.max",
+        "chamber.volume",
+        "sample.mass.max"
+      ]
+    }
+  ],
+  "unit_rules": [
+    "Celsius -> mK exactly: (C + 273.15) x 1000, e.g. -80 C = 193150 mK, -196 C = 77150 mK, -190 C = 83150 mK, -150 C = 123150 mK.",
+    "Fahrenheit -> mK exactly only when (F - 32) x 5/9 gives a terminating decimal; otherwise store the bound rounded toward the LESS capable side and keep the printed value in the quote.",
+    "days -> h exactly (x 24); weeks -> h (x 168).",
+    "Torr -> Pa is exact in the unit system (use unit 'Torr' directly); mTorr = '0.001' Torr.",
+    "bar -> Pa exactly (x 100000); psi is NOT a registered unit and has no terminating Pa value: store a capability rounded DOWN (requirement rounded UP) and keep the printed psi in the quote.",
+    "m3/h -> L_per_min exactly only if divisible by 3; otherwise round in the safe direction as above.",
+    "lb -> kg exactly (x 0.45359237); ft3 -> L exactly (x 28.316846592); inch is a registered unit.",
+    "L/day -> L_per_min: divide by 1440 (store with unit L_per_min only when the quotient terminates; otherwise round toward the less capable side).",
+    "Values are integers or exact decimal strings, never floats."
+  ],
+  "industries": [
+    {
+      "id": "scientific_research",
+      "name": "Scientific research",
+      "equipment_categories": [
+        "cryogen-free dilution refrigerators",
+        "He-3 sorption inserts",
+        "PPMS-type physical property platforms",
+        "SQUID magnetometers (MPMS)",
+        "superconducting magnet systems with variable-temperature insert",
+        "continuous-flow helium optical / EPR cryostats",
+        "UHV cryogenic manipulators (ARPES/STM)",
+        "neutron-scattering sample-environment cryostats",
+        "open-flow nitrogen cryostreams for diffraction",
+        "low-temperature XRD chambers",
+        "LHe/LN2 storage dewars"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "de Haas-van Alphen quantum oscillations by torque magnetometry in a dilution refrigerator",
+          "conditions_as_reported": "torsion-balance magnetometer, 30 mK to 3.8 K (graphite)",
+          "requirement_keys": [
+            "temperature.base",
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.sample_connections",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Millikelvin de Haas-van Alphen and magnetotransport studies of graphite (arXiv:1007.2573)",
+            "url": "https://arxiv.org/pdf/1007.2573"
+          }
+        },
+        {
+          "name": "Fermi-surface mapping by cantilever torque dHvA up to 18 T",
+          "conditions_as_reported": "fields up to 18 T; dilution refrigerator down to 0.1 K, sweeps 1.5-30 K",
+          "requirement_keys": [
+            "temperature.base",
+            "magnetic_field.max",
+            "magnetic_field.direction",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "Fermi surface and magnetic breakdown in PdGa (arXiv:2504.12379)",
+            "url": "https://arxiv.org/pdf/2504.12379"
+          }
+        },
+        {
+          "name": "Relaxation heat-capacity measurement",
+          "conditions_as_reported": "1.9-400 K zero field, sample 1-500 mg (QD heat-capacity option)",
+          "requirement_keys": [
+            "temperature.range",
+            "module.heat_capacity",
+            "vacuum.available",
+            "magnetic_field.max",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "Heat capacity specification sheet (University of Warwick)",
+            "url": "https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/supermag/group_and_user_facilities/laboratory_measurements/heat.pdf"
+          }
+        },
+        {
+          "name": "ZFC/FC DC magnetization with a SQUID magnetometer",
+          "conditions_as_reported": "1.8-400 K, 0-7 T (MPMS3)",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "module.vsm",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "SQUID Magnetometry facility (Henry Royce Institute)",
+            "url": "https://www.royce.ac.uk/equipment-and-facilities/squid-magnetometry/"
+          }
+        },
+        {
+          "name": "Angle-resolved photoemission at ~7-10 K on a six-axis cryomanipulator",
+          "conditions_as_reported": "open-cycle LHe manipulator to 7 K; base pressure below 1e-10 mbar",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "optical_access"
+          ],
+          "source": {
+            "title": "High-resolution ARPES endstation at SSRF (arXiv:2102.09915)",
+            "url": "https://arxiv.org/pdf/2102.09915"
+          }
+        },
+        {
+          "name": "X-band EPR of a metalloprotein in a helium-flow cryostat",
+          "conditions_as_reported": "ESR-900 helium-flow cryostat at 4.7 K, 9.48 GHz, 2 mW",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "rf.power.max",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "ETHE1 EPR spectra figure (PMC2556177)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2556177/figure/F4"
+          }
+        },
+        {
+          "name": "Quantum Hall transport in hBN/graphene",
+          "conditions_as_reported": "supplementary transport at 2.7 K and 12 T",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.sample_connections",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "Canted antiferromagnetic vs spin-polarized QH states in graphene on a ferrimagnetic insulator (arXiv:1905.06866)",
+            "url": "https://arxiv.org/pdf/1905.06866"
+          }
+        },
+        {
+          "name": "Neutron scattering in an Orange (ILL) cryostat",
+          "conditions_as_reported": "1.5 K to 300 K sample environment",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Orange cryostats - Institut Laue-Langevin",
+            "url": "https://www.ill.eu/en/about-the-ill/history/techniques/history/cryogenics/orange-cryostats"
+          }
+        },
+        {
+          "name": "Single-crystal X-ray diffraction at 100 K with an open-flow cryostream",
+          "conditions_as_reported": "80-400 K (Plus 80-500 K), stability 0.1 K, cool to 100 K in 20 min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "gas.flow_rate.max",
+            "optical_access"
+          ],
+          "source": {
+            "title": "800 Series Cryostream Cooler manual (Oxford Cryosystems)",
+            "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+          }
+        },
+        {
+          "name": "Low-temperature powder XRD phase identification",
+          "conditions_as_reported": "-190 C to 600 C in vacuum to 1e-2 mbar (TTK 600)",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "TTK 600 low-temperature chamber (Anton Paar)",
+            "url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/"
+          }
+        },
+        {
+          "name": "Ultra-low-noise SQUID torque magnetometry on a dilution refrigerator with a 15+2 T magnet",
+          "conditions_as_reported": "dilution refrigerator, 15 + 2 T Nb3Sn magnet",
+          "requirement_keys": [
+            "temperature.base",
+            "magnetic_field.max",
+            "module.magnetic_shielding",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "Application of SQUIDs to low temperature and high magnetic field measurements (arXiv:1706.08350)",
+            "url": "https://arxiv.org/pdf/1706.08350"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "magnetic_field.max",
+        "magnetic_field.direction",
+        "vacuum.available",
+        "pressure.base",
+        "optical_access",
+        "electrical.sample_connections",
+        "electrical.dc_lines",
+        "sample.diameter.max",
+        "sample.height.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "module.heat_capacity",
+        "module.vsm",
+        "temperature.stability",
+        "rf.power.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "healthcare_and_medicine",
+      "name": "Healthcare and medicine",
+      "equipment_categories": [
+        "controlled-rate freezers",
+        "vapour-phase LN2 freezers (cell-therapy and cord-blood banks)",
+        "ULT freezers (-86 C)",
+        "blood-bank plasma freezers",
+        "LN2 dry shippers",
+        "IVF vitrification devices and LN2 storage tanks",
+        "clinical cryostat microtomes (frozen section)",
+        "superconducting MRI magnets (sealed low-helium)",
+        "MEG systems with SQUIDs and helium reliquefiers",
+        "argon/helium Joule-Thomson cryoablation systems",
+        "whole-body cryotherapy chambers"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Controlled-rate cryopreservation and LN2 storage of hematopoietic / CAR-T cellular therapy products",
+          "conditions_as_reported": "standards for processing, storage, equipment monitoring; vapour-phase LN2 storage",
+          "requirement_keys": [
+            "temperature.cooling_rate.range",
+            "temperature.range",
+            "storage.capacity.vials_2ml",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "FACT-JACIE International Standards for Hematopoietic Cellular Therapy, 6.1",
+            "url": "https://www.bag.admin.ch/dam/de/sd-web/M22-tQmNHayv/fact_jacie_6.1_ausgabe.pdf"
+          }
+        },
+        {
+          "name": "Cord-blood unit banking",
+          "conditions_as_reported": "NetCord-FACT standards; units stored at liquid-nitrogen temperatures (-196 C)",
+          "requirement_keys": [
+            "temperature.range",
+            "holding_time.static",
+            "storage.capacity.vials_2ml",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "NetCord-FACT International Standards for Cord Blood (FACT)",
+            "url": "https://www.factglobal.org/fact-standards"
+          }
+        },
+        {
+          "name": "Ultra-cold storage of mRNA COVID-19 vaccine vials",
+          "conditions_as_reported": "ultra-low-temperature freezer at -90 C to -60 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "temperature.stability"
+          ],
+          "source": {
+            "title": "Storage and Handling of Pfizer-BioNTech COVID-19 Vaccines (Ontario MoH)",
+            "url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf"
+          }
+        },
+        {
+          "name": "Frozen storage of glycerolized red blood cells",
+          "conditions_as_reported": "40% glycerol RBCs stored at -80 C for up to 10 years",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Evaluation of red blood cells stored at -80 C (Lecak 2004, PubMed 15318853)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/15318853"
+          }
+        },
+        {
+          "name": "Fresh-frozen plasma storage",
+          "conditions_as_reported": "FFP and cryoprecipitate at -18 C or colder",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Ensuring Proper Storage and Temperatures for the Blood Bank (ACHC)",
+            "url": "https://achc.org/ensuring-proper-storage-and-temperatures-for-the-blood-bank"
+          }
+        },
+        {
+          "name": "Oocyte/embryo vitrification on Cryotop",
+          "conditions_as_reported": "plunge into liquid nitrogen within 1 s; store in LN2 tank",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "storage.capacity.straws_0_5ml"
+          ],
+          "source": {
+            "title": "Vitrification Protocol for Oocytes/Embryos (Kitazato)",
+            "url": "https://product.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf"
+          }
+        },
+        {
+          "name": "Frozen-section cutting of fresh tissue",
+          "conditions_as_reported": "cryostat -15 to -23 C, sections 5-10 um",
+          "requirement_keys": [
+            "temperature.chamber.range",
+            "temperature.specimen_head.range",
+            "section_thickness.range"
+          ],
+          "source": {
+            "title": "Frozen tissue preparation and IHC staining protocol (R&D Systems)",
+            "url": "https://www.rndsystems.com/resources/protocols/protocol-preparation-and-fluorescent-ihc-staining-frozen-tissue-sections"
+          }
+        },
+        {
+          "name": "Magnetoencephalography with SQUIDs cooled by a continuous reliquefier",
+          "conditions_as_reported": "cold head to 4.2 K, 1.4 W cryocooler",
+          "requirement_keys": [
+            "temperature.range",
+            "cooling_power.at_4200mK",
+            "module.magnetic_shielding",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee 2017, SUST)",
+            "url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf"
+          }
+        },
+        {
+          "name": "Helium-free-operation 1.5 T MRI",
+          "conditions_as_reported": "sealed magnet with 7 L liquid helium, no refills",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "cryogen.cryogen_free",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "BlueSeal Mobile 1.5T (Philips)",
+            "url": "https://www.usa.philips.com/healthcare/product/HC781356M/blueseal-mobile-15t-the-road-to-sustainable-mobile-mr"
+          }
+        },
+        {
+          "name": "Percutaneous renal cryoablation freeze-thaw cycles",
+          "conditions_as_reported": "argon at 4,300 psi; double 10-min freeze with 5-min helium active thaw; -40 C isotherm",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Optimal Freeze Cycle Length for Renal Cryotherapy (PMC4041687)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687"
+          }
+        },
+        {
+          "name": "Whole-body cryostimulation session",
+          "conditions_as_reported": "3-min whole-body cryotherapy/cryostimulation",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Douzi et al. 2019, Eur J Sport Sci, doi:10.1080/17461391.2018.1551937",
+            "url": "https://doi.org/10.1080/17461391.2018.1551937"
+          }
+        },
+        {
+          "name": "Shipping cryopreserved cells in an LN2 dry shipper",
+          "conditions_as_reported": "dry shipper absorbed LN2, static hold time 18 days",
+          "requirement_keys": [
+            "holding_time.static",
+            "temperature.range",
+            "storage.capacity.vials_2ml"
+          ],
+          "source": {
+            "title": "MVE Cryopreservation for Life Sciences catalogue (Thermo Fisher)",
+            "url": "https://documents.thermofisher.com/TFS-Assets/ANZ/Catalogs/mve-bio-cryopreservation-catalogue.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.cooling_rate.range",
+        "temperature.stability",
+        "chamber.volume",
+        "storage.capacity.vials_2ml",
+        "storage.capacity.straws_0_5ml",
+        "holding_time.static",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "magnetic_field.max",
+        "module.magnetic_shielding",
+        "cooling_power.at_4200mK",
+        "temperature.chamber.range",
+        "temperature.specimen_head.range",
+        "section_thickness.range",
+        "pressure.max_working",
+        "sample.diameter.max",
+        "sample.height.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "biology_and_biotechnology",
+      "name": "Biology and biotechnology",
+      "equipment_categories": [
+        "plunge freezers for cryo-EM grids (liquid ethane)",
+        "high-pressure freezers",
+        "automated freeze-substitution units",
+        "cryo-ultramicrotomes and cryostat microtomes",
+        "cryo-TEM with autoloader",
+        "cryo-FIB/SEM",
+        "crystallography cryostreams",
+        "NMR cryoprobes",
+        "controlled-rate freezers and LN2 storage",
+        "ULT freezers",
+        "cryogenic grinders (freezer mills)",
+        "freeze dryers"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Cryo-EM grid vitrification by plunge freezing",
+          "conditions_as_reported": "chamber humidity 100%, 4-22 C, blot 2-5 s, plunge into liquid ethane",
+          "requirement_keys": [
+            "humidity.range",
+            "temperature.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Combined Vitrobot SOP v1.2 (NCCAT/NYSBC)",
+            "url": "https://nccat.nysbc.org/wp-content/uploads/2025/05/CombinedVitrobotSOPv1.2.pdf"
+          }
+        },
+        {
+          "name": "Single-particle cryo-EM data collection",
+          "conditions_as_reported": "300 kV cryo-TEM with automated LN2-cooled autoloader",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "cryogen.type",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Titan Krios G3i (MIT.nano)",
+            "url": "https://cryoem.mit.edu/krios"
+          }
+        },
+        {
+          "name": "High-pressure freezing of cells and tissue",
+          "conditions_as_reported": "~2100 bar LN2; samples up to 200 um thick, up to 6 mm diameter",
+          "requirement_keys": [
+            "pressure.max_working",
+            "sample.diameter.max",
+            "sample.height.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Leica EM ICE High-Pressure Freezer (Illinois MRL)",
+            "url": "https://mrl.illinois.edu/facilities/equipment/High-Pressure-Freezer-Leica"
+          }
+        },
+        {
+          "name": "Freeze substitution after high-pressure freezing",
+          "conditions_as_reported": "AFS2 at -90 C, programmed warming",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max"
+          ],
+          "source": {
+            "title": "Vevea et al. eLife 2021;10:e67261",
+            "url": "https://elifesciences.org/articles/67261.pdf"
+          }
+        },
+        {
+          "name": "Tokuyasu cryo-immunogold sectioning",
+          "conditions_as_reported": "2.3 M sucrose infusion, LN2 freezing, 50 nm sections on EM FC7",
+          "requirement_keys": [
+            "temperature.specimen_head.range",
+            "section_thickness.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Cryo-Immunogold Electron Microscopy (ResearchGate record)",
+            "url": "https://www.researchgate.net/publication/5624367_Cryo-Immunogold_Electron_Microscopy"
+          }
+        },
+        {
+          "name": "Cryo-FIB lamella milling for cryo-electron tomography",
+          "conditions_as_reported": "lamella thinned at about -170 C",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Cryo-Electron Tomography workflow (Thermo Fisher)",
+            "url": "https://www.thermofisher.com/us/en/home/electron-microscopy/life-sciences/cryo-tomography/workflow.html"
+          }
+        },
+        {
+          "name": "Macromolecular crystallography at 100 K",
+          "conditions_as_reported": "80-400 K (80-500 K Plus), +/-0.1 K, cool down ~20 min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "gas.flow_rate.max"
+          ],
+          "source": {
+            "title": "Cryostream SCD (Oxford Cryosystems)",
+            "url": "https://oxcryo.com/products/cryostream-scd"
+          }
+        },
+        {
+          "name": "Mammalian/stem cell cryopreservation",
+          "conditions_as_reported": "-1 C/min to -70/-80 C, then vapour phase of LN2",
+          "requirement_keys": [
+            "temperature.cooling_rate.range",
+            "temperature.range",
+            "storage.capacity.vials_2ml"
+          ],
+          "source": {
+            "title": "Stem Cell Culture Guide (ATCC)",
+            "url": "https://www.atcc.org/resources/culture-guides/stem-cell-culture-guide"
+          }
+        },
+        {
+          "name": "Bacterial glycerol stock storage",
+          "conditions_as_reported": "store glycerol stocks at -80 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "storage.capacity.vials_2ml"
+          ],
+          "source": {
+            "title": "Zinc Finger Consortium kit handling and storage (Addgene)",
+            "url": "https://media.addgene.org/cms/filer_public/60/d1/60d1a47e-aea3-43d7-b7f9-ae0b35e6681d/zfc_expression_vector_and_modular_assembly_kit.pdf"
+          }
+        },
+        {
+          "name": "Freeze-drying of lactic acid bacteria",
+          "conditions_as_reported": "total pressure 10-30 Pa, shelf -20 C to 10 C",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.base",
+            "temperature.condenser.min",
+            "condenser.ice_capacity"
+          ],
+          "source": {
+            "title": "Freeze drying of lactic acid bacteria (probiotic) with maximum activity and stability",
+            "url": "https://www.academia.edu/89932907/Freeze_drying_of_lactic_acid_bacteria_probiotic_with_maximum_activity_and_stability"
+          }
+        },
+        {
+          "name": "Cryogenic grinding of tissue for RNA/protein extraction",
+          "conditions_as_reported": "grinding vial immersed in LN2, up to 100 g sample",
+          "requirement_keys": [
+            "cryogen.type",
+            "sample.mass.max",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "SPEX SamplePrep Handbook, 6875 Freezer/Mill",
+            "url": "https://www.instrument-solutions.com/wp-content/uploads/SPEX-Handbook-Sample-Preparation-Freezer-Mill.pdf"
+          }
+        },
+        {
+          "name": "Protein NMR with a helium-cooled cryoprobe",
+          "conditions_as_reported": "coil/preamp cooled to ~20-25 K (He) or ~77 K (N2)",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "temperature.range",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "NMR Cryoprobes guide (NMR Central)",
+            "url": "https://nmrcentral.com/advances-in-nmr-cryoprobes-enhancing-sensitivity-and-resolution"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "humidity.range",
+        "cryogen.type",
+        "pressure.max_working",
+        "pressure.base",
+        "vacuum.available",
+        "sample.diameter.max",
+        "sample.height.max",
+        "temperature.cooling_rate.range",
+        "temperature.sweep_rate.max",
+        "temperature.stability",
+        "storage.capacity.vials_2ml",
+        "chamber.volume",
+        "temperature.condenser.min",
+        "condenser.ice_capacity",
+        "temperature.specimen_head.range",
+        "temperature.chamber.range",
+        "section_thickness.range",
+        "magnetic_field.max",
+        "optical_access",
+        "sample.mass.max"
+      ],
+      "existing_profiles": [
+        "bio_cryo_fluorescence_vitrified",
+        "bio_cryosection_frozen_tissue"
+      ]
+    },
+    {
+      "id": "chemistry_and_pharmaceuticals",
+      "name": "Chemistry and pharmaceuticals",
+      "equipment_categories": [
+        "laboratory, pilot and production freeze dryers",
+        "DSC with refrigerated/LN2 cooling",
+        "closed-cycle matrix-isolation cryostats",
+        "cryogenic flow-chemistry chillers/reactors",
+        "open-flow cryostreams for SCXRD",
+        "cryogenic ball mills (CryoMill)",
+        "DNP solid-state NMR (LT-MAS)",
+        "superconducting NMR magnets",
+        "low-temperature XRD chambers",
+        "optical cryostats/stages for Raman, PL and POM",
+        "ULT freezers"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Freeze-dryer equipment performance qualification (shelf mapping)",
+          "conditions_as_reported": "shelf mapping -40 to 40 C; 60 min stabilization per set point; pressure within +/-2 mTorr",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.gradient",
+            "pressure.base",
+            "temperature.condenser.min"
+          ],
+          "source": {
+            "title": "Recommended Best Practices in Freeze Dryer Equipment Performance Qualification: 2022 (AAPS PharmSciTech)",
+            "url": "https://link.springer.com/article/10.1208/s12249-023-02506-x"
+          }
+        },
+        {
+          "name": "Lyophilization cycle (freezing, primary and secondary drying) of a formulation",
+          "conditions_as_reported": "shelf temperature/pressure/time recipe; condenser substantially colder than product",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.base",
+            "temperature.condenser.min",
+            "condenser.ice_capacity",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Basic Principles of Freeze-Drying (SP Scientific tech note)",
+            "url": "https://scientificproducts.com/wp-content/uploads/sites/58/2023/08/SP-Tech-Note-Basic-Principles-of-Freeze-Drying-6.pdf"
+          }
+        },
+        {
+          "name": "Tg' / glass transition by DSC",
+          "conditions_as_reported": "DSC range -90 C to 725 C; refrigerated cooling accessories to -180 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.cooling_rate.range",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "DSC brochure (TA Instruments)",
+            "url": "https://www.tainstruments.com/pdf/brochure/DSC.pdf"
+          }
+        },
+        {
+          "name": "Matrix-isolation IR spectroscopy of reactive species",
+          "conditions_as_reported": "rare-gas matrix at ~10 K on a closed-cycle cryostat window",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "optical_access",
+            "optical.transmission_range"
+          ],
+          "source": {
+            "title": "Synergy of matrix-isolation IR spectroscopy and VCI computations (Theor Chem Acc)",
+            "url": "https://link.springer.com/article/10.1007/s00214-020-02682-0"
+          }
+        },
+        {
+          "name": "Low-temperature (to -100 C) flow chemistry",
+          "conditions_as_reported": "cryo-controlled flow reactors down to -100 C",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Asia Cold Flow Chemistry System (Syrris)",
+            "url": "https://www.syrris.com/product/asia-cold-flow-chemistry-system"
+          }
+        },
+        {
+          "name": "Organolithium reaction under continuous flow at cryogenic temperature",
+          "conditions_as_reported": "dry-ice/acetone (-78 C) cooled flow process",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "WO2019096762A1 Organolithium process under continuous flow conditions",
+            "url": "https://patents.google.com/patent/WO2019096762A1/en"
+          }
+        },
+        {
+          "name": "Small-molecule single-crystal XRD at 100 K",
+          "conditions_as_reported": "80-400 K, 0.1 K stability, 0.6 L/h LN2 at 5 L/min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "gas.flow_rate.max",
+            "cryogen.consumption_rate"
+          ],
+          "source": {
+            "title": "800 Series Cryostream Cooler manual",
+            "url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic ball milling of heat-sensitive samples",
+          "conditions_as_reported": "jar continuously cooled with LN2 to -196 C",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "CryoMill product data sheet (Retsch)",
+            "url": "https://www.retsch.com/files/452782/product-data-sheet-cryomill.pdf"
+          }
+        },
+        {
+          "name": "DNP-enhanced solid-state NMR of pharmaceutical solids",
+          "conditions_as_reported": "sample at ~100 K under MAS with gyrotron microwaves",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "rf.power.max"
+          ],
+          "source": {
+            "title": "Dynamic Nuclear Polarization (Bruker)",
+            "url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/hyperpolarization-nmr/dnp-nmr.html"
+          }
+        },
+        {
+          "name": "Solution NMR structure elucidation at high field",
+          "conditions_as_reported": "persistent superconducting NMR magnets 400 MHz-1 GHz",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "magnetic_field.uniformity",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Ascend NMR magnets (Bruker)",
+            "url": "https://www.bruker.com/en/products-and-solutions/mr/nmr/ascend-nmr-magnets.html"
+          }
+        },
+        {
+          "name": "Low-temperature PXRD of polymorphs/phase transitions",
+          "conditions_as_reported": "five ammonium nitrate phases from -40 C to 135 C; vacuum to -190 C",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "purge.gas"
+          ],
+          "source": {
+            "title": "TTK 600 low-temperature chamber application note (Malvern Panalytical)",
+            "url": "https://malvernpanalytical.com/en/assets/ttk_600_-_low-temperature_chamber_tcm50-52096.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.gradient",
+        "temperature.stability",
+        "temperature.cooling_rate.range",
+        "temperature.sweep_rate.max",
+        "pressure.base",
+        "vacuum.available",
+        "purge.gas",
+        "temperature.condenser.min",
+        "condenser.ice_capacity",
+        "chamber.volume",
+        "optical_access",
+        "optical.transmission_range",
+        "magnetic_field.max",
+        "magnetic_field.uniformity",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "gas.flow_rate.max",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.mass.max"
+      ],
+      "existing_profiles": [
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom",
+        "chem_temperature_dependent_photoluminescence"
+      ]
+    },
+    {
+      "id": "materials_and_nanotechnology",
+      "name": "Materials and nanotechnology",
+      "equipment_categories": [
+        "PPMS-type platforms (transport, VSM, heat capacity)",
+        "SQUID magnetometers",
+        "cryogenic probe stations",
+        "optical cryostats",
+        "cryostats for load frames (LHe 4 K / LN2 77 K / LH2 20 K)",
+        "low-temperature Charpy baths",
+        "low-temperature dilatometers",
+        "low-temperature XRD chambers",
+        "superconducting magnet systems with VTI"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Tension testing of structural alloys in liquid helium (ASTM E1450)",
+          "conditions_as_reported": "specimen immersed in liquid helium (4 K), strain rate 1e-3 s-1 or less",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "ASTM E1450 Standard Test Method for Tension Testing of Structural Alloys in Liquid Helium",
+            "url": "https://store.astm.org/e1450-92r98.html"
+          }
+        },
+        {
+          "name": "Charpy impact test at -196 C",
+          "conditions_as_reported": "low-temperature bath, specimen struck within 5 s of removal",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Low Temperature Bath for Charpy Impact Testing - CharpyCool (World of Test)",
+            "url": "https://www.worldoftest.com/low-temperature-bath-charpy-impact-testing/"
+          }
+        },
+        {
+          "name": "Tensile tests of austenitic steel in hydrogen at 77 K and 20 K",
+          "conditions_as_reported": "cryogenic hydrogen embrittlement at 77 K and 20 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Cryogenic hydrogen embrittlement of 316plus (EN 1.4420) at 77 K and 20 K (arXiv:2604.08751)",
+            "url": "https://arxiv.org/html/2604.08751v2"
+          }
+        },
+        {
+          "name": "Thermal expansion from -180 C upward by push-rod dilatometry",
+          "conditions_as_reported": "-180 C to 2000 C (DIL 402 Expedis Supreme)",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "sample.length.max"
+          ],
+          "source": {
+            "title": "DIL 402 Expedis Supreme (NETZSCH)",
+            "url": "https://analyzing-testing.netzsch.com/en/footer/legacy-products/dil-402-expedis-supreme"
+          }
+        },
+        {
+          "name": "Relaxation heat capacity of crystals",
+          "conditions_as_reported": "1.9-400 K, 1-500 mg",
+          "requirement_keys": [
+            "temperature.range",
+            "module.heat_capacity",
+            "magnetic_field.max",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "Heat capacity specification sheet (Warwick)",
+            "url": "https://warwick.ac.uk/fac/sci/physics/research/condensedmatt/supermag/group_and_user_facilities/laboratory_measurements/heat.pdf"
+          }
+        },
+        {
+          "name": "Variable-temperature Hall effect (van der Pauw)",
+          "conditions_as_reported": "resistivity and Hall coefficient of single-crystal semiconductors",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.sample_connections",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "ASTM F76-08 (withdrawn 2023) Measuring Resistivity and Hall Coefficient",
+            "url": "https://store.astm.org/f0076-08.html"
+          }
+        },
+        {
+          "name": "Low-temperature XRD of structural phase transitions",
+          "conditions_as_reported": "-190 C to 600 C, vacuum/air/inert gas",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "purge.gas"
+          ],
+          "source": {
+            "title": "TTK 600 low-temperature chamber (Anton Paar)",
+            "url": "https://www.anton-paar.com/corp-en/products/details/low-temperature-chamber-ttk-600/"
+          }
+        },
+        {
+          "name": "ZFC/FC magnetization of nanoparticles",
+          "conditions_as_reported": "1.8-400 K, 7 T",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "module.vsm"
+          ],
+          "source": {
+            "title": "SQUID Magnetometry (Royce Institute)",
+            "url": "https://www.royce.ac.uk/equipment-and-facilities/squid-magnetometry/"
+          }
+        },
+        {
+          "name": "Effective thermal conductivity of insulation materials by boil-off calorimetry",
+          "conditions_as_reported": "boundary temperatures 293 K / 78 K, full vacuum range",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "cryogen.type",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Cylindrical boiloff calorimeters (CEC 2015, Fesmire)",
+            "url": "https://indico.cern.ch/event/344330/contribution/806541/attachments/677771/931197/2015_CEC_Tucson_C100_Cylindrical_15jun2015.pdf"
+          }
+        },
+        {
+          "name": "Low-temperature magnetic hysteresis of magnetite across the Verwey transition",
+          "conditions_as_reported": "MPMS, 10-300 K",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "module.vsm"
+          ],
+          "source": {
+            "title": "Low-temperature hysteresis of magnetite (Ozdemir et al., EPSL 2002)",
+            "url": "https://www.physics.utoronto.ca/~dunlop/epsl_papers/Ozdemir.LThysteresis.magnetite.EPSL.2002.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.stability",
+        "temperature.sweep_rate.max",
+        "magnetic_field.max",
+        "vacuum.available",
+        "pressure.base",
+        "purge.gas",
+        "optical_access",
+        "electrical.sample_connections",
+        "electrical.dc_lines",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.length.max",
+        "sample.mass.max",
+        "cryogen.type",
+        "pressure.max_working",
+        "module.electrical_transport",
+        "module.vsm",
+        "module.heat_capacity"
+      ],
+      "existing_profiles": [
+        "mat_electrical_resistance_low_temperature",
+        "mat_magnetometry_vsm",
+        "mat_magnetoresistance_10T"
+      ]
+    },
+    {
+      "id": "quantum_computing_and_sensing",
+      "name": "Quantum computing and sensing",
+      "equipment_categories": [
+        "cryogen-free dilution refrigerators",
+        "cryogenic wafer probers (<2 K, 300 mm)",
+        "4 K cryogenic probe stations",
+        "closed-cycle optical cryostats (2-4 K) for ions, NV centres and quantum dots",
+        "SNSPD closed-cycle systems",
+        "adiabatic demagnetization refrigerators",
+        "He-3 sorption systems",
+        "vector superconducting magnets",
+        "magnetic shielding cans",
+        "cryogenic LNA/HEMT test cryostats"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Internal quality factor of superconducting CPW resonators",
+          "conditions_as_reported": "cryogen-free dilution refrigerator at 10 mK, power sweep to single photon",
+          "requirement_keys": [
+            "temperature.base",
+            "electrical.coax_lines",
+            "electrical.coax_bandwidth.max",
+            "module.magnetic_shielding"
+          ],
+          "source": {
+            "title": "Characterisation and optimisation of superconducting resonators (Chalmers thesis)",
+            "url": "https://publications.lib.chalmers.se/records/fulltext/238574/238574.pdf"
+          }
+        },
+        {
+          "name": "Gate-defined Si/SiGe quantum-dot measurement and electron temperature",
+          "conditions_as_reported": "dilution refrigerator; electron temperature ~100 mK",
+          "requirement_keys": [
+            "temperature.base",
+            "electrical.dc_lines",
+            "electrical.coax_lines",
+            "magnetic_field.max"
+          ],
+          "source": {
+            "title": "Cryogenic measurement of gate-defined quantum dots (UW-Madison thesis)",
+            "url": "https://asset.library.wisc.edu/1711.dl/JSB3KTL6IY45Q8A/R/file-d00a9.pdf"
+          }
+        },
+        {
+          "name": "Surface-electrode ion trapping at ~4 K",
+          "conditions_as_reported": "closed-cycle GM cryostat, 40 K first stage, 4.2 K second stage, UHV",
+          "requirement_keys": [
+            "temperature.base",
+            "vacuum.available",
+            "pressure.base",
+            "optical_access",
+            "vibration.max",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "Cryogenic ion trapping systems with surface-electrode traps (arXiv:0807.4763)",
+            "url": "https://arxiv.org/html/0807.4763v1"
+          }
+        },
+        {
+          "name": "Single NV centre spin readout and sensing at 4 K and below",
+          "conditions_as_reported": "closed-cycle dilution refrigerator, 20 mK to 4 K, confocal optics",
+          "requirement_keys": [
+            "temperature.base",
+            "temperature.range",
+            "optical_access",
+            "magnetic_field.max",
+            "rf.power.max"
+          ],
+          "source": {
+            "title": "Low Temperature Quantum Sensing with Single Nitrogen-Vacancy centres (Happacher, PhD thesis Basel)",
+            "url": "https://quantum-sensing.physik.unibas.ch/fileadmin/user_upload/quantum-sensing_physik/Research/Publications_papers/Theses/Jodok_Happacher_-_PhD_thesis.pdf"
+          }
+        },
+        {
+          "name": "Cryo-CMOS transistor characterization",
+          "conditions_as_reported": "0.16 um and 40 nm bulk CMOS at 4 K and below",
+          "requirement_keys": [
+            "temperature.base",
+            "electrical.probe_arms",
+            "electrical.sample_connections",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Characterization and Compact Modeling of Nanometer CMOS Transistors at Deep-Cryogenic Temperatures (TU Delft)",
+            "url": "https://research.tudelft.nl/en/publications/characterization-and-compact-modeling-of-nanometer-cmos-transisto"
+          }
+        },
+        {
+          "name": "Automated wafer-scale probing of quantum devices",
+          "conditions_as_reported": "below 2 K at the wafer surface, up to 300 mm wafers",
+          "requirement_keys": [
+            "temperature.base",
+            "sample.diameter.max",
+            "electrical.probe_arms"
+          ],
+          "source": {
+            "title": "Cryogenic Wafer Prober (Bluefors)",
+            "url": "https://bluefors.com/products/cryogenic-wafer-prober"
+          }
+        },
+        {
+          "name": "Chip-scale 4 K probing of superconducting circuits",
+          "conditions_as_reported": "150/200/300 mm substrates in a 4 K environment",
+          "requirement_keys": [
+            "temperature.base",
+            "sample.diameter.max",
+            "vibration.max"
+          ],
+          "source": {
+            "title": "Cryogenic Quantum Computing - HPD IQ3000 (FormFactor)",
+            "url": "https://www.formfactor.com/applications/semiconductor-r-d-test/quantum"
+          }
+        },
+        {
+          "name": "Fibre-pigtailed quantum-dot single-photon source",
+          "conditions_as_reported": "closed-cycle cryocooler at 2.4 K; indistinguishability 97.5%",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Efficient fibre-pigtailed source of indistinguishable single photons (PMC12354681)",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12354681/"
+          }
+        },
+        {
+          "name": "Heralded amplification of photonic qubits with MoSi SNSPDs",
+          "conditions_as_reported": "detectors at 2.5 K in a two-stage closed-cycle cryocooler, SDE 70% at 1550 nm",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "cryogen.cryogen_free",
+            "electrical.coax_lines"
+          ],
+          "source": {
+            "title": "Heralded amplification of photonic qubits (arXiv:1507.03210)",
+            "url": "https://arxiv.org/pdf/1507.03210"
+          }
+        },
+        {
+          "name": "Cryogenic MMIC LNA noise temperature",
+          "conditions_as_reported": "closed-cycle cryostat at 15 K, ~1e-6 torr, Y-factor",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.coax_lines",
+            "electrical.coax_bandwidth.max",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Cryogenic MMIC Low-Noise Amplifiers for Radio Telescope Applications (Electronics 2025)",
+            "url": "https://www.mdpi.com/2079-9292/14/8/1572"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.base",
+        "temperature.range",
+        "magnetic_field.max",
+        "magnetic_field.vector",
+        "module.magnetic_shielding",
+        "electrical.coax_lines",
+        "electrical.coax_bandwidth.max",
+        "electrical.dc_lines",
+        "electrical.probe_arms",
+        "electrical.sample_connections",
+        "rf.power.max",
+        "optical_access",
+        "vacuum.available",
+        "pressure.base",
+        "vibration.max",
+        "sample.diameter.max",
+        "sample.height.max",
+        "cryogen.cryogen_free",
+        "cooling_power.at_20mK",
+        "cooling_power.at_100mK"
+      ],
+      "existing_profiles": [
+        "quantum_mk_vector_field_transport",
+        "quantum_mxc_wiring_heat_budget",
+        "quantum_transmon_characterization"
+      ]
+    },
+    {
+      "id": "physics_and_particle_accelerators",
+      "name": "Physics and particle accelerators",
+      "equipment_categories": [
+        "SRF vertical/horizontal test cryostats (1.4-2 K)",
+        "superconducting magnet test benches (1.9 K superfluid helium)",
+        "conductor and cable test facilities (4.2 K, high field)",
+        "tonne-scale dilution refrigerators for rare-event bolometers",
+        "liquid-argon TPC cryostats",
+        "polarized-target refrigerators",
+        "helium refrigerators and liquefiers",
+        "neutron sample-environment cryostats",
+        "cryomodules"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "SRF cavity vertical test (Q0 versus Eacc)",
+          "conditions_as_reported": "liquid helium baths as low as 1.4 K",
+          "requirement_keys": [
+            "temperature.base",
+            "cryogen.type",
+            "rf.power.max",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "SRF technology and materials (Fermilab APS-TD)",
+            "url": "https://technology.fnal.gov/capabilities/srf-technology-and-materials"
+          }
+        },
+        {
+          "name": "Horizontal SRF cavity test with calorimetric heat-load measurement",
+          "conditions_as_reported": "one hour per gradient point; static load subtraction",
+          "requirement_keys": [
+            "temperature.base",
+            "cooling_power.at_4200mK",
+            "rf.power.max"
+          ],
+          "source": {
+            "title": "Horizontal SRF cavity testing at Fermilab (SRF2011 TUPO055)",
+            "url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf"
+          }
+        },
+        {
+          "name": "Cold test of accelerator superconducting magnets",
+          "conditions_as_reported": "series test of ~1700 LHC cryomagnets in SM18",
+          "requirement_keys": [
+            "temperature.base",
+            "cryogen.type",
+            "electrical.current_leads.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "The High Luminosity LHC - SM18 test facility (CERN CDS 2906392)",
+            "url": "https://cds.cern.ch/record/2906392/files/document.pdf"
+          }
+        },
+        {
+          "name": "Bolometric rare-event detection at ~10 mK",
+          "conditions_as_reported": "988 TeO2 crystals at ~10 mK, +/-0.1 mK stability",
+          "requirement_keys": [
+            "temperature.base",
+            "temperature.stability",
+            "cooling_power.at_20mK",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "CUORE opens the door to tonne-scale cryogenics (arXiv:2108.07883)",
+            "url": "https://cris.unibo.it/bitstream/11585/845661/4/2108.07883.pdf"
+          }
+        },
+        {
+          "name": "Liquid-argon TPC operation",
+          "conditions_as_reported": "LAr held at about 87 K with recondensing purification loop",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Design, construction and operation of the ProtoDUNE-SP LArTPC (JINST 17 P01005)",
+            "url": "https://cds.cern.ch/record/2778797/files/Abed_Abud_2022_J._Inst._17_P01005.pdf"
+          }
+        },
+        {
+          "name": "Residual resistivity ratio of niobium",
+          "conditions_as_reported": "R(273 K)/R(4.2 K), normal-state extrapolated",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "A Comparison of Methods for Computing the RRR of High-Purity Niobium (PMC4551274)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274"
+          }
+        },
+        {
+          "name": "Longitudinally polarized NH3/ND3 target for scattering experiments",
+          "conditions_as_reported": "DNP polarized target in Hall B",
+          "requirement_keys": [
+            "temperature.base",
+            "magnetic_field.max",
+            "rf.power.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Polarized target a perfect fit for measuring spinning particles (Jefferson Lab)",
+            "url": "https://www.jlab.org/news/stories/polarized-target-perfect-fit-measuring-spinning-particles"
+          }
+        },
+        {
+          "name": "Neutron scattering at 1.5-300 K",
+          "conditions_as_reported": "orange cryostat sample environment",
+          "requirement_keys": [
+            "temperature.range",
+            "sample.diameter.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Orange cryostats (ILL)",
+            "url": "https://www.ill.eu/en/about-the-ill/history/techniques/history/cryogenics/orange-cryostats"
+          }
+        },
+        {
+          "name": "Critical current of REBCO cables at 4.2 K in field",
+          "conditions_as_reported": "SCT at 4.2 K up to 12 T; solder joints 3.7 nOhm; CORC 23.7 kA at 5 T",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.current_leads.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Critical current measurement of REBCO cables by using a superconducting transformer (IEEE TAS 32 4800605)",
+            "url": "https://www.advancedconductor.com/wp-content/uploads/2023/04/Yu-H.-IEEE-Trans.-Appl.-Supercond.-32-4800605-2022.pdf"
+          }
+        },
+        {
+          "name": "Liquid-argon detector light/charge characterization",
+          "conditions_as_reported": "LAr detectors as calorimeters, scintillators and TPCs",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "The science and technology of liquid argon detectors (Rev. Mod. Phys. 96, 045001)",
+            "url": "https://link.aps.org/doi/10.1103/RevModPhys.96.045001"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.base",
+        "temperature.range",
+        "temperature.stability",
+        "magnetic_field.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "electrical.current_leads.max",
+        "rf.power.max",
+        "cooling_power.at_20mK",
+        "cooling_power.at_4200mK",
+        "chamber.volume",
+        "sample.diameter.max",
+        "sample.height.max",
+        "electrical.sample_connections",
+        "vacuum.available"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "aerospace_and_space_exploration",
+      "name": "Aerospace and space exploration",
+      "equipment_categories": [
+        "thermal-vacuum chambers with LN2 shrouds",
+        "large space-simulation chambers with helium shrouds",
+        "cryogenic boil-off calorimeters",
+        "LOX/LH2 compatibility and propellant test rigs",
+        "space cryocoolers on qualification/life-test stands",
+        "adiabatic demagnetization refrigerators",
+        "cryogenic composite-tank test facilities",
+        "IR detector test dewars"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Component thermal-vacuum test (GEVS)",
+          "conditions_as_reported": "chamber pressure below 1.33e-3 Pa (1e-5 torr); hot/cold operational cycles",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.shroud.range",
+            "vacuum.available",
+            "pressure.base",
+            "electrical.sample_connections",
+            "sample.diameter.max",
+            "sample.height.max",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "GSFC-STD-7000B General Environmental Verification Standard",
+            "url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf"
+          }
+        },
+        {
+          "name": "Thermal vacuum and thermal cycling per ECSS-E-ST-10-03C",
+          "conditions_as_reported": "qualification margins, cycles and vacuum level per ECSS testing standard",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.shroud.range",
+            "pressure.base",
+            "temperature.sweep_rate.max",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "ECSS-E-ST-10-03C Space engineering - Testing",
+            "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf"
+          }
+        },
+        {
+          "name": "Cryo-vacuum test of a large space telescope (JWST OTIS)",
+          "conditions_as_reported": "Chamber A: 1e-6 torr, deep-space temperatures (~35 K) in a 55 ft x 80 ft shroud",
+          "requirement_keys": [
+            "temperature.shroud.range",
+            "temperature.base",
+            "pressure.base",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Thermal Vacuum - NASA JSC Chamber A",
+            "url": "https://www.nasa.gov/reference/jsc-thermal-vacuum"
+          }
+        },
+        {
+          "name": "Cryogenic insulation testing by boil-off calorimetry (ASTM C1774)",
+          "conditions_as_reported": "1 m x 167 mm cold mass, boundary 293/78 K, full vacuum range",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.base",
+            "cryogen.type",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Cylindrical Boiloff Calorimeters for Testing of Thermal Insulation (CEC 2015)",
+            "url": "https://indico.cern.ch/event/344330/contribution/806541/attachments/677771/931197/2015_CEC_Tucson_C100_Cylindrical_15jun2015.pdf"
+          }
+        },
+        {
+          "name": "Material compatibility of composites with liquid oxygen",
+          "conditions_as_reported": "LOX compatibility test rig",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Material compatibility with liquid oxygen (UniBw Munich)",
+            "url": "https://www.unibw.de/space-en/news/test-rig-composite-materials-liquid-oxygen"
+          }
+        },
+        {
+          "name": "Cryogenic testing of a linerless composite LH2 tank",
+          "conditions_as_reported": "liquid nitrogen/hydrogen fill and pressure tests",
+          "requirement_keys": [
+            "cryogen.type",
+            "pressure.max_working",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Design, Manufacture, and Cryogenic Testing of a Linerless Composite Tank for Liquid Hydrogen (Appl Compos Mater)",
+            "url": "https://link.springer.com/article/10.1007/s10443-024-10219-y"
+          }
+        },
+        {
+          "name": "Extended-duration life test of a 90 K space cryocooler",
+          "conditions_as_reported": "continuous operation at 90 K",
+          "requirement_keys": [
+            "cooling_power.at_80000mK",
+            "operating_duration.max",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (NTRS)",
+            "url": "https://ntrs.nasa.gov/citations/20260004829"
+          }
+        },
+        {
+          "name": "Qualification of a large pulse-tube cooler for IR instruments",
+          "conditions_as_reported": "IR detectors at 50-80 K with 2-7 W cooling power",
+          "requirement_keys": [
+            "cooling_power.at_80000mK",
+            "temperature.range",
+            "vibration.max"
+          ],
+          "source": {
+            "title": "Qualification of a European Large Pulse Tube Cooler (Cryocoolers 19)",
+            "url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf"
+          }
+        },
+        {
+          "name": "Thermal-cycle qualification of solar arrays at 50-133 K in vacuum",
+          "conditions_as_reported": "radiated arrays cycled 50-133 K in vacuum",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "temperature.sweep_rate.max"
+          ],
+          "source": {
+            "title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K (NASA Tech Briefs NPO-49655)",
+            "url": "https://www.techbriefs.com/component/content/article/23689-npo49655"
+          }
+        },
+        {
+          "name": "ADR operation for an X-ray microcalorimeter (Hitomi SXS)",
+          "conditions_as_reported": "detector at 50 mK; ADR hold and recycle",
+          "requirement_keys": [
+            "temperature.base",
+            "temperature.stability",
+            "operating_duration.max",
+            "magnetic_field.max"
+          ],
+          "source": {
+            "title": "SXS ADR performance (NTRS 20160008920)",
+            "url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf"
+          }
+        },
+        {
+          "name": "Cryotank component manufacture and cryogenic test",
+          "conditions_as_reported": "cryogenic pressure tests of composite cryotank components",
+          "requirement_keys": [
+            "cryogen.type",
+            "pressure.max_working",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Design, Manufacture and Test of Cryotank Components (NTRS 20170012407)",
+            "url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.shroud.range",
+        "temperature.sweep_rate.max",
+        "temperature.stability",
+        "vacuum.available",
+        "pressure.base",
+        "optical_access",
+        "electrical.sample_connections",
+        "electrical.dc_lines",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.mass.max",
+        "chamber.volume",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "pressure.max_working",
+        "cooling_power.at_80000mK",
+        "cooling_power.at_77000mK",
+        "operating_duration.max",
+        "magnetic_field.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "astronomy_and_astrophysics",
+      "name": "Astronomy and astrophysics",
+      "equipment_categories": [
+        "LN2-cooled CCD cryostats",
+        "closed-cycle (pulse-tube) IR detector cryostats",
+        "He-3 sorption / dilution refrigerators for TES arrays",
+        "adiabatic demagnetization refrigerators for MKIDs and microcalorimeters",
+        "4 K SIS receiver cryostats",
+        "cryogenic LNA test cryostats",
+        "UHV closed-cycle cryostats for laboratory astrochemistry",
+        "cryogenic optical test chambers for mirrors"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "CCD integration and dark-current characterization in an LN2 cryostat",
+          "conditions_as_reported": "7 L LN2 tank; vacuum < 5e-5 torr",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "vacuum.available",
+            "pressure.base",
+            "holding_time.static",
+            "optical_access"
+          ],
+          "source": {
+            "title": "MEGARA cryogenic system: integration, characterization (INAOE thesis)",
+            "url": "https://inaoe.repositorioinstitucional.mx/jspui/bitstream/1009/317/1/CisnerosGME.pdf"
+          }
+        },
+        {
+          "name": "H2RG infrared detector characterization",
+          "conditions_as_reported": "pulse-tube cryostat; detector at 35-39 K",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "optical_access",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "Laboratory testing of a hybrid readout mode for H2RG detectors in SCALES (arXiv:2508.21168)",
+            "url": "https://arxiv.org/html/2508.21168v1"
+          }
+        },
+        {
+          "name": "TES bolometer array characterization for CMB",
+          "conditions_as_reported": "dark I-V at several bath temperatures, SQUID multiplexing",
+          "requirement_keys": [
+            "temperature.base",
+            "module.magnetic_shielding",
+            "electrical.dc_lines",
+            "optical_access"
+          ],
+          "source": {
+            "title": "QUBIC IV: Performance of TES Bolometers and Readout Electronics (arXiv:2101.06787)",
+            "url": "https://arxiv.org/html/2101.06787v2"
+          }
+        },
+        {
+          "name": "MKID array readout at sub-100 mK",
+          "conditions_as_reported": "ADR-cooled array, 4-8 GHz probe tones",
+          "requirement_keys": [
+            "temperature.base",
+            "electrical.coax_lines",
+            "electrical.coax_bandwidth.max",
+            "module.magnetic_shielding"
+          ],
+          "source": {
+            "title": "MKIDGen3 RFSoC readout (arXiv:2406.09764)",
+            "url": "https://arxiv.org/html/2406.09764v1"
+          }
+        },
+        {
+          "name": "SIS mixer receiver noise temperature (Y-factor) at 4 K",
+          "conditions_as_reported": "dip-stick in liquid helium at 4.2 K; 300/77 K loads",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "optical_access",
+            "electrical.coax_lines"
+          ],
+          "source": {
+            "title": "ALMA SIS Process Development final report (ESO)",
+            "url": "https://www.eso.org/sci/facilities/alma/developmentstudies/SIS-Process-Development_FinalReport.pdf"
+          }
+        },
+        {
+          "name": "X-ray microcalorimeter energy resolution with a continuous ADR",
+          "conditions_as_reported": "50 mK stage, ~3 uW at 50 mK",
+          "requirement_keys": [
+            "temperature.base",
+            "cooling_power.at_20mK",
+            "temperature.stability"
+          ],
+          "source": {
+            "title": "Lynx x-ray microcalorimeter (PMC7802767)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7802767"
+          }
+        },
+        {
+          "name": "Cryogenic MMIC LNA for radio telescopes",
+          "conditions_as_reported": "15 K, 0.3-15 GHz",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.coax_lines",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Cryogenic MMIC Low-Noise Amplifiers for Radio Telescope Applications",
+            "url": "https://www.mdpi.com/2079-9292/14/8/1572"
+          }
+        },
+        {
+          "name": "Interstellar ice analogue IR spectroscopy and TPD",
+          "conditions_as_reported": "closed-cycle cryostat to 10 K, base pressure 1e-10 mbar",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base",
+            "optical_access",
+            "optical.transmission_range"
+          ],
+          "source": {
+            "title": "INFRA-ICE: an ultra-high vacuum experimental station for laboratory astrochemistry (PMC7116743)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116743"
+          }
+        },
+        {
+          "name": "Cryogenic optical test of space-telescope mirror segments",
+          "conditions_as_reported": "segments cooled to cryogenic temperatures at XRCF, interferometric figure",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.shroud.range",
+            "pressure.base",
+            "optical_access",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Cryogenic optical testing of space telescope mirrors (NTRS 20180007891)",
+            "url": "https://ntrs.nasa.gov/api/citations/20180007891/downloads/20180007891.pdf"
+          }
+        },
+        {
+          "name": "Germanium CCD prototype characterization",
+          "conditions_as_reported": "operated at 94.7 K on an LN2-cooled cold plate",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Laboratory Characterization of a Ge-CCD Prototype (arXiv:2610.22785)",
+            "url": "https://arxiv.org/html/2610.22785v1"
+          }
+        },
+        {
+          "name": "Wideband 67-116 GHz receiver development",
+          "conditions_as_reported": "three-stage cryocooler (80 K, 15 K, 4 K), Y-factor",
+          "requirement_keys": [
+            "temperature.base",
+            "cryogen.cryogen_free",
+            "electrical.coax_lines"
+          ],
+          "source": {
+            "title": "Wideband 67-116 GHz receiver development for ALMA (Chalmers)",
+            "url": "https://research.chalmers.se/publication/518355/file/518355_Fulltext.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.stability",
+        "temperature.shroud.range",
+        "vacuum.available",
+        "pressure.base",
+        "optical_access",
+        "optical.transmission_range",
+        "electrical.sample_connections",
+        "electrical.coax_lines",
+        "electrical.coax_bandwidth.max",
+        "electrical.dc_lines",
+        "module.magnetic_shielding",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "holding_time.static",
+        "cooling_power.at_20mK",
+        "cooling_power.at_80000mK",
+        "sample.diameter.max",
+        "sample.height.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "semiconductors_and_electronics",
+      "name": "Semiconductors and electronics",
+      "equipment_categories": [
+        "cryogenic probe stations (LN2/LHe/closed-cycle)",
+        "300 mm cryogenic wafer probers",
+        "temperature forcing systems (thermal streams)",
+        "temperature-cycling and thermal-shock chambers",
+        "LN2-cooled cryogenic ICP etch chucks",
+        "DLTS cryostats",
+        "Hall-effect systems with cryostats",
+        "climatic test chambers"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Temperature cycling of packages (JESD22-A104)",
+          "conditions_as_reported": "e.g. condition A -55 C to +85 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "JEDEC Thermal Cycling Standards: JESD22 guide",
+            "url": "https://www.chamber-testing.com/standard/jedec-thermal-cycle-testing-standard"
+          }
+        },
+        {
+          "name": "MIL-STD-883 Method 1010 temperature cycling, condition C",
+          "conditions_as_reported": "-65 C to +150 C, minimum 10 cycles, dwell >= 10 min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "MIL-STD-883 Method 1010 (Q-Tech copy)",
+            "url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf"
+          }
+        },
+        {
+          "name": "AEC-Q100 Grade 0 automotive IC qualification",
+          "conditions_as_reported": "Grade 0: -40 C to +150 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "Meaning of AEC-Q100 (Infineon KBA220733)",
+            "url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018"
+          }
+        },
+        {
+          "name": "IC temperature characterization with a thermal stream",
+          "conditions_as_reported": "-80 to +225 C; -55 to +125 C in <10 s",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Temptronic ThermoStream (inTEST Thermal)",
+            "url": "https://www.intestthermal.com/temptronic/thermostream"
+          }
+        },
+        {
+          "name": "Cryogenic SF6/O2 deep reactive ion etching of silicon",
+          "conditions_as_reported": "wafer at -110 C on LN2-cooled chuck, 20 min etch",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "sample.diameter.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Plasma cryogenic etching of silicon (review)",
+            "url": "https://mtl.mit.edu/pipermail/labnetwork/attachments/20200406/761a9376/attachment-0001.pdf"
+          }
+        },
+        {
+          "name": "Laplace-DLTS of carbon-vacancy levels in 4H-SiC",
+          "conditions_as_reported": "temperature scans for Z1/2 (full bandgap needs up to 800 K)",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "Acceptor levels of the carbon vacancy in 4H-SiC (arXiv:1812.06462)",
+            "url": "https://arxiv.org/pdf/1812.06462"
+          }
+        },
+        {
+          "name": "Variable-temperature Hall/van der Pauw characterization",
+          "conditions_as_reported": "resistivity and Hall coefficient",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "ASTM F76-08 (withdrawn 2023)",
+            "url": "https://store.astm.org/f0076-08.html"
+          }
+        },
+        {
+          "name": "On-wafer GaN HEMT DC/RF/noise characterization from 77 K to 400 K",
+          "conditions_as_reported": "LN2 dewar with vacuum pump, GSG probes",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.probe_arms",
+            "electrical.coax_bandwidth.max",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "On-wafer noise parameters of GaN HEMTs from 77 K to 400 K (Univ. Glasgow)",
+            "url": "https://eprints.gla.ac.uk/324971/1/324971.pdf"
+          }
+        },
+        {
+          "name": "Deep-cryogenic CMOS characterization",
+          "conditions_as_reported": "devices characterized at 4 K and below",
+          "requirement_keys": [
+            "temperature.base",
+            "electrical.probe_arms",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "Characterization and Compact Modeling of Nanometer CMOS Transistors at Deep-Cryogenic Temperatures",
+            "url": "https://research.tudelft.nl/en/publications/characterization-and-compact-modeling-of-nanometer-cmos-transisto"
+          }
+        },
+        {
+          "name": "Automated cryogenic wafer probing",
+          "conditions_as_reported": "below 2 K, up to 300 mm wafers",
+          "requirement_keys": [
+            "temperature.base",
+            "sample.diameter.max",
+            "electrical.probe_arms"
+          ],
+          "source": {
+            "title": "Cryogenic Wafer Prober (Bluefors)",
+            "url": "https://bluefors.com/products/cryogenic-wafer-prober"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.sweep_rate.max",
+        "humidity.range",
+        "chamber.volume",
+        "vacuum.available",
+        "pressure.base",
+        "electrical.sample_connections",
+        "electrical.probe_arms",
+        "electrical.dc_lines",
+        "electrical.coax_bandwidth.max",
+        "magnetic_field.max",
+        "sample.diameter.max",
+        "sample.height.max",
+        "cryogen.type",
+        "cryogen.cryogen_free"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "photonics_and_telecommunications",
+      "name": "Photonics and telecommunications",
+      "equipment_categories": [
+        "SNSPD closed-cycle detector systems",
+        "closed-cycle optical cryostats (2-4 K)",
+        "LN2-cooled laser gain media mounts",
+        "cryocooled HTS RF filter front-ends",
+        "environmental chambers for optoelectronic qualification",
+        "integral Stirling coolers for IR detectors",
+        "magnets/sub-K cryostats for rare-earth quantum memories"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "SNSPD system detection efficiency at 1550 nm",
+          "conditions_as_reported": "system operates at 2.5 K with external helium compressor",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "cryogen.cryogen_free",
+            "electrical.coax_lines"
+          ],
+          "source": {
+            "title": "Single Quantum combined brochure with specifications",
+            "url": "https://www.singlequantum.com/wp-content/uploads/2026/03/SQ_combined_brochure_with_specs-1.pdf"
+          }
+        },
+        {
+          "name": "MoSi SNSPDs in heralded qubit amplification",
+          "conditions_as_reported": "operation at 2.5 K in a two-stage closed-cycle cryocooler; SDE 70%",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Heralded amplification of photonic qubits (arXiv:1507.03210)",
+            "url": "https://arxiv.org/pdf/1507.03210"
+          }
+        },
+        {
+          "name": "Microstrip SNSPD with >90% SDE",
+          "conditions_as_reported": "~92.2% at 0.84 K; >70% at 2.1 K closed-cycle",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access"
+          ],
+          "source": {
+            "title": "Superconducting microstrip single-photon detector with SDE over 90% at 1550 nm (arXiv:2101.05407)",
+            "url": "https://arxiv.org/pdf/2101.05407"
+          }
+        },
+        {
+          "name": "Long-distance QKD with superconducting detectors",
+          "conditions_as_reported": "250 km ultra-low-loss fibre",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access"
+          ],
+          "source": {
+            "title": "High rate, long-distance QKD over 250 km (arXiv:0903.3907)",
+            "url": "https://arxiv.org/pdf/0903.3907"
+          }
+        },
+        {
+          "name": "Telcordia GR-468 temperature cycling of optoelectronic devices",
+          "conditions_as_reported": "-40 C to +85 C, 100-500 cycles, >= 10 C/min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "humidity.range"
+          ],
+          "source": {
+            "title": "Telcordia GR-468-CORE for optoelectronic systems (ESPEC)",
+            "url": "https://espec.com/na/applications/family/telecordia_gr-468"
+          }
+        },
+        {
+          "name": "Passive WDM component qualification (GR-1221)",
+          "conditions_as_reported": "-40 C to 85 C for 500 cycles",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max"
+          ],
+          "source": {
+            "title": "WDM Qualification Test Report (Thorlabs)",
+            "url": "https://www.thorlabs.com/images/tabimages/WDM_Qualification_Test_Report.pdf"
+          }
+        },
+        {
+          "name": "kW-class cryogenic Yb:YAG active-mirror amplifier",
+          "conditions_as_reported": "cryogenically cooled Yb:YAG; 1.5 J at 500 Hz",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "cooling_power.at_77000mK",
+            "optical_access"
+          ],
+          "source": {
+            "title": "Scaling diode-pumped high energy picosecond lasers to kilowatt average powers (HPLSE 2018)",
+            "url": "https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CE293B3E1581BC70A7386092BC6A70ED/S2095471918000038a.pdf/scaling-diode-pumped-high-energy-picosecond-lasers-to-kilowatt-average-powers.pdf"
+          }
+        },
+        {
+          "name": "Yb:YAG spectroscopic properties from 80 to 300 K",
+          "conditions_as_reported": "cross-section increases ~7x on cooling to 77 K",
+          "requirement_keys": [
+            "temperature.range",
+            "optical_access",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Mukhin et al., Quantum Electronics 2011",
+            "url": "https://quantum-electronics.ru/wp-content/uploads/2011/en/14575.pdf"
+          }
+        },
+        {
+          "name": "HTS cryogenic receiver front end for mobile base stations",
+          "conditions_as_reported": "HTS filters commercialised since 1997; cryocooled",
+          "requirement_keys": [
+            "temperature.range",
+            "cooling_power.at_77000mK",
+            "electrical.coax_lines"
+          ],
+          "source": {
+            "title": "APMC manuscript on HTS receiver front ends (James Cook University)",
+            "url": "https://researchonline.jcu.edu.au/8133/3/APMC_Manuscript_Final.pdf"
+          }
+        },
+        {
+          "name": "Quantum-dot single-photon source",
+          "conditions_as_reported": "closed-cycle cryocooler at 2.4 K",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Efficient fibre-pigtailed source of indistinguishable single photons",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12354681/"
+          }
+        },
+        {
+          "name": "Erbium-doped crystal waveguide atomic-frequency-comb memory",
+          "conditions_as_reported": "time-resolved spectral hole burning at ~0.7 K, fields up to 1 kG",
+          "requirement_keys": [
+            "temperature.base",
+            "magnetic_field.max",
+            "optical_access"
+          ],
+          "source": {
+            "title": "Persistent AFC based on Zeeman sub-levels of an erbium-doped crystal waveguide (arXiv:1907.07780)",
+            "url": "https://ar5iv.labs.arxiv.org/html/1907.07780"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.base",
+        "temperature.range",
+        "temperature.sweep_rate.max",
+        "humidity.range",
+        "optical_access",
+        "optical.transmission_range",
+        "optical.clear_aperture",
+        "electrical.coax_lines",
+        "electrical.sample_connections",
+        "magnetic_field.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "cooling_power.at_77000mK",
+        "vibration.max",
+        "chamber.volume",
+        "sample.diameter.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "energy_and_hydrogen",
+      "name": "Energy and hydrogen",
+      "equipment_categories": [
+        "LN2 bath cryostats for HTS tape Ic",
+        "variable-temperature high-field critical-current facilities",
+        "HTS power-cable test cryostats",
+        "SFCL test cryostats with cryocoolers",
+        "cryogenic load frames in liquid hydrogen",
+        "LH2 and LNG storage tanks with boil-off instrumentation",
+        "ortho-para conversion catalyst reactors",
+        "LNG/LN2 flow-calibration rigs",
+        "zero-boil-off cryocooler test beds"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "HTS tape critical current at 77 K self-field (IEC 61788-26)",
+          "conditions_as_reported": "LN2 bath, no external field",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "electrical.current_leads.max",
+            "sample.length.max"
+          ],
+          "source": {
+            "title": "IEC 61788-26:2020",
+            "url": "https://webstore.iec.ch/en/publication/59863"
+          }
+        },
+        {
+          "name": "Critical current of REBCO tapes under uniaxial strain",
+          "conditions_as_reported": "U-spring strain device at 77 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "electrical.current_leads.max"
+          ],
+          "source": {
+            "title": "Critical Current of Various REBCO Tapes Under Uniaxial Strain (Univ. Twente)",
+            "url": "https://ris.utwente.nl/ws/files/264061502/Zhou2016critical.pdf"
+          }
+        },
+        {
+          "name": "REBCO critical-current surface in ultra-high fields",
+          "conditions_as_reported": "4.2 K and 20 K up to 19 T",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.current_leads.max"
+          ],
+          "source": {
+            "title": "REBCO tapes for applications in ultra-high fields (SUST 2024)",
+            "url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95"
+          }
+        },
+        {
+          "name": "AC loss and cold tests of a compact 2G HTS power cable",
+          "conditions_as_reported": "cable in liquid nitrogen at 77 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "electrical.current_leads.max",
+            "sample.length.max"
+          ],
+          "source": {
+            "title": "Compact 2G HTS power cable: new cold tests results (TechRxiv)",
+            "url": "https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.11392956"
+          }
+        },
+        {
+          "name": "Cooling-system performance test of a superconducting fault current limiter",
+          "conditions_as_reported": "sub-cooled LN2 bath with cryocooler",
+          "requirement_keys": [
+            "temperature.range",
+            "cooling_power.at_77000mK",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Performance test of the cryogenic cooling system for the SFCL (IOP Conf. Ser. MSE 101)",
+            "url": "https://iopscience.iop.org/article/10.1088/1757-899X/101/1/012030"
+          }
+        },
+        {
+          "name": "Hydrogen embrittlement of stainless steel at 77 K and 20 K",
+          "conditions_as_reported": "tensile tests at cryogenic hydrogen temperatures",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Cryogenic hydrogen embrittlement of 316plus (arXiv:2604.08751)",
+            "url": "https://arxiv.org/html/2604.08751v2"
+          }
+        },
+        {
+          "name": "Liquid hydrogen boil-off measurement and modelling",
+          "conditions_as_reported": "LH2 tank boil-off",
+          "requirement_keys": [
+            "holding_time.static",
+            "cryogen.type",
+            "chamber.volume",
+            "cryogen.consumption_rate"
+          ],
+          "source": {
+            "title": "Modelling of Liquid Hydrogen Boil-Off (Energies 15, 1149)",
+            "url": "https://www.mdpi.com/1996-1073/15/3/1149"
+          }
+        },
+        {
+          "name": "Zero-boil-off methods for large-scale LH2 tanks",
+          "conditions_as_reported": "integrated refrigeration and storage",
+          "requirement_keys": [
+            "cooling_power.at_20000mK",
+            "holding_time.static",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Zero Boil-Off Methods for Large Scale Liquid Hydrogen Tanks (NTRS 20170006481)",
+            "url": "https://ntrs.nasa.gov/api/citations/20170006481/downloads/20170006481.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic boil-off reduction system test",
+          "conditions_as_reported": "active cooling of a propellant tank",
+          "requirement_keys": [
+            "cooling_power.at_80000mK",
+            "holding_time.static",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Cryogenic Boil-Off Reduction System Testing (NTRS 20150000134)",
+            "url": "https://ntrs.nasa.gov/api/citations/20150000134/downloads/20150000134.pdf"
+          }
+        },
+        {
+          "name": "Ortho-para hydrogen conversion for liquefaction",
+          "conditions_as_reported": "catalytic conversion at cryogenic temperature",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working",
+            "gas.flow_rate.max"
+          ],
+          "source": {
+            "title": "Ortho-para hydrogen conversion applied to hydrogen liquefaction (CSIRO HyResearch)",
+            "url": "https://research.csiro.au/hyresearch/ortho-para-hydrogen-conversion-applied-to-hydrogen-liquefaction"
+          }
+        },
+        {
+          "name": "Dynamic measurement of refrigerated hydrocarbon (LNG) flow",
+          "conditions_as_reported": "dynamic metering of LNG per ISO 21903",
+          "requirement_keys": [
+            "cryogen.type",
+            "cryogen.flow_rate.max",
+            "temperature.range",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "ISO 21903:2020 Refrigerated hydrocarbon fluids - dynamic measurement",
+            "url": "https://cdn.standards.iteh.ai/samples/72128/116234b79aca434c85d0a9cbee4cbfb9/ISO-21903-2020.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "magnetic_field.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "electrical.current_leads.max",
+        "electrical.sample_connections",
+        "cooling_power.at_77000mK",
+        "cooling_power.at_20000mK",
+        "cooling_power.at_80000mK",
+        "holding_time.static",
+        "cryogen.consumption_rate",
+        "cryogen.flow_rate.max",
+        "pressure.max_working",
+        "chamber.volume",
+        "gas.flow_rate.max",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.length.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "nuclear_engineering_and_fusion",
+      "name": "Nuclear engineering and fusion",
+      "equipment_categories": [
+        "fusion conductor test facilities (SULTAN-type)",
+        "large HTS magnet test cryostats with supercritical helium",
+        "cryosorption (cryo)pumps",
+        "cryogenic pellet injectors",
+        "HPGe gamma spectrometers (LN2 or electrically cooled)",
+        "hydrogen-isotope cryogenic distillation columns",
+        "in-situ cryogenic irradiation cryostats",
+        "helium refrigerators"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "ITER TF conductor qualification in SULTAN",
+          "conditions_as_reported": "background field ~10.9 T, peak ~12 T with self-field",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "temperature.range",
+            "electrical.current_leads.max",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Qualification of the US Conductors for ITER TF Magnet (OSTI 1607317)",
+            "url": "https://www.osti.gov/servlets/purl/1607317"
+          }
+        },
+        {
+          "name": "SPARC TFMC high-field REBCO coil test",
+          "conditions_as_reported": "~20 T; 20 K, 600 W cryocooler-based supercritical helium; 50 kA current leads",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "temperature.range",
+            "cooling_power.at_20000mK",
+            "electrical.current_leads.max",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "The SPARC Toroidal Field Model Coil Program (arXiv:2308.12301)",
+            "url": "https://arxiv.org/pdf/2308.12301"
+          }
+        },
+        {
+          "name": "Tritium/deuterium pumping by an ITER-relevant cryosorption pump",
+          "conditions_as_reported": "charcoal cryopanels at 4.5 K",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.base",
+            "vacuum.available",
+            "cooling_power.at_4200mK"
+          ],
+          "source": {
+            "title": "Performance of ITER-relevant cryopump panels for tritium (Fusion Sci. Technol. 48)",
+            "url": "https://scientific-publications.ukaea.uk/wp-content/uploads/Published/FusionSTVOL48P29.pdf"
+          }
+        },
+        {
+          "name": "High-speed solid D2 pellet formation and launch",
+          "conditions_as_reported": "freezing zone ~10 K, pellets held near 7 K",
+          "requirement_keys": [
+            "temperature.base",
+            "cryogen.type",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Core fueling of DEMO by direct line injection of high-speed pellets (EUROfusion)",
+            "url": "https://scipub.euro-fusion.org/wp-content/uploads/eurofusion/WPTFVCPR17_17238_submitted-4.pdf"
+          }
+        },
+        {
+          "name": "Pellet injector design for a spherical tokamak",
+          "conditions_as_reported": "pipe-gun cryogenic pellet injector",
+          "requirement_keys": [
+            "temperature.base",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Conceptual Design of a Pellet Injector for the ST40 (ORNL/INFUSE)",
+            "url": "https://infuse.ornl.gov/wp-content/uploads/2022/06/TE-ORNL_ConceptualDesignReport_PelletInjector_for_ST40_V2.pdf"
+          }
+        },
+        {
+          "name": "In-situ neutron irradiation of REBCO at cryogenic temperature",
+          "conditions_as_reported": "I-V measured in situ at 40 K versus fluence",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.current_leads.max",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Performance of REBCO coated conductor during in situ neutron irradiation (SUST 39 02LT01)",
+            "url": "https://ora.ox.ac.uk/objects/uuid:b463ec76-d8da-4bd4-b78a-38bfcbee57fb/files/r6969z2729"
+          }
+        },
+        {
+          "name": "Laboratory HPGe gamma-ray spectrometry",
+          "conditions_as_reported": "detector cooled to LN2 temperature (or electrically), wait ~24 h after cooling",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "cryogen.cryogen_free",
+            "holding_time.static"
+          ],
+          "source": {
+            "title": "Gamma-ray Spectrometry using Germanium Semiconductor Detectors (Japan NRA series No.7)",
+            "url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf"
+          }
+        },
+        {
+          "name": "In-situ characterization of contaminated sites with portable electrically cooled HPGe",
+          "conditions_as_reported": "HPGe below -160 C; electrically cooled systems need no LN2",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "In Situ Analytical Characterization of Contaminated Sites (IAEA AQ-49)",
+            "url": "https://www-pub.iaea.org/MTCD/Publications/PDF/AQ-49_web.pdf"
+          }
+        },
+        {
+          "name": "Hydrogen-isotope separation by cryogenic distillation",
+          "conditions_as_reported": "H-D-T distillation at ~20 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cooling_power.at_20000mK",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Preliminary tests on a hydrogen isotope separation stand (ICSI)",
+            "url": "https://www.energ-en.ro/assets/pdfsc/56bebb64b97a15ee30502ea7f6501e23.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic distillation for DEMO D-T fuel cycle",
+          "conditions_as_reported": "CD cryogenic cooling power ~100-200 W (JET)",
+          "requirement_keys": [
+            "cooling_power.at_20000mK",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Applicability of a Cryogenic Distillation System for D-T (EUROfusion)",
+            "url": "https://scipub.euro-fusion.org/wp-content/uploads/eurofusion/WPTFVPR17_18065_submitted.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "magnetic_field.max",
+        "electrical.current_leads.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "cooling_power.at_4200mK",
+        "cooling_power.at_20000mK",
+        "cooling_power.at_77000mK",
+        "pressure.max_working",
+        "pressure.base",
+        "vacuum.available",
+        "holding_time.static",
+        "sample.diameter.max",
+        "sample.height.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "manufacturing_and_industrial_processing",
+      "name": "Manufacturing and industrial processing",
+      "equipment_categories": [
+        "deep cryogenic treatment chambers (programmable LN2)",
+        "LN2 cryogenic machining delivery systems",
+        "cryogenic grinding/comminution lines",
+        "LN2 shrink-fit (cold-fit) baths",
+        "low-temperature Charpy baths",
+        "cryogenic valve test rigs",
+        "low-temperature brittleness testers",
+        "cryogenic ball mills"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Deep cryogenic treatment of D2 tool steel",
+          "conditions_as_reported": "DCT at -196 C with hold times studied",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.cooling_rate.range",
+            "chamber.volume",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Effects of cryogenic treatment holding time on tool steels (PMC11857553)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11857553"
+          }
+        },
+        {
+          "name": "Nano-carbide formation in D2 steel by deep cryogenic treatment",
+          "conditions_as_reported": "deep cryogenic treatment and wear testing",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Effect of deep cryogenic treatment on nano-sized carbides in D2 (IJMMM)",
+            "url": "https://journal.hep.com.cn/ijommam/EN/10.1007/s12613-012-0630-2"
+          }
+        },
+        {
+          "name": "Cryogenic turning of Ti-6Al-4V with liquid nitrogen",
+          "conditions_as_reported": "LN2 versus emulsion; flow rate limited tool life",
+          "requirement_keys": [
+            "cryogen.type",
+            "cryogen.flow_rate.max"
+          ],
+          "source": {
+            "title": "Cryogenic Machining of Ti-6Al-4V (Chalmers)",
+            "url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf"
+          }
+        },
+        {
+          "name": "Effect of LN2 supply pressure and flow on machining Ti-6Al-4V",
+          "conditions_as_reported": "highest pressure/flow improved surface integrity",
+          "requirement_keys": [
+            "cryogen.type",
+            "cryogen.flow_rate.max",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Ayed et al. IJAMT 2017 (ENSAM)",
+            "url": "https://sam.ensam.eu/bitstream/10985/16583/3/LAMPA_IJAMT_2017_AYED.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic comminution of waste tyres",
+          "conditions_as_reported": "77 K to 280 K treatment with LN2",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (PMC8348357)",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8348357/"
+          }
+        },
+        {
+          "name": "Installation of interference-fit bearings/bushings with liquid nitrogen",
+          "conditions_as_reported": "parts immersed in LN2 in an insulated tray",
+          "requirement_keys": [
+            "cryogen.type",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "Bombardier PPS 12.04 interference-fit installation with liquid nitrogen",
+            "url": "https://supplier.aero.bombardier.com/DHC_isupply/dh/PPS/1204PPS.pdf"
+          }
+        },
+        {
+          "name": "Brittleness point of rubber and coated fabrics (ASTM D2137)",
+          "conditions_as_reported": "lowest temperature without fracture under specified impact",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "ASTM D2137-11(2025)",
+            "url": "https://store.astm.org/d2137-11r25.html"
+          }
+        },
+        {
+          "name": "Charpy toughness of 9% Ni LNG-tank weldments at -196 C",
+          "conditions_as_reported": "high toughness and lateral expansion at -196 C",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "temperature.stability"
+          ],
+          "source": {
+            "title": "Friedrich et al. (AWS) 9% Ni weldments",
+            "url": "https://app.aws.org/mwf/attachments/6/240506/Friedrich_et_al.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic valve testing",
+          "conditions_as_reported": "valves tested at cryogenic temperature with helium",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working",
+            "sample.diameter.max",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "KSC-STD-Z-0009 Rev D (NASA)",
+            "url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic grinding of heat-sensitive powders",
+          "conditions_as_reported": "LN2-cooled jar at -196 C",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "CryoMill data sheet (Retsch)",
+            "url": "https://www.retsch.com/files/452782/product-data-sheet-cryomill.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.cooling_rate.range",
+        "temperature.stability",
+        "chamber.volume",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "cryogen.flow_rate.max",
+        "cryogen.consumption_rate",
+        "pressure.max_working",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.mass.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "automotive_and_transportation",
+      "name": "Automotive and transportation",
+      "equipment_categories": [
+        "climatic/environmental test chambers (-40 C)",
+        "battery test chambers with altitude simulation",
+        "ultra-low-temperature test chambers (-70/-85 C)",
+        "temperature forcing systems",
+        "thermal-shock chambers",
+        "LNG vehicle fuel-tank test rigs",
+        "liquid-hydrogen tank cryostats",
+        "low-temperature brittleness testers"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Low-temperature performance of EV lithium-ion cells (IEC 62660-1)",
+          "conditions_as_reported": "capacity/power tests including low-temperature conditions",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.sample_connections",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "IEC 62660-1 overview (Battery Design)",
+            "url": "https://www.batterydesign.net/legislation-rules-and-regulations/iec-62660-1"
+          }
+        },
+        {
+          "name": "UN 38.3 T2 thermal test",
+          "conditions_as_reported": "6 h at +72 C / 6 h at -40 C, 10 cycles",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "UN/DOT 38.3 Lithium Battery Transportation Testing (TUV SUD)",
+            "url": "https://www.tuvsud.com/en-us/industries/automotive/automotive-testing-solutions/un-dot-38-3"
+          }
+        },
+        {
+          "name": "ISO 16750-4 low-temperature storage and operation of vehicle electronics",
+          "conditions_as_reported": "-40 C for 24 h (non-operating and operating)",
+          "requirement_keys": [
+            "temperature.range",
+            "electrical.sample_connections",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "ISO 16750-4:2023 sample",
+            "url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf"
+          }
+        },
+        {
+          "name": "RESS safety and abuse testing including thermal shock (SAE J2464)",
+          "conditions_as_reported": "thermal shock cycling of battery systems",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume",
+            "sample.mass.max"
+          ],
+          "source": {
+            "title": "SAE J2464:2021",
+            "url": "https://www.elecenghub.com/SAE/184355769/SAE-J-2464"
+          }
+        },
+        {
+          "name": "LNG vehicle fuel-system holding time / boil-off (SAE J2343)",
+          "conditions_as_reported": "LNG-powered heavy-duty vehicle practice",
+          "requirement_keys": [
+            "holding_time.static",
+            "cryogen.type",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "SAE J2343_201802",
+            "url": "https://www.normlibrary.com/product/SAE-J2343_201802"
+          }
+        },
+        {
+          "name": "Liquid-hydrogen storage tank test procedures (ISO 11326)",
+          "conditions_as_reported": "LH2 tanks at about 20 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "pressure.max_working",
+            "holding_time.static"
+          ],
+          "source": {
+            "title": "ISO 11326:2024",
+            "url": "https://www.iso.org/standard/83810.html"
+          }
+        },
+        {
+          "name": "Low-temperature brittleness of automotive rubber (ASTM D2137)",
+          "conditions_as_reported": "impact at controlled low temperature",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability"
+          ],
+          "source": {
+            "title": "ASTM D2137-11(2025)",
+            "url": "https://store.astm.org/d2137-11r25.html"
+          }
+        },
+        {
+          "name": "AEC-Q100 Grade 0 qualification of automotive ICs",
+          "conditions_as_reported": "-40 C to +150 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max"
+          ],
+          "source": {
+            "title": "Meaning of AEC-Q100 (Infineon)",
+            "url": "https://community.infineon.com/t5/Knowledge-Base-Articles/Meaning-of-AEC-Q100-KBA220733/ta-p/248018"
+          }
+        },
+        {
+          "name": "Rapid -40 C / +125 C transitions on automotive ECU components",
+          "conditions_as_reported": "ATS-515: -40 to +125 C <12 s heating, <40 s cooling",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Temptronic ThermoStream (inTEST)",
+            "url": "https://www.intestthermal.com/temptronic/thermostream"
+          }
+        },
+        {
+          "name": "Ultra-low-temperature component test to -85 C",
+          "conditions_as_reported": "chambers configured for -75 C or -85 C minimum",
+          "requirement_keys": [
+            "temperature.range",
+            "humidity.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Ultra-Low Temperature Test Chamber (SANWOOD)",
+            "url": "https://www.sanwood.com/products/54.html"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.sweep_rate.max",
+        "temperature.stability",
+        "humidity.range",
+        "chamber.volume",
+        "electrical.sample_connections",
+        "electrical.dc_lines",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.mass.max",
+        "pressure.base",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "holding_time.static",
+        "pressure.max_working"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "food_and_agriculture",
+      "name": "Food and agriculture",
+      "equipment_categories": [
+        "LN2 semen/embryo storage dewars",
+        "LN2 dry shippers",
+        "programmable freezers for semen/embryos",
+        "seed genebank cold rooms (-18 C)",
+        "LN2 cryobanks for plant germplasm",
+        "cryogenic tunnel/immersion freezers (IQF)",
+        "ultra-low-temperature fish freezers (-60 C)",
+        "food freeze dryers",
+        "cryogenic spice grinders"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Bull semen cryopreservation in straws",
+          "conditions_as_reported": "straws 4.5 cm above LN2 for 10 min, then plunged into LN2",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "storage.capacity.straws_0_5ml",
+            "holding_time.static"
+          ],
+          "source": {
+            "title": "Bull Semen Collection, Processing and Cryopreservation 2020 (USDA ARS)",
+            "url": "https://agrin.ars.usda.gov/protocol_documents/Bull%20Semen%20Collection%20Processing%20and%20Cryopreservation%202020.pdf"
+          }
+        },
+        {
+          "name": "Long-term seed storage of a genebank base collection",
+          "conditions_as_reported": "-18 C or cooler at 3-7% seed moisture",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "humidity.range"
+          ],
+          "source": {
+            "title": "Genebank standards (FAO/IPGRI)",
+            "url": "https://cropgenebank.sgrp.cgiar.org:443/images/file/learning_space/genebank_standards.pdf"
+          }
+        },
+        {
+          "name": "Maize germplasm storage",
+          "conditions_as_reported": "6-8% moisture; below -18 C preferred, -20 C common",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Storage of maize genetic resources (CGIAR crop genebank knowledge base)",
+            "url": "https://cropgenebank.sgrp.cgiar.org/index.php/maize-mainmenu-361/conservation-mainmenu-376/seed-bank-mainmenu-465/storage-mainmenu-389"
+          }
+        },
+        {
+          "name": "Active and base collection storage at a national plant germplasm station",
+          "conditions_as_reported": "-18 C base collection; 4 C / 30% RH active collection",
+          "requirement_keys": [
+            "temperature.range",
+            "humidity.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Storage conditions (USDA ARS North Central Regional PI Station)",
+            "url": "https://www.ars.usda.gov/midwest-area/ames/plant-introduction-research/home/station-information/storage-conditions/"
+          }
+        },
+        {
+          "name": "Potato shoot-tip cryopreservation by PVS2 droplet vitrification",
+          "conditions_as_reported": "rapid cooling on aluminium foil strips in LN, LN storage",
+          "requirement_keys": [
+            "cryogen.type",
+            "temperature.range",
+            "holding_time.static",
+            "storage.capacity.vials_2ml"
+          ],
+          "source": {
+            "title": "Cryopreservation of potato shoot tips (Methods Mol Biol 2354, CIP)",
+            "url": "https://link.springer.com/protocol/10.1007%2F978-1-0716-1609-3_2"
+          }
+        },
+        {
+          "name": "Liquid-nitrogen immersion freezing of blueberries",
+          "conditions_as_reported": "LN2 immersion at -80, -100 and -120 C vs -80 C freezer",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "temperature.cooling_rate.range"
+          ],
+          "source": {
+            "title": "Food Science 2024, 45(6):225-232 (doi:10.7506/spkx1002-6630-20230629-236)",
+            "url": "https://www.spkx.net.cn/EN/Y2024/V45/I6/225"
+          }
+        },
+        {
+          "name": "Cryogenic tunnel freezing of raspberries and blueberries",
+          "conditions_as_reported": "core temperature reached in ~3.0-3.6 min",
+          "requirement_keys": [
+            "cryogen.type",
+            "cryogen.flow_rate.max",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Cryogenic tunnel freezing of berries (Univ. Galati METIME)",
+            "url": "https://www.unicer.ugal.ro/images/metime/ft/FT7_METIME.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic grinding of cumin seed",
+          "conditions_as_reported": "ground below -70 C; -160 C to -70 C studied",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "cryogen.consumption_rate"
+          ],
+          "source": {
+            "title": "Cryogenic grinding of spices (CIGR Journal)",
+            "url": "https://cigrjournal.org/index.php/Ejounral/article/download/4874/2801/22282"
+          }
+        },
+        {
+          "name": "Ultra-low-temperature storage of tuna",
+          "conditions_as_reported": "metMb formation suppressed below -45 C; storage -20 to -60 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "Effect of long-term storage, ultra-low temperature and freshness on tuna (IIR FRIDOC 142126)",
+            "url": "https://iifiir.org/en/fridoc/effect-of-long-term-storage-ultra-low-temperature-and-freshness-on-142126"
+          }
+        },
+        {
+          "name": "Freeze-drying of probiotic starter cultures",
+          "conditions_as_reported": "10-30 Pa, shelf -20 C to 10 C",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.base",
+            "temperature.condenser.min",
+            "condenser.ice_capacity"
+          ],
+          "source": {
+            "title": "Freeze drying of lactic acid bacteria (probiotic)",
+            "url": "https://www.academia.edu/89932907/Freeze_drying_of_lactic_acid_bacteria_probiotic_with_maximum_activity_and_stability"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.cooling_rate.range",
+        "humidity.range",
+        "chamber.volume",
+        "storage.capacity.straws_0_5ml",
+        "storage.capacity.vials_2ml",
+        "holding_time.static",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "cryogen.flow_rate.max",
+        "cryogen.consumption_rate",
+        "pressure.base",
+        "temperature.condenser.min",
+        "condenser.ice_capacity",
+        "sample.diameter.max",
+        "sample.height.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "environmental_science",
+      "name": "Environmental science",
+      "equipment_categories": [
+        "ice-core archive freezers (-36 C) and cold labs (-24 C)",
+        "cryogenic vacuum extraction lines (LN2 traps)",
+        "cryogenic/cryocooler preconcentrators for trace gases",
+        "canister cryofocusing GC-MS",
+        "cold stages for droplet-freezing assays",
+        "cloud simulation chambers",
+        "freeze dryers for sediments and filters",
+        "ULT freezers for environmental samples"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Ice-core archiving and examination",
+          "conditions_as_reported": "main archive freezer at -36 C; exam room at -24 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "sample.height.max"
+          ],
+          "source": {
+            "title": "About NSF-ICF (National Science Foundation Ice Core Facility)",
+            "url": "https://icecores.org/about"
+          }
+        },
+        {
+          "name": "Cryogenic vacuum extraction of soil and plant water for d18O/d2H",
+          "conditions_as_reported": "18-slot extraction system with LN2 cold traps",
+          "requirement_keys": [
+            "cryogen.type",
+            "vacuum.available",
+            "pressure.base",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Orlowski et al. 2013, J. Sens. Sens. Syst. 2, 179",
+            "url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf"
+          }
+        },
+        {
+          "name": "Cryogenic distillation of stem/leaf/soil water (protocol)",
+          "conditions_as_reported": "line vacuum 0-30 mTorr, samples frozen in LN2",
+          "requirement_keys": [
+            "cryogen.type",
+            "pressure.base",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Cryogenic Extraction of Water from Stems, Leaves, or Soils (PROMETHEUS)",
+            "url": "https://prometheusprotocols.net/function/isotope-methods/18o/cryogenic-extraction-of-water-from-stems-leaves-or-soils/"
+          }
+        },
+        {
+          "name": "In-situ halocarbon measurement with Medusa GC-MS",
+          "conditions_as_reported": "Cryotiger-cooled adsorbent traps at -165 C",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.cryogen_free",
+            "gas.flow_rate.max"
+          ],
+          "source": {
+            "title": "Medusa system (Univ. Bristol ACRG)",
+            "url": "https://www.bristol.ac.uk/chemistry/research/acrg/instruments/medusa.html"
+          }
+        },
+        {
+          "name": "Canister VOC analysis with cryogenic preconcentration (TO-15)",
+          "conditions_as_reported": "cryogenic trap and cryofocusing before GC-MS",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "SOP 1814 Rev 3.0 TO-15/TO-17 analysis (EPA ERT)",
+            "url": "https://clu-in.org/download/ert/1814-r30.pdf"
+          }
+        },
+        {
+          "name": "Immersion-mode ice-nucleation droplet freezing assay",
+          "conditions_as_reported": "cold plate, 1 C/min, 10 s imaging",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.cooling_rate.range",
+            "optical_access",
+            "temperature.gradient"
+          ],
+          "source": {
+            "title": "FrESH droplet freezing instrument preprint (EGUsphere 2026-3971)",
+            "url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-3971/egusphere-2026-3971.pdf"
+          }
+        },
+        {
+          "name": "Cloud/ice formation by expansion cooling in a simulation chamber",
+          "conditions_as_reported": "84 m3 chamber, ambient to -90 C, pressure to <1 hPa",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "pressure.base",
+            "humidity.range"
+          ],
+          "source": {
+            "title": "AIDA Simulation Chamber facilities (KIT)",
+            "url": "https://www.imkaaf.kit.edu/AIDA_facilities.php"
+          }
+        },
+        {
+          "name": "Ice nucleation by mineral dust in AIDA",
+          "conditions_as_reported": "initial temperature adjustable between ambient and -90 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume",
+            "pressure.base"
+          ],
+          "source": {
+            "title": "Cotton et al. 2007, ACP 7, 243",
+            "url": "https://acp.copernicus.org/articles/7/243/2007/"
+          }
+        },
+        {
+          "name": "Vacuum distillation of sediment pore water / DIC for radiocarbon",
+          "conditions_as_reported": "water in dry-ice/ethanol traps, CO2 in LN2 traps",
+          "requirement_keys": [
+            "cryogen.type",
+            "vacuum.available",
+            "pressure.base"
+          ],
+          "source": {
+            "title": "Radiocarbon (2007) vacuum distillation method",
+            "url": "https://journals.uair.arizona.edu/index.php/radiocarbon/article/download/2901/2663"
+          }
+        },
+        {
+          "name": "Environmental radioactivity by HPGe gamma spectrometry",
+          "conditions_as_reported": "detector cooled to LN2 temperature before high voltage",
+          "requirement_keys": [
+            "cryogen.type",
+            "cryogen.cryogen_free",
+            "holding_time.static"
+          ],
+          "source": {
+            "title": "Gamma-ray Spectrometry using Germanium Semiconductor Detectors (Japan NRA)",
+            "url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.cooling_rate.range",
+        "temperature.gradient",
+        "humidity.range",
+        "chamber.volume",
+        "vacuum.available",
+        "pressure.base",
+        "optical_access",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "gas.flow_rate.max",
+        "holding_time.static",
+        "temperature.condenser.min",
+        "sample.diameter.max",
+        "sample.height.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "geology_and_oceanography",
+      "name": "Geology and oceanography",
+      "equipment_categories": [
+        "superconducting (SQUID) rock magnetometers",
+        "MPMS / VSM for low-temperature rock magnetism",
+        "heating-freezing microthermometry stages",
+        "Mossbauer cryostats (4.2 K)",
+        "low-temperature XRD/Raman for gas hydrates",
+        "noble-gas cryogenic separation lines",
+        "freeze dryers for sediment cores",
+        "core-storage freezers and LN2 for hydrate cores"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "Paleomagnetic measurement of u-channels and discrete samples",
+          "conditions_as_reported": "2G 755 dc-SQUID, u-channels up to 150 cm, AF to 170/300 mT",
+          "requirement_keys": [
+            "magnetic_field.max",
+            "sample.diameter.max",
+            "sample.height.max",
+            "module.magnetic_shielding",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "2G cryogenic magnetometer specification (MARUM)",
+            "url": "https://www.marum.de/en/Function-Group-Seafloor-Exploration/2G-Spec3.html"
+          }
+        },
+        {
+          "name": "Liquid-helium-free SRM paleomagnetism with in-line AF/ARM",
+          "conditions_as_reported": "LHe-free 2G 3-axis SRM; pulse IRM to 1 T",
+          "requirement_keys": [
+            "cryogen.cryogen_free",
+            "magnetic_field.max",
+            "sample.diameter.max"
+          ],
+          "source": {
+            "title": "P-mag Lab facilities (Oregon State University)",
+            "url": "https://blogs.oregonstate.edu/pmaglab/?p=194"
+          }
+        },
+        {
+          "name": "Fluid-inclusion microthermometry (ice-melting salinity, homogenization)",
+          "conditions_as_reported": "THMS600 stage -196 to 600 C, +/-0.2 C below 100 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "optical_access",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Fluid inclusion laboratory (Univ. Innsbruck)",
+            "url": "https://www.uibk.ac.at/en/mineralogy/facilities/fluid-inclusion/"
+          }
+        },
+        {
+          "name": "Low-temperature remanence cycling across the Verwey transition",
+          "conditions_as_reported": "SIRM imparted at 300 K or 10 K, cycled in MPMS",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "module.vsm"
+          ],
+          "source": {
+            "title": "Dunlop & Ozdemir 2018, Earth Planets Space (s40623-018-0928-z)",
+            "url": "https://link.springer.com/article/10.1186/s40623-018-0928-z"
+          }
+        },
+        {
+          "name": "Mossbauer identification of ferrihydrite at 4.2 K",
+          "conditions_as_reported": "hyperfine fields 50.0-50.4 T at 4.2 K",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Moessbauer parameters for ferrihydrites at 4 K (Aust. J. Soil Res.)",
+            "url": "https://publish.csiro.au/SR/SR9840149"
+          }
+        },
+        {
+          "name": "57Fe-labelled mineral transformation in soils by Mossbauer spectroscopy",
+          "conditions_as_reported": "57Fe Mossbauer of incubated soils",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "57Fe-labeled minerals and 57Fe Mossbauer spectroscopy (PMC10339716)",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10339716/"
+          }
+        },
+        {
+          "name": "Natural gas hydrate determination by low-temperature PXRD",
+          "conditions_as_reported": "analysis must be carried out at low temperature",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "purge.gas"
+          ],
+          "source": {
+            "title": "Parameter optimization for natural gas hydrate by PXRD (Rock and Mineral Analysis)",
+            "url": "https://cgsjournals.com/article/doi/10.15898/j.cnki.11-2131/td.201703160033"
+          }
+        },
+        {
+          "name": "Methane hydrate under pressure loaded at LN2 temperature",
+          "conditions_as_reported": "powder loaded in an LN2-cooled vessel",
+          "requirement_keys": [
+            "temperature.range",
+            "pressure.max_working",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Methane hydrate high-pressure study (J. Chem. Phys. 115, Tsukuba repository)",
+            "url": "https://tsukuba.repo.nii.ac.jp/record/7504/files/JCP_115-15.pdf"
+          }
+        },
+        {
+          "name": "Dissolved noble gases in water with cryogenic separation",
+          "conditions_as_reported": "two-stage water cryotrap, charcoal cryotrap for He, steel cryotrap for Ne-Xe",
+          "requirement_keys": [
+            "temperature.range",
+            "vacuum.available",
+            "pressure.base"
+          ],
+          "source": {
+            "title": "Stanley et al. 2009 dissolved noble gas method (WHOI)",
+            "url": "https://www.whoi.edu/cms/files/stanley2009_50864.pdf"
+          }
+        },
+        {
+          "name": "Groundwater noble-gas extraction and cryogenic trapping",
+          "conditions_as_reported": "all-metal and zeolite traps on the extraction line",
+          "requirement_keys": [
+            "vacuum.available",
+            "pressure.base",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Noble gas extraction line (Eawag 02814)",
+            "url": "https://www.eawag.ch/fileadmin/Domain1/Abteilungen/wut/schwerpunkte/umweltisotope/EAWAG_02814.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.stability",
+        "magnetic_field.max",
+        "module.magnetic_shielding",
+        "module.vsm",
+        "optical_access",
+        "vacuum.available",
+        "pressure.base",
+        "pressure.max_working",
+        "purge.gas",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "sample.diameter.max",
+        "sample.height.max",
+        "temperature.condenser.min"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "metrology_and_calibration",
+      "name": "Metrology and calibration",
+      "equipment_categories": [
+        "ITS-90 fixed-point cryostats (argon triple point)",
+        "comparison-calibration cryostats for cryogenic thermometers",
+        "cryogen-free quantum Hall resistance systems",
+        "Josephson voltage standards (4 K cryocooler or LHe)",
+        "cryogenic current comparators",
+        "cryogenic electrical-substitution radiometers",
+        "He-3 melting-curve thermometers on dilution refrigerators",
+        "microthermometry stage calibration standards"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "SPRT calibration at the triple point of argon (83.8058 K)",
+          "conditions_as_reported": "NIST SPRT range 83.8058 K to 1234.93 K; Ar TP uncertainty 0.14 mK (k=2)",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "NIST SPRT Calibration Laboratory",
+            "url": "https://www.nist.gov/node/1896016"
+          }
+        },
+        {
+          "name": "Realization of the argon triple point in a sealed apparatus",
+          "conditions_as_reported": "plateau and uncertainty +/-0.5 mK (k=2)",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "cryogen.type"
+          ],
+          "source": {
+            "title": "Argon 2018 seminar (Isothermal Technology)",
+            "url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf"
+          }
+        },
+        {
+          "name": "Graphene quantized Hall resistance in a table-top cryocooler",
+          "conditions_as_reported": "down to 2.7 K, operated at 5 T",
+          "requirement_keys": [
+            "temperature.base",
+            "magnetic_field.max",
+            "cryogen.cryogen_free",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "A Table-Top Graphene Quantized Hall Standard (PMC6604640)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640"
+          }
+        },
+        {
+          "name": "Scaling RK/2 to 1 kOhm with a binary cryogenic current comparator",
+          "conditions_as_reported": "BCCC comparison against room-temperature DCC",
+          "requirement_keys": [
+            "temperature.base",
+            "module.magnetic_shielding",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "A Table-Top Graphene Quantized Hall Standard (NIST)",
+            "url": "https://www.nist.gov/publications/table-top-graphene-quantized-hall-standard"
+          }
+        },
+        {
+          "name": "Cryocooled 10 V programmable Josephson voltage standard",
+          "conditions_as_reported": "PJVS chip biased at ~4.35 K on a cryocooler",
+          "requirement_keys": [
+            "temperature.base",
+            "cooling_power.at_4200mK",
+            "cryogen.cryogen_free",
+            "rf.power.max"
+          ],
+          "source": {
+            "title": "Cryocooled 10 V Programmable Josephson Voltage Standard (IEEE TIM, doi:10.1109/TIM.2014.2374697)",
+            "url": "https://doi.org/10.1109/TIM.2014.2374697"
+          }
+        },
+        {
+          "name": "Primary optical power calibration with a cryogenic radiometer",
+          "conditions_as_reported": "cryogenic radiometer, 350-1015 nm at 1 mW",
+          "requirement_keys": [
+            "temperature.base",
+            "optical_access",
+            "optical.transmission_range",
+            "vacuum.available"
+          ],
+          "source": {
+            "title": "Laser power meter calibrations at PTB (Kueck)",
+            "url": "https://dcc-lho.ligo.org/public/0159/G1900634/001/Kueck_Stefan_Laser_Power_Meter_Calibrations_at_PTB.pdf"
+          }
+        },
+        {
+          "name": "Calibration of Cernox cryogenic thermometers 1.4-325 K",
+          "conditions_as_reported": "calibrated 1.4-325 K, Chebychev fit",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.stability",
+            "electrical.dc_lines"
+          ],
+          "source": {
+            "title": "Temperature sensor recalibration (Lake Shore)",
+            "url": "https://shop.lakeshore.com/service/recalibration/temperature-sensors.html?mode=list"
+          }
+        },
+        {
+          "name": "Realization of PLTS-2000 with a He-3 melting-curve thermometer",
+          "conditions_as_reported": "0.9 mK to 1 K",
+          "requirement_keys": [
+            "temperature.base",
+            "temperature.range",
+            "pressure.max_working"
+          ],
+          "source": {
+            "title": "Guide to the PLTS-2000 (BIPM)",
+            "url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf"
+          }
+        },
+        {
+          "name": "Temperature calibration of a microthermometric stage with phase-transition standards",
+          "conditions_as_reported": "Linkam THMS 600 calibrated -56 to +573 C",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.gradient",
+            "optical_access"
+          ],
+          "source": {
+            "title": "Fluid inclusions, solid-solid transitions to calibrate the microthermometric stage (HAL insu-02145591)",
+            "url": "https://hal-insu.archives-ouvertes.fr/insu-02145591"
+          }
+        },
+        {
+          "name": "Residual resistivity ratio measurement methods for high-purity Nb",
+          "conditions_as_reported": "resistance at 273 K and 4.2 K, field/temperature extrapolation",
+          "requirement_keys": [
+            "temperature.range",
+            "magnetic_field.max",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "Comparison of Methods for Computing the RRR of High-Purity Niobium (NIST, PMC4551274)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.stability",
+        "temperature.gradient",
+        "magnetic_field.max",
+        "module.magnetic_shielding",
+        "electrical.sample_connections",
+        "electrical.dc_lines",
+        "optical_access",
+        "optical.transmission_range",
+        "vacuum.available",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "cooling_power.at_4200mK",
+        "pressure.max_working",
+        "rf.power.max"
+      ],
+      "existing_profiles": []
+    },
+    {
+      "id": "defense_and_security",
+      "name": "Defense and security",
+      "equipment_categories": [
+        "integral rotary Stirling cryocoolers for IR focal planes",
+        "linear split Stirling / pulse-tube coolers",
+        "electrically cooled HPGe radionuclide identifiers",
+        "climatic test chambers (MIL-STD-810)",
+        "thermal-shock chambers",
+        "HTS/LTS SQUID magnetometers for magnetic anomaly detection",
+        "HTS degaussing cryogenic systems",
+        "thermal-vacuum chambers for military space payloads"
+      ],
+      "experiment_ideas": [
+        {
+          "name": "MIL-STD-810H Method 502.7 low-temperature test",
+          "conditions_as_reported": "ramp <= 3 C/min; e.g. cold design types down to -51 C; >= 2 h soak",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume",
+            "electrical.sample_connections"
+          ],
+          "source": {
+            "title": "MIL-STD-810H Method 502.7 Low Temperature",
+            "url": "https://cvgstrategy.com/wp-content/uploads/2019/08/MIL-STD-810H-Method-502.7-Low-Temperature.pdf"
+          }
+        },
+        {
+          "name": "MIL-STD-810 Method 503 temperature shock",
+          "conditions_as_reported": "> 10 C change within 1 minute; transfer <= 1 min",
+          "requirement_keys": [
+            "temperature.range",
+            "temperature.sweep_rate.max",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "MIL-STD-810G (Cevians copy)",
+            "url": "https://www.cevians.com/app/uploads/2021/01/MIL-STD-810G.pdf"
+          }
+        },
+        {
+          "name": "Cool-down and lift test of an integral Stirling IR cooler",
+          "conditions_as_reported": "550 mW at 77 K at 71 C ambient; cool-down 5 min typ (250 J at 80 K)",
+          "requirement_keys": [
+            "cooling_power.at_77000mK",
+            "cooldown_time.max",
+            "temperature.range",
+            "temperature.stability"
+          ],
+          "source": {
+            "title": "Ricor K508 specifications",
+            "url": "https://ricor.com/products/k508"
+          }
+        },
+        {
+          "name": "Reliability/life testing of tactical cryocoolers",
+          "conditions_as_reported": "MTTF and SADA life-test profiles",
+          "requirement_keys": [
+            "operating_duration.max",
+            "cooling_power.at_77000mK"
+          ],
+          "source": {
+            "title": "Understanding cryocooled infrared system reliability (Teledyne FLIR)",
+            "url": "https://tesscorn-thermalimaging.com/wp-content/uploads/2024/08/Teledyne-FLIR-Cryocooled-Infrared-Cooler-Reliability_EN.pdf"
+          }
+        },
+        {
+          "name": "Reliability development of miniature Stirling coolers",
+          "conditions_as_reported": "MTTF and capacity at 77 K / 23 C of tactical coolers",
+          "requirement_keys": [
+            "cooling_power.at_77000mK",
+            "operating_duration.max"
+          ],
+          "source": {
+            "title": "The Reliability Development of Miniature Stirling Cryocoolers (Cryocoolers 18)",
+            "url": "https://cryocooler.org/resources/Documents/C18/075.pdf"
+          }
+        },
+        {
+          "name": "Handheld radionuclide identification devices (ANSI N42.34)",
+          "conditions_as_reported": "HPGe RIDs, operating temperature range 14-104 F",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.cryogen_free"
+          ],
+          "source": {
+            "title": "Handheld Radionuclide Identification Devices market survey (DHS)",
+            "url": "https://www.dhs.gov/sites/default/files/publications/HHRID-MSR_0915-508.pdf"
+          }
+        },
+        {
+          "name": "ANSI N42.34 low-temperature performance verification",
+          "conditions_as_reported": "cold limit test at -20 C",
+          "requirement_keys": [
+            "temperature.range",
+            "chamber.volume"
+          ],
+          "source": {
+            "title": "ANSI N42.34-2006 (copy)",
+            "url": "https://www.radtek.cn/pdf/1e0dc0049f22af6e18c4c148099fb0fd.pdf"
+          }
+        },
+        {
+          "name": "Field radionuclide identification with a Stirling-cooled HPGe",
+          "conditions_as_reported": "coaxial HPGe cooled by low-power Stirling cooler; ~3 h battery",
+          "requirement_keys": [
+            "cryogen.cryogen_free",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "High-resolution radionuclide identifier as a portable instrument (HPA-RPD-045)",
+            "url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf"
+          }
+        },
+        {
+          "name": "Cryogenics for an HTS degaussing system demonstrator",
+          "conditions_as_reported": "cryocooled HTS degaussing cable",
+          "requirement_keys": [
+            "temperature.range",
+            "cooling_power.at_77000mK",
+            "electrical.current_leads.max"
+          ],
+          "source": {
+            "title": "Cryogenics for an HTS degaussing system demonstrator (Univ. Twente)",
+            "url": "https://research.utwente.nl/en/publications/cryogenics-for-an-hts-degaussing-system-demonstrator"
+          }
+        },
+        {
+          "name": "77 K HTS SQUID geophysical/magnetic-anomaly magnetometry",
+          "conditions_as_reported": "LN2-cooled HTS SQUID systems",
+          "requirement_keys": [
+            "temperature.range",
+            "cryogen.type",
+            "module.magnetic_shielding"
+          ],
+          "source": {
+            "title": "General Geophysical Devices (Tristan Technologies)",
+            "url": "https://tristantech.com/general"
+          }
+        },
+        {
+          "name": "Handheld HPGe identifier with improved Stirling cooler",
+          "conditions_as_reported": "65 x 50 mm HPGe in hardened cryostat, integrated Stirling cooler",
+          "requirement_keys": [
+            "cryogen.cryogen_free",
+            "temperature.range"
+          ],
+          "source": {
+            "title": "Detective X (ORTEC)",
+            "url": "https://www.htds.fr/wp-content/uploads/2019/04/detective-x.pdf"
+          }
+        }
+      ],
+      "keys_to_use": [
+        "temperature.range",
+        "temperature.base",
+        "temperature.sweep_rate.max",
+        "temperature.stability",
+        "humidity.range",
+        "chamber.volume",
+        "electrical.sample_connections",
+        "cooling_power.at_77000mK",
+        "cooling_power.at_80000mK",
+        "cooldown_time.max",
+        "operating_duration.max",
+        "cryogen.type",
+        "cryogen.cryogen_free",
+        "electrical.current_leads.max",
+        "module.magnetic_shielding",
+        "magnetic_field.max",
+        "vacuum.available",
+        "pressure.base",
+        "temperature.shroud.range",
+        "sample.diameter.max",
+        "sample.height.max",
+        "sample.mass.max"
+      ],
+      "existing_profiles": []
+    }
+  ]
+}

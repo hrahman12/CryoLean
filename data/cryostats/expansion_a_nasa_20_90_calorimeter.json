@@ -1,0 +1,107 @@
+{
+  "id": "expa_nasa_20_90_calorimeter",
+  "manufacturer": "NASA Glenn Research Center",
+  "model": "20 K / 90 K guarded insulation calorimeter",
+  "family": "guarded_calorimeter",
+  "description": "A specialized heat-leak calorimeter with distinct warm and cold boundaries. Boundary points are not transcribed as a uniform specimen temperature range.",
+  "documents": [
+    {
+      "id": "expa_mli_doc",
+      "url": "https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/20170003927.pdf",
+      "title": "Chato et al., Design and Operation of a Calorimeter for Advanced Multilayer Insulation Testing",
+      "accessed": "2026-10-31"
+    },
+    {
+      "id": "expa_creek_doc",
+      "url": "https://www.nasa.gov/centers-and-facilities/glenn/creek-road-cryogenics-complex/",
+      "title": "NASA Creek Road Cryogenics Complex",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expa_nasa_20_90_calorimeter_documented",
+      "name": "20 K / 90 K guarded insulation calorimeter — documented configuration",
+      "configuration_basis": "Source-specific reported apparatus/capabilities only. Facility access and present availability are not asserted.",
+      "capabilities": [
+        {
+          "key": "temperature.cold_boundary.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "20",
+              "unit": "K"
+            },
+            "hi": {
+              "value": "20",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expa_mli"
+          ]
+        },
+        {
+          "key": "temperature.warm_boundary.range",
+          "value": {
+            "kind": "range",
+            "lo": {
+              "value": "90",
+              "unit": "K"
+            },
+            "hi": {
+              "value": "90",
+              "unit": "K"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expa_mli"
+          ]
+        },
+        {
+          "key": "module.guarded_heat_flow_calorimetry",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expa_mli"
+          ]
+        },
+        {
+          "key": "vacuum.available",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expa_creek"
+          ]
+        },
+        {
+          "key": "pressure.base",
+          "value": {
+            "kind": "min",
+            "q": {
+              "value": "0.0000001",
+              "unit": "Torr"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "experimental_observation",
+          "evidence_ids": [
+            "expa_creek"
+          ]
+        }
+      ]
+    }
+  ]
+}

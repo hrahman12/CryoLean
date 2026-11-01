@@ -1,0 +1,91 @@
+{
+  "id": "expc_photonics_silicon_frequency",
+  "name": "Cryogenic silicon optical-resonator frequency interrogation across1.5–3.6 K (Wiens et al.2020)",
+  "plain_name": "Measure frequency drift of a cryogenic silicon optical reference",
+  "industry": "photonics_and_telecommunications",
+  "description": "Measure frequency drift of a cryogenic silicon optical reference. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "optical_resonator",
+    "photonics_and_telecommunications"
+  ],
+  "sources": [
+    {
+      "id": "src_resonator",
+      "citation": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112",
+      "url": "https://arxiv.org/html/2004.01552v3",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "1.5–3.6 K",
+      "normalized": null,
+      "evidence_id": "expc_resonator_temperatures"
+    },
+    {
+      "key": "specimen",
+      "as_printed": "50 mm vertical silicon resonator",
+      "normalized": null,
+      "evidence_id": "expc_resonator_optical"
+    }
+  ],
+  "reported_equipment": [
+    "Leiden Cryogenics CF-1K"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "1500",
+          "unit": "mK"
+        },
+        "hi": {
+          "value": "3600",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the paper's temperature interval. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_resonator_temperatures"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Laser injection and transmitted-light detection need real optical paths. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_resonator_optical"
+      ]
+    },
+    {
+      "key": "module.optical_resonance_interrogation",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Frequency scans, transmission detection and a frequency reference are essential; a bare optical cryostat is insufficient. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_resonator_scan"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Frequency-comb/maser reference, vibration transfer, optical heating and resonator mounting require separate review. No frequency-stability result is encoded as a compatibility guarantee.",
+    "The paper explicitly says the cryogenic PDH lock was not implemented; the scene uses repeated line scans or detuning interrogation."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

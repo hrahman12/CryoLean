@@ -1,0 +1,109 @@
+{
+ "id": "bio_cryofib_lamella_milling",
+ "name": "Cryo-FIB lamella milling of vitrified yeast on AutoGrids in an Aquilos DualBeam with stage and shield at -180 °C",
+ "plain_name": "Carve a thin window through a frozen cell with an ion beam",
+ "industry": "biology_and_biotechnology",
+ "description": "Plunge-frozen cells on 3 mm grids clipped into Cryo-FIB AutoGrids are coated with organometallic and sputtered platinum and milled with a 30 kV ion beam (300 to 30 pA) into lamellae thinner than 200 nm, with the stage and anti-contamination shield at -180 °C under vacuum, for subsequent cryo-electron tomography.",
+ "keywords": [
+  "Carve a thin window through a frozen cell with an ion beam",
+  "biology_and_biotechnology"
+ ],
+ "sources": [
+  {
+   "citation": "Gemin O, Gluc M, Rosa H, et al. (2024). Ribosomes hibernate on mitochondria during cellular stress. Nature Communications. doi:10.1038/s41467-024-52911-4",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11461667/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Zhang Y, Nandy B, Sader K, Russo CJ, Löwe J (2025). Foam film vitrification for cryo-EM. Nature Communications. doi:10.1038/s41467-025-61270-7",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12227703/fullTextXML",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Thermo Scientific Aquilos 2 Cryo-FIB datasheet DS0303 (equipment reference)",
+   "url": "https://documents.thermofisher.com/TFS-Assets/MSD/Datasheets/aquilos-2-datasheet-DS0303.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Aquilos DualBeam cryoFIB/SEM (ThermoScientific)",
+  "Vitrobot Mark IV (ThermoScientific)",
+  "Titan Krios TEM G3i (ThermoScientific)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 93150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Stage and anti-contaminating shield held at -180 °C (93.15 K) during milling.",
+   "evidence_ids": [
+    "v4e_bio_cryofib_lamella_milling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Ion/electron-beam milling and SEM imaging of vitrified samples take place in vacuum.",
+   "evidence_ids": [
+    "v4e_bio_cryofib_lamella_milling_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3,
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Specimens are standard 3 mm EM grids clipped into Cryo-FIB AutoGrids.",
+   "evidence_ids": [
+    "v4e_bio_cryofib_lamella_milling_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Grids are clipped in cold nitrogen vapour before loading; nitrogen cooling of the cryo-stage.",
+   "evidence_ids": [
+    "v4e_bio_cryofib_lamella_milling_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

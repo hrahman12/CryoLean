@@ -1,0 +1,110 @@
+{
+ "id": "aero_gevs_unit_tvac",
+ "name": "GSFC GEVS unit-level protoflight thermal-vacuum cycling (< 1.33e-3 Pa, AFT +/-10 C, 4 h plateaus, <= 1 C/min)",
+ "plain_name": "Prove a NASA spacecraft part keeps working through hot and cold cycles in space-like vacuum",
+ "industry": "aerospace_and_space_exploration",
+ "description": "Unit (component) protoflight thermal-vacuum test per NASA GSFC-STD-7000B (GEVS) section 2.6: 8 thermal-vacuum cycles at the allowable flight temperature range +/-10 C, 4 h hot/cold operational plateaus, transition rate up to 1 C/min, chamber pressure below 1.33e-3 Pa after the electrical discharge checks, with the unit powered and functionally tested.",
+ "keywords": [
+  "Prove a NASA spacecraft part keeps working through hot and cold cycles in space-like vacuum",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+   "url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Thermal-vacuum cycling requires an evacuated chamber.",
+   "evidence_ids": [
+    "v4e_aero_gevs_unit_tvac_0"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00133",
+     "unit": "Pa"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Section 2.6.3.2.4: chamber pressure less than 1.33e-3 Pa (1e-5 torr).",
+   "evidence_ids": [
+    "v4e_aero_gevs_unit_tvac_1"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Items electrically operational during pressure transitions undergo an electrical discharge check; the unit is powered and tested through feedthroughs.",
+   "evidence_ids": [
+    "v4e_aero_gevs_unit_tvac_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: Table 2.6-1 suggests transitions up to 1.0 C/min; a facility able to ramp at 1 C/min keeps the test schedule.",
+   "evidence_ids": [
+    "v4e_aero_gevs_unit_tvac_3"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 4,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: unit hot and cold operational plateaus last at least 4 h.",
+   "evidence_ids": [
+    "v4e_aero_gevs_unit_tvac_4"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "expa_thz_microcooler_stability",
+  "name": "77 K micro-JT cooler stabilization for a terahertz detector",
+  "plain_name": "77 K micro-JT cooler stabilization for a terahertz detector",
+  "industry": "defense_and_security",
+  "description": "Evaluate whether the documented mixed-refrigerant microcooler can support stable 77 K THz-detector operation. Its known temperature oscillation issue must remain visible.",
+  "keywords": [
+    "thz microcooler stability",
+    "micro jt cooler"
+  ],
+  "sources": [
+    {
+      "citation": "NIST, Microcryocooler for Terahertz Detectors",
+      "url": "https://www.nist.gov/programs-projects/microcryocooler-terahertz-detectors",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "77 K achieved; oscillations below about 140 K",
+      "evidence_id": "expa_nist_jt"
+    }
+  ],
+  "reported_equipment": [
+    "NIST/Colorado phase-II micro-JT prototype"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "77",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "NIST reports 77 K was achieved.",
+      "evidence_ids": [
+        "expa_nist_jt"
+      ]
+    },
+    {
+      "key": "module.micro_jt_cooling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "This selected procedure evaluates the micro-JT architecture.",
+      "evidence_ids": [
+        "expa_nist_jt"
+      ]
+    },
+    {
+      "key": "module.stable_thz_detector_operation",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Stable integrated detector operation is required by the application but not established by reaching 77 K; this must stay UNKNOWN until supported.",
+      "evidence_ids": [
+        "expa_nist_jt"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Stable 77 K operation, loaded cooling power and integrated THz detector readout are unestablished. A demonstrated unloaded cold tip is not a verified detector system."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

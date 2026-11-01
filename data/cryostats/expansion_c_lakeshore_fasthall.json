@@ -1,0 +1,72 @@
+{
+  "id": "expc_lakeshore_fasthall",
+  "manufacturer": "Lake Shore Cryotronics",
+  "model": "MeasureReady FastHall Station with HMS-TT-ADD-LN2",
+  "family": "hall_station",
+  "description": "Lake Shore FastHall Station with installed LN2 bath option and 0.75 T wide-gap magnet. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_lakeshore_fasthall",
+      "title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_lakeshore_fasthall_ln2",
+      "name": "Lake Shore FastHall Station with installed LN2 bath option and 0.75 T wide-gap magnet",
+      "configuration_basis": "Real manufacturer-documented complete configuration comprising HMS-TT-MAN plus the explicitly installed HMS-TT-ADD-LN2 reservoir/funnel/sample platform and 0.75 T magnet. The LN2 option is named in the selected configuration, not silently attached to the base station. No guaranteed specimen temperature interval is inferred from the existence of a liquid-nitrogen bath. No optional gate-bias source is included.",
+      "capabilities": [
+        {
+          "key": "module.hall_measurement",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_hall_function"
+          ]
+        },
+        {
+          "key": "module.liquid_nitrogen_bath",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_hall_ln2_bath"
+          ]
+        },
+        {
+          "key": "magnetic_field.max",
+          "value": {
+            "kind": "max",
+            "q": {
+              "value": "750",
+              "unit": "mT"
+            }
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_hall_ln2_field"
+          ]
+        },
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": []
+        }
+      ]
+    }
+  ]
+}

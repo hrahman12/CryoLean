@@ -1,0 +1,103 @@
+{
+ "id": "aero_lox_liquefaction_90k",
+ "name": "In-situ oxygen liquefaction/zero-boil-off in a prototype lander tank with a 90 K reverse-turbo-Brayton cryocooler (CryoFILL)",
+ "plain_name": "Make and keep liquid oxygen in a Moon-lander tank using an electric cryogenic cooler",
+ "industry": "aerospace_and_space_exploration",
+ "description": "NASA GRC CryoFILL third test: a Creare 150 W / 90 K reverse turbo-Brayton cryocooler integrated with a prototype lander LOX tank in the SMiRF vacuum chamber, chilled down with the tank 90% full of LOX and operated for 31 days in steady and cyclic modes.",
+ "keywords": [
+  "Make and keep liquid oxygen in a Moon-lander tank using an electric cryogenic cooler",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+   "url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "NTRS record 20260004829",
+   "url": "https://ntrs.nasa.gov/citations/20260004829",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Creare 90 K cryocooler (150W/90K Reverse Turbo Brayton)",
+  "NASA GRC SMiRF Facility vacuum chamber"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 90,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The cooler operates at a 90 K design point to liquefy and hold oxygen.",
+   "evidence_ids": [
+    "v4e_aero_lox_liquefaction_90k_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_oxygen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The tank under test holds liquid oxygen.",
+   "evidence_ids": [
+    "v4e_aero_lox_liquefaction_90k_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "The prototype tank is tested inside the SMiRF vacuum chamber.",
+   "evidence_ids": [
+    "v4e_aero_lox_liquefaction_90k_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 744,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: the integrated test ran 31 days (744 h).",
+   "evidence_ids": [
+    "v4e_aero_lox_liquefaction_90k_3"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

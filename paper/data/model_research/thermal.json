@@ -1,0 +1,1061 @@
+{
+ "schema": "cryolean.model_research.v1",
+ "angle": "thermal physics beyond the implemented Joule-heating and mixing-chamber wiring models",
+ "generated": "2026-10-31",
+ "baseline_grid": {
+  "source": "paper/data/e1_grid.json",
+  "counts": {
+   "REQUIREMENTS_MET": 20,
+   "DOES_NOT_MEET_REQUIREMENTS": 109,
+   "NEED_MORE_INFORMATION": 157
+  },
+  "met_by_experiment": {
+   "bio_cryo_fluorescence_vitrified": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96",
+    "oxford_optistatdry_blv"
+   ],
+   "bio_cryosection_frozen_tissue": [
+    "leica_cm1950_dualecotec_standard",
+    "leica_cm1950_genA_vacuum_motor_objcool"
+   ],
+   "chem_low_temperature_raman": [
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96"
+   ],
+   "chem_phase_transition_pom": [
+    "lakeshore_ccs_400",
+    "lakeshore_crx_vf",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96"
+   ],
+   "mat_magnetometry_vsm": [
+    "qd_dynacool_12T_vsm",
+    "qd_dynacool_14T_eto_vsm_hc"
+   ]
+  },
+  "note": "16 of the 20 MET verdicts are optical experiments with no coupled physics today; adding a constraint can never turn NEED INFO into MET, it can only confirm, reject, or withhold."
+ },
+ "summary": {
+  "decides_with_existing_data": [
+   "TH1 (Bluefors MXC, changes the Z3-verified repair 39 -> 33 flux lines)",
+   "TH2 (cryo-fluorescence; strict reading moves the two THMS600 LN2 configurations to NEED INFO)",
+   "TH4 (OptistatDry windows, CRX-4K probe arms; for modifications)",
+   "TH5 (Raman envelope; pass)"
+  ],
+  "soundness_guard": "TH3 (cooling-power semantics) - no count change, prevents unsound passes for every new heat model",
+  "not_decidable_today": [
+   "TH6 (optical heat load vs capacity) - would collapse MET 20 -> 4 if mandatory",
+   "TH7 (eddy currents) - no configuration has both inputs"
+  ],
+  "coverage_effect": "coupled thermal physics would extend from 2 of 11 profiles (resistance: Joule, optional; MXC wiring: mandatory) to 7 of 11 (adding cryo-fluorescence via TH2, Raman and PL via TH5, and mK vector-field transport and 10 T magnetoresistance via TH7 as representable-only models)"
+ },
+ "derived_numbers": {
+  "TH1_current_mxc_load_nW": 4864,
+  "TH1_new_mxc_load_nW": 5442.46,
+  "TH1_fraction_of_19uW_current": 0.256,
+  "TH1_fraction_of_19uW_new": 0.2864,
+  "TH1_drive_active_per_line_nW": "1.585e-11 W x 99 = 1.569",
+  "TH1_flux_pulse_per_line_nW": "0.15 x 0.4^2 x 0.33 = 7.92",
+  "TH1_max_flux_lines": {
+   "LD250_10uW": {
+    "current": 30,
+    "new": 25
+   },
+   "LD400_12uW": {
+    "current": 39,
+    "new": 33
+   },
+   "LD450_14uW": {
+    "current": 47,
+    "new": 41
+   }
+  },
+  "TH1_LD400_totals_uW": {
+   "39_lines_new": 13.459,
+   "33_lines_new": 11.894,
+   "34_lines_new": 12.155
+  },
+  "TH2_published_vs_threshold": "186.5 / 254 = 0.734 (authors' rule 0.7 -> 177.8 W/cm2)",
+  "TH2_Pmax_times_L": [
+   3870,
+   3712,
+   3552
+  ],
+  "TH2_Huebinger_dT_K": "81-88 (from -196 C to -115/-108 C at 315 W/cm2 on holey carbon)",
+  "TH6_naive_300K_window_load_W": {
+   "CRX_50mm_shield_viewport": 0.902,
+   "CRX_54mm_outer_view": 1.052,
+   "OptistatDry_BLV_4x28mm": 1.131,
+   "OptistatDry_TLEX_4x15mm": 0.325,
+   "CCS_one_41.4mm_window": 0.618
+  },
+  "TH7_liu_scaled_to_1mT_per_s_uW": 28.5
+ },
+ "data_notes_for_data_workflow": [
+  "OptistatDry BLV cold-head capacity 0.2 W at 4.2 K is the 60 Hz value; 50 Hz installations get 0.16 W (Optistats matrix).",
+  "The 6.5 K OptistatDry lower limit applies to the four standard Spectrosil WF windows; with blanks the minimum is <3 K (BLV) / <4 K (TLEX).",
+  "Linkam THMS600 lower limit is printed as '< -195 C' (an upper bound on the minimum), recorded as 78.15 K.",
+  "PPMS classic 14 T maximum charging rate: catalog 100 Oe/s (ev_qd_0057) vs QD catalogue 1084-500 Rev A2 '14 T: 160 Oe/s'.",
+  "CCS entries lack temperature.base although the brochure gives '408 <4 K'; needed for TH3."
+ ],
+ "connectors_used": {
+  "Tavily": "tavily_search, tavily_extract (Last, Huebinger, Mojiri, Berkamp, Pamula, Park, Lake Shore CRX/CCS/windows, Oxford, Bluefors, NIST, Fermilab, Linkam, QD), tavily_research (output discarded: not confirmed by its cited pages)",
+  "WebFetch": "Europe PMC full texts of Last 2023 and Huebinger 2026 (cross-checked against raw tavily_extract text)",
+  "alphaXiv": "discover_papers, answer_pdf_queries (Krinner arXiv, Swidinsky, Shyam, Howe, Schmidt, Liu 2026, Hirsch 2020)",
+  "Consensus": "search (Lax 1977, Hagiwara 2021, Foucher 2021 and related Raman-heating literature)",
+  "Undermind": "search_papers (surfaced Mojiri 2025, Dahlberg 2022, Hofstraat 1988)",
+  "Lune": "search_papers_many (corpus returned only computer-science venues; no usable physics hits)",
+  "scite": "unavailable (requires a paid plan)"
+ },
+ "proposals": [
+  {
+   "id": "TH1_mxc_budget_complete_krinner",
+   "title": "Complete the Krinner mixing-chamber budget: TWPA pump lines, drive-attenuator dissipation and flux-pulse dissipation",
+   "kind": "coupled_model",
+   "description": "The validated mxc_wiring_heat_budget sums 58 drive lines (passive), 50 flux lines (passive + DC bias) and 8 output lines and its own assumptions say 'active drive-line dissipation and TWPA pump lines are not included'. Krinner et al. budget all of these for the same 50-qubit, 124-line processor (their Fig. 10) and report that the MXC load is about 30 % of the cooling power, split about equally between passive and active loads. Three terms are missing: (i) the 8 TWPA pump lines, which use the drive-line attenuator/thermalisation scheme, so their passive MXC load equals the measured drive-line value 0.013 uW; (ii) the qubit drive signal dissipated in the 20 dB MXC attenuator: Krinner's average required power at the processor is -78 dBm = 1.585e-11 W, so the attenuator dissipates (100-1) x 1.585e-11 W = 1.57 nW per qubit drive line (their 10 dBm test confirms the dissipation lands on the attenuator's own stage); (iii) flux pulses for two-qubit gates: R_eff,MXC x I_p^2 x D = 0.15 uW/mA^2 x (0.4 mA)^2 x 0.33 = 7.92 nW per flux line, which reproduces the published 0.20(1) uW for 25 lines. With these terms the profile's MXC load rises from 4.864 uW to 5.442 uW. Against Krinner's own measured 19 uW at 20 mK this is 28.6 % (published: 'about 30 %'), whereas the current model gives 25.6 %: the extension reproduces the published budget, the current model under-counts it by about 11 %. dBm is logarithmic and not representable in CryoLean, so the drive power is entered in W.",
+   "equation_latex": "\\mu\\Big[n_d q_d + n_p q_p + n_o q_o + n_q\\,P_{QP}\\,(G_{MXC}-1) + n_f\\big(q_f + p_{dc} + R_{\\mathrm{eff}}\\,I_p^{2}\\,D_p\\big)\\Big] \\le P_{\\mathrm{cool}}(T_{\\mathrm{doc}}),\\qquad T_{\\mathrm{doc}} \\le T_{\\mathrm{op}}",
+   "validity": "Same region as mxc_wiring_heat_budget: cooling power documented at T_doc <= T_op (here exactly 20 mK), all parameters non-negative. Additional assumptions, each a named parameter so users can change them: attenuator configuration with 20 dB at the MXC (G_MXC = 100); at least ~99 % of an attenuator's dissipation flows to its own stage; the -78 dBm average presumes Krinner's gate schedule (alternating single/two-qubit gates, 33 % duty, equal pi and pi/2 share); flux pulses of 0.4 mA at 33 % duty; TWPA pump active load at the MXC omitted (only a CP figure is published). Only meaningful where the cooling power is a system-level value measured on the experimental flange (Bluefors), see TH3.",
+   "parameters": [
+    {
+     "name": "n_pump_lines",
+     "value": "8",
+     "unit": "count",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Such a quantum compressor requires a total of 124 RF lines (50 drive lines, 50 flux lines, 8 output lines, 8 read-in lines, 8 TWPA pump lines), corresponding to the operation of our system at its full capacity."
+    },
+    {
+     "name": "n_qubit_drive_lines_active (qubit drive lines; the 8 read-in lines stay passive-only, readout signals are an order of magnitude smaller)",
+     "value": "50",
+     "unit": "count",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Such a quantum compressor requires a total of 124 RF lines (50 drive lines, 50 flux lines, 8 output lines, 8 read-in lines, 8 TWPA pump lines), corresponding to the operation of our system at its full capacity."
+    },
+    {
+     "name": "q_pump_line (passive MXC load per pump line = measured drive-line value)",
+     "value": "13",
+     "unit": "nW",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Drive line UT085 SS-SS Measured HL 45(23) mW 1.0(2) mW 4(3) μW 0.4(2)μW 0.013(6)μW"
+    },
+    {
+     "name": "pump_line_thermalisation_equals_drive_line",
+     "value": "true",
+     "unit": "flag",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "we combine the data from the cooldown of the drive line tree and the readout tree since the readout tree consists of drive lines and pump lines having the same thermalization scheme with attenuators at the 4K, CP, and MXC stages."
+    },
+    {
+     "name": "p_drive_avg_qp (average drive power required at the processor; -78 dBm converted to W and rounded up)",
+     "value": "1.585e-11",
+     "unit": "W",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Assuming an equal share between π− and π/2-pulses, we use an average required power per qubit drive line of −78 dBm for the estimates presented in Section 3.2."
+    },
+    {
+     "name": "g_mxc_att (20 dB attenuator at the MXC)",
+     "value": "100",
+     "unit": "1",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "here we motivate our choice of attenuator configuration of 20 dB attenuators at each of the 4K, CP, MXC stages."
+    },
+    {
+     "name": "attenuator_dissipation_on_own_stage (10 dBm test: 1 uW expected on MXC, 1.1(1) uW measured)",
+     "value": "about 1 (>= 0.99)",
+     "unit": "1",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "we extract an active load of 11.5(1.6) mW on the 4K stage, 95(9) μW on CP, 1.1(1) μW on MXC, in agreement with the predicted values"
+    },
+    {
+     "name": "r_eff_mxc (effective DC resistance of a flux line dissipating at the MXC)",
+     "value": "0.15",
+     "unit": "Ohm (= uW/mA^2)",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "From quadratic fits to the data we extract R eff,MXC = 0.15(1) Ω = 0.15(1)μW/mA2 and R eff,CP = 0.42(2) Ω."
+    },
+    {
+     "name": "i_flux_pulse (two-qubit-gate flux pulse amplitude)",
+     "value": "0.4",
+     "unit": "mA",
+     "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+     "quote": "we use the measured effective DC resistances, the required current amplitude of about 0.4 mA and a duty cycle of 33% (see Sect. 2.2.2). The resulting heat loads on CP and MXC are then evaluated to 0.20(1) μW (0.55(3) μW) on MXC (CP)"
+    },
+    {
+     "name": "duty_flux_pulse",
+     "value": "0.33",
+     "unit": "1",
+     "source_url": "https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0",
+     "quote": "yielding a duty cycle of 0.5 × 66% = 33%."
+    },
+    {
+     "name": "calibration: published MXC load fraction for the 50-qubit budget",
+     "value": "about 0.30 of the cooling power (passive ~ active)",
+     "unit": "1",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "The largest relative loads of about 30 % occur at the CP and MXC stages, with about an equal share between passive and active loads."
+    },
+    {
+     "name": "reference cooling power used for the calibration (Krinner XLD400 MXC)",
+     "value": "19 at 20 mK",
+     "unit": "uW",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "MXC 6 × 10−3 19×10−6 (at 20 mK) 140"
+    }
+   ],
+   "affected_experiments": [
+    "quantum_mxc_wiring_heat_budget"
+   ],
+   "affected_configurations": [
+    "bluefors_ld250_manual_v2",
+    "bluefors_ld400_hdw",
+    "bluefors_ld450_current"
+   ],
+   "data_available": "All new parameters are published in Krinner et al. (arXiv v1 and EPJ Quantum Technology versions, both retrieved in this session; evidence hl_023/hl_026/hl_030/hl_032 already in the repo carry the published wording). Cooling power at 20 mK is documented and trusted for all three Bluefors configurations (10/12/14 uW, system-level 'on the experimental flange'). No other configuration documents a cooling power at or below 20 mK, so no other configuration becomes decidable.",
+   "expected_effect": "Grid counts unchanged: the three Bluefors configurations are already DOES_NOT_MEET for this profile (3 x 4.864 = 14.59 uW today, 3 x 5.442 = 16.33 uW after, against 10/12/14 uW) and every other configuration is decided by temperature.base/coax_lines. What changes is the Z3 repair that demonstration B reports as Lean-verified: on the LD400 (12 uW) the largest flux-line count that fits drops from 39 (3 x (914 + 79 x 39) = 11.985 uW) to 33 (3 x (1096.5 + 86.92 x 33) = 11.894 uW); 39 flux lines give 13.46 uW > 12 uW, i.e. DOES_NOT_MEET under the full published budget. LD450 (14 uW): 47 -> 41 flux lines; LD250 (10 uW): 30 -> 25. The current 'verified' repair is optimistic by six flux lines relative to the very source the profile cites.",
+   "implementation": "Data-only, no Lean change. (1) data/physics/coupled_models.json: add model mxc_wiring_heat_budget_v2 (keep v1 for reproducibility) whose lhs adds n_pump_lines*q_pump_line + n_qubit_drive_lines*p_drive_avg_qp*(g_mxc_att - 1) + n_flux_lines*r_eff_mxc*i_flux_pulse*i_flux_pulse*duty_flux_pulse (only add/sub/mul; (g-1) as sub with lit 1). Parameter unit_dims: A for i_flux_pulse, Ohm for r_eff_mxc, W for p_drive_avg_qp and q_pump_line, 1 for g_mxc_att, duty and counts; n_flux_lines and n_drive_lines stay adjustable for Z3. (2) data/experiments/quantum_mxc_wiring_heat_budget.json: add the parameters with origin experimental_observation and new evidence records holding the quotes listed here; note the dBm->W conversion (10^-7.8 mW rounded up to 1.585e-11 W). (3) Update README demonstration B and paper section 6 numbers. (4) Regression tests: LD400 with 33 flux lines REQUIREMENTS_MET, with 34 and 39 DOES_NOT_MEET; LD450 41/42; LD250 25/26.",
+   "citations": [
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems",
+     "authors": "S. Krinner, S. Storz, P. Kurpiers, P. Magnard, J. Heinsoo, R. Keller, J. Lütolf, C. Eichler, A. Wallraff",
+     "venue": "EPJ Quantum Technology 6, 2 (published version; text retrieved from https://epjquantumtechnology.springeropen.com/track/pdf/10.1140/epjqt/s40507-019-0072-0)",
+     "year": 2019,
+     "doi_or_url": "https://doi.org/10.1140/epjqt/s40507-019-0072-0",
+     "quote": "we use the measured effective DC resistances, the required current amplitude of about 0.4 mA and a duty cycle of 33% (see Sect. 2.2.2). The resulting heat loads on CP and MXC are then evaluated to 0.20(1) μW (0.55(3) μW) on MXC (CP)"
+    },
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems (arXiv v1)",
+     "authors": "S. Krinner, S. Storz, P. Kurpiers, P. Magnard, J. Heinsoo, R. Keller, J. Lütolf, C. Eichler, A. Wallraff",
+     "venue": "arXiv:1806.07862v1 [quant-ph]",
+     "year": 2018,
+     "doi_or_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "The largest relative loads of about 30 % occur at the CP and MXC stages, with about an equal share between passive and active loads."
+    }
+   ],
+   "risks": "The active terms are Krinner's design estimates for one gate schedule (-78 dBm average, 33 % duty); fewer gates or a lower duty cycle reduce them, so they must stay user-editable parameters, not constants. Central values only: the published per-line passive loads carry 20-80 % uncertainty (the interval workflow covers propagation). arXiv v1 states 0.2 mA in one sentence and 0.4 mA in another; the published version uses 0.4 mA, which reproduces its 0.20(1) uW per 25 lines. The TWPA pump active load at the MXC is omitted (published only as '0.1 %, 0.02 uW' at the CP), so even the extended budget is a lower bound on the published one.",
+   "priority": 1
+  },
+  {
+   "id": "TH2_devitrification_illumination_limit",
+   "title": "Illumination-heating limit for vitrified samples: per-grid devitrification threshold measured with a 77 K stage, valid only where the stage can be held at or below that reference",
+   "kind": "coupled_model",
+   "description": "In cryo-fluorescence / cryo-CLEM the heat load that published procedures actually budget is the heating of the grid square by absorbed illumination, which must keep the vitreous sample below ~136 K; the cryostat's cooling power is irrelevant at these powers because the heat must cross a poorly conducting support film. The profile's own source (Last et al. 2023) measured the maximum 488 nm power density per grid type with the grid bars held at 77 K (their Table 1) and imaged at 186.5 W/cm2 on UltrAuFoil gold film (limit 254 W/cm2). Huebinger & Bastiaens 2026 (also a profile source) show heating is governed by absorption in the support and reaches steady state within <20 ms, so a steady-state check is appropriate; Berkamp et al. 2023 (profile source) list 'reduce the excitation light power' as the remedy for devitrification. Mojiri et al. 2025 add the configuration dependence: thresholds fall steeply when the base temperature rises (gold: ~250 W/cm2 at 77 K -> ~125 W/cm2 expected at 95 K) and vacuum cryostats at 77 K tolerate laser doses comparable to open LN2 stages for metallic grids. Model: compare the user's illumination with the measured threshold, valid only where the configuration can hold the stage at or below the 77 K reference. A colder heat sink can only lower the sample temperature at equal absorbed power (steady conduction with positive conductivity is monotone in the boundary temperature), so a pass established at 77 K remains a pass below it, while a warmer stage is outside the evidence. A second, optional relation encodes the authors' own rule of operating at 70 % of the threshold.",
+   "equation_latex": "I_{\\mathrm{ill}} \\le I_{\\max}(\\mathrm{grid},\\,488\\,\\mathrm{nm},\\,T_{\\mathrm{ref}}=77\\,\\mathrm{K})\\quad\\text{valid if } T_{\\mathrm{lo}}(c) \\le T_{\\mathrm{op}} \\le T_{\\mathrm{ref}},\\ \\lambda = 488\\,\\mathrm{nm};\\qquad \\text{optional: } I_{\\mathrm{ill}} \\le 0.7\\,I_{\\max}",
+   "validity": "Stage (grid-bar) temperature T_op <= 77 K and reachable by the configuration (cap temperature.range sel lo <= T_op); wavelength exactly 488 nm (two inequalities); grid type equal to a Table-1 row (no extrapolation across mesh sizes or films); rows reported only as '> 690 W/cm2' (Formvar, SiO) are lower bounds and may only appear in a validity gate (PASS or UNSUPPORTED, never FAIL); illumination longer than ~20 ms (steady state); transfer from the open LN2 stage to vacuum cryostats is supported for metallic films (Mojiri) and less certain for carbon films.",
+   "parameters": [
+    {
+     "name": "illumination_power_density (profile value, Last et al. U2OS imaging)",
+     "value": "186.5",
+     "unit": "W/cm2",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "These grids were then imaged by fluorescence microscopy using 186.5 W/cm2 of 488 nm light—a value far exceeding the limit previously found for any type of carbon grid, but below the limit for gold film."
+    },
+    {
+     "name": "grid_max_power_density UltrAuFoil 1.2/1.3 Au300 (gold film)",
+     "value": "254",
+     "unit": "W/cm2",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "| UltrAuFoil (1.2/1.3 3Au) | Gold film | 254 W/cm2 |"
+    },
+    {
+     "name": "grid_max_power_density holey-carbon CFlat 2/1 on Cu 200/300/400 mesh",
+     "value": "43 / 64 / 96",
+     "unit": "W/cm2",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "| CF 2/1 2Cu | 200 mesh | 43 W/cm2 | Higher meshes enable higher illumination power density | | CF312 (2/1 3Cu) | 300 mesh | 64 W/cm2 | | CF412 (2/1 4Cu) | 400 mesh | 96 W/cm2 |"
+    },
+    {
+     "name": "grid_max_power_density CFlat 1.2/1.3 on Au 300 mesh",
+     "value": "50",
+     "unit": "W/cm2",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "| CF 1.2/1.3 3Au | Gold grid | 50 W/cm2 |"
+    },
+    {
+     "name": "grid_max_power_density Formvar FF200-Cu (lower bound only)",
+     "value": "> 690",
+     "unit": "W/cm2",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "| FF200-Cu | Formvar film | > 690 W/cm2 |"
+    },
+    {
+     "name": "t_ref (grid-bar temperature during the threshold measurements)",
+     "value": "77",
+     "unit": "K",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "This film is in thermal contact with the metal grid bars, which are held at a constant temperature of 77 K by the liquid nitrogen-cooled sample stage."
+    },
+    {
+     "name": "t_devit (devitrification onset)",
+     "value": "136",
+     "unit": "K",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "Devitrification occurs when vitrified cryogenic samples are heated to more than approximately 136 K"
+    },
+    {
+     "name": "wavelength of the thresholds",
+     "value": "488",
+     "unit": "nm",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "Overview of maximum illumination power densities (at 488 nm) for various types of TEM grids."
+    },
+    {
+     "name": "design_margin_optional (authors' operating rule)",
+     "value": "0.7",
+     "unit": "1",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "For future cryo-CLEM experiments, we used 70% of this illumination power density to ensure that we were sufficiently below the threshold at which light-induced damage occurred."
+    },
+    {
+     "name": "grid square size for 200/300/400 mesh (used to show the thresholds do not scale as 1/L^2)",
+     "value": "90 / 58 / 37",
+     "unit": "um",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10203124/fullTextXML",
+     "quote": "Corresponding grid square sizes are 90, 58, and 37 µm, respectively."
+    },
+    {
+     "name": "base-temperature sensitivity (gold, 488 nm; includes a 300->200 mesh change)",
+     "value": "~250 at 77 K -> ~125 expected at 95 K",
+     "unit": "W/cm2",
+     "source_url": "https://www.biorxiv.org/content/10.1101/2025.03.28.645948v2",
+     "quote": "Adjusting for our base temperature of 95 K for R2/2 200 mesh grid, these thresholds are expected to decrease to roughly 125 W/cm² (488 nm) and 210 −250 W/cm² (561 nm)."
+    },
+    {
+     "name": "time to steady state of the illuminated grid square",
+     "value": "< 20",
+     "unit": "ms",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13038024/fullTextXML",
+     "quote": "The steady-state temperature is approached by <1 °C difference within <20 ms"
+    },
+    {
+     "name": "Linkam THMS600 documented lower limit (stage cannot be shown to reach 77 K)",
+     "value": "< -195 (i.e. < 78.15 K)",
+     "unit": "degC",
+     "source_url": "https://www.linkam.co.uk/thms600-specifications",
+     "quote": "Temperature range < -195°C to 600°C (cooling option required)"
+    }
+   ],
+   "affected_experiments": [
+    "bio_cryo_fluorescence_vitrified"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "oxford_optistatdry_blv",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96"
+   ],
+   "data_available": "The threshold table, wavelength, reference temperature and the profile's illumination density all come from the profile's own source (Last 2023), corroborated by Huebinger 2026 (steady state, support-dominated heating) and Mojiri 2025 (base-temperature dependence, vacuum cryostats). On the configuration side the model needs only temperature.range (sel lo), which is trusted for 20 of 26 configurations (unknown or untrusted: LD450, CCS-400H, Linkam heating-only, the three Leica CM1950 entries). No new datasheet values are needed.",
+   "expected_effect": "If mandatory with the strict 77 K reference: cryo-fluorescence MET 8 -> 6. CCS-100/300S/400, CRX-4K, CRX-VF and OptistatDry BLV stay MET (186.5 <= 254 W/cm2 and the stage can reach 77 K); the two Linkam THMS600 LN2 configurations become NEED_MORE_INFORMATION because their documented lower limit is '< -195 C' (< 78.15 K), which does not establish 77 K, and Mojiri shows thresholds fall steeply with base temperature. Grid 20/109/157 -> 18/109/159; no other verdict changes (those configurations already fail optical access or are NEED INFO). This Linkam case is a ~1 K nominal difference between two LN2-cooled stages; if the team accepts an 'LN2-cooled stage' reference band (T_ref <= 78.15 K) after review, the Linkams stay MET and the counts are unchanged. Either way, a user who selects a carbon grid (e.g. CF312, 64 W/cm2) at the profile's 186.5 W/cm2 receives DOES_NOT_MEET on every configuration that can reach 77 K - a correct, cryostat-independent rejection - and Z3's repair returns the grid's threshold as the maximum intensity. The optional 70 % rule fails for the published settings (186.5 W/cm2 is 73.4 % of 254 W/cm2): report it, do not enforce it.",
+   "implementation": "(1) cryolean/units.py: add W_per_m2 and W_per_cm2 (dimension kg s^-3). (2) New reference table data/physics/em_grids.json with the Table-1 rows (grid id, film, mesh, square size, I_max, wavelength 488 nm, T_ref 77 K, lower_bound flag for the '> 690' rows, evidence ids). (3) coupled_models.json: model illumination_devitrification_limit, relation param(illumination_power_density) <= param(grid_max_power_density); validity pairs [cap(temperature.range, lo) <= param(operating_temperature)], [param(operating_temperature) <= lit 77 K], [param(wavelength) <= lit 488 nm], [lit 488 nm <= param(wavelength)]; a second optional model with rhs lit 0.7 * param(grid_max_power_density). Lower-bound grid rows use the pass-gate encoding of TH3 (comparison inside validity, trivially true relation). (4) bio_cryo_fluorescence_vitrified.json: params illumination_power_density = 186.5 W/cm2 (experimental_observation, ev_exp_0014), grid_max_power_density = 254 W/cm2 (reference_data), wavelength = 488 nm; coupled entry mandatory (or optional for a no-count-change rollout). Lean unchanged.",
+   "citations": [
+    {
+     "title": "Selecting optimal support grids for super-resolution cryogenic correlated light and electron microscopy",
+     "authors": "M. G. F. Last, M. W. Tuijtel, L. M. Voortman, T. H. Sharp",
+     "venue": "Scientific Reports 13, 8270 (full text via Europe PMC PMC10203124)",
+     "year": 2023,
+     "doi_or_url": "https://doi.org/10.1038/s41598-023-35590-x",
+     "quote": "These grids were then imaged by fluorescence microscopy using 186.5 W/cm2 of 488 nm light—a value far exceeding the limit previously found for any type of carbon grid, but below the limit for gold film."
+    },
+    {
+     "title": "Determination of factors that allow cryogenic nanoscopy with high power illumination without devitrification",
+     "authors": "J. Huebinger, P. I. H. Bastiaens",
+     "venue": "PLOS ONE 21(3), e0344631 (full text via Europe PMC PMC13038024)",
+     "year": 2026,
+     "doi_or_url": "https://doi.org/10.1371/journal.pone.0344631",
+     "quote": "Upon laser irradiation with 0.3 mW at 488-nm plus 0.015 mW of 405-nm over an area of 100 µm2 (=300 + 15 Wcm-2), a new steady-state temperature between −108 °C and −115 °C, depending on beam shape"
+    },
+    {
+     "title": "Effects of base temperature, immersion medium, and EM grid material on devitrification thresholds in cryogenic optical super-resolution microscopy",
+     "authors": "S. Mojiri, J. M. Dobbs, N. Faul, T. P. Burg, J. Mahamid, J. Ries",
+     "venue": "Journal of Structural Biology (2025); preprint bioRxiv 10.1101/2025.03.28.645948 (full text retrieved)",
+     "year": 2025,
+     "doi_or_url": "https://www.biorxiv.org/content/10.1101/2025.03.28.645948v2",
+     "quote": "our findings indicate that vacuum-based cryostats operating at 77 K enable the use of laser doses comparable to those used in open cryostats at the same temperature, particularly when metallic-coated grids are utilized."
+    },
+    {
+     "title": "Correlative Light and Electron Cryo-Microscopy Workflow Combining Micropatterning, Ice Shield, and an In-Chamber Fluorescence Light Microscope",
+     "authors": "S. Berkamp, D. Daviran, M. Smeets, A. Caignard, R. A. Jani, P. Sundermeyer, C. Jonker, S. Gerlach, B. Hoffmann, K. Lau, C. Sachse",
+     "venue": "Bio-protocol 13(24), e4901",
+     "year": 2023,
+     "doi_or_url": "https://doi.org/10.21769/BioProtoc.4901",
+     "quote": "Problem 4: Extensive devitrification is seen on the lamellae imaged with the METEOR system. Solution 1: Reduce the excitation light power and/or exposure time."
+    }
+   ],
+   "risks": "Thresholds are setup- and batch-specific (Huebinger: tolerable densities 'vary by several orders of magnitude'); Last's criterion is visible damage after short exposures, not a measured 136 K crossing, so the threshold may be optimistic for long SMLM acquisitions. The monotonicity argument assumes the film's absorptance does not rise on cooling. The paper's qualitative 1-D model implies dT ~ L^2, but its own Table 1 scales closer to 1/L (P_max x L = 3870, 3712, 3552 W um/cm2 for 90/58/37 um squares), so thresholds must not be extrapolated across mesh sizes. Vacuum cryostats lack the cold-gas contact of open stages (minor per Last; supported for metallic films by Mojiri).",
+   "priority": 2
+  },
+  {
+   "id": "TH3_sound_cooling_power_semantics",
+   "title": "Sound cooling-power semantics for every heat-budget model: bare cold-head vs system capacity, base-temperature check, and FAIL only against an upper-bound slot",
+   "kind": "method",
+   "description": "Both implemented heat models compare a load with the cooling power documented at the highest temperature <= T_op. The retrieved datasheets show why this rule cannot carry new heat-load models soundly. (1) Several 'cooling power' values are bare cold-head ratings: Lake Shore CCS '1 W at 4.2 K bare head cooling power'; CRX probe stations 'CCR with 1 W cooling power at 4.2 K'; Oxford OptistatDry 'Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)'. They exclude the cryostat's own parasitic loads (windows, probe arms, wiring), and the catalog's 0.2 W for the BLV is the 60 Hz figure. (2) For CRX-VF (10 K), CRX-4K (4.5 K base, control from 5 K) and OptistatDry BLV/TLEX (6.5 K with the four standard windows) the configured stage cannot even reach the temperature at which the rating is quoted: base temperature is 'a balance of the ... cooling capacity and the parasitic loading' (Howe et al.), so at its own base such a stage has no spare capacity at all. (3) Dilution-refrigerator specifications are system values measured on the experimental flange and already include posts and shield radiation (Krinner), so loads added on top of them are not double counted. (4) Capacity is non-decreasing in temperature and steep near the base (Schmidt et al.: 240 mW at 4.2 K but 80 mW at 3 K), so the value at the highest documented temperature <= T_op is a lower bound on capacity at T_op: a FAIL against it is not sound unless T_doc = T_op. Proposed rule: PASS only through a validity gate L + P_par <= Q(T_lo) with T_base <= T_lo <= T_op (P_par = 0 for system-level ratings; for bare cold-head ratings P_par must be documented, e.g. the cold-head capacity at the configuration's base temperature); FAIL only through L <= Q(T_hi) with T_hi the lowest documented temperature >= T_op. This is expressible today as two coupled entries per model: a fail-capable relation, and a pass gate whose comparison sits in 'validity' with a trivially true relation (a violated validity bound gives UNSUPPORTED, never FAIL).",
+   "equation_latex": "\\mathrm{FAIL} \\Leftarrow L > Q_{\\mathrm{doc}}(T_{hi}),\\ T_{\\mathrm{op}} \\le T_{hi};\\qquad \\mathrm{PASS} \\Leftarrow L + P_{\\mathrm{par}} \\le Q_{\\mathrm{doc}}(T_{lo}),\\ T_{\\mathrm{base}} \\le T_{lo} \\le T_{\\mathrm{op}};\\qquad \\text{otherwise NEED\\_MORE\\_INFORMATION}",
+   "validity": "Applies to every coupled model whose rhs is a cooling_power.at_* slot (Joule heating, MXC wiring budget, TH1, TH6, TH7 and future heat models). Requires monotone non-decreasing capacity in temperature (already an assumption of the implemented models) and a 'basis' attribute on each cooling-power record: system_net (experimental-flange guarantee) or bare_cold_head (+ mains frequency). For T_op = T_doc (MXC at 20 mK) both entries use the same slot and the rule reduces exactly to today's behaviour.",
+   "parameters": [
+    {
+     "name": "CCS cold head 408 capacity (bare head)",
+     "value": "1 at 4.2 K",
+     "unit": "W",
+     "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+     "quote": "408 1 W at 4.2 K bare head cooling power"
+    },
+    {
+     "name": "CCS: base temperature depends on cold head, not on spare capacity",
+     "value": "qualitative",
+     "unit": "-",
+     "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+     "quote": "Some cold heads have a similar base temperature with no load, but have different cooling powers and are therefore able to handle different heat loads."
+    },
+    {
+     "name": "CRX-4K / CRX-VF cooling source rating",
+     "value": "1 at 4.2 K",
+     "unit": "W",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "Cooling source: | 2-stage closed cycle refrigerator (CCR) with 1 W cooling power at 4.2 K"
+    },
+    {
+     "name": "CRX-4K base temperature (2 / 4 / 6 probe arms)",
+     "value": "4.5 / 5.5 / 6.0",
+     "unit": "K",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "| 4.5 K | 5 K to 350 K | 2 probe arms installed | | 5.5 K | 6 K to 350 K | 4 probe arms installed | | 6.0 K | 6.5 K to 350 K | 6 probe arms installed |"
+    },
+    {
+     "name": "CRX-VF lowest temperature (up to 6 probe arms)",
+     "value": "10",
+     "unit": "K",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-vf-cryogenic-probe-station",
+     "quote": "| ±2.5 T | 10 K | Up to 6 probe arms installed |"
+    },
+    {
+     "name": "OptistatDry cold-head capacity at 4.2 K (60 Hz / 50 Hz mains)",
+     "value": "0.2 / 0.16",
+     "unit": "W",
+     "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)"
+    },
+    {
+     "name": "OptistatDry base temperature with the 4 standard windows",
+     "value": "6.5",
+     "unit": "K",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Base temperature | 77.2 K | 77.2 K | 3.4 K | 3.2 K | 6.5 (4 windows) | 6.5 (4 windows) |"
+    },
+    {
+     "name": "Bluefors LD450 MXC cooling power (system value on the experimental flange)",
+     "value": "> 14 at 20 mK",
+     "unit": "uW",
+     "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+     "quote": "The LD450 system provides more than 14 μW at 20 mK on the experimental flange with only 18 liters of helium-3."
+    },
+    {
+     "name": "DR specifications already include support-post conduction",
+     "value": "qualitative",
+     "unit": "-",
+     "source_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Heat which flows via posts that separate the various plates of the dilution refrigerator is not considered because it is already taken into account in the specified cooling power of the dilution refrigerator"
+    },
+    {
+     "name": "small 4 K pulse tube: capacity at 4.2 K",
+     "value": "240",
+     "unit": "mW",
+     "source_url": "https://arxiv.org/abs/2311.00605",
+     "quote": "with zero heat load at the first stage, the low temperature second stage has a cooling capacity of 240 mW at 4.2 K for the high power setting."
+    },
+    {
+     "name": "same pulse tube: capacity at 3 K (high / low compressor power)",
+     "value": "80 / 55",
+     "unit": "mW",
+     "source_url": "https://arxiv.org/abs/2311.00605",
+     "quote": "In this test configuration we reached 80 mW and 55 mW for the high and low power compressor operation, respectively."
+    }
+   ],
+   "affected_experiments": [
+    "mat_electrical_resistance_low_temperature",
+    "quantum_mxc_wiring_heat_budget",
+    "chem_low_temperature_raman",
+    "chem_temperature_dependent_photoluminescence",
+    "bio_cryo_fluorescence_vitrified",
+    "chem_phase_transition_pom",
+    "quantum_mk_vector_field_transport",
+    "mat_magnetoresistance_10T"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_ccs_400h",
+    "lakeshore_crx_vf",
+    "lakeshore_crx_4k",
+    "oxford_optistatdry_blv",
+    "oxford_optistatdry_tlex",
+    "bluefors_ld250_manual_v2",
+    "bluefors_ld400_hdw",
+    "bluefors_ld450_current"
+   ],
+   "data_available": "All needed facts are already sourced in the catalog evidence (ev_ls_0012, ev_ls_0041, ev_ls_0055, ev_ox_0024, ev_ox_0026-0028, ev_bf_*, pm_002-pm_009) and were re-retrieved here. Missing: a 'basis' and 'mains_hz' attribute on cooling_power records; temperature.base for the CCS entries (the brochure gives '408 <4 K'); and cold-head load curves (capacity at the base temperature) for a sound PASS on bare-head ratings, which the parallel data workflow is already collecting.",
+   "expected_effect": "No change to the current 20/109/157 grid: the Joule model is optional with null parameters, and the MXC model uses system-level Bluefors values at exactly T_op = T_doc = 20 mK, where the new and old rules coincide. Its value is preventive. (a) It removes a latent false-accept path in the existing Joule model: a CRX-VF at T_op = 10 K would today pass any I^2 R <= 1 W, although the stage has no spare capacity at its own 10 K base. (b) It decides what any optical, laser, window or eddy-current heat model can honestly do with today's data: no PASS is possible on the 8 cryocooler optical configurations (four have base above the rating temperature, four CCS need the cold-head capacity at <4 K), so such models must not be made mandatory yet (see TH6: making them mandatory would turn the 16 optical MET verdicts into NEED INFO).",
+   "implementation": "(1) capability records cooling_power.at_*: add 'basis' (system_net | bare_cold_head) and optional 'mains_hz', filled from the existing quotes. (2) cryolean/serialize.py resolve_slots: besides $cooling (highest documented T <= T_op), resolve $cooling_hi (lowest documented T >= T_op). (3) For each heat model emit two Lean coupled entries: fail entry {lhs L, rhs cap($cooling_hi), validity [param T_op <= cap($cooling_hi.temperature)]} and pass gate {lhs lit 0, rhs lit 1, validity [L + P_par <= cap($cooling), cap($cooling.temperature) <= param T_op, cap(temperature.base) <= cap($cooling.temperature)]}, with P_par = lit 0 W for system_net and a documented parasitic/load-curve capability for bare_cold_head (missing -> UNKNOWN -> NEED INFO). Expr, Sel and validity pairs already support this, so Lean and its theorems are unchanged. (4) Tests: LD400 MXC verdict unchanged; CRX-VF Joule check UNSUPPORTED; CCS Joule check NEED INFO until a load curve is present.",
+   "citations": [
+    {
+     "title": "CCS-series closed-cycle sample-in-vacuum cryostats (ccr-vacuum.pdf)",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer brochure (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/docs/default-source/default-document-library/ccr-vacuum.pdf?sfvrsn=aaa472f1_24",
+     "quote": "408 1 W at 4.2 K bare head cooling power"
+    },
+    {
+     "title": "CRX-4K cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "| 4.5 K | 5 K to 350 K | 2 probe arms installed | | 5.5 K | 6 K to 350 K | 4 probe arms installed | | 6.0 K | 6.5 K to 350 K | 6 probe arms installed |"
+    },
+    {
+     "title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (specification matrix)",
+     "authors": "Quantum Design Oxford",
+     "venue": "Manufacturer brochure (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)"
+    },
+    {
+     "title": "Design and characterization of the POLARBEAR-2b and POLARBEAR-2c cosmic microwave background cryogenic receivers",
+     "authors": "L. Howe, C. Tsai, L. Lowry, K. Arnold, G. Coppi, J. Groh, X. Guo, B. Keating, A. Lee, A. J. May, L. Piccirillo, N. Stebor, G. Teply",
+     "venue": "arXiv:1806.05576 (SPIE proceedings)",
+     "year": 2018,
+     "doi_or_url": "https://arxiv.org/abs/1806.05576",
+     "quote": "The lowest temperature reached by each stage of the PTC is referred to as the base temperature, which is a balance of the PTC cooling capacity and the parasitic loading."
+    },
+    {
+     "title": "Engineering cryogenic setups for 100-qubit scale superconducting circuit systems (arXiv v1)",
+     "authors": "S. Krinner, S. Storz, P. Kurpiers, P. Magnard, J. Heinsoo, R. Keller, J. Lütolf, C. Eichler, A. Wallraff",
+     "venue": "arXiv:1806.07862v1 [quant-ph]",
+     "year": 2018,
+     "doi_or_url": "https://arxiv.org/abs/1806.07862",
+     "quote": "Third, radiative load from stages and shields of higher temperature to stages and shields of lower temperature [30]. This load, however, is also taken into account in the specified cooling power of the dilution refrigerator."
+    },
+    {
+     "title": "Cooling power analysis of a small scale 4 K pulse tube cryocooler driven by an oil-free low input power Helium compressor",
+     "authors": "J.-A. Schmidt, B. Schmidt, J. Falter, J. Höhne, C. Dal Savio, S. Schaile, A. Schirmeisen",
+     "venue": "arXiv:2311.00605",
+     "year": 2023,
+     "doi_or_url": "https://arxiv.org/abs/2311.00605",
+     "quote": "In this test configuration we reached 80 mW and 55 mW for the high and low power compressor operation, respectively."
+    },
+    {
+     "title": "LD System | Dilution Refrigerator Measurement System",
+     "authors": "Bluefors",
+     "venue": "Manufacturer web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+     "quote": "The LD450 system provides more than 14 μW at 20 mK on the experimental flange with only 18 liters of helium-3."
+    }
+   ],
+   "risks": "Makes every heat check on cryocooler-based optical cryostats NEED INFO until net capacities or load curves are sourced; this is the honest state of the data but reduces apparent coverage. Overlaps in mechanism with the interval/tolerance workflow (this proposal fixes only the cooling-power slot semantics). Some base temperatures are 'typical' values, and a 50 Hz installation of the OptistatDry has 20 % less cold-head capacity than the catalog's 60 Hz figure.",
+   "priority": 3
+  },
+  {
+   "id": "TH4_parasitic_load_anchors",
+   "title": "Window radiation and probe-arm conduction as documented base-temperature anchors (monotone bracket) instead of a Stefan-Boltzmann estimate",
+   "kind": "coupled_model",
+   "description": "Manufacturers document the thermal effect of the two parasitic loads users change most. Optical windows: Quantum Design Oxford gives the OptistatDry base temperature as 6.5 K with the four standard Spectrosil WF windows and '<3 K' (BLV) / '<4 K' (TLEX) with blanks fitted, and states that all windows are user-changeable. Probe arms: Lake Shore gives the CRX-4K base as 4.5 / 5.5 / 6.0 K with 2 / 4 / 6 arms (control from 5 / 6 / 6.5 K) and says the base 'assumes heat load for probes'. Each window or arm adds a non-negative load and cold-head capacity is non-decreasing in temperature, so the base temperature is monotone in the number fitted and documented anchors bracket every intermediate configuration: T_base(n) <= T_base(n_hi) for n <= n_hi (sound PASS for any T_req >= T_base(n_hi)), and T_base(n) >= T_base(n_lo) for n >= n_lo (sound FAIL for T_req < T_base(n_lo), but only where T_base(n_lo) is an exact value, not a '<' bound). This replaces a first-principles 300 K Stefan-Boltzmann window load, which is unusable here: sigma T^4 through four 28 mm apertures is 1.13 W against a 0.2 W cold head, yet the OptistatDry reaches 6.5 K, because fused-silica windows (and the CRX's IR-absorbing shield window) block most 300 K radiation and no datasheet gives their IR transmission as a number. The Stefan-Boltzmann value is kept only as a reported upper bound.",
+   "equation_latex": "n \\le n_{hi} \\wedge T_{\\mathrm{base}}(n_{hi}) \\le T_{\\mathrm{req}} \\Rightarrow \\mathrm{PASS};\\quad n \\ge n_{lo} \\wedge T_{\\mathrm{req}} < T_{\\mathrm{base}}(n_{lo}) \\Rightarrow \\mathrm{FAIL};\\quad \\text{diagnostic: } Q_{\\mathrm{win}} \\le n_w\\,\\sigma\\,\\tfrac{\\pi}{4}D^{2}\\,T_{\\mathrm{amb}}^{4}",
+   "validity": "Only for the documented hardware: Spectrosil WF windows on the OptistatDry (other window materials such as ZnSe, CaF2 or KBr transmit more 300 K infrared and are outside the anchors), standard probe-arm anchoring on the CRX-4K. Anchors are typical values. Brackets only - no interpolated temperatures. The blank-fitted values are '<' bounds, so no FAIL can be derived at the low end for the OptistatDry. For the diagnostic, pi enters as a rational upper bound (e.g. 355/113) and sigma = 5.670374419e-8 W m^-2 K^-4 truncated upward.",
+   "parameters": [
+    {
+     "name": "OptistatDry BLV and TLEX base temperature with 4 windows",
+     "value": "6.5",
+     "unit": "K",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Base temperature | 77.2 K | 77.2 K | 3.4 K | 3.2 K | 6.5 (4 windows) | 6.5 (4 windows) |"
+    },
+    {
+     "name": "OptistatDry minimum temperature with blanks fitted (TLEX / BLV)",
+     "value": "< 4 / < 3",
+     "unit": "K",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Minimum temperature | 77.2 K | 77.2 K | 2.3 K | 2.2 K | <4 K (blanks fitted) | <3 K (blanks fitted) |"
+    },
+    {
+     "name": "OptistatDry standard window fit (user-changeable)",
+     "value": "4 Spectrosil WF radial windows + 1 axial blank",
+     "unit": "count",
+     "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Every cryostat is supplied with 4 x Spectrosil WF windows, fitted radially, and 1 x blank fitted axially. All windows are user changeable."
+    },
+    {
+     "name": "CRX-4K base temperature / control floor for 2, 4, 6 probe arms",
+     "value": "4.5 / 5.5 / 6.0 K; 5 / 6 / 6.5 K",
+     "unit": "K",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "| 4.5 K | 5 K to 350 K | 2 probe arms installed | | 5.5 K | 6 K to 350 K | 4 probe arms installed | | 6.0 K | 6.5 K to 350 K | 6 probe arms installed |"
+    },
+    {
+     "name": "CRX-4K base temperature includes the probe heat load",
+     "value": "qualitative",
+     "unit": "-",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "1Base temperature assumes heat load for probes thermally anchored as listed in probing section"
+    },
+    {
+     "name": "OptistatDry BLV clear view per window (diagnostic)",
+     "value": "28",
+     "unit": "mm",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "Optical Access: 28 mm diameter clear view f1"
+    },
+    {
+     "name": "CRX radiation-shield viewport (IR-absorbing, diagnostic)",
+     "value": "50",
+     "unit": "mm",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "Viewport: | 50 mm (1.97 in) diameter IR absorbing window"
+    },
+    {
+     "name": "Stefan-Boltzmann constant (diagnostic)",
+     "value": "5.670374419e-8",
+     "unit": "W m^-2 K^-4",
+     "source_url": "https://physics.nist.gov/cgi-bin/cuu/Value?sigma",
+     "quote": "Numerical value | 5.670 374 419... x 10-8 W m-2 K-4"
+    }
+   ],
+   "affected_experiments": [
+    "chem_temperature_dependent_photoluminescence",
+    "chem_low_temperature_raman",
+    "bio_cryo_fluorescence_vitrified",
+    "chem_phase_transition_pom",
+    "mat_electrical_resistance_low_temperature"
+   ],
+   "affected_configurations": [
+    "oxford_optistatdry_blv",
+    "oxford_optistatdry_tlex",
+    "lakeshore_crx_4k"
+   ],
+   "data_available": "Two window anchors for each OptistatDry variant and three probe-arm anchors for the CRX-4K are documented by the manufacturers (retrieved). Not available: window-count anchors for the CCS series (window count itself unknown), the CRX-VF (single 10 K value) and the Linkam stages.",
+   "expected_effect": "No change to the 26 catalog configurations: they are fixed at 4 windows / 2 arms, which temperature.range already encodes. The gain is for modifications, which today make the affected capability UNKNOWN: an OptistatDry fitted with 2 windows + 2 blanks for the 4 K PL profile becomes NEED INFO (bracket (<3 K, 6.5 K]) instead of inheriting the 4-window DOES_NOT_MEET; with all blanks the BLV passes 4 K (but then fails optical access); a CRX-4K fitted with 4 arms is certified only from its 6 K control floor. The diagnostic documents why a naive Stefan-Boltzmann window term must never be fail-capable: it would reject the OptistatDry BLV (1.13 W > 0.2 W) and nearly exhaust the CRX rating (0.90 W of 1 W) although both instruments reach their documented base temperatures.",
+   "implementation": "(1) Vocabulary: add table-shaped capabilities temperature.base.by_window_count and temperature.base.by_probe_arms (or one key per anchor, e.g. temperature.base.windows_4, temperature.base.windows_0_upper), each with evidence and an exact/upper-bound flag. (2) Modification layer: a documented modification sets params n_windows_fitted / n_probe_arms_fitted. (3) coupled_models.json: model parasitic_anchor_bracket with a pass gate (validity: n_fitted <= n_hi and cap(anchor_hi) <= T_req) and a fail entry (validity: n_lo <= n_fitted; relation cap(anchor_lo) <= T_req) emitted only for exact anchors. (4) Report sigma*(pi/4)*D^2*T^4 per window as an explanation, never as a verdict input. Lean unchanged.",
+   "citations": [
+    {
+     "title": "Optistat - Optical Cryostats for Spectroscopy (product page, model comparison)",
+     "authors": "Quantum Design Oxford",
+     "venue": "Manufacturer web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Minimum temperature | 77.2 K | 77.2 K | 2.3 K | 2.2 K | <4 K (blanks fitted) | <3 K (blanks fitted) |"
+    },
+    {
+     "title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (specification matrix)",
+     "authors": "Quantum Design Oxford",
+     "venue": "Manufacturer brochure (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Every cryostat is supplied with 4 x Spectrosil WF windows, fitted radially, and 1 x blank fitted axially. All windows are user changeable."
+    },
+    {
+     "title": "CRX-4K cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "| 4.5 K | 5 K to 350 K | 2 probe arms installed | | 5.5 K | 6 K to 350 K | 4 probe arms installed | | 6.0 K | 6.5 K to 350 K | 6 probe arms installed |"
+    },
+    {
+     "title": "Cryostat Windows (window selection guide)",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer guide (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13",
+     "quote": "Standard optical cryostats have fused silica windows installed, but most can easily be upgraded to a different window material for other applications."
+    },
+    {
+     "title": "CODATA Value: Stefan-Boltzmann constant",
+     "authors": "NIST (2022 CODATA recommended values)",
+     "venue": "NIST Reference on Constants, Units and Uncertainty",
+     "year": 2022,
+     "doi_or_url": "https://physics.nist.gov/cgi-bin/cuu/Value?sigma",
+     "quote": "Numerical value | 5.670 374 419... x 10-8 W m-2 K-4"
+    }
+   ],
+   "risks": "Anchors are 'typical' manufacturer values; blank-fitted minima are only upper bounds; monotonicity assumes the added window or arm cannot lower the load (true for a passive component). The anchors say nothing about the sample temperature under illumination, only about the stage base.",
+   "priority": 4
+  },
+  {
+   "id": "TH5_laser_heating_of_sample",
+   "title": "Laser heating of the probed spot in Raman and PL: dT = B * P <= dT_allowed, with the profile's published no-effect power envelope as a pass gate",
+   "kind": "coupled_model",
+   "description": "For Raman and photoluminescence the relevant laser heat term is the local temperature rise of the probed volume, not the global stage budget (mW lasers against cold heads rated >= 0.16 W). The standard description is a linear laser-heating coefficient B (K/W): Hagiwara et al. measured B ~ 6 C/mW for spinel-hosted and ~1e-2 C/mW for quartz-hosted inclusions and warn that 10 mW can heat absorbing samples by tens to hundreds of degrees; Lax gives a closed form for a Gaussian spot on an absorbing half-space (dT_max = A P / (2 sqrt(pi) kappa w) for surface absorption); Foucher shows thick transparent samples are essentially unaffected while semi-transparent ones can heat more with low-NA objectives. The Raman profile's own source explicitly tested the effect: Pamula et al. ran DI water in the Linkam THMS600 with 532 nm and a 10x/0.25 objective at 5.6, 10 and 28 mW and found the phase-transition temperature unchanged. Model: with a measured B, the fail-capable relation B * P_laser <= dT_allowed; without B, a pass gate P_laser <= 28 mW at the same wavelength and NA (validity only, so powers above the envelope give NEED INFO, never a rejection).",
+   "equation_latex": "B\\,P_{\\mathrm{laser}} \\le \\Delta T_{\\mathrm{allowed}}\\quad\\text{or (no }B\\text{)}\\quad \\text{gate: } P_{\\mathrm{laser}} \\le P_{\\mathrm{validated}} = 28\\,\\mathrm{mW},\\ \\lambda = 532\\,\\mathrm{nm},\\ \\mathrm{NA}=0.25;\\qquad \\text{Lax estimate: } A\\,P \\le 2\\sqrt{\\pi}\\,\\kappa\\,w\\,\\Delta T_{\\mathrm{allowed}}",
+   "validity": "Steady state; the sample bulk is held at the stage temperature, so the local rise is set by the sample (absorption, conductivity, spot size), not by the cryostat; envelope only for aqueous/transparent samples, 532 nm and NA 0.25 (equality, because Foucher shows lower NA can heat semi-transparent samples more); the Lax form needs a half-space with surface absorption and constant conductivity, and sqrt(pi) must enter as a rational lower bound (e.g. 1.772) in the pass direction and an upper bound (1.7725) in the fail direction.",
+   "parameters": [
+    {
+     "name": "P_laser (Pamula; 532 nm, 10x/0.25 objective)",
+     "value": "10",
+     "unit": "mW",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML",
+     "quote": "The samples were excited by visible laser (wavelength = 532 nm, 10 mW output power) with a long working distance objective lens (MPlan N 10x/0.25 BD Olympus, 6.5 mm)."
+    },
+    {
+     "name": "P_laser (Park; THMS600, frozen LiCl solutions)",
+     "value": "5.6",
+     "unit": "mW",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13668726/fullTextXML",
+     "quote": "acquisition time of 10 s, accumulation of 5 scans, laser output power of 5.6 mW, and 1200 gr/mm grating."
+    },
+    {
+     "name": "P_validated (no change of the phase-transition temperature up to this power)",
+     "value": "28",
+     "unit": "mW",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML",
+     "quote": "To investigate the effect of laser irradiation on freezing–thawing cycles, selected experiments were also performed for DI water under 5.6 (lower) and 28 mW (higher) laser power."
+    },
+    {
+     "name": "objective NA of the validated envelope",
+     "value": "0.25",
+     "unit": "NA",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML",
+     "quote": "The samples were excited by visible laser (wavelength = 532 nm, 10 mW output power) with a long working distance objective lens (MPlan N 10x/0.25 BD Olympus, 6.5 mm)."
+    },
+    {
+     "name": "B, laser-heating coefficient examples (spinel / quartz hosts)",
+     "value": "~6 / ~0.01",
+     "unit": "K/mW",
+     "source_url": "https://www.sciencedirect.com/science/article/pii/S0009254120304678",
+     "quote": "the measured B of fluid inclusions in spinel is highest (approx. 6 °C/mW) and that of quartz is lowest (approx. 1 × 10−2 °C/mW), consistent with earlier inferences."
+    },
+    {
+     "name": "P_laser in the PL profile source (100x, NA 0.85, hBN on quartz)",
+     "value": "3.83",
+     "unit": "mW",
+     "source_url": "https://arxiv.org/abs/2606.23334",
+     "quote": "PL spectra were collected under optical excitation using the same confocal spectroscopy setup described previously at an incident power of 3.83 mW."
+    },
+    {
+     "name": "PL profile source excitation NA",
+     "value": "0.85",
+     "unit": "NA",
+     "source_url": "https://arxiv.org/abs/2606.23334",
+     "quote": "using a 532 nm excitation laser and a 100X objective lens (NA = 0.85)."
+    }
+   ],
+   "affected_experiments": [
+    "chem_low_temperature_raman",
+    "chem_temperature_dependent_photoluminescence"
+   ],
+   "affected_configurations": [
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96",
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "oxford_optistatdry_blv",
+    "oxford_optistatdry_tlex"
+   ],
+   "data_available": "Raman: yes - the power, wavelength, NA and the no-effect envelope come from the profile's own sources. PL: no - Shyam et al. used 3.83 mW at NA 0.85 on hBN flakes in a closed-cycle cryostat with no heating test, and Swidinsky et al. used a room-temperature 260 nm LED of unstated power; no B is published for either sample.",
+   "expected_effect": "No count change. Raman (10 mW <= 28 mW, same wavelength and NA) passes on all four Raman MET configurations (CRX-4K, CRX-VF, both THMS600). The PL profile has no MET verdict, so even a mandatory PL check only adds NEED INFO where nothing else fails. The gain is coverage - the first coupled physics on the Raman and PL profiles, which today have none - and a Z3 repair target (maximum laser power = 28 mW until a sample B is measured).",
+   "implementation": "Units already exist (W, mW, K_per_W, NA, nm). Add two models: laser_heating_coefficient (relation mul(param B, param P_laser) <= param dT_allowed; fail-capable, used only when B is trusted) and laser_power_envelope (relation lit 0 <= lit 1; validity [param P_laser <= param P_validated], [param NA = 0.25 as two inequalities], [param wavelength = 532 nm]). Add params to chem_low_temperature_raman.json from Pamula (P_laser = 10 mW, P_validated = 28 mW, NA 0.25, 532 nm; experimental_observation). Optional Lax variant with absorptance, conductivity and spot radius as user-entered parameters. Lean unchanged.",
+   "citations": [
+    {
+     "title": "In-situ Raman spectroscopic analysis of phase transition temperatures in silica interacting with water and NaCl solutions",
+     "authors": "K. Pamula, A. Pophali, D. Gersappe, T. Kim",
+     "venue": "Scientific Reports 15, 26449 (full text via Europe PMC PMC12280175)",
+     "year": 2025,
+     "doi_or_url": "https://doi.org/10.1038/s41598-025-12034-2",
+     "quote": "it was observed that the phase transition temperature of water remains unaffected by the laser output power."
+    },
+    {
+     "title": "Molecular-level freezing and melting dynamics of aqueous lithium chloride solutions using in-situ Raman spectroscopy",
+     "authors": "H. Park, A. Wang, J. Kim, A. Pophali, D. Gersappe, T. Kim",
+     "venue": "Scientific Reports 16, 32309 (full text via Europe PMC PMC13668726)",
+     "year": 2026,
+     "doi_or_url": "https://doi.org/10.1038/s41598-026-61621-4",
+     "quote": "acquisition time of 10 s, accumulation of 5 scans, laser output power of 5.6 mW, and 1200 gr/mm grating."
+    },
+    {
+     "title": "Experimental variable effects on laser heating of inclusions during Raman spectroscopic analysis",
+     "authors": "Y. Hagiwara, K. Yoshida, A. Yoneda, J. Torimoto, J. Yamamoto",
+     "venue": "Chemical Geology 559, 119928 (abstract retrieved via Consensus)",
+     "year": 2021,
+     "doi_or_url": "https://www.sciencedirect.com/science/article/pii/S0009254120304678",
+     "quote": "even with laser power of 10 mW, which is typical for inclusion analysis, the inclusion temperature rises to tens or hundreds of degrees during the analysis"
+    },
+    {
+     "title": "Influence of laser shape on thermal increase during micro-Raman spectroscopy analyses",
+     "authors": "F. Foucher",
+     "venue": "Journal of Raman Spectroscopy (abstract retrieved via Consensus)",
+     "year": 2021,
+     "doi_or_url": "https://consensus.app/papers/details/cb108ff9fc1e5e47bc4d113f5e3a873b/",
+     "quote": "for semi‐transparent materials, alteration may occur at lower laser power for low magnification objectives than for high magnification objectives."
+    },
+    {
+     "title": "Temperature rise induced by a laser beam",
+     "authors": "M. Lax",
+     "venue": "Journal of Applied Physics 48, 3919 (abstract retrieved via Consensus/ADS)",
+     "year": 1977,
+     "doi_or_url": "https://ui.adsabs.harvard.edu/abs/1977JAP....48.3919L/abstract",
+     "quote": "A closed‐form expression in terms of tabulated functions is obtained for the maximum temperature rise."
+    },
+    {
+     "title": "Hexagonal Boron Nitride Spin Defects for Quantum Photonics: Annealing-Free Generation by Krypton Ion Implantation",
+     "authors": "I. Shyam, R. Singh, M. Akkanaboina, et al.",
+     "venue": "arXiv:2606.23334 [physics.optics]",
+     "year": 2026,
+     "doi_or_url": "https://arxiv.org/abs/2606.23334",
+     "quote": "The sample was mounted on the cryostat cold finger using GE Varnish and cooled using Helium exchange gas."
+    },
+    {
+     "title": "Temperature-Dependent Photoluminescence of PEDOT:PSS for use as Transparent Electrodes in the DarkSide-20k Time Projection Chamber",
+     "authors": "N. Swidinsky, E. Ellingwood, J. Hucker, et al.",
+     "venue": "arXiv:2407.08075 [physics.ins-det]",
+     "year": 2024,
+     "doi_or_url": "https://arxiv.org/abs/2407.08075",
+     "quote": "The sample is excited with a continuous emission 260 nm LED at room temperature attached near one of the outside windows."
+    }
+   ],
+   "risks": "The envelope transfers between cryostats only if the sample and mount are the same; Pamula tested DI water, Park's LiCl solutions may absorb differently; 'laser output power' is larger than the power at the sample (conservative for passes). The Lax estimate is sensitive to the absorptance, which is rarely published.",
+   "priority": 5
+  },
+  {
+   "id": "TH6_optical_heat_load_vs_stage_capacity",
+   "title": "Absorbed laser power plus window radiation against stage capacity - register as an optional diagnostic until net capacities exist",
+   "kind": "coupled_model",
+   "description": "The global optical heat load L_opt = eta * P_laser + sum_w tau_w * sigma * (pi/4) D_w^2 (T_amb^4 - T_s^4) compared with stage capacity at T_op under the TH3 semantics. Numbers with the documented apertures (300 K, full transmission): CRX shield viewport 50 mm 0.90 W; OptistatDry BLV 4 x 28 mm 1.13 W; TLEX 4 x 15 mm 0.32 W; one CCS 1.63 in (41.4 mm) fused-silica window 0.62 W - comparable to or larger than the 0.16-1 W cold-head ratings, so the undocumented IR transmission tau_w of fused silica or IR-absorbing windows decides the result, while laser powers (<= 28 mW) are negligible. With TH3 semantics no optical configuration can PASS (bare-head ratings, base temperature above the rating temperature, CCS needing the capacity at <4 K, Linkam without any rating) and none can FAIL (no capacity documented above T_op = 77-203 K). This is the honest assessment of task item (a) 'absorbed optical power against cooling power' and item (b) 'window radiation': representable, but not decidable with today's data.",
+   "equation_latex": "\\eta\\,P_{\\mathrm{laser}} + \\sum_{w}\\tau_w\\,\\sigma\\,\\tfrac{\\pi}{4}D_w^{2}\\big(T_{\\mathrm{amb}}^{4}-T_s^{4}\\big) \\le Q(T_{\\mathrm{op}})\\quad\\text{(TH3 two-entry encoding)}",
+   "validity": "Steady state; window term only for windows that view 300 K directly (an IR-absorbing or cold window re-emits at its own temperature); tau_w must be a documented band-averaged transmission; pi and sigma as rational bounds in the appropriate direction.",
+   "parameters": [
+    {
+     "name": "Stefan-Boltzmann constant",
+     "value": "5.670374419e-8",
+     "unit": "W m^-2 K^-4",
+     "source_url": "https://physics.nist.gov/cgi-bin/cuu/Value?sigma",
+     "quote": "Numerical value | 5.670 374 419... x 10-8 W m-2 K-4"
+    },
+    {
+     "name": "CRX radiation-shield viewport diameter (IR-absorbing window)",
+     "value": "50",
+     "unit": "mm",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "Viewport: | 50 mm (1.97 in) diameter IR absorbing window"
+    },
+    {
+     "name": "OptistatDry BLV clear view per window",
+     "value": "28",
+     "unit": "mm",
+     "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "Optical Access: 28 mm diameter clear view f1"
+    },
+    {
+     "name": "OptistatDry window count",
+     "value": "4",
+     "unit": "count",
+     "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Every cryostat is supplied with 4 x Spectrosil WF windows, fitted radially, and 1 x blank fitted axially. All windows are user changeable."
+    },
+    {
+     "name": "CCS / Janis standard window clear view (fused silica)",
+     "value": "1.63",
+     "unit": "in",
+     "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13",
+     "quote": "Standard fused silica is an inexpensive choice for general-purpose windows and is the material used on all standard 1.63 in clear view Environment by Janis window ports."
+    },
+    {
+     "name": "OptistatDry cold-head capacity (60 / 50 Hz)",
+     "value": "0.2 / 0.16 at 4.2 K",
+     "unit": "W",
+     "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+     "quote": "Cold head cooling power 0.2 W at 4.2 K (60 Hz) 0.16 W at 4.2 K (50 Hz)"
+    },
+    {
+     "name": "largest laser power in the optical profiles' sources",
+     "value": "28",
+     "unit": "mW",
+     "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12280175/fullTextXML",
+     "quote": "To investigate the effect of laser irradiation on freezing–thawing cycles, selected experiments were also performed for DI water under 5.6 (lower) and 28 mW (higher) laser power."
+    }
+   ],
+   "affected_experiments": [
+    "chem_low_temperature_raman",
+    "chem_temperature_dependent_photoluminescence",
+    "bio_cryo_fluorescence_vitrified",
+    "chem_phase_transition_pom"
+   ],
+   "affected_configurations": [
+    "lakeshore_ccs_100",
+    "lakeshore_ccs_300s",
+    "lakeshore_ccs_400",
+    "lakeshore_crx_4k",
+    "lakeshore_crx_vf",
+    "oxford_optistatdry_blv",
+    "oxford_optistatdry_tlex",
+    "linkam_thms600_lnp96_t96",
+    "linkam_thmsel600_lnp96"
+   ],
+   "data_available": "Apertures and window counts: CRX (1 x 50 mm), OptistatDry (4 x 28 / 15 mm); CCS window count unknown; Linkam lid window diameter not given. IR transmission of the installed windows: not documented numerically. Net stage capacity: not documented for any optical configuration.",
+   "expected_effect": "Honest effect if made mandatory with TH3: the 16 optical MET verdicts (cryo-fluorescence 8, Raman 4, POM 4) all become NEED INFO, MET 20 -> 4. With today's naive slot rule instead: laser term only -> the six Linkam METs become NEED INFO (MET 20 -> 14); adding the naive 300 K window term -> the four CCS METs also become NEED INFO (window count unknown) and the OptistatDry BLV cryo-fluorescence verdict flips to a false DOES_NOT_MEET (1.13 W > 0.2 W) although that cryostat reaches 6.5 K with four windows (MET 20 -> 9). Recommendation: keep status representable_only / optional diagnostic; revisit when net capacities or window IR transmission are sourced.",
+   "implementation": "Register in coupled_models.json with status representable_only (emitted as UNSUPPORTED) or attach to the optical profiles as mandatory: false. Needs units W_per_m2_K4 (sigma) if implemented, rational bounds for pi, and the TH3 two-entry encoding. No Lean change.",
+   "citations": [
+    {
+     "title": "CODATA Value: Stefan-Boltzmann constant",
+     "authors": "NIST (2022 CODATA recommended values)",
+     "venue": "NIST Reference on Constants, Units and Uncertainty",
+     "year": 2022,
+     "doi_or_url": "https://physics.nist.gov/cgi-bin/cuu/Value?sigma",
+     "quote": "Numerical value | 5.670 374 419... x 10-8 W m-2 K-4"
+    },
+    {
+     "title": "CRX-4K cryogenic probe station specifications",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer specification web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-crx-4k-cryogenic-probe-station",
+     "quote": "Viewport: | 50 mm (1.97 in) diameter IR absorbing window"
+    },
+    {
+     "title": "Optistat - Optical Cryostats for Spectroscopy (product page, model comparison)",
+     "authors": "Quantum Design Oxford",
+     "venue": "Manufacturer web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+     "quote": "| Base temperature | 77.2 K | 77.2 K | 3.4 K | 3.2 K | 6.5 (4 windows) | 6.5 (4 windows) |"
+    },
+    {
+     "title": "Cryostat Windows (window selection guide)",
+     "authors": "Lake Shore Cryotronics",
+     "venue": "Manufacturer guide (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://www.lakeshore.com/docs/default-source/default-document-library/cryostatwindows.pdf?sfvrsn=8ad0a533_13",
+     "quote": "Standard fused silica is an inexpensive choice for general-purpose windows and is the material used on all standard 1.63 in clear view Environment by Janis window ports."
+    }
+   ],
+   "risks": "Turning it on as mandatory would collapse the MET count without new physics knowledge (pure missing-data effect), or with the naive slot rule produce false rejections; it should not be presented as a verdict-deciding model.",
+   "priority": 6
+  },
+  {
+   "id": "TH7_eddy_current_sweep_heating",
+   "title": "Eddy-current heating of metallic holders during field sweeps (makes 'temperature stability during field sweep' representable)",
+   "kind": "coupled_model",
+   "description": "A thin metallic disk of radius R, thickness h and resistivity rho in a perpendicular field ramp dB/dt dissipates P = (pi/8) dB/dt^2 h R^4 / rho (Tan, Fermilab note, Eq. 9, valid while the part is thin compared with the skin depth). Written without division: pi * Bdot^2 * h * R^4 <= 8 * rho * P_budget, with the documented maximum charging rate as the worst-case Bdot and P_budget the stage capacity left after other loads. The R^4 scaling is why sub-mK stages are slit: Liu et al. budget Q_eddy = 4.1 nW for a slit 48 mm copper stage at only 1.2e-5 T/s and treat it explicitly in their heat balance. Scaling that example with Bdot^2 shows why the term matters at millikelvin: the same stage at 1 mT/s would dissipate about 28 uW (derived, (1e-3/1.2e-5)^2 x 4.1 nW), more than a Bluefors MXC delivers at 20 mK.",
+   "equation_latex": "\\pi\\,\\dot B^{2}\\,h\\,R^{4} \\le 8\\,\\rho\\,P_{\\mathrm{budget}},\\qquad P_{\\mathrm{budget}} = Q(T_{\\mathrm{op}}) - L_{\\mathrm{other}},\\qquad \\dot B \\le \\dot B_{\\max}(c)",
+   "validity": "Quasi-static: part thin compared with the skin depth / magnetic diffusion time much shorter than the ramp (mu0 sigma h R / 4 << ramp duration); uniform field over the part; resistivity at the operating temperature and field (magnetoresistance increases rho, which is conservative for the load); pi as rational upper bound (355/113) in the pass direction and lower bound in the fail direction (TH3 encoding).",
+   "parameters": [
+    {
+     "name": "disk eddy-current power (formula)",
+     "value": "P = (pi/8) sigma Bdot^2 h R^4",
+     "unit": "W",
+     "source_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+     "quote": "Pdisk = π 2 σ ˙ B2 zh ∫R 0 r3 dr = π 8 σ ˙ B2 zhR4 (9)"
+    },
+    {
+     "name": "thin-part assumption of the formula",
+     "value": "qualitative",
+     "unit": "-",
+     "source_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+     "quote": "I am going to assume that everything is thin, i.e. both the wall of the end plate and the wall of the tube that encloses the ferrites are thin when compared to the skin depth."
+    },
+    {
+     "name": "published eddy load at sub-mK (48 mm slit Cu stage, Bdot = 1.2e-5 T/s)",
+     "value": "4.1",
+     "unit": "nW",
+     "source_url": "https://arxiv.org/abs/2610.38622",
+     "quote": "use Q̇eddy = 4.1 nW for the sweep rate employed in the temperature region shown in Fig. 2(d) (Ḃ = 1.2×10−5 T/s). This value of Q̇eddy is estimated from the geometry of the copper stage and its RRR"
+    },
+    {
+     "name": "mitigation used in that stage",
+     "value": "0.8 mm slits",
+     "unit": "mm",
+     "source_url": "https://arxiv.org/abs/2610.38622",
+     "quote": "The stage has 0.8-mm-wide slits to reduce eddy-current heating"
+    },
+    {
+     "name": "PPMS (classic) maximum field charging rate 9 / 14 / 16 T",
+     "value": "190 / 160 / 160",
+     "unit": "Oe/s",
+     "source_url": "https://www.nanophys.kth.se/nanolab/ppms/PPMS_Platform_measurement_options_en.pdf",
+     "quote": "9 T: 190 Oe/s (> 1 T/min) 14 T: 160 Oe/s (≈1 T/min.) 16 T: 160 Oe/s (≈1 T/min.)"
+    },
+    {
+     "name": "Bluefors LD450 MXC capacity at 20 mK (system value)",
+     "value": "> 14",
+     "unit": "uW",
+     "source_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+     "quote": "The LD450 system provides more than 14 μW at 20 mK on the experimental flange with only 18 liters of helium-3."
+    }
+   ],
+   "affected_experiments": [
+    "quantum_mk_vector_field_transport",
+    "mat_magnetoresistance_10T"
+   ],
+   "affected_configurations": [
+    "qd_ppms_classic_14T",
+    "qd_ppms_classic_16T",
+    "qd_dynacool_9T_eto_res",
+    "qd_dynacool_12T_vsm",
+    "qd_dynacool_14T_eto_vsm_hc",
+    "bluefors_ld250_manual_v2",
+    "bluefors_ld400_hdw",
+    "bluefors_ld450_current"
+   ],
+   "data_available": "magnetic_field.ramp_rate.max is trusted for the 5 PPMS/DynaCool configurations, but none documents a cooling power; the 3 Bluefors configurations document cooling power but have no magnet installed; TeslatronPT and CRX-VF document neither. Holder geometry and resistivity are user parameters. Note for the data workflow: the catalog records 100 Oe/s for the 14 T classic PPMS (ev_qd_0057) while QD catalogue 1084-500 Rev A2 lists 160 Oe/s.",
+   "expected_effect": "No verdict can be decided with today's data: no configuration has both a ramp rate and a cooling power at the operating temperature, so a mandatory check would only add NEED INFO (and the field-sweep step is not a requirement of the current profiles). Recommended as representable_only: it upgrades the existing 'temperature_stability_during_field_sweep' model from 'unsupported' (no equation) to a sourced equation, and becomes decisive once a magnet-equipped dilution refrigerator with documented MXC capacity enters the catalog.",
+   "implementation": "Add unit Ohm_m (resistivity) to cryolean/units.py; model eddy_current_sweep_heating with params bdot (T/s, adjustable decrease), holder_radius, holder_thickness (m), holder_resistivity (Ohm m), and the TH3 slot pair for the capacity; status representable_only until a configuration documents both inputs. No Lean change.",
+   "citations": [
+    {
+     "title": "Eddy Currents (technical note)",
+     "authors": "C. Y. Tan",
+     "venue": "Fermi National Accelerator Laboratory, AD DocDB 4663 (dated August 29, 2014)",
+     "year": 2014,
+     "doi_or_url": "https://beamdocs.fnal.gov/AD/DocDB/0046/004663/001/u.pdf",
+     "quote": "Pdisk = π 2 σ ˙ B2 zh ∫R 0 r3 dr = π 8 σ ˙ B2 zhR4 (9)"
+    },
+    {
+     "title": "High-Performance Nuclear Demagnetization Refrigerator Reaching 50 μK",
+     "authors": "Z. Liu, J. Song, B. Tong, H. Ikegami",
+     "venue": "arXiv:2610.38622",
+     "year": 2026,
+     "doi_or_url": "https://arxiv.org/abs/2610.38622",
+     "quote": "use Q̇eddy = 4.1 nW for the sweep rate employed in the temperature region shown in Fig. 2(d) (Ḃ = 1.2×10−5 T/s). This value of Q̇eddy is estimated from the geometry of the copper stage and its RRR"
+    },
+    {
+     "title": "LD System | Dilution Refrigerator Measurement System",
+     "authors": "Bluefors",
+     "venue": "Manufacturer web page (accessed 2026-10-31)",
+     "year": 2026,
+     "doi_or_url": "https://bluefors.com/products/dilution-refrigerator-measurement-systems/ld-dilution-refrigerator-measurement-system/",
+     "quote": "The LD450 system provides more than 14 μW at 20 mK on the experimental flange with only 18 liters of helium-3."
+    }
+   ],
+   "risks": "Geometry-specific; slits, wire meshes or non-metallic holders change the result by orders of magnitude; resistivity at mK depends on RRR and field; the formula ignores the field reduction by the eddy currents themselves (conservative for the load).",
+   "priority": 7
+  }
+ ],
+ "rejected_ideas": [
+  "Naive 300 K Stefan-Boltzmann window load as a fail-capable constraint against the documented cooling power: with the documented apertures it gives 1.13 W for the OptistatDry BLV against a 0.2 W cold head and 0.90 W for the CRX against 1 W, yet both reach their documented base temperatures; fused-silica and IR-absorbing windows block most 300 K radiation and no datasheet gives their IR transmission, so the term would produce false rejections (kept only as a diagnostic in TH4/TH6).",
+  "A separate radiation or support-post heat term for dilution-refrigerator experiments: Krinner et al. state that both are already included in the specified DR cooling power, so adding them double-counts.",
+  "Mount-level dT = P_abs * R_th using thermal.contact_resistance: no configuration documents R_th, so it could only add NEED INFO; for vitrified grids Huebinger shows the heating is set by support-film absorption, not by the stage mount.",
+  "Extrapolating Last's thresholds across mesh sizes with the paper's qualitative 1-D model (dT ~ L^2): its own Table 1 scales closer to 1/L (P_max x L = 3870, 3712, 3552 W um/cm2 for 90/58/37 um squares).",
+  "Linear 'headroom' extrapolation of the 77 K devitrification threshold to warmer stages, e.g. (136 - 77)/(136 - 78.15) for the THMS600: Mojiri's data imply a steeper drop (~2x from 77 to 95 K, including a mesh change), and the extrapolation would be an inferred estimate that cannot support a pass.",
+  "Electron-phonon (hot-electron) heating model for millikelvin transport: device-specific Sigma x volume, dominated by Wiedemann-Franz cooling through the leads, not a cryostat capability; it would create false rejections.",
+  "Thermal-lag model for temperature sweeps (POM at 30 K/min, VSM at 5 K/min, Raman up to 100 C/min): needs a sample/stage time constant that no datasheet documents; NEED INFO only.",
+  "Latent heat released by freezing samples (Raman/POM) against the LN2 stage capacity: Linkam documents no capacity in W, the latent heat of microlitre samples is negligible, and the procedures do not budget it.",
+  "Heat budget of the cryostat microtome (door openings, operator, defrost): Leica gives no W figures; the cryosection profile is decided by the chamber and specimen-head ranges.",
+  "VSM eddy heating from the vibrating sample: the field is homogeneous over the vibration amplitude and the published procedure uses a polyethylene capsule; not budgeted.",
+  "Thermometer/RuO2 self-heating budget (evidence hl_043-hl_047 already in the repo): thermometer-specific, not a cryostat capability, and it does not change any requirement of the profiles.",
+  "TWPA pump-line active load at the MXC inside TH1: the published text gives only '0.1 %, corresponding to 0.02 uW' at the CP; using an upper bound would make failures unsound, so it is omitted.",
+  "Window-load and laser dT figures returned by a Tavily research synthesis (e.g. '0.08 W per window', 'dT ~ 0.12 K at 5 mW' for attoDRY, Montana and Optistat CF models): the cited pages, re-read with tavily_extract, do not contain these numbers, so they were discarded as unverified.",
+  "Cooling-power curves at more temperatures, missing datasheet values, interval/tolerance representation, QuickXplain/minimal correction sets and SiLA/OPC UA: already covered by the parallel workflow and deliberately not duplicated here."
+ ]
+}

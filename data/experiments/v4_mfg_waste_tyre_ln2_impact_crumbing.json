@@ -1,0 +1,102 @@
+{
+ "id": "mfg_waste_tyre_ln2_impact_crumbing",
+ "name": "Cryogenic comminution of whole passenger-car waste tyres: complete LN2 immersion (200-300 s, below Tg = 215 K) followed by a single pneumatic-hammer impact",
+ "plain_name": "Freeze a whole scrap car tyre in liquid nitrogen until it turns glassy, then smash it into rubber crumb",
+ "industry": "manufacturing_and_industrial_processing",
+ "description": "One-piece waste passenger tyres (modelled as 185 mm wide, 75% profile, 13 inch landing diameter) are fully immersed in liquid nitrogen in a purpose-built vessel until intense boiling stops (200-300 s), taking the rubber below its 215 K glass transition, and are then shattered by an MA4129A pneumatic sledgehammer with profiled punches; crumb size distribution is reported.",
+ "keywords": [
+  "Freeze a whole scrap car tyre in liquid nitrogen until it turns glassy, then smash it into rubber crumb",
+  "manufacturing_and_industrial_processing"
+ ],
+ "sources": [
+  {
+   "citation": "A Multifaceted Approach for Cryogenic Waste Tire Recycling (Yerezhep, Tychengulova, Sokolov, Aldiyarov; Polymers 2021, 13(15):2494), doi:10.3390/polym13152494",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8348357/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "pneumatic sledgehammer of type MA4129A (LLC South Ural Mechanical Plant)",
+  "special vessel for complete liquid-nitrogen immersion of tyres"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The tyre is cooled by complete immersion in a liquid-nitrogen bath.",
+   "evidence_ids": [
+    "v4e_mfg_waste_tyre_ln2_impact_crumbing_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 215,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The rubber must be taken below its glass-transition temperature (215 K) so it shatters instead of deforming; the cooling medium must reach below 215 K.",
+   "evidence_ids": [
+    "v4e_mfg_waste_tyre_ln2_impact_crumbing_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "607.7",
+     "unit": "mm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The whole tyre goes into the vessel; its 13 inch landing (rim) diameter is a lower bound on the clear diameter needed (the outer diameter, with the 75% x 185 mm sidewall on each side, is larger).",
+   "evidence_ids": [
+    "v4e_mfg_waste_tyre_ln2_impact_crumbing_2"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 300,
+     "unit": "s"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the immersion lasted up to 300 s depending on tyre mass and wall thickness.",
+   "evidence_ids": [
+    "v4e_mfg_waste_tyre_ln2_impact_crumbing_3"
+   ],
+   "conditions": [],
+   "key": "dwell.duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

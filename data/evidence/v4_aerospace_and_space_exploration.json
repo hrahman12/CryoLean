@@ -1,0 +1,1974 @@
+[
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_0",
+  "claim": "LSP-REQ-317.01 qualification requires at least the -14 C to +71 C range (-14 C = 259.15 K, +71 C = 344.15 K).",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 259150, \"unit\": \"mK\"}, \"hi\": {\"value\": 344150, \"unit\": \"mK\"}}",
+  "quote": "It also adds that a minimum range of temperatures from -14 -3/+0°C to +71 -0/+3°C shall be used for qualification",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+  "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+  "location": "p. 6, section D (NASA LSP-REQ-317.01 Rev.B)",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ICES-2017-102 PDF p.6: 'a minimum range of temperatures from -14 -3/+0°C to +71 -0/+3°C shall be used for qualification' (LSP-REQ-317.01 Rev.B). The conversion to 259150-344150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_1",
+  "claim": "The test is a thermal-vacuum cycling test; an evacuated chamber is required.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Thermal Vacuum Cycling Test (TV CT): This tes t subjects the test article to a series of cycles of hot and",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+  "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+  "location": "p. 4, definition of TVCT",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The PDF p.3 (printed p.4) TVCT definition reads 'Thermal Vacuum Cycling Test (TVCT): This test subjects the test article to a series of cycles of hot and cold temperatures in a high vacuum environment'. The quoted 'TV CT'/'tes t' spacing comes from text extraction, but the passage is there. Vacuum is mandatory by definition."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_2",
+  "claim": "Table 1, NASA LSP-REQ-317.01 Rev.B column (last of five columns: GSFC-STD-7000, MIL-HDBK-340A, ECSS-E-ST-10-03C, TR-2004(8583)-1, LSP-REQ-317.01): qualification chamber pressure 13.3x10-3 Pa (1e-4 torr).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.0001\", \"unit\": \"Torr\"}}",
+  "quote": "Qualification Chamber pressure 1.33x10-3Pa (10-5 torr) 13.3x10-3Pa (10-4 torr) 10-3 Pa (7x10-6 torr) 13.3x10-3Pa (10-4 torr) 13.3x10-3Pa (10-4 torr)",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+  "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+  "location": "p. 7, Table 1, row 'Qualification Chamber pressure', column NASA LSP-REQ-317.01 Rev.B",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "PDF p.7 Table 1: the qualification chamber pressure in the LSP-REQ-317.01 Rev.B column (last column) is 13.3x10-3 Pa (10-4 torr). at_most 0.0001 Torr on pressure.base is correct (13.3e-3 Pa is about 1e-4 torr)."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_3",
+  "claim": "Functional/performance tests of the powered satellite are run during the cycling, so harness feedthroughs to the article are needed.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "TVCT, are performed functional tests for the performance verification of the subsystem or system.",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ICES_2017_102.pdf",
+  "document_title": "Method for CubeSat Thermal-Vacuum Cycling Test Specification (Soler Chisabas et al., ICES-2017-102)",
+  "location": "p. 4",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The quote is on PDF p.3. Stronger support is on p.9: 'Electrical interface is all cabling used for functional testing during TVCT. These cables are connected in the CubeSat, and pass to outside the chamber via chamber's feedthroughs'. Mandatory is justified."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_4",
+  "claim": "A 3U CubeSat is 100.0 +/- 0.1 mm square; circumscribed diameter of a 100.1 mm square = 141.56 mm, rounded up.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"141.6\", \"unit\": \"mm\"}}",
+  "quote": "Width [x-y] Side 1 (-Y) Side 2 (-X) Side 3 (+Y) Side 4 (+X) +Z __________ __________ __________ __________ 100.0 0.1mm",
+  "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+  "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+  "location": "3U CubeSat Acceptance Checklist, Width [x-y]",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CDS Rev.13 3U Acceptance Checklist (Appendix C, Section 4) gives Width 100.0 ± 0.1 mm. The diagonal of a 100.1 mm square is 141.56 mm, so 141.6 mm is right. Caveat: CDS 3.2.3 allows components up to 6.5 mm beyond the rail plane, so 141.6 mm is a necessary lower bound, not the full envelope."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_5",
+  "claim": "3U CubeSat rail height 340.5 +/- 0.3 mm; upper bound 340.8 mm along the loading axis.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"340.8\", \"unit\": \"mm\"}}",
+  "quote": "Height [x-y] Rail 1 (+X, -Y) __________ __________ __________ 340.5 0.3mm",
+  "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+  "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+  "location": "3U CubeSat Acceptance Checklist, Height",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The CDS Rev.13 3U checklist gives Height 340.5 ± 0.3 mm, so the upper bound is 340.8 mm. Correct."
+  }
+ },
+ {
+  "id": "v4e_aero_cubesat_tvac_lsp_6",
+  "claim": "Optional: the platen/fixture must carry a CubeSat of up to 4.00 kg.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"4\", \"unit\": \"kg\"}}",
+  "quote": "3.2.13 The maximum mass of a 3U CubeSat shall be 4.00 kg.",
+  "source_url": "https://static1.squarespace.com/static/5418c831e4b0fa4ecac1bacd/t/56e9b62337013b6c063a655a/1458157095454/cds_rev13_final2.pdf",
+  "document_title": "CubeSat Design Specification Rev. 13 (Cal Poly SLO)",
+  "location": "section 3.2.13",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_cubesat_tvac_lsp",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CDS Rev.13 verbatim: '3.2.13 The maximum mass of a 3U CubeSat shall be 4.00 kg.' Optional is appropriate."
+  }
+ },
+ {
+  "id": "v4e_aero_ecss_equipment_tvac_0",
+  "claim": "Clause 5.5.4.2a: equipment operating in space vacuum must be tested in thermal vacuum.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Thermal vacuum testing shall be performed for space segment equipment whose operation occurs in space vacuum environment at any time of its lifetime.",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+  "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+  "location": "p. 74, clause 5.5.4.2a",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_ecss_equipment_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ECSS-E-ST-10-03C clause 5.5.4.2a is verbatim on printed p.74."
+  }
+ },
+ {
+  "id": "v4e_aero_ecss_equipment_tvac_1",
+  "claim": "Clause 5.5.4.2b: 10-5 hPa = 1e-3 Pa or less.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.001\", \"unit\": \"Pa\"}}",
+  "quote": "b. Space segment equipment shall be tested at a pressure of 10-5 hPa or less.",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+  "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+  "location": "p. 75, clause 5.5.4.2b",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_ecss_equipment_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Clause 5.5.4.2b, printed p.75, verbatim: 'Space segment equipment shall be tested at a pressure of 10-5 hPa or less.' 1e-5 hPa = 1e-3 Pa, so the at_most 0.001 Pa constraint is correct."
+  }
+ },
+ {
+  "id": "v4e_aero_ecss_equipment_tvac_2",
+  "claim": "Functional tests at hot and cold operating temperatures require powered, instrumented equipment inside the chamber.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "k. Functional tests shall be performed as a minimum at hot and cold operating temperatures.",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+  "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+  "location": "p. 74, clause 5.5.4.1k",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_ecss_equipment_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Clause 5.5.4.1k is verbatim on p.74. Clauses 5.5.4.1j and l (functional tests before and after, cold switch-on) also require the equipment to be powered in the chamber. Mandatory is justified."
+  }
+ },
+ {
+  "id": "v4e_aero_ecss_equipment_tvac_3",
+  "claim": "Optional: functional tests start only after a dwell of at least 2 h, so the facility must hold a plateau for at least 2 h.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 2, \"unit\": \"h\"}}",
+  "quote": "g. Functional test shall only start after a dwell time greater or equal to 2 hours.",
+  "source_url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+  "document_title": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+  "location": "p. 74, clause 5.5.4.1g",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_ecss_equipment_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Clause 5.5.4.1g is verbatim on p.74: 'Functional test shall only start after a dwell time greater or equal to 2 hours.' Optional, at_least 2 h."
+  }
+ },
+ {
+  "id": "v4e_aero_gevs_unit_tvac_0",
+  "claim": "Thermal-vacuum cycling requires an evacuated chamber.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The chamber pressure after the electrical discharge checks are conducted is less than 1.33 X 10 -3 Pa. (1 X 10-5 torr).",
+  "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+  "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+  "location": "PDF p. 261 (2.6-20), section 2.6.3.2.4 Pressure",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_gevs_unit_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "GSFC-STD-7000B PDF p.261, section 2.6.3.2.4, verbatim. The chamber must be evacuated."
+  }
+ },
+ {
+  "id": "v4e_aero_gevs_unit_tvac_1",
+  "claim": "Section 2.6.3.2.4: chamber pressure less than 1.33e-3 Pa (1e-5 torr).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": \"0.00133\", \"unit\": \"Pa\"}}",
+  "quote": "The chamber pressure after the electrical discharge checks are conducted is less than 1.33 X 10 -3 Pa. (1 X 10-5 torr).",
+  "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+  "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+  "location": "PDF p. 261 (2.6-20), section 2.6.3.2.4 Pressure",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_gevs_unit_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 2.6.3.2.4 (PDF p.261): pressure less than 1.33 X 10-3 Pa (1 X 10-5 torr). at_most 0.00133 Pa is correct (the source says strictly less than)."
+  }
+ },
+ {
+  "id": "v4e_aero_gevs_unit_tvac_2",
+  "claim": "Items electrically operational during pressure transitions undergo an electrical discharge check; the unit is powered and tested through feedthroughs.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Items that are electrically operational during pressure tr ansitions undergo an electrical discharge check",
+  "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+  "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+  "location": "PDF p. 261 (2.6-20), section 2.6.3.3.1",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_gevs_unit_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 2.6.3.3.1 (PDF p.261) is verbatim. Units are powered and performance-tested at the plateaus (2.6.3.2.3: 'time needed to complete performance testing'), so feedthroughs are needed."
+  }
+ },
+ {
+  "id": "v4e_aero_gevs_unit_tvac_3",
+  "claim": "Optional: Table 2.6-1 suggests transitions up to 1.0 C/min; a facility able to ramp at 1 C/min keeps the test schedule.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 1000, \"unit\": \"mK_per_min\"}}",
+  "quote": "Plateau Duration (hrs) (4) 4 12 24 Maximum Transition Rate (°C/min) (6) 1.0 1.0 1.0",
+  "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+  "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+  "location": "PDF p. 258 (2.6-17), Table 2.6-1",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_gevs_unit_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 2.6-1 (PDF p.258, 2.6-17) shows Maximum Transition Rate 1.0 °C/min for each level. The quote is a de-tabulated paraphrase of table cells, but the values are there. Note 6 calls these suggested rates, so optional is right. 1 °C/min = 1000 mK/min."
+  }
+ },
+ {
+  "id": "v4e_aero_gevs_unit_tvac_4",
+  "claim": "Optional: unit hot and cold operational plateaus last at least 4 h.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 4, \"unit\": \"h\"}}",
+  "quote": "Hot and cold operational plateaus are a minimum of 4 hours in duration, or the time needed to complete performance testing, whichever is greater",
+  "source_url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf",
+  "document_title": "GSFC-STD-7000B General Environmental Verification Standard (GEVS)",
+  "location": "PDF p. 260 (2.6-19), section 2.6.3.2.3",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_gevs_unit_tvac",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Section 2.6.3.2.3 (PDF p.260) is verbatim: hot and cold operational plateaus last a minimum of 4 hours. Optional, at_least 4 h."
+  }
+ },
+ {
+  "id": "v4e_aero_solar_array_50_133k_0",
+  "claim": "Cycles span 50 K to 133 K.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 50, \"unit\": \"K\"}, \"hi\": {\"value\": 133, \"unit\": \"K\"}}",
+  "quote": "as a result of 122 thermal cycles performed from 50 to 133 K",
+  "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+  "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+  "location": "article body",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_solar_array_50_133k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The Tech Briefs NPO-49655 page (fetched with WebFetch; curl got 403) contains '...as a result of 122 thermal cycles' from 50 to 133 K. A 50-133 K range_within is correct."
+  }
+ },
+ {
+  "id": "v4e_aero_solar_array_50_133k_1",
+  "claim": "Cycling is done in vacuum (high vacuum avoids water condensation).",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "A very high vacuum system was used to avoid the condensation of water",
+  "source_url": "https://www.techbriefs.com/component/content/article/23689-npo49655",
+  "document_title": "Thermal Cycle Qualification of Radiated Solar Arrays for 50 to 133 K Temperatures in Vacuum (NASA Tech Briefs, NPO-49655)",
+  "location": "article body",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_solar_array_50_133k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Confirmed: 'A very high vacuum system was used to avoid the condensation of water at the temperatures required to qualify the SA'."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_mechanical_impact_0",
+  "claim": "Test 13A impacts samples immersed in ambient-pressure liquid oxygen.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_oxygen\"]}",
+  "quote": "Test 13A of NHB 8060.1C defines the test procedure for the evaluation of the mechanical impact sensitivity of materials in ambient pressure LOX environments.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+  "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+  "location": "p. 1",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_mechanical_impact",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "NASA N95-31813 p.661 (paper p.1) is verbatim: 'Test 13A of NHB 8060.1C defines the test procedure for the evaluation of the mechanical impact sensitivity of materials in ambient pressure LOX environments.' cryogen.type contains liquid_oxygen."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_mechanical_impact_1",
+  "claim": "Optional: liquid samples are pre-frozen in a liquid-nitrogen container before impact in LOX.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "then the cups are chilled in a container of liquid nitrogen to freeze the sample prior to impact testing in LOX.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+  "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+  "location": "p. 2",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_mechanical_impact",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.662 is verbatim: 'then the cups are chilled in a container of liquid nitrogen to freeze the sample prior to impact testing in LOX.' Optional is appropriate because it applies only to the 10.1 liquid-cup preparation."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_mechanical_impact_2",
+  "claim": "Optional: sample cups are about 0.625 in inside diameter.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"0.625\", \"unit\": \"inch\"}}",
+  "quote": "Paragraph 10.1 details the preparation of liquid samples in cups that are approximately 0.625 inch inside diameter and 0.050 inch deep.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/19950025392/downloads/19950025392.pdf",
+  "document_title": "An Overview of NASA Testing Requirements for Alternate Cleaning Solvents Used in Liquid and Gaseous Oxygen Environments (Strickland & Davis, NASA N95-31813)",
+  "location": "p. 2",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_mechanical_impact",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.662 is verbatim: cups are 'approximately 0.625 inch inside diameter and 0.050 inch deep.' Optional; the inside diameter is a weak lower bound on the cup holder."
+  }
+ },
+ {
+  "id": "v4e_aero_composite_lh2_tank_pressure_0",
+  "claim": "The tank is filled with liquid hydrogen for the cryogenic pressure test.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_hydrogen\"]}",
+  "quote": "The test met program requirements: (1) stepwise fill with LH2",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20170012407/downloads/20170012407.pdf",
+  "document_title": "Design, Manufacture and Test of Cryotank Components (McCarville et al., Comprehensive Composite Materials II)",
+  "location": "p. 24",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_composite_lh2_tank_pressure",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "NTRS 20170012407 p.24 is verbatim: 'The test met program requirements: (1) stepwise fill with LH2 ... to 90% volume capacity'."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_liquefaction_90k_0",
+  "claim": "The cooler operates at a 90 K design point to liquefy and hold oxygen.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 90, \"unit\": \"K\"}}",
+  "quote": "Cooling capacity design point of 120 Watts or greater with goal of 150 Watts during SS operation at 90 K",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+  "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+  "location": "slide 4",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_liquefaction_90k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Slide 4 verbatim: 'Cooling capacity design point of 120 Watts or greater with goal of 150 Watts during SS operation at 90 K'. point_within 90 K is OK."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_liquefaction_90k_1",
+  "claim": "The tank under test holds liquid oxygen.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_oxygen\"]}",
+  "quote": "Chilldown performed with LOX at 90% full in the tank",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+  "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+  "location": "slide 7",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_liquefaction_90k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Slide 7 verbatim: 'Chilldown performed with LOX at 90% full in the tank'."
+  }
+ },
+ {
+  "id": "v4e_aero_lox_liquefaction_90k_2",
+  "claim": "The prototype tank is tested inside the SMiRF vacuum chamber.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "NASA GRC SMiRF Facility with Prototype Test Article in Vacuum Chamber.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+  "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+  "location": "slide 3",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_liquefaction_90k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Slide 3 verbatim: 'NASA GRC SMiRF Facility with Prototype Test Article in Vacuum Chamber.'"
+  }
+ },
+ {
+  "id": "v4e_aero_lox_liquefaction_90k_3",
+  "claim": "Optional: the integrated test ran 31 days (744 h).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 744, \"unit\": \"h\"}}",
+  "quote": "The Creare 90 K cryocooler has operated for 31 days in both steady state and transient operations.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20260004829/downloads/Cryocooler%20CryoFILL%20Pres_v3.pdf",
+  "document_title": "Extended Duration Testing of a 90 K Cryocooler for Space Applications (Johnson et al., NASA GRC, ICC 24, 2026)",
+  "location": "slide 13",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lox_liquefaction_90k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Slide 13 verbatim: 'operated for 31 days in both steady state and transient operations'. 31 d = 744 h; optional. The slides of this third test do not show liquefaction itself (only chilldown and holding LOX with the cooler), so the profile name's 'liquefaction' slightly overstates this source."
+  }
+ },
+ {
+  "id": "v4e_aero_lptc_ir_detector_80k_0",
+  "claim": "Detectors are cooled within 50-80 K; 80 K is the upper operating point.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 80, \"unit\": \"K\"}}",
+  "quote": "cooling of infrared detectors at temperatures between 50K and 80K with cooling power between 2W and 7W.",
+  "source_url": "https://www.cryocooler.org/resources/Documents/C19/147.pdf",
+  "document_title": "Qualification of a European Large Pulse Tube Cooler System for Space Applications (Wiertz & Urbano, Cryocoolers 19)",
+  "location": "p. 147, abstract",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_lptc_ir_detector_80k",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Cryocoolers 19 p.147 abstract is verbatim: 'cooling of infrared detectors at temperatures between 50K and 80K with cooling power between 2W and 7W.' The Meteosat Third Generation application is confirmed in the (font-encoded) body text."
+  }
+ },
+ {
+  "id": "v4e_aero_adr_xray_microcalorimeter_50mk_0",
+  "claim": "The array must be cooled to 50 mK.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 50, \"unit\": \"mK\"}}",
+  "quote": "to cool a 6x6 array of x-ray microcalorimeters to 50 mK.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+  "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+  "location": "p. 1, abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_adr_xray_microcalorimeter_50mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "NTRS 20160008920 abstract is verbatim: 'to cool a 6x6 array of x-ray microcalorimeters to 50 mK.' at_most 50 mK base is correct."
+  }
+ },
+ {
+  "id": "v4e_aero_adr_xray_microcalorimeter_50mk_1",
+  "claim": "Detector temperature stability requirement <2 uK rms.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 2, \"unit\": \"uK\"}}",
+  "quote": "Detector temperature stability <2 µK rms <2 µK rms",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+  "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+  "location": "p. 2, Table 1",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_adr_xray_microcalorimeter_50mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 1 'Detector temperature stability <2 µK rms' for both cryogen and cryogen-free modes is confirmed. The uK unit exists in units.py. Note: the vocabulary describes temperature.stability as a ± value while the source gives rms, so the comparison is conservative-equivalent at best."
+  }
+ },
+ {
+  "id": "v4e_aero_adr_xray_microcalorimeter_50mk_2",
+  "claim": "The detector array is read out through readout wires to the cold stage.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "The heat leak into the detector array, through the Kevlar suspension and readout wires , depends only on the temperature of the housing.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+  "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+  "location": "p. 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_adr_xray_microcalorimeter_50mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.2 verbatim: 'The heat leak into the detector array, through the Kevlar suspension and readout wires, depends only on the temperature of the housing.' Readout wiring is required for the detector."
+  }
+ },
+ {
+  "id": "v4e_aero_adr_xray_microcalorimeter_50mk_3",
+  "claim": "Optional: Stage 1 was sized for a 24-hour hold time at 50 mK.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 24, \"unit\": \"h\"}}",
+  "quote": "accommodated the expected heat load (of 0.65 µW; see Table 3) for a 24-hour hold time, plus 100% margin.",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+  "document_title": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+  "location": "p. 3",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_adr_xray_microcalorimeter_50mk",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.3 verbatim (Stage 1 sized for 0.65 µW 'for a 24-hour hold time, plus 100% margin'). Optional. Caveat: measured hold time was >42 h in cryogen mode but just over 15 h in cryogen-free mode."
+  }
+ },
+ {
+  "id": "v4e_aero_mars_prt_thermal_cycling_0",
+  "claim": "Protoflight/qualification cycles -135 C to 70 C (138.15 K to 343.15 K).",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 138150, \"unit\": \"mK\"}, \"hi\": {\"value\": 343150, \"unit\": \"mK\"}}",
+  "quote": "three protoflight/qualification cycles (-135 to 70 °C), 1,384 summer cycles (-105 to 40 °C), and 599 winter cycles (-130 to 15 °C).",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+  "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+  "location": "p. 32 (NASA Tech Briefs May 2012)",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_mars_prt_thermal_cycling",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "NASA Tech Briefs May 2012 p.32 is verbatim: 'three protoflight/qualification cycles (-135 to 70 °C)'. 138150-343150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_aero_mars_prt_thermal_cycling_1",
+  "claim": "Planetary-protection cycle to +125 C (398.15 K) for two hours.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 398150, \"unit\": \"mK\"}}",
+  "quote": "which included a planetary protection cycle to +125 °C for two hours",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+  "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+  "location": "p. 32",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_mars_prt_thermal_cycling",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'a planetary protection cycle to +125 °C for two hours'. 398150 mK is correct. It is part of the same thermal-cycling sequence, so mandatory is reasonable."
+  }
+ },
+ {
+  "id": "v4e_aero_mars_prt_thermal_cycling_2",
+  "claim": "Optional: PRT resistances are monitored to detect bond failures.",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "There were no observed changes in PRT resistances, bonding characteristics, or damage identified from the package evaluation",
+  "source_url": "https://ntrs.nasa.gov/api/citations/20120009249/downloads/20120009249.pdf",
+  "document_title": "PRTs and Their Bonding for Long-Duration, Extreme-Temperature Environments (NASA Tech Briefs May 2012, NPO-47649)",
+  "location": "p. 32",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "aero_mars_prt_thermal_cycling",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verbatim: 'There were no observed changes in PRT resistances...'. Optional is appropriate because in-situ monitoring is not stated."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_temperature.range",
+  "claim": "Platen (test-article interface) temperature range -150 C to +200 C (LN2 manifold + electric heaters).",
+  "value_as_printed": "Platen: -150 °C to 200 °C",
+  "quote": "Temperature Rating: Platen: -150 °C to 200 °C Shroud: -150 °C",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Temperature Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Re-fetched LACO page: Temperature Rating Platen -150 °C to 200 °C, Shroud -150 °C. 123150-473150 mK correct."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_temperature.base",
+  "claim": "Lowest platen temperature -150 C.",
+  "value_as_printed": "-150 °C",
+  "quote": "Temperature Rating: Platen: -150 °C to 200 °C Shroud: -150 °C",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Temperature Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Platen -150 °C = 123150 mK confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_temperature.shroud.range",
+  "claim": "LN2-cooled cylindrical shroud rated at a single stated temperature of -150 C (lo = hi).",
+  "value_as_printed": "Shroud: -150 °C",
+  "quote": "Temperature Rating: Platen: -150 °C to 200 °C Shroud: -150 °C",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Temperature Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Shroud -150 °C single stated value confirmed. Key is not yet in capability_vocabulary.json and must be added."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_magnetic_field.max",
+  "claim": "The complete system specification (chamber, platen, shroud, thermal zones, pumps, controller, lighting) contains no magnet; the thermal supply is LN2 plus electric heaters only.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Zone 1 Platen includes LN2 and electrical heat for heating and cooling, Zone 2 includes LN2 cooling of shroud.",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Key Features tab, Thermal Zones",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "This catalogued fixed-SKU system page gives a full component spec (chamber, platen, shroud, thermal zones LN2+electric heat only, pumps, controller, ports, lighting). No magnet. Accepted as a complete specification."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_vacuum.available",
+  "claim": "Test article sits in a high-vacuum chamber pumped by a dry scroll roughing pump and a two-stage cold-head cryopump.",
+  "value_as_printed": "Vacuum Rating: 1 x 10-6 Torr",
+  "quote": "Vacuum Rating: 1 x 10 -6 Torr ... Pumping System: Dry scroll roughing pump and two-stage cold head cryopump package",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Vacuum Rating / Pumping System",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Vacuum Rating 1e-6 Torr; dry scroll + two-stage cold head cryopump confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_pressure.base",
+  "claim": "Rated chamber vacuum 1e-6 Torr (conservative; the feature list also mentions 'vacuum to 10-7 torr').",
+  "value_as_printed": "1 x 10-6 Torr",
+  "quote": "Vacuum Rating: 1 x 10 -6 Torr",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Vacuum Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Spec table says 1 x 10-6 Torr. Key Features also says 'vacuum to 10-7 torr', so the 1e-6 value is the conservative choice."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_optical_access",
+  "claim": "ISO 160, 6 inch diameter door viewport with internal LED lighting included.",
+  "value_as_printed": "ISO 160, 6″ diameter door viewport",
+  "quote": "This FST system also included as standard or ISO 160, 6″ diameter door viewport with internal LED lighting.",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Our Solution paragraph",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Exact sentence confirmed ('This FST system also included as standard or ISO 160, 6″ diameter door viewport with internal LED lighting'). Only a cylindrical shroud is listed (no door shroud), so the door viewport does look into the test volume."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_cryogen.cryogen_free",
+  "claim": "Platen and shroud are cooled by liquid nitrogen (LN2 manifold).",
+  "value_as_printed": "Cooling: LN2 manifold",
+  "quote": "Thermal Management: Cooling: LN2 manifold Heating: Electric heaters",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Thermal Management",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Thermal Management: Cooling LN2 manifold, Heating electric heaters. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_cryogen.type",
+  "claim": "Liquid nitrogen is the only cryogen (platen and shroud zones).",
+  "value_as_printed": "LN2",
+  "quote": "Zone 1 Platen includes LN2 and electrical heat for heating and cooling, Zone 2 includes LN2 cooling of shroud.",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Key Features tab, Thermal Zones",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Zone 1 platen LN2 + electric heat, Zone 2 LN2 shroud. LN2 only. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_36x40_ln2_chamber.volume",
+  "claim": "Approximate chamber volume 40,700 cubic inches = 666.9535048 L (1 in3 = 0.016387064 L exactly).",
+  "value_as_printed": "40,700 (in³)",
+  "quote": "Approximate Volume: 40,700 (in³)",
+  "source_url": "https://lacotech.com/laco-product/frontier-36x40-system-solution-ln2-thermal-cycling-system-with-shrouds/",
+  "document_title": "Frontier 36″ DIA x 40″ L System Solution | LN2 Thermal Cycling System with Shrouds (LACO Technologies product page, SKU X-1P33891)",
+  "location": "Specifications tab, Approximate Volume",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_36x40_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Approximate Volume '40,700 (in³)' confirmed. 40700 x 0.016387064 = 666.9535048 L, arithmetic exact. Key chamber.volume is not in the vocabulary yet."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_temperature.range",
+  "claim": "Only one temperature is rated for platen and shrouds: -150 C with direct LN2 (no heaters listed); single stated temperature -> lo = hi.",
+  "value_as_printed": "-150 °C (LN2)",
+  "quote": "Temperature Rating : -150 °C (LN 2 )",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Specifications tab, Temperature Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Temperature Rating '-150 °C (LN2)'. The page lists no heaters (verified), so a single value lo=hi=123150 mK is correct."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_temperature.base",
+  "claim": "Lowest rated platen/shroud temperature -150 C.",
+  "value_as_printed": "-150 °C",
+  "quote": "utilizing liquid nitrogen (LN 2 ) to achieve the target temperature requirements of -150 °C on the platen and shrouds.",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Our Solution paragraph",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Sentence 'utilizing liquid nitrogen (LN2) to achieve the target temperature requirements of -150 °C on the platen and shrouds' confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_temperature.shroud.range",
+  "claim": "Pillow-plated cylindrical shroud and door shroud cooled to -150 C by direct LN2 (single stated temperature).",
+  "value_as_printed": "-150 °C on the platen and shrouds",
+  "quote": "utilizing liquid nitrogen (LN 2 ) to achieve the target temperature requirements of -150 °C on the platen and shrouds.",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Our Solution paragraph",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-150 °C on platen and shrouds confirmed. Key not yet in vocabulary."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_magnetic_field.max",
+  "claim": "Complete key-feature list (platform, controller, enclosure, LN2 thermal supply, shroud, platen, D-sub bulkhead, pumps) contains no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Thermal Supply: Direct liquid nitrogen (LN 2 ) Thermal Shroud : Internal pillow-plated cylindrical shroud and Door shroud Platen : Stainless steel platen with mounting holes on a 3” grid pattern",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Key Features tab",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The full Key Features and Specifications lists of this fixed SKU contain no magnet. Thermal supply is direct LN2 only."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_vacuum.available",
+  "claim": "High-vacuum test chamber with dry scroll and turbo pumps.",
+  "value_as_printed": "1 x 10-6 Torr",
+  "quote": "Vacuum Rating : 1 x 10 -6 Torr ... Pump Package : Dry scroll pump (8.5 CFM) and high-vacuum turbo pump",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Specifications tab, Vacuum Rating / Pump Package",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Vacuum Rating 1 x 10-6 Torr; Pump Package dry scroll (8.5 CFM) + high-vacuum turbo. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_pressure.base",
+  "claim": "Rated chamber vacuum 1e-6 Torr.",
+  "value_as_printed": "1 x 10-6 Torr",
+  "quote": "Vacuum Rating : 1 x 10 -6 Torr",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Specifications tab, Vacuum Rating",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "1 x 10-6 Torr confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_electrical.sample_connections",
+  "claim": "Machined rear bulkhead with 8 x 25-pin and 4 x 9-pin D-sub feedthroughs for instrumentation and power to the test article.",
+  "value_as_printed": "8ea 25 pin D-sub feedthroughs and 4ea 9 pin D-sub feedthroughs",
+  "quote": "Custom Feedthrough Bulkhead: Machined bulkhead on rear of chamber allowing for 8ea 25 pin D-sub feedthroughs and 4ea 9 pin D-sub feedthroughs",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Key Features tab, Custom Feedthrough Bulkhead",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Custom Feedthrough Bulkhead with 8 x 25-pin and 4 x 9-pin D-sub confirmed. Ports also list a 'bulkhead for DB 9 and DB 25 feedthroughs'."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_sample.diameter.max",
+  "claim": "Inside working diameter 16.0 in.",
+  "value_as_printed": "16.0” DIA x 22” D (inside working dimensions)",
+  "quote": "Chamber Dimensions : 17.5″ DIA x 24” D | 16.0” DIA x 22” D (inside working dimensions)",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Specifications tab, Chamber Dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'17.5″ DIA x 24” D | 16.0” DIA x 22” D (inside working dimensions)' confirmed. 16 in is the manufacturer's working envelope."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_sample.height.max",
+  "claim": "Inside working depth along the loading axis 22 in.",
+  "value_as_printed": "22” D (inside working dimensions)",
+  "quote": "Chamber Dimensions : 17.5″ DIA x 24” D | 16.0” DIA x 22” D (inside working dimensions)",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Specifications tab, Chamber Dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Wrong axis. 22 in is the horizontal working DEPTH of a horizontal cylindrical chamber (hinged front door, rear bulkhead, slide-out platen rail). sample.height.max means vertical height/thickness, which is bounded by the 16.0 in working diameter."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_cryogen.cryogen_free",
+  "claim": "Cooled by direct liquid nitrogen.",
+  "value_as_printed": "Direct liquid nitrogen (LN2)",
+  "quote": "Thermal Supply: Direct liquid nitrogen (LN 2 )",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Key Features tab, Thermal Supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Thermal Supply 'Direct liquid nitrogen (LN2)' confirmed."
+  }
+ },
+ {
+  "id": "v4c_laco_frontier_tvac_18x24_ln2_dsub_cryogen.type",
+  "claim": "Liquid nitrogen is the only cryogen.",
+  "value_as_printed": "LN2",
+  "quote": "Thermal Supply: Direct liquid nitrogen (LN 2 )",
+  "source_url": "https://lacotech.com/laco-product/frontier-18x24-system-solution-ln2-thermal-cycling-system-with-shrouds-and-multiple-d-sub-feedthroughs/",
+  "document_title": "Frontier 18″ DIA x 24″ L System Solution | LN2 Thermal Cycling System with Shrouds and Multiple D-sub Feedthroughs (LACO Technologies product page, SKU X-1P33958)",
+  "location": "Key Features tab, Thermal Supply",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "laco_frontier_tvac_18x24_ln2_dsub",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 only. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_temperature.range",
+  "claim": "LN2 models: thermally active platen controlled from -180 C to +150 C by LN2 with electric heaters.",
+  "value_as_printed": "-180°C to 150°C",
+  "quote": "Liquid nitrogen with electric heaters (LN2 Models) -180°C to 150°C",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, Thermal Control Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "PDF text extracted: 'Liquid nitrogen with electric heaters (LN2 Models) -180°C to 150°C' (table layout scrambled but unambiguous). Product page: '-180 to +150C by direct injection LN2 and Calrod heaters'. 93150-423150 mK correct."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_temperature.base",
+  "claim": "Lowest platen temperature -180 C (LN2 models).",
+  "value_as_printed": "-180°C",
+  "quote": "Liquid nitrogen with electric heaters (LN2 Models) -180°C to 150°C",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, Thermal Control Options",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-180 °C = 93150 mK confirmed."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_temperature.shroud.range",
+  "claim": "Standard shroud is a passive aluminum optically dense enclosure; an actively cooled 'Cryogenic Shroud' is an option not included in this configuration and its range is not stated.",
+  "value_as_printed": "Cryogenic Shroud (option)",
+  "quote": "Shroud Aluminum construction, optically dense enclosure, interior painted with solar absorbing paint ... Options and Upgrades Cryogenic Shroud",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, Shroud / Options and Upgrades",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Standard shroud is 'Aluminum construction, optically dense enclosure, interior painted with solar absorbing paint' (passive). 'Cryogenic Shroud' appears under Options and Upgrades, so unknown/optional_not_installed is correct."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_magnetic_field.max",
+  "claim": "The complete specification page (vacuum chamber, pumping system, platen, shroud, spare ports, system control, options) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Vacuum Chamber Stainless steel construction, hinged door with 4” viewport, supported on mobile frame Pumping System Base Pressure: 1 x 10-6 Torr",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, SPECIFICATIONS",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The datasheet SPECIFICATIONS page lists vacuum chamber, pumping, platen, shroud, spare ports, system control and options. No magnet anywhere. Accepted as a complete specification."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_vacuum.available",
+  "claim": "High-vacuum chamber with dry roughing and turbomolecular pumps.",
+  "value_as_printed": "Base Pressure: 1 x 10-6 Torr",
+  "quote": "Pumping System Base Pressure: 1 x 10-6 Torr Pumps: dry mechanical roughing pump and turbomolecular pump (optional cryopump)",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, Pumping System",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Base Pressure: 1 x 10-6 Torr / Pumps: dry mechanical roughing pump and turbomolecular pump (optional cryopump)' confirmed."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_pressure.base",
+  "claim": "Base pressure 1e-6 Torr.",
+  "value_as_printed": "1 x 10-6 Torr",
+  "quote": "Base Pressure: 1 x 10-6 Torr",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 2, Pumping System",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "1 x 10-6 Torr confirmed (product page says '<10-6 Torr'). The 1e-6 value is conservative."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_sample.diameter.max",
+  "claim": "Model 2400 working volume with platen and shroud 20 x 20 x 18 in (w x d x h); smaller cross-section perpendicular to front loading = 18 in.",
+  "value_as_printed": "20” x 20” x 18” (508 x 508 x 457)",
+  "quote": "2400 8 cu. ft. (227L) 24” x 24” x 24” (609 x 609 x 609) 24” x 24” x 20” (609 x 609 x 508) 20” x 20” x 18” (508 x 508 x 457)",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 1, System Models table, model 2400",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table reconstructed from the PDF: model 2400 is 24x24x24 in interior, 24x24x20 platen only, 20x20x18 platen & shroud (w x d x h). 18 in is a safe bound for a cylinder in either orientation."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_sample.height.max",
+  "claim": "Usable depth along the loading axis with platen and shroud: 20 in.",
+  "value_as_printed": "20” x 20” x 18” (w x d x h)",
+  "quote": "2400 8 cu. ft. (227L) 24” x 24” x 24” (609 x 609 x 609) 24” x 24” x 20” (609 x 609 x 508) 20” x 20” x 18” (508 x 508 x 457)",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 1, System Models table, model 2400",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Wrong dimension. The table is 'w x d x h', so with platen & shroud the HEIGHT is 18 in, not 20 in (20 in is the depth). sample.height.max means vertical height."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_cryogen.cryogen_free",
+  "claim": "LN2 models cool the platen by direct injection of liquid nitrogen.",
+  "value_as_printed": "direct injection LN2",
+  "quote": "Temperature ranges of up to -180 to +150C by direct injection LN2 and Calrod heaters",
+  "source_url": "https://dynavac.com/space-simulation/thermal-vacuum-chambers/smallsat-thermal-vacuum-systems/",
+  "document_title": "SmallSat Thermal Vacuum Chambers (Dynavac product page)",
+  "location": "System Highlights, Environmental",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product page: 'direct injection LN2 and Calrod heaters'. For the LN2 model this is correct."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_cryogen.type",
+  "claim": "Liquid nitrogen (LN2 model).",
+  "value_as_printed": "LN2",
+  "quote": "Temperature ranges of up to -180 to +150C by direct injection LN2 and Calrod heaters",
+  "source_url": "https://dynavac.com/space-simulation/thermal-vacuum-chambers/smallsat-thermal-vacuum-systems/",
+  "document_title": "SmallSat Thermal Vacuum Chambers (Dynavac product page)",
+  "location": "System Highlights, Environmental",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 for the LN2 model. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_dynavac_smallsat_tvs_2400_ln2_chamber.volume",
+  "claim": "Model 2400 chamber: 8 cu. ft. (227 L), 24 in cube interior.",
+  "value_as_printed": "8 cu. ft. (227L)",
+  "quote": "2400 8 cu. ft. (227L) 24” x 24” x 24” (609 x 609 x 609)",
+  "source_url": "https://dynavac.com/wp-content/uploads/2026/10/SmallSAT_TVS_9-2026.pdf",
+  "document_title": "SmallSAT Thermal Vacuum Systems datasheet (Dynavac, SMALLSAT-TVAC/9-2026/2.0)",
+  "location": "page 1, System Models table, model 2400",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'2400 8 cu. ft. (227L)' with 24 in cube interior confirmed. Key not yet in vocabulary."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_temperature.range",
+  "claim": "Cold-tip operating range: lowest temperature < 40 K (40 K taken conservatively, datasheet) to 300 K (performance documented up to 300 K cold-tip temperature).",
+  "value_as_printed": "< 40 K ... up to 300 K",
+  "quote": "Figure 2-4. CryoTel GT Nominal Performance up to 300 K Cold Tip Temperature",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 2, Figure 2-4 caption (manual p. 2-5, PDF page 35); lower bound from datasheet 'Lowest Temperature < 40 K'",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual Fig. 2-4 caption 'CryoTel GT Nominal Performance up to 300 K Cold Tip Temperature' and datasheet 'Lowest Temperature < 40 K' confirmed. 40-300 K is a conservative range."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_temperature.base",
+  "claim": "Lowest cold-tip temperature < 40 K; bound stored conservatively as 40 K.",
+  "value_as_printed": "< 40 K",
+  "quote": "Nominal Heat Load @ 77 K (23° C reject) ... Lowest Temperature ... 16 W ... < 40 K",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Datasheet.pdf?sc_lang=en",
+  "document_title": "CryoTel GT datasheet (Sunpower / AMETEK)",
+  "location": "page 1, specification list (Lowest Temperature)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Datasheet: Lowest Temperature < 40 K. Stored as 40 K (conservative)."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_magnetic_field.max",
+  "claim": "The complete standard-equipment list of the system contains no magnet (cooler, balancer, controller, RTD, cables only).",
+  "value_as_printed": "no magnet supplied",
+  "quote": "Standard Equipment • CryoTel GT Cryocooler • Passive Balancer • CryoTel Generation II Controller • RTD (Resistance Temperature Detector) • RTD Cable • Cooler Power Cable • RS-232 Serial Communications Cable",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, Standard Equipment (manual p. 1-1, PDF page 15)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Manual 'Standard Equipment' list and Table 3-1 (the complete shipped equipment list) contain no magnet."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_vacuum.available",
+  "claim": "No vacuum enclosure is supplied: the cryostat/dewar that holds the cold finger and load in vacuum is listed as equipment offered by other companies (vacuum flanges are optional interfaces only).",
+  "value_as_printed": "Cryostat or Dewar Vessel ... offered by other companies",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the GT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4, Optional Equipment & Accessories Offered by Other Companies (manual p. 3-2, PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 3-4 (Optional Equipment & Accessories Offered by Other Companies) item 3: 'Cryostat or Dewar Vessel (to enclose the thermal load and the GT's cold finger in a vacuum)'. Vacuum flanges are optional Sunpower interfaces only. An explicit statement."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_pressure.base",
+  "claim": "No evacuated sample space is supplied with the cooler, so no base pressure is rated.",
+  "value_as_printed": "not supplied",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the GT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4 (manual p. 3-2, PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated space is supplied (Table 3-4). not_available is consistent."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_optical_access",
+  "claim": "Bare cold-tip cooler; the complete standard-equipment list contains no window or optical port.",
+  "value_as_printed": "no optical port supplied",
+  "quote": "Standard Equipment • CryoTel GT Cryocooler • Passive Balancer • CryoTel Generation II Controller • RTD (Resistance Temperature Detector) • RTD Cable",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, Standard Equipment (PDF page 15)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 3-1 is the complete standard equipment list. Bare cooler, no window."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_electrical.sample_connections",
+  "claim": "The cooler provides no sample wiring; even its own RTD leads are routed through feedthroughs of the user's cryostat.",
+  "value_as_printed": "feedthroughs inside the cryostat",
+  "quote": "If the GT is installed with its cold finger inside a Dewar vessel or cryostat (hereafter referred to as simply a cryo-stat), then the RTD wires are connected to the feedthroughs inside the cryostat.",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, RTD (manual p. 1-6, PDF page 20)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "RTD paragraph confirmed verbatim ('...the RTD wires are connected to the feedthroughs inside the cryostat'). The cooler supplies no sample wiring."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_sample.height.max",
+  "claim": "No enclosed sample space is supplied (the load is attached to the cold tip inside a user-supplied cryostat), so no usable sample height is defined by the cooler.",
+  "value_as_printed": "not supplied",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the GT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4 (PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No enclosed sample space; cryostat supplied by others (Table 3-4 explicit)."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_cryogen.cryogen_free",
+  "claim": "Electrically driven Stirling-cycle cooler; no liquid cryogen.",
+  "value_as_printed": "Stirling Cycle",
+  "quote": "Power Input Requirement Variable AC power from the Gen II controller Nominal Cooler Input Power 240 W ... Cooling Technology Stirling Cycle",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 2-1: Variable AC power from Gen II controller, 240 W, Cooling Technology Stirling Cycle. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_cryogen.type",
+  "claim": "No liquid cryogen used or held (closed Stirling cycle); empty set.",
+  "value_as_printed": "Stirling Cycle",
+  "quote": "Power Input Requirement Variable AC power from the Gen II controller Nominal Cooler Input Power 240 W ... Cooling Technology Stirling Cycle",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Closed Stirling cycle, no liquid cryogen. Empty set."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_cooling_power.at_77000mK",
+  "claim": "Nominal lift 16 W at 77 K cold tip and 23 C reject temperature (nominal; no guaranteed value published).",
+  "value_as_printed": "16 W (at 77 K cold tip temperature and 23 °C reject temperature)",
+  "quote": "Nominal Lift 16 W (at 77 K cold tip temperature and 23 °C reject temperature)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1, Nominal Lift (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 2-1 'Nominal Lift 16 W (at 77 K cold tip temperature and 23 °C reject temperature)' confirmed. Nominal, not guaranteed. Key cooling_power.at_77000mK must be added to the vocabulary."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_gt_standard_temperature.stability",
+  "claim": "Cold-tip temperature stability 0.1 K.",
+  "value_as_printed": "+0.1 K",
+  "quote": "Cold Tip Temperature Stability +0.1 K",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/GT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel GT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_gt_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Table 2-1 '+0.1 K'; datasheet '± 0.1 K'. 100 mK."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_temperature.range",
+  "claim": "Cold-tip operating range: lowest temperature < 40 K (40 K taken conservatively, datasheet) to 300 K (performance documented up to 300 K cold-tip temperature).",
+  "value_as_printed": "< 40 K ... up to 300 K",
+  "quote": "Figure 2-4. CryoTel CT Nominal Performance up to 300 K Cold Tip Temperature",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 2, Figure 2-4 caption (manual p. 2-5, PDF page 35); lower bound from datasheet 'Lowest Temperature < 40 K'",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT manual Fig. 2-4 caption 'CryoTel CT Nominal Performance up to 300 K Cold Tip Temperature' and CT datasheet '< 40 K' confirmed."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_temperature.base",
+  "claim": "Lowest cold-tip temperature < 40 K; bound stored conservatively as 40 K.",
+  "value_as_printed": "< 40 K",
+  "quote": "Nominal Heat Load @ 77 K (23° C reject) ... Lowest Temperature ... 11 W ... < 40 K",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Datasheet.pdf?sc_lang=en",
+  "document_title": "CryoTel CT datasheet (Sunpower / AMETEK)",
+  "location": "page 1, specification list (Lowest Temperature)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT datasheet Lowest Temperature < 40 K (layout scrambled but present). Stored 40 K conservatively."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_magnetic_field.max",
+  "claim": "The complete standard-equipment list of the system contains no magnet (cooler, balancer, controller, RTD, cables only).",
+  "value_as_printed": "no magnet supplied",
+  "quote": "Standard Equipment • CryoTel CT Cryocooler • Passive Balancer • CryoTel Generation II Controller • RTD (Resistance Temperature Detector) • RTD Cable • Cooler Power Cable • RS-232 Serial Communications Cable",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, Standard Equipment (manual p. 1-1, PDF page 15)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT Standard Equipment list and Table 3-1 are complete; no magnet."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_vacuum.available",
+  "claim": "No vacuum enclosure is supplied: the cryostat/dewar that holds the cold finger and load in vacuum is listed as equipment offered by other companies (vacuum flanges are optional interfaces only).",
+  "value_as_printed": "Cryostat or Dewar Vessel ... offered by other companies",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the CT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4, Optional Equipment & Accessories Offered by Other Companies (manual p. 3-2, PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT Table 3-4 item 3 'Cryostat or Dewar Vessel (to enclose the thermal load and the CT's cold finger in a vacuum)' confirmed."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_pressure.base",
+  "claim": "No evacuated sample space is supplied with the cooler, so no base pressure is rated.",
+  "value_as_printed": "not supplied",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the CT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4 (manual p. 3-2, PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated space supplied."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_optical_access",
+  "claim": "Bare cold-tip cooler; the complete standard-equipment list contains no window or optical port.",
+  "value_as_printed": "no optical port supplied",
+  "quote": "Standard Equipment • CryoTel CT Cryocooler • Passive Balancer • CryoTel Generation II Controller • RTD (Resistance Temperature Detector) • RTD Cable",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, Standard Equipment (PDF page 15)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Complete standard equipment list; bare cooler."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_electrical.sample_connections",
+  "claim": "The cooler provides no sample wiring; even its own RTD leads are routed through feedthroughs of the user's cryostat.",
+  "value_as_printed": "feedthroughs inside the cryostat",
+  "quote": "If the CT is installed with its cold finger inside a Dewar vessel or cryostat (hereafter referred to as simply a cryo-stat), then the RTD wires are connected to the feedthroughs inside the cryostat.",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Chapter 1, RTD (manual p. 1-6, PDF page 20)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT RTD paragraph confirmed verbatim."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_sample.height.max",
+  "claim": "No enclosed sample space is supplied (the load is attached to the cold tip inside a user-supplied cryostat), so no usable sample height is defined by the cooler.",
+  "value_as_printed": "not supplied",
+  "quote": "Cryostat or Dewar Vessel (to enclose the thermal load and the CT’s cold finger in a vacuum)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 3-4 (PDF page 38)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No enclosed sample space (Table 3-4 explicit)."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_cryogen.cryogen_free",
+  "claim": "Electrically driven Stirling-cycle cooler; no liquid cryogen.",
+  "value_as_printed": "Stirling Cycle",
+  "quote": "Power Input Requirement Variable AC power from the Gen II controller Nominal Cooler Input Power 160 W ... Cooling Technology Stirling Cycle",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT Table 2-1: 160 W, Stirling Cycle. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_cryogen.type",
+  "claim": "No liquid cryogen used or held (closed Stirling cycle); empty set.",
+  "value_as_printed": "Stirling Cycle",
+  "quote": "Power Input Requirement Variable AC power from the Gen II controller Nominal Cooler Input Power 160 W ... Cooling Technology Stirling Cycle",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Empty set, closed Stirling cycle."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_cooling_power.at_77000mK",
+  "claim": "Nominal lift 11 W at 77 K cold tip and 23 C reject temperature (nominal; no guaranteed value published).",
+  "value_as_printed": "11 W (at 77 K cold tip temperature and 23 °C reject temperature)",
+  "quote": "Nominal Lift 11 W (at 77 K cold tip temperature and 23 °C reject temperature)",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1, Nominal Lift (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT Table 2-1 'Nominal Lift 11 W (at 77 K cold tip temperature and 23 °C reject temperature)' confirmed. Nominal. Key not yet in vocabulary."
+  }
+ },
+ {
+  "id": "v4c_sunpower_cryotel_ct_standard_temperature.stability",
+  "claim": "Cold-tip temperature stability 0.1 K.",
+  "value_as_printed": "+0.1 K",
+  "quote": "Cold Tip Temperature Stability +0.1 K",
+  "source_url": "https://edge.sitecorecloud.io/ametekinc1236b-ametekb19a-productiondcfa-1d17/media/Project/Ametek/sunpower/pdf/CT-Operator-Manual.pdf?sc_lang=en",
+  "document_title": "CryoTel CT Installation & Operation Manual (Sunpower / AMETEK)",
+  "location": "Table 2-1 (PDF page 31)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "sunpower_cryotel_ct_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "CT Table 2-1 '+0.1 K', datasheet '± 0.1 K'."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_temperature.range",
+  "claim": "Standard HDL (no low-temperature modification) holds the cold work surface at the LHe boiling point at 1 atm, 4.2 K (single stated temperature; 1.6 K only with the low-temperature modification / pumped bath).",
+  "value_as_printed": "4.2",
+  "quote": "Operating Temp (K) with Vapor Pressure = 1 ATM 77 77 77 4.2 4.2",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Dewar Product Comparison table, row 'Operating Temp (K) with Vapor Pressure = 1 ATM', column HDL",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "IRLabs comparison table, row 'Operating Temp (K) with Vapor Pressure = 1 ATM', columns ND, NDV, NDL, HDV, HDL = 77, 77, 77, 4.2, 4.2. Brochure: 1.6-4.2 K only 'with low temperature modification'. 4.2 K single value correct."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_temperature.base",
+  "claim": "Lowest temperature of the standard configuration (1 atm LHe bath) 4.2 K.",
+  "value_as_printed": "4.2",
+  "quote": "Operating Temp (K) with Vapor Pressure = 1 ATM 77 77 77 4.2 4.2",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Dewar Product Comparison table (HDL column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "4.2 K at 1 atm for the standard (unmodified) HDL."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_magnetic_field.max",
+  "claim": "The HDL standard-system drawing labels every component (case, shield, cold work surface, supports, LHe and LN2 volumes, fill ports, vacuum valve, burst disk); there is no magnet.",
+  "value_as_printed": "no magnet in standard system",
+  "quote": "DEWAR CASE RADIATION SHIELD COLD WORK SURFACE SHIELD LID STANDARD SUPPORT SYSTEM LIQUID HELIUM VOLUME LIQUID NITROGEN VOLUME",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/HDL-5-Standard-System-102020.pdf",
+  "document_title": "HDL-5 Standard System drawing (IRLabs, 10/2020; representative of the HDL standard system)",
+  "location": "HDL standard system drawing, component callouts",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "HDL drawing callouts confirmed. The drawing is HDL-5, a series-representative drawing. Combined with the brochure's complete HDL-8 spec column (dimensions, capacities, hold times) and series description, no magnet. Accepted, though the drawing is for the -5 size."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_vacuum.available",
+  "claim": "The cold work surface and test article sit inside the evacuated dewar case (KF25 vacuum valve).",
+  "value_as_printed": "VACUUM VALVE WITH KF 25 FITTING",
+  "quote": "BURST DISK VACUUM VALVE WITH KF 25 FITTING GRID OF TAPPED HOLES WORKING HEIGHT",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/HDL-5-Standard-System-102020.pdf",
+  "document_title": "HDL-5 Standard System drawing (IRLabs, 10/2020; representative of the HDL standard system)",
+  "location": "HDL standard system drawing, component callouts",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Drawing: 'VACUUM VALVE WITH KF 25 FITTING', burst disk, dewar case. The cold work surface is in the dewar vacuum."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_pressure.base",
+  "claim": "Dewar vacuum below 1e-6 Torr (bound stored as 1e-6 Torr).",
+  "value_as_printed": "below 10⁻⁶ Torr",
+  "quote": "Our advanced vacuum technology achieves pressure levels below 10⁻⁶ Torr, minimizing heat leak and maximizing hold times for both LN2 dewars and LHe dewars.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "page text, vacuum technology paragraph",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Page: vacuum technology 'achieves pressure levels below 10⁻⁶ Torr' for both LN2 and LHe dewars. A product-line statement; 1e-6 Torr bound accepted."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_optical_access",
+  "claim": "Optical windows are a customization option, not part of the standard HDL system.",
+  "value_as_printed": "custom optical windows",
+  "quote": "We specialize in custom cryogenic solutions including modified cold plate dimensions, custom optical windows, specialized electrical feedthroughs, and unique mounting arrangements.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "FAQ: Can IRLabs customize a dewar for my specific application?",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "FAQ lists 'custom optical windows' as a customization. optional_not_installed is appropriate."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_electrical.sample_connections",
+  "claim": "Electrical feedthroughs to the cold work surface are a customization option, not part of the standard HDL system.",
+  "value_as_printed": "specialized electrical feedthroughs",
+  "quote": "We specialize in custom cryogenic solutions including modified cold plate dimensions, custom optical windows, specialized electrical feedthroughs, and unique mounting arrangements.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "FAQ: Can IRLabs customize a dewar for my specific application?",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "FAQ lists 'specialized electrical feedthroughs' as a customization. optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_sample.diameter.max",
+  "claim": "HDL-8 cold plate diameter 8.12 in (20.62 cm).",
+  "value_as_printed": "8.12/20.62",
+  "quote": "Cold Plate Diameter (in/cm) 5.12/13.00 8.12/20.62 10.18/25.86 12.00/30.48 14.18/36.02",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for HDL Series Dewars, Cold Plate Diameter (column HDL-8)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure HDL table (PDF layout scrambled; column order reconstructed and cross-checked with the current web table) gives HDL-8 cold plate 8.12/20.62."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_sample.height.max",
+  "claim": "HDL-8 work area height ('B' dimension) 1.50 in (3.81 cm).",
+  "value_as_printed": "1.50/3.81",
+  "quote": "Work Area Height (\"B\" Dimension) (in/cm) 1.50/3.81 1.50/3.81 2.00/5.08 2.00/5.08 2.00/5.08",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for HDL Series Dewars, Work Area Height (column HDL-8)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "HDL-8 Work Area Height ('B' Dimension) 1.50/3.81 in/cm, confirmed in brochure and web table. This is a vertical height, so the semantics are correct."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_cryogen.cryogen_free",
+  "claim": "Open-cycle dewar consuming liquid helium and liquid nitrogen.",
+  "value_as_printed": "LN2 vessel ... LHe vessel",
+  "quote": "The helium dewars in the HDL line contain two cryogenic vessels. The LN 2 vessel directly cools a radiation shield that surrounds the LHe vessel and the cold work surface.",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 3, HDL Series",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure HDL Series: two vessels, LN2 vessel cools the radiation shield around the LHe vessel. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_cryogen.type",
+  "claim": "Holds liquid helium (cold work surface) and liquid nitrogen (radiation shield).",
+  "value_as_printed": "LN2 vessel ... LHe vessel",
+  "quote": "The helium dewars in the HDL line contain two cryogenic vessels. The LN 2 vessel directly cools a radiation shield that surrounds the LHe vessel and the cold work surface.",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 3, HDL Series",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LHe + LN2 confirmed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_holding_time.static",
+  "claim": "HDL-8 LHe hold time with standard supports 100 h (LN2 shield vessel: 30 h).",
+  "value_as_printed": "100",
+  "quote": "LHe Hold Time (Standard Supports) (hrs) 90 100 135 - -",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for HDL Series Dewars, LHe Hold Time (Standard Supports), column HDL-8",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "HDL-8 LHe Hold Time (Standard Supports) 100 h (row: 90, 100, 135, -, -) confirmed in brochure and web table. Key holding_time.static not yet in vocabulary."
+  }
+ },
+ {
+  "id": "v4c_irlabs_hdl_8_standard_supports_cryogen.dewar_volume",
+  "claim": "HDL-8 liquid helium capacity 2.6 L.",
+  "value_as_printed": "2.6",
+  "quote": "LHe Capacity (L) 1.2 2.6 4.4 6.6 8.7",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for HDL Series Dewars, LHe Capacity, column HDL-8",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_hdl_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "HDL-8 LHe Capacity 2.6 L confirmed (LN2 capacity 2.3 L is separate)."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_temperature.range",
+  "claim": "Standard ND/NDV (no low-temperature modification) holds the cold work surface at the LN2 boiling point at 1 atm, 77 K (single stated temperature; ~50-55 K only with modification / pumped bath).",
+  "value_as_printed": "77",
+  "quote": "Operating Temp (K) with Vapor Pressure = 1 ATM 77 77 77 4.2 4.2",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Dewar Product Comparison table, row 'Operating Temp (K) with Vapor Pressure = 1 ATM', column ND/NDV",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "77 K at 1 atm in the ND/NDV columns confirmed. Naming caveat: on the current IRLabs page the 'ND' series is only the Vega and Rigel models (2 in surface). The 8 in size is the NDV-8, equivalent to the 2010 brochure's ND-8. The model name should read NDV-8."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_temperature.base",
+  "claim": "Lowest temperature of the standard configuration (1 atm LN2) 77 K.",
+  "value_as_printed": "77",
+  "quote": "Operating Temp (K) with Vapor Pressure = 1 ATM 77 77 77 4.2 4.2",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Dewar Product Comparison table (ND/NDV column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "77 K standard. 50-55 K only with low temperature modification (brochure: 'Operating Temperature Range of 50K to 77K (with low temperature modification)')."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_magnetic_field.max",
+  "claim": "The series description lists the complete construction (single vessel, vapour-cooled shield, cold work surface, molecular-sieve getter); there is no magnet.",
+  "value_as_printed": "no magnet in construction",
+  "quote": "The ND line of nitrogen dewars contain a single cryogenic vessel. A vapor cooled radiation shield surrounds the vessel and the cold work surface. The guard vacuum of the dewar is enhanced by a molecular sieve “getter”",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 3, ND Series",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure ND Series construction text confirmed verbatim. Together with the full ND/HDV-8 spec column there is no magnet."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_vacuum.available",
+  "claim": "Cold work surface sits in the dewar guard vacuum (getter mounted on the cold work surface).",
+  "value_as_printed": "guard vacuum",
+  "quote": "The guard vacuum of the dewar is enhanced by a molecular sieve “getter” which is mounted to the cold work surface.",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 3, ND Series",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'The guard vacuum of the dewar is enhanced by a molecular sieve “getter” which is mounted to the cold work surface.' Confirmed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_pressure.base",
+  "claim": "Dewar vacuum below 1e-6 Torr (bound stored as 1e-6 Torr).",
+  "value_as_printed": "below 10⁻⁶ Torr",
+  "quote": "Our advanced vacuum technology achieves pressure levels below 10⁻⁶ Torr, minimizing heat leak and maximizing hold times for both LN2 dewars and LHe dewars.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "page text, vacuum technology paragraph",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product-line statement 'pressure levels below 10⁻⁶ Torr' for LN2 and LHe dewars."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_optical_access",
+  "claim": "Optical windows are a customization option, not part of the standard ND/NDV system.",
+  "value_as_printed": "custom optical windows",
+  "quote": "We specialize in custom cryogenic solutions including modified cold plate dimensions, custom optical windows, specialized electrical feedthroughs, and unique mounting arrangements.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "FAQ: Can IRLabs customize a dewar for my specific application?",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Customization option per FAQ. optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_electrical.sample_connections",
+  "claim": "Electrical feedthroughs are a customization option, not part of the standard ND/NDV system.",
+  "value_as_printed": "specialized electrical feedthroughs",
+  "quote": "We specialize in custom cryogenic solutions including modified cold plate dimensions, custom optical windows, specialized electrical feedthroughs, and unique mounting arrangements.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "FAQ: Can IRLabs customize a dewar for my specific application?",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Customization option per FAQ. optional_not_installed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_sample.diameter.max",
+  "claim": "ND/HDV-8 cold plate diameter 8.12 in (20.62 cm).",
+  "value_as_printed": "8.12/20.62",
+  "quote": "Cold Plate Diameter (in/cm) 3.12/7.92 5.12/13.00 8.12/20.62 10.18/25.86 12.00/30.48 14.18/36.02",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for ND/HDV Series Dewars, Cold Plate Diameter (column ND/HDV-8)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ND/HDV-8 (web: NDV/HDV-8) cold plate 8.12/20.62 confirmed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_sample.height.max",
+  "claim": "ND/HDV-8 work area height ('B' dimension) 1.50 in.",
+  "value_as_printed": "1.50/3.81",
+  "quote": "Work Area Height (“B” Dimension) (in/cm)1.50/3.81 1.50/3.81 1.50/3.81 2.00/5.08 2.00/5.08 2.00/5.08",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for ND/HDV Series Dewars, Work Area Height (column ND/HDV-8)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Work Area Height 1.50/3.81 for the -8 size confirmed."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_cryogen.cryogen_free",
+  "claim": "Open-cycle liquid-nitrogen dewar.",
+  "value_as_printed": "LN2",
+  "quote": "Designed for temperatures ranging from 77 to 63 K , our liquid nitrogen (LN₂) dewars ensure minimal cryogen loss and maximum performance.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Liquid nitrogen dewars section",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 open-cycle dewar; the sentence beginning 'Designed for temperatures ranging from 77 to 63 K' was confirmed on the page."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_cryogen.type",
+  "claim": "Holds liquid nitrogen only.",
+  "value_as_printed": "LN2",
+  "quote": "Designed for temperatures ranging from 77 to 63 K , our liquid nitrogen (LN₂) dewars ensure minimal cryogen loss and maximum performance.",
+  "source_url": "https://www.irlabs.com/cryostats/liquid-cryogen-dewars/",
+  "document_title": "Liquid Cryogen Dewars (IRLabs product page with dewar comparison and specification tables)",
+  "location": "Liquid nitrogen dewars section",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 only for the ND/NDV nitrogen line."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_holding_time.static",
+  "claim": "ND/HDV-8 LN2 hold time with standard supports 90 h.",
+  "value_as_printed": "90/24 (LN2/LHe)",
+  "quote": "LN2LHe Hold Time (Standard Supports) (hrs) 24/6 72/18 90/24 115/30 - -",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for ND/HDV Series Dewars, Hold Time (Standard Supports), column ND/HDV-8",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Standard-supports row for ND/HDV-3..14 is 24/6, 72/18, 90/24, 115/30, -, -. The -8 size gives 90 h LN2 (24 h is the HDV LHe value). Web table confirms 90/24 for the -8 column."
+  }
+ },
+ {
+  "id": "v4c_irlabs_nd_8_standard_supports_cryogen.dewar_volume",
+  "claim": "ND/HDV-8 LN2 capacity 2.6 L.",
+  "value_as_printed": "2.6",
+  "quote": "LN2/LHe Capacity (L) 0.5 1.2 2.6 4.4 6.4 8.7",
+  "source_url": "https://www.irlabs.com/wp-content/uploads/2020/10/IRLabs_Dewar_Brochure_WEB_May2010.pdf",
+  "document_title": "Cryogenic Solutions dewar brochure (Infrared Laboratories, REV 3/10)",
+  "location": "page 4, Specifications for ND/HDV Series Dewars, LN2/LHe Capacity, column ND/HDV-8",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "irlabs_nd_8_standard_supports",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ND/HDV-8 capacity 2.6 L confirmed."
+  }
+ }
+]

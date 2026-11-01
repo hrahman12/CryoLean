@@ -1,0 +1,73 @@
+{
+  "id": "expa_nitrogen_bet_adsorption",
+  "name": "Nitrogen adsorption isotherm and BET surface-area analysis at 77 K",
+  "plain_name": "Nitrogen adsorption isotherm and BET surface-area analysis at 77 K",
+  "industry": "scientific_research",
+  "description": "Determine surface area of an activated porous solid through volumetric nitrogen adsorption in a liquid-nitrogen bath, following the published TriStar II Plus method.",
+  "keywords": [
+    "nitrogen bet adsorption",
+    "gas adsorption analyzer"
+  ],
+  "sources": [
+    {
+      "citation": "RSC supplementary information c9cc00626e: gas sorption methods",
+      "url": "https://www.rsc.org/suppdata/c9/cc/c9cc00626e/c9cc00626e1.pdf",
+      "accessed": "2026-10-31"
+    },
+    {
+      "citation": "Micromeritics, Minimum Surface Area Measurements with Physisorption Analyzers",
+      "url": "https://micromeritics.com.cn/en/resources/minimum-surface-area-measurements-with-micromeritics-physisorption-analyzers/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "N2 adsorption at 77 K",
+      "evidence_id": "expa_bet"
+    }
+  ],
+  "reported_equipment": [
+    "Micromeritics TriStar II Plus"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "77",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The reported nitrogen adsorption temperature is 77 K.",
+      "evidence_ids": [
+        "expa_bet"
+      ]
+    },
+    {
+      "key": "module.nitrogen_physisorption_bet",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Metered gas dosing, pressure readout and adsorption manifold are indispensable.",
+      "evidence_ids": [
+        "expa_bet"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Activation protocol, dead-volume calibration, relative-pressure fitting range, sample mass and BET validity for the chosen adsorbent must be confirmed; no surface-area result is fabricated."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

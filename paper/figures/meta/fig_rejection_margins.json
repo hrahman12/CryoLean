@@ -1,0 +1,18 @@
+{
+ "name": "fig_rejection_margins",
+ "title": "Why each configuration passes or fails the 10 T magnetoresistance experiment",
+ "question": "For one real experiment, which mandatory requirement decides the verdict on each of the 26 catalogued configurations, and by how much does the documented value clear or miss it?",
+ "model": "at_least q vs documented max m: m/q; at_least q vs range [lo,hi]: hi/q; point_within q vs [lo,hi]: min(q/lo, hi/q); flags have no ratio. Colour encodes log2(margin); the pass/fail/unknown status of each cell is Lean's outcome, not the ratio.",
+ "data": "Lean check_batch of mat_magnetoresistance_10T (confirmed) against all 26 configurations (same run as fig_verdict_flow); documented values from the Lean result's per_key capability (sourced from data/cryostats/*.json). Margin sign agrees with Lean's outcome in 39 of 39 numeric cells. Data: paper/data/fig_rejection_margins.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Mandatory requirements of the 10 T magnetoresistance profile against all 26 configurations. Numbers are the documented capability divided by the requirement (for the 2 K operating point, the smaller of T/T_min and T_max/T), computed from the exact rationals in the Lean result; x marks a check that Lean reports as failing. Dotted yellow cells are checks Lean reports as unknown; the cell text gives the reason read from the capability record (not documented, value unknown, fitting unknown, an unsourced not-fitted claim, or an inferred estimate, which never counts as evidence). Lean verdicts: 0 met, 11 need information, 15 not met; all 15 rejected configurations also have unknown checks, because one trusted failure suffices to reject.",
+ "section": "main",
+ "script": "paper/scripts/fig_formal.py",
+ "command": "python paper/scripts/fig_formal.py",
+ "files": [
+  "paper/figures/fig_rejection_margins.png",
+  "paper/figures/fig_rejection_margins.svg",
+  "paper/figures/fig_rejection_margins.pdf"
+ ],
+ "interactive": null
+}

@@ -1,0 +1,94 @@
+{
+  "id": "expansion_b_manufacturing_sbr_rubber_dsc",
+  "name": "Differential scanning calorimetry of SBR rubber",
+  "plain_name": "Measure a rubber thermal transition",
+  "industry": "manufacturing_and_industrial_processing",
+  "description": "Calorimetric material characterization with paired pans,not a generic magnetic-coil cryostat.",
+  "keywords": [
+    "Measure a rubber thermal transition",
+    "rubber_calorimetry",
+    "manufacturing_and_industrial_processing"
+  ],
+  "sources": [
+    {
+      "citation": "NETZSCH DSC214Polyma primary SBR rubber application",
+      "url": "https://analyzing-testing.netzsch.com/_Resources/Persistent/1/1/3/a/113a82aa25c66d466843e79a134e449ecb15ac00/DSC_214_Polyma_en_web.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "NETZSCHDSC214Polyma;15.41mgSBR;dynamicN2"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.dsc",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The experiment needs differential heat-flow sensing against a reference.",
+      "evidence_ids": [
+        "expb_rubber_dsc"
+      ]
+    },
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "range_within",
+        "lo": {
+          "value": "173.15",
+          "unit": "K"
+        },
+        "hi": {
+          "value": "493.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the reported -100 to220 C heating window.",
+      "evidence_ids": [
+        "expb_rubber_dsc"
+      ]
+    },
+    {
+      "key": "temperature.heating_rate.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "10",
+          "unit": "K_per_min"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the10K/min heating ramp.",
+      "evidence_ids": [
+        "expb_rubber_dsc"
+      ]
+    },
+    {
+      "key": "module.dynamic_nitrogen_purge",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Dynamic nitrogen atmosphere is part of the reported measurement; do not assume it is installed on every calorimeter.",
+      "evidence_ids": [
+        "expb_rubber_dsc"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The paper reports NETZSCHDSC214Polyma; LinkamDSC600 is a different real candidate,not falsely labeled as the reported instrument.",
+    "An installed dynamic nitrogen purge is not established for the Linkam configuration and stays UNKNOWN.",
+    "Animations never display fabricated thermograms or transition temperatures."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

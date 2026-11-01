@@ -1,0 +1,72 @@
+{
+  "id": "expc_energy_tensile_20k",
+  "name": "Cryogenic tensile characterization of hydrogen-system metal or composite at 20 K (NPL method class)",
+  "plain_name": "Test how a hydrogen-system material stretches and fails near 20 K",
+  "industry": "energy_and_hydrogen",
+  "description": "Test how a hydrogen-system material stretches and fails near 20 K. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "documented_method_class",
+  "keywords": [
+    "cryogenic_tensile",
+    "energy_and_hydrogen"
+  ],
+  "sources": [
+    {
+      "id": "src_npl",
+      "citation": "National Physical Laboratory: Cryogenic testing services",
+      "url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "20 K",
+      "normalized": {
+        "value": "20000",
+        "unit": "mK"
+      },
+      "evidence_id": "expc_npl_20k"
+    }
+  ],
+  "reported_equipment": [
+    "NPL cryogenic mechanical testing facility"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "20000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Select the documented20 K mechanical test condition relevant to liquid-hydrogen service. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_npl_20k"
+      ]
+    },
+    {
+      "key": "module.cryogenic_tensile",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Cryogenic grips, a mechanical load path and force/strain measurement are essential. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_npl_tensile"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "This is a documented test-method class, not a complete ASTM/ISO test recipe.",
+    "Coupon dimensions, load range, strain rate, extensometry and gauge-length temperature uniformity must be agreed with the facility; no strength prediction is made."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

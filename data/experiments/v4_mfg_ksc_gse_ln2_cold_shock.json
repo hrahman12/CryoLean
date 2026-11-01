@@ -1,0 +1,86 @@
+{
+ "id": "mfg_ksc_gse_ln2_cold_shock",
+ "name": "LN2 cold-shock test of cryogenic ground-support components (pipe spools, valves, filters, flex hoses): fill with LN2 until it exits, then cold-soak for at least 1 h (KSC-STD-Z-0009 Rev D 6.2.1)",
+ "plain_name": "Flood a cryogenic pipe section or valve with liquid nitrogen for an hour to prove it neither deforms nor leaks",
+ "industry": "manufacturing_and_industrial_processing",
+ "description": "After shop fabrication, cryogenic ground-support assemblies are cold-shock tested by introducing LN2 at the inlet until a steady LN2 stream exits, then maintaining the supply for a cold soak of at least 1 h; no deformation, leakage, frost or condensation on vacuum jackets is allowed, and annulus pressure is monitored until the assembly returns to ambient.",
+ "keywords": [
+  "Flood a cryogenic pipe section or valve with liquid nitrogen for an hour to prove it neither deforms nor leaks",
+  "manufacturing_and_industrial_processing"
+ ],
+ "sources": [
+  {
+   "citation": "KSC-STD-Z-0009 Revision D, Design of Cryogenic Ground Systems and Ground Support Equipment, Standard for (NASA Kennedy Space Center)",
+   "url": "https://standards.nasa.gov/sites/default/files/standards/KSC/D/0/ksc-std-z-0009_rev_d.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Cryogenic Machining of Ti-6Al-4V (S. Isakson, Licentiate thesis, Chalmers University of Technology, 2018, report IMS-2018-12) (LN2 boiling point reference)",
+   "url": "https://research.chalmers.se/publication/503255/file/503255_Fulltext.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The test medium is liquid nitrogen fed continuously into the component.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_gse_ln2_cold_shock_0"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 1,
+     "unit": "h"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The LN2 supply must be maintained for a cold soak of at least 1 hour.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_gse_ln2_cold_shock_1"
+   ],
+   "conditions": [],
+   "key": "dwell.duration.max"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Reference: LN2 at ambient pressure boils at -196 C, the temperature the component reaches during the soak.",
+   "evidence_ids": [
+    "v4e_mfg_ksc_gse_ln2_cold_shock_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

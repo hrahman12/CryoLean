@@ -1,0 +1,198 @@
+{
+ "id": "thermo_fisher_vitrobot_mark_iv",
+ "manufacturer": "Thermo Fisher Scientific",
+ "model": "Vitrobot Mark IV",
+ "family": "plunge freezer for cryo-EM grids (liquid ethane)",
+ "description": "Automated plunge-freezing (vitrification) robot for cryo-EM grids: enclosed climate chamber 4-60 C with ultrasonic humidification up to 100 % rH, automated blotting (1-16 blots), plunging into liquid ethane (-178 C) cooled by liquid nitrogen, semi-automated grid transfer to a grid box under LN2.",
+ "documents": [
+  {
+   "id": "doc_thermo_fisher_vitrobot_mark_iv_0",
+   "url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+   "title": "Vitrobot Mk IV User Manual, PN 103261, Revision G (15-APR-2025), Thermo Fisher Scientific",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "thermo_fisher_vitrobot_mark_iv_standard",
+   "name": "Vitrobot Mark IV standard system (climate chamber, blotting device, LN2/ethane coolant container)",
+   "configuration_basis": "Standard instrument as described in the User Manual PN 103261 Rev G; values are the manufacturer's technical specification. Coolant: liquid ethane condensed in the LN2-cooled container (liquid propane is the documented alternative).",
+   "capabilities": [
+    {
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 277150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 333150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_temperature.range"
+     ]
+    },
+    {
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": 95150,
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_temperature.base"
+     ]
+    },
+    {
+     "key": "humidity.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": 85,
+       "unit": "percent"
+      },
+      "hi": {
+       "value": 100,
+       "unit": "percent"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_humidity.range"
+     ]
+    },
+    {
+     "key": "magnetic_field.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_magnetic_field.max"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_vacuum.available"
+     ]
+    },
+    {
+     "key": "pressure.base",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_pressure.base"
+     ]
+    },
+    {
+     "key": "optical_access",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "electrical.sample_connections",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "not_available",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_electrical.sample_connections"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "sample.height.max",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cryogen.cryogen_free",
+     "value": {
+      "kind": "flag",
+      "b": false
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_cryogen.cryogen_free"
+     ]
+    },
+    {
+     "key": "cryogen.type",
+     "value": {
+      "kind": "set",
+      "xs": [
+       "liquid_nitrogen",
+       "liquid_ethane"
+      ]
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "v4c_thermo_fisher_vitrobot_mark_iv_standard_cryogen.type"
+     ]
+    }
+   ]
+  }
+ ],
+ "unknowns": [
+  {
+   "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+   "key": "optical_access",
+   "why": "Honest unknown; the manual does not document a viewing window."
+  },
+  {
+   "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+   "key": "sample.diameter.max",
+   "why": "Honest unknown; no grid size is stated."
+  },
+  {
+   "configuration_id": "thermo_fisher_vitrobot_mark_iv_standard",
+   "key": "sample.height.max",
+   "why": "Honest unknown."
+  }
+ ],
+ "modeling_notes": "Imported from research/v4 (20-industry expansion); every value re-verified by an independent agent.",
+ "industries": [
+  "biology_and_biotechnology"
+ ]
+}

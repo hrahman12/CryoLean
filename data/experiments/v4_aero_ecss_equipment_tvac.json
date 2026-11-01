@@ -1,0 +1,92 @@
+{
+ "id": "aero_ecss_equipment_tvac",
+ "name": "ECSS-E-ST-10-03C space-segment equipment thermal vacuum test (<= 1e-5 hPa, functional tests at hot and cold)",
+ "plain_name": "Test a satellite electronics unit in vacuum under the European space testing standard",
+ "industry": "aerospace_and_space_exploration",
+ "description": "Equipment-level thermal vacuum test per ECSS-E-ST-10-03C clause 5.5.4: equipment that operates in space vacuum is tested at 10-5 hPa (1e-3 Pa) or less, with functional tests at the hot and cold operating temperatures, a dwell of at least 2 h before functional tests and a non-operating cycle.",
+ "keywords": [
+  "Test a satellite electronics unit in vacuum under the European space testing standard",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "ECSS-E-ST-10-03C Space engineering - Testing (1 June 2012)",
+   "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/ECSS-E-ST-10-03C.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Clause 5.5.4.2a: equipment operating in space vacuum must be tested in thermal vacuum.",
+   "evidence_ids": [
+    "v4e_aero_ecss_equipment_tvac_0"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.001",
+     "unit": "Pa"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Clause 5.5.4.2b: 10-5 hPa = 1e-3 Pa or less.",
+   "evidence_ids": [
+    "v4e_aero_ecss_equipment_tvac_1"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Functional tests at hot and cold operating temperatures require powered, instrumented equipment inside the chamber.",
+   "evidence_ids": [
+    "v4e_aero_ecss_equipment_tvac_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 2,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Optional: functional tests start only after a dwell of at least 2 h, so the facility must hold a plateau for at least 2 h.",
+   "evidence_ids": [
+    "v4e_aero_ecss_equipment_tvac_3"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

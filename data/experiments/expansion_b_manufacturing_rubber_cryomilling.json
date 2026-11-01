@@ -1,0 +1,93 @@
+{
+  "id": "expansion_b_manufacturing_rubber_cryomilling",
+  "name": "LN2 cryomilling of elastomeric rubber",
+  "plain_name": "Pulverize an elastic rubber specimen",
+  "industry": "manufacturing_and_industrial_processing",
+  "description": "Cryogenic brittle fracture and comminution of an elastomer,with a mechanically moving jar and ball.",
+  "keywords": [
+    "Pulverize an elastic rubber specimen",
+    "rubber_cryomilling",
+    "manufacturing_and_industrial_processing"
+  ],
+  "sources": [
+    {
+      "citation": "RETSCH primary caoutchouc CryoMill application",
+      "url": "https://www.retsch.com/files/15592/white-paper-cryogenic-preparation-of-sample-materials.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "RETSCHCryoMill,50mL steeljar,25mm steelball,LN2"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.cryogenic_milling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A grinding ball and cryogenic mechanical comminution are essential.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    },
+    {
+      "key": "temperature.base",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": "77.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The published CryoMill protocol uses continuous nominal-196 C operation.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    },
+    {
+      "key": "milling.frequency.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "30",
+          "unit": "Hz"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The caoutchouc application runs at30Hz.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    },
+    {
+      "key": "milling.jar_volume",
+      "constraint": {
+        "kind": "at_least",
+        "q": {
+          "value": "0.05",
+          "unit": "L"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The documented setup uses a50mL stainless-steel jar.",
+      "evidence_ids": [
+        "expb_retsch_protocols"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Published final fineness is an observed application result,not a guaranteed capability for every elastomer.",
+    "The generic LN2 temperature is not a substitute for a measured glass-transition temperature of a new material."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

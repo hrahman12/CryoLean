@@ -1,0 +1,117 @@
+{
+ "id": "metro_capsule_sprt_cryogenic_triple_points",
+ "name": "Calibration of capsule SPRTs and rhodium-iron thermometers at the ITS-90 triple points of e-H2, Ne, O2 and Ar (13.8033-83.8058 K) in sealed cells in a vacuum-isolated closed-cycle cryostat",
+ "plain_name": "Calibrate small cryogenic thermometers at the melting points of frozen hydrogen, neon, oxygen and argon",
+ "industry": "metrology_and_calibration",
+ "description": "This is the BIPM CCT guide procedure. Sealed cells sit inside isothermal shields within a vacuum jacket, cooled by a cryocooler, and are melted with intermittent heat pulses.",
+ "keywords": [
+  "Calibrate small cryogenic thermometers at the melting points of frozen hydrogen, neon, oxygen and argon",
+  "metrology_and_calibration"
+ ],
+ "sources": [
+  {
+   "citation": "BIPM CCT Guide to the Realization of the ITS-90: Cryogenic Fixed Points (2018)",
+   "url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "two-stage closed-cycle cryocooler triple-point cryostat (Figure 7, PTB)",
+  "INRIM sealed cells models A, B and C",
+  "LNE-Cnam four-cell assembly",
+  "NMIJ/AIST multi-well sealed triple-point cell"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": "13803.3",
+     "unit": "mK"
+    },
+    "hi": {
+     "value": "83805.8",
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The four triple points span 13.8033 K to 83.8058 K.",
+   "evidence_ids": [
+    "v4e_metro_capsule_sprt_cryogenic_triple_points_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "13803.3",
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The hydrogen has to be frozen below 13.8033 K.",
+   "evidence_ids": [
+    "v4e_metro_capsule_sprt_cryogenic_triple_points_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cell must be in a vacuum jacket.",
+   "evidence_ids": [
+    "v4e_metro_capsule_sprt_cryogenic_triple_points_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Heat pulses and thermometer readout need electrical leads.",
+   "evidence_ids": [
+    "v4e_metro_capsule_sprt_cryogenic_triple_points_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Closed-cycle cryocoolers are preferred but not required.",
+   "evidence_ids": [
+    "v4e_metro_capsule_sprt_cryogenic_triple_points_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

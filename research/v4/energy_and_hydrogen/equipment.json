@@ -1,0 +1,1955 @@
+{
+ "industry": "energy_and_hydrogen",
+ "accessed": "2026-11-01",
+ "equipment": [
+  {
+   "id": "cryomech_al600",
+   "manufacturer": "Bluefors Cryocooler Technologies (Cryomech)",
+   "model": "AL600 single-stage Gifford-McMahon cryocooler with CPA1114 compressor",
+   "family": "closed-cycle cryocooler (GM) as a stand-alone cooler",
+   "description": "Single-stage GM cryocooler certified 600 W at 80 K (60 Hz), <=25 K no-load; used for LN2/LAr reliquefaction, HTS cable and fault-current-limiter cooling and 80 K zero-boil-off test beds.",
+   "documents": [
+    {
+     "title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+     "url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf"
+    },
+    {
+     "title": "Cryocooler Capacity Curve AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 29 Oct 2024)",
+     "url": "https://cdn.bluefors.com/wp-content/uploads/2024/10/30085605/AL600-CPA1114-Cryocooler-Capacity-Curve.pdf"
+    },
+    {
+     "title": "CH1A600 Coldhead Outline, drawing CH1A600 rev A (Cryomech, Inc.)",
+     "url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL600-CH1A600-Cold-Head-Drawing.pdf"
+    },
+    {
+     "title": "AL600 Gifford-McMahon Cryocooler (Bluefors product page)",
+     "url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al600-gifford-mcmahon-cryocooler/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "cryomech_al600_cpa1114_60hz",
+     "name": "AL600 cold head + CPA1114 water-cooled compressor, 60 Hz supply, standard 10 ft lines",
+     "configuration_basis": "Standard catalogue system: AL600 cold head (CH1A600) with CPA1114 water-cooled helium compressor and 10 ft flexible lines on a 60 Hz supply (certified 600 W at 80 K; 580 W at 80 K on 50 Hz). Bare cooler: no vacuum vessel, sample space, wiring or magnet is supplied.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 25000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 80000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cold-head (bare copper heat exchanger) operating range documented from the no-load lowest temperature <=25 K (25 K stored conservatively) to the 80 K certified rating point; the published capacity data cover 25-80 K only, so temperatures above 80 K are not documented.",
+       "value_as_printed": "Lowest temperature ≤25 K with no load; 600 W at 80 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Cold head table: certified cooling capacity, lowest temperature",
+       "quote": "Certified cooling capacity at 60 Hz* 600 W at 80 K Reference operating range 350 W at 50 K 430 W at 600 K 510 W at 70 K ... Lowest temperature ≤25 K with no load"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 25000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest cold-head temperature <=25 K with no load (bound stored as 25 K).",
+       "value_as_printed": "≤25 K with no load",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Cold head table, Lowest temperature",
+       "quote": "Lowest temperature ≤25 K with no load"
+      },
+      {
+       "key": "cooling_power.at_80000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 600,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Certified cooling capacity 600 W at 80 K with 60 Hz supply (the configuration); the capacity curve gives 580 W at 80 K on 50 Hz supply.",
+       "value_as_printed": "600 W at 80 K (60 Hz); 580 W @ 80K (50 Hz)",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Cold head table, Certified cooling capacity at 60 Hz",
+       "quote": "Certified cooling capacity at 60 Hz* 600 W at 80 K ... *reduced capacity at 50 Hz"
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 3600,
+         "unit": "s"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down to bottom temperature in less than 1 hour (stored as 1 h = 3600 s).",
+       "value_as_printed": "<1 hour to bottom temperature",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Cold head table, Cool down time",
+       "quote": "Cool down time <1 hour to bottom temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete system specification (AL600 cold head, CPA1114 helium compressor, flexible lines, system parameters) contains no magnet; the cooler only provides refrigeration at a bare copper heat exchanger.",
+       "value_as_printed": "no magnet in system specification",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Whole specification sheet (cold head, compressor, flexible lines, system parameters)",
+       "quote": "Cold head AL600 ... Helium compressor package CPA1114, available as water cooled only ... Flexible lines Standard length 10 ft (3 m)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No vacuum enclosure is part of the system: the cold head mounts by its room-temperature flange to a user-supplied vessel, and the cold end is a bare copper heat exchanger.",
+       "value_as_printed": "ROOM TEMPERATURE FLANGE; BARE COPPER HEAT EXCHANGER",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL600-CH1A600-Cold-Head-Drawing.pdf",
+       "document_title": "CH1A600 Coldhead Outline, drawing CH1A600 rev A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A600, side view labels",
+       "quote": "ROOM TEMPERATURE FLANGE ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is supplied with the cryocooler, so no base pressure is rated (system parameters list only the helium working pressure).",
+       "value_as_printed": "not supplied",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "System parameters",
+       "quote": "Helium pressure 230 ± 5 psig (15.9 ± .34 bar) at 60 Hz"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Bare cold head with copper heat exchanger; the complete specification and outline drawing contain no window or optical port.",
+       "value_as_printed": "no optical port",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL600-CH1A600-Cold-Head-Drawing.pdf",
+       "document_title": "CH1A600 Coldhead Outline, drawing CH1A600 rev A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A600",
+       "quote": "ROOM TEMPERATURE FLANGE ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete specification lists no sample wiring or electrical feedthroughs to the cold end (only the compressor electrical rating).",
+       "value_as_printed": "no sample feedthroughs in specification",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Whole specification sheet",
+       "quote": "Cold head AL600 ... Helium compressor package CPA1114, available as water cooled only ... Flexible lines Standard length 10 ft (3 m)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": "127.0",
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Diameter of the bare copper heat exchanger (thermal-load interface) at the cold end: 5.00 in (127.0 mm).",
+       "value_as_printed": "Ø5.00 [127.0]",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL600-CH1A600-Cold-Head-Drawing.pdf",
+       "document_title": "CH1A600 Coldhead Outline, drawing CH1A600 rev A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A600, cold-end diameter",
+       "quote": "BARE COPPER HEAT EXCHANGER ... 5.00 [127.0]"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No enclosed sample space is supplied; the load is attached to the bare copper heat exchanger inside a user-supplied vessel, so no usable sample height is defined by the cooler.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL600-CH1A600-Cold-Head-Drawing.pdf",
+       "document_title": "CH1A600 Coldhead Outline, drawing CH1A600 rev A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A600",
+       "quote": "ROOM TEMPERATURE FLANGE ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle Gifford-McMahon cold head driven by a helium compressor package; runs on electricity and cooling water, no liquid cryogen.",
+       "value_as_printed": "Helium compressor package CPA1114",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Helium compressor package; System parameters",
+       "quote": "Helium compressor package CPA1114, available as water cooled only ... Power consumption at steady state 12.5 kW, 60Hz"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the cryocooler (closed-cycle helium gas); empty set.",
+       "value_as_printed": "Helium compressor package CPA1114",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL600-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL600 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 28 Oct 2024)",
+       "location": "Helium compressor package; System parameters",
+       "quote": "Helium compressor package CPA1114, available as water cooled only ... Helium pressure 230 ± 5 psig (15.9 ± .34 bar) at 60 Hz"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cryomech_al630",
+   "manufacturer": "Bluefors Cryocooler Technologies (Cryomech)",
+   "model": "AL630 single-stage Gifford-McMahon cryocooler with CPA1114 compressor",
+   "family": "closed-cycle cryocooler (GM) as a stand-alone cooler",
+   "description": "Highest-capacity Cryomech single-stage GM cooler: certified 100 W at 20 K (60 Hz), <=17 K no-load; marketed for hydrogen liquefaction, hydrogen storage cooling and HTS fusion-magnet cooling.",
+   "documents": [
+    {
+     "title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+     "url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf"
+    },
+    {
+     "title": "Cryocooler Capacity Curve AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech)",
+     "url": "https://cdn.bluefors.com/wp-content/uploads/2024/10/30085605/AL630-CPA1114-Cryocooler-Capacity-Curve.pdf"
+    },
+    {
+     "title": "AL630 Coldhead, Standard, drawing CH1A630A (Cryomech, Inc.)",
+     "url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL630-CH1A630A-Cold-Head-Outline-Drawing.pdf"
+    },
+    {
+     "title": "AL630 Gifford-McMahon Cryocooler (Bluefors product page)",
+     "url": "https://bluefors.com/products/gifford-mcmahon-cryocoolers/al630-gifford-mcmahon-cryocooler/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "cryomech_al630_cpa1114_60hz",
+     "name": "AL630 cold head + CPA1114 water-cooled compressor, 60 Hz supply, standard 10 ft lines",
+     "configuration_basis": "Standard catalogue system: AL630 cold head (CH1A630A) with CPA1114 water-cooled helium compressor and 10 ft flexible lines on a 60 Hz supply (certified 100 W at 20 K; 90 W at 20 K on 50 Hz). Bare cooler: no vacuum vessel, sample space, wiring or magnet is supplied.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 17000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 40000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cold-head operating range documented from the no-load lowest temperature <=17 K (17 K stored conservatively) to 40 K, the highest point of the published reference operating range; temperatures above 40 K are not documented.",
+       "value_as_printed": "≤17 K with no load; 265 W at 40 K",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Cold head table: certified cooling capacity, reference operating range, lowest temperature",
+       "quote": "Certified cooling capacity at 60 Hz* 100 W at 20 K Reference operating range 150 W at 25 K 200 W at 30 K 265 W at 40 K ... Lowest temperature ≤17 K with no load"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 17000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest cold-head temperature <=17 K with no load (bound stored as 17 K).",
+       "value_as_printed": "≤17 K with no load",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Cold head table, Lowest temperature",
+       "quote": "Lowest temperature ≤17 K with no load"
+      },
+      {
+       "key": "cooling_power.at_20000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 100,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Certified cooling capacity 100 W at 20 K with 60 Hz supply (the configuration); the capacity curve gives 90 W at 20 K on 50 Hz supply.",
+       "value_as_printed": "100 W at 20 K (60 Hz); 90W @ 20K (50 Hz)",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Cold head table, Certified cooling capacity at 60 Hz",
+       "quote": "Certified cooling capacity at 60 Hz* 100 W at 20 K ... *reduced capacity at 50 Hz"
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 3600,
+         "unit": "s"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down to bottom temperature in less than 1 hour (stored as 3600 s).",
+       "value_as_printed": "<1 hour to bottom temperature",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Cold head table, Cool down time",
+       "quote": "Cool down time <1 hour to bottom temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete system specification (AL630 cold head, CPA1114 compressor, flexible lines, system parameters) contains no magnet.",
+       "value_as_printed": "no magnet in system specification",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Whole specification sheet",
+       "quote": "Cold head AL630 ... Helium compressor package CPA1114, available as water cooled only ... Flexible lines Standard length 10 ft (3 m)"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No vacuum enclosure is part of the system: the cold head is mounted to a user-supplied vessel and ends in a bare copper heat exchanger.",
+       "value_as_printed": "BARE COPPER HEAT EXCHANGER",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL630-CH1A630A-Cold-Head-Outline-Drawing.pdf",
+       "document_title": "AL630 Coldhead, Standard, drawing CH1A630A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A630A, side view labels",
+       "quote": "2X 3/4\" AEROQUIPS ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is supplied, so no base pressure is rated (system parameters list only the helium working pressure).",
+       "value_as_printed": "not supplied",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "System parameters",
+       "quote": "Helium pressure 260 ± 5 psig (17.9 ± .34 bar) at 60 Hz"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Bare cold head; the complete specification and outline drawing contain no window or optical port.",
+       "value_as_printed": "no optical port",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL630-CH1A630A-Cold-Head-Outline-Drawing.pdf",
+       "document_title": "AL630 Coldhead, Standard, drawing CH1A630A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A630A",
+       "quote": "2X 3/4\" AEROQUIPS ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete specification lists no sample wiring or electrical feedthroughs to the cold end.",
+       "value_as_printed": "no sample feedthroughs in specification",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Whole specification sheet",
+       "quote": "Cold head AL630 ... Helium compressor package CPA1114, available as water cooled only ... Flexible lines Standard length 10 ft (3 m)"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": "127.0",
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Diameter of the bare copper heat exchanger (thermal-load interface) at the cold end: 5.00 in (127.0 mm).",
+       "value_as_printed": "Ø5.00 [Ø127.0]",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL630-CH1A630A-Cold-Head-Outline-Drawing.pdf",
+       "document_title": "AL630 Coldhead, Standard, drawing CH1A630A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A630A, cold-end diameter",
+       "quote": "BARE COPPER HEAT EXCHANGER ... Ø5.00 [Ø127.0]"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No enclosed sample space is supplied; the load is attached to the bare copper heat exchanger inside a user-supplied vessel.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://cdn.bluefors.com/wp-content/uploads/2023/09/22145517/AL630-CH1A630A-Cold-Head-Outline-Drawing.pdf",
+       "document_title": "AL630 Coldhead, Standard, drawing CH1A630A (Cryomech, Inc.)",
+       "location": "Coldhead outline drawing CH1A630A",
+       "quote": "2X 3/4\" AEROQUIPS ... BARE COPPER HEAT EXCHANGER"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Closed-cycle Gifford-McMahon cold head driven by a helium compressor package; no liquid cryogen consumed.",
+       "value_as_printed": "Helium compressor package CPA1114",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Helium compressor package; System parameters",
+       "quote": "Helium compressor package CPA1114, available as water cooled only ... Power consumption at steady state 12.7 kW, 60Hz"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held by the cryocooler (closed-cycle helium gas); empty set.",
+       "value_as_printed": "Helium compressor package CPA1114",
+       "source_url": "https://bluefors.com/wp-content/uploads/2025/07/AL630-CPA1114-Cryocooler-Specification-Sheet.pdf",
+       "document_title": "Cryocooler Specification Sheet AL630 with CPA1114 (Bluefors Cryocooler Technologies / Cryomech, 5 Mar 2024)",
+       "location": "Helium compressor package; System parameters",
+       "quote": "Helium compressor package CPA1114, available as water cooled only ... Helium pressure 260 ± 5 psig (17.9 ± .34 bar) at 60 Hz"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stirling_cryogenics_spc_1",
+   "manufacturer": "Stirling Cryogenics BV",
+   "model": "SPC-1 single-stage Stirling cryogenerator",
+   "family": "closed-cycle cryocooler (Stirling cryogenerator) for liquefaction / sub-cooling",
+   "description": "Single-stage reversed-Stirling cryogenerator delivering 400 W to 2.7 kW at 50-160 K into a process-gas heat exchanger; used to produce or re-liquefy LN2, sub-cool LN2 for HTS power cables and re-liquefy boil-off of fault-current-limiter baths.",
+   "documents": [
+    {
+     "title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+     "url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+     "title": "HTS Cooling - Stirling Cryogenics solutions for HTS applications (leaflet)",
+     "url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/Leaflet-HTS-Cooling_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+     "title": "Cryogenerators (Stirling Cryogenics product page)",
+     "url": "https://stirlingcryogenics.com/products/cryogenerators/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "stirling_cryogenics_spc_1_n2_reliquefier",
+     "name": "SPC-1 configured as nitrogen (re-)liquefier / LN2 sub-cooler",
+     "configuration_basis": "Standard SPC-1 cryogenerator with its own motor and control unit, process heat exchanger configured for nitrogen (re-)liquefaction / LN2 sub-cooling (the datasheet's most common use). No customer cryostat, LN2 bath vessel, pumps or instrumentation of a complete HTS cooling plant are included.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 50000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 160000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Single-stage cryogenerator cold-head/process heat exchanger operating range 50-160 K.",
+       "value_as_printed": "50-160 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The SPC-1 is a single stage Cryogenerator that provides cooling power in the range of 400 W to 2,7 kW at temperatures of 50-160 K."
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 50000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest documented operating temperature of the stated range, 50 K (the product page's 40 K single-stage minimum is not used; conservative).",
+       "value_as_printed": "50-160 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "provides cooling power in the range of 400 W to 2,7 kW at temperatures of 50-160 K."
+      },
+      {
+       "key": "cooling_power.at_77000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 400,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "At least 400 W: the datasheet gives 400 W as the lower end of the cooling power delivered over the whole 50-160 K range, which includes 77 K (conservative lower bound; no single 77 K value is printed).",
+       "value_as_printed": "400 W to 2,7 kW at temperatures of 50-160 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "provides cooling power in the range of 400 W to 2,7 kW at temperatures of 50-160 K."
+      },
+      {
+       "key": "cooling_power.at_80000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 400,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "At least 400 W: lower end of the cooling power stated for the whole 50-160 K range, which includes 80 K (conservative lower bound; no single 80 K value is printed).",
+       "value_as_printed": "400 W to 2,7 kW at temperatures of 50-160 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "provides cooling power in the range of 400 W to 2,7 kW at temperatures of 50-160 K."
+      },
+      {
+       "key": "pressure.max_working",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 2000000,
+         "unit": "Pa"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum process-gas (e.g. nitrogen) pressure in the cold heat exchanger 20 bar gauge (stored as 2,000,000 Pa, gauge).",
+       "value_as_printed": "20 barg",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 2, Specifications table",
+       "quote": "Max process gas pressure 20 barg"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete datasheet (cryogenerator, heat exchanger, power supply, process-gas pressure, environment, weight, size) contains no magnet; the machine only extracts heat from a process gas.",
+       "value_as_printed": "no magnet in datasheet",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology; Page 2 Specifications",
+       "quote": "The cooling power of the SPC-1 is created by the reversed Stirling Cycle ... This cooling power becomes available in a heat exchanger, where thermal energy is extracted from the process gas."
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space: the cooling is delivered to a process gas/liquid flowing through the cold heat exchanger (liquefy, sub-cool or cool a gas flow).",
+       "value_as_printed": "heat exchanger, process gas",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1: liquefy, cool or sub-cool",
+       "quote": "(Re-)Liquefy gas into a cryogenic liquid • Sub-cool a cryogenic liquid flow • Cool a gas flow at cryogenic temperatures"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is supplied, so no base pressure is rated (only a maximum process-gas pressure).",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 2, Specifications table",
+       "quote": "Max process gas pressure 20 barg"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Process-gas cryogenerator; the complete datasheet contains no window or optical port.",
+       "value_as_printed": "no optical port",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The cooling power of the SPC-1 is created by the reversed Stirling Cycle ... This cooling power becomes available in a heat exchanger, where thermal energy is extracted from the process gas."
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The datasheet specifies no sample wiring; the machine cools a process stream through a heat exchanger.",
+       "value_as_printed": "no sample feedthroughs",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The cooling power of the SPC-1 is created by the reversed Stirling Cycle ... This cooling power becomes available in a heat exchanger, where thermal energy is extracted from the process gas."
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample space or sample mounting interface: the load is a process gas/liquid passing through the cold heat exchanger.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The cooling power of the SPC-1 is created by the reversed Stirling Cycle ... This cooling power becomes available in a heat exchanger, where thermal energy is extracted from the process gas."
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample space: the load is a process gas/liquid passing through the cold heat exchanger.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The cooling power of the SPC-1 is created by the reversed Stirling Cycle ... This cooling power becomes available in a heat exchanger, where thermal energy is extracted from the process gas."
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone, electrically driven closed-cycle Stirling machine; it produces liquid nitrogen rather than consuming a cryogen.",
+       "value_as_printed": "operates stand-alone ... driven by an electrical motor",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The Stirling Cryogenics Cryogenerator operates stand-alone. It is driven by an electrical motor and has it’s own control unit."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "In this configuration (nitrogen re-liquefier / LN2 sub-cooler) the cold heat exchanger condenses and holds liquid nitrogen produced from the nitrogen process gas.",
+       "value_as_printed": "produce liquid nitrogen",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1 Cryogenerator (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1: liquefy, cool or sub-cool",
+       "quote": "The SPC-1 is often used to produce liquid nitrogen for multiple cooling purposes, but is also widely used to produce other cryogenic liquids or to create a cryogenic cooling loop."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stirling_cryogenics_spc_1t",
+   "manufacturer": "Stirling Cryogenics BV",
+   "model": "SPC-1T two-stage Stirling cryogenerator with integrated CryoFans",
+   "family": "closed-cycle cryocooler (Stirling cryogenerator) with cold-helium circulation loop",
+   "description": "Two-stage reversed-Stirling cryogenerator providing 50-175 W at 20-60 K to a remote application via a circulating cold-helium gas loop (integrated CryoFans); used for 20 K cooling of HTS DC cables, magnets, rotating machines and hydrogen applications.",
+   "documents": [
+    {
+     "title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+     "url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+     "title": "HTS Cooling - Stirling Cryogenics solutions for HTS applications (leaflet)",
+     "url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/Leaflet-HTS-Cooling_Stirling-Cryogenics_LR.pdf"
+    },
+    {
+     "title": "Cryogenerators (Stirling Cryogenics product page)",
+     "url": "https://stirlingcryogenics.com/products/cryogenerators/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "stirling_cryogenics_spc_1t_he_loop",
+     "name": "SPC-1T with integrated CryoFans, 20 K helium-gas loop",
+     "configuration_basis": "Standard SPC-1T cryogenerator with integrated CryoFans in the cold-head vacuum space, delivering a cold helium-gas flow (e.g. 20 K) to a customer application; optional 80 K first-stage loop not counted. No customer cryostat or application vessel included.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 20000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 60000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Second-stage helium-loop operating range 20-60 K as stated with the cooling power (the title's 15 K lower end is not used; conservative).",
+       "value_as_printed": "50-175 W @ 20-60 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The SPC-1T is a two-stage Cryogenerator that provides cooling power in the range of 50-175 W @ 20-60 K."
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 20000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest temperature of the stated cooling-power range, 20 K (conservative versus the 15 K in the title).",
+       "value_as_printed": "20-60 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "provides cooling power in the range of 50-175 W @ 20-60 K."
+      },
+      {
+       "key": "cooling_power.at_20000mK",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 50,
+         "unit": "W"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "At least 50 W at 20 K: lower end of the stated 50-175 W over 20-60 K (conservative lower bound; the gross-power curve depends on the first-stage load).",
+       "value_as_printed": "50-175 W @ 20-60 K",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "provides cooling power in the range of 50-175 W @ 20-60 K."
+      },
+      {
+       "key": "pressure.max_working",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 3000000,
+         "unit": "Pa"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum helium-loop pressure 30 bar gauge (stored as 3,000,000 Pa, gauge).",
+       "value_as_printed": "30 barg",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 2, Specifications table",
+       "quote": "Max He loop pressure 30 barg"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete datasheet (two-stage cryogenerator, integrated CryoFans, helium loop, specifications) contains no magnet; the machine cools a remote application through a helium gas flow.",
+       "value_as_printed": "no magnet in datasheet",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The helium gas is first cooled in the coldhead of the Cryogenerator to e.g. 20 K, which then cools the application as the helium flows through."
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is supplied: the vacuum space of the cold head houses only the CryoFans and heat exchanger, and the application is cooled remotely by the circulating helium.",
+       "value_as_printed": "remote cooling by He circulation",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "To circulate the helium, the Stirling SPC-1T Cryogenerator is equipped with integrated CryoFans (cryogenic circulators) in the vacuum space of the cold head."
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space is supplied, so no base pressure is rated (only the maximum helium-loop pressure).",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 2, Specifications table",
+       "quote": "Max He loop pressure 30 barg"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Remote helium-loop cooler; the complete datasheet contains no window or optical port.",
+       "value_as_printed": "no optical port",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The helium gas is first cooled in the coldhead of the Cryogenerator to e.g. 20 K, which then cools the application as the helium flows through."
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample wiring is specified; the application is cooled remotely by circulating helium gas.",
+       "value_as_printed": "no sample feedthroughs",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The helium gas is first cooled in the coldhead of the Cryogenerator to e.g. 20 K, which then cools the application as the helium flows through."
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample space or mounting interface: the load is the customer's application connected to the helium loop.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The helium gas is first cooled in the coldhead of the Cryogenerator to e.g. 20 K, which then cools the application as the helium flows through."
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No sample space: the load is the customer's application connected to the helium loop.",
+       "value_as_printed": "not supplied",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The helium gas is first cooled in the coldhead of the Cryogenerator to e.g. 20 K, which then cools the application as the helium flows through."
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Stand-alone, electrically driven closed-cycle Stirling machine circulating helium gas; no liquid cryogen.",
+       "value_as_printed": "operates stand-alone ... driven by an electrical motor",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, Stirling Technology",
+       "quote": "The Stirling Cryogenics Cryogenerator operates stand-alone. It’s driven by an electrical motor and has its own control unit."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen is used or held: cooling is transferred by a flow of cold helium gas; empty set.",
+       "value_as_printed": "flow of cold helium gas",
+       "source_url": "https://stirlingcryogenics.com/wp-content/uploads/2026/01/DS-SPC-1T_Stirling-Cryogenics_LR.pdf",
+       "document_title": "Datasheet Stirling SPC-1T Cryogenerator - Remote cooling by He circulation at 15-60 K (Stirling Cryogenics BV)",
+       "location": "Page 1, SPC-1T helium loop cooling",
+       "quote": "The SPC-1T is commonly used to remotely cool an application by means of a flow of cold helium gas."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "theva_tapestar_xl",
+   "manufacturer": "THEVA Dünnschichttechnik GmbH",
+   "model": "TAPESTAR XL reel-to-reel contactless critical-current measurement system (XL, XL-HF)",
+   "family": "LN2 bath cryostat for HTS tape Ic (reel-to-reel, contactless)",
+   "description": "Production / incoming-inspection system that scans the critical current of 1G/2G HTS tape (up to 12 mm wide, 50-1000 A) reel-to-reel in an integrated liquid-nitrogen dewar using a contactless sensor array (21 sensors, 1 mm axial resolution); the XL-HF variant applies up to 1 T at 77 K.",
+   "documents": [
+    {
+     "title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+     "url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf"
+    },
+    {
+     "title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+     "url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf"
+    },
+    {
+     "title": "Products - TAPESTAR measurement systems (THEVA product page)",
+     "url": "https://www.theva.com/products/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "theva_tapestar_xl_standard",
+     "name": "TAPESTAR XL (0-120 mT field), standard tape drive",
+     "configuration_basis": "Standard TAPESTAR XL as specified in the June 2024 datasheet: integrated LN2 dewar in closed cabinet, industrial reel-to-reel drive (coils up to 800 mm OD), 21-sensor contactless Ic measurement at 0-120 mT. Inkjet marking option not counted.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 77000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Tape is measured in the integrated liquid-nitrogen dewar at liquid-nitrogen temperature (77 K, the temperature THEVA states for the same XL platform in its XL-HF variant; single stated temperature, lo = hi).",
+       "value_as_printed": "liquid nitrogen temperature",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list; General requirements, Cryogenics",
+       "quote": "Contactless technique at liquid nitrogen temperature ... Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest (and only) measurement temperature: liquid nitrogen, 77 K.",
+       "value_as_printed": "liquid nitrogen temperature",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 120,
+         "unit": "mT"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Magnetic field applied at the tape during the contactless Ic scan.",
+       "value_as_printed": "0 – 120 mT",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Measurement specs",
+       "quote": "Magnetic field 0 – 120 mT"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The tape runs through an integrated LN2 dewar at slight overpressure above atmosphere inside a closed cabinet; there is no evacuated sample space.",
+       "value_as_printed": "Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Integrated Dewar in closed cabinet configuration ... Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space; the measurement dewar is an LN2 bath above atmospheric pressure.",
+       "value_as_printed": "0.05 MPa overpressure above atm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Integrated dewar in a closed cabinet; the complete technical specification lists no window or optical port to the tape.",
+       "value_as_printed": "closed cabinet",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Integrated Dewar in closed cabinet configuration"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The critical current is measured contactlessly (magnetic sensor array); no electrical contacts to the tape are made.",
+       "value_as_printed": "Contactless technique",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "electrical.current_leads.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No transport-current leads: Ic is determined by a non-contact magnetic method, so no current is driven through the tape.",
+       "value_as_printed": "Contactless technique",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 800,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Largest tape storage coil (reel) accepted: 800 mm outer diameter.",
+       "value_as_printed": "800 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. coil outer diameter 800 mm"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 20,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Usable length along the reel axis: maximum core width 20 mm.",
+       "value_as_printed": "20 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. core width 20 mm"
+      },
+      {
+       "key": "sample.width.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 12,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum HTS tape width 12 mm (max. thickness 200 um).",
+       "value_as_printed": "12 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, HTS tape specs",
+       "quote": "Max. thickness 200 μm Max. width 12 mm"
+      },
+      {
+       "key": "sample.mass.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 50,
+         "unit": "kg"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum tape weight on the storage coil 50 kg.",
+       "value_as_printed": "50 kg",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. tape weight 50 kg"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Requires a liquid-nitrogen supply for the integrated measurement dewar.",
+       "value_as_printed": "Liquid nitrogen",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Liquid nitrogen is the only cryogen used/held (tape immersed in LN2 in the integrated dewar).",
+       "value_as_printed": "Liquid nitrogen",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      }
+     ]
+    },
+    {
+     "id": "theva_tapestar_xl_hf",
+     "name": "TAPESTAR XL-HF (0-1000 mT field), standard tape drive",
+     "configuration_basis": "Standard TAPESTAR XL-HF as specified in the June 2024 datasheet: same platform as XL with magnetic field 0-1000 mT at the tape at 77 K. Inkjet marking option not counted.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 77000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Tape is measured in the integrated liquid-nitrogen dewar at liquid-nitrogen temperature; THEVA states 77 K for TAPESTAR XL-HF measurements (single stated temperature, lo = hi).",
+       "value_as_printed": "@ 77 K",
+       "source_url": "https://www.theva.com/products/",
+       "document_title": "Products - TAPESTAR measurement systems (THEVA product page)",
+       "location": "TAPESTAR section, new features",
+       "quote": "Tapestar ™ XL-HF for measurements up to 1 T @ 77 K"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest (and only) measurement temperature: liquid nitrogen, 77 K.",
+       "value_as_printed": "liquid nitrogen temperature",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 1000,
+         "unit": "mT"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Magnetic field applied at the tape during the contactless Ic scan.",
+       "value_as_printed": "0 – 1000 mT",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Measurement specs",
+       "quote": "Magnetic field 0 – 1000 mT"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The tape runs through an integrated LN2 dewar at slight overpressure above atmosphere inside a closed cabinet; there is no evacuated sample space.",
+       "value_as_printed": "Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Integrated Dewar in closed cabinet configuration ... Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No evacuated sample space; the measurement dewar is an LN2 bath above atmospheric pressure.",
+       "value_as_printed": "0.05 MPa overpressure above atm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Integrated dewar in a closed cabinet; the complete technical specification lists no window or optical port to the tape.",
+       "value_as_printed": "closed cabinet",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Integrated Dewar in closed cabinet configuration"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The critical current is measured contactlessly (magnetic sensor array); no electrical contacts to the tape are made.",
+       "value_as_printed": "Contactless technique",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "electrical.current_leads.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No transport-current leads: Ic is determined by a non-contact magnetic method, so no current is driven through the tape.",
+       "value_as_printed": "Contactless technique",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Feature list",
+       "quote": "Contactless technique at liquid nitrogen temperature"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 800,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Largest tape storage coil (reel) accepted: 800 mm outer diameter.",
+       "value_as_printed": "800 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. coil outer diameter 800 mm"
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 20,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Usable length along the reel axis: maximum core width 20 mm.",
+       "value_as_printed": "20 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. core width 20 mm"
+      },
+      {
+       "key": "sample.width.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 12,
+         "unit": "mm"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum HTS tape width 12 mm (max. thickness 200 um).",
+       "value_as_printed": "12 mm",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, HTS tape specs",
+       "quote": "Max. thickness 200 μm Max. width 12 mm"
+      },
+      {
+       "key": "sample.mass.max",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 50,
+         "unit": "kg"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Maximum tape weight on the storage coil 50 kg.",
+       "value_as_printed": "50 kg",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "Technical specifications, Storage coil dimensions and mounting",
+       "quote": "Max. tape weight 50 kg"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Requires a liquid-nitrogen supply for the integrated measurement dewar.",
+       "value_as_printed": "Liquid nitrogen",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Liquid nitrogen is the only cryogen used/held (tape immersed in LN2 in the integrated dewar).",
+       "value_as_printed": "Liquid nitrogen",
+       "source_url": "https://www.theva.de/wp-content/uploads/2024/06/TAPESTAR-XL-HF-Datasheet-240610.pdf",
+       "document_title": "TAPESTAR XL-HF datasheet, June 2024 (THEVA Dünnschichttechnik GmbH)",
+       "location": "General requirements, Cryogenics",
+       "quote": "Cryogenics Liquid nitrogen @ 0.05 MPa (0.5 bar) overpressure above atm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "micromeritics_3flex",
+   "manufacturer": "Micromeritics Instrument Corporation",
+   "model": "3Flex 3-port surface characterization (physisorption) analyzer",
+   "family": "gas-sorption analyzer with LN2 analysis dewar or closed-cycle GM cryostat",
+   "description": "Three-port volumetric gas-sorption analyzer used for hydrogen-storage material isotherms and porosity; samples in evacuated sample tubes either immersed in a 3.2 L LN2 analysis dewar (77 K, >70 h hold) or held by the Cryostat I closed-cycle GM accessory (25-350 K, ±0.005 K).",
+   "documents": [
+    {
+     "title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+     "url": "https://downloads.micromeritics.com/Brochures/3flex.pdf"
+    },
+    {
+     "title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+     "url": "https://micromeritics.com/products/3flex/"
+    }
+   ],
+   "configurations": [
+    {
+     "id": "micromeritics_3flex_cryostat_i",
+     "name": "3Flex physisorption with Cryostat I closed-cycle GM accessory",
+     "configuration_basis": "3Flex physisorption analyzer with the Cryostat I single-stage GM cryocooler accessory installed in place of the LN2 analysis dewar (25-350 K). Chiller Dewar, ISO Controller and chemisorption options not installed.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 25000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 350000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Sample temperature range with the Cryostat I closed-cycle GM accessory installed: 25-350 K.",
+       "value_as_printed": "25 to 350 K",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "Cryostat I Single-Stage Cryogenic Refrigerator Based on the Gifford-McMahon Principle ... Temperature Range 25 to 350 K"
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 25000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest sample temperature with Cryostat I: 25 K, reached from ambient in 60 minutes.",
+       "value_as_printed": "25 K",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "Temperature Range 25 to 350 K ... Cool Down Time to Stated Minimum from Ambient 60 minutes"
+      },
+      {
+       "key": "temperature.stability",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 5,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cryostat I temperature stability ±0.005 K.",
+       "value_as_printed": "±0.005 K",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "Temperature Stability ±0.005 K"
+      },
+      {
+       "key": "cooldown_time.max",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 3600,
+         "unit": "s"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cool-down from ambient to the stated minimum temperature in 60 minutes.",
+       "value_as_printed": "60 minutes",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "Cool Down Time to Stated Minimum from Ambient 60 minutes"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Cryostat I is a closed-cycle GM cryocooler that eliminates the need for liquid nitrogen.",
+       "value_as_printed": "eliminates the need for liquid nitrogen",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "The Cryostat I eliminates the need for liquid nitrogen and can obtain temperatures below the 77 K of liquid nitrogen."
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": []
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "No liquid cryogen used or held with Cryostat I (closed-cycle helium); empty set.",
+       "value_as_printed": "closed-cycle helium",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "The Micromeritics Cryostat I is a closed-cycle cryocooler based on the Gifford-McMahon (GM) refrigeration principle. It uses helium gas from a helium compressor to generate cryogenic temperatures."
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete 3Flex specification (analysis ranges, ports, dosing/evacuation, pump, transducers, cryogen dewar, furnace, MFC; accessories Chiller Dewar, ISO Controller, Cryostat I) contains no magnet.",
+       "value_as_printed": "no magnet in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Analysis Range: 1.3 x 10-9 to 1.0 P/P0 / 1 x 10-6 to 900 torr ... Dosing and Evacuation Control: Proprietary Servo valve ... Roughing Pump: 4 stage diaphragm"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The sample tube is evacuated and dosed by the servo-controlled manifold; isotherm data collection starts in the 1e-6 Torr range.",
+       "value_as_printed": "Isotherm data collection begins in the 10-6 torr range",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Features list",
+       "quote": "Isotherm data collection begins in the 10-6 torr range (10-9 relative pressure range for N2)"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": "0.000001",
+         "unit": "Torr"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest pressure of the specified analysis range, 1e-6 Torr, at the evacuated sample (an ultimate-vacuum figure is not separately stated).",
+       "value_as_printed": "1 x 10-6 to 900 torr",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table, Analysis Range",
+       "quote": "Analysis Range: 1.3 x 10-9 to 1.0 P/P0 / 1 x 10-6 to 900 torr"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The sample sits in a sample tube immersed in the analysis dewar/cryostat; the complete specification lists no optical port or window.",
+       "value_as_printed": "no optical port in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Cryogen Dewar: 3.2 L, greater than 70 hrs virtually unlimited with refill during analysis ... Cryogen Free Space Control: Isothermal Jacket"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Gas-sorption analyzer: the specification lists analysis ports, gas inlets and pressure transducers but no electrical connections to the sample.",
+       "value_as_printed": "no sample wiring in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Parallel physisorption analysis ports: 3Flex: 3 ... Adsorptive Gas Inlets: 6 ... Pressure Transducer System: up to 12"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Not documented in the sources read (3Flex product page specifications/accessories, 3Flex brochure): sample-tube stem/bulb dimensions are not stated; the Flex Series Operator Manual (>10 MB) could not be read.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Not documented in the sources read (3Flex product page, 3Flex brochure): sample-tube length / usable dewar immersion height is not stated.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "id": "micromeritics_3flex_ln2_dewar",
+     "name": "3Flex physisorption with standard 3.2 L LN2 analysis dewar",
+     "configuration_basis": "Standard 3Flex physisorption analyzer with its 3.2 L cryogen (LN2) analysis dewar and isothermal jacket (77 K). Cryostat I, Chiller Dewar, ISO Controller and chemisorption options not installed.",
+     "capabilities": [
+      {
+       "key": "temperature.range",
+       "value": {
+        "kind": "range",
+        "lo": {
+         "value": 77000,
+         "unit": "mK"
+        },
+        "hi": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Standard configuration: sample tube immersed in the liquid-nitrogen analysis dewar at the LN2 temperature of 77 K stated by Micromeritics (single stated temperature, lo = hi).",
+       "value_as_printed": "77 K of liquid nitrogen",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I (statement of LN2 temperature)",
+       "quote": "The Cryostat I eliminates the need for liquid nitrogen and can obtain temperatures below the 77 K of liquid nitrogen."
+      },
+      {
+       "key": "temperature.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": 77000,
+         "unit": "mK"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest (and only) temperature of the LN2-dewar configuration, 77 K.",
+       "value_as_printed": "77 K",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "can obtain temperatures below the 77 K of liquid nitrogen."
+      },
+      {
+       "key": "holding_time.static",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": 70,
+         "unit": "h"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "3.2 L analysis dewar holds LN2 for more than 70 h without refill (stored as 70 h).",
+       "value_as_printed": "greater than 70 hrs",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table, Cryogen Dewar",
+       "quote": "Cryogen Dewar: 3.2 L, greater than 70 hrs virtually unlimited with refill during analysis"
+      },
+      {
+       "key": "cryogen.dewar_volume",
+       "value": {
+        "kind": "max",
+        "q": {
+         "value": "3.2",
+         "unit": "L"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Analysis cryogen dewar volume 3.2 L.",
+       "value_as_printed": "3.2 L",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table, Cryogen Dewar",
+       "quote": "Cryogen Dewar: 3.2 L, greater than 70 hrs virtually unlimited with refill during analysis"
+      },
+      {
+       "key": "cryogen.cryogen_free",
+       "value": {
+        "kind": "flag",
+        "b": false
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Standard analysis uses a liquid-nitrogen dewar (Cryostat I not installed).",
+       "value_as_printed": "Cryogen Dewar 3.2 L",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table, Cryogen Dewar",
+       "quote": "Cryogen Dewar: 3.2 L, greater than 70 hrs virtually unlimited with refill during analysis"
+      },
+      {
+       "key": "cryogen.type",
+       "value": {
+        "kind": "set",
+        "xs": [
+         "liquid_nitrogen"
+        ]
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Liquid nitrogen held in the analysis dewar (77 K physisorption).",
+       "value_as_printed": "liquid nitrogen",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Accessories, Cryostat I",
+       "quote": "The Cryostat I eliminates the need for liquid nitrogen and can obtain temperatures below the 77 K of liquid nitrogen."
+      },
+      {
+       "key": "magnetic_field.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The complete 3Flex specification (analysis ranges, ports, dosing/evacuation, pump, transducers, cryogen dewar, furnace, MFC; accessories Chiller Dewar, ISO Controller, Cryostat I) contains no magnet.",
+       "value_as_printed": "no magnet in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Analysis Range: 1.3 x 10-9 to 1.0 P/P0 / 1 x 10-6 to 900 torr ... Dosing and Evacuation Control: Proprietary Servo valve ... Roughing Pump: 4 stage diaphragm"
+      },
+      {
+       "key": "vacuum.available",
+       "value": {
+        "kind": "flag",
+        "b": true
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The sample tube is evacuated and dosed by the servo-controlled manifold; isotherm data collection starts in the 1e-6 Torr range.",
+       "value_as_printed": "Isotherm data collection begins in the 10-6 torr range",
+       "source_url": "https://downloads.micromeritics.com/Brochures/3flex.pdf",
+       "document_title": "3Flex brochure - surface characterization analyzer (Micromeritics Instrument Corporation)",
+       "location": "Features list",
+       "quote": "Isotherm data collection begins in the 10-6 torr range (10-9 relative pressure range for N2)"
+      },
+      {
+       "key": "pressure.base",
+       "value": {
+        "kind": "min",
+        "q": {
+         "value": "0.000001",
+         "unit": "Torr"
+        }
+       },
+       "install": "installed",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Lowest pressure of the specified analysis range, 1e-6 Torr, at the evacuated sample (an ultimate-vacuum figure is not separately stated).",
+       "value_as_printed": "1 x 10-6 to 900 torr",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table, Analysis Range",
+       "quote": "Analysis Range: 1.3 x 10-9 to 1.0 P/P0 / 1 x 10-6 to 900 torr"
+      },
+      {
+       "key": "optical_access",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "The sample sits in a sample tube immersed in the analysis dewar/cryostat; the complete specification lists no optical port or window.",
+       "value_as_printed": "no optical port in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Cryogen Dewar: 3.2 L, greater than 70 hrs virtually unlimited with refill during analysis ... Cryogen Free Space Control: Isothermal Jacket"
+      },
+      {
+       "key": "electrical.sample_connections",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "not_available",
+       "evidence_status": "manufacturer_specification",
+       "claim": "Gas-sorption analyzer: the specification lists analysis ports, gas inlets and pressure transducers but no electrical connections to the sample.",
+       "value_as_printed": "no sample wiring in specification",
+       "source_url": "https://micromeritics.com/products/3flex/",
+       "document_title": "3Flex (Micromeritics product page, Specifications and Accessories)",
+       "location": "Specifications table",
+       "quote": "Parallel physisorption analysis ports: 3Flex: 3 ... Adsorptive Gas Inlets: 6 ... Pressure Transducer System: up to 12"
+      },
+      {
+       "key": "sample.diameter.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Not documented in the sources read (3Flex product page specifications/accessories, 3Flex brochure): sample-tube stem/bulb dimensions are not stated; the Flex Series Operator Manual (>10 MB) could not be read.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      },
+      {
+       "key": "sample.height.max",
+       "value": {
+        "kind": "unknown"
+       },
+       "install": "unknown",
+       "evidence_status": "unknown",
+       "claim": "Not documented in the sources read (3Flex product page, 3Flex brochure): sample-tube length / usable dewar immersion height is not stated.",
+       "value_as_printed": "",
+       "source_url": "",
+       "document_title": "",
+       "location": "",
+       "quote": ""
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "not_found": [
+  {
+   "configuration_id": "micromeritics_3flex_cryostat_i",
+   "key": "sample.diameter.max",
+   "searched": "3Flex product page (Specifications, Accessories), 3Flex brochure PDF, 3Flex support page document list; the Flex Series Operator Manual PDF exceeded the 10 MB fetch limit. Sample-tube stem/bulb diameter not stated."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_cryostat_i",
+   "key": "sample.height.max",
+   "searched": "3Flex product page, 3Flex brochure, 3Flex support page; sample-tube length / cryostat sample-space height not stated."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_ln2_dewar",
+   "key": "sample.diameter.max",
+   "searched": "3Flex product page, 3Flex brochure, 3Flex support page; sample-tube dimensions not stated (operator manual too large to fetch)."
+  },
+  {
+   "configuration_id": "micromeritics_3flex_ln2_dewar",
+   "key": "sample.height.max",
+   "searched": "3Flex product page, 3Flex brochure, 3Flex support page; sample-tube length / dewar immersion depth not stated."
+  }
+ ],
+ "notes": "8 configurations, 6 machines, 4 manufacturers (Bluefors Cryocooler Technologies/Cryomech, Stirling Cryogenics, THEVA, Micromeritics). Research constraint: the Tavily quota was exhausted and the shared WebSearch budget was used up when this task started, so machines were chosen from manufacturer sites reachable by direct WebFetch of known product URLs and their linked datasheets (PDFs read from the fetched copies). Categories covered: LN2-bath Ic measurement of HTS tape (TAPESTAR XL / XL-HF), SFCL / HTS-cable LN2 re-liquefaction and sub-cooling and 80 K zero-boil-off cooling (SPC-1, AL600), 20 K helium-loop and LH2 / hydrogen-liquefaction cooling (SPC-1T, AL630), hydrogen-sorption isotherms at 77 K and 25-350 K (3Flex). Not covered: LH2/LNG storage tanks (Cryofab CLH 100/250 LH2 container datasheets give net capacity 100/250 L, NER 2.0/1.6 %, MAWP 345 kPa (50 psi) but no storage temperature, so they were not used), cryogenic load frames, LNG flow-calibration rigs, variable-temperature high-field Ic facilities. Conventions: absences use install=not_available with value kind unknown (as in sibling industry files); bare cryocoolers document the cold-end interface diameter (AL600/AL630 127 mm) and sourced absences for sample height, vacuum, optics, wiring and magnet; cryogenerators without a sample interface (SPC-1, SPC-1T) record sample size as not_available. Conservative choices: AL600/AL630 values are for 60 Hz supply (50 Hz: 580 W at 80 K, 90 W at 20 K); AL600 temperature.range is 25-80 K and AL630 17-40 K because the published capacity data stop there (point requirements above those temperatures will read DOES_NOT_MEET although the coolers may physically run warmer). SPC-1 cooling power at 77/80 K and SPC-1T at 20 K are the lower ends of the printed ranges ('400 W to 2,7 kW at temperatures of 50-160 K', '50-175 W @ 20-60 K'), not curve readings. pressure.max_working for SPC-1/SPC-1T are gauge values (barg). TAPESTAR temperature 77 K: THEVA's product page states '@ 77 K' for the XL-HF; the XL/XL-HF datasheets say 'liquid nitrogen temperature' with LN2 at 0.05 MPa overpressure (the bath may be slightly above 77 K). 3Flex pressure.base is the lowest pressure of the specified analysis range (1e-6 Torr), not a stated ultimate vacuum. Accessed 2026-11-01."
+}

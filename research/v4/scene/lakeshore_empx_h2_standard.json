@@ -1,0 +1,53 @@
+{
+  "configuration_id": "lakeshore_empx_h2_standard",
+  "archetype": "probe_station",
+  "outer": {
+    "shape": "box_on_frame",
+    "height": {"value": 292, "unit": "mm", "location": "vacuum chamber only (stated 'tall'); overall station/frame height is not published", "quote": "Overall size: 191 mm (7.5 in) × 340 mm (13.4 in) × 292 mm (11.5 in) tall", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    "width_or_diameter": {"value": 914, "unit": "mm", "location": "station footprint width (excludes electronics console)", "quote": "Station footprint: 914 mm (36 in) width × 660 mm (26 in) depth (does not include console)", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    "depth": {"value": 660, "unit": "mm", "location": "station footprint depth (excludes electronics console)", "quote": "Station footprint: 914 mm (36 in) width × 660 mm (26 in) depth (does not include console)", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    "color_note": "Vacuum chamber and radiation shields are electroless nickel-plated aluminum ('Material: Electroless nickel-plated aluminum'); chamber 191 mm × 340 mm × 292 mm tall sits on a 914 × 660 mm station base between the poles of a horizontal electromagnet."
+  },
+  "stages": [
+    {"name": "sample stage (LHe base)", "temperature_K": 4.5, "quote": "4.5 K | 5 K to 420 K | Up to 4 probe arms installed", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"name": "cooled probe mounts (thermally anchored to sample stage)", "temperature_K": 20, "quote": "Cooled probe mounts: <20 K with sample at base temperature", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"name": "sample stage (LN2 operation)", "temperature_K": 80, "quote": "Nitrogen at 80 K: <0.5 liquid L/h", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"}
+  ],
+  "sample_space": {
+    "position": "inside_chamber",
+    "shape": "flat 25.4 mm diameter sample holder inside a partial inner radiation shield and a second shield with top viewport; probes approach at 30 degrees",
+    "description": "Removable grounded sample holder SH-1.00-G-EM on the sample stage of a 3-stage flow cryostat (sample + 2 radiation shields); all 4 probes land within a 25.4 mm circle; radiation-shield sample access opening 59 mm × 157 mm; chamber access opening 133.4 mm × 243.2 mm. Field is horizontal, parallel to the sample plane.",
+    "diameter_or_width": {"value": 25.4, "unit": "mm", "location": "maximum sample diameter on stage", "quote": "Maximum sample size: 25.4 mm (1 in) diameter", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"}
+  },
+  "wiring": [
+    {"kind": "probe_arm", "count": 4, "from": "chamber wall feedthroughs (arms thermally anchored to radiation shield)", "to": "probe tips on sample, 30 degree approach", "quote": "Maximum probes: 4 (see orientation diagram)", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"kind": "thermometer_lead", "count": 4, "from": "Model 336 temperature controller", "to": "sample stage (Cernox), radiation shield (diode), 2nd radiation shield (diode), one probe arm (diode)", "quote": "Sample stage sensor/heater power: CX-1050-CU-HT-1.4M/100 W ... Probe arm: DT-670C-SD silicon diode (on one probe arm)/no active control", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"kind": "heater_lead", "count": 3, "from": "Model 336 temperature controller", "to": "sample stage, radiation shield, 2nd radiation shield (100 W each)", "quote": "Radiation shield sensor/heater power: DT-670C-CU silicon diode/100 W | 2nd radiation shield sensor/heater power: DT-670C-CU silicon diode/100 W", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"}
+  ],
+  "windows": {
+    "count": 1,
+    "axis": "top",
+    "diameter_mm": 63.5,
+    "quote": "Viewport: 63.5 mm (2.50 in) diameter fused quartz | Viewing area: 54.0 mm (2.13 in) diameter",
+    "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"
+  },
+  "moving_parts": [
+    {"part": "gas_flow", "rate": "LHe 1 to 2 liquid L/h at 5 K; LN2 <0.5 liquid L/h at 80 K", "quote": "Helium at 5 K: 1 to 2 liquid L/h | Nitrogen at 80 K: <0.5 liquid L/h", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"part": "probe_arm", "rate": "manual micromanipulator landing; <5 um tip drift over full field ramp", "quote": "Landed probe tip movement: <5 µm full field ramp", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"part": "magnet_ramp", "rate": "+/-0.6 T electromagnet, Model 643 supply, closed-loop via Hall probe", "quote": "Field capability: ±6.0 kOe (±0.6 T) | Field control: Hall probe installed in station for closed-loop control", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"},
+    {"part": "turbo_pump", "rate": "TPS-FRG turbo pumping station; 30 min to <1e-3 Torr", "quote": "Standard TPS-FRG | Pump down time | 30 min (to reach <1 × 10 -3 Torr)", "source_url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station"}
+  ],
+  "cryogen": "lhe_flow",
+  "not_found": [
+    "outer.height (overall station incl. frame/magnet; only vacuum chamber 292 mm tall and footprint published)",
+    "stages[].diameter_mm (sample stage / radiation shield plate diameters)",
+    "sample_space.height (clearance above sample)",
+    "radiation shield temperatures (only sensor types published, no K values)",
+    "electrical.coax_lines count (probe type mix is per-order; no fixed coax count)",
+    "dc line count",
+    "electromagnet pole gap and dimensions",
+    "system weight",
+    "probe arm travel ranges"
+  ],
+  "notes": "Standard configuration (PS-LT and PS-360-EMPX NOT fitted). 3-stage flow cryostat: 'Type: 3-stage flow cryostat (sample + 2 radiation shields)'; 'Partial inner radiation shield; second radiation shield with top viewport surrounds sample'. Cooling via 'Large bore helium/nitrogen transfer line with flow control 12.7 mm (0.5 in) top port withdrawal'. Chamber: 'Chamber access: 133.4 mm (5.25 in) × 243.2 mm (9.58 in) opening'; radiation shield 'Sample access: 59 mm (2.3 in) × 157 mm (6.2 in)'; shield viewport '50 mm (1.97 in) diameter IR absorbing window' under the 63.5 mm quartz chamber viewport. Probes: 'the EMPX-H2 probes are configured at 30° angles for probing wafers up to 25 mm (1 in) in diameter' (overview page https://www.lakeshore.com/products/categories/overview/material-characterization-products/cryogenic-probe-stations/model-empx-h2-cryogenic-probe-station). Field horizontal, parallel to sample plane; homogeneity '0.6% over 10 mm diameter; 2.6% over 25 mm diameter'. Vacuum <1e-5 Torr at He base; ports NW40 pump, NW25 gauge, 0.25 in NPT gas. Cycle: 0.5 h pump, 1.25 h cooldown, 1.25 h warmup. Vibration <300 nm. cryogen set to lhe_flow; LN2 flow is the alternative mode through the same transfer line (catalog cryogen.type lists both). Probe electrical types (DC/RF, microwave to 67 GHz, fiber optic) are per-order, so no fixed coax/DC/fibre count is published. Cache snapshots: research/v5/cache/568000faa0b7de77.txt (spec), 9c04e2ba479d8cb2.txt (overview), e2c226febe346934.txt (family table)."
+}

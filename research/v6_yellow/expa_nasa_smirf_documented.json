@@ -1,0 +1,29 @@
+{
+  "configuration_id": "expa_nasa_smirf_documented",
+  "machine_file": "data/cryostats/expansion_a_nasa_smirf.json",
+  "rows": [
+    {
+      "key": "module.guarded_heat_flow_calorimetry",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.nasa.gov/centers-and-facilities/glenn/creek-road-cryogenics-complex/",
+      "document_title": "NASA Creek Road Cryogenics Complex",
+      "location": "Overview paragraph and '20K to 90K Calorimeter Test Bed' section",
+      "quote": "It consists of four separate test cells: the Small Multi-Purpose Research Facility (SMiRF), Cryogenics Components Lab 7 (CCL-7), Cryomotor Test Bed, and 20K to 90K Calorimeter Test Bed.",
+      "value_as_printed": "four separate test cells ... SMiRF ... and 20K to 90K Calorimeter Test Bed",
+      "reasoning": "NASA's own complex page lists the guarded calorimeter as its own test cell, separate from SMiRF. That page gives the guarded-calorimetry features to the 20K to 90K Calorimeter Test Bed: 'Warm and cold guards used as boundary conditions' and 'Calibrated conduction rods used to obtain the heat transfer rate'. SMiRF is described separately: a large vacuum chamber with a programmable background shroud, used for tank-scale LH2 work (LAD outflow, chill/fill, zero boil-off, X-33 insulation boil-off tests). This configuration records the Hartwig LH2 LAD outflow setup in SMiRF. So the guarded heat-flow calorimeter the experiment needs is a different instrument in a different test cell, not a SMiRF function."
+    },
+    {
+      "key": "temperature.cold_boundary.range",
+      "result": "still_unknown",
+      "reasoning": "Searched the record's three documents: the NASA SMiRF SETMO page, the Creek Road Cryogenics Complex page and the Hartwig et al. LH2 LAD outflow NTRS paper. I also checked the Chato et al. calorimeter NTRS record (abstract only). The controlled 20 K cold guard belongs to the separate 20K to 90K Calorimeter Test Bed, not to SMiRF. In SMiRF insulation boil-off tests, the cold side is the tank's cryogen; it is not a controlled guarded boundary. No SMiRF source gives a controlled cold-boundary range. The 20.3 K LAD fluid point is already recorded as temperature.range and is not a calorimeter boundary. The source does not positively rule out every possible cold boundary in a SMiRF tank test, so I did not record this numeric key as an absence. The pairing is already resolved by the documented absence of module.guarded_heat_flow_calorimetry."
+    },
+    {
+      "key": "temperature.warm_boundary.range",
+      "result": "still_unknown",
+      "reasoning": "The only related SMiRF figure is on the Creek Road page: 'A programmable thermal shroud system can be used inside the SMiRF chamber to control background temperatures over a temperature range of 200°R to 650°R.' That is a background-shroud range, an option that limits test-article size, and is not shown as part of this LAD outflow configuration. It is not the warm guard of a guarded insulation calorimeter; that guard belongs to the separate 20K to 90K Calorimeter Test Bed. Also, 200°R and 650°R convert to repeating decimals (111.1... K and 361.1... K), so they cannot be written as exact decimal strings. I did not encode it. No other SMiRF source gives a warm-boundary range. The pairing is already resolved by the documented absence of module.guarded_heat_flow_calorimetry."
+    }
+  ]
+}

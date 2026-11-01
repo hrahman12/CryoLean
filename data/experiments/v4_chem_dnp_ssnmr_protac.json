@@ -1,0 +1,128 @@
+{
+ "id": "chem_dnp_ssnmr_protac",
+ "name": "DNP-enhanced magic-angle-spinning solid-state NMR of an amorphous drug at 100 K, 9.39 T and 264 GHz microwave irradiation",
+ "plain_name": "Boost a magnetic resonance signal by cooling a drug powder to 100 K",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "An amorphous PROTAC drug substance is impregnated with a 12 mM AMUPol radical solution, packed into a 3.2 mm sapphire rotor and measured by dynamic-nuclear-polarisation solid-state NMR at 9.39 T with the sample at 100 K, 10 kHz magic-angle spinning and 264 GHz microwave irradiation from a klystron. The low temperature is what makes the DNP signal enhancement, and hence natural-abundance structure determination of the amorphous drug, possible.",
+ "keywords": [
+  "Boost a magnetic resonance signal by cooling a drug powder to 100 K",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "D. Torodii, J. B. Holmes, M. Cordova, et al., Determination of key functional structures of an amorphous VHL-based SMARCA2 PROTAC, Nature Communications 16:9694 (2025)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12583731/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "H. Karlsson, A. C. Pinon, L. Karlson, et al., Position-Specific Substitution in Cellulose Ethers Studied by DNP Enhanced Solid-State NMR Spectroscopy, Magnetic Resonance in Chemistry 63(8):560-568 (2025) - second procedure on a pharmaceutical excipient (400 MHz Bruker Ascend DNP magnet, 263 GHz gyrotron, ~104 K, 3.2 mm LTMAS)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12223920/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "264 GHz klystron",
+  "3.2 mm sapphire rotor",
+  "400-MHz Bruker Ascend DNP magnet",
+  "263-GHz gyrotron and a 3.2-mm LTMAS DNP probe"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 100000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The DNP experiments are run with the sample temperature set to 100 K.",
+   "evidence_ids": [
+    "v4e_chem_dnp_ssnmr_protac_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 100000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "DNP enhancement requires the sample to be cooled to about 100 K; a machine limited to higher temperatures gives no usable enhancement.",
+   "evidence_ids": [
+    "v4e_chem_dnp_ssnmr_protac_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 9390,
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The spectrometer operates at 9.39 T (9390 mT); the cold sample space must sit inside a magnet of at least that field.",
+   "evidence_ids": [
+    "v4e_chem_dnp_ssnmr_protac_2"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3200,
+     "unit": "um"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The sample is packed in a 3.2 mm (3200 um) outer-diameter sapphire rotor, which must fit the machine's cold sample space.",
+   "evidence_ids": [
+    "v4e_chem_dnp_ssnmr_protac_3"
+   ],
+   "conditions": [],
+   "key": "sample.diameter.max"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 264,
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Polarisation transfer needs 264 GHz microwaves delivered to the cold sample through a corrugated waveguide, so the machine must pass that frequency into the sample space.",
+   "evidence_ids": [
+    "v4e_chem_dnp_ssnmr_protac_4"
+   ],
+   "conditions": [],
+   "key": "rf.frequency.range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

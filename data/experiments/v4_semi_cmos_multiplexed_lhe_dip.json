@@ -1,0 +1,95 @@
+{
+ "id": "semi_cmos_multiplexed_lhe_dip",
+ "name": "Multiplexed DC (Kelvin-sense) characterization of thousands of 22 nm UTB-SOI transistors at 4.2 K on a liquid-helium dipping probe",
+ "plain_name": "Screen thousands of chip transistors at once by dipping the chip in liquid helium",
+ "industry": "semiconductors_and_electronics",
+ "description": "Test dies with on-die 1-to-1024 multiplexers are wire-bonded (50 bonds) to a daughter board that plugs into a multi-pin cryogenic socket on a dipping probe immersed in a liquid-helium bath (4.2 K); three SMUs with force/sense lines, DAC bias rails and kHz digital control over twisted-pair looms acquire Id-Vgs data for BSIM-IMG model cards.",
+ "keywords": [
+  "Screen thousands of chip transistors at once by dipping the chip in liquid helium",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+   "url": "https://arxiv.org/abs/2404.11451",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "liquid helium dipping probe",
+  "cryogenic wiring looms (twisted pairs)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 4200,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All devices are characterized isothermally at the liquid-helium temperature of 4.2 K.",
+   "evidence_ids": [
+    "v4e_semi_cmos_multiplexed_lhe_dip_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The die is connected through a multi-pin socket for bias, digital and analog lines.",
+   "evidence_ids": [
+    "v4e_semi_cmos_multiplexed_lhe_dip_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 48
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the reported wiring was two looms of 12 twisted pairs (48 conductors) for force/sense, bias and digital lines.",
+   "evidence_ids": [
+    "v4e_semi_cmos_multiplexed_lhe_dip_2"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source immersed the sample in a liquid-helium bath; a 4 K stage of another cryostat can substitute.",
+   "evidence_ids": [
+    "v4e_semi_cmos_multiplexed_lhe_dip_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

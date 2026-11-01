@@ -1,0 +1,64 @@
+{
+ "id": "auto_iso16750_temperature_cycling",
+ "name": "ISO 16750-4:2023 clause 5.3.1.2 temperature cycling with specified change rate for small/lightweight DUT (Tmin to Tmax, 30 cycles, powered functional checks), operating-temperature code C (-40 C to 65 C)",
+ "plain_name": "Cycle a powered car electronics module 30 times between -40 C and 65 C",
+ "industry": "automotive_and_transportation",
+ "description": "Temperature cycling of small, lightweight automotive E/E components per IEC 60068-2-14 Test Nb with the ISO 16750-4 profile: RT to Tmin in 60 min, 90 min at Tmin, Tmin to RT in 60 min, RT to Tmax in 90 min, 110 min at Tmax, Tmax to RT in 70 min; 30 cycles; the DUT is operated (modes 3.3/4.3 and 3.4/4.4) with functional tests at the end of the Tmin and Tmax dwells. Operating-temperature code C (Tmin -40 C, Tmax 65 C) is used here.",
+ "keywords": [
+  "Cycle a powered car electronics module 30 times between -40 C and 65 C",
+  "automotive_and_transportation"
+ ],
+ "sources": [
+  {
+   "citation": "ISO 16750-4:2023, Road vehicles - Environmental conditions and testing for electrical and electronic equipment - Part 4: Climatic loads, 4th ed., ISO (preview pages via iTeh Standards)",
+   "url": "https://cdn.standards.iteh.ai/samples/77580/566a2608296348ef944168a85dc51bab/ISO-16750-4-2023.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 338150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Code C sets Tmin = -40 C (233.15 K) and Tmax = 65 C (338.15 K); the chamber must cover both dwell temperatures.",
+   "evidence_ids": [
+    "v4e_auto_iso16750_temperature_cycling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The DUT is electrically operated and functionally tested at the end of the Tmin and Tmax dwells, so it must be wired through the chamber.",
+   "evidence_ids": [
+    "v4e_auto_iso16750_temperature_cycling_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

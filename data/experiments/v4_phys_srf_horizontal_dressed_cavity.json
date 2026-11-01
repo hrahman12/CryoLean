@@ -1,0 +1,116 @@
+{
+ "id": "phys_srf_horizontal_dressed_cavity",
+ "name": "Horizontal high-power pulsed test of dressed 1.3 GHz nine-cell SRF cavities at 2 K with calorimetric Q0 measurement",
+ "plain_name": "Run a fully equipped accelerator cavity with high-power radio pulses at 2 K before it goes into a cryomodule",
+ "industry": "physics_and_particle_accelerators",
+ "description": "Dressed cavities (helium vessel, high-power input coupler, HOM couplers, magnetic shielding and tuner) are cooled to 2 K in a single-cavity horizontal test cryostat and driven by a klystron-based pulsed RF system; gradient, field emission and Q0 (from the heat dissipated to the helium bath, measured calorimetrically) are recorded, as at the Fermilab Horizontal Test Stand.",
+ "keywords": [
+  "Run a fully equipped accelerator cavity with high-power radio pulses at 2 K before it goes into a cryomodule",
+  "physics_and_particle_accelerators"
+ ],
+ "sources": [
+  {
+   "citation": "Horizontal SRF Cavity Testing at Fermilab (Hocker, Harms, Lunin, Sukhanov, SRF2011, TUPO055)",
+   "url": "https://proceedings.jacow.org/SRF2011/papers/tupo055.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Fermilab Horizontal Test Stand (HTS)",
+  "klystron-based 300 kW pulsed RF system"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 2000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Dressed cavities are operated at 2 K in the test cryostat.",
+   "evidence_ids": [
+    "v4e_phys_srf_horizontal_dressed_cavity_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 300000,
+     "unit": "W"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Coupler conditioning and gradient runs use pulses up to 300 kW from the klystron system.",
+   "evidence_ids": [
+    "v4e_phys_srf_horizontal_dressed_cavity_1"
+   ],
+   "conditions": [],
+   "key": "rf.power.max"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": "1.3",
+     "unit": "GHz"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Nine-cell TESLA-style cavities resonate at 1.3 GHz.",
+   "evidence_ids": [
+    "v4e_phys_srf_horizontal_dressed_cavity_2"
+   ],
+   "conditions": [],
+   "key": "rf.frequency.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Q0 is obtained calorimetrically from the heat dissipated into the helium bath.",
+   "evidence_ids": [
+    "v4e_phys_srf_horizontal_dressed_cavity_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cryostat must connect the cavity's input coupler, HOM couplers and tuner to outside RF and controls.",
+   "evidence_ids": [
+    "v4e_phys_srf_horizontal_dressed_cavity_4"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

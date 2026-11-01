@@ -1,0 +1,121 @@
+{
+ "id": "nuc_rebco_insitu_14mev_neutron",
+ "name": "In situ transport critical-current measurement of a REBCO coated-conductor bridge at 40 K during 14 MeV D-T neutron irradiation (ISIS NILE)",
+ "plain_name": "Watch a superconducting tape lose current-carrying ability while fusion neutrons hit it at 40 K",
+ "industry": "nuclear_engineering_and_fusion",
+ "description": "A 4 mm x 20 um EuBCO+Hf bridge in a custom cryostat with a 1 mm Al window is held at 40 K and biased at 115-120% of Ic (up to 7.65 A) under 14 MeV neutrons (up to 7.3e7 n cm-2 s-1); periodic I-V curves track Ic versus fluence, with 40.0-42.0 K calibration and a vacuum room-temperature anneal.",
+ "keywords": [
+  "Watch a superconducting tape lose current-carrying ability while fusion neutrons hit it at 40 K",
+  "nuclear_engineering_and_fusion"
+ ],
+ "sources": [
+  {
+   "citation": "Adams et al., The performance of REBCO coated conductor during in situ cryogenic irradiation with fusion-spectrum neutrons, Supercond. Sci. Technol. 39 (2026) 02LT01",
+   "url": "https://ora.ox.ac.uk/objects/uuid:b463ec76-d8da-4bd4-b78a-38bfcbee57fb/files/r6969z2729",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "custom NILE cryostat (ISIS Neutron and Muon Source)",
+  "Adelphi Technologies compact D-T neutron generator",
+  "Lakeshore Model 335 temperature controller",
+  "Keysight N6971a DC power supply",
+  "Keithley DMM6500 digital multimeter",
+  "Cernox temperature sensor"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 40000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "All measurements at constant 40 K.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_insitu_14mev_neutron_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 40000,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 42000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Heating-sensitivity calibration 40.0-42.0 K.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_insitu_14mev_neutron_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Transport I-V measurements during irradiation.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_insitu_14mev_neutron_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": "7.65",
+     "unit": "A"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Constant bias currents up to 7.65 A.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_insitu_14mev_neutron_3"
+   ],
+   "conditions": [],
+   "key": "electrical.current_leads.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Evacuated cryostat.",
+   "evidence_ids": [
+    "v4e_nuc_rebco_insitu_14mev_neutron_4"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

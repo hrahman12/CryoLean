@@ -1,0 +1,131 @@
+{
+  "configuration_id": "expansion_b_linkam_lts120_documented",
+  "rows": [
+    {
+      "key": "process.cryogenic_milling",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph under 'Temperature and environmental control from -40C* to 120C'",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "Linkam describes the LTS120 as a Peltier microscope stage that holds a sample on a slide and controls its temperature. It has no grinding jar or milling mechanism. The full specification list (linkam.co.uk/lts120-specifications) names only the temperature range, sample area, XY movement, slide holder, gas valves, lid, optics and sensor. Cryogenic milling is not a function of this instrument."
+    },
+    {
+      "key": "milling.frequency.range",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "This key is the vibration frequency of a grinding jar. The manufacturer describes the LTS120 as a slide-mounted Peltier microscope stage with no mill, so there is no jar to vibrate and the function does not exist on this machine. No numeric value is given."
+    },
+    {
+      "key": "milling.jar_volume",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "This key is the volume of a grinding jar. The LTS120 holds a sample on a microscope slide over a 40 mm x 40 mm Peltier element. It has no grinding jar, so the function does not exist. No numeric value is given."
+    },
+    {
+      "key": "process.freeze_drying",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "Freeze drying needs a vacuum chamber, a condenser and bulk sample shelves. Linkam describes the LTS120 as a microscope stage that controls the temperature of a sample on a slide, with gas valves for purging. It has no condenser and no listed vacuum system. Bulk freeze drying of pre-frozen fruit is not a function of this instrument."
+    },
+    {
+      "key": "condenser.temperature.min",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "This key is the freeze-dryer ice condenser temperature, and the vocabulary says never to substitute a sample or stage temperature for it. The LTS120 is a Peltier microscope stage with no freeze-dryer condenser, so the function does not exist. Its -40 C stage minimum is a sample temperature and is not used here."
+    },
+    {
+      "key": "pressure.base",
+      "result": "still_unknown",
+      "reasoning": "Searched the Linkam LTS120 features and specifications pages, Linkam LTS420 page, UCL equipment listing for LTS120E, and web search for LTS120 vacuum. Linkam lists only 'Quick-release gas valves for atmospheric control' and says 'The stage body has gas valves to enable gas purging of the sample environment.' No base pressure or vacuum rating is published. Purge valves alone do not prove the stage cannot be evacuated: other Linkam stages with purge valves accept vacuum options. So positive absence cannot be shown. The experiment is still blocked by process.freeze_drying = false."
+    },
+    {
+      "key": "temperature.cooling_rate.range",
+      "result": "value",
+      "install": "installed",
+      "value": {"kind": "range", "lo": {"value": "0.1", "unit": "K_per_min"}, "hi": {"value": "30", "unit": "K_per_min"}},
+      "value_as_printed": "0.1°C to 30°C/min",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, third paragraph",
+      "quote": "Sample temperature can be controlled from 0.1°C to 30°C/min in the range of -25°C to 120°C using the supplied WCP (Water Circulation Pump). For temperatures down to -40°C add an optional water chiller.",
+      "reasoning": "Linkam's own LTS120 page gives a controlled rate range of 0.1 to 30 C/min. A rate in C/min equals the same rate in K/min, so the range is 0.1 to 30 K/min. The specifications page agrees on the maximum ('Maximum heating / cooling rate of 30°C/min'). The experiment needs 0.017 K/s = 1.02 K/min, which falls inside this range. Caveat: the sentence ties the 0.1-30 C/min range to -25 C to 120 C with the standard pump. The configuration's optional chiller extends the floor to -40 C, but no separate rate figure is given below -25 C. The record's earlier note ('not specified on this page') referred to the specifications page. This range is from the features page."
+    },
+    {
+      "key": "module.dewpoint_control",
+      "result": "still_unknown",
+      "reasoning": "Searched the Linkam LTS120 features and specifications pages, Linkam LTS420 page, web search for LTS120 with the RH95/RHGen humidity controller, and the UCL LTS120E listing. Linkam documents only gas purge valves ('Quick-release gas valves for atmospheric control') for the LTS120. Humidity-compatible versions are stated for LTS420, THMS600 and MFS, not LTS120. No source documents a humidified/dry gas mixing chain with dew-point measurement for this configuration. No source positively excludes connecting one either. The configuration_basis already states dew-point conditioning is unverified."
+    },
+    {
+      "key": "process.cryogenic_preconcentration",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "Cryogenic preconcentration means trapping and focusing gas-phase analytes for chromatography. The LTS120 is described as a microscope stage that controls the temperature of a slide-mounted sample. It has no sample trap, sampling inlet or analytical gas path, so whole-air VOC cryofocusing is not a function of this instrument."
+    },
+    {
+      "key": "module.gc_ms",
+      "result": "documented_absence",
+      "install": "not_available",
+      "value": {"kind": "flag", "b": false},
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "The LTS120 system is a microscope stage plus the T96 controller, a water circulation pump, an optional chiller and NEXUS software for imaging and analysis. No gas chromatograph or mass spectrometer is part of it. The instrument's documented scope is temperature control of a slide sample under a microscope."
+    },
+    {
+      "key": "trap.precool.temperature",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "This key is the precool setpoint of a cold-focusing trap in a GC preconcentrator. The LTS120 is a slide-mounted Peltier microscope stage with no focusing trap, so the function does not exist. Its -40 C stage minimum is a sample-stage temperature and is not substituted; it would not reach 93.15 K in any case."
+    },
+    {
+      "key": "trap.inject.temperature",
+      "result": "documented_absence",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.linkam.co.uk/lts120",
+      "document_title": "LTS120 features - Linkam Scientific",
+      "location": "LTS120 product page, first paragraph",
+      "quote": "The LTS120 Peltier system includes an easy to use temperature control microscope stage that uses a 40mm x 40mm element to control the temperature of your sample which is mounted on a regular microscope slide and can be moved 15mm in both X and Y directions.",
+      "reasoning": "This key is the hot desorption/injection setpoint of a GC focusing trap. The LTS120 has no such trap; it is a microscope stage controlling a slide sample. The function does not exist, and the stage's 120 C maximum is not substituted for it."
+    }
+  ]
+}

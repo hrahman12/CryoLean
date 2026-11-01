@@ -1,0 +1,122 @@
+{
+ "id": "semi_sfq_adc_cryocooler_test",
+ "name": "Functional test of an RSFQ digital-SQUID ADC with TFF and cumulative counters (AIST HSTP Nb process) at 4.2 K in a pulse-tube cryocooler",
+ "plain_name": "Run a superconducting digital chip at 4.2 K to check that its logic works",
+ "industry": "semiconductors_and_electronics",
+ "description": "A wire-bonded SFQ chip (digital-SQUID modulators, majority logic, toggle flip-flop and cumulative counters) is cooled to 4.2 K in a two-stage closed-cycle pulse-tube cryostat with a vibration-damping stage; separate DC bias rails from a HYPRES current source, clock through a bias-tee on RF-shielded coax, outputs amplified and checked on an oscilloscope and logic analyser.",
+ "keywords": [
+  "Run a superconducting digital chip at 4.2 K to check that its logic works",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+   "url": "https://arxiv.org/abs/2510.14191",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "two-stage closed-cycle pulse-tube cryocooler",
+  "HYPRES programmable current source"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 4200,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The niobium SFQ circuit is operated at 4.2 K.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Bias currents, clock and output signals are wired to the chip.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_1"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 1
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "High-frequency inputs and the clock are delivered on RF-shielded coaxial lines.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_2"
+   ],
+   "conditions": [],
+   "key": "electrical.coax_lines"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 3
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: at least three separate DC bias rails (DC/SFQ, SFQ/DC, main power) were used.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_3"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the cryocooler sample space is under vacuum (vacuum level monitored); a liquid-helium dip test would not need it.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_4"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the source chose a closed-cycle system instead of liquid-helium immersion.",
+   "evidence_ids": [
+    "v4e_semi_sfq_adc_cryocooler_test_5"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

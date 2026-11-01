@@ -1,0 +1,95 @@
+{
+ "id": "photon_gr468_temperature_cycling",
+ "name": "Telcordia GR-468-CORE test 5.20 temperature cycling of optoelectronic devices (-40 to 70 C or 85 C, >= 10 C/min, 100-1,000 cycles)",
+ "plain_name": "Repeatedly swing laser and optical-network modules between -40 C and +70 C to prove they survive",
+ "industry": "photonics_and_telecommunications",
+ "description": "Reliability qualification of laser modules and other optoelectronic devices per Telcordia GR-468-CORE 5.20: air temperature cycling from -40 C to +70 C (or +85 C) per MIL-STD-883 Method 1010 for 100-1,000 cycles at a minimum ramp rate of 10 C/min in a thermal-cycling chamber.",
+ "keywords": [
+  "Repeatedly swing laser and optical-network modules between -40 C and +70 C to prove they survive",
+  "photonics_and_telecommunications"
+ ],
+ "sources": [
+  {
+   "citation": "Telecordia GR-468-CORE for optoelectronic systems (ESPEC North America application page)",
+   "url": "https://espec.com/na/applications/family/telecordia_gr-468",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "TSE-12-A",
+  "Platinum",
+  "TSA",
+  "ETS"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 343150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Test 5.20 cycles between -40 C (233.15 K) and +70 C (343.15 K).",
+   "evidence_ids": [
+    "v4e_photon_gr468_temperature_cycling_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 358150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the alternative upper limit of +85 C (358.15 K).",
+   "evidence_ids": [
+    "v4e_photon_gr468_temperature_cycling_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 10000,
+     "unit": "mK_per_min"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "GR-468 5.20 requires a minimum temperature ramp rate of 10 C/min (10 K/min).",
+   "evidence_ids": [
+    "v4e_photon_gr468_temperature_cycling_2"
+   ],
+   "conditions": [],
+   "key": "temperature.sweep_rate.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

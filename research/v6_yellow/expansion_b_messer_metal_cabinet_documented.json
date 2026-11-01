@@ -1,0 +1,47 @@
+{
+  "configuration_id": "expansion_b_messer_metal_cabinet_documented",
+  "rows": [
+    {
+      "key": "dwell.duration.max",
+      "result": "value",
+      "value": {"kind": "max", "q": {"value": "259200", "unit": "s"}},
+      "value_as_printed": "take 24 to 72 hours (72 h = 259200 s)",
+      "install": "installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Messer offers solutions for cryogenic treatment as well. These cryogenic treatments are typically performed in the temperature range from -256 ºF (-160 ºC) to -300 ºF (-185 ºC) and take 24 to 72 hours",
+      "source_url": "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf",
+      "document_title": "Messer Metal Cryogenic Treatment (Freezing to Perfection), MESS-3145",
+      "location": "page 4, 'The physics in a nutshell'",
+      "reasoning": "Messer's own brochure says its cryogenic-treatment solutions run treatments at -160 to -185 C lasting 24 to 72 hours. Of Messer's three models, only the cabinet reaches -185 C (box: -150 C; tunnel: -110 C), and its standard product thermocouple 'is used to start the soaking time'. So 72 h is the longest documented hold for this process. Caveat: the wording is 'typically', and the brochure gives no guaranteed limit for a loaded cabinet. If the curator wants a hard machine limit, downgrade this to still_unknown. The experiment needs at least 86.4 ks (24 h), which this satisfies."
+    },
+    {
+      "key": "process.dsc",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Messer's cabinet freezer for metal cryogenic treatment Adopted to standard heat treatment batch dimensions to ease the handling from furnaces to equipment. Our cabinet freezers are built for convenient front loading with fork lifts for example.",
+      "source_url": "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf",
+      "document_title": "Messer Metal Cryogenic Treatment (Freezing to Perfection), MESS-3145",
+      "location": "page 6, 'The perfect fit for your individual application challenge'",
+      "reasoning": "The manufacturer describes the machine as a forklift-loaded batch freezer for sub-zero treatment of heat-treated metal parts. That makes it a different kind of instrument from a differential scanning calorimeter, which needs a heat-flow sensor and a reference. The complete list of standard features and optional extras (page 5) has no calorimetric measurement."
+    },
+    {
+      "key": "temperature.heating_rate.range",
+      "result": "still_unknown",
+      "reasoning": "The cabinet does heat: there is an optional tempering heater up to 650 C. Messer's cryogenic-treatment web page also says 'Accurate part temperature control allows to optimize cooling and heating rates'. Because heating exists, documented absence does not apply. However, neither the brochure (MESS-3145, all 8 pages read) nor the Messer US cryogenic-treatment page gives any heating-rate value or range. A web search for a Messer cabinet datasheet found nothing more. Tavily was unavailable (plan usage limit). The DSC experiment fails anyway on process.dsc."
+    },
+    {
+      "key": "module.dynamic_nitrogen_purge",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Messer's cabinet freezer for metal cryogenic treatment Adopted to standard heat treatment batch dimensions to ease the handling from furnaces to equipment. Our cabinet freezers are built for convenient front loading with fork lifts for example.",
+      "source_url": "https://www.messer-us.com/hubfs/Messer%20US%20Website_2019/Resources/MESS-3145%20Metal%20Cryogenic%20Treatment%20Brochure.pdf",
+      "document_title": "Messer Metal Cryogenic Treatment (Freezing to Perfection), MESS-3145",
+      "location": "page 6 (cabinet description); page 5 (optional extras)",
+      "reasoning": "The vocabulary defines this key as a dynamic nitrogen purge of a calorimeter. The machine is a batch metal-treatment freezer with no calorimeter, so this calorimeter module cannot exist on it. Note: the brochure does list an optional 'Gaseous nitrogen purge to remove moisture' from the treatment chamber (page 5). That is a chamber dry-out purge, not a DSC cell purge, so it does not satisfy this key."
+    }
+  ]
+}

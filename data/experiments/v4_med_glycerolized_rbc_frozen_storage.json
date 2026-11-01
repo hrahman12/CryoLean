@@ -1,0 +1,89 @@
+{
+ "id": "med_glycerolized_rbc_frozen_storage",
+ "name": "Long-term frozen storage of 40% (wt/vol) glycerol red blood cell units at -80 C (FDA/AABB: frozen at -65 C or colder, up to 10 years)",
+ "plain_name": "Store rare-type donor red cells frozen for a decade",
+ "industry": "healthcare_and_medicine",
+ "description": "Rare-phenotype RBC units cryopreserved in 40% wt/vol glycerol are kept in a mechanical freezer at -80 C for 10 years or more, then thawed and deglycerolized; the AABB/FDA circular requires freezing at -65 C or colder.",
+ "keywords": [
+  "Store rare-type donor red cells frozen for a decade",
+  "healthcare_and_medicine"
+ ],
+ "sources": [
+  {
+   "citation": "Lecak J, Scott K, Young C, Hannon J, Acker JP. Evaluation of red blood cells stored at -80 degrees C in excess of 10 years. Transfusion 2004. DOI 10.1111/j.1537-2995.2004.03271.x",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15318853/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+   "url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "-80 degrees C freezer (model not stated)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 193150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The approved high-glycerol method stores the units at -80 C.",
+   "evidence_ids": [
+    "v4e_med_glycerolized_rbc_frozen_storage_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 208150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Regulatory limit: frozen RBCs are frozen and kept at -65 C or colder.",
+   "evidence_ids": [
+    "v4e_med_glycerolized_rbc_frozen_storage_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 193150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Machines documenting only a base temperature must reach -80 C.",
+   "evidence_ids": [
+    "v4e_med_glycerolized_rbc_frozen_storage_2"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

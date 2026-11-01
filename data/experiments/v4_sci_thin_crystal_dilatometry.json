@@ -1,0 +1,85 @@
+{
+ "id": "sci_thin_crystal_dilatometry",
+ "name": "Capacitance dilatometry (thermal expansion and magnetostriction) of thin single crystals in a PPMS, 2-50 K, up to 9 T",
+ "plain_name": "Measure how a thin crystal shrinks or stretches on cooling and in a magnetic field",
+ "industry": "scientific_research",
+ "description": "Mount a sub-500 um thin crystal in the slot of a miniature capacitance dilatometer integrated into a Quantum Design PPMS and record the relative length change from 2 to 50 K (alpha(T) by 0.1 K interval differentiation) in zero field and in 9 T; the cell can be rotated in situ.",
+ "keywords": [
+  "Measure how a thin crystal shrinks or stretches on cooling and in a magnetic field",
+  "scientific_research"
+ ],
+ "sources": [
+  {
+   "citation": "R. Küchler, S. Panja, S. Wirth, P. Gegenwart, 'High-Resolution Capacitance Dilatometry of Microscopically Thin Samples Using a Miniature Dilatometer', arXiv:2601.13231 (2026)",
+   "url": "https://arxiv.org/pdf/2601.13231",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Quantum Design PPMS",
+  "miniature capacitance dilatometer"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 2,
+     "unit": "K"
+    },
+    "hi": {
+     "value": 50,
+     "unit": "K"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "alpha(T) of the AgCrS2 crystal was determined over 2-50 K.",
+   "evidence_ids": [
+    "v4e_sci_thin_crystal_dilatometry_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 9,
+     "unit": "T"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Thermal expansion was compared at zero field and 9 T.",
+   "evidence_ids": [
+    "v4e_sci_thin_crystal_dilatometry_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The length change is read as a capacitance, so electrical leads to the dilatometer cell on the sample stage are required.",
+   "evidence_ids": [
+    "v4e_sci_thin_crystal_dilatometry_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

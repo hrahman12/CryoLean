@@ -1,0 +1,83 @@
+{
+  "configuration_id": "expansion_b_retsch_mm400_documented",
+  "rows": [
+    {
+      "key": "temperature.range",
+      "result": "documented_absence",
+      "value": {"kind": "unknown"},
+      "value_as_printed": "No sample cooling/heating control on MM 400; cooling only by manual LN2 pre-cooling of the steel jar",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "For applications which require cooling or heating the sample, the Mixer Mill MM 500 control is the perfect choice.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Product description, intro paragraphs (cached research/v5/cache/c7591d067d40187a.txt line 305); see also CryoKit section line 447: 'Indirect embrittlement is effected by pre-cooling the jar in a liquid nitrogen bath.'",
+      "reasoning": "RETSCH's own MM 400 page positively directs any application that needs sample cooling or heating to a different model (MM 500 control), and describes the MM 400 cryogenic mode as manual pre-cooling of the jar in an external LN2 bath (CryoKit = insulated containers, tongs, glasses). The MM 400 therefore has no controlled sample temperature range at all; the ice-cream recrystallization requirement (253.15-268.15 K) cannot be met. Numeric key marked not_available because the function does not exist on this machine, not because a number is missing."
+    },
+    {
+      "key": "optical_access",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Configured with stainless-steel jars; optical (in-situ Raman) access only with the separate transparent PMMA jar option",
+      "install": "optional_not_installed",
+      "evidence_status": "manufacturer_specification",
+      "quote": "Transparent PMMA grinding jars are used for in-situ RAMAN spectroscopy but also enable applications with photochemical reactions.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Accessories section (cached research/v5/cache/c7591d067d40187a.txt line 459); CryoKit section line 447 ('stainless-steel grinding jar which is tightly screwed')",
+      "reasoning": "This configuration is explicitly the MM 400 with CryoKit and two 50 mL steel jars. RETSCH documents that optical access to the sample (in-situ Raman) comes from a distinct accessory, transparent PMMA jars, while the cryogenic mode uses tightly screwed stainless-steel jars. So optical access is an option not installed in this configuration (install optional_not_installed). Caveat: the PMMA option is for mechanochemistry and RETSCH ties LN2 pre-cooling to steel jars, so it would not rescue a cold optical experiment either."
+    },
+    {
+      "key": "temperature.stability",
+      "result": "documented_absence",
+      "value": {"kind": "unknown"},
+      "value_as_printed": "No temperature control, hence no stability specification; sample warms during milling",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "For applications which require cooling or heating the sample, the Mixer Mill MM 500 control is the perfect choice.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Product description (cached research/v5/cache/c7591d067d40187a.txt line 305); also line 427: 'The sample is only moderately warmed in the process which can be reduced to a minimum by pre-cooling.'",
+      "reasoning": "Temperature stability presupposes regulated sample temperature. RETSCH states the MM 400 is not the model for cooling/heating the sample and that the sample warms during processing, mitigated only by pre-cooling. There is no temperature regulation function, so a 10 mK stability requirement has nothing to be checked against: not_available rather than an unknown number."
+    },
+    {
+      "key": "process.freeze_drying",
+      "result": "documented_absence",
+      "value": {"kind": "flag", "b": false},
+      "value_as_printed": "Mixer mill for dry, wet and cryogenic grinding; not a freeze dryer",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The Mixer Mill MM 400 is a true multipurpose mill designed for dry, wet and cryogenic grinding of small volumes up to 2 x 20 ml.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Product description, first paragraph (cached research/v5/cache/c7591d067d40187a.txt line 299); technical data 'Applications | size reduction, mixing, homogenization, cell disruption, cryogenic grinding, mechanochemistry' (line 708)",
+      "reasoning": "The manufacturer's scope statement and listed applications define the MM 400 as a grinding/homogenizing mixer mill. Vacuum freeze drying (sublimation under vacuum with a cold condenser) is not among its functions; the page mentions freeze drying only as a separate downstream step in an application example (line 535), performed outside the mill."
+    },
+    {
+      "key": "condenser.temperature.min",
+      "result": "documented_absence",
+      "value": {"kind": "unknown"},
+      "value_as_printed": "No condenser: instrument is a mixer mill with screw-closed grinding jars",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The Mixer Mill MM 400 is a true multipurpose mill designed for dry, wet and cryogenic grinding of small volumes up to 2 x 20 ml.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Product description (cached research/v5/cache/c7591d067d40187a.txt line 299) and technical data applications list (line 708)",
+      "reasoning": "A freeze-dryer ice condenser does not exist on a mixer mill; RETSCH describes the MM 400 solely as a grinding instrument whose cryogenic mode is LN2 pre-cooling of a sealed steel jar in a separate bath. The condenser-temperature function is absent, so not_available."
+    },
+    {
+      "key": "pressure.base",
+      "result": "documented_absence",
+      "value": {"kind": "unknown"},
+      "value_as_printed": "No vacuum system: grinding takes place in tightly screwed jars",
+      "install": "not_available",
+      "evidence_status": "manufacturer_specification",
+      "quote": "The sample to be embrittled and the grinding ball are filled into the stainless-steel grinding jar which is tightly screwed. Indirect embrittlement is effected by pre-cooling the jar in a liquid nitrogen bath.",
+      "document_title": "Laboratory Mixer Mill MM 400 - RETSCH (product page)",
+      "source_url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-mm-400/",
+      "location": "Mixer Mill MM 400 Solutions for cryogenic grinding (cached research/v5/cache/c7591d067d40187a.txt line 447); scope statement line 299",
+      "reasoning": "The MM 400 is a mixer mill (dry, wet, cryogenic grinding) whose cryogenic configuration is a screw-closed steel jar pre-cooled in an external LN2 bath; RETSCH describes no vacuum chamber or pump as part of the instrument. The vacuum (base pressure) function required by the strawberry lyophilization experiment (<= 5.5 Pa) does not exist on this machine, so not_available."
+    }
+  ]
+}

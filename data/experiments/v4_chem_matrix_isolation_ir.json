@@ -1,0 +1,145 @@
+{
+ "id": "chem_matrix_isolation_ir",
+ "name": "Matrix-isolation FTIR spectroscopy of a sublimed heterocycle in solid argon at 15 K with broadband UV photolysis",
+ "plain_name": "Trap single molecules in frozen argon and study them with infrared light",
+ "industry": "chemistry_and_pharmaceuticals",
+ "description": "A heterocyclic compound is sublimed and co-deposited with a large excess of argon onto a CsI window held at 15 K inside a closed-cycle helium cryostat evacuated to about 3.5e-5 mbar; mid-IR spectra (4000-400 cm-1) are recorded on the isolated monomers and followed through broadband UV irradiation from a 500 W Hg(Xe) lamp. This is the standard matrix-isolation route to conformers, photoproducts and reactive intermediates in chemistry.",
+ "keywords": [
+  "Trap single molecules in frozen argon and study them with infrared light",
+  "chemistry_and_pharmaceuticals"
+ ],
+ "sources": [
+  {
+   "citation": "İsa Sıdır, Susy Lopes, Rui Fausto, A. J. Lopes Jesus, Molecular Structure, Matrix-Isolation IR Spectrum and UV-Induced Transformations of 2-Amino-5-(4-Methoxyphenyl)-1,3,4-Oxadiazole, Molecules 30(16):3444 (2025), doi:10.3390/molecules30163444",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12388349/",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Daria Bumażnik, Magdalena Sałdyka, UV-Induced Photodegradation of 2-Aminothiazole-4-Carboxylic Acid: Identification of New Carbodiimide Molecules, Molecules 30(18):3713 (2025) - second, independent matrix-isolation procedure (ARS-2HW closed-cycle helium cryostat, CsI window at 15 K, spectra at 10 K)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12472919/",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "closed-cycle helium cryostat with a DE-202 A expander",
+  "Thermo Nicolet 6700 FTIR spectrometer",
+  "500 W Hg(Xe) arc lamp",
+  "CsI optical substrate",
+  "ARS-2HW, APD-Cryogenics closed-cycle helium cryostat",
+  "Nicolet iS50 FTIR spectrometer"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 15000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The matrix is deposited and held with the optical substrate at 15 K; the machine must be able to reach and hold that sample temperature.",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 15000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Argon matrix isolation needs a base temperature of 15 K or lower; a machine whose lowest temperature is above 15 K cannot form a rigid Ar matrix.",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_1"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Deposition and spectroscopy happen inside an evacuated chamber; an atmospheric-pressure cold space would frost the window and destroy the matrix.",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.000035",
+     "unit": "mbar"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The reported working vacuum of the matrix chamber is about 3.5e-5 mbar; poorer vacuum deposits residual water and air with the matrix gas.",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_3"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The IR beam and the UV photolysis beam must reach the cold deposit, so the cold space needs optical windows; the sample itself sits on a cold optical substrate.",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_4"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 2500,
+     "unit": "nm"
+    },
+    "hi": {
+     "value": 25000,
+     "unit": "nm"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Spectra are taken over 4000-400 cm-1, i.e. 2500-25000 nm, so the cryostat windows must transmit the whole mid-infrared (hence CsI rather than glass or quartz).",
+   "evidence_ids": [
+    "v4e_chem_matrix_isolation_ir_5"
+   ],
+   "conditions": [],
+   "key": "optical.transmission_range"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

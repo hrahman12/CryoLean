@@ -1,0 +1,18 @@
+{
+ "name": "fig_cooling_curves",
+ "title": "Sourced cooling-power points and the checker's step rule",
+ "question": "Which cooling-power number does CryoLean compare a heat load against at a given operating temperature, and what is documented?",
+ "model": "P_cool(T_op) := documented, installed, known cooling_power.at_T with the largest T <= T_op (conservative step; no interpolation, no extrapolation). Below the lowest documented T the value is missing.",
+ "data": "23 sourced cooling_power.at_* points from data/cryostats/*.json for 11 configurations (evidence ids in paper/data/fig_cooling_curves.json); step = rhs of the Lean mxc_wiring_heat_budget coupled check over 1738 Lean runs (T_op grid x configurations, check_batch). 9 further configurations document cooling power only as unknown and are not plotted.",
+ "claim": "SOURCED+COMPUTED",
+ "caption": "Markers are sourced cooling-power specifications (filled: manufacturer specification; open: inferred estimate; grey crosses: ratings of an optional cold head that is not installed, which the rule ignores); configurations with identical installed points and identical Lean output share one series. Lines are the cooling power the Lean checker actually compares against at each operating temperature, read from its output over a T_op sweep: the value at the highest documented temperature not above T_op; where that value is an estimate (OptistatDry TLEX, 4.2-5 K) Lean uses no value and reports the constraint as unknown. The step is the checker's rule, not a physical load curve; it is conservative under the model's stated assumption that cooling capacity does not decrease above a documented temperature.",
+ "section": "supplement",
+ "script": "paper/scripts/fig_physics2d.py",
+ "command": "python paper/scripts/fig_physics2d.py",
+ "files": [
+  "paper/figures/fig_cooling_curves.png",
+  "paper/figures/fig_cooling_curves.svg",
+  "paper/figures/fig_cooling_curves.pdf"
+ ],
+ "interactive": null
+}

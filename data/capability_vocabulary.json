@@ -1,813 +1,1598 @@
 {
-  "_comment": "Universal, extensible capability vocabulary (v2). Keys are data, not Lean code. Values are integers in the canonical unit named here; the data layer converts them exactly to SI rationals with dimensions for Lean. 'better' says which direction is favourable. 'min'-shaped keys are bounds where lower is better.",
-  "units": {
-    "mK": {
-      "description": "millikelvin",
-      "si": "K",
-      "scale": 1000
-    },
-    "mT": {
-      "description": "millitesla",
-      "si": "T",
-      "scale": 1000
-    },
-    "um": {
-      "description": "micrometre",
-      "si": "m",
-      "scale": 1000000
-    },
-    "nW": {
-      "description": "nanowatt",
-      "si": "W",
-      "scale": 1000000000
-    },
-    "uPa": {
-      "description": "micropascal",
-      "si": "Pa",
-      "scale": 1000000
-    },
-    "kHz": {
-      "description": "kilohertz",
-      "si": "Hz",
-      "scale": 0.001
-    },
-    "s": {
-      "description": "second",
-      "si": "s",
-      "scale": 1
-    },
-    "mK_per_min": {
-      "description": "millikelvin per minute",
-      "si": "K/min",
-      "scale": 1000
-    },
-    "pA": {
-      "description": "picoampere",
-      "si": "A",
-      "scale": 1000000000000
-    },
-    "uOhm": {
-      "description": "micro-ohm",
-      "si": "Ohm",
-      "scale": 1000000
-    },
-    "nm": {
-      "description": "nanometre",
-      "si": "m",
-      "scale": 1000000000
-    },
-    "mdeg": {
-      "description": "millidegree (angle)",
-      "si": "deg",
-      "scale": 1000
-    },
-    "ug": {
-      "description": "microgram",
-      "si": "g",
-      "scale": 1000000
-    },
-    "count": {
-      "description": "dimensionless count",
-      "si": "",
-      "scale": 1
-    },
-    "VA": {
-      "description": "volt-ampere (apparent power)",
-      "si": "W",
-      "scale": 1
-    }
+ "_comment": "Universal, extensible capability vocabulary (v2). Keys are data, not Lean code. Values are integers in the canonical unit named here; the data layer converts them exactly to SI rationals with dimensions for Lean. 'better' says which direction is favourable. 'min'-shaped keys are bounds where lower is better.",
+ "units": {
+  "mK": {
+   "description": "millikelvin",
+   "si": "K",
+   "scale": 1000
   },
-  "keys": {
-    "temperature.range": {
-      "shape": "range",
-      "unit": "mK",
-      "description": "Documented sample/operating temperature range",
-      "status": "established",
-      "better": "range"
-    },
-    "temperature.base": {
-      "shape": "min",
-      "unit": "mK",
-      "description": "Documented base (lowest) temperature",
-      "status": "established",
-      "better": "lower"
-    },
-    "temperature.chamber.range": {
-      "shape": "range",
-      "unit": "mK",
-      "description": "Cryochamber temperature range (sectioning cryostats)",
-      "status": "established",
-      "better": "range"
-    },
-    "temperature.specimen_head.range": {
-      "shape": "range",
-      "unit": "mK",
-      "description": "Specimen/object head temperature range (sectioning cryostats)",
-      "status": "established",
-      "better": "range"
-    },
-    "temperature.stability": {
-      "shape": "min",
-      "unit": "mK",
-      "description": "Documented temperature stability (± value)",
-      "status": "established",
-      "better": "lower"
-    },
-    "temperature.sweep_rate.max": {
-      "shape": "max",
-      "unit": "mK_per_min",
-      "description": "Maximum documented heating/cooling rate",
-      "status": "established",
-      "better": "higher"
-    },
-    "magnetic_field.max": {
-      "shape": "max",
-      "unit": "mT",
-      "description": "Maximum documented magnetic field at the sample",
-      "status": "established",
-      "better": "higher"
-    },
-    "magnetic_field.vector": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Vector (multi-axis) field capability installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "cooling_power.at_20mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 20 mK",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 20,
-        "unit": "mK"
-      }
-    },
-    "cooling_power.at_100mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 100 mK",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 100,
-        "unit": "mK"
-      }
-    },
-    "cooling_power.at_4200mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 4.2 K",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 4200,
-        "unit": "mK"
-      }
-    },
-    "cooling_power.at_10000mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 10 K",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 10000,
-        "unit": "mK"
-      }
-    },
-    "cooling_power.at_20000mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 20 K",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 20000,
-        "unit": "mK"
-      }
-    },
-    "cooldown_time.max": {
-      "shape": "min",
-      "unit": "s",
-      "description": "Documented time to reach base temperature",
-      "status": "established",
-      "better": "lower"
-    },
-    "pressure.base": {
-      "shape": "min",
-      "unit": "uPa",
-      "description": "Documented base pressure / vacuum level",
-      "status": "established",
-      "better": "lower"
-    },
-    "vacuum.available": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Sample space can be evacuated",
-      "status": "established",
-      "better": "flag"
-    },
-    "sample.bore_diameter": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Clear bore / sample space diameter",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.diameter.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample diameter",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.length.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample length",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.width.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample width",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.height.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample height / thickness",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.mass.max": {
-      "shape": "max",
-      "unit": "ug",
-      "description": "Maximum sample mass",
-      "status": "established",
-      "better": "higher"
-    },
-    "section_thickness.range": {
-      "shape": "range",
-      "unit": "um",
-      "description": "Section thickness setting range (microtome cryostats)",
-      "status": "established",
-      "better": "range"
-    },
-    "specimen.stroke": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Vertical specimen stroke (microtome cryostats)",
-      "status": "established",
-      "better": "higher"
-    },
-    "specimen.orientation.max": {
-      "shape": "max",
-      "unit": "mdeg",
-      "description": "Specimen orientation range (± angle)",
-      "status": "established",
-      "better": "higher"
-    },
-    "optical_access": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Optical access to the sample is installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "optical.window_count": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Number of optical windows",
-      "status": "established",
-      "better": "higher"
-    },
-    "optical.clear_aperture": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Clear optical aperture / view diameter",
-      "status": "established",
-      "better": "higher"
-    },
-    "optical.objective_working_distance.min": {
-      "shape": "min",
-      "unit": "um",
-      "description": "Minimum objective working distance the window geometry requires",
-      "status": "established",
-      "better": "lower"
-    },
-    "electrical.dc_lines": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Number of DC wiring lines to the sample",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.coax_lines": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Number of coaxial / RF lines to the sample",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.coax_bandwidth.max": {
-      "shape": "max",
-      "unit": "kHz",
-      "description": "Documented bandwidth of coaxial lines",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.probe_arms": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Number of probe arms (probe stations)",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.channels": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Number of measurement channels of the installed module",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.current.range": {
-      "shape": "range",
-      "unit": "pA",
-      "description": "Excitation current range of the installed module",
-      "status": "established",
-      "better": "range"
-    },
-    "electrical.resistance.range": {
-      "shape": "range",
-      "unit": "uOhm",
-      "description": "Resistance measurement range of the installed module",
-      "status": "established",
-      "better": "range"
-    },
-    "electrical.sample_connections": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Electrical connections to the sample are installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.electrical_transport": {
-      "shape": "flag",
-      "unit": "",
-      "description": "AC electrical transport option installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.dc_resistivity": {
-      "shape": "flag",
-      "unit": "",
-      "description": "DC resistivity option installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.vsm": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Vibrating sample magnetometer installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.heat_capacity": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Heat capacity option installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.acms": {
-      "shape": "flag",
-      "unit": "",
-      "description": "AC susceptibility / DC magnetometry option installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.thermal_transport": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Thermal transport option installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.helium3": {
-      "shape": "flag",
-      "unit": "",
-      "description": "He-3 sub-kelvin insert installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.motorized_sectioning": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Motorised sectioning drive installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.vacuum_system": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Section-waste vacuum system installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.uvc_disinfection": {
-      "shape": "flag",
-      "unit": "",
-      "description": "UVC disinfection installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.specimen_cooling_peltier": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Peltier specimen quick-freeze cooling installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.ln2_pump": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Liquid-nitrogen cooling pump installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "module.magnetic_shielding": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Magnetic shielding of the sample space installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "cryogen.cryogen_free": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Operates without liquid cryogens (closed-cycle)",
-      "status": "established",
-      "better": "flag"
-    },
-    "cryogen.liquid_helium_required": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Requires liquid helium supply",
-      "status": "established",
-      "better": "flag"
-    },
-    "cryogen.liquid_nitrogen_required": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Requires liquid nitrogen supply",
-      "status": "established",
-      "better": "flag"
-    },
-    "vibration.max": {
-      "shape": "min",
-      "unit": "nm",
-      "description": "Documented sample vibration amplitude",
-      "status": "established",
-      "better": "lower"
-    },
-    "operating_duration.max": {
-      "shape": "max",
-      "unit": "s",
-      "description": "Documented continuous operating duration",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.vsm.diameter.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample/holder diameter accepted by an installed VSM coil set (module-specific; does not limit other modules)",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.heat_capacity.width.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample width on an installed heat-capacity platform (module-specific)",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.heat_capacity.length.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Maximum sample length on an installed heat-capacity platform (module-specific)",
-      "status": "established",
-      "better": "higher"
-    },
-    "plate.diameter": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Mixing-chamber / experimental plate diameter",
-      "status": "established",
-      "better": "higher"
-    },
-    "experimental_space.height": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Height of the experimental space below the coldest plate",
-      "status": "established",
-      "better": "higher"
-    },
-    "facility.electrical_power.max": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Facility electrical power drawn (compressor)",
-      "status": "established",
-      "better": "lower"
-    },
-    "trimming_thickness.range": {
-      "shape": "range",
-      "unit": "um",
-      "description": "Trimming thickness setting range (microtome cryostats)",
-      "status": "established",
-      "better": "range"
-    },
-    "temperature.peltier_delta.max": {
-      "shape": "max",
-      "unit": "mK",
-      "description": "Extra cooling of the Peltier quick-freeze station",
-      "status": "established",
-      "better": "higher"
-    },
-    "temperature.quick_freeze_shelf.min": {
-      "shape": "min",
-      "unit": "mK",
-      "description": "Lowest quick-freeze shelf temperature",
-      "status": "established",
-      "better": "lower"
-    },
-    "defrost.cycle_duration": {
-      "shape": "min",
-      "unit": "s",
-      "description": "Defrost cycle duration (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "electrical.apparent_power.max": {
-      "shape": "max",
-      "unit": "VA",
-      "description": "Apparent electrical power drawn",
-      "status": "established",
-      "better": "lower"
-    },
-    "equipment.mass.max": {
-      "shape": "max",
-      "unit": "g",
-      "description": "Equipment mass",
-      "status": "established",
-      "better": "lower"
-    },
-    "specimen.feed.horizontal.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Horizontal specimen feed",
-      "status": "established",
-      "better": "higher"
-    },
-    "temperature.cooling_rate.max": {
-      "shape": "max",
-      "unit": "mK_per_min",
-      "description": "Maximum documented controlled cooling rate",
-      "status": "established",
-      "better": "higher"
-    },
-    "cooling_power.at_5000mK": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Documented cooling power at 5 K",
-      "status": "established",
-      "better": "higher",
-      "at_temperature": {
-        "value": 5000,
-        "unit": "mK"
-      }
-    },
-    "cooldown_time.sample_exchange": {
-      "shape": "min",
-      "unit": "s",
-      "description": "Documented time to cool a newly loaded sample (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "magnetic_field.ramp_rate.max": {
-      "shape": "max",
-      "unit": "uT_per_s",
-      "description": "Maximum documented magnet charging rate",
-      "status": "established",
-      "better": "higher"
-    },
-    "magnetic_field.uniformity": {
-      "shape": "min",
-      "unit": "ppm",
-      "description": "Documented field inhomogeneity over the stated volume (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "temperature.stability.relative": {
-      "shape": "min",
-      "unit": "ppm",
-      "description": "Documented relative temperature stability (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "system_startup_time.max": {
-      "shape": "min",
-      "unit": "s",
-      "description": "Documented time from room temperature to operation (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "temperature.gradient": {
-      "shape": "min",
-      "unit": "mK",
-      "description": "Documented temperature gradient across the sample position (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "thermal.contact_resistance": {
-      "shape": "min",
-      "unit": "K_per_W",
-      "description": "Thermal contact resistance of the sample mount (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "thermal_cycles.max": {
-      "shape": "count",
-      "unit": "count",
-      "description": "Documented number of thermal cycles the mount/sample tolerates",
-      "status": "established",
-      "better": "higher"
-    },
-    "sample.orientation": {
-      "shape": "set",
-      "unit": "",
-      "description": "Sample orientations supported (e.g. horizontal, vertical, rotatable)",
-      "status": "established",
-      "better": "set"
-    },
-    "sample.vsm.length.max": {
-      "shape": "max",
-      "unit": "um",
-      "description": "Recommended maximum sample length for the installed VSM (module-specific)",
-      "status": "established",
-      "better": "higher"
-    },
-    "mechanical.resonance.min_frequency": {
-      "shape": "min",
-      "unit": "Hz",
-      "description": "Lowest documented mechanical resonance of the sample stage",
-      "status": "established",
-      "better": "higher"
-    },
-    "mechanical.stress.max": {
-      "shape": "max",
-      "unit": "Pa",
-      "description": "Allowed mechanical stress on the sample mount",
-      "status": "established",
-      "better": "higher"
-    },
-    "positioning.resolution": {
-      "shape": "min",
-      "unit": "nm",
-      "description": "Sample positioning resolution (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "vibration.frequency": {
-      "shape": "range",
-      "unit": "Hz",
-      "description": "Frequency band of the documented vibration",
-      "status": "established",
-      "better": "range"
-    },
-    "magnetic_field.direction": {
-      "shape": "set",
-      "unit": "",
-      "description": "Magnetic field directions available (longitudinal, transverse, vector)",
-      "status": "established",
-      "better": "set"
-    },
-    "electrical.current.max": {
-      "shape": "max",
-      "unit": "pA",
-      "description": "Maximum excitation current of the installed electrical module",
-      "status": "established",
-      "better": "higher"
-    },
-    "electrical.noise_rms": {
-      "shape": "min",
-      "unit": "nV",
-      "description": "Documented RMS voltage noise over a stated bandwidth (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "emi.shielding": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Electromagnetic interference shielding installed",
-      "status": "established",
-      "better": "flag"
-    },
-    "rf.power.max": {
-      "shape": "max",
-      "unit": "nW",
-      "description": "Maximum RF/microwave power deliverable to the sample",
-      "status": "established",
-      "better": "higher"
-    },
-    "vacuum.leak_rate": {
-      "shape": "min",
-      "unit": "Pa_m3_per_s",
-      "description": "Documented leak rate (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "gas.compatible": {
-      "shape": "set",
-      "unit": "",
-      "description": "Gases the sample space may be filled or purged with",
-      "status": "established",
-      "better": "set"
-    },
-    "purge.gas": {
-      "shape": "flag",
-      "unit": "",
-      "description": "Sample chamber can be purged with gas (dry gas purge against condensation)",
-      "status": "established",
-      "better": "flag"
-    },
-    "cryogen.type": {
-      "shape": "set",
-      "unit": "",
-      "description": "Cryogens the system uses",
-      "status": "established",
-      "better": "set"
-    },
-    "gas.flow_rate.max": {
-      "shape": "max",
-      "unit": "L_per_min",
-      "description": "Maximum gas flow rate",
-      "status": "established",
-      "better": "higher"
-    },
-    "pressure.stability": {
-      "shape": "min",
-      "unit": "uPa",
-      "description": "Documented pressure stability (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "cryogen.dewar_volume": {
-      "shape": "max",
-      "unit": "L",
-      "description": "Volume of the cryogen dewar supplied",
-      "status": "established",
-      "better": "higher"
-    },
-    "cryogen.consumption_rate": {
-      "shape": "min",
-      "unit": "L_per_min",
-      "description": "Documented cryogen consumption (lower is better)",
-      "status": "established",
-      "better": "lower"
-    },
-    "optical.transmission_range": {
-      "shape": "range",
-      "unit": "nm",
-      "description": "Wavelength range transmitted by the optical window",
-      "status": "established",
-      "better": "range"
-    },
-    "optical.f_number": {
-      "shape": "min",
-      "unit": "f_number",
-      "description": "Documented f-number of the optical access (lower = wider cone)",
-      "status": "established",
-      "better": "lower"
-    },
-    "optical.numerical_aperture": {
-      "shape": "max",
-      "unit": "NA",
-      "description": "Documented numerical aperture of the optical access",
-      "status": "established",
-      "better": "higher"
-    },
-    "measurement.bandwidth": {
-      "shape": "max",
-      "unit": "kHz",
-      "description": "Measurement bandwidth of the installed module",
-      "status": "established",
-      "better": "higher"
-    }
+  "mT": {
+   "description": "millitesla",
+   "si": "T",
+   "scale": 1000
+  },
+  "um": {
+   "description": "micrometre",
+   "si": "m",
+   "scale": 1000000
+  },
+  "nW": {
+   "description": "nanowatt",
+   "si": "W",
+   "scale": 1000000000
+  },
+  "uPa": {
+   "description": "micropascal",
+   "si": "Pa",
+   "scale": 1000000
+  },
+  "kHz": {
+   "description": "kilohertz",
+   "si": "Hz",
+   "scale": 0.001
+  },
+  "s": {
+   "description": "second",
+   "si": "s",
+   "scale": 1
+  },
+  "mK_per_min": {
+   "description": "millikelvin per minute",
+   "si": "K/min",
+   "scale": 1000
+  },
+  "pA": {
+   "description": "picoampere",
+   "si": "A",
+   "scale": 1000000000000
+  },
+  "uOhm": {
+   "description": "micro-ohm",
+   "si": "Ohm",
+   "scale": 1000000
+  },
+  "nm": {
+   "description": "nanometre",
+   "si": "m",
+   "scale": 1000000000
+  },
+  "mdeg": {
+   "description": "millidegree (angle)",
+   "si": "deg",
+   "scale": 1000
+  },
+  "ug": {
+   "description": "microgram",
+   "si": "g",
+   "scale": 1000000
+  },
+  "count": {
+   "description": "dimensionless count",
+   "si": "",
+   "scale": 1
+  },
+  "VA": {
+   "description": "volt-ampere (apparent power)",
+   "si": "W",
+   "scale": 1
   }
+ },
+ "keys": {
+  "temperature.range": {
+   "shape": "range",
+   "unit": "mK",
+   "description": "Documented sample/operating temperature range",
+   "status": "established",
+   "better": "range"
+  },
+  "temperature.base": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Documented base (lowest) temperature",
+   "status": "established",
+   "better": "lower"
+  },
+  "temperature.chamber.range": {
+   "shape": "range",
+   "unit": "mK",
+   "description": "Cryochamber temperature range (sectioning cryostats)",
+   "status": "established",
+   "better": "range"
+  },
+  "temperature.specimen_head.range": {
+   "shape": "range",
+   "unit": "mK",
+   "description": "Specimen/object head temperature range (sectioning cryostats)",
+   "status": "established",
+   "better": "range"
+  },
+  "temperature.stability": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Documented temperature stability (± value)",
+   "status": "established",
+   "better": "lower"
+  },
+  "temperature.sweep_rate.max": {
+   "shape": "max",
+   "unit": "mK_per_min",
+   "description": "Maximum documented heating/cooling rate",
+   "status": "established",
+   "better": "higher"
+  },
+  "magnetic_field.max": {
+   "shape": "max",
+   "unit": "mT",
+   "description": "Maximum documented magnetic field at the sample",
+   "status": "established",
+   "better": "higher"
+  },
+  "magnetic_field.vector": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Vector (multi-axis) field capability installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "cooling_power.at_20mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 20 mK",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 20,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_100mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 100 mK",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 100,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_4200mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 4.2 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 4200,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_10000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 10 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 10000,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_20000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 20 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 20000,
+    "unit": "mK"
+   }
+  },
+  "cooldown_time.max": {
+   "shape": "min",
+   "unit": "s",
+   "description": "Documented time to reach base temperature",
+   "status": "established",
+   "better": "lower"
+  },
+  "pressure.base": {
+   "shape": "min",
+   "unit": "uPa",
+   "description": "Documented base pressure / vacuum level",
+   "status": "established",
+   "better": "lower"
+  },
+  "vacuum.available": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Sample space can be evacuated",
+   "status": "established",
+   "better": "flag"
+  },
+  "sample.bore_diameter": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Clear bore / sample space diameter",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.diameter.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample diameter",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.length.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample length",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.width.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample width",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.height.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample height / thickness",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.mass.max": {
+   "shape": "max",
+   "unit": "ug",
+   "description": "Maximum sample mass",
+   "status": "established",
+   "better": "higher"
+  },
+  "section_thickness.range": {
+   "shape": "range",
+   "unit": "um",
+   "description": "Section thickness setting range (microtome cryostats)",
+   "status": "established",
+   "better": "range"
+  },
+  "specimen.stroke": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Vertical specimen stroke (microtome cryostats)",
+   "status": "established",
+   "better": "higher"
+  },
+  "specimen.orientation.max": {
+   "shape": "max",
+   "unit": "mdeg",
+   "description": "Specimen orientation range (± angle)",
+   "status": "established",
+   "better": "higher"
+  },
+  "optical_access": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Optical access to the sample is installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "optical.window_count": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Number of optical windows",
+   "status": "established",
+   "better": "higher"
+  },
+  "optical.clear_aperture": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Clear optical aperture / view diameter",
+   "status": "established",
+   "better": "higher"
+  },
+  "optical.objective_working_distance.min": {
+   "shape": "min",
+   "unit": "um",
+   "description": "Minimum objective working distance the window geometry requires",
+   "status": "established",
+   "better": "lower"
+  },
+  "electrical.dc_lines": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Number of DC wiring lines to the sample",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.coax_lines": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Number of coaxial / RF lines to the sample",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.coax_bandwidth.max": {
+   "shape": "max",
+   "unit": "kHz",
+   "description": "Documented bandwidth of coaxial lines",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.probe_arms": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Number of probe arms (probe stations)",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.channels": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Number of measurement channels of the installed module",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.current.range": {
+   "shape": "range",
+   "unit": "pA",
+   "description": "Excitation current range of the installed module",
+   "status": "established",
+   "better": "range"
+  },
+  "electrical.resistance.range": {
+   "shape": "range",
+   "unit": "uOhm",
+   "description": "Resistance measurement range of the installed module",
+   "status": "established",
+   "better": "range"
+  },
+  "electrical.sample_connections": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Electrical connections to the sample are installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.electrical_transport": {
+   "shape": "flag",
+   "unit": "",
+   "description": "AC electrical transport option installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.dc_resistivity": {
+   "shape": "flag",
+   "unit": "",
+   "description": "DC resistivity option installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.vsm": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Vibrating sample magnetometer installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.heat_capacity": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Heat capacity option installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.acms": {
+   "shape": "flag",
+   "unit": "",
+   "description": "AC susceptibility / DC magnetometry option installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.thermal_transport": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Thermal transport option installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.helium3": {
+   "shape": "flag",
+   "unit": "",
+   "description": "He-3 sub-kelvin insert installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.motorized_sectioning": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Motorised sectioning drive installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.vacuum_system": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Section-waste vacuum system installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.uvc_disinfection": {
+   "shape": "flag",
+   "unit": "",
+   "description": "UVC disinfection installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.specimen_cooling_peltier": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Peltier specimen quick-freeze cooling installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.ln2_pump": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Liquid-nitrogen cooling pump installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "module.magnetic_shielding": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Magnetic shielding of the sample space installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "cryogen.cryogen_free": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Operates without liquid cryogens (closed-cycle)",
+   "status": "established",
+   "better": "flag"
+  },
+  "cryogen.liquid_helium_required": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Requires liquid helium supply",
+   "status": "established",
+   "better": "flag"
+  },
+  "cryogen.liquid_nitrogen_required": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Requires liquid nitrogen supply",
+   "status": "established",
+   "better": "flag"
+  },
+  "vibration.max": {
+   "shape": "min",
+   "unit": "nm",
+   "description": "Documented sample vibration amplitude",
+   "status": "established",
+   "better": "lower"
+  },
+  "operating_duration.max": {
+   "shape": "max",
+   "unit": "s",
+   "description": "Documented continuous operating duration",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.vsm.diameter.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample/holder diameter accepted by an installed VSM coil set (module-specific; does not limit other modules)",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.heat_capacity.width.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample width on an installed heat-capacity platform (module-specific)",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.heat_capacity.length.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Maximum sample length on an installed heat-capacity platform (module-specific)",
+   "status": "established",
+   "better": "higher"
+  },
+  "plate.diameter": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Mixing-chamber / experimental plate diameter",
+   "status": "established",
+   "better": "higher"
+  },
+  "experimental_space.height": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Height of the experimental space below the coldest plate",
+   "status": "established",
+   "better": "higher"
+  },
+  "facility.electrical_power.max": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Facility electrical power drawn (compressor)",
+   "status": "established",
+   "better": "lower"
+  },
+  "trimming_thickness.range": {
+   "shape": "range",
+   "unit": "um",
+   "description": "Trimming thickness setting range (microtome cryostats)",
+   "status": "established",
+   "better": "range"
+  },
+  "temperature.peltier_delta.max": {
+   "shape": "max",
+   "unit": "mK",
+   "description": "Extra cooling of the Peltier quick-freeze station",
+   "status": "established",
+   "better": "higher"
+  },
+  "temperature.quick_freeze_shelf.min": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Lowest quick-freeze shelf temperature",
+   "status": "established",
+   "better": "lower"
+  },
+  "defrost.cycle_duration": {
+   "shape": "min",
+   "unit": "s",
+   "description": "Defrost cycle duration (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "electrical.apparent_power.max": {
+   "shape": "max",
+   "unit": "VA",
+   "description": "Apparent electrical power drawn",
+   "status": "established",
+   "better": "lower"
+  },
+  "equipment.mass.max": {
+   "shape": "max",
+   "unit": "g",
+   "description": "Equipment mass",
+   "status": "established",
+   "better": "lower"
+  },
+  "specimen.feed.horizontal.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Horizontal specimen feed",
+   "status": "established",
+   "better": "higher"
+  },
+  "temperature.cooling_rate.max": {
+   "shape": "max",
+   "unit": "mK_per_min",
+   "description": "Maximum documented controlled cooling rate",
+   "status": "established",
+   "better": "higher"
+  },
+  "cooling_power.at_5000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 5 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 5000,
+    "unit": "mK"
+   }
+  },
+  "cooldown_time.sample_exchange": {
+   "shape": "min",
+   "unit": "s",
+   "description": "Documented time to cool a newly loaded sample (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "magnetic_field.ramp_rate.max": {
+   "shape": "max",
+   "unit": "uT_per_s",
+   "description": "Maximum documented magnet charging rate",
+   "status": "established",
+   "better": "higher"
+  },
+  "magnetic_field.uniformity": {
+   "shape": "min",
+   "unit": "ppm",
+   "description": "Documented field inhomogeneity over the stated volume (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "temperature.stability.relative": {
+   "shape": "min",
+   "unit": "ppm",
+   "description": "Documented relative temperature stability (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "system_startup_time.max": {
+   "shape": "min",
+   "unit": "s",
+   "description": "Documented time from room temperature to operation (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "temperature.gradient": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Documented temperature gradient across the sample position (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "thermal.contact_resistance": {
+   "shape": "min",
+   "unit": "K_per_W",
+   "description": "Thermal contact resistance of the sample mount (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "thermal_cycles.max": {
+   "shape": "count",
+   "unit": "count",
+   "description": "Documented number of thermal cycles the mount/sample tolerates",
+   "status": "established",
+   "better": "higher"
+  },
+  "sample.orientation": {
+   "shape": "set",
+   "unit": "",
+   "description": "Sample orientations supported (e.g. horizontal, vertical, rotatable)",
+   "status": "established",
+   "better": "set"
+  },
+  "sample.vsm.length.max": {
+   "shape": "max",
+   "unit": "um",
+   "description": "Recommended maximum sample length for the installed VSM (module-specific)",
+   "status": "established",
+   "better": "higher"
+  },
+  "mechanical.resonance.min_frequency": {
+   "shape": "min",
+   "unit": "Hz",
+   "description": "Lowest documented mechanical resonance of the sample stage",
+   "status": "established",
+   "better": "higher"
+  },
+  "mechanical.stress.max": {
+   "shape": "max",
+   "unit": "Pa",
+   "description": "Allowed mechanical stress on the sample mount",
+   "status": "established",
+   "better": "higher"
+  },
+  "positioning.resolution": {
+   "shape": "min",
+   "unit": "nm",
+   "description": "Sample positioning resolution (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "vibration.frequency": {
+   "shape": "range",
+   "unit": "Hz",
+   "description": "Frequency band of the documented vibration",
+   "status": "established",
+   "better": "range"
+  },
+  "magnetic_field.direction": {
+   "shape": "set",
+   "unit": "",
+   "description": "Magnetic field directions available (longitudinal, transverse, vector)",
+   "status": "established",
+   "better": "set"
+  },
+  "electrical.current.max": {
+   "shape": "max",
+   "unit": "pA",
+   "description": "Maximum excitation current of the installed electrical module",
+   "status": "established",
+   "better": "higher"
+  },
+  "electrical.noise_rms": {
+   "shape": "min",
+   "unit": "nV",
+   "description": "Documented RMS voltage noise over a stated bandwidth (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "emi.shielding": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Electromagnetic interference shielding installed",
+   "status": "established",
+   "better": "flag"
+  },
+  "rf.power.max": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Maximum RF/microwave power deliverable to the sample",
+   "status": "established",
+   "better": "higher"
+  },
+  "vacuum.leak_rate": {
+   "shape": "min",
+   "unit": "Pa_m3_per_s",
+   "description": "Documented leak rate (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "gas.compatible": {
+   "shape": "set",
+   "unit": "",
+   "description": "Gases the sample space may be filled or purged with",
+   "status": "established",
+   "better": "set"
+  },
+  "purge.gas": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Sample chamber can be purged with gas (dry gas purge against condensation)",
+   "status": "established",
+   "better": "flag"
+  },
+  "cryogen.type": {
+   "shape": "set",
+   "unit": "",
+   "description": "Cryogens the system uses",
+   "status": "established",
+   "better": "set"
+  },
+  "gas.flow_rate.max": {
+   "shape": "max",
+   "unit": "L_per_min",
+   "description": "Maximum gas flow rate",
+   "status": "established",
+   "better": "higher"
+  },
+  "pressure.stability": {
+   "shape": "min",
+   "unit": "uPa",
+   "description": "Documented pressure stability (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "cryogen.dewar_volume": {
+   "shape": "max",
+   "unit": "L",
+   "description": "Volume of the cryogen dewar supplied",
+   "status": "established",
+   "better": "higher"
+  },
+  "cryogen.consumption_rate": {
+   "shape": "min",
+   "unit": "L_per_min",
+   "description": "Documented cryogen consumption (lower is better)",
+   "status": "established",
+   "better": "lower"
+  },
+  "optical.transmission_range": {
+   "shape": "range",
+   "unit": "nm",
+   "description": "Wavelength range transmitted by the optical window",
+   "status": "established",
+   "better": "range"
+  },
+  "optical.f_number": {
+   "shape": "min",
+   "unit": "f_number",
+   "description": "Documented f-number of the optical access (lower = wider cone)",
+   "status": "established",
+   "better": "lower"
+  },
+  "optical.numerical_aperture": {
+   "shape": "max",
+   "unit": "NA",
+   "description": "Documented numerical aperture of the optical access",
+   "status": "established",
+   "better": "higher"
+  },
+  "measurement.bandwidth": {
+   "shape": "max",
+   "unit": "kHz",
+   "description": "Measurement bandwidth of the installed module",
+   "status": "established",
+   "better": "higher"
+  },
+  "cooling_power.at_120mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 120 mK",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 120,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_500mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 0.5 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 500,
+    "unit": "mK"
+   }
+  },
+  "cooling_power.at_1000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "description": "Documented cooling power at 1 K",
+   "status": "established",
+   "better": "higher",
+   "at_temperature": {
+    "value": 1000,
+    "unit": "mK"
+   }
+  },
+  "flow.mach.range": {
+   "shape": "range",
+   "unit": "1",
+   "better": "range",
+   "status": "established",
+   "description": "Documented controlled Mach-number interval in the aerodynamic test section",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "temperature.cold_boundary.range": {
+   "shape": "range",
+   "unit": "K",
+   "better": "range",
+   "status": "established",
+   "description": "Controlled cold-side boundary temperature of a guarded insulation calorimeter",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "temperature.warm_boundary.range": {
+   "shape": "range",
+   "unit": "mK",
+   "better": "range",
+   "status": "established",
+   "description": "Controlled warm-side boundary temperature of a guarded insulation calorimeter",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.aerodynamic_force_pressure_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: aerodynamic force pressure test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.liquid_hydrogen_handling": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: liquid hydrogen handling",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.propellant_acquisition_transfer": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: propellant acquisition transfer",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.guarded_heat_flow_calorimetry": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: guarded heat flow calorimetry",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "temperature.optical_bench.range": {
+   "shape": "range",
+   "unit": "K",
+   "better": "range",
+   "status": "established",
+   "description": "Documented optical-bench operating temperature, distinct from detector sample or radiation shroud",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.mid_ir_detector_characterization": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: mid ir detector characterization",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.internal_offner_relay": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: internal offner relay",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryogenic_mirror_interferometry": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryogenic mirror interferometry",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "temperature.gradient.max": {
+   "shape": "min",
+   "unit": "K",
+   "better": "lower",
+   "status": "established",
+   "description": "Maximum spatial temperature gradient/difference across the test specimen; lower is better",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.integrated_telescope_optical_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: integrated telescope optical test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryogenic_tensile_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryogenic tensile test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryogenic_fatigue_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryogenic fatigue test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "mechanical.cycling_frequency.max": {
+   "shape": "max",
+   "unit": "Hz",
+   "better": "higher",
+   "status": "established",
+   "description": "Documented maximum cyclic loading frequency of the mechanical test frame",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryogenic_gas_permeation": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryogenic gas permeation",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "rf.frequency.range": {
+   "shape": "range",
+   "unit": "GHz",
+   "better": "range",
+   "status": "established",
+   "description": "Documented measurement frequency interval or explicitly reported operating point of the installed RF fixture",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.far_ir_detector_photometry": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: far ir detector photometry",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cold_dark_shutter": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cold dark shutter",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.micro_jt_cooling": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: micro jt cooling",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.stable_thz_detector_operation": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: stable thz detector operation",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryogenic_microwave_transmission": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryogenic microwave transmission",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.full_magnet_cold_qualification": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: full magnet cold qualification",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.high_current_conductor_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: high current conductor test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.cryopump_gas_injection_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: cryopump gas injection test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.srf_cavity_rf_test": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: srf cavity rf test",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.dual_phase_argon_charge_light": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: dual phase argon charge light",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.teo2_bolometer_calorimetry": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: teo2 bolometer calorimetry",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.neutron_powder_diffraction": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: neutron powder diffraction",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "module.nitrogen_physisorption_bet": {
+   "shape": "flag",
+   "unit": "",
+   "better": "flag",
+   "status": "established",
+   "description": "Documented installed function: nitrogen physisorption bet",
+   "proposed_by": "research/expansion/a_manifest.json"
+  },
+  "process.controlled_rate_freezing": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Programmed, controlled-rate biological sample freezing is documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.cryogenic_milling": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Mechanical sample comminution with documented cryogenic cooling.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.freeze_drying": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Vacuum freeze drying of pre-frozen bulk samples (not merely a cold condenser).",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.dsc": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Differential scanning calorimetry with a heat-flow sensor and reference is available.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.deep_cryogenic_treatment": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Controlled sub-zero treatment of metal parts is documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.vitrification": {
+   "shape": "flag",
+   "unit": "",
+   "description": "The documented carrier/protocol supports rapid cryoprotectant-assisted vitrification.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.ln2_immersion": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Direct liquid-nitrogen immersion of the documented sample carrier.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.circulating_bath": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Refrigerated circulating liquid bath, including its liquid work area.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.temperature_cycling": {
+   "shape": "flag",
+   "unit": "",
+   "description": "A chamber with programmable temperature cycling is documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.dewpoint_control": {
+   "shape": "flag",
+   "unit": "",
+   "description": "The complete humidified/dry gas mixing and dew-point measurement chain is installed.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.complex_resistivity": {
+   "shape": "flag",
+   "unit": "",
+   "description": "A complex-resistivity measurement chain and sample electrodes are installed.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.sample_thermometry": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Independent sample thermocouple and logger are installed.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.eight_well_freezing_block": {
+   "shape": "flag",
+   "unit": "",
+   "description": "The validated thermal-contact aluminum block for eight-well strips is installed.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.dynamic_nitrogen_purge": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Dynamic nitrogen purge of the calorimeter is documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.cryogenic_preconcentration": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Cryogenic trapping and focusing for gas analysis is documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.gc_ms": {
+   "shape": "flag",
+   "unit": "",
+   "description": "An interfaced gas chromatograph and mass-selective detector are documented.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "temperature.cooling_rate.range": {
+   "shape": "range",
+   "unit": "mK_per_min",
+   "description": "Documented controlled cooling-rate magnitudes; do not substitute heating rates.",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "temperature.heating_rate.range": {
+   "shape": "range",
+   "unit": "mK_per_min",
+   "description": "Documented controlled heating-rate magnitudes.",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "milling.frequency.range": {
+   "shape": "range",
+   "unit": "Hz",
+   "description": "Documented grinding-jar vibration frequency, not electrical line frequency.",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "milling.duration.max": {
+   "shape": "max",
+   "unit": "s",
+   "description": "Documented programmable maximum milling duration (not a guarantee against sample warming).",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "milling.jar_volume": {
+   "shape": "max",
+   "unit": "L",
+   "description": "Nominal volume of the documented grinding jar.",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "condenser.temperature.min": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Lowest documented freeze-dryer collector/condenser temperature; never substitute for shelf/sample temperature.",
+   "status": "established",
+   "better": "lower",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "trap.precool.temperature": {
+   "shape": "min",
+   "unit": "mK",
+   "description": "Lowest documented cold-focusing-trap precool setting for the selected installed method.",
+   "status": "established",
+   "better": "lower",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "trap.inject.temperature": {
+   "shape": "max",
+   "unit": "mK",
+   "description": "Documented hot desorption/injection trap setpoint for the selected method.",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "dwell.duration.max": {
+   "shape": "max",
+   "unit": "s",
+   "description": "Maximum documented hold duration for the specified thermal process.",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "carrier.oocyte.capacity": {
+   "shape": "count",
+   "unit": "",
+   "description": "Maximum recommended number of oocytes on the documented vitrification carrier.",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "process.nerve_cryoneurolysis": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Documented peripheral-nerve freezing with the specified surgical cryoprobe.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "probe.temperature.range": {
+   "shape": "range",
+   "unit": "mK",
+   "description": "Documented cryoprobe operating temperature envelope,distinct from tissue temperature and console ambient range.",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "probe.freeze_duration.range": {
+   "shape": "range",
+   "unit": "s",
+   "description": "Conservatively documented supported freeze durations; a single-point interval records one established timer setting.",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.direct_visualization": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Documented installed direct-visualization equipment for the selected procedure; never inferred from a console specification.",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/b_manifest.json"
+  },
+  "module.boiloff_calorimetry": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed steady-state liquid-cryogen boiloff calorimetry measurement apparatus",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.volumetric_hydrogen_sorption": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed volumetric hydrogen dosing and adsorption-isotherm measurement system",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.cryogenic_tensile": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed cryogenic specimen grips, mechanical load frame and tensile measurement apparatus",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.acoustic_gas_thermometry": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed acoustic resonator, transducers and readout for primary gas thermometry",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.resistance_thermometry_bridge": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed resistance-thermometer measurement bridge in the documented configuration",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.programmable_josephson_voltage": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed programmable Josephson junction array and microwave/bias electronics for voltage metrology",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.electrical_substitution_radiometry": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed absorbing cavity, electrical heater, thermometry and optical-power substitution readout",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.snspd_detection": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed superconducting nanowire single-photon detector and operating bias/readout electronics",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.photon_timing": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed time-correlated photon counting or time-tagging instrument",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.calibrated_photon_flux": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed calibrated optical power measurement and attenuation path for detector characterization",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.quantum_dot_excitation": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed pulsed optical excitation and collection apparatus for a quantum-dot emitter",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.hbt_correlation": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed two-detector beam-splitter correlation apparatus for second-order photon autocorrelation",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.optical_resonance_interrogation": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed laser frequency scanning and transmission readout of a cryogenic optical resonator",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.semiconductor_parameter_analyzer": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed source/measure analyzer for semiconductor DC characteristics",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.capacitance_transient_spectroscopy": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed capacitance-transient measurement and trap-filling electronics for DLTS",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.hall_measurement": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Installed Hall sourcing, voltage measurement, switching and analysis instrumentation",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.liquid_nitrogen_bath": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Documented flooded liquid-nitrogen sample bath in this configuration",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "module.electrical_probing": {
+   "shape": "flag",
+   "unit": "",
+   "description": "Cryogenic instrument supports contacting electronic samples with electrical probe arms",
+   "status": "established",
+   "better": "flag",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "pressure.operating.range": {
+   "shape": "range",
+   "unit": "Pa",
+   "description": "Documented pressure interval used by the sample/resonator gas handling system",
+   "status": "established",
+   "better": "range",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "electrical.reference_voltage.max": {
+   "shape": "max",
+   "unit": "V",
+   "description": "Largest magnitude reference voltage produced by a documented voltage standard",
+   "status": "established",
+   "better": "higher",
+   "proposed_by": "research/expansion/c_manifest.json"
+  },
+  "chamber.volume": {
+   "shape": "max",
+   "unit": "L",
+   "better": "higher",
+   "description": "Usable internal volume of the sample/storage/test space (freezer cabinet, controlled-rate-freezer chamber, environmental/thermal-vacuum chamber, freeze-dryer product chamber, archive freezer). Example: Planer Kryo 560-16 'Chamber volume 16 litres'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "storage.capacity.vials_2ml": {
+   "shape": "count",
+   "unit": "count",
+   "better": "higher",
+   "description": "Documented maximum number of 1.2/2.0 mL cryovials held with the standard inventory system (LN2 freezers, dewars, CRFs, freezers when stated in vials). Example: MVE HEco 815P-190 '15,600'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "storage.capacity.straws_0_5ml": {
+   "shape": "count",
+   "unit": "count",
+   "better": "higher",
+   "description": "Documented maximum number of 0.5 mL (1/2 cc) straws (semen/embryo banking, IVF, livestock genetics). Example: MVE HE 800 C 'over 22,000 1/2cc straws'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "holding_time.static": {
+   "shape": "max",
+   "unit": "h",
+   "better": "higher",
+   "description": "Static holding time: how long one cryogen charge keeps the storage/sample space at its rated temperature without refill or external power (LN2 dewars, vapour freezers, dry shippers, LHe cryostats). Days convert exactly (x24). Example: MVE dry shipper 'STATIC HOLD TIME ... 18 DAYS'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "temperature.shroud.range": {
+   "shape": "range",
+   "unit": "mK",
+   "better": "none",
+   "description": "Temperature range of the thermal shroud/cold wall of a thermal-vacuum or space-simulation chamber (radiative environment); the platen/test-article range stays in temperature.range. Example: 'Shroud temperature control range: -180 to +150 C'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "temperature.condenser.min": {
+   "shape": "min",
+   "unit": "mK",
+   "better": "lower",
+   "description": "Lowest documented temperature of the freeze-dryer ice condenser / cold trap (aqueous -50 C vs solvent/low-collapse -80 to -85 C). Example: Christ Epsilon 2-4 condenser minimum -85 C.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "condenser.ice_capacity": {
+   "shape": "max",
+   "unit": "kg",
+   "better": "higher",
+   "description": "Documented maximum ice load of the freeze-dryer condenser before defrost, in kg; capacities printed in litres are a different dimension and must not be converted.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "cooling_power.at_77000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "better": "higher",
+   "description": "Documented cooling power at 77 K (tactical IR Stirling coolers, HTS cable/SFCL coolers, reliquefiers); ambient condition kept in evidence. Example: Ricor K508 '550mW@77K@71C'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "cooling_power.at_80000mK": {
+   "shape": "max",
+   "unit": "nW",
+   "better": "higher",
+   "description": "Documented cooling power at 80 K, the standard rating point of space and long-life pulse-tube/Stirling coolers. Example: NICMOS cryocooler '7 W at 80 K'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "pressure.max_working": {
+   "shape": "max",
+   "unit": "Pa",
+   "better": "higher",
+   "description": "Maximum allowable working pressure of the sample vessel/chamber/flow loop (cryogenic test vessels, supercritical-He loops, high-pressure freezers 2100 bar, hydrate cells, LH2/LNG tanks). bar converts exactly; psi only as a bound rounded down with the printed value in the quote.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "cryogen.flow_rate.max": {
+   "shape": "max",
+   "unit": "L_per_min",
+   "better": "higher",
+   "description": "Maximum liquid-cryogen flow delivered to the process or meter under test (cryogenic machining, LN2 tunnel freezers, LNG/LN2 flow calibration, transfer systems); gas flow stays in gas.flow_rate.max. m3/h converts exactly only if divisible by 3.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "electrical.current_leads.max": {
+   "shape": "max",
+   "unit": "A",
+   "better": "higher",
+   "description": "Maximum transport current of installed current leads to the sample (HTS tape/cable Ic tests, magnet and fusion conductor tests); distinct from electrical.current.max of a measurement module. Example: SPARC TFMC '50 kA capacity ... current leads'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  },
+  "humidity.range": {
+   "shape": "range",
+   "unit": "percent",
+   "better": "none",
+   "description": "Controllable relative-humidity range of the sample chamber (cryo-EM plunge freezers, climatic/damp-heat chambers, cloud chambers). Example: Vitrobot SOP 'Humidity 100%, Temperature 4 C - 22 C'.",
+   "status": "established",
+   "proposed_by": "research/v4/vocabulary.json"
+  }
+ }
 }

@@ -1,0 +1,790 @@
+{
+  "lane": "c",
+  "accessed": "2026-10-31",
+  "industries": [
+    {
+      "id": "energy_and_hydrogen",
+      "experiment_ids": [
+        "expc_energy_insulation_boiloff",
+        "expc_energy_hydrogen_sorption",
+        "expc_energy_tensile_20k"
+      ],
+      "configuration_ids": [
+        "expc_nasa_cryostat100_standard",
+        "expc_asap2020_hydrogen_ln2",
+        "expc_npl_helium_tensile_20k"
+      ],
+      "shortfalls": []
+    },
+    {
+      "id": "metrology_and_calibration",
+      "experiment_ids": [
+        "expc_metrology_acoustic_thermometry",
+        "expc_metrology_josephson_dc",
+        "expc_metrology_optical_watt"
+      ],
+      "configuration_ids": [
+        "expc_lne_cnam_agt_2019",
+        "expc_inrim_pjvs_4p2k",
+        "expc_nist_locr_2001"
+      ],
+      "shortfalls": []
+    },
+    {
+      "id": "photonics_and_telecommunications",
+      "experiment_ids": [
+        "expc_photonics_snspd_characterization",
+        "expc_photonics_qd_autocorrelation",
+        "expc_photonics_silicon_frequency"
+      ],
+      "configuration_ids": [
+        "expc_nasa_opus_one_2018_setup",
+        "expc_attodry800_qd_hbt_2024",
+        "expc_leiden_cf1k_si5_2020"
+      ],
+      "shortfalls": []
+    },
+    {
+      "id": "semiconductors_and_electronics",
+      "experiment_ids": [
+        "expc_semiconductor_native_mosfet",
+        "expc_semiconductor_dlts",
+        "expc_semiconductor_cryo_hall"
+      ],
+      "configuration_ids": [
+        "lakeshore_crx_vf",
+        "expc_lakeshore_cpx_standard",
+        "expc_lakeshore_fasthall_ln2"
+      ],
+      "shortfalls": [
+        "No inspected primary source establishes an installed B1500A/SMU or DLTS electronics on the two catalog probe-station configurations. These pairings must remain UNKNOWN where their mandatory functions are undocumented, or FAIL where temperature is insufficient. An instrument's inclusion here does not imply suitability."
+      ]
+    },
+    {
+      "id": "quantum_computing_and_sensing",
+      "experiment_ids": [
+        "quantum_transmon_characterization",
+        "quantum_mk_vector_field_transport",
+        "quantum_mxc_wiring_heat_budget"
+      ],
+      "configuration_ids": [
+        "bluefors_ld250_manual_v2",
+        "bluefors_ld400_hdw",
+        "oxford_teslatronpt_6_1_1T_vector"
+      ],
+      "shortfalls": [
+        "Reuses existing reviewed profiles. The heat-budget profile is an engineering validation experiment rather than a separate quantum-device measurement. Standard TeslatronPT vector VTI is relevant to vector-field transport but may be too warm for the selected millikelvin procedure; Lean must retain the actual result."
+      ]
+    },
+    {
+      "id": "materials_and_nanotechnology",
+      "experiment_ids": [
+        "mat_electrical_resistance_low_temperature",
+        "mat_magnetoresistance_10T",
+        "mat_magnetometry_vsm"
+      ],
+      "configuration_ids": [
+        "qd_dynacool_9T_eto_res",
+        "qd_dynacool_14T_eto_vsm_hc",
+        "oxford_teslatronpt_8T"
+      ],
+      "shortfalls": []
+    }
+  ],
+  "proposed_vocabulary_keys": {
+    "module.boiloff_calorimetry": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed steady-state liquid-cryogen boiloff calorimetry measurement apparatus",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.volumetric_hydrogen_sorption": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed volumetric hydrogen dosing and adsorption-isotherm measurement system",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.cryogenic_tensile": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed cryogenic specimen grips, mechanical load frame and tensile measurement apparatus",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.acoustic_gas_thermometry": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed acoustic resonator, transducers and readout for primary gas thermometry",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.resistance_thermometry_bridge": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed resistance-thermometer measurement bridge in the documented configuration",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.programmable_josephson_voltage": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed programmable Josephson junction array and microwave/bias electronics for voltage metrology",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.electrical_substitution_radiometry": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed absorbing cavity, electrical heater, thermometry and optical-power substitution readout",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.snspd_detection": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed superconducting nanowire single-photon detector and operating bias/readout electronics",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.photon_timing": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed time-correlated photon counting or time-tagging instrument",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.calibrated_photon_flux": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed calibrated optical power measurement and attenuation path for detector characterization",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.quantum_dot_excitation": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed pulsed optical excitation and collection apparatus for a quantum-dot emitter",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.hbt_correlation": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed two-detector beam-splitter correlation apparatus for second-order photon autocorrelation",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.optical_resonance_interrogation": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed laser frequency scanning and transmission readout of a cryogenic optical resonator",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.semiconductor_parameter_analyzer": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed source/measure analyzer for semiconductor DC characteristics",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.capacitance_transient_spectroscopy": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed capacitance-transient measurement and trap-filling electronics for DLTS",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.hall_measurement": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Installed Hall sourcing, voltage measurement, switching and analysis instrumentation",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.liquid_nitrogen_bath": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Documented flooded liquid-nitrogen sample bath in this configuration",
+      "status": "established",
+      "better": "flag"
+    },
+    "module.electrical_probing": {
+      "shape": "flag",
+      "unit": null,
+      "description": "Cryogenic instrument supports contacting electronic samples with electrical probe arms",
+      "status": "established",
+      "better": "flag"
+    },
+    "temperature.warm_boundary.range": {
+      "shape": "range",
+      "unit": "mK",
+      "description": "Controlled warm boundary temperature range for insulation calorimetry",
+      "status": "established",
+      "better": "range"
+    },
+    "pressure.operating.range": {
+      "shape": "range",
+      "unit": "Pa",
+      "description": "Documented pressure interval used by the sample/resonator gas handling system",
+      "status": "established",
+      "better": "range"
+    },
+    "electrical.reference_voltage.max": {
+      "shape": "max",
+      "unit": "V",
+      "description": "Largest magnitude reference voltage produced by a documented voltage standard",
+      "status": "established",
+      "better": "higher"
+    }
+  },
+  "experiment_scenes": {
+    "expc_energy_insulation_boiloff": {
+      "archetype": "cryogenic_insulation_test",
+      "apparatus": [
+        "cylindrical blanket sleeve",
+        "cold LN2 cylinder",
+        "warm shell",
+        "boiloff flow meter"
+      ],
+      "specimen": "Multilayer insulation or foam sleeve around a cryogenic storage cold mass",
+      "distinctive_specimen": "Multilayer insulation or foam sleeve around a cryogenic storage cold mass",
+      "measurement": "Measure heat leaking through cryogenic tank insulation",
+      "steps": [
+        "Establish a temperature gradient.",
+        "Heat crosses the insulation and evaporates liquid nitrogen.",
+        "The calibrated gas flow measures heat leak."
+      ],
+      "source_url": "https://ntrs.nasa.gov/api/citations/20150011030/downloads/20150011030.pdf?attachment=true",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_energy_hydrogen_sorption": {
+      "archetype": "cryogenic_sorption",
+      "apparatus": [
+        "glass powder bulb",
+        "LN2 Dewar",
+        "dosing manifold",
+        "pressure sensor"
+      ],
+      "specimen": "Porous carbon or other powder adsorbent, measured by hydrogen gas uptake",
+      "distinctive_specimen": "Porous carbon or other powder adsorbent, measured by hydrogen gas uptake",
+      "measurement": "Measure hydrogen uptake by a porous storage material",
+      "steps": [
+        "Prepare and degas the powder.",
+        "Dose known hydrogen quantities into the cold sample tube.",
+        "Use equilibrium pressure and free-space correction to build the adsorption isotherm."
+      ],
+      "source_url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_energy_tensile_20k": {
+      "archetype": "cryogenic_tensile",
+      "apparatus": [
+        "dog-bone specimen",
+        "upper and lower grips",
+        "cryogenic chamber",
+        "load cell"
+      ],
+      "specimen": "Metal or fibre-reinforced composite coupon for liquid-hydrogen components",
+      "distinctive_specimen": "Metal or fibre-reinforced composite coupon for liquid-hydrogen components",
+      "measurement": "Test how a hydrogen-system material stretches and fails near 20 K",
+      "steps": [
+        "Mount the coupon between cryogenic grips.",
+        "Cool the gauge section and establish the temperature.",
+        "Pull the coupon while measuring force and extension."
+      ],
+      "source_url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_metrology_acoustic_thermometry": {
+      "archetype": "cryogenic_calibration",
+      "apparatus": [
+        "copper quasi-sphere",
+        "acoustic transducers",
+        "pressure vessel",
+        "resistance bridge"
+      ],
+      "specimen": "Helium gas resonator and a Pt-Co resistance thermometer transfer standard",
+      "distinctive_specimen": "Helium gas resonator and a Pt-Co resistance thermometer transfer standard",
+      "measurement": "Calibrate a resistance thermometer using the speed of sound in helium",
+      "steps": [
+        "Drive helium acoustic modes.",
+        "Measure mode frequencies over a pressure series.",
+        "Extrapolate the speed of sound and transfer temperature calibration."
+      ],
+      "source_url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_metrology_josephson_dc": {
+      "archetype": "superconducting_standard",
+      "apparatus": [
+        "Josephson array chip",
+        "microwave coax",
+        "cryogenic probe",
+        "DC reference terminals"
+      ],
+      "specimen": "Series array of approximately 70,000 Josephson junctions and a DC transfer standard",
+      "distinctive_specimen": "Series array of approximately 70,000 Josephson junctions and a DC transfer standard",
+      "measurement": "Realize and compare a quantum-accurate DC voltage reference",
+      "steps": [
+        "Establish the superconducting array at 4.2 K.",
+        "Select quantized voltage steps with frequency and bias.",
+        "Measure the transfer standard's difference from the reference."
+      ],
+      "source_url": "https://www.inrim.it/en/research/scientific-sectors/quantum-electronics/laboratories/quantum-voltage-standard-laboratory-0",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_metrology_optical_watt": {
+      "archetype": "cryogenic_radiometer",
+      "apparatus": [
+        "black receiving cavity",
+        "heater",
+        "photodiode trap",
+        "beam splitter and shutter"
+      ],
+      "specimen": "Three-photodiode silicon trap detector, compared with a cryogenic black cavity",
+      "distinctive_specimen": "Three-photodiode silicon trap detector, compared with a cryogenic black cavity",
+      "measurement": "Calibrate an optical detector by electrical-substitution radiometry",
+      "steps": [
+        "Measure optical heating of the cold cavity.",
+        "Replace optical heat with electrical heat at constant temperature.",
+        "Transfer the measured optical watt to the silicon photodiode trap."
+      ],
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4862825/",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_photonics_snspd_characterization": {
+      "archetype": "optical_detector",
+      "apparatus": [
+        "meandered nanowire detector",
+        "fibre-coupled cold mount",
+        "bias tee",
+        "TCSPC electronics"
+      ],
+      "specimen": "Two superconducting nanowire detectors receiving attenuated1550 nm photons",
+      "distinctive_specimen": "Two superconducting nanowire detectors receiving attenuated1550 nm photons",
+      "measurement": "Measure the efficiency and timing of a cryogenic photon detector",
+      "steps": [
+        "Calibrate and attenuate the1550 nm beam.",
+        "A photon creates a resistive hotspot and voltage pulse.",
+        "Count pulses and build a timing histogram against the laser trigger."
+      ],
+      "source_url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_photonics_qd_autocorrelation": {
+      "archetype": "optical_emitter",
+      "apparatus": [
+        "quantum-dot chip",
+        "cold objective",
+        "piezo stack",
+        "50:50 splitter",
+        "two photon counters"
+      ],
+      "specimen": "Semiconductor quantum-dot emitter producing telecom photons; its photons are split into two coincidence channels",
+      "distinctive_specimen": "Semiconductor quantum-dot emitter producing telecom photons; its photons are split into two coincidence channels",
+      "measurement": "Measure the single-photon purity of a semiconductor quantum-dot emitter",
+      "steps": [
+        "Pulsed light excites the4 K quantum dot.",
+        "Filtered emitted photons enter a50:50 beam splitter.",
+        "Two detector timestamps form the second-order correlation histogram."
+      ],
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11014446/fullTextXML",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_photonics_silicon_frequency": {
+      "archetype": "optical_resonator",
+      "apparatus": [
+        "vertical silicon spacer with two mirrors",
+        "three-point support",
+        "fibre collimator",
+        "motorized mirrors",
+        "transmission photodiode"
+      ],
+      "specimen": "50 mm long vertical silicon Fabry-Perot reference resonator",
+      "distinctive_specimen": "50 mm long vertical silicon Fabry-Perot reference resonator",
+      "measurement": "Measure frequency drift of a cryogenic silicon optical reference",
+      "steps": [
+        "Cool the silicon spacer through the measurement interval.",
+        "Sweep the probe laser through its optical resonance.",
+        "Track line centers to determine frequency drift."
+      ],
+      "source_url": "https://arxiv.org/html/2004.01552v3",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_semiconductor_native_mosfet": {
+      "archetype": "semiconductor_transistor",
+      "apparatus": [
+        "MOSFET chip",
+        "gate/source/drain wiring",
+        "cryogenic sample mount",
+        "source-measure analyzer"
+      ],
+      "specimen": "SMIC0.18 micrometre native n-MOSFET, with separate gate and drain bias paths",
+      "distinctive_specimen": "SMIC0.18 micrometre native n-MOSFET, with separate gate and drain bias paths",
+      "measurement": "Measure transistor turn-on and leakage from room temperature to liquid helium",
+      "steps": [
+        "Cool the transistor and establish terminal connections.",
+        "Sweep gate voltage while measuring drain current.",
+        "Repeat drain/output sweeps and extract turn-on and leakage characteristics."
+      ],
+      "source_url": "https://arxiv.org/html/2104.03094",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_semiconductor_dlts": {
+      "archetype": "semiconductor_dlts",
+      "apparatus": [
+        "Schottky diode with metal top contact",
+        "ohmic backside contact",
+        "capacitance meter",
+        "bias pulse generator"
+      ],
+      "specimen": "Nitrogen-containing n- or p-type float-zone silicon Schottky diode",
+      "distinctive_specimen": "Nitrogen-containing n- or p-type float-zone silicon Schottky diode",
+      "measurement": "Measure semiconductor defect traps through capacitance transients",
+      "steps": [
+        "Fill traps with an electrical bias pulse.",
+        "Measure capacitance relaxation as trapped carriers are emitted.",
+        "Scan temperature to separate defect signatures by emission rate."
+      ],
+      "source_url": "https://onlinelibrary.wiley.com/doi/full/10.1002/pssa.202200633",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    },
+    "expc_semiconductor_cryo_hall": {
+      "archetype": "semiconductor_hall",
+      "apparatus": [
+        "four-corner-contact square chip",
+        "wide-gap magnet poles",
+        "LN2 bath",
+        "source/voltage switching matrix"
+      ],
+      "specimen": "Semiconductor van der Pauw sample with four edge contacts in a magnetic field",
+      "distinctive_specimen": "Semiconductor van der Pauw sample with four edge contacts in a magnetic field",
+      "measurement": "Measure carrier type, density and mobility in a cold semiconductor",
+      "steps": [
+        "Apply current between a selected contact pair.",
+        "Measure transverse Hall voltage in the cold magnetic field.",
+        "Permute contacts and calculate carrier sign, concentration and mobility."
+      ],
+      "source_url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24",
+      "fidelity": "Representative procedural scene. Its specimen and external instruments are experiment requirements, not evidence that the selected machine has those options installed."
+    }
+  },
+  "equipment_scenes": {
+    "expc_nasa_cryostat100_standard": {
+      "family": "cryogenic_insulation_test",
+      "archetype": "cryogenic_insulation_test",
+      "apparatus": [
+        "one-metre cylindrical insulation sleeve",
+        "LN2 cold mass",
+        "warm vacuum jacket",
+        "boiloff vent and flow meter"
+      ],
+      "steps": [
+        "Wrap the cylindrical cold mass with the insulation specimen.",
+        "Establish cold and warm boundary temperatures and chamber pressure.",
+        "Measure steady boiloff to determine transmitted heat."
+      ],
+      "provenance": [
+        {
+          "title": "Cryogenics Test Laboratory at NASA Kennedy Space Center: Thermal Insulation Systems Testing (21 April 2015)",
+          "url": "https://ntrs.nasa.gov/api/citations/20150011030/downloads/20150011030.pdf?attachment=true"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_asap2020_hydrogen_ln2": {
+      "family": "cryogenic_sorption",
+      "archetype": "cryogenic_sorption",
+      "apparatus": [
+        "bench gas-analysis manifold",
+        "pressure transducers",
+        "fritted glass powder tube",
+        "LN2 Dewar",
+        "isothermal jacket"
+      ],
+      "steps": [
+        "Degas the powder using the source procedure.",
+        "Surround the analysis tube with the cryogenic bath.",
+        "Dose hydrogen and infer uptake from pressure and free space."
+      ],
+      "provenance": [
+        {
+          "title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+          "url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_npl_helium_tensile_20k": {
+      "family": "cryogenic_tensile",
+      "archetype": "cryogenic_tensile",
+      "apparatus": [
+        "mechanical load frame",
+        "helium-cooled specimen chamber",
+        "opposing tensile grips",
+        "load cell and strain readout"
+      ],
+      "steps": [
+        "Grip a metal or composite coupon.",
+        "Cool and stabilize the gauge region near 20 K.",
+        "Apply tensile loading and record stress and strain."
+      ],
+      "provenance": [
+        {
+          "title": "National Physical Laboratory: Cryogenic testing services",
+          "url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_lne_cnam_agt_2019": {
+      "family": "cryogenic_calibration",
+      "archetype": "cryogenic_calibration",
+      "apparatus": [
+        "pulse-tube cryostat",
+        "two gold-plated shields",
+        "quasi-spherical copper helium resonator",
+        "microphone and acoustic drive",
+        "gas-pressure manifold"
+      ],
+      "steps": [
+        "Purify and fill the resonator with helium.",
+        "Measure acoustic and microwave resonances at controlled pressures.",
+        "Infer thermodynamic temperature and calibrate the resistance thermometer."
+      ],
+      "provenance": [
+        {
+          "title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+          "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_inrim_pjvs_4p2k": {
+      "family": "superconducting_standard",
+      "archetype": "superconducting_standard",
+      "apparatus": [
+        "liquid-helium Dewar",
+        "immersed Josephson-array chip",
+        "microwave feed",
+        "low-thermal-emf leads",
+        "reference voltmeter"
+      ],
+      "steps": [
+        "Cool the junction array in liquid helium.",
+        "Irradiate and bias the array on quantized voltage steps.",
+        "Compare a DC transfer reference or precision voltmeter."
+      ],
+      "provenance": [
+        {
+          "title": "INRIM: Quantum voltage standard laboratory",
+          "url": "https://www.inrim.it/en/research/scientific-sectors/quantum-electronics/laboratories/quantum-voltage-standard-laboratory-0"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_nist_locr_2001": {
+      "family": "cryogenic_radiometer",
+      "archetype": "cryogenic_radiometer",
+      "apparatus": [
+        "horizontal receiving cavity",
+        "helium-temperature cold mount",
+        "heater and thermometer leads",
+        "laser shutter",
+        "translation stage with three-diode trap"
+      ],
+      "steps": [
+        "Illuminate the absorbing cavity.",
+        "Reduce electrical heating to hold its temperature constant.",
+        "Substitute a photodiode trap into the calibrated optical beam."
+      ],
+      "provenance": [
+        {
+          "title": "Houston and Livigni (2001), Comparison of Two Cryogenic Radiometers at NIST, J. Res. NIST 106, 641-647",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4862825/"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_nasa_opus_one_2018_setup": {
+      "family": "optical_detector",
+      "archetype": "optical_detector",
+      "apparatus": [
+        "3U19-inch rack detector cryostat",
+        "two fibre inputs",
+        "bias/readout electronics",
+        "attenuated laser and power-meter tap",
+        "TCSPC card"
+      ],
+      "steps": [
+        "Cool the nanowires to the documented operating point.",
+        "Inject a calibrated weak optical signal.",
+        "Count and time the output pulses while varying bias."
+      ],
+      "provenance": [
+        {
+          "title": "Vyhnalek, Tedder and Nappier (2018), Performance and characterization of a modular superconducting nanowire single photon detector system for space-to-Earth optical communications links",
+          "url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_attodry800_qd_hbt_2024": {
+      "family": "optical_emitter",
+      "archetype": "optical_emitter",
+      "apparatus": [
+        "optical-table-integrated cryostat",
+        "cold objective over QD on piezo stack",
+        "pump/collection optics",
+        "50:50 fibre splitter",
+        "two external SNSPD channels and time tagger"
+      ],
+      "steps": [
+        "Cool and align the QD under the internal objective.",
+        "Excite the QD and spectrally filter the emitted telecom light.",
+        "Split the photons and measure two-detector coincidences."
+      ],
+      "provenance": [
+        {
+          "title": "Thomas et al. (2024), Deterministic storage and retrieval of telecom light from a quantum dot single-photon source interfaced with an atomic quantum memory, Science Advances 10, eadi7346",
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11014446/fullTextXML"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_leiden_cf1k_si5_2020": {
+      "family": "optical_resonator",
+      "archetype": "optical_resonator",
+      "apparatus": [
+        "pulse-tube/Joule-Thomson cryostat",
+        "vertical50 mm silicon resonator on three supports",
+        "cold optical breadboard",
+        "motorized mirrors",
+        "transmission detector and frequency-reference optics"
+      ],
+      "steps": [
+        "Cool the supported silicon resonator.",
+        "Align fibre-injected light through motorized mirrors.",
+        "Scan the resonance and record line-center drift."
+      ],
+      "provenance": [
+        {
+          "title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112",
+          "url": "https://arxiv.org/html/2004.01552v3"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_lakeshore_cpx_standard": {
+      "family": "probe_station_flow",
+      "archetype": "probe_station_flow",
+      "apparatus": [
+        "bench chamber with radial manipulators",
+        "three nested radiation shields",
+        "helium split-flow transfer line",
+        "sample puck under top viewport",
+        "separate instrument console"
+      ],
+      "steps": [
+        "Load the chip on the grounded sample holder.",
+        "Pump down and cool the sample and radiation shields through separate flows.",
+        "Land the configured probes and connect external measurement electronics."
+      ],
+      "provenance": [
+        {
+          "title": "Lake Shore: CPX cryogenic probe station specifications",
+          "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-cpx-cryogenic-probe-station"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    },
+    "expc_lakeshore_fasthall_ln2": {
+      "family": "hall_station",
+      "archetype": "hall_station",
+      "apparatus": [
+        "wide-gap permanent magnet",
+        "pour-filled LN2 sample reservoir",
+        "insertable four-contact sample card",
+        "M91 source/readout/switching controller"
+      ],
+      "steps": [
+        "Mount and check contacts on the sample card.",
+        "Fill the LN2 reservoir around the sample.",
+        "Apply source/measure sequences in the 0.75 T field and calculate Hall properties."
+      ],
+      "provenance": [
+        {
+          "title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+          "url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24"
+        }
+      ],
+      "fidelity": "Source-guided representative geometry; published apparatus, not manufacturer CAD. Only this named configuration is asserted."
+    }
+  },
+  "sources": {
+    "nasa_insulation": {
+      "title": "Cryogenics Test Laboratory at NASA Kennedy Space Center: Thermal Insulation Systems Testing (21 April 2015)",
+      "url": "https://ntrs.nasa.gov/api/citations/20150011030/downloads/20150011030.pdf?attachment=true"
+    },
+    "asap": {
+      "title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf"
+    },
+    "npl": {
+      "title": "National Physical Laboratory: Cryogenic testing services",
+      "url": "https://www.npl.co.uk/products-services/advanced-materials/cryogenic-testing-services"
+    },
+    "agt": {
+      "title": "Pan et al. (2021), Acoustic measurement of the triple point of neon TNe and thermodynamic calibration of a transfer standard for accurate cryogenic thermometry",
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=931816"
+    },
+    "pjvs": {
+      "title": "INRIM: Quantum voltage standard laboratory",
+      "url": "https://www.inrim.it/en/research/scientific-sectors/quantum-electronics/laboratories/quantum-voltage-standard-laboratory-0"
+    },
+    "locr": {
+      "title": "Houston and Livigni (2001), Comparison of Two Cryogenic Radiometers at NIST, J. Res. NIST 106, 641-647",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4862825/"
+    },
+    "snspd": {
+      "title": "Vyhnalek, Tedder and Nappier (2018), Performance and characterization of a modular superconducting nanowire single photon detector system for space-to-Earth optical communications links",
+      "url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf"
+    },
+    "qd": {
+      "title": "Thomas et al. (2024), Deterministic storage and retrieval of telecom light from a quantum dot single-photon source interfaced with an atomic quantum memory, Science Advances 10, eadi7346",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11014446/fullTextXML"
+    },
+    "atto": {
+      "title": "attocube: attoDRY800 optical cryostat specifications",
+      "url": "https://www.attocube.com/en/products/cryostats/closed-cycle-cryostats/attodry800-optical-cryostat"
+    },
+    "resonator": {
+      "title": "Wiens et al. (2020), A simplified cryogenic optical resonator apparatus providing ultra-low frequency drift, Review of Scientific Instruments 91, 045112",
+      "url": "https://arxiv.org/html/2004.01552v3"
+    },
+    "mosfet": {
+      "title": "Zhang et al. (2021), Characterization and Modeling of Native MOSFETs Down to 4.2 K",
+      "url": "https://arxiv.org/html/2104.03094"
+    },
+    "dlts": {
+      "title": "Scheffler et al. (2023), Comparison of the Properties of Defect States in Nitrogen-Containing n- and p-Type Float-Zone Silicon: A Combined Deep-Level Transient Spectroscopy and Minority-Carrier Transient Spectroscopy Study",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/pssa.202200633"
+    },
+    "hall": {
+      "title": "Lake Shore: MeasureReady FastHall Station catalog, revision 062526",
+      "url": "https://www.lakeshore.com/docs/default-source/default-document-library/fasthall-station.pdf?sfvrsn=5c63af14_24"
+    },
+    "hall_method": {
+      "title": "Lake Shore: Hall Measurements with MeasureLINK-MCS Software",
+      "url": "https://test.lakeshore.com/docs/default-source/default-document-library/hall-measurements-with-measurelink-mcs-software.pdf?sfvrsn=d569e01b_6"
+    },
+    "cpx": {
+      "title": "Lake Shore: CPX cryogenic probe station specifications",
+      "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-cpx-cryogenic-probe-station"
+    }
+  },
+  "semantics": "Per-function flags are open-world: omitted/unknown is UNKNOWN, never false. No changes to Lean or Z3 acceptance semantics. Published complete apparatus is distinguished from unconfigured commercial platforms. Group membership never means suitable."
+}

@@ -1,0 +1,62 @@
+{
+  "id": "expansion_b_geo_soft_sediment_lyophilization",
+  "name": "Freeze-drying soft sediment before geological analysis",
+  "plain_name": "Prepare a friable sediment core sample",
+  "industry": "geology_and_oceanography",
+  "description": "A documented geological sample-preparation method,with sediment cups rather than fruit slices.",
+  "keywords": [
+    "Prepare a friable sediment core sample",
+    "sediment_freeze_drying",
+    "geology_and_oceanography"
+  ],
+  "sources": [
+    {
+      "citation": "University of Minnesota CSD Facility freeze-drying method",
+      "url": "https://cse.umn.edu/csd/subsample-preparation-and-analysis",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "CSD installed LabconcoFreeZone6L/-50 C,three10inch shelves,6ports"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.freeze_drying",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Vacuum sublimation preserves a friable sediment preparation; a refrigerator by itself is insufficient.",
+      "evidence_ids": [
+        "expb_freezone_csd"
+      ]
+    },
+    {
+      "key": "condenser.temperature.min",
+      "constraint": {
+        "kind": "at_most",
+        "q": {
+          "value": "223.15",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the CSD facility's documented -50 C collector configuration; this is a selected facility-method requirement,not a universal sediment eutectic temperature.",
+      "evidence_ids": [
+        "expb_freezone_csd"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The facility gives no numeric vacuum,shelf-temperature,time-to-dry or mass-specific capacity; these remain unquantified rather than invented.",
+    "Collector rating is not a frozen sample-temperature measurement.",
+    "Complete drying must be checked experimentally; the verdict only covers the stated facility hardware prerequisites."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

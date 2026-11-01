@@ -1,0 +1,949 @@
+{
+  "industry": "healthcare_and_medicine",
+  "accessed": "2026-11-01",
+  "experiments": [
+    {
+      "id": "med_hsc_gene_therapy_controlled_rate_freezing",
+      "name": "GMP controlled-rate cryopreservation of a gene-modified CD34+ HSC drug product (Kryo 560-16 three-ramp program: 4 C hold, -1/-2/-20 C/min to -180 C) before vapour-phase LN2 storage",
+      "plain_name": "Freeze a gene-therapy stem-cell bag with a programmed three-step cooling recipe",
+      "industry": "healthcare_and_medicine",
+      "description": "Clinical-grade freezing of a lentivirally corrected hematopoietic stem cell product (MPSII gene therapy) in cryobags: the controlled-rate freezer holds 4 C, cools at -1 C/min to -30 C, -2 C/min to -60 C and -20 C/min to -180 C; the product then goes to vapour-phase liquid nitrogen at -130 C or colder.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 93150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 277150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The freezing program starts with a 4 C hold and ends with a hold at -180 C, so the chamber must cover -180 C to +4 C.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+          "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+          "location": "Materials and methods, cryopreservation protocol",
+          "quote": "Cryopreservation protocol (Kryo 560-16 controlled rate freezer): Hold at 4°C for 5 min, first ramp cools at a rate of −1°C/min to −30°C, second ramp cools at a rate of −2°C/min to −60°C, and ramp three cools at a rate of −20°C/min to −180°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.cooling_rate.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 1000,
+              "unit": "mK_per_min"
+            },
+            "hi": {
+              "value": 20000,
+              "unit": "mK_per_min"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The program imposes controlled cooling-rate magnitudes of 1, 2 and 20 C/min, so the freezer must control rates from 1 to 20 C/min.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+          "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+          "location": "Materials and methods, cryopreservation protocol",
+          "quote": "Cryopreservation protocol (Kryo 560-16 controlled rate freezer): Hold at 4°C for 5 min, first ramp cools at a rate of −1°C/min to −30°C, second ramp cools at a rate of −2°C/min to −60°C, and ramp three cools at a rate of −20°C/min to −180°C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 93150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Lowest program temperature is -180 C (same information as temperature.range, for machines that only document a base temperature).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+          "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+          "location": "Materials and methods, cryopreservation protocol",
+          "quote": "Hold at −180°C until unloaded into VPLN upon completion of program.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 143150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Subsequent storage is in vapour-phase LN2 at -130 C or colder (a separate storage step; informative for the freezing machine).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+          "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+          "location": "Materials and methods",
+          "quote": "The cryopreserved product, in volumes of 20 ± 2.5 mL, is then stored in the vapor phase of LN 2 (VPLN) at a temperature of −130°C or less.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024). DOI 10.1016/j.omtm.2024.101271",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/"
+        }
+      ],
+      "reported_equipment": [
+        "Planer Kryo 560-16 controlled rate freezer",
+        "KryoSure 20-F cryobag (Saint-Gobain)",
+        "vapor phase of LN2 (VPLN) storage"
+      ]
+    },
+    {
+      "id": "med_cord_blood_unit_ln2_banking",
+      "name": "Public cord-blood-unit banking: controlled-rate freezing in 10% DMSO and long-term storage in the liquid phase of liquid nitrogen at -196 C",
+      "plain_name": "Bank umbilical cord blood for transplants in liquid nitrogen",
+      "industry": "healthcare_and_medicine",
+      "description": "Red-cell- and plasma-depleted cord blood units with DMSO/dextran cryoprotectant are frozen at a controlled rate and stored (up to 19 years) immersed in liquid nitrogen at -196 C, well below the ~-130 C glass transition of water.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 77150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Units are stored immersed in the liquid phase of liquid nitrogen at -196 C.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+          "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+          "location": "Materials and methods, cord blood processing",
+          "quote": "After cryoprotectant addition, units underwent controlled-rate freezing and were stored in the liquid phase of liquid nitrogen at −196 °C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Liquid-phase storage requires a vessel that holds liquid nitrogen.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+          "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+          "location": "Materials and methods, cord blood processing",
+          "quote": "After cryoprotectant addition, units underwent controlled-rate freezing and were stored in the liquid phase of liquid nitrogen at −196 °C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 143150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Physical basis: below the ~-130 C glass transition of water biological activity stops; informative lower bound for any acceptable store.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+          "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+          "location": "Discussion",
+          "quote": "Below the glass transition temperature of water (∼−130 °C), molecular-level biological activity ceases, and cryopreserved cells can theoretically be stored indefinitely.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med). DOI 10.1093/stcltm/szag075",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/"
+        }
+      ],
+      "reported_equipment": [
+        "controlled-rate freezer (model not stated)",
+        "liquid phase of liquid nitrogen storage (model not stated)"
+      ]
+    },
+    {
+      "id": "med_mrna_vaccine_ult_storage",
+      "name": "Ultra-low-temperature storage of frozen Pfizer-BioNTech COMIRNATY (KP.2) mRNA vaccine vials at -90 C to -60 C",
+      "plain_name": "Keep mRNA vaccine vials frozen in an ultra-cold freezer",
+      "industry": "healthcare_and_medicine",
+      "description": "Vaccine-depot storage: frozen vials are kept in an ultra-low-temperature (ULT) freezer between -90 C and -60 C until expiry and must not be stored at -25 C to -15 C; thawed vials go to a 2-8 C fridge for up to 10 weeks.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 213150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The storage space must reach -60 C or colder (warm edge of the permitted -90 C to -60 C window).",
+          "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+          "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+          "location": "Page 3, Table 2 Storage and Handling for Pfizer-BioNTech (KP.2 Formulation), Frozen vials prior to use",
+          "quote": "Store at ultra-low temperature freezer at -90°C to -60°C until printed expiry date or otherwise noted.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 183150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The storage space must also be settable no colder than -90 C (cold edge of the window); with the previous requirement the machine range must overlap -90 C to -60 C, which excludes nitrogen storage that only runs far below -90 C.",
+          "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+          "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+          "location": "Page 3, Table 2 Storage and Handling for Pfizer-BioNTech (KP.2 Formulation), Frozen vials prior to use",
+          "quote": "Store at ultra-low temperature freezer at -90°C to -60°C until printed expiry date or otherwise noted.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 213150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Same -60 C limit for machines that document only their lowest temperature (portable ULT units qualify).",
+          "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+          "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+          "location": "Page 6, Vaccine storage post temperature excursion or unit malfunction",
+          "quote": "Vaccines placed in an ULT portable unit (-90°C to -60°C) can go back into an ULT unit.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+          "url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "ultra-low temperature (ULT) freezer",
+        "ULT portable unit"
+      ]
+    },
+    {
+      "id": "med_glycerolized_rbc_frozen_storage",
+      "name": "Long-term frozen storage of 40% (wt/vol) glycerol red blood cell units at -80 C (FDA/AABB: frozen at -65 C or colder, up to 10 years)",
+      "plain_name": "Store rare-type donor red cells frozen for a decade",
+      "industry": "healthcare_and_medicine",
+      "description": "Rare-phenotype RBC units cryopreserved in 40% wt/vol glycerol are kept in a mechanical freezer at -80 C for 10 years or more, then thawed and deglycerolized; the AABB/FDA circular requires freezing at -65 C or colder.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 193150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The approved high-glycerol method stores the units at -80 C.",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/15318853/",
+          "document_title": "Evaluation of red blood cells stored at -80 degrees C in excess of 10 years (Lecak, Scott, Young, Hannon, Acker; Transfusion 2004)",
+          "location": "Abstract, Background",
+          "quote": "RBCs frozen in 40 percent (wt/vol) glycerol are currently approved by the FDA and the AABB for storage at -80 degrees C for up to 10 years.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 208150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Regulatory limit: frozen RBCs are frozen and kept at -65 C or colder.",
+          "source_url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+          "document_title": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+          "location": "Red-cell-containing components, Frozen Red Blood Cells (PDF page 21)",
+          "quote": "FROZEN RED BLOOD CELLS and FROZEN REJUVENATED RED BLOOD CELLS are prepared by adding glycerol to red cells as a cryoprotective agent before freezing at −65 C or colder.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 193150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Machines documenting only a base temperature must reach -80 C.",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/15318853/",
+          "document_title": "Evaluation of red blood cells stored at -80 degrees C in excess of 10 years (Lecak, Scott, Young, Hannon, Acker; Transfusion 2004)",
+          "location": "Abstract, Study design and methods",
+          "quote": "This study examined 20 RBC units that had been cryopreserved in 40 percent (wt/vol) glycerol and stored at -80 degrees C for up to 22 years.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Evaluation of red blood cells stored at -80 degrees C in excess of 10 years (Lecak, Scott, Young, Hannon, Acker; Transfusion 2004). DOI 10.1111/j.1537-2995.2004.03271.x",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/15318853/"
+        },
+        {
+          "citation": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+          "url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "-80 degrees C freezer (model not stated)"
+      ]
+    },
+    {
+      "id": "med_ffp_contact_shock_freezing",
+      "name": "Rapid freezing of fresh frozen plasma in a contact shock freezer (core -30 C within 1 h, freezer at -50 C) and frozen storage at -40 C",
+      "plain_name": "Quick-freeze donated plasma so its clotting factors survive",
+      "industry": "healthcare_and_medicine",
+      "description": "Blood-bank FFP preparation: plasma bags are frozen in a contact shock freezer operating at -50 C so the core reaches -30 C within 40 min (guideline: within 1 h), then kept stacked in a -40 C deep freezer; AABB requires -18 C or colder.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 243150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Plasma must be brought to a core temperature of -30 C or below, so the freezer must reach -30 C or colder.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+          "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+          "location": "Discussion",
+          "quote": "Thus, by bringing core temperature to −30°C or below within 1 h, factor VIII activity is preserved.",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 255150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Regulatory minimum for FFP: frozen at -18 C or colder.",
+          "source_url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+          "document_title": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+          "location": "Plasma components, Fresh Frozen Plasma, Description (PDF page 24)",
+          "quote": "FFP is prepared from a whole blood or apheresis collection and frozen at −18 C or colder within the time frame specified in the manufacturer's instructions for use",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 233150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Operating point used for storage in the study: -40 C deep freezer (any -18 C or colder store meets the AABB rule).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+          "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+          "location": "Materials and methods",
+          "quote": "For studying the effect of donor variables, plasma units under study were frozen instantaneously by contact shock freezer (CSF) (Dometic MBF 21, Luxembourg) and were stored at −40°C in stack position for 2 weeks in deep freezer (M/S Sanyo, Japan).",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 223150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "The contact shock freezer used operates at -50 C, which achieved the -30 C core in 40 min.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+          "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+          "location": "Discussion",
+          "quote": "The CSF had an operating temperature of −50°C, and the plasma attained a core temperature of −30°C in 40 min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019). DOI 10.4103/ajts.AJTS_139_17",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/"
+        },
+        {
+          "citation": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+          "url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "contact shock freezer (CSF) (Dometic MBF 21, Luxembourg)",
+        "deep freezer (M/S Sanyo, Japan)",
+        "blood bank MF (M/S Sanyo, Japan)"
+      ]
+    },
+    {
+      "id": "med_meg_reliquefier_squid",
+      "name": "Whole-head 150-channel LTS-SQUID magnetoencephalography in a magnetically shielded room with a liquid-helium helmet dewar kept at 4.2 K by a 1.4 W pulse-tube reliquefier",
+      "plain_name": "Record brain magnetic signals with helium-cooled SQUID sensors",
+      "industry": "healthcare_and_medicine",
+      "description": "MEG of spontaneous brain activity: low-Tc SQUID gradiometers in the vacuum space of a 90 L liquid-helium helmet dewar inside a magnetically shielded room; evaporated helium is reliquefied continuously by a Cryomech PT415RM (1.4 W at 4.2 K), giving 3.5 fT/rtHz white noise.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "point_within",
+            "q": {
+              "value": 4200,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The SQUID gradiometers are cooled by the liquid-helium helmet at 4.2 K.",
+          "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+          "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+          "location": "Section 3, reliquefier operation",
+          "quote": "From the start time of reliquefier operation, it took about 5 h for the cold head to cool down to 4.2 K.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The sensors are cooled by direct thermal contact with a liquid-helium bath that the reliquefier refills.",
+          "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+          "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+          "location": "Abstract",
+          "quote": "In order to reduce the vibration transmission, the gradiometers are mounted in the vacuum space of the helmet dewar with direct thermal contact with the liquid helium helmet.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "module.magnetic_shielding"
+          ],
+          "constraint": {
+            "kind": "present"
+          },
+          "mandatory": true,
+          "rationale": "Femtotesla brain fields are recorded inside a magnetically shielded room (MSR).",
+          "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+          "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+          "location": "Section 4, magnetic noise",
+          "quote": "Sources of magnetic noises measured by SQUID gradiometers inside the MSR can be divided into three major parts",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cooling_power.at_4200mK"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": "1.4",
+              "unit": "W"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Reported reliquefier capacity (1.4 W at 4.2 K), stated to be more than sufficient for the 13-14 L/day boil-off; informative, not a hard minimum.",
+          "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+          "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+          "location": "Section 2, configuration of reliquefier MEG system",
+          "quote": "The cryocooler system (Cryomech model PT415RM) has a cooling capacity of 1.4 W at 4.2 K, with a remote rotary valve unit",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.dewar_volume"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 90,
+              "unit": "L"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Reported helmet-dewar reservoir capacity (informative).",
+          "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+          "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+          "location": "Section 3",
+          "quote": "The test MEG dewar has reservoir capacity of 90 l and the boil-off rate was 13–14 l/day when it was in direct LHe cooling with weekly refill mode.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003). DOI 10.1088/1361-6668/aa718e",
+          "url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "Cryomech model PT415RM",
+        "helmet dewar (150-channel MEG)",
+        "magnetically shielded room (MSR)"
+      ]
+    },
+    {
+      "id": "med_wide_bore_low_helium_mri",
+      "name": "0.55 T whole-body MRI of obese, claustrophobic and paediatric patients in an 80 cm bore DryCool magnet operating on < 700 ml helium",
+      "plain_name": "Scan large or anxious patients in an extra-wide low-helium MRI",
+      "industry": "healthcare_and_medicine",
+      "description": "Clinical MRI at 0.55 T in the MAGNETOM Free.Max 80 cm bore, for patients who cannot tolerate narrower bores and very heavy patients (320 kg table option); the superconducting DryCool magnet runs on < 700 ml of helium without a quench pipe.",
+      "requirements": [
+        {
+          "keys": [
+            "magnetic_field.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 550,
+              "unit": "mT"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Imaging is performed at 0.55 T field strength.",
+          "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+          "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+          "location": "Page 2",
+          "quote": "Explore new clinical and research avenues including pulmonary imaging, guided intervention and therapy with a 0.55 T field strength.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.diameter.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 80,
+              "unit": "cm"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The patient group (obese, severely claustrophobic) is defined by needing an 80 cm bore.",
+          "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+          "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+          "location": "Page 2",
+          "quote": "With an 80 cm bore, MAGNETOM Free.Max can accommodate patients who were unable to tolerate an MRI scan before, including obese patients, severely claustrophobic and anxious patients, and children.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "sample.mass.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 320,
+              "unit": "kg"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Very large patients need the 320 kg table load option.",
+          "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+          "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+          "location": "Page 2",
+          "quote": "Accommodate very large patients with 320 kg table load option.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_helium"
+            ]
+          },
+          "mandatory": false,
+          "rationale": "The superconducting magnet used holds a small sealed helium charge; informative (the procedure needs the field, not helium itself).",
+          "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+          "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+          "location": "Page 1, Breaking barriers for siting and installation",
+          "quote": "Benefit from a helium-independent infrastructure with new DryCool technology, operating on < 700 ml of helium, and no quench pipe.",
+          "evidence_status": "manufacturer_specification",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+          "url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf"
+        }
+      ],
+      "reported_equipment": [
+        "MAGNETOM Free.Max (Siemens Healthineers, DryCool magnet)"
+      ]
+    },
+    {
+      "id": "med_renal_argon_cryoablation",
+      "name": "Renal cryoablation with an argon Joule-Thomson system (argon 4,300 psi, double 10-minute freeze, helium active thaw at 2,200 psi, -40 C isotherm)",
+      "plain_name": "Destroy kidney tumour tissue by freezing it with an argon probe",
+      "industry": "healthcare_and_medicine",
+      "description": "Porcine renal cryotherapy study comparing freeze-cycle lengths with a Presice cryoablation system: argon at 4,300 psi freezes the IceRod probe (time-based arm: double 10-min freeze with 5-min helium active thaw at 2,200 psi); the -40 C isotherm reaches 16 x 41 mm around the probe.",
+      "requirements": [
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "compressed_argon_jt"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Freezing is produced by Joule-Thomson expansion of high-pressure argon.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/",
+          "document_title": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288)",
+          "location": "Materials and methods",
+          "quote": "A Presice™ Cryoablation System was used with argon gas at 4,300 psi.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "compressed_helium_jt"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "The protocol uses an active helium thaw between freeze cycles.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/",
+          "document_title": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288)",
+          "location": "Materials and methods",
+          "quote": "Active thaw with helium gas at 2,200 psi was then given until the same sensor showed 0C.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 233150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The probe system must create the lethal -40 C isotherm in tissue, so it must reach -40 C or colder.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/",
+          "document_title": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288)",
+          "location": "Discussion (manufacturer isotherm data)",
+          "quote": "at the end of the second 10-minute freeze cycle the IceRod attains −40C in a 16 × 41 mm area around the probe,",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "operating_duration.max"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 10,
+              "unit": "min"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Each freeze in the time-based arm lasts 10 minutes (continuous freezing capability).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/",
+          "document_title": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288)",
+          "location": "Materials and methods",
+          "quote": "Time based trials consisted of a double 10-minute freeze separated by a 5-minute thaw.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288). PMCID PMC4041687",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/"
+        }
+      ],
+      "reported_equipment": [
+        "Presice™ Cryoablation System",
+        "IceRod cryoprobe"
+      ]
+    },
+    {
+      "id": "med_whole_body_cryostimulation",
+      "name": "Whole-body cryostimulation in a three-chamber cryo-room: precooling at -30 C and -60 C then 3-4 min at -110 C, twice weekly",
+      "plain_name": "Give a patient a short session in an extremely cold therapy room",
+      "industry": "healthcare_and_medicine",
+      "description": "Clinical-trial adjunct to obesity management: 28 supervised whole-body cryotherapy sessions in a Univers Cryo-Combi three-chamber system, brief precooling at -30 C and -60 C followed by 3-4 min at -110 C; the person breathes the cold air at ambient pressure.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "range_within",
+            "lo": {
+              "value": 163150,
+              "unit": "mK"
+            },
+            "hi": {
+              "value": 243150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The chamber system must provide -30 C and -60 C precooling and the -110 C treatment chamber.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/",
+          "document_title": "Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial (Karppinen et al., Obesity 2025)",
+          "location": "Methods, intervention",
+          "quote": "Supervised sessions included brief precooling in −30°C and −60°C chambers, followed by 3–4 min in a −110°C chamber.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "vacuum.available"
+          ],
+          "constraint": {
+            "kind": "absent"
+          },
+          "mandatory": true,
+          "rationale": "The patient is exposed to cold air; an evacuated sample space cannot host a person.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/",
+          "document_title": "Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial (Karppinen et al., Obesity 2025)",
+          "location": "Introduction",
+          "quote": "Whole‐body cryotherapy (WBC), one of various forms of cold treatments, involves brief exposures (1–4 min) to extremely cold air (−110°C to −160°C).",
+          "evidence_status": "reference_data",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.base"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 163150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Treatment-chamber temperature of about -110 C (second clinical source, chronic-pain patients).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12608988/",
+          "document_title": "Analgesia by Cryotherapy in Patients with Chronic Pain with Analysis of Pain-Modulating and Pro-Inflammatory Parameters - A Clinical Controlled Pilot Study (Ritter et al., J Clin Med 2025)",
+          "location": "Methods, execution of cryotherapy",
+          "quote": "The majority of the cryotherapy takes place in the third, at approximately −110 °C up to 3 min.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial (Karppinen et al., Obesity 2025). DOI 10.1002/oby.70019",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/"
+        },
+        {
+          "citation": "Analgesia by Cryotherapy in Patients with Chronic Pain with Analysis of Pain-Modulating and Pro-Inflammatory Parameters - A Clinical Controlled Pilot Study (Ritter et al., J Clin Med 2025). DOI 10.3390/jcm14217567",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12608988/"
+        }
+      ],
+      "reported_equipment": [
+        "three-chamber WBC system (Univers Cryo-Combi, Oy MJG Univers Ab, Helsinki, Finland)",
+        "in-house cryochamber (three rooms, Helios Vogelsang Gommern Specialist Hospital)"
+      ]
+    },
+    {
+      "id": "med_dry_shipper_cell_therapy_transport",
+      "name": "Intercontinental transport of cryopreserved GMP mesenchymal stem cell vials in an LN2-vapour dry shipper (< -150 C, must stay below -130 C, transits up to 178 h)",
+      "plain_name": "Ship frozen cell-therapy vials between countries in a nitrogen dry shipper",
+      "industry": "healthcare_and_medicine",
+      "description": "Clinical-trial supply chain: GMP fetal-liver MSC vials stored at -150 C are shipped from Sweden to India by courier in a vapour-phase LN2 dry shipper with a data logger; temperature had to stay below -130 C; transits took 56 h to 178 h, arrival temperatures -193/-194 C.",
+      "requirements": [
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 143150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": true,
+          "rationale": "Acceptance criterion: below -130 C throughout the transport.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+          "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+          "location": "Materials and methods, transport",
+          "quote": "The temperature had to be lower than −130 °C throughout the transport.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "holding_time.static"
+          ],
+          "constraint": {
+            "kind": "at_least",
+            "q": {
+              "value": 178,
+              "unit": "h"
+            }
+          },
+          "mandatory": true,
+          "rationale": "The container must hold temperature without refill or power for the longest observed transit (178 h).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+          "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+          "location": "Results, transport",
+          "quote": "The time for the three transports from site to site were 56 h and 12 min, 76 h and 17 min and 178 h (7 days), respectively.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "cryogen.type"
+          ],
+          "constraint": {
+            "kind": "set_contains",
+            "needed": [
+              "liquid_nitrogen"
+            ]
+          },
+          "mandatory": true,
+          "rationale": "Transport is in the vapour phase of liquid nitrogen held in the dry shipper.",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+          "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+          "location": "Materials and methods, transport",
+          "quote": "The transport was performed in the vapour phase of liquid nitrogen in a dry shipper provided by the courier at less than −150 °C via air carriage and ground freight.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        },
+        {
+          "keys": [
+            "temperature.range"
+          ],
+          "constraint": {
+            "kind": "at_most",
+            "q": {
+              "value": 123150,
+              "unit": "mK"
+            }
+          },
+          "mandatory": false,
+          "rationale": "Shipper used was validated to keep -150 C or colder for 12 days (informative).",
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+          "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+          "location": "Materials and methods, transport",
+          "quote": "The dry shipper can keep a temperature of at least −150 °C over 12 days, as has been validated by the courier.",
+          "evidence_status": "experimental_observation",
+          "accessed": "2026-11-01"
+        }
+      ],
+      "sources": [
+        {
+          "citation": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024). DOI 10.1016/j.reth.2024.06.012",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/"
+        }
+      ],
+      "reported_equipment": [
+        "dry shipper provided by the courier",
+        "digital data logger (Tempmate GmbH, Heilbronn, Germany)",
+        "liquid nitrogen tank at −196 °C"
+      ]
+    }
+  ],
+  "notes": "Healthcare and medicine experiment profiles (10). Celsius converted exactly to mK ((C+273.15)x1000). Not duplicated: existing oocyte Cryotop vitrification, intercostal cryoneurolysis, breast-cell freeze-thaw, PBMC controlled-rate freezing and OCT cryosectioning profiles. Storage procedures use temperature.range at_most (machine reaches the storage temperature or colder); the mRNA vaccine window -90..-60 C is encoded as at_most -60 C plus at_least -90 C (range overlap). Psi values (cryoablation 4,300/2,200 psi) are kept only in quotes, not converted. Tavily quota was exhausted; sources read via WebFetch, pdftotext of the fetched PDFs and Europe PMC full text."
+}

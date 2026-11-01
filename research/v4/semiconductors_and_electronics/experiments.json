@@ -1,0 +1,941 @@
+{
+ "industry": "semiconductors_and_electronics",
+ "accessed": "2026-11-01",
+ "experiments": [
+  {
+   "id": "semi_mil883_tc_condition_c",
+   "name": "MIL-STD-883 Method 1010.8 temperature cycling, test condition C (-65 C to +150 C, at least 10 cycles, at least 10 min dwell)",
+   "plain_name": "Check that sealed military-grade chips survive repeated swings between -65 C and +150 C",
+   "description": "Microcircuit screening/qualification by air-to-air temperature cycling per MIL-STD-883 Method 1010.8: a minimum of 10 uninterrupted cycles of test condition C, cold step -65 C (+0/-10) and hot step +150 C (+15/-0), dwell at least 10 min, load reaching temperature within 15 min (16 min for a single chamber), followed by visual examination and end-point electrical tests.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 208150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Condition C cold step is -65 C (+0/-10), so the working zone must reach -65 C = 208.15 K or colder (third column of the cold row; columns are conditions A-F).",
+     "source_url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+     "document_title": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+     "location": "p. 2, Table I 'Temperature-cycling test conditions', step 1 (Cold), condition C column (text as extracted, columns A to F)",
+     "quote": "1 >10 -55 +0 -55 +0 -65 +0 -65 +0 -65 +0 -65 +0",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 423150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Condition C hot step is +150 C (+15/-0), so the chamber must reach +150 C = 423.15 K or hotter (third column of the hot row).",
+     "source_url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+     "document_title": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+     "location": "p. 2, Table I, step 2 (Hot), condition C column (text as extracted, columns A to F)",
+     "quote": "2 >10 85 +10 125 +15 150 +15 200 +15 300 +15 175 +15",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "13437.5",
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional single-chamber check: the load must traverse the 215 K span (+150 C to -65 C) within 16 min, i.e. on average at least 215 K / 16 min = 13.4375 K/min; a two-zone chamber satisfies the 1 min transfer instead.",
+     "source_url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf",
+     "document_title": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+     "location": "p. 1, section 3.1 Timing",
+     "quote": "the dwell time shall not be less than 10 minutes and the load shall reach the specified temperature within 15 minutes (16 minutes for single chamber).",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "MIL-STD-883G Test Method 1010.8, Temperature Cycling (18 June 2004)",
+     "url": "https://q-tech.com/wp-content/uploads/STD-883-1010.pdf"
+    }
+   ],
+   "reported_equipment": [],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_aecq100_grade0_tc_ptc",
+   "name": "AEC-Q100 Rev-H Grade 0 temperature cycling (-55 C to +150 C, 2000 cycles) and power temperature cycling (Ta -40 C to +150 C, 1000 cycles)",
+   "plain_name": "Qualify a car chip for engine-bay heat and winter cold by cycling it, including while powered",
+   "description": "Automotive IC qualification for Grade 0 (ambient -40 C to +150 C): test A4 temperature cycling per JESD22-A104 from -55 C to +150 C for 2000 cycles with hot electrical test before and after, and test A5 power temperature cycling per JESD22-A105 at Ta -40 C to +150 C for 1000 cycles with the device powered (no thermal shut-down allowed).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 218150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Grade 0 TC (test A4) cold extreme is -55 C = 218.15 K.",
+     "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+     "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+     "location": "Page 11 of 42, Table 2 Qualification Test Methods (continued), Test Group A, A4 TC, Additional Requirements",
+     "quote": "Grade 0: -55°C to +150°C for 2000 cycles or equivalent.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 423150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Grade 0 TC hot extreme is +150 C = 423.15 K.",
+     "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+     "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+     "location": "Page 11 of 42, Table 2 (continued), Test Group A, A4 TC, Additional Requirements",
+     "quote": "Grade 0: -55°C to +150°C for 2000 cycles or equivalent.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 233150,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 423150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Grade 0 PTC (test A5, JESD22-A105) cycles the ambient from -40 C (233.15 K) to +150 C (423.15 K).",
+     "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+     "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+     "location": "Page 11 of 42, Table 2 (continued), Test Group A, A5 PTC, Additional Requirements",
+     "quote": "Grade 0: Ta of -40°C to +150°C for 1000 cycles.",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Power temperature cycling runs the parts powered during the cycling (thermal shut-down must not occur), so bias wiring into the chamber is needed.",
+     "source_url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+     "document_title": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+     "location": "Page 11 of 42, Table 2 (continued), A5 PTC, Additional Requirements",
+     "quote": "Thermal shut-down shall not occur during this test. TEST before and after PTC at room and hot temperature.",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+     "url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf"
+    }
+   ],
+   "reported_equipment": [],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_finfet_5nm_cryo_probe",
+   "name": "DC transfer characterization of commercial 5 nm n/p-FinFETs from 300 K down to 10 K on a closed-cycle cryogenic probe station",
+   "plain_name": "Measure how the tiniest commercial transistors behave when cooled to 10 K",
+   "description": "Ids-Vgs transfer curves (Vds 50 mV and 750 mV) of minimum-length multi-fin 5 nm FinFETs probed directly on their gate, source, drain and bulk pads in a Lake Shore CRX-VF closed-cycle cryogenic probe station from 300 K to 10 K with a Keysight B1500A; the data calibrate a cryogenic-aware BSIM-CMG compact model.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 10000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 300000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Transistors were measured over the whole span from 300 K down to 10 K (10 K was the lowest stable temperature with probes landed).",
+     "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+     "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "location": "Section II.B 'Measuring 5 nm FinFET Transistors for the Temperature Range'",
+     "quote": "The heat flux from the probes introduces thermal fluctuations in the range of 3.5 K to 8.5 K. Therefore, the temperature 10 K is chosen as the lower limit because it is the smallest stable temperature.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The probed die sits in the evacuated sample space of the probe station.",
+     "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+     "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "location": "Section II.B",
+     "quote": "The cryogenic probe station features a 51 mm diameter sample stage, a vacuum pump, a twostage closed-cycle refrigerator unit, and a probe handler/positioner.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.probe_arms"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 4
+     },
+     "mandatory": true,
+     "rationale": "Each transistor terminal (gate, source, drain, bulk) is contacted by its own probe, so four probe arms are needed.",
+     "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+     "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "location": "Section II.B",
+     "quote": "in which the probes are placed on top of the measurement pads for each transistor terminal (i.e., gate, source, drain, bulk).",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The DUT is biased and measured by the B1500A through the probes.",
+     "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+     "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "location": "Section II.B",
+     "quote": "a semiconductor measurement station \"Keysight's B1500A\" is utilized to stimulate each transistor under measurement (i.e., apply the required voltage biases) and, then, measure its electrical response.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source used a two-stage closed-cycle refrigerator rather than a liquid cryogen.",
+     "source_url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf",
+     "document_title": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "location": "Fig. 1 caption",
+     "quote": "It consists of a cryogenic probe station \"Lakeshore CRX-VF\", a closed-cycle refrigerator, and a semiconductor measurement station \"Keysight's B1500A\".",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Design Automation for Cryogenic CMOS Circuits (van Santen et al., DAC 2023, doi:10.1109/DAC56929.2023.10247824)",
+     "url": "https://www.cda.cit.tum.de/files/eda/2023_dac_design_automation_for_cryogenic_cmos.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "Lakeshore CRX-VF",
+    "Keysight's B1500A"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_spin_qubit_300mm_cryoprober",
+   "name": "Automated full-wafer cryogenic probing of Si/SiGe spin-qubit devices on 300 mm wafers (chuck 1.0 K, electron temperature 1.6 K)",
+   "plain_name": "Test hundreds of qubit chips across a whole 300 mm silicon wafer cooled near absolute zero",
+   "description": "Intel's 300 mm Si/SiGe quantum-dot devices are cooled as whole wafers in a cryogenic wafer prober to a 1.0 K chuck base temperature (1.6 K electron temperature); pads (100 x 100 um, 150 um pitch) are aligned to probe pins by machine vision and gate-line resistance, threshold voltage, mobility and single-electron transitions are measured automatically across the wafer.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 1000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The procedure ran with the wafer chuck at its 1.0 K base, giving the 1.6 K electron temperature used to resolve single-electron transitions and to validate superconducting gate layers.",
+     "source_url": "https://arxiv.org/abs/2307.04812",
+     "document_title": "Probing single electrons across 300 mm spin qubit wafers (Neyens et al., arXiv:2307.04812; Nature 2024)",
+     "location": "Main text, paragraph introducing the cryo-prober (Fig. 1)",
+     "quote": "The cryo-prober can load and cool 300 mm wafers to a base temperature of 1.0 K at the chuck and an electron temperature of 1.6 ± 0.2 K (see Extended Data Fig. 2) in 2 hrs.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 300000,
+       "unit": "um"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Whole 300 mm wafers are loaded and probed.",
+     "source_url": "https://arxiv.org/abs/2307.04812",
+     "document_title": "Probing single electrons across 300 mm spin qubit wafers (Neyens et al., arXiv:2307.04812; Nature 2024)",
+     "location": "Abstract",
+     "quote": "Here we present a testing process using a cryogenic 300 mm wafer prober [13] to collect high-volume data on the performance of hundreds of industry-manufactured spin qubit devices at 1.6 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Device pads are contacted by probe pins wired to room-temperature sources and detectors.",
+     "source_url": "https://arxiv.org/abs/2307.04812",
+     "document_title": "Probing single electrons across 300 mm spin qubit wafers (Neyens et al., arXiv:2307.04812; Nature 2024)",
+     "location": "Main text, paragraph introducing the cryo-prober",
+     "quote": "The wafer is brought into contact with the probe pins to electrically connect device pads to voltage sources and current and voltage detectors at room temperature.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Probing single electrons across 300 mm spin qubit wafers (Neyens et al., arXiv:2307.04812; Nature 2024)",
+     "url": "https://arxiv.org/abs/2307.04812"
+    },
+    {
+     "citation": "Bluefors: Cryogenic Wafer Prober product page",
+     "url": "https://bluefors.com/products/cryogenic-wafer-prober"
+    }
+   ],
+   "reported_equipment": [
+    "cryogenic 300 mm wafer prober (Bluefors and AEM Afore, developed with Intel)",
+    "Quantum Design PPMS Dynacool"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_gan_hemt_noise_77_400k",
+   "name": "On-wafer S-parameter and noise-parameter characterization of GaN HEMTs from 77 K to 400 K, 2-30 GHz",
+   "plain_name": "Measure how much electronic noise a gallium-nitride radio transistor adds between 77 K and 400 K",
+   "description": "Two-finger AlGaN/GaN HEMTs on SiC are probed on-wafer with GSG RF probes in an LN2-cooled, evacuated Lake Shore probe station with a Model 336 controller; a Keysight PNA-X with built-in source tuner and noise receiver extracts NFmin, gain and optimum source reflection from 77 K to 400 K over 2-30 GHz (VDS 5 V, VGS -2 V).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 77000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 400000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The measurement temperature range was 77 K to 400 K.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III (measurement system), p. 2",
+     "quote": "The actual measurement temperature range was set from 77 K to 400 K and the frequency range from 2 GHz to 30 GHz in this work.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.coax_bandwidth.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 30,
+       "unit": "GHz"
+      }
+     },
+     "mandatory": true,
+     "rationale": "RF probes and cabling must carry signals up to 30 GHz.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III, p. 2",
+     "quote": "The actual measurement temperature range was set from 77 K to 400 K and the frequency range from 2 GHz to 30 GHz in this work.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.probe_arms"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 2
+     },
+     "mandatory": true,
+     "rationale": "Two-port S-parameter and noise measurement lands a GSG probe on the gate port and one on the drain port.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III, p. 2",
+     "quote": "The DC/RF measurement was executed using 40A-GSG-100 probes connected to a Keysight PNA-X N5245B.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The probe-station sample space is evacuated by a vacuum pump.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III, p. 2",
+     "quote": "The system consists of a LakeShore manual probe station, a Model 336 Temperature Controller, a Wessington Cryogenics 60 L liquid nitrogen Dewar, and an Agilent Technologies TPS-compact vacuum pump, supporting operations from 77 K to 475 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The HEMT is DC biased and RF measured through the probes.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III, p. 2",
+     "quote": "The DC/RF measurement was executed using 40A-GSG-100 probes connected to a Keysight PNA-X N5245B.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source cooled the station with liquid nitrogen from a 60 L dewar.",
+     "source_url": "https://eprints.gla.ac.uk/324971/1/324971.pdf",
+     "document_title": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "location": "Section III, p. 2",
+     "quote": "a Wessington Cryogenics 60 L liquid nitrogen Dewar, and an Agilent Technologies TPS-compact vacuum pump, supporting operations from 77 K to 475 K.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "On-wafer Characterisation of Noise Parameters of GaN HEMTs between 77 K and 400 K (Wang et al., 103rd ARFTG Microwave Measurement Conference, 2024, doi:10.1109/ARFTG61196.2024.10661062)",
+     "url": "https://eprints.gla.ac.uk/324971/1/324971.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "LakeShore manual probe station",
+    "Model 336 Temperature Controller",
+    "Wessington Cryogenics 60 L liquid nitrogen Dewar",
+    "Agilent Technologies TPS-compact vacuum pump",
+    "40A-GSG-100 probes",
+    "Keysight PNA-X N5245B"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_sic_laplace_dlts",
+   "name": "Conventional DLTS (100-420 K, 3 K/min) and Laplace-DLTS of the Z1/2 carbon-vacancy trap in 4H-SiC Schottky barrier diodes",
+   "plain_name": "Find carbon-vacancy defects in silicon-carbide power diodes by scanning them from cold to hot",
+   "description": "Ni/4H-SiC Schottky barrier diodes on 25 um nitrogen-doped epilayers are scanned by conventional DLTS from 100 K to 420 K at 3 K/min (Vr -10 V, 1 ms pulses, 50 s-1 rate window); isothermal Laplace-DLTS near 325-330 K and 220-260 K then resolves the Z1 and Z2 components and their acceptor levels.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 100000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 420000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The DLTS temperature scan covered 100-420 K.",
+     "source_url": "https://arxiv.org/abs/1812.06462",
+     "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+     "location": "Section II (Experimental details)",
+     "quote": "The DLTS measurements were performed in the temperature range 100-420 K at a ramp rate 3 K/min, reverse bias Vr = -10 V, pulse bias Vp = 0 V, pulse width tp = 1 ms and using a rate window of 50 s-1.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.sweep_rate.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 3000,
+       "unit": "mK_per_min"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: the published scan ramped at 3 K/min.",
+     "source_url": "https://arxiv.org/abs/1812.06462",
+     "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+     "location": "Section II (Experimental details)",
+     "quote": "The DLTS measurements were performed in the temperature range 100-420 K at a ramp rate 3 K/min, reverse bias Vr = -10 V",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 100,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: isothermal Laplace-DLTS needed the sample temperature known/held to better than 0.1 K.",
+     "source_url": "https://arxiv.org/abs/1812.06462",
+     "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+     "location": "Section II (Experimental details)",
+     "quote": "The estimated error of the temperature used in the L-DLTS measurements was less than 0.1 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The diode is reverse biased and pulsed while its capacitance transient is recorded.",
+     "source_url": "https://arxiv.org/abs/1812.06462",
+     "document_title": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+     "location": "Section II (Experimental details)",
+     "quote": "Reverse and pulse biases were respectively Vr = -5 V and Vp = 0 V. Pulse widths were tp = 1 ms and 100 ns for the (= /0) and (-/0) transitions, respectively.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Acceptor levels of the carbon vacancy in 4H-SiC: combining Laplace deep level transient spectroscopy with density functional modeling (Capan et al., J. Appl. Phys. 124, 245701, 2018)",
+     "url": "https://arxiv.org/abs/1812.06462"
+    }
+   ],
+   "reported_equipment": [],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_si_nanowire_cryo_icp_etch",
+   "name": "Cryogenic SF6/O2 ICP-RIE of vertical Si nanowire arrays at -95 C and 1.0 Pa",
+   "plain_name": "Carve tall silicon nanowires with a plasma while the wafer is chilled to -95 C",
+   "description": "Lithographically masked n-type Si(100) is etched in a SENTECH SI 500C cryogenic ICP-RIE with the default recipe -95 C, 1.0 Pa, SF6 118 sccm / O2 13 sccm, ICP 500 W, RF 6 W, 5 min, using thermally conductive oil between sample and holder; the SiOxFy passivation formed at low temperature yields 15-21 um nanowires with near-vertical sidewalls.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 178150,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The default recipe runs the substrate holder at -95 C = 178.15 K.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+     "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+     "location": "Methods, 'Cryogenic dry etching'",
+     "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm, SF6 flow = 118 sccm, ICP power = 500 W",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The plasma etch runs in an evacuated chamber at 1.0 Pa.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+     "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+     "location": "Methods, 'Cryogenic dry etching'",
+     "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "pressure.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 1,
+       "unit": "Pa"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The chamber must be able to reach and hold the 1.0 Pa process pressure.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+     "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+     "location": "Methods, 'Cryogenic dry etching'",
+     "quote": "the recipe used by default involves several constant parameters (i.e., temperature = −95 °C, pressure = 1.0 Pa, O2 flow = 13 sccm",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "50800",
+       "unit": "um"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: patterning used a 2-inch (50.8 mm) wafer-size photomask; the etched pieces may be smaller.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/",
+     "document_title": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+     "location": "Methods, 'Cryogenic dry etching'",
+     "quote": "Here, we use photolithography with a photomask by the size of 2″ wafer",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Versatilely tuned vertical silicon nanowire arrays by cryogenic reactive ion etching as a lithium-ion battery anode (Refino et al., Scientific Reports 11, 2021, doi:10.1038/s41598-021-99173-4)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8492725/"
+    }
+   ],
+   "reported_equipment": [
+    "cryogenic SI 500C plasma etcher from SENTECH Instruments GmbH"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_sfq_adc_cryocooler_test",
+   "name": "Functional test of an RSFQ digital-SQUID ADC with TFF and cumulative counters (AIST HSTP Nb process) at 4.2 K in a pulse-tube cryocooler",
+   "plain_name": "Run a superconducting digital chip at 4.2 K to check that its logic works",
+   "description": "A wire-bonded SFQ chip (digital-SQUID modulators, majority logic, toggle flip-flop and cumulative counters) is cooled to 4.2 K in a two-stage closed-cycle pulse-tube cryostat with a vibration-damping stage; separate DC bias rails from a HYPRES current source, clock through a bias-tee on RF-shielded coax, outputs amplified and checked on an oscilloscope and logic analyser.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 4200,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The niobium SFQ circuit is operated at 4.2 K.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "a two-stage closed-cycle cryogenic system was employed, capable of achieving a base temperature of 4.2 K after an initial precooling stage at approximately 35 K.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Bias currents, clock and output signals are wired to the chip.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "Separate DC bias lines were provided for the DC/SFQ, SFQ/DC, and main power rails to isolate functional blocks and minimize cross-interference.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.coax_lines"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 1
+     },
+     "mandatory": true,
+     "rationale": "High-frequency inputs and the clock are delivered on RF-shielded coaxial lines.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "RF-shielded coaxial lines were employed for signal transmission, particularly for high-frequency inputs.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.dc_lines"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 3
+     },
+     "mandatory": false,
+     "rationale": "Optional: at least three separate DC bias rails (DC/SFQ, SFQ/DC, main power) were used.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "Separate DC bias lines were provided for the DC/SFQ, SFQ/DC, and main power rails to isolate functional blocks and minimize cross-interference.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": false,
+     "rationale": "Optional: the cryocooler sample space is under vacuum (vacuum level monitored); a liquid-helium dip test would not need it.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "The system is equipped with a LabVIEW-based control interface that enables realtime monitoring and adjustment of temperature, vacuum level, and compressor parameters.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source chose a closed-cycle system instead of liquid-helium immersion.",
+     "source_url": "https://arxiv.org/abs/2510.14191",
+     "document_title": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "location": "Section 4.1 Experimental Setup",
+     "quote": "Although liquid helium cooling at 4.2 K has traditionally been used, its high cost and limited availability make it less practical for repeated experiments.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Experimental Demonstration of a Superconductor SFQ-Based ADC for High-Frequency Signal Acquisition (Ucpinar et al., arXiv:2510.14191, 2025)",
+     "url": "https://arxiv.org/abs/2510.14191"
+    }
+   ],
+   "reported_equipment": [
+    "two-stage closed-cycle pulse-tube cryocooler",
+    "HYPRES programmable current source"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_sic_power_mosfet_subkelvin",
+   "name": "Statistical IV characterization (threshold voltage, subthreshold swing, hysteresis) of commercial 1.2 kV 4H-SiC power MOSFETs from 300 K to 650 mK",
+   "plain_name": "Check whether a commercial silicon-carbide power transistor still switches reliably below 1 K",
+   "description": "Bare-die Wolfspeed CPM3-1200-0013A SiC MOSFETs are bonded to a sample holder on the mixing-chamber plate of a dilution refrigerator; the plate is set between 0.65 K and 25 K (plus a 300 K reference) and output/transfer curves are acquired at least 50 times per temperature with two SMUs in Kelvin (four-wire) mode.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 650,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The lowest measurement temperature was 650 mK.",
+     "source_url": "https://arxiv.org/abs/2507.23109",
+     "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+     "location": "Abstract",
+     "quote": "We perform a statistical study of threshold voltage and subthreshold swing from 300 K down to 650 mK, focusing on reproducibility and variability.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 650,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 300000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Devices were characterized across the span from 650 mK to 300 K.",
+     "source_url": "https://arxiv.org/abs/2507.23109",
+     "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+     "location": "Abstract",
+     "quote": "We perform a statistical study of threshold voltage and subthreshold swing from 300 K down to 650 mK, focusing on reproducibility and variability.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Drain and gate are driven and sensed by two SMUs in four-wire mode.",
+     "source_url": "https://arxiv.org/abs/2507.23109",
+     "document_title": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+     "location": "Section II (methods)",
+     "quote": "All output and transfer characteristics are acquired in Kelvin (four wire) mode to minimise voltage drop contributions from the set-up wiring.",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Reproducibility and variability in commercial SiC MOSFETs at deep-cryogenic temperatures (Powell et al., arXiv:2507.23109, 2025)",
+     "url": "https://arxiv.org/abs/2507.23109"
+    }
+   ],
+   "reported_equipment": [
+    "dilution refrigerator",
+    "two source-measure units (SMUs)"
+   ],
+   "industry": "semiconductors_and_electronics"
+  },
+  {
+   "id": "semi_cmos_multiplexed_lhe_dip",
+   "name": "Multiplexed DC (Kelvin-sense) characterization of thousands of 22 nm UTB-SOI transistors at 4.2 K on a liquid-helium dipping probe",
+   "plain_name": "Screen thousands of chip transistors at once by dipping the chip in liquid helium",
+   "description": "Test dies with on-die 1-to-1024 multiplexers are wire-bonded (50 bonds) to a daughter board that plugs into a multi-pin cryogenic socket on a dipping probe immersed in a liquid-helium bath (4.2 K); three SMUs with force/sense lines, DAC bias rails and kHz digital control over twisted-pair looms acquire Id-Vgs data for BSIM-IMG model cards.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 4200,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All devices are characterized isothermally at the liquid-helium temperature of 4.2 K.",
+     "source_url": "https://arxiv.org/abs/2404.11451",
+     "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+     "location": "Section III (measurement system)",
+     "quote": "We use a dipping probe for immersion of test samples into a liquid helium bath (T = 4.2 K).",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The die is connected through a multi-pin socket for bias, digital and analog lines.",
+     "source_url": "https://arxiv.org/abs/2404.11451",
+     "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+     "location": "Fig. 1 caption",
+     "quote": "A corresponding multi-pin socket mounted to a liquid helium dipping probe provides an interface to the digital circuitry necessary to configure the state of the multiplexer as well as the analog circuity used to conduct the measurements",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.dc_lines"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 48
+     },
+     "mandatory": false,
+     "rationale": "Optional: the reported wiring was two looms of 12 twisted pairs (48 conductors) for force/sense, bias and digital lines.",
+     "source_url": "https://arxiv.org/abs/2404.11451",
+     "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+     "location": "Section III (measurement system)",
+     "quote": "Two looms of 12 pairs each provide enough wiring for several sets of force/sense lines along with biasing voltages and digital control lines.",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "Optional: the source immersed the sample in a liquid-helium bath; a 4 K stage of another cryostat can substitute.",
+     "source_url": "https://arxiv.org/abs/2404.11451",
+     "document_title": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+     "location": "Section III (measurement system)",
+     "quote": "We use a dipping probe for immersion of test samples into a liquid helium bath (T = 4.2 K).",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Method for efficient large-scale cryogenic characterization of CMOS technologies (National Physical Laboratory / Quantum Motion / Univ. of Strathclyde, arXiv:2404.11451, 2024)",
+     "url": "https://arxiv.org/abs/2404.11451"
+    }
+   ],
+   "reported_equipment": [
+    "liquid helium dipping probe",
+    "cryogenic wiring looms (twisted pairs)"
+   ],
+   "industry": "semiconductors_and_electronics"
+  }
+ ]
+}

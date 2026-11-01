@@ -1,0 +1,1014 @@
+{
+ "industry": "metrology_and_calibration",
+ "experiments": [
+  {
+   "id": "metro_argon_triple_point_sprt",
+   "industry": "metrology_and_calibration",
+   "name": "Calibration of long-stem standard platinum resistance thermometers at the ITS-90 triple point of argon (83.8058 K) in a liquid-nitrogen-cooled sealed argon cell (Isotech Model 471)",
+   "plain_name": "Calibrate a precision platinum thermometer at the melting point of frozen argon",
+   "description": "Secondary-laboratory realization of the argon triple point, the lowest ITS-90 fixed point used for long-stem SPRTs: a pressurised sealed cell of pure argon inside an 8 L stainless container is frozen with liquid nitrogen poured through the re-entrant well, then the SPRT is inserted and calibrated on the roughly 4 h melting plateau (k=2 uncertainty 0.5 mK in the Isotech apparatus; NIST lists 0.14 mK for its realization).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": "83805.8",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The calibration point is the ITS-90 triple point of argon, 83.8058 K; the cell space must be held there during the melt.",
+     "source_url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf",
+     "document_title": "Argon Triple Point - Isotech Model 471: Further Refinement (J. Tavener, Isotech Seminar 2018)",
+     "location": "Slide 5 'What is the Argon Triple Point?'",
+     "quote": "3.3.1.3. The Triple Point Of Argon (83.8058 K) to the Triple Point of Water (273.16K).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "83805.8",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The argon sample must first be frozen, so the apparatus must reach below the argon triple point (-189.3442 C = 83.8058 K); the Isotech apparatus uses an LN2 bath near -195 C.",
+     "source_url": "https://www.nist.gov/node/1896016",
+     "document_title": "Standard Platinum Resistance Thermometer Calibration Laboratory (SPRTCL), NIST",
+     "location": "Laboratory description / fixed-point table",
+     "quote": "This range spans from the triple point of argon (-189.3442 °C) to the freezing point of silver (961.78 °C).",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_nitrogen"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "The Isotech procedure freezes the cell with liquid nitrogen through its re-entrant well; NIST has also developed a closed-cycle argon apparatus, so LN2 is not strictly mandatory.",
+     "source_url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf",
+     "document_title": "Argon Triple Point - Isotech Model 471: Further Refinement (J. Tavener, Isotech Seminar 2018)",
+     "location": "Slide 15 'Inner Assembly'",
+     "quote": "It has re-entrant tube to accommodate either a funnel of liquid nitrogen for cooling or an SPRT for calibration",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "operating_duration.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 14400,
+       "unit": "s"
+      }
+     },
+     "mandatory": false,
+     "rationale": "A premium calibration uses the melting plateau, which lasted about 4 hours (14400 s); the cold environment must be sustained that long.",
+     "source_url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf",
+     "document_title": "Argon Triple Point - Isotech Model 471: Further Refinement (J. Tavener, Isotech Seminar 2018)",
+     "location": "Slide 25 '2: How Long is the Plateau?'",
+     "quote": "The melt lasted some 4 hours",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Argon Triple Point - Isotech Model 471: Further Refinement (J. Tavener, Isotech Seminar 2018)",
+     "url": "https://isotech.co.uk/wp-content/uploads/2020/09/Argon-2018.pdf"
+    },
+    {
+     "citation": "Standard Platinum Resistance Thermometer Calibration Laboratory (SPRTCL), NIST",
+     "url": "https://www.nist.gov/node/1896016"
+    }
+   ],
+   "reported_equipment": [
+    "Isotech Model 471",
+    "Isotech-Bonnier Argon Triple Point Apparatus",
+    "SPRT (model 670)"
+   ]
+  },
+  {
+   "id": "metro_capsule_sprt_cryogenic_triple_points",
+   "industry": "metrology_and_calibration",
+   "name": "Calibration of capsule-type SPRTs and rhodium-iron thermometers at the ITS-90 triple points of equilibrium hydrogen, neon, oxygen and argon (13.8033-83.8058 K) in sealed cells inside a vacuum-isolated closed-cycle cryostat by the calorimetric intermittent-heating method",
+   "plain_name": "Calibrate small cryogenic thermometers at the melting points of frozen hydrogen, neon, oxygen and argon",
+   "description": "National-metrology-institute realization of the cryogenic gas triple points following the BIPM CCT guide: sealed (multi-compartment) copper or stainless-steel cells are suspended inside temperature-controlled isothermal shields within a vacuum jacket, cooled (nowadays) by a two-stage closed-cycle cryocooler, and melted by intermittent heat pulses while capsule SPRTs read the plateau.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": "13803.3",
+       "unit": "mK"
+      },
+      "hi": {
+       "value": "83805.8",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The four triple points span 13.8033 K (e-H2) to 83.8058 K (Ar); the cryostat must hold the cell at each of them.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Table 1, p. 5",
+     "quote": "T90 / K 13.8033 24.5561 54.3584 83.8058",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "13803.3",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "To freeze the hydrogen sample before melting it, the cell must reach below the hydrogen triple point, 13.8033 K.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Table 1, p. 5",
+     "quote": "T90 / K 13.8033 24.5561 54.3584 83.8058",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": true,
+     "rationale": "Isothermal conditions require the cell and its shields to be enclosed in a vacuum jacket.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 2.2 Cryogenic equipments, p. 11",
+     "quote": "To this end, the cell is surrounded by one or more temperature-controlled heat shields, the whole being enclosed in a vacuum jacket for thermal isolation.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The calorimetric method needs electrical heater pulses on the cell and four-wire leads to the thermometers under calibration.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 3.1 Measurement protocol, p. 14",
+     "quote": "The sample is heated through the phase transition under nearly isothermal conditions by the intermittent input of heat.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "Preferred, not mandatory: modern realizations use closed-cycle cryocoolers allowing months of uninterrupted measurement; liquid-refrigerant cryostats were used traditionally.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 2.2 Cryogenic equipments, p. 11",
+     "quote": "Nowadays preferably cryostats designed around closed-cycle cryocoolers are applied for the realization of cryogenic fixed points.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Guide to the Realization of the ITS-90: Cryogenic Fixed Points (B Fellmuth, E Mendez-Lango, T Nakano, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_2_3_Cryogenic_FP_2018.pdf/8289e448-3de9-4688-804e-1187d9215b83?version=1.5&t=1667897448129&download=true"
+    }
+   ],
+   "reported_equipment": [
+    "two-stage closed-cycle cryocooler triple-point cryostat (Figure 7, PTB)",
+    "INRIM sealed cells models A, B and C",
+    "LNE-Cnam four-cell assembly",
+    "NMIJ/AIST multi-well sealed triple-point cell"
+   ]
+  },
+  {
+   "id": "metro_icvgt_3k_to_neon",
+   "industry": "metrology_and_calibration",
+   "name": "Realization of the ITS-90 from 3 K to 24.5561 K with a 3He/4He interpolating constant-volume gas thermometer calibrated at a helium vapour-pressure point (3.0-5.0 K), the e-H2 triple point and the neon triple point",
+   "plain_name": "Measure very low temperatures from the pressure of helium gas sealed in a copper bulb",
+   "description": "The ITS-90 between 3 K and the neon triple point is defined by an interpolating constant-volume gas thermometer: a bulb of typically one litre of OFHC copper filled with 3He or 4He, surrounded by an isothermal shield, with the pressure read through a ~1 mm capillary, calibrated at three temperatures and then used to calibrate rhodium-iron resistance thermometers.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 3000,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": "24556.1",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The ICVGT defines the scale over 3 K to 24.5561 K and must be operated across that range.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_4_GasThermometry_2018.pdf/25c0529c-d09b-e121-1762-554550adbc56?version=1.3&t=1593070281959&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Interpolating Constant-Volume Gas Thermometry (P P M Steur, B Fellmuth, O Tamura; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 1 Introduction, p. 4",
+     "quote": "In the range from 3 K to the triple point of neon (24.5561 K), the ITS-90 is defined in terms of a 3He or 4He constant-volume gas thermometer, CVGT, calibrated at three temperatures.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 3000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The lowest calibration point lies between 3.0 K and 5.0 K and the scale starts at 3 K, so the bulb must reach 3 K.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_4_GasThermometry_2018.pdf/25c0529c-d09b-e121-1762-554550adbc56?version=1.3&t=1593070281959&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Interpolating Constant-Volume Gas Thermometry (P P M Steur, B Fellmuth, O Tamura; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 3, p. 9",
+     "quote": "the values of p at the three fixed points (a point between 3.0 K and 5.0 K, 13.8033 K, 24.5561 K) are to be used to generate a quadratic interpolation function",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "chamber.volume"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 1,
+       "unit": "L"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Typical, not mandatory: the bulb is generally about one litre to reduce dead-space and adsorption effects, so the cold space must accommodate it.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_4_GasThermometry_2018.pdf/25c0529c-d09b-e121-1762-554550adbc56?version=1.3&t=1593070281959&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Interpolating Constant-Volume Gas Thermometry (P P M Steur, B Fellmuth, O Tamura; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 5 The thermometer bulb, p. 10",
+     "quote": "The volume of the bulb, VB, is generally large, typically one litre, to reduce dead-space effects (see Subsection 6) and to render adsorption effects negligible.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Guide to the Realization of the ITS-90: Interpolating Constant-Volume Gas Thermometry (P P M Steur, B Fellmuth, O Tamura; BIPM CCT, last updated 1 January 2018)",
+     "url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_4_GasThermometry_2018.pdf/25c0529c-d09b-e121-1762-554550adbc56?version=1.3&t=1593070281959&download=true"
+    }
+   ],
+   "reported_equipment": [
+    "OFHC copper gas-thermometer bulb with isothermal shield",
+    "room-temperature diaphragm manometer"
+   ]
+  },
+  {
+   "id": "metro_helium_vapour_pressure_scale",
+   "industry": "metrology_and_calibration",
+   "name": "Realization of the ITS-90 from 0.65 K to 5.0 K by 3He and 4He vapour-pressure thermometry with vapour-pressure bulbs in a vacuum-isolated copper thermometer block",
+   "plain_name": "Set the temperature scale near absolute zero from the boiling pressure of liquid helium",
+   "description": "Vapour-pressure bulbs in a copper thermometer block suspended inside a vacuum jacket (inner vacuum can), cooled by a 4He bath with 1 K pot and dilution refrigerator (Engert et al., PTB) or by a closed-cycle cryostat; the measured 3He (0.65-3.2 K) or 4He (1.25-5.0 K) vapour pressure is converted to T90 with the ITS-90 equations.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 650,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 5000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The helium vapour-pressure scales cover 0.65 K to 5.0 K.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (B Fellmuth, J Engert, T Shimazaki, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 1 Introduction, p. 4",
+     "quote": "In the temperature range from 0.65 K to 5.0 K, the ITS-90 is defined using equations relating the vapour pressures of the two helium isotopes 3He and 4He to T90",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 650,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The 3He range starts at 0.65 K, so the bulb must be cooled to 0.65 K.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (B Fellmuth, J Engert, T Shimazaki, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 2 Vapour-pressure relations, p. 5",
+     "quote": "ranges 0.65 K to 3.2 K for 3He; 1.25 K to 2.1768 K for 4He (4He II); and 2.1768 K to 5.0 K also for 4He (4He I)",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "vacuum.available"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": true,
+     "rationale": "The vapour-pressure bulbs sit in a copper block suspended inside a vacuum jacket.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (B Fellmuth, J Engert, T Shimazaki, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 3.2 Vacuum-isolated systems, p. 9",
+     "quote": "Most of the realizations of helium vapour-pressure scales were performed applying systems, in which copper thermometer blocks containing vapour-pressure bulbs were suspended inside a vacuum jacket",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "In the documented reference systems the vacuum jacket is immersed in a liquid 4He bath; closed-cycle cryostats are also used, so not mandatory.",
+     "source_url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true",
+     "document_title": "Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (B Fellmuth, J Engert, T Shimazaki, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "location": "Section 3.2 Vacuum-isolated systems, p. 9",
+     "quote": "In both cases, the vacuum jacket is immersed in a liquid 4He bath.",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Guide to the Realization of the ITS-90: Vapour Pressure Scales and Pressure Measurements (B Fellmuth, J Engert, T Shimazaki, F Sparasci; BIPM CCT, last updated 1 January 2018)",
+     "url": "https://www.bipm.org/documents/20126/41773843/Guide_ITS-90_3_VPS_p_2018.pdf/dcd65f47-8699-d2f2-cace-44885f4f49fb?version=1.3&t=1593070260579&download=true"
+    }
+   ],
+   "reported_equipment": [
+    "Rusby and Swenson (1980) combined 3He/4He vapour-pressure cryostat",
+    "Engert et al. (2003, 2007) 3He vapour-pressure thermometer on a dilution refrigerator"
+   ]
+  },
+  {
+   "id": "metro_plts2000_he3_melting_curve",
+   "industry": "metrology_and_calibration",
+   "name": "Realization of the PLTS-2000 with a 3He melting-pressure thermometer (capacitive diaphragm cell, 2.93-4.0 MPa) mounted on a dilution-refrigerator platform and normalized at the melting-pressure minimum (315.24 mK)",
+   "plain_name": "Set the millikelvin temperature scale from the pressure at which helium-3 freezes",
+   "description": "A sintered 3He melting-pressure cell with an in-situ capacitive pressure transducer is bolted to the experimental platform of an ultra-low-temperature refrigerator, filled through a CuNi capillary anchored at 1.5 K, the still (0.5 K), the base plate (0.06 K) and the mixing chamber, and read with a three-terminal capacitance bridge; the pressure is normalized at the minimum (315.24 mK) and, with a nuclear stage, at the Neel point (0.902 mK).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "315.24",
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The melting curve must be followed through its pressure minimum at 315.24 mK, the in-built pressure calibration point of the scale.",
+     "source_url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf",
+     "document_title": "Supplementary Information for the Realization of the PLTS-2000 (BIPM Consultative Committee for Thermometry, CCT WG4 task group; slightly modified version of Rusby et al. 2007)",
+     "location": "Section 1, p. 4",
+     "quote": "apart from a narrow region around the pressure minimum, at Tmin = 315.24 mK",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": "315.24",
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 1000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The cell is filled and operated on the melting curve from about 1 K down through the minimum.",
+     "source_url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf",
+     "document_title": "Supplementary Information for the Realization of the PLTS-2000 (BIPM Consultative Committee for Thermometry, CCT WG4 task group; slightly modified version of Rusby et al. 2007)",
+     "location": "Section 4 Installation and procedure, p. 8",
+     "quote": "until the maximum operating pressure is reached (3.5 MPa for temperatures below 0.8 K, 4 MPa for measurements up to 1 K).",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "electrical.coax_lines"
+     ],
+     "constraint": {
+      "kind": "count_at_least",
+      "n": 2
+     },
+     "mandatory": true,
+     "rationale": "The cell capacitor needs a three-terminal connection: each capacitor plate on its own coaxial line, with ground as the third terminal.",
+     "source_url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf",
+     "document_title": "Supplementary Information for the Realization of the PLTS-2000 (BIPM Consultative Committee for Thermometry, CCT WG4 task group; slightly modified version of Rusby et al. 2007)",
+     "location": "Section 5 Pressure and capacitance measurement, p. 16",
+     "quote": "EDA emphasizes the need to use 3-terminal connection to the cell capacitor because the resolution required is small compared with the capacitance of the coaxial connecting lines: each plate of the capacitor is connected to a separate coaxial line",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": "0.902",
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "Optional: covering the full scale and normalizing at the superfluid or Neel features (down to 0.902 mK) needs a nuclear cooling stage.",
+     "source_url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf",
+     "document_title": "Supplementary Information for the Realization of the PLTS-2000 (BIPM Consultative Committee for Thermometry, CCT WG4 task group; slightly modified version of Rusby et al. 2007)",
+     "location": "Introduction, p. 2 (nuclear stage: Section 5, p. 15)",
+     "quote": "establishing and measuring melting pressures of 3He in the range from 0.902 mK to 1 K, i.e. for realizing the PLTS-2000",
+     "accessed": "2026-11-01",
+     "evidence_status": "reference_data"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Supplementary Information for the Realization of the PLTS-2000 (BIPM Consultative Committee for Thermometry, CCT WG4 task group; slightly modified version of Rusby et al. 2007)",
+     "url": "https://www.bipm.org/utils/common/pdf/ITS-90/Guide-PLTS-2000.pdf"
+    }
+   ],
+   "reported_equipment": [
+    "3He melting-pressure cells of Greywall and Busch (1982)",
+    "Schuster, Hoffmann and Hechtfischer (2001) melting-pressure thermometer on a dilution refrigerator"
+   ]
+  },
+  {
+   "id": "metro_graphene_qhr_tabletop",
+   "industry": "metrology_and_calibration",
+   "name": "Epitaxial-graphene quantized Hall resistance standard (nu = 2, RK/2) operated at 5 T in a cryogen-free table-top cryocooler below 4 K and scaled to 1 kOhm with a binary cryogenic current comparator",
+   "plain_name": "Keep the ohm standard running in a helium-free tabletop fridge using graphene",
+   "description": "NIST epitaxial-graphene Hall bars mounted in TO-8 or LCC-32 packages are held below 4 K at 5 T in a cryogen-free table-top system (base 2.7 K) and the RK-90/2 plateau is compared with 1 kOhm and 10 kOhm resistors via a binary-winding CCC and a room-temperature DCC (scaling uncertainty about 1 part in 10^8).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 4000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The device must stay below 4 K while carrying the measurement current for the plateau to remain quantized.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640",
+     "document_title": "Graphene Devices for Tabletop and High-Current Quantized Hall Resistance Standards (Rigosi, Panna, Payagala, Kruskopf, Kraft, Jones, Wu, Lee, Yang, Hu, Jarrett, Newell, Elmquist; IEEE Trans. Instrum. Meas. 68, 2019, doi:10.1109/TIM.2018.2882958)",
+     "location": "Section V.B Overall Device Performance",
+     "quote": "Maintaining a temperature below 4 K is still very feasible even after applying nearly 250 μA to the device",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 5000,
+       "unit": "mT"
+      }
+     },
+     "mandatory": true,
+     "rationale": "All tabletop measurements were made at 5 T.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640",
+     "document_title": "Graphene Devices for Tabletop and High-Current Quantized Hall Resistance Standards (Rigosi, Panna, Payagala, Kruskopf, Kraft, Jones, Wu, Lee, Yang, Hu, Jarrett, Newell, Elmquist; IEEE Trans. Instrum. Meas. 68, 2019, doi:10.1109/TIM.2018.2882958)",
+     "location": "Section III Cryogen-Free Tabletop System",
+     "quote": "The cryogen-free system reaches temperatures as low as 2.7 K and was operated at 5 T for all measurements.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The Hall bar is wired through a TO-8 or LCC-32 package for four-terminal current and Hall-voltage connections.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640",
+     "document_title": "Graphene Devices for Tabletop and High-Current Quantized Hall Resistance Standards (Rigosi, Panna, Payagala, Kruskopf, Kraft, Jones, Wu, Lee, Yang, Hu, Jarrett, Newell, Elmquist; IEEE Trans. Instrum. Meas. 68, 2019, doi:10.1109/TIM.2018.2882958)",
+     "location": "Section II Graphene-Based QHR Preparation",
+     "quote": "The sample is mounted onto a transistor outline (TO-8) package or a 32-pin leadless chip carrier (LCC-32).",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": false,
+     "rationale": "The aim of the table-top standard is liquid-helium-free, year-round operation; the quantum Hall effect itself does not require it.",
+     "source_url": "https://www.nist.gov/publications/table-top-graphene-quantized-hall-standard",
+     "document_title": "Table-top graphene quantized Hall standard (Rigosi et al., CPEM 2018, Paris) - NIST publication record",
+     "location": "Abstract",
+     "quote": "a quantum standard based on epitaxial graphene maintained in a 5 T table-top cryocooler system",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Graphene Devices for Tabletop and High-Current Quantized Hall Resistance Standards (Rigosi, Panna, Payagala, Kruskopf, Kraft, Jones, Wu, Lee, Yang, Hu, Jarrett, Newell, Elmquist; IEEE Trans. Instrum. Meas. 68, 2019, doi:10.1109/TIM.2018.2882958)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6604640"
+    },
+    {
+     "citation": "Table-top graphene quantized Hall standard (Rigosi et al., CPEM 2018, Paris) - NIST publication record",
+     "url": "https://www.nist.gov/publications/table-top-graphene-quantized-hall-standard"
+    }
+   ],
+   "reported_equipment": [
+    "cryogen-free tabletop system (model not stated)",
+    "commercial binary-winding CCC (BCCC)",
+    "room-temperature direct current comparator (DCC)"
+   ]
+  },
+  {
+   "id": "metro_ccc_resistance_bridge",
+   "industry": "metrology_and_calibration",
+   "name": "Four-terminal resistance-ratio calibration with a SQUID-detected cryogenic current comparator bridge in a 4.2 K liquid-helium re-condensing cryostat with 3 inch bore",
+   "plain_name": "Compare two resistors to one part in a hundred million with a superconducting current comparator",
+   "description": "Automated CCC resistance bridge (NPL / Cryogenic Ltd) with a SQUID null detector; the ratio windings sit in a pressure-stabilised, nominally 5 L liquid-helium reservoir re-condensed by a PT405 pulse tube. Used to transfer the quantum Hall resistance to a 100 Ohm standard and to calibrate four-terminal resistance standards (CCC tested to 1 part in 10^9).",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 4200,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The CCC windings and SQUID operate in liquid helium at 4.2 K.",
+     "source_url": "https://www.cryogenic.co.uk/products/re-condensing-cryostat-ccc-and-josephson-array-insert",
+     "document_title": "Cryogenic Limited - Re-condensing Cryostat for CCC and Josephson Array Insert product page",
+     "location": "Product description",
+     "quote": "more than 250 milliwatt can be absorbed at 4.2 K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": true,
+     "rationale": "The comparator is cooled in a (re-condensed) liquid-helium reservoir rather than on a dry cold plate.",
+     "source_url": "https://www.cryogenic.co.uk/products/re-condensing-cryostat-ccc-and-josephson-array-insert",
+     "document_title": "Cryogenic Limited - Re-condensing Cryostat for CCC and Josephson Array Insert product page",
+     "location": "Product description",
+     "quote": "providing a small liquid reservoir, nominally 5 litres of liquid helium at 4K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The bridge drives and senses the windings, the SQUID and the four-terminal resistors through cryostat wiring.",
+     "source_url": "https://www.cryogenic.co.uk/products/cryogenic-current-comparator-ccc",
+     "document_title": "Cryogenic Limited - Cryogenic Current Comparator (CCC) product page",
+     "location": "Product description",
+     "quote": "The automated CCC bridge is also well suited to routine calibration of four-terminal resistance standards",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "sample.diameter.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": "76.2",
+       "unit": "mm"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The CCC insert is built for the 3 inch (76.2 mm) bore of the dedicated cryostat; a narrower bore may not accept it.",
+     "source_url": "https://www.cryogenic.co.uk/products/re-condensing-cryostat-ccc-and-josephson-array-insert",
+     "document_title": "Cryogenic Limited - Re-condensing Cryostat for CCC and Josephson Array Insert product page",
+     "location": "Key features",
+     "quote": "Re-condensing liquid helium CCC cryostat with 3 inch (76.2 mm) bore access",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "temperature.stability"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 1,
+       "unit": "mK"
+      }
+     },
+     "mandatory": false,
+     "rationale": "The bath temperature is controlled to the sub-millikelvin level and the reservoir is pressure-stabilised to minimise instability in CCC operation.",
+     "source_url": "https://www.cryogenic.co.uk/products/re-condensing-cryostat-ccc-and-josephson-array-insert",
+     "document_title": "Cryogenic Limited - Re-condensing Cryostat for CCC and Josephson Array Insert product page",
+     "location": "Product description",
+     "quote": "A lakeshore temperature controller can be used to both monitor and control the bath temperature to the sub milli-Kelvin level.",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryogenic Limited - Cryogenic Current Comparator (CCC) product page",
+     "url": "https://www.cryogenic.co.uk/products/cryogenic-current-comparator-ccc"
+    },
+    {
+     "citation": "Cryogenic Limited - Re-condensing Cryostat for CCC and Josephson Array Insert product page",
+     "url": "https://www.cryogenic.co.uk/products/re-condensing-cryostat-ccc-and-josephson-array-insert"
+    }
+   ],
+   "reported_equipment": [
+    "Cryogenic Current Comparator (CCC)",
+    "Re-condensing Cryostat for CCC and Josephson Array Insert",
+    "PT405 Pulse tube cryocooler"
+   ]
+  },
+  {
+   "id": "metro_pjvs_10v_cryocooled",
+   "industry": "metrology_and_calibration",
+   "name": "Cryogen-free operation of a NIST 10 V programmable Josephson voltage standard at 4.3 K on a cryocooler with a supercritical-helium thermal buffer",
+   "plain_name": "Run the quantum volt standard on a cryocooler instead of liquid helium",
+   "description": "The 10 V PJVS chip is mounted on a high-conductance cryopackage with a supercritical-helium buffer that damps cold-head oscillations; with all subarrays biased it gave a 1.32 mA quantized step width at 4.3 K with about 270 mW net cooling at the chip, and quantum accuracy held up to 4.8 K.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "point_within",
+      "q": {
+       "value": 4300,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The reported quantized-step margins were obtained at an operating temperature of 4.3 K.",
+     "source_url": "https://doi.org/10.1109/TIM.2014.2374697",
+     "document_title": "Cryocooled 10 V Programmable Josephson Voltage Standard (A. Rufenacht, L. A. Howe, A. E. Fox, R. E. Schwall, P. D. Dresselhaus, C. J. Burroughs, S. P. Benz; IEEE Trans. Instrum. Meas. 64(6), 2015)",
+     "location": "Abstract",
+     "quote": "A 1.32 mA step width of the quantized voltage produced with all of the subarrays of the PJVS circuit biased was achieved at an operating temperature of 4.3 K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 4800,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Quantum accuracy is only maintained up to 4.8 K, so the chip stage must stay at or below 4.8 K.",
+     "source_url": "https://doi.org/10.1109/TIM.2014.2374697",
+     "document_title": "Cryocooled 10 V Programmable Josephson Voltage Standard (A. Rufenacht, L. A. Howe, A. E. Fox, R. E. Schwall, P. D. Dresselhaus, C. J. Burroughs, S. P. Benz; IEEE Trans. Instrum. Meas. 64(6), 2015)",
+     "location": "Abstract",
+     "quote": "The quantum accuracy of the PJVS is maintained at temperatures up to 4.8 K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.cryogen_free"
+     ],
+     "constraint": {
+      "kind": "flag_is",
+      "b": true
+     },
+     "mandatory": true,
+     "rationale": "This procedure is defined as operation on a cryocooler without liquid helium.",
+     "source_url": "https://doi.org/10.1109/TIM.2014.2374697",
+     "document_title": "Cryocooled 10 V Programmable Josephson Voltage Standard (A. Rufenacht, L. A. Howe, A. E. Fox, R. E. Schwall, P. D. Dresselhaus, C. J. Burroughs, S. P. Benz; IEEE Trans. Instrum. Meas. 64(6), 2015)",
+     "location": "Abstract",
+     "quote": "We overcame these challenges and successfully operated a PJVS circuit on a cryocooler",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cooling_power.at_4200mK"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 270,
+       "unit": "mW"
+      }
+     },
+     "mandatory": false,
+     "rationale": "About 270 mW of net cooling at the chip (at 4.3 K) balanced the array dissipation; used here as an approximate 4.2 K rating, so not mandatory.",
+     "source_url": "https://doi.org/10.1109/TIM.2014.2374697",
+     "document_title": "Cryocooled 10 V Programmable Josephson Voltage Standard (A. Rufenacht, L. A. Howe, A. E. Fox, R. E. Schwall, P. D. Dresselhaus, C. J. Burroughs, S. P. Benz; IEEE Trans. Instrum. Meas. 64(6), 2015)",
+     "location": "Abstract",
+     "quote": "This result was obtained with a cryocooler that employs a 3 kW water-cooled compressor to produce at the chip about 270 mW of net cooling power at 4.3 K.",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The subarrays are current-biased and their quantized voltages measured, requiring bias and voltage leads to the chip.",
+     "source_url": "https://www.nist.gov/publications/cryocooled-10-v-programmable-josephson-voltage-standard",
+     "document_title": "Cryocooled 10 V Programmable Josephson Voltage Standard - NIST publication record (Rufenacht et al., 2014)",
+     "location": "Abstract",
+     "quote": "Flat-spot measurements of various quantized voltages produced with all of the sub-arrays",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Cryocooled 10 V Programmable Josephson Voltage Standard (A. Rufenacht, L. A. Howe, A. E. Fox, R. E. Schwall, P. D. Dresselhaus, C. J. Burroughs, S. P. Benz; IEEE Trans. Instrum. Meas. 64(6), 2015)",
+     "url": "https://doi.org/10.1109/TIM.2014.2374697"
+    },
+    {
+     "citation": "Cryocooled 10 V Programmable Josephson Voltage Standard - NIST publication record (Rufenacht et al., 2014)",
+     "url": "https://www.nist.gov/publications/cryocooled-10-v-programmable-josephson-voltage-standard"
+    }
+   ],
+   "reported_equipment": [
+    "NIST 10 V PJVS",
+    "cryocooler with a 3 kW water-cooled compressor"
+   ]
+  },
+  {
+   "id": "metro_cernox_calibration_1p4_325k",
+   "industry": "metrology_and_calibration",
+   "name": "Calibration of Cernox thin-film resistance temperature sensors from 1.4 K to 325 K (Lake Shore calibration CAL-CX-1.4L)",
+   "plain_name": "Produce a temperature-versus-resistance table for a cryogenic sensor from 1.4 K to room temperature",
+   "description": "Commercial calibration of Cernox resistance thermometers (hermetic SD package, about 40 mg) over 1.4-325 K, read with low excitation (10 mV or less above 1.2 K), so that the sensor can serve as a calibrated thermometer in cryostats and magnets.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 1400,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 325000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The calibration covers 1.4 K to 325 K, so the calibration system must reach and control both ends.",
+     "source_url": "https://shop.lakeshore.com/service/recalibration/temperature-sensors.html?mode=list",
+     "document_title": "Temperature sensor recalibration - Lake Shore Cryotronics online store",
+     "location": "Calibration list, item CAL-CX-1.4L",
+     "quote": "Cernox calibration, 1.4 K - 325 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "temperature.base"
+     ],
+     "constraint": {
+      "kind": "at_most",
+      "q": {
+       "value": 1400,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "The lowest calibration point is 1.4 K.",
+     "source_url": "https://shop.lakeshore.com/service/recalibration/temperature-sensors.html?mode=list",
+     "document_title": "Temperature sensor recalibration - Lake Shore Cryotronics online store",
+     "location": "Calibration list, item CAL-CX-1.4L",
+     "quote": "Cernox calibration, 1.4 K - 325 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "The sensor resistance is read electrically with a controlled excitation, so leads to the sensor are required.",
+     "source_url": "https://www.lakeshore.com/products/categories/specification/temperature-products/cryogenic-temperature-sensors/cernox",
+     "document_title": "Cernox - Lake Shore Cryotronics product specification page",
+     "location": "Specifications - recommended excitation",
+     "quote": "10 mV or less for T > 1.2 K",
+     "accessed": "2026-11-01",
+     "evidence_status": "manufacturer_specification"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "Temperature sensor recalibration - Lake Shore Cryotronics online store",
+     "url": "https://shop.lakeshore.com/service/recalibration/temperature-sensors.html?mode=list"
+    },
+    {
+     "citation": "Cernox - Lake Shore Cryotronics product specification page",
+     "url": "https://www.lakeshore.com/products/categories/specification/temperature-products/cryogenic-temperature-sensors/cernox"
+    }
+   ],
+   "reported_equipment": [
+    "Cernox (SD package)"
+   ]
+  },
+  {
+   "id": "metro_niobium_rrr",
+   "industry": "metrology_and_calibration",
+   "name": "Residual resistivity ratio of high-purity SRF-grade niobium from resistance at 273 K and normal-state resistance at 4.2 K obtained by magnetic-field suppression of superconductivity and magnetoresistance (Kohler) extrapolation",
+   "plain_name": "Grade niobium purity by comparing its electrical resistance at ice and liquid-helium temperatures",
+   "description": "NIST comparison of RRR methods on 14 niobium samples: resistance between voltage taps at 273 K and at 4.2 K (helium boils near 4.0 K at the Boulder site), with transverse or parallel fields of up to 5-8 T applied to quench superconductivity (Tc about 9.3 K) and extrapolate the zero-field normal-state resistance.",
+   "requirements": [
+    {
+     "keys": [
+      "temperature.range"
+     ],
+     "constraint": {
+      "kind": "range_within",
+      "lo": {
+       "value": 4200,
+       "unit": "mK"
+      },
+      "hi": {
+       "value": 273000,
+       "unit": "mK"
+      }
+     },
+     "mandatory": true,
+     "rationale": "RRR is the ratio of resistances at 273 K and 4.2 K; both temperatures must be reachable.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274",
+     "document_title": "A Comparison of Methods for Computing the Residual Resistivity Ratio of High-Purity Niobium (J. D. Splett, D. F. Vecchia, L. F. Goodrich; J. Res. NIST 116(1), 489-504, 2011)",
+     "location": "Section 1 Introduction",
+     "quote": "measured at 273 K (the ice point) and 4.2 K (the boiling point of helium at standard atmospheric pressure)",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "magnetic_field.max"
+     ],
+     "constraint": {
+      "kind": "at_least",
+      "q": {
+       "value": 5000,
+       "unit": "mT"
+      }
+     },
+     "mandatory": true,
+     "rationale": "Magnetoresistance data up to 5 T were used to suppress superconductivity and extrapolate the normal-state resistance at 4 K.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274",
+     "document_title": "A Comparison of Methods for Computing the Residual Resistivity Ratio of High-Purity Niobium (J. D. Splett, D. F. Vecchia, L. F. Goodrich; J. Res. NIST 116(1), 489-504, 2011)",
+     "location": "Section 4 The Kohler Relationship",
+     "quote": "the transverse magnetoresistance data were all less than or equal to 5 T",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "electrical.sample_connections"
+     ],
+     "constraint": {
+      "kind": "present"
+     },
+     "mandatory": true,
+     "rationale": "Resistance is measured between voltage taps on a current-carrying sample.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274",
+     "document_title": "A Comparison of Methods for Computing the Residual Resistivity Ratio of High-Purity Niobium (J. D. Splett, D. F. Vecchia, L. F. Goodrich; J. Res. NIST 116(1), 489-504, 2011)",
+     "location": "Section 1 Introduction",
+     "quote": "where ℓ is the distance between the voltage taps and A is the cross-sectional area of the sample",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    },
+    {
+     "keys": [
+      "cryogen.type"
+     ],
+     "constraint": {
+      "kind": "set_contains",
+      "needed": [
+       "liquid_helium"
+      ]
+     },
+     "mandatory": false,
+     "rationale": "The low-temperature reference point is the liquid-helium boiling point (about 4.0 K at the test site); a dry system at 4.2 K would also serve.",
+     "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274",
+     "document_title": "A Comparison of Methods for Computing the Residual Resistivity Ratio of High-Purity Niobium (J. D. Splett, D. F. Vecchia, L. F. Goodrich; J. Res. NIST 116(1), 489-504, 2011)",
+     "location": "Section 1 Introduction",
+     "quote": "Because liquid helium boils near 4.0 K at the atmospheric pressure of our test site",
+     "accessed": "2026-11-01",
+     "evidence_status": "experimental_observation"
+    }
+   ],
+   "sources": [
+    {
+     "citation": "A Comparison of Methods for Computing the Residual Resistivity Ratio of High-Purity Niobium (J. D. Splett, D. F. Vecchia, L. F. Goodrich; J. Res. NIST 116(1), 489-504, 2011)",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4551274"
+    }
+   ],
+   "reported_equipment": []
+  }
+ ]
+}

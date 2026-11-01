@@ -1,0 +1,2535 @@
+[
+ {
+  "id": "v4e_med_hsc_gene_therapy_controlled_rate_freezing_0",
+  "claim": "The freezing program starts with a 4 C hold and ends with a hold at -180 C, so the chamber must cover -180 C to +4 C.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 93150, \"unit\": \"mK\"}, \"hi\": {\"value\": 277150, \"unit\": \"mK\"}}",
+  "quote": "Cryopreservation protocol (Kryo 560-16 controlled rate freezer): Hold at 4°C for 5 min, first ramp cools at a rate of −1°C/min to −30°C, second ramp cools at a rate of −2°C/min to −60°C, and ramp three cools at a rate of −20°C/min to −180°C.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+  "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+  "location": "Materials and methods, cryopreservation protocol",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_hsc_gene_therapy_controlled_rate_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on PMC11214401 (Ellison et al. 2024): Kryo 560-16 program, 4 C hold for 5 min, ramps of -1/-2/-20 C/min to -180 C. range_within -180..+4 C (93150..277150 mK) is correct and mandatory is justified."
+  }
+ },
+ {
+  "id": "v4e_med_hsc_gene_therapy_controlled_rate_freezing_1",
+  "claim": "The program imposes controlled cooling-rate magnitudes of 1, 2 and 20 C/min, so the freezer must control rates from 1 to 20 C/min.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 1000, \"unit\": \"mK_per_min\"}, \"hi\": {\"value\": 20000, \"unit\": \"mK_per_min\"}}",
+  "quote": "Cryopreservation protocol (Kryo 560-16 controlled rate freezer): Hold at 4°C for 5 min, first ramp cools at a rate of −1°C/min to −30°C, second ramp cools at a rate of −2°C/min to −60°C, and ramp three cools at a rate of −20°C/min to −180°C.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+  "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+  "location": "Materials and methods, cryopreservation protocol",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_hsc_gene_therapy_controlled_rate_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same quote verified. Cooling-rate magnitudes of 1, 2 and 20 C/min give 1000..20000 mK_per_min, which is correct. The key temperature.cooling_rate.range is in the vocabulary."
+  }
+ },
+ {
+  "id": "v4e_med_hsc_gene_therapy_controlled_rate_freezing_2",
+  "claim": "Lowest program temperature is -180 C (same information as temperature.range, for machines that only document a base temperature).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 93150, \"unit\": \"mK\"}}",
+  "quote": "Hold at −180°C until unloaded into VPLN upon completion of program.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+  "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+  "location": "Materials and methods, cryopreservation protocol",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_hsc_gene_therapy_controlled_rate_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Hold at −180°C until unloaded into VPLN upon completion of program.' -180 C = 93150 mK. Non-mandatory and redundant with #0, which is fine."
+  }
+ },
+ {
+  "id": "v4e_med_hsc_gene_therapy_controlled_rate_freezing_3",
+  "claim": "Subsequent storage is in vapour-phase LN2 at -130 C or colder (a separate storage step; informative for the freezing machine).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 143150, \"unit\": \"mK\"}}",
+  "quote": "The cryopreserved product, in volumes of 20 ± 2.5 mL, is then stored in the vapor phase of LN 2 (VPLN) at a temperature of −130°C or less.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11214401/",
+  "document_title": "Design and validation of a GMP stem cell manufacturing protocol for MPSII hematopoietic stem cell gene therapy (Ellison et al., Mol Ther Methods Clin Dev 2024)",
+  "location": "Materials and methods",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_hsc_gene_therapy_controlled_rate_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: product of 20 ± 2.5 mL stored in VPLN at -130 C or less (143150 mK). This describes the later storage step, not the freezer, and is implied by #0. It is acceptable only because it is non-mandatory."
+  }
+ },
+ {
+  "id": "v4e_med_cord_blood_unit_ln2_banking_0",
+  "claim": "Units are stored immersed in the liquid phase of liquid nitrogen at -196 C.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 77150, \"unit\": \"mK\"}}",
+  "quote": "After cryoprotectant addition, units underwent controlled-rate freezing and were stored in the liquid phase of liquid nitrogen at −196 °C.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+  "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+  "location": "Materials and methods, cord blood processing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_cord_blood_unit_ln2_banking",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the full text (Europe PMC XML of PMC13505624): 'After cryoprotectant addition, units underwent controlled-rate freezing and were stored in the liquid phase of liquid nitrogen at −196 °C.' point_within 77150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_cord_blood_unit_ln2_banking_1",
+  "claim": "Liquid-phase storage requires a vessel that holds liquid nitrogen.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "After cryoprotectant addition, units underwent controlled-rate freezing and were stored in the liquid phase of liquid nitrogen at −196 °C.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+  "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+  "location": "Materials and methods, cord blood processing",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_cord_blood_unit_ln2_banking",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same verified sentence. Liquid-phase LN2 storage justifies set_contains liquid_nitrogen as mandatory."
+  }
+ },
+ {
+  "id": "v4e_med_cord_blood_unit_ln2_banking_2",
+  "claim": "Physical basis: below the ~-130 C glass transition of water biological activity stops; informative lower bound for any acceptable store.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 143150, \"unit\": \"mK\"}}",
+  "quote": "Below the glass transition temperature of water (∼−130 °C), molecular-level biological activity ceases, and cryopreserved cells can theoretically be stored indefinitely.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505624/",
+  "document_title": "Up to 19-year cryopreservation does not impair hematopoietic progenitor function in cord blood: a 1129-unit analysis from the largest Korean public cord blood bank (Roh et al., Stem Cells Transl Med)",
+  "location": "Discussion",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_cord_blood_unit_ln2_banking",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified word for word in the Discussion: glass transition of water at about -130 C, so cells 'can theoretically be stored indefinitely.' 143150 mK is correct. This is physical background, so non-mandatory is right."
+  }
+ },
+ {
+  "id": "v4e_med_mrna_vaccine_ult_storage_0",
+  "claim": "The storage space must reach -60 C or colder (warm edge of the permitted -90 C to -60 C window).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 213150, \"unit\": \"mK\"}}",
+  "quote": "Store at ultra-low temperature freezer at -90°C to -60°C until printed expiry date or otherwise noted.",
+  "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+  "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+  "location": "Page 3, Table 2 Storage and Handling for Pfizer-BioNTech (KP.2 Formulation), Frozen vials prior to use",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_mrna_vaccine_ult_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the Ontario PDF v8.0 (Oct 22, 2024), Table 2, page 3: 'Store at ultra-low temperature freezer at -90oC to -60oC until printed expiry date or otherwise noted.' at_most -60 C (213150 mK) on a range means lo <= -60 C, which is correct."
+  }
+ },
+ {
+  "id": "v4e_med_mrna_vaccine_ult_storage_1",
+  "claim": "The storage space must also be settable no colder than -90 C (cold edge of the window); with the previous requirement the machine range must overlap -90 C to -60 C, which excludes nitrogen storage that only runs far below -90 C.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 183150, \"unit\": \"mK\"}}",
+  "quote": "Store at ultra-low temperature freezer at -90°C to -60°C until printed expiry date or otherwise noted.",
+  "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+  "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+  "location": "Page 3, Table 2 Storage and Handling for Pfizer-BioNTech (KP.2 Formulation), Frozen vials prior to use",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_mrna_vaccine_ult_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same quote. at_least 183150 mK on a range means hi >= -90 C. Together with #0 this correctly requires the range to overlap the -90..-60 C window, as the code shows (smt.py _value_formula)."
+  }
+ },
+ {
+  "id": "v4e_med_mrna_vaccine_ult_storage_2",
+  "claim": "Same -60 C limit for machines that document only their lowest temperature (portable ULT units qualify).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 213150, \"unit\": \"mK\"}}",
+  "quote": "Vaccines placed in an ULT portable unit (-90°C to -60°C) can go back into an ULT unit.",
+  "source_url": "https://www.ontario.ca/files/2024-10/moh-chapter-1-pfizer-vsh-en-2024-10-24.pdf",
+  "document_title": "Ontario Ministry of Health, Chapter 1: Storage and Handling of Pfizer-BioNTech's COVID-19 Vaccines, Version 8.0 (October 22, 2024)",
+  "location": "Page 6, Vaccine storage post temperature excursion or unit malfunction",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_mrna_vaccine_ult_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Quote verified, but the location is wrong. 'Vaccines placed in an ULT portable unit (-90°C to -60°C) can go back into an ULT unit.' is on page 7 of the PDF, not page 6. The value is correct and the requirement is non-mandatory."
+  }
+ },
+ {
+  "id": "v4e_med_glycerolized_rbc_frozen_storage_0",
+  "claim": "The approved high-glycerol method stores the units at -80 C.",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 193150, \"unit\": \"mK\"}}",
+  "quote": "RBCs frozen in 40 percent (wt/vol) glycerol are currently approved by the FDA and the AABB for storage at -80 degrees C for up to 10 years.",
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/15318853/",
+  "document_title": "Evaluation of red blood cells stored at -80 degrees C in excess of 10 years (Lecak, Scott, Young, Hannon, Acker; Transfusion 2004)",
+  "location": "Abstract, Background",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_glycerolized_rbc_frozen_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified against the PubMed 15318853 abstract (Background): 40% wt/vol glycerol RBCs approved by FDA/AABB for storage at -80 C for up to 10 years. point_within 193150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_glycerolized_rbc_frozen_storage_1",
+  "claim": "Regulatory limit: frozen RBCs are frozen and kept at -65 C or colder.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 208150, \"unit\": \"mK\"}}",
+  "quote": "FROZEN RED BLOOD CELLS and FROZEN REJUVENATED RED BLOOD CELLS are prepared by adding glycerol to red cells as a cryoprotective agent before freezing at −65 C or colder.",
+  "source_url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+  "document_title": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+  "location": "Red-cell-containing components, Frozen Red Blood Cells (PDF page 21)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_glycerolized_rbc_frozen_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the AABB Circular of Information, PDF page 21: 'FROZEN RED BLOOD CELLS and FROZEN REJUVENATED RED BLOOD CELLS are prepared by adding glycerol ... before freezing at −65 C or colder.' at_most 208150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_glycerolized_rbc_frozen_storage_2",
+  "claim": "Machines documenting only a base temperature must reach -80 C.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 193150, \"unit\": \"mK\"}}",
+  "quote": "This study examined 20 RBC units that had been cryopreserved in 40 percent (wt/vol) glycerol and stored at -80 degrees C for up to 22 years.",
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/15318853/",
+  "document_title": "Evaluation of red blood cells stored at -80 degrees C in excess of 10 years (Lecak, Scott, Young, Hannon, Acker; Transfusion 2004)",
+  "location": "Abstract, Study design and methods",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_glycerolized_rbc_frozen_storage",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the abstract, Study design and methods: 20 RBC units in 40% glycerol stored at -80 C for up to 22 years. Non-mandatory base <= 193150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_ffp_contact_shock_freezing_0",
+  "claim": "Plasma must be brought to a core temperature of -30 C or below, so the freezer must reach -30 C or colder.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 243150, \"unit\": \"mK\"}}",
+  "quote": "Thus, by bringing core temperature to −30°C or below within 1 h, factor VIII activity is preserved.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+  "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+  "location": "Discussion",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_ffp_contact_shock_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on PMC6580834 (Dhantole et al. 2019), Discussion: core temperature -30 C or below within 1 h preserves factor VIII. at_most 243150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_ffp_contact_shock_freezing_1",
+  "claim": "Regulatory minimum for FFP: frozen at -18 C or colder.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 255150, \"unit\": \"mK\"}}",
+  "quote": "FFP is prepared from a whole blood or apheresis collection and frozen at −18 C or colder within the time frame specified in the manufacturer's instructions for use",
+  "source_url": "https://www.aabb.org/docs/default-source/default-document-library/resources/circular-of-information-watermark.pdf",
+  "document_title": "Circular of Information for the Use of Human Blood and Blood Components (AABB, American Red Cross, America's Blood Centers, Armed Services Blood Program)",
+  "location": "Plasma components, Fresh Frozen Plasma, Description (PDF page 24)",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_ffp_contact_shock_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the AABB Circular, Fresh Frozen Plasma description, PDF page 24: FFP frozen at −18 C or colder. at_most 255150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_ffp_contact_shock_freezing_2",
+  "claim": "Operating point used for storage in the study: -40 C deep freezer (any -18 C or colder store meets the AABB rule).",
+  "value_as_printed": "{\"kind\": \"point_within\", \"q\": {\"value\": 233150, \"unit\": \"mK\"}}",
+  "quote": "For studying the effect of donor variables, plasma units under study were frozen instantaneously by contact shock freezer (CSF) (Dometic MBF 21, Luxembourg) and were stored at −40°C in stack position for 2 weeks in deep freezer (M/S Sanyo, Japan).",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+  "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+  "location": "Materials and methods",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_ffp_contact_shock_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in Materials and methods: CSF Dometic MBF 21, stored at −40°C in stack position for 2 weeks in a Sanyo deep freezer. point_within 233150 mK, non-mandatory, is correct."
+  }
+ },
+ {
+  "id": "v4e_med_ffp_contact_shock_freezing_3",
+  "claim": "The contact shock freezer used operates at -50 C, which achieved the -30 C core in 40 min.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 223150, \"unit\": \"mK\"}}",
+  "quote": "The CSF had an operating temperature of −50°C, and the plasma attained a core temperature of −30°C in 40 min.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6580834/",
+  "document_title": "A study on factors influencing the hemostatic potential of fresh frozen plasma (Dhantole, Dubey, Sonker; Asian J Transfus Sci 2019)",
+  "location": "Discussion",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_ffp_contact_shock_freezing",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the Discussion: CSF operating temperature −50°C, core reached −30°C in 40 min. Non-mandatory base <= 223150 mK is correct."
+  }
+ },
+ {
+  "id": "v4e_med_meg_reliquefier_squid_0",
+  "claim": "The SQUID gradiometers are cooled by the liquid-helium helmet at 4.2 K.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 4200, \"unit\": \"mK\"}}",
+  "quote": "From the start time of reliquefier operation, it took about 5 h for the cold head to cool down to 4.2 K.",
+  "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+  "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+  "location": "Section 3, reliquefier operation",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_meg_reliquefier_squid",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The quote is in Section 3.1, but it describes the reliquefier COLD HEAD cooling to 4.2 K in about 5 h, not the SQUID sensors. The steady cold-head temperature is 4.06 K. The sensors are cooled by the LHe helmet; the abstract says 'direct thermal contact with the liquid helium helmet.' Fix: cite the abstract sentence about low-temperature SQUID gradiometers in thermal contact with the LHe helmet. Use at_most 4200 mK (the machine must reach LHe temperature) instead of point_within on a cold-head figure."
+  }
+ },
+ {
+  "id": "v4e_med_meg_reliquefier_squid_1",
+  "claim": "The sensors are cooled by direct thermal contact with a liquid-helium bath that the reliquefier refills.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_helium\"]}",
+  "quote": "In order to reduce the vibration transmission, the gradiometers are mounted in the vacuum space of the helmet dewar with direct thermal contact with the liquid helium helmet.",
+  "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+  "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+  "location": "Abstract",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_meg_reliquefier_squid",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the abstract of Lee et al., SUST 30 (2017) 084003: gradiometers in the vacuum space of the helmet dewar, in direct thermal contact with the liquid helium helmet. set_contains liquid_helium, mandatory, is justified."
+  }
+ },
+ {
+  "id": "v4e_med_meg_reliquefier_squid_2",
+  "claim": "Femtotesla brain fields are recorded inside a magnetically shielded room (MSR).",
+  "value_as_printed": "{\"kind\": \"present\"}",
+  "quote": "Sources of magnetic noises measured by SQUID gradiometers inside the MSR can be divided into three major parts",
+  "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+  "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+  "location": "Section 4, magnetic noise",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_meg_reliquefier_squid",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Quote verified ('Sources of magnetic noises measured by SQUID gradiometers inside the MSR can be divided into three major parts'), but it is in Section 3.2, not Section 4. The MSR (two Mumetal layers) is clearly part of the setup, so magnetic_shielding present, mandatory, is justified."
+  }
+ },
+ {
+  "id": "v4e_med_meg_reliquefier_squid_3",
+  "claim": "Reported reliquefier capacity (1.4 W at 4.2 K), stated to be more than sufficient for the 13-14 L/day boil-off; informative, not a hard minimum.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": \"1.4\", \"unit\": \"W\"}}",
+  "quote": "The cryocooler system (Cryomech model PT415RM) has a cooling capacity of 1.4 W at 4.2 K, with a remote rotary valve unit",
+  "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+  "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+  "location": "Section 2, configuration of reliquefier MEG system",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_meg_reliquefier_squid",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in Section 2.1: Cryomech PT415RM, 1.4 W at 4.2 K. W converts to the vocabulary unit nW. Informative and non-mandatory, which is fine."
+  }
+ },
+ {
+  "id": "v4e_med_meg_reliquefier_squid_4",
+  "claim": "Reported helmet-dewar reservoir capacity (informative).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 90, \"unit\": \"L\"}}",
+  "quote": "The test MEG dewar has reservoir capacity of 90 l and the boil-off rate was 13–14 l/day when it was in direct LHe cooling with weekly refill mode.",
+  "source_url": "http://compumedicsneuroscan.com/wp-content/uploads/Lee-2017-SUST-Low-noise-MEG-by-continuously-operating-reliquefier.pdf",
+  "document_title": "Low-noise magnetoencephalography system cooled by a continuously operating reliquefier (Lee et al., Supercond. Sci. Technol. 30 (2017) 084003)",
+  "location": "Section 3",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_meg_reliquefier_squid",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in Section 3.1: reservoir capacity of 90 l, boil-off 13–14 l/day. at_least 90 L, non-mandatory, is correct."
+  }
+ },
+ {
+  "id": "v4e_med_wide_bore_low_helium_mri_0",
+  "claim": "Imaging is performed at 0.55 T field strength.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 550, \"unit\": \"mT\"}}",
+  "quote": "Explore new clinical and research avenues including pulmonary imaging, guided intervention and therapy with a 0.55 T field strength.",
+  "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+  "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+  "location": "Page 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_wide_bore_low_helium_mri",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the Siemens flyer text, page 2: '... pulmonary imaging, guided intervention and therapy with a 0.55 T field strength.' at_least 550 mT is correct."
+  }
+ },
+ {
+  "id": "v4e_med_wide_bore_low_helium_mri_1",
+  "claim": "The patient group (obese, severely claustrophobic) is defined by needing an 80 cm bore.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 80, \"unit\": \"cm\"}}",
+  "quote": "With an 80 cm bore, MAGNETOM Free.Max can accommodate patients who were unable to tolerate an MRI scan before, including obese patients, severely claustrophobic and anxious patients, and children.",
+  "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+  "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+  "location": "Page 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_wide_bore_low_helium_mri",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on page 2: an 80 cm bore can accommodate obese, severely claustrophobic and anxious patients, and children. at_least 80 cm on sample.diameter.max (um) converts exactly. Mandatory is acceptable because the procedure is defined by patients who need the 80 cm bore."
+  }
+ },
+ {
+  "id": "v4e_med_wide_bore_low_helium_mri_2",
+  "claim": "Very large patients need the 320 kg table load option.",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 320, \"unit\": \"kg\"}}",
+  "quote": "Accommodate very large patients with 320 kg table load option.",
+  "source_url": "https://marketing.webassets.siemens-healthineers.com/8054d9b191000ff0/7b0c6e9f5435/MAGNETOM-FreeMax-Flyer.pdf",
+  "document_title": "MAGNETOM Free.Max - Breaking barriers to expand the reach of MRI (Siemens Healthineers flyer)",
+  "location": "Page 2",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_wide_bore_low_helium_mri",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'Accommodate very large patients with 320 kg table load option.' Non-mandatory at_least 320 kg is correct (kg converts to ug)."
+  }
+ },
+ {
+  "id": "v4e_med_renal_argon_cryoablation_0",
+  "claim": "Freezing is produced by Joule-Thomson expansion of high-pressure argon.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"compressed_argon_jt\"]}",
+  "quote": "A Presice™ Cryoablation System was used with argon gas at 4,300 psi.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4041687/",
+  "document_title": "Optimal Freeze Cycle Length for Renal Cryotherapy (Young et al., J Urol 2011;186(1):283-288)",
+  "location": "Materials and methods",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_renal_argon_cryoablation",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the PMC4041687 full text (NCBI E-utilities), Materials and methods: 'A Presice™ Cryoablation System was used with argon gas at 4,300 psi.' compressed_argon_jt is a v4 vocabulary token. Mandatory is acceptable because the procedure is defined as argon JT cryoablation."
+  }
+ },
+ {
+  "id": "v4e_med_whole_body_cryostimulation_0",
+  "claim": "The chamber system must provide -30 C and -60 C precooling and the -110 C treatment chamber.",
+  "value_as_printed": "{\"kind\": \"range_within\", \"lo\": {\"value\": 163150, \"unit\": \"mK\"}, \"hi\": {\"value\": 243150, \"unit\": \"mK\"}}",
+  "quote": "Supervised sessions included brief precooling in −30°C and −60°C chambers, followed by 3–4 min in a −110°C chamber.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/",
+  "document_title": "Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial (Karppinen et al., Obesity 2025)",
+  "location": "Methods, intervention",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_whole_body_cryostimulation",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on PMC12559775 (Karppinen et al., Obesity 2025): 'Supervised sessions included brief precooling in −30°C and −60°C chambers, followed by 3–4 min in a −110°C chamber.' range_within 163150..243150 mK is correct. Equipment: Univers Cryo-Combi three-chamber system."
+  }
+ },
+ {
+  "id": "v4e_med_whole_body_cryostimulation_1",
+  "claim": "The patient is exposed to cold air; an evacuated sample space cannot host a person.",
+  "value_as_printed": "{\"kind\": \"absent\"}",
+  "quote": "Whole‐body cryotherapy (WBC), one of various forms of cold treatments, involves brief exposures (1–4 min) to extremely cold air (−110°C to −160°C).",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12559775/",
+  "document_title": "Effects of Whole-Body Cryotherapy Combined With Conventional Obesity Management Versus Obesity Management Alone: A Clinical Trial (Karppinen et al., Obesity 2025)",
+  "location": "Introduction",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_whole_body_cryostimulation",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified in the Introduction: brief exposures (1–4 min) to extremely cold air (−110°C to −160°C). A person breathing cold air rules out an evacuated space, so vacuum.available absent is a reasonable proxy. pressure.operating.range would express it more directly."
+  }
+ },
+ {
+  "id": "v4e_med_whole_body_cryostimulation_2",
+  "claim": "Treatment-chamber temperature of about -110 C (second clinical source, chronic-pain patients).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 163150, \"unit\": \"mK\"}}",
+  "quote": "The majority of the cryotherapy takes place in the third, at approximately −110 °C up to 3 min.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12608988/",
+  "document_title": "Analgesia by Cryotherapy in Patients with Chronic Pain with Analysis of Pain-Modulating and Pro-Inflammatory Parameters - A Clinical Controlled Pilot Study (Ritter et al., J Clin Med 2025)",
+  "location": "Methods, execution of cryotherapy",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_whole_body_cryostimulation",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on PMC12608988 (Ritter et al. 2025): 'The majority of the cryotherapy takes place in the third, at approximately −110 °C up to 3 min.' Non-mandatory base <= 163150 mK is correct. Note that this centre's first chamber is about -16 C."
+  }
+ },
+ {
+  "id": "v4e_med_dry_shipper_cell_therapy_transport_0",
+  "claim": "Acceptance criterion: below -130 C throughout the transport.",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 143150, \"unit\": \"mK\"}}",
+  "quote": "The temperature had to be lower than −130 °C throughout the transport.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+  "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+  "location": "Materials and methods, transport",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_dry_shipper_cell_therapy_transport",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified on PMC11255121 (Kumar et al., Regen Ther 2024): 'The temperature had to be lower than −130 °C throughout the transport.' at_most 143150 mK is correct and mandatory."
+  }
+ },
+ {
+  "id": "v4e_med_dry_shipper_cell_therapy_transport_1",
+  "claim": "The container must hold temperature without refill or power for the longest observed transit (178 h).",
+  "value_as_printed": "{\"kind\": \"at_least\", \"q\": {\"value\": 178, \"unit\": \"h\"}}",
+  "quote": "The time for the three transports from site to site were 56 h and 12 min, 76 h and 17 min and 178 h (7 days), respectively.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+  "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+  "location": "Results, transport",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_dry_shipper_cell_therapy_transport",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: three transits took 56 h 12 min, 76 h 17 min and 178 h (7 days), and arrival temperatures were -193/-194 C, so the shipper held for at least 178 h. The key holding_time.static (unit h) is defined only in research/v4/vocabulary.json new_keys and is not yet in data/capability_vocabulary.json. It must be promoted before build-db."
+  }
+ },
+ {
+  "id": "v4e_med_dry_shipper_cell_therapy_transport_2",
+  "claim": "Transport is in the vapour phase of liquid nitrogen held in the dry shipper.",
+  "value_as_printed": "{\"kind\": \"set_contains\", \"needed\": [\"liquid_nitrogen\"]}",
+  "quote": "The transport was performed in the vapour phase of liquid nitrogen in a dry shipper provided by the courier at less than −150 °C via air carriage and ground freight.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+  "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+  "location": "Materials and methods, transport",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_dry_shipper_cell_therapy_transport",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: transport 'in the vapour phase of liquid nitrogen in a dry shipper provided by the courier at less than −150 °C'. set_contains liquid_nitrogen is justified."
+  }
+ },
+ {
+  "id": "v4e_med_dry_shipper_cell_therapy_transport_3",
+  "claim": "Shipper used was validated to keep -150 C or colder for 12 days (informative).",
+  "value_as_printed": "{\"kind\": \"at_most\", \"q\": {\"value\": 123150, \"unit\": \"mK\"}}",
+  "quote": "The dry shipper can keep a temperature of at least −150 °C over 12 days, as has been validated by the courier.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11255121/",
+  "document_title": "Successful transport across continents of GMP-manufactured and cryopreserved culture-expanded human fetal liver-derived mesenchymal stem cells for use in a clinical trial (Kumar et al., Regen Ther 2024)",
+  "location": "Materials and methods, transport",
+  "evidence_status": "experimental_observation",
+  "accessed": "2026-11-01",
+  "applies_to": "med_dry_shipper_cell_therapy_transport",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Verified: 'The dry shipper can keep a temperature of at least −150 °C over 12 days, as has been validated by the courier.' at_most 123150 mK, non-mandatory, is correct."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_temperature.range",
+  "claim": "Vapour-phase storage space: the only stated sample temperature is the -190 C top-box temperature (lo = hi; positions below the top box are colder but not specified).",
+  "value_as_printed": "-190°C top box temperature",
+  "quote": "-190°C top box temperature",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.1, Key Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ML-000019 Rev 0 Key Features: '-190°C top box temperature' (83.15 K) present; lo=hi at the only stated value is conservative."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_temperature.base",
+  "claim": "Lowest documented sample temperature equals temperature.range.lo (-190 C top box).",
+  "value_as_printed": "-190°C top box temperature",
+  "quote": "-190°C top box temperature",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.1, Key Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same -190°C top-box statement; 83.15 K correct."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_magnetic_field.max",
+  "claim": "Liquid-nitrogen vapour storage freezer; the complete spec sheet (storage capacity, LN2 performance, unit dimensions, blood-bag capacities, warranty) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "With their unique shroud design, streamlined LN2 plumbing, and vacuum jacketed transfer hose, the MVE HEco 1800 Series freezers provide efficient use of LN2, making them highly efficient.",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.1 description and p.2 full specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 2-page spec sheet is a complete specification (capacity, performance, dimensions, blood bags, warranty) and lists no magnet. Quote is present."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_vacuum.available",
+  "claim": "Samples are held dry in nitrogen vapour above the LN2 vapour platform inside an open-neck vessel at ambient pressure; vacuum exists only in the insulating jacket/transfer hose, not in the sample space.",
+  "value_as_printed": "Dry sample storage",
+  "quote": "With their unique shroud design, streamlined LN2 plumbing, and vacuum jacketed transfer hose, the MVE HEco 1800 Series freezers provide efficient use of LN2, making them highly efficient.",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.1 description and Key Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Spec sheet: 'Dry sample storage', and the only vacuum is the vacuum-jacketed transfer hose and insulation. Quote is present."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_pressure.base",
+  "claim": "No evacuated sample space, so no base pressure is specified; the complete spec table lists none.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "With their unique shroud design, streamlined LN2 plumbing, and vacuum jacketed transfer hose, the MVE HEco 1800 Series freezers provide efficient use of LN2, making them highly efficient.",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 full specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space; the complete spec table gives no pressure."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_optical_access",
+  "claim": "The complete specification (capacity, performance, dimensions incl. 635 mm neck opening) lists no window or viewport onto the storage space.",
+  "value_as_printed": "no viewport in specification",
+  "quote": "Neck Opening in. (mm) 25 (635) 25 (635) 25 (635) 25 (635)",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Unit Dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Neck Opening row '25 (635)' is present for all four models; the complete spec has no viewport."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_electrical.sample_connections",
+  "claim": "Storage freezer; electronics and plumbing are enclosed under the work surfaces and the specification lists no sample wiring or feedthroughs.",
+  "value_as_printed": "no sample wiring in specification",
+  "quote": "These next generation high efficiency freezers incorporate hinged work surfaces that fully enclose all electronics and plumbing to enhance overall safety and usability.",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.1 description",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Quote about hinged work surfaces that enclose the electronics is present; the complete spec lists no sample wiring."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_sample.diameter.max",
+  "claim": "Loading is through the 25 in (635 mm) neck opening, which limits the lateral size of a rack/box/bag frame (inner diameter 1422 mm).",
+  "value_as_printed": "25 (635)",
+  "quote": "Neck Opening in. (mm) 25 (635) 25 (635) 25 (635) 25 (635)",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Unit Dimensions, Neck Opening (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Neck opening 25 in (635 mm) for 1879P-190 is confirmed. Inner diameter is 1422 mm, so the neck is the limit."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_sample.height.max",
+  "claim": "Usable internal height of the 1879P-190 is 29.5 in (749 mm).",
+  "value_as_printed": "29.5 (749)",
+  "quote": "Usable Internal Height in. (mm) 29.5 (749) 29.2 (741) 34.5 (876) 34.2 (868)",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Unit Dimensions, Usable Internal Height (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Usable Internal Height 29.5 (749) is in the first column (1879P-190); the other values (741, 876, 868) match the quote."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_cryogen.cryogen_free",
+  "claim": "Operation consumes liquid nitrogen (LN2 reservoir below the vapour platform).",
+  "value_as_printed": "LN2 Capacity at Vapor Platform L est. 292",
+  "quote": "LN2 Capacity at Vapor Platform L est. 292 305 282 300",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Performance (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 capacity at vapor platform is 292 L for the 1879P-190 column, confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_cryogen.type",
+  "claim": "The only cryogen used/held is liquid nitrogen.",
+  "value_as_printed": "LN2 Capacity w/o Inventory L est. 1516",
+  "quote": "LN2 Capacity w/o Inventory L est. 1516 1521 1737 1732",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Performance (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 capacity without inventory is 1516 L for 1879P-190; LN2 is the only cryogen."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_storage.capacity.vials_2ml",
+  "claim": "Maximum storage capacity of the 1879P-190 with its square-rack inventory: 79,950 internally threaded 1.2/2 ml vials.",
+  "value_as_printed": "79,950",
+  "quote": "1.2 & 2 ml Vials (Internally Threaded) 79,950 81,900 92,250 94,500",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Maximum Storage Capacity (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The vial row reads 79,950 / 81,900 / 92,250 / 94,500 for 1879P/1881R/1892P/1894R, so 79,950 is correct for 1879P-190."
+  }
+ },
+ {
+  "id": "v4c_mve_heco_1800_1879p_190_cryogen.dewar_volume",
+  "claim": "Estimated LN2 capacity without inventory of the 1879P-190 is 1516 L.",
+  "value_as_printed": "1516",
+  "quote": "LN2 Capacity w/o Inventory L est. 1516 1521 1737 1732",
+  "source_url": "https://labrepco.com/wp-content/uploads/2018/12/MVE-HEco-1800-Series-Liquid-Nitrogen-Freezer-Spec-Sheet.pdf",
+  "document_title": "MVE HEco 1800 Series spec sheet (MVE Biological Solutions, ML-000019 Rev 0, 2024)",
+  "location": "p.2 Performance (1879P-190 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_heco_1800_1879p_190",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "1516 L estimated LN2 capacity without inventory, confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_temperature.range",
+  "claim": "XC series tanks store canes/straws immersed in liquid nitrogen (spec-sheet footnote: 'normal operating conditions in liquid storage'); the sample temperature is the normal boiling point of nitrogen, 77.34 K (reference data).",
+  "value_as_printed": "77.34 K",
+  "quote": "Tboil 77.34 K N/A Jacobsen, Stewart, et al., 1986 TRC",
+  "source_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7727379&Mask=4",
+  "document_title": "NIST Chemistry WebBook, SRD 69: Nitrogen - Phase change data",
+  "location": "Phase change data table, Tboil row",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "NIST WebBook re-fetched: 'Tboil 77.34 K ... Jacobsen, Stewart, et al., 1986' is present. The spec-sheet footnote confirms liquid-storage use. Reference_data status is appropriate."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_temperature.base",
+  "claim": "Lowest sample temperature equals the LN2 normal boiling point (liquid-phase storage).",
+  "value_as_printed": "77.34 K",
+  "quote": "Tboil 77.34 K N/A Jacobsen, Stewart, et al., 1986 TRC",
+  "source_url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7727379&Mask=4",
+  "document_title": "NIST Chemistry WebBook, SRD 69: Nitrogen - Phase change data",
+  "location": "Phase change data table, Tboil row",
+  "evidence_status": "reference_data",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same NIST Tboil 77.34 K."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_magnetic_field.max",
+  "claim": "Passive aluminium LN2 storage tank; the complete spec sheet (capacity, LN2 performance, dimensions, tank features A-H) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "A Tamper-proof, hinged lid B Locking tab C Color-coded canister/lid numbering system D High strength neck tube reduces liquid nitrogen loss E Advanced chemical vacuum retention system F Insulation to provide maximum thermal performance",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Tank Features A-H and full specification table",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Tank Features A-F quote is present on the complete ML-000020 spec sheet; it is a passive dewar with no magnet."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_vacuum.available",
+  "claim": "The vacuum is the insulation space (chemical vacuum retention); samples sit in liquid nitrogen at ambient pressure under a hinged lid.",
+  "value_as_printed": "vacuum is insulation only",
+  "quote": "A Tamper-proof, hinged lid B Locking tab C Color-coded canister/lid numbering system D High strength neck tube reduces liquid nitrogen loss E Advanced chemical vacuum retention system F Insulation to provide maximum thermal performance",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Tank Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The vacuum is the insulation only ('Advanced chemical vacuum retention system'), and the hinged lid gives ambient-pressure storage."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_pressure.base",
+  "claim": "No evacuated sample space; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "A Tamper-proof, hinged lid B Locking tab C Color-coded canister/lid numbering system D High strength neck tube reduces liquid nitrogen loss E Advanced chemical vacuum retention system F Insulation to provide maximum thermal performance",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Tank Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_optical_access",
+  "claim": "Closed by a tamper-proof hinged lid; the tank feature list and spec table show no window/viewport.",
+  "value_as_printed": "no viewport in specification",
+  "quote": "A Tamper-proof, hinged lid B Locking tab C Color-coded canister/lid numbering system D High strength neck tube reduces liquid nitrogen loss E Advanced chemical vacuum retention system F Insulation to provide maximum thermal performance",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Tank Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Complete spec sheet; closed by a tamper-proof hinged lid with no viewport."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_electrical.sample_connections",
+  "claim": "Passive dewar without electronics; the feature list and spec table list no sample wiring.",
+  "value_as_printed": "no sample wiring in specification",
+  "quote": "A Tamper-proof, hinged lid B Locking tab C Color-coded canister/lid numbering system D High strength neck tube reduces liquid nitrogen loss E Advanced chemical vacuum retention system F Insulation to provide maximum thermal performance",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Tank Features",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Passive dewar; the complete spec sheet lists no electronics."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_sample.diameter.max",
+  "claim": "Samples are loaded in canisters of 4.00 in (102 mm) diameter on the XC 47/11-6 (neck opening 127 mm).",
+  "value_as_printed": "4.00 (102)",
+  "quote": "Canister Diameter in. (mm) 1.65 (41.9) 3.09 (79) 2.62 (67) 2.22 (56) 2.81 (71) 4.00 (102) 2.81 (71)",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Unit Dimensions, Canister Diameter (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The spec-sheet table is scrambled, but the XC 47/11-6 column reads 5.00 (127) neck, 11 (279) canister height, 4.00 (102) canister diameter, against 2.81 (71) for 47/11-10. 102 mm is confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_sample.height.max",
+  "claim": "Canister height of the XC 47/11-6 is 11 in (279 mm).",
+  "value_as_printed": "11 (279)",
+  "quote": "Canister Height in. (mm) 11/5 (279/127) 11 (279) 11 (279) 111 (279) 11 (279) 11 (279) 11 (279)",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Unit Dimensions, Canister Height (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Canister height 11 (279) for XC 47/11-6, confirmed (the '111 (279)' typo is in the source)."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_cryogen.cryogen_free",
+  "claim": "Storage requires a liquid-nitrogen charge (47.4 L capacity) that evaporates and must be refilled.",
+  "value_as_printed": "LN2 Capacity L 47.4",
+  "quote": "LN2 Capacity L 20.5 22.4 32.0 33.4 34.8 47.4 47.4",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Performance (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 capacity 47.4 L for XC 47/11-6, confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_cryogen.type",
+  "claim": "The only cryogen held is liquid nitrogen.",
+  "value_as_printed": "LN2 Capacity L 47.4",
+  "quote": "LN2 Capacity L 20.5 22.4 32.0 33.4 34.8 47.4 47.4",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Performance (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Only LN2."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_storage.capacity.straws_0_5ml",
+  "claim": "XC 47/11-6 holds 3900+ half-cc straws at 10 per cane (product page). The 2024 spec sheet prints 4,500+ (10/cane) and 6,216 (1-level bulk); the lower, cane-inventory figure is used as the conservative value.",
+  "value_as_printed": "3900+",
+  "quote": "No. Of 1/2 CC Straws (10/Cane) - 3900+ 3200",
+  "source_url": "https://mvebio.com/aluminum-dewars/mve-sc-xc-series/",
+  "document_title": "The MVE SC & XC Series (MVE Biological Solutions product page)",
+  "location": "Specifications table, No. Of 1/2 CC Straws (10/Cane) row (XC 47/11-6 SQ, XC 47/11-6, XC 47/11-10)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "MVE product page re-fetched: the 10/Cane straw row reads XC 47/11-6 SQ '-', XC 47/11-6 '3900+', XC 47/11-10 '3200'. The lower figure, against 4,500+ on the spec sheet, is the conservative choice."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_storage.capacity.vials_2ml",
+  "claim": "XC 47/11-6 holds 1320 1.2/2.0 ml vials at 5 per cane (product page; the 2024 spec sheet leaves the vial row blank for this model).",
+  "value_as_printed": "1320",
+  "quote": "No. Of 1.2 & 2.0ml Vials (5/Cane) - 1320 1050",
+  "source_url": "https://mvebio.com/aluminum-dewars/mve-sc-xc-series/",
+  "document_title": "The MVE SC & XC Series (MVE Biological Solutions product page)",
+  "location": "Specifications table, No. Of 1.2 & 2.0ml Vials (5/Cane) row (XC 47/11-6 SQ, XC 47/11-6, XC 47/11-10)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product page vial (5/Cane) row: XC 47/11-6 SQ '-', XC 47/11-6 '1320'. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_cryogen.dewar_volume",
+  "claim": "LN2 capacity 47.4 L.",
+  "value_as_printed": "47.4",
+  "quote": "LN2 Capacity L 20.5 22.4 32.0 33.4 34.8 47.4 47.4",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Performance (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "47.4 L confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_xc_47_11_6_standard_cryogen.consumption_rate",
+  "claim": "Nominal static evaporation rate 0.39 L/day = 0.000270833 L/min, rounded up (less capable side) to 0.000271 L/min; nominal per footnote.",
+  "value_as_printed": "0.39 L/day",
+  "quote": "Static Evaporation Rate* L/day 0.090 0.35 0.35 0.14 0.18 0.39 0.39",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/02/MVE-XC-Series-Animal-Health-Spec-Sheet.pdf",
+  "document_title": "MVE XC Series spec sheet (MVE Biological Solutions, ML-000020 Rev 0, 2024)",
+  "location": "p.2 Performance (XC 47/11-6 column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_xc_47_11_6_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Static evaporation 0.39 L/day for XC 47/11-6 (nominal per footnote); 0.39/1440 = 0.0002708 L/min, rounded up as a min bound, which is conservative."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_temperature.range",
+  "claim": "Cold nitrogen vapour from the LN2-charged absorbent keeps the cryo storage area between -190 C and -150 C (all MVE vapour shippers).",
+  "value_as_printed": "between -150°C and -190°C",
+  "quote": "The liquid nitrogen is retained in an absorbent material and the cold nitrogen vapors maintain the Cryo Storage Area between -150°C and -190°C.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, p.2 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Chart manual Ref 11562640 Rev L, English p.2 quote is present verbatim, and the manual's weight table lists 'Cryoshipper XC/IATA'. ML-000050 also states -150°C or colder."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_temperature.base",
+  "claim": "Lowest stated storage-area temperature, -190 C.",
+  "value_as_printed": "-190°C",
+  "quote": "The liquid nitrogen is retained in an absorbent material and the cold nitrogen vapors maintain the Cryo Storage Area between -150°C and -190°C.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, p.2 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-190°C from the same manual sentence."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_magnetic_field.max",
+  "claim": "Passive vacuum-insulated aluminium shipping dewar; the manual's general description and the complete spec table list no magnet.",
+  "value_as_printed": "no magnet",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "GENERAL DESCRIPTION quote present; passive aluminium dewar, and the complete spec table lists no magnet."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_vacuum.available",
+  "claim": "Vacuum is only the insulation of the container; samples sit in nitrogen vapour at ambient pressure (the dewar must not be tightly sealed).",
+  "value_as_printed": "nitrogen vapor storage",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The manual explicitly says 'Do not tightly seal liquid nitrogen container', so the sample space is at ambient pressure and the vacuum is insulation only."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_pressure.base",
+  "claim": "No evacuated sample space; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_optical_access",
+  "claim": "Closed aluminium dewar with cork/cover; the spec table and manual list no window/viewport.",
+  "value_as_printed": "no viewport",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Cork/cover closure; the complete spec table and manual list no viewport."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_electrical.sample_connections",
+  "claim": "Passive dewar without electronics; no sample wiring is listed.",
+  "value_as_printed": "no sample wiring",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Passive dewar, no electronics."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_cryogen.cryogen_free",
+  "claim": "Charged with liquid nitrogen absorbed in a hydrophobic compound.",
+  "value_as_printed": "absorb liquid nitrogen",
+  "quote": "each unit utilizes a hydrophobic compound to absorb liquid nitrogen, ensuring dry, spill-free vapor-phase shipping.",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.1 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "ML-000050 p.1 'hydrophobic compound to absorb liquid nitrogen' is present."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_cryogen.type",
+  "claim": "The only cryogen held is liquid nitrogen (absorbed).",
+  "value_as_printed": "liquid nitrogen",
+  "quote": "each unit utilizes a hydrophobic compound to absorb liquid nitrogen, ensuring dry, spill-free vapor-phase shipping.",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.1 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Only LN2."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_sample.diameter.max",
+  "claim": "CryoShipper XC canister diameter 8.5 in (216 mm); neck opening also 216 mm.",
+  "value_as_printed": "8.5 (216)",
+  "quote": "Canister Diameter in. (mm) 1.20 (31) 2.62 (67) 2.62 (67) 1.81 (46) 1.81 (46) 1.96 (50) 5.6 (142) x 6.6 (167)*** 8.5 (216) 7.375 (187.325) -",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Unit Dimensions, Canister Diameter (CryoShipper XC column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The table has 11 data columns (SC2/1V ... CryoShipper, CryoShipper XC, CryoShipper 2000, IATA, XC 65/5V). Column 8 (CryoShipper XC) gives canister diameter 8.5 (216) and neck 8.50 (216.0). Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_sample.height.max",
+  "claim": "CryoShipper XC canister height 12.5 in (317.5 mm).",
+  "value_as_printed": "12.5 (317.5)",
+  "quote": "Canister Height in. (mm) 5.0 (127) 11.0 (279) 11.0 (279) 11.0 (279) 11.0 (279) 11 (279) 11.0 (279) 12.5 (317.5) 8.75 (222.25) -",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Unit Dimensions, Canister Height (CryoShipper XC column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Column 8 canister height 12.5 (317.5), confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_holding_time.static",
+  "claim": "Static holding time 14 days = 336 h (hold-time spec; actual performance varies with conditions).",
+  "value_as_printed": "14",
+  "quote": "Static Holding Time Days* 8 13 19 21 26 82 10 14 15 14 40",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Performance, Static Holding Time Days (CryoShipper XC column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Static Holding Time row '8 13 19 21 26 82 10 14 15 14 40'; column 8 = 14 days = 336 h. Nominal per footnote."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_storage.capacity.vials_2ml",
+  "claim": "CryoShipper XC holds 966 1.2/2.0 ml vials in bulk (or 10 4R9953 blood bags).",
+  "value_as_printed": "966 (Bulk)",
+  "quote": "No. of 1.2 & 2.0 ml Vials (6/cane) - 102 102 48 48 36 500 966 (Bulk)",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Maximum Storage Capacity (CryoShipper XC column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The vial row ends '500 966 (Bulk)' (CryoShipper 500, CryoShipper XC 966 bulk), and the blood-bag row gives 10 for both. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_cryoshipper_xc_cryogen.dewar_volume",
+  "claim": "LN2 capacity 10.0 L.",
+  "value_as_printed": "10.0",
+  "quote": "LN2 Capacity L 1.5 3.6 4.1 4.3 4.5 18 8.5 10.0 65 10.0 27.4",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Performance, LN2 Capacity (CryoShipper XC column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_cryoshipper_xc",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 capacity column 8 = 10.0 L, confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_temperature.range",
+  "claim": "Cold nitrogen vapour from the LN2-charged absorbent keeps the cryo storage area between -190 C and -150 C (all MVE vapour shippers).",
+  "value_as_printed": "between -150°C and -190°C",
+  "quote": "The liquid nitrogen is retained in an absorbent material and the cold nitrogen vapors maintain the Cryo Storage Area between -150°C and -190°C.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, p.2 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Series-wide statement in the MVE vapor-shipper manual (which lists SC 4/3V). The 2015 manual predates the Next Generation design, but the operating principle is unchanged and ML-000050 confirms -150°C or colder."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_temperature.base",
+  "claim": "Lowest stated storage-area temperature, -190 C.",
+  "value_as_printed": "-190°C",
+  "quote": "The liquid nitrogen is retained in an absorbent material and the cold nitrogen vapors maintain the Cryo Storage Area between -150°C and -190°C.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, p.2 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-190°C per the manual; same caveat as temperature.range."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_magnetic_field.max",
+  "claim": "Passive vacuum-insulated aluminium shipping dewar; the manual's general description and the complete spec table list no magnet.",
+  "value_as_printed": "no magnet",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Passive aluminium dewar; complete spec table."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_vacuum.available",
+  "claim": "Vacuum is only the insulation of the container; samples sit in nitrogen vapour at ambient pressure (the dewar must not be tightly sealed).",
+  "value_as_printed": "nitrogen vapor storage",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Insulation vacuum only; the manual says do not tightly seal."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_pressure.base",
+  "claim": "No evacuated sample space; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_optical_access",
+  "claim": "Closed aluminium dewar with cork/cover; the spec table and manual list no window/viewport.",
+  "value_as_printed": "no viewport",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Closed dewar with no viewport."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_electrical.sample_connections",
+  "claim": "Passive dewar without electronics; no sample wiring is listed.",
+  "value_as_printed": "no sample wiring",
+  "quote": "The vapor series dewar is a vacuum insulated container of aluminum with fiberglass neck construction providing the highest efficiency possible in nitrogen vapor storage.",
+  "source_url": "https://files.chartindustries.com/PN11562640RevLweb[1].pdf",
+  "document_title": "MVE Operating Instruction Manual for Vapor Shipper Dewars (Chart BioMedical, Ref 11562640 Rev L 4/15)",
+  "location": "English section, GENERAL DESCRIPTION",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Passive dewar, no electronics."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_cryogen.cryogen_free",
+  "claim": "Charged with liquid nitrogen absorbed in a hydrophobic compound.",
+  "value_as_printed": "absorb liquid nitrogen",
+  "quote": "each unit utilizes a hydrophobic compound to absorb liquid nitrogen, ensuring dry, spill-free vapor-phase shipping.",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.1 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Absorbed LN2 charge, confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_cryogen.type",
+  "claim": "The only cryogen held is liquid nitrogen (absorbed).",
+  "value_as_printed": "liquid nitrogen",
+  "quote": "each unit utilizes a hydrophobic compound to absorb liquid nitrogen, ensuring dry, spill-free vapor-phase shipping.",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.1 introduction",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Only LN2."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_sample.diameter.max",
+  "claim": "SC 4/3V (New) canister diameter 1.81 in (46 mm); neck opening 51 mm.",
+  "value_as_printed": "1.81 (46)",
+  "quote": "Canister Diameter in. (mm) 1.20 (31) 2.62 (67) 2.62 (67) 1.81 (46) 1.81 (46) 1.96 (50) 5.6 (142) x 6.6 (167)*** 8.5 (216) 7.375 (187.325) -",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Unit Dimensions, Canister Diameter (SC 4/3V New column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "SC 4/3V (New) column 5: canister diameter 1.81 (46), neck 2.00 (51.0). Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_sample.height.max",
+  "claim": "SC 4/3V (New) canister height 11.0 in (279 mm).",
+  "value_as_printed": "11.0 (279)",
+  "quote": "Canister Height in. (mm) 5.0 (127) 11.0 (279) 11.0 (279) 11.0 (279) 11.0 (279) 11 (279) 11.0 (279) 12.5 (317.5) 8.75 (222.25) -",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Unit Dimensions, Canister Height (SC 4/3V New column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Column 5 canister height 11.0 (279), confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_holding_time.static",
+  "claim": "Next-generation SC 4/3V static hold time 26 days = 624 h.",
+  "value_as_printed": "26 days",
+  "quote": "Extended Hold Times – SC 4/2V: 19 days (up from 13) – SC 4/3V: 26 days (up from 21)",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.1 New Models Available, Extended Hold Times",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "p.1 'SC 4/3V: 26 days (up from 21)' is present, and the table column 5 = 26. 624 h is correct."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_storage.capacity.straws_0_5ml",
+  "claim": "SC 4/3V (New) holds 210 half-cc straws in bulk (1 level); 120 at 10 per cane.",
+  "value_as_printed": "210",
+  "quote": "No. of 1/2 cc Straws (Bulk 1 Level) 88 440 440 210 210 312 -",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Maximum Storage Capacity (SC 4/3V New column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "1/2 cc bulk 1-level row '88 440 440 210 210 312'; column 5 = 210 (10/cane = 120). Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_storage.capacity.vials_2ml",
+  "claim": "SC 4/3V (New) holds 48 1.2/2.0 ml vials at 6 per cane.",
+  "value_as_printed": "48",
+  "quote": "No. of 1.2 & 2.0 ml Vials (6/cane) - 102 102 48 48 36 500 966 (Bulk)",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Maximum Storage Capacity (SC 4/3V New column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 6/cane vial row '- 102 102 48 48 36' gives 48 for SC 4/3V New (5/cane = 40). Confirmed."
+  }
+ },
+ {
+  "id": "v4c_mve_vapor_shipper_sc_4_3v_new_cryogen.dewar_volume",
+  "claim": "LN2 capacity 4.5 L.",
+  "value_as_printed": "4.5",
+  "quote": "LN2 Capacity L 1.5 3.6 4.1 4.3 4.5 18 8.5 10.0 65 10.0 27.4",
+  "source_url": "https://mvebio.com/wp-content/uploads/sites/4/2024/04/MVE-Vapor-Shipper-Series_ML-000050.pdf",
+  "document_title": "MVE Vapor Shipper Series spec sheet (MVE Biological Solutions, ML-000050 Rev 0)",
+  "location": "p.2 Performance, LN2 Capacity (SC 4/3V New column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "mve_vapor_shipper_sc_4_3v_new",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "LN2 capacity column 5 = 4.5 L, confirmed."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_temperature.range",
+  "claim": "Cabinet set-point range -86 C to -40 C.",
+  "value_as_printed": "-40°C to -86°C",
+  "quote": "Temperature Range: -40°C to -86°C",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Temperature Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Product page (title 'TSX Universal Series Medical Device Ultra-Low Freezers 2 in. Boxes (600)', FDA Class II) shows Temperature Range '-40°C to -86°C'."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_temperature.base",
+  "claim": "Lowest set point -86 C.",
+  "value_as_printed": "-86°C",
+  "quote": "Temperature Range: -40°C to -86°C",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Temperature Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-86°C = 187.15 K."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_temperature.stability",
+  "claim": "Temperature stability 0.2 C.",
+  "value_as_printed": "0.2°C",
+  "quote": "Temperature Stability: 0.2°C",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Temperature Stability",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Temperature Stability '0.2°C' is present. The page also lists 'Peak Variation at -80C 3.6', which is a different metric."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_magnetic_field.max",
+  "claim": "Compressor-cooled upright ULT freezer; the complete product specification table (refrigeration, insulation, doors, ports, dimensions, capacity) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Type: Ultra-Low Freezer, Upright",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Type",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The page's specification table has about 60 attributes and works as a full spec. It describes a compressor ULT freezer with no magnet."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_vacuum.available",
+  "claim": "Vacuum is used only in the insulation panels; the storage cabinet is an air-filled freezer compartment opened through outer/inner doors.",
+  "value_as_printed": "VIP insulation only",
+  "quote": "Insulation: Vacuum Insulation Panels (VIP) + Water-Blown Polyurethane Foam (SNAP-compliant)",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Insulation",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Insulation is VIP plus PU foam; the cabinet is an air compartment behind outer and inner doors."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_pressure.base",
+  "claim": "No evacuated sample space; the specification lists no chamber pressure.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "Insulation: Vacuum Insulation Panels (VIP) + Water-Blown Polyurethane Foam (SNAP-compliant)",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Insulation",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_optical_access",
+  "claim": "One outer door and two inner doors; the specification lists no glass door or viewport onto the cabinet.",
+  "value_as_printed": "Outer (1), Inner (2)",
+  "quote": "Door Style: Outer (1), Inner (2)",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Door Style",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Door Style 'Outer (1), Inner (2)'; the spec table lists no glass door or viewport."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_sample.diameter.max",
+  "claim": "Interior 71.9 cm deep x 87.3 cm wide x 130.1 cm high; smaller cross-section dimension (depth) 71.9 cm.",
+  "value_as_printed": "71.9 x 87.3 x 130.1 cm",
+  "quote": "Dimensions (D x W x H) Interior: 28.3 x 34.4 x 51.2 in. (71.9 x 87.3 x 130.1 cm)",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Dimensions (D x W x H) Interior",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Interior '28.3 x 34.4 x 51.2 in. (71.9 x 87.3 x 130.1 cm)' confirmed; the smaller horizontal dimension is 71.9 cm."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_cryogen.cryogen_free",
+  "claim": "Cascade compressor refrigeration with hydrocarbon refrigerants; no liquid cryogen needed in operation.",
+  "value_as_printed": "R290 (1st stage), R170 + R290 mix (2nd stage)",
+  "quote": "Refrigerant: R290 (1st stage), R170 + R290 mix (2nd stage)",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Refrigerant",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Refrigerant 'R290 (1st stage), R170 + R290 mix (2nd stage)', cascade compressor."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_cryogen.type",
+  "claim": "Standard configuration uses no liquid cryogen; CO2 or LN2 backup is an option that is not fitted in this configuration.",
+  "value_as_printed": "Optional CO2 or LN2",
+  "quote": "Backup Systems: Optional CO2 or LN2",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Backup Systems",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Backup Systems 'Optional CO2 or LN2' is present; it is not fitted in this configuration, so the empty set is correct."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_chamber.volume",
+  "claim": "Storage capacity 816 L (28.8 cu ft).",
+  "value_as_printed": "816 L",
+  "quote": "Capacity (Metric): 816 L",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Capacity (Metric)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Capacity (Metric) '816 L' confirmed."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_tsx60086la_standard_storage.capacity.vials_2ml",
+  "claim": "Vial capacity 60,000 x 2 mL (600 two-inch boxes, 24 racks).",
+  "value_as_printed": "60,000 x 2 mL",
+  "quote": "Vial Capacity: 60,000 x 2 mL",
+  "source_url": "https://www.thermofisher.com/order/catalog/product/TSX60086LA",
+  "document_title": "TSX Universal Series Medical Device Ultra-Low Freezers, 2 in. Boxes (600), Cat. TSX60086LA (Thermo Fisher product page)",
+  "location": "Specifications table, Vial Capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_tsx60086la_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Vial Capacity '60,000 x 2 mL' confirmed (Rack Capacity 24, Holds 600 boxes)."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_temperature.range",
+  "claim": "Chamber operating temperature range -180 C to +50 C.",
+  "value_as_printed": "+50°C to -180°C",
+  "quote": "Operation Temp Range +50°C to -180°C",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Operation Temp Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "TDS TSCM48XV Rev-B: 'Operation Temp Range +50°C to -180°C' is present (layout scrambled, values clear)."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_temperature.base",
+  "claim": "Lowest chamber temperature -180 C.",
+  "value_as_printed": "-180°C",
+  "quote": "Operation Temp Range +50°C to -180°C",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Operation Temp Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-180°C = 93.15 K."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_temperature.cooling_rate.range",
+  "claim": "Programmable freezing rate 0.1 to 99.9 C/min (no load, thermocouple in free air at chamber centre).",
+  "value_as_printed": "Minimum 0.1°C / minute; Maximum 99.9°C / minute",
+  "quote": "Temperature Freezing Rate Minimum 0.1°C / minute; Maximum 99.9°C / minute (no load, T-couple in free air, center of chamber)",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Temperature Freezing Rate",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Minimum 0.1°C / minute; Maximum 99.9°C / minute (no load, T-couple in free air, center of chamber)' is present. The no-load condition is recorded in the claim; loaded rates will be lower."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_temperature.heating_rate.range",
+  "claim": "Warming rate 0.1 to 10.0 C/min under the same conditions.",
+  "value_as_printed": "Minimum of 0.1°C / minute; Maximum of 10.0°C / minute",
+  "quote": "Temperature Warming Rate Minimum of 0.1°C / minute; Maximum of 10.0°C / minute (same conditions as above)",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Temperature Warming Rate",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Minimum of 0.1°C / minute; Maximum of 10.0°C / minute (same conditions as above)' is present."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_magnetic_field.max",
+  "claim": "The complete technical data sheet (system configuration, product attributes, dimensions) describes an LN2-injection freezing chamber with a tubular heater and no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Cooling Method LN2 injection using dual solenoid valve and LN2 injection ring",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete technical data sheet describes LN2 injection plus a tubular heater; no magnet."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_vacuum.available",
+  "claim": "Samples are cooled by forced circulation of nitrogen/air (air-handling system plus LN2 injection ring) at ambient pressure; no evacuation.",
+  "value_as_printed": "air-handling system and liquid nitrogen injection ring",
+  "quote": "Consistent temperature control and uniformity achieved via an air-handling system and liquid nitrogen injection ring",
+  "source_url": "https://qa1-assets.thermofisher.cn/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf",
+  "document_title": "CryoMed Controlled-Rate Freezer - Medical Device brochure (Thermo Scientific, BRCYROMED-MD 0121)",
+  "location": "p.3 Reliable temperature performance",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure p.3: 'Consistent temperature control and uniformity achieved via an air-handling system and liquid nitrogen injection ring' is present."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_pressure.base",
+  "claim": "No evacuated chamber; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "Consistent temperature control and uniformity achieved via an air-handling system and liquid nitrogen injection ring",
+  "source_url": "https://qa1-assets.thermofisher.cn/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf",
+  "document_title": "CryoMed Controlled-Rate Freezer - Medical Device brochure (Thermo Scientific, BRCYROMED-MD 0121)",
+  "location": "p.3 Reliable temperature performance",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Forced-air chamber at ambient pressure; no evacuation."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_optical_access",
+  "claim": "Single solid front access door with T-handle compression latch; no window/viewport listed in the data sheet.",
+  "value_as_printed": "(1) Front access door",
+  "quote": "No. of doors / Type of door (1) Front access door opening left to right.",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 Product Attributes, No. of doors / Type of door",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "TDS: '(1) Front access door opening left to right', T-handle compression latch, stainless. The complete data sheet lists no window."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_sample.diameter.max",
+  "claim": "Front-loading chamber 48.3 cm wide x 30.5 cm high x 33 cm deep; smaller cross-section dimension perpendicular to loading (height) 30.5 cm.",
+  "value_as_printed": "48.3 x 30.5 x 33cm",
+  "quote": "Interior Dimensions (W x H x D) 19 x 12 x 13in. (48.3 x 30.5 x 33cm)",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 Dimensions and Construction, Interior Dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Interior '19 x 12 x 13in. (48.3 x 30.5 x 33cm)' confirmed; for front loading, the smaller cross-section dimension is 30.5 cm."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_sample.height.max",
+  "claim": "Usable length along the (horizontal, front) loading axis = interior depth 33 cm.",
+  "value_as_printed": "33cm",
+  "quote": "Interior Dimensions (W x H x D) 19 x 12 x 13in. (48.3 x 30.5 x 33cm)",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 Dimensions and Construction, Interior Dimensions",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Depth along the loading axis is 33 cm, confirmed."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_cryogen.cryogen_free",
+  "claim": "Cooling is by liquid-nitrogen injection; requires a 22 psi (1.5 bar) LN2 supply tank.",
+  "value_as_printed": "LN2 injection",
+  "quote": "Cooling Method LN2 injection using dual solenoid valve and LN2 injection ring",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Cooling Method",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'LN2 injection using dual solenoid valve and LN2 injection ring' is present."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_cryogen.type",
+  "claim": "Liquid nitrogen is the only cryogen used.",
+  "value_as_printed": "LN2",
+  "quote": "Cooling Method LN2 injection using dual solenoid valve and LN2 injection ring",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 System Configuration, Cooling Method",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Only LN2."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_chamber.volume",
+  "claim": "Internal chamber capacity 48 L (1.7 cu ft).",
+  "value_as_printed": "48Liters / 1.7Cubic Feet",
+  "quote": "Internal Chamber Capacity 48Liters / 1.7Cubic Feet",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 Dimensions and Construction, Internal Chamber Capacity",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'48Liters / 1.7Cubic Feet' confirmed."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_storage.capacity.vials_2ml",
+  "claim": "48 L chamber holds 1,185 1.2/2 mL vials with small+large freezing racks (1,195 with cane racks); the lower figure is used.",
+  "value_as_printed": "1,185",
+  "quote": "Racks per chamber 5 N/A 5 lrg & 5 sm 4000701 Vials per rack 76 N/A 161 & 76 Total # vials per chamber 380 N/A 1,185",
+  "source_url": "https://qa1-assets.thermofisher.cn/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf",
+  "document_title": "CryoMed Controlled-Rate Freezer - Medical Device brochure (Thermo Scientific, BRCYROMED-MD 0121)",
+  "location": "p.7 CryoMed Freezing Racks, 1.2/2 mL freezing rack - small (48 L column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Brochure rack table, 48 L column: 1.2/2 mL freezing racks (5 large + 5 small, 161 and 76 vials per rack) give 1,185; cane racks give 1,195. The lower figure is the conservative choice. The racks are accessories, as the configuration basis states."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_storage.capacity.straws_0_5ml",
+  "claim": "With 12 straw racks (40 x 0.25/0.5 mL straws each) the 48 L chamber holds 480 straws.",
+  "value_as_printed": "480",
+  "quote": "Straw rack for .25/.5mL straws - holds 40 straws 11.3 x 3 x 5.25 (28.7 x 7.6 x 13.3) Racks per chamber 4 8 12 4000294 Straws per rack 40 40 40 Total # straws per chamber 160 320 480",
+  "source_url": "https://qa1-assets.thermofisher.cn/TFS-Assets/LPD/brochures/Brochure_CryoMed%20Controlled-Rate%20Freezer_Medical%20Device_1.pdf",
+  "document_title": "CryoMed Controlled-Rate Freezer - Medical Device brochure (Thermo Scientific, BRCYROMED-MD 0121)",
+  "location": "p.7 CryoMed Freezing Racks, Straw rack for .25/.5mL straws (48 L column)",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Straw rack 4000294 holds 40 straws; 48 L chamber takes 12 racks, giving 480. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_thermo_scientific_cryomed_tscm48xv_standard_process.controlled_rate_freezing",
+  "claim": "Programmable controlled-rate freezer with 6 preset and up to 14 custom profiles.",
+  "value_as_printed": "Controlled-Rate Freezer",
+  "quote": "Freezing profiles 6 Presets, up to 14 Custom profiles with User Interface",
+  "source_url": "https://pdf.dutscher.com/doc/079782/079782_FTen.pdf",
+  "document_title": "Technical Data Sheet, Controlled-Rate Freezer TSCM48XV, Revision-B (Thermo Fisher Scientific, Asheville)",
+  "location": "p.1 header and Product Attributes",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "TDS 'Freezing profiles 6 Presets, up to 14 Custom profiles with User Interface' is present; the product is a controlled-rate freezer."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_temperature.range",
+  "claim": "Specimen (object) head temperature -50 C to +10 C at +20 C room temperature (range shrinks 0.7 C per 1 C room-temperature increase).",
+  "value_as_printed": "-50°C to +10°C",
+  "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Cooling Specifications, Specimen Temperature Control",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Operator Guide 387928 Issue 10, p.15: 'Specimen Temperature Control -50°C to +10°C ... at +20°C room Temp.' Confirmed, with the room-temperature condition recorded."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_temperature.base",
+  "claim": "Lowest specimen temperature -50 C (the cryobar/quick-freeze bar reaches -60 C but is not the sectioning position).",
+  "value_as_printed": "-50°C",
+  "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Cooling Specifications, Specimen Temperature Control",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-50°C = 223.15 K."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_temperature.specimen_head.range",
+  "claim": "Specimen head temperature control -50 to +10 C.",
+  "value_as_printed": "-50°C to +10°C",
+  "quote": "Specimen Temperature Control -50°C to +10°C (-58°F to +50°F) at +20°C room Temp. (decrease 0,7°C/1°C room temp. increase)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Cooling Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Same spec line."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_temperature.quick_freeze_shelf.min",
+  "claim": "Cryobar (quick-freeze bar) cools to -60 C at -35 C blade temperature.",
+  "value_as_printed": "Max. -60°C",
+  "quote": "Cryobar Cooling Max. -60°C (-76°F) at -35°C blade temperature",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Cooling Specifications, Cryobar Cooling",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cryobar Cooling Max. -60°C (-76°F) at -35°C blade temperature' is present; 213.15 K."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_section_thickness.range",
+  "claim": "Fine section thickness 0.5-100 um (total section range 0.5-500 um including trimming).",
+  "value_as_printed": "0.5 - 100 µm",
+  "quote": "Fine Section Thickness Range 0.5 - 100 µm",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Microtome and Sectioning Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Fine Section Thickness Range 0.5 - 100 µm' is present (total section range 0.5–500 µm)."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_trimming_thickness.range",
+  "claim": "Trimming thickness 5-500 um.",
+  "value_as_printed": "5 - 500 µm",
+  "quote": "Trimming Thickness Range 5 - 500 µm",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Microtome and Sectioning Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "In the scrambled layout the value list maps 'Trimming Thickness Range' to 5 - 500 µm. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_specimen.stroke",
+  "claim": "Vertical specimen stroke 64 mm.",
+  "value_as_printed": "64 mm",
+  "quote": "Vertical Specimen Stroke 64 mm",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Microtome and Sectioning Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Value order after Specimen Retraction 20 µm: Vertical Specimen Stroke 64 mm. Confirmed."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_specimen.feed.horizontal.max",
+  "claim": "Horizontal specimen movement 48 mm.",
+  "value_as_printed": "48 mm",
+  "quote": "Horizontal Specimen Movement 48 mm",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Microtome and Sectioning Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Horizontal Specimen Movement 48 mm, confirmed."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_magnetic_field.max",
+  "claim": "The complete technical specification (mechanical, electrical, environmental, cooling, microtome, Cold D) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Technical Specifications Mechanical Specifications Depth 100 cm (39.4 in) Width 75.5 cm (29.7 in) Height Range Adjustable range 82 - 112 cm (32.3 - 44.0 in)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "pp.14-16 Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete technical specifications (pp.14-16) list no magnet. A small magnetic blade-removal tool exists but produces no field at the sample."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_vacuum.available",
+  "claim": "Specimens are sectioned in a large open cryochamber at ambient pressure; the optional Vacutome is a suction system for section stretching/waste removal, not an evacuated sample space.",
+  "value_as_printed": "Large, open chamber",
+  "quote": "Large, open chamber with bright LED illumination offers an optimized workspace for operators, featuring eighteen tissue stations and one fast-freeze Peltier for quick, efficient sample preparation",
+  "source_url": "https://www.abacusdx.com/wp-content/uploads/EP_Flyer_Cryotomy-Cryostar-NX70_2024.pdf",
+  "document_title": "Epredia Cryotomy - Cryostar NX70 Cryostat flyer (2024)",
+  "location": "p.1 Safe, Comfortable, and In Control",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 2024 flyer's 'Large, open chamber ...' sentence is present. Vacutome is a suction accessory, not an evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_pressure.base",
+  "claim": "Open chamber at ambient pressure; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "Large, open chamber with bright LED illumination offers an optimized workspace for operators, featuring eighteen tissue stations and one fast-freeze Peltier for quick, efficient sample preparation",
+  "source_url": "https://www.abacusdx.com/wp-content/uploads/EP_Flyer_Cryotomy-Cryostar-NX70_2024.pdf",
+  "document_title": "Epredia Cryotomy - Cryostar NX70 Cryostat flyer (2024)",
+  "location": "p.1 Safe, Comfortable, and In Control",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Open chamber at ambient pressure."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_optical_access",
+  "claim": "A heated sliding cryochamber window gives a view onto the specimen space (the chamber is also opened for direct access).",
+  "value_as_printed": "heated sliding window",
+  "quote": "The heated sliding window should be closed during periods of inactivity and while preparing specimens to avoid warm air getting into the chamber.",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.26 (operation notes); p.21 parts overview item 2 Cryochamber Window",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The 'heated sliding window ...' sentence is present in the operator guide; the cryochamber window views the specimen."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_electrical.sample_connections",
+  "claim": "The technical specification lists no electrical connections or feedthroughs to the specimen.",
+  "value_as_printed": "no sample wiring in specification",
+  "quote": "Technical Specifications Mechanical Specifications Depth 100 cm (39.4 in) Width 75.5 cm (29.7 in) Height Range Adjustable range 82 - 112 cm (32.3 - 44.0 in)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "pp.14-16 Technical Specifications",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete technical specification lists no sample electrical connections, and none would be expected for a microtome cryostat."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_sample.diameter.max",
+  "claim": "Specimen chucks of 30 and 40 mm are standard (special sizes, e.g. a 60 mm chuck accessory, are available but not included).",
+  "value_as_printed": "30, 40 mm",
+  "quote": "Chuck Size 30, 40 mm (additional special sizes are available)",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.15 Microtome and Sectioning Specifications, Chuck Size",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Chuck Size '30, 40 mm (additional special sizes are available)' confirmed; 40 mm standard."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_cryogen.cryogen_free",
+  "claim": "Compressor refrigeration (R404a) plus Peltier; no liquid cryogen supply needed.",
+  "value_as_printed": "R404a, filling amount 400g",
+  "quote": "Refrigerant R404a, filling amount 400g",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.14 Environmental Specifications, Refrigerant",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Refrigerant R404a, filling amount 400g'; mechanical plus Peltier cooling, no LN2."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_cryogen.type",
+  "claim": "No liquid cryogen is used or held (mechanical R404a refrigeration).",
+  "value_as_printed": "R404a",
+  "quote": "Refrigerant R404a, filling amount 400g",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.14 Environmental Specifications, Refrigerant",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_module.motorized_sectioning",
+  "claim": "Cutting drive is motorized and manual.",
+  "value_as_printed": "Motorized",
+  "quote": "Cutting Drive Motorized, electronically controlled and manual via handwheel",
+  "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+  "document_title": "Thermo Scientific CryoStar NX70 Operator Guide 387928 Issue 10",
+  "location": "p.16, Cutting Drive",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Cutting Drive Motorized, electronically controlled and manual via handwheel' is present."
+  }
+ },
+ {
+  "id": "v4c_epredia_cryostar_nx70_hompdv_module.vacuum_system",
+  "claim": "This configuration includes the Vacutome (and Cold D disinfection).",
+  "value_as_printed": "With Cold D, Vacutome",
+  "quote": "Configuration With Cold D, Vacutome",
+  "source_url": "https://www.fishersci.co.uk/shop/products/cryostar-nx70-cryostat/15380755",
+  "document_title": "Epredia CryoStar NX70 Cryostat, Fisher Scientific product code 15380755 (supplier no. 957030L)",
+  "location": "Specifications, Configuration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "epredia_cryostar_nx70_hompdv",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Fisher UK page re-fetched: product 15380755 = Epredia 957030L, Low-profile Blade Carrier, Configuration 'With Cold D, Vacutome'."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_temperature.range",
+  "claim": "Cabinet temperature range -35 C to -15 C (set point -35 C).",
+  "value_as_printed": "-15° to -35°C",
+  "quote": "Temperature Range -15° to -35°C Set-Point -35°C",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Application, Rating & Electrical Data, Temperature Range",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "TDS 380480/B: 'Temperature Range -15° to -35°C', 'Set-Point -35°C' confirmed."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_temperature.base",
+  "claim": "Lowest set point -35 C.",
+  "value_as_printed": "-35°C",
+  "quote": "Temperature Range -15° to -35°C Set-Point -35°C",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Temperature Range / Set-Point",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "-35°C = 238.15 K."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_temperature.stability",
+  "claim": "Stability 0.2 C (25 cu ft freezer, 25 C ambient, -35.0 C).",
+  "value_as_printed": "0.2",
+  "quote": "Stability | °C 0.2",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Performance Characteristics, Stability",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Stability | °C 0.2' under the performance conditions (25 cu ft, 25°C ambient, -35°C)."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_magnetic_field.max",
+  "claim": "Compressor plasma freezer; the complete technical data sheet (refrigeration, controller, performance, dimensions, options) lists no magnet.",
+  "value_as_printed": "no magnet in specification",
+  "quote": "Refrigeration System VCC compressor-based, forced-air hydrocarbon",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Refrigeration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The complete technical data sheet describes a VCC compressor forced-air freezer; no magnet."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_vacuum.available",
+  "claim": "Forced-air cabinet at ambient pressure behind a solid door; no vacuum.",
+  "value_as_printed": "forced-air",
+  "quote": "Refrigeration System VCC compressor-based, forced-air hydrocarbon",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Refrigeration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Forced-air cabinet behind a solid door."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_pressure.base",
+  "claim": "No evacuated sample space; no base pressure specified.",
+  "value_as_printed": "not specified (no sample vacuum)",
+  "quote": "Refrigeration System VCC compressor-based, forced-air hydrocarbon",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Refrigeration",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No evacuated sample space."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_optical_access",
+  "claim": "Single solid door; no glass door or viewport.",
+  "value_as_printed": "1, solid, right-hinged",
+  "quote": "Door 1, solid, right-hinged",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.2 Dimensions and Construction, Door",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Explicit statement: 'Door 1, solid, right-hinged'."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_electrical.sample_connections",
+  "claim": "Only a 19 mm top access port for external monitoring probes; no sample wiring/feedthroughs.",
+  "value_as_printed": "Top Access Port",
+  "quote": "Access Port Top Access Port- for external monitoring probe(s) (0.75 in | 19 mm diameter)",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.2 Dimensions and Construction, Access Port",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "The only port is the 'Top Access Port- for external monitoring probe(s) (0.75 in | 19 mm diameter)', whose stated purpose is temperature monitoring. The complete data sheet lists no sample wiring."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_sample.diameter.max",
+  "claim": "Interior 628 mm wide x 1476 mm high x 762 mm deep; smaller of width and depth = 628 mm.",
+  "value_as_printed": "628 x 1476 x 762 mm",
+  "quote": "Interior (w x h x d) 24.7 x 58.1 x 30 in | 628 x 1476 x 762 mm",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.2 Dimensions and Construction, Interior",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Corrected. The configuration has 8 drawers, and the TDS gives 'Interior Storage (w x h x d) 21.5 x 3.8 x 26.7 in | 546 x 98 x 679 mm' per drawer. The lateral limit is therefore 546 mm, not the 628 mm empty-cabinet width."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_sample.height.max",
+  "claim": "Interior height 1476 mm (8 drawers of 98 mm usable height each).",
+  "value_as_printed": "1476 mm",
+  "quote": "Interior (w x h x d) 24.7 x 58.1 x 30 in | 628 x 1476 x 762 mm",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.2 Dimensions and Construction, Interior",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "Corrected. With the configured 8 drawers, usable drawer height is 98 mm (3.8 in) per the TDS interior-storage row. The 1476 mm empty-cabinet height overclaims for this configuration."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_cryogen.cryogen_free",
+  "claim": "Compressor refrigeration with R290; no liquid cryogen.",
+  "value_as_printed": "R290, Propane",
+  "quote": "Refrigerant R290, Propane, EU F-Gas and EPA SNAP compliant",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Refrigeration, Refrigerant",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Refrigerant R290, Propane ...' compressor system."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_cryogen.type",
+  "claim": "No liquid cryogen used or held.",
+  "value_as_printed": "R290, Propane",
+  "quote": "Refrigerant R290, Propane, EU F-Gas and EPA SNAP compliant",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Refrigeration, Refrigerant",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "No liquid cryogen."
+  }
+ },
+ {
+  "id": "v4c_helmer_ibf125_gx_standard_chamber.volume",
+  "claim": "Storage volume 714 L (25.2 cu ft), 464 plasma boxes.",
+  "value_as_printed": "25.2 cu ft (714 L)",
+  "quote": "Storage Volume 25.2 cu ft (714 L) | 464 plasma boxes",
+  "source_url": "https://cdn.shopify.com/s/files/1/0897/0338/3368/files/iBF125-GX_i.Series_Technical_Data_Sheets_F_FRE1292.pdf",
+  "document_title": "Technical Data Sheet, Model iBF125-GX, -35 C i.Series Plasma / Upright (Helmer Scientific 380480/B 02/22)",
+  "location": "p.1 Storage Volume",
+  "evidence_status": "manufacturer_specification",
+  "accessed": "2026-11-01",
+  "applies_to": "helmer_ibf125_gx_standard",
+  "verification": {
+   "by": "independent verifier agent (research/v4)",
+   "accepted": true,
+   "note": "'Storage Volume 25.2 cu ft (714 L) | 464 plasma boxes' confirmed."
+  }
+ }
+]

@@ -1,0 +1,98 @@
+{
+ "id": "aero_adr_xray_microcalorimeter_50mk",
+ "name": "X-ray microcalorimeter array operation at 50 mK (<2 uK rms) on a 3-stage ADR (Astro-H SXS)",
+ "plain_name": "Hold an X-ray space-telescope detector at 50 millikelvin with a magnetic refrigerator",
+ "industry": "aerospace_and_space_exploration",
+ "description": "Operation of the Astro-H Soft X-ray Spectrometer 6x6 microcalorimeter array at 50 mK with <2 uK rms stability, cooled by a 3-stage adiabatic demagnetization refrigerator whose heat sink is superfluid helium or a 4.5 K JT cooler, designed for a 24 h hold time per recycle.",
+ "keywords": [
+  "Hold an X-ray space-telescope detector at 50 millikelvin with a magnetic refrigerator",
+  "aerospace_and_space_exploration"
+ ],
+ "sources": [
+  {
+   "citation": "Operating Modes and Cooling Capabilities of the 3-Stage ADR Developed for the Soft-X-ray Spectrometer Instrument on Astro-H (Shirron et al.)",
+   "url": "https://ntrs.nasa.gov/api/citations/20160008920/downloads/20160008920.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "SXS 3-stage ADR (Astro-H Soft X-ray Spectrometer)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 50,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The array must be cooled to 50 mK.",
+   "evidence_ids": [
+    "v4e_aero_adr_xray_microcalorimeter_50mk_0"
+   ],
+   "conditions": [],
+   "key": "temperature.base"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 2,
+     "unit": "uK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Detector temperature stability requirement <2 uK rms.",
+   "evidence_ids": [
+    "v4e_aero_adr_xray_microcalorimeter_50mk_1"
+   ],
+   "conditions": [],
+   "key": "temperature.stability"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The detector array is read out through readout wires to the cold stage.",
+   "evidence_ids": [
+    "v4e_aero_adr_xray_microcalorimeter_50mk_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 24,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: Stage 1 was sized for a 24-hour hold time at 50 mK.",
+   "evidence_ids": [
+    "v4e_aero_adr_xray_microcalorimeter_50mk_3"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

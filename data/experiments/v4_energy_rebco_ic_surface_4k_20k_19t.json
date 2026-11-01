@@ -1,0 +1,122 @@
+{
+ "id": "energy_rebco_ic_surface_4k_20k_19t",
+ "name": "Transport critical-current surface of full-width REBCO tapes at 4.2 K (liquid helium) and 20 K (helium gas flow) in fields up to 19 T",
+ "plain_name": "Map how much current superconducting tapes carry at 4 K and 20 K in very strong magnetic fields",
+ "industry": "energy_and_hydrogen",
+ "description": "Full-width commercial REBCO tapes (125 mm samples on dedicated adapters) are measured with a high-current probe in liquid helium at 4.2 K and in helium gas flow at 20 K, in magnetic fields up to 19 T, to build Ic(B,T) scaling relations for compact fusion and high-field magnets.",
+ "keywords": [
+  "Map how much current superconducting tapes carry at 4 K and 20 K in very strong magnetic fields",
+  "energy_and_hydrogen"
+ ],
+ "sources": [
+  {
+   "citation": "Senatore, Bonura, Bagni, REBCO tapes for applications in ultra-high fields: critical current surface and scaling relations, Supercond. Sci. Technol. (2024), doi:10.1088/1361-6668/ad7f95",
+   "url": "https://iopscience.iop.org/article/10.1088/1361-6668/ad7f95",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "custom setup for high-current, high-precision critical current measurements (University of Geneva)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 4200,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 20000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ic was measured at both 4.2 K and 20 K.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_surface_4k_20k_19t_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 19000,
+     "unit": "mT"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The Ic surface extends to 19 T.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_surface_4k_20k_19t_1"
+   ],
+   "conditions": [],
+   "key": "magnetic_field.max"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Transport Ic measurements need current and voltage connections to the tape.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_surface_4k_20k_19t_2"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_helium"
+    ]
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the 4.2 K data were taken in liquid helium (20 K in helium gas flow).",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_surface_4k_20k_19t_4"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 125,
+     "unit": "mm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: samples are 125 mm long on the measurement adapters.",
+   "evidence_ids": [
+    "v4e_energy_rebco_ic_surface_4k_20k_19t_5"
+   ],
+   "conditions": [],
+   "keys": [
+    "sample.height.max",
+    "sample.length.max"
+   ]
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

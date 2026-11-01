@@ -1,0 +1,70 @@
+{
+  "id": "expansion_b_health_oocyte_vitrification",
+  "name": "Cryotop rapid vitrification of four oocytes",
+  "plain_name": "Vitrify oocytes on a thin carrier",
+  "industry": "healthcare_and_medicine",
+  "description": "Rapid cryoprotectant-assisted vitrification is physically different from slow freezing and frozen histological sectioning.",
+  "keywords": [
+    "Vitrify oocytes on a thin carrier",
+    "vitrification_plunge",
+    "healthcare_and_medicine"
+  ],
+  "sources": [
+    {
+      "citation": "Kitazato official vitrification protocol",
+      "url": "https://www.kitazato.co.jp/en/pdf/vitrification/Protocol-EN-Vitrification_for_Oocytes_Embryos.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_equipment": [
+    "Kitazato Cryotop, cooling rack and LN2 container"
+  ],
+  "reported_conditions": [],
+  "requirements": [
+    {
+      "key": "process.vitrification",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "This procedure needs the actual vitrification carrier/process, not a chamber reaching the same nominal temperature.",
+      "evidence_ids": [
+        "expb_cryotop"
+      ]
+    },
+    {
+      "key": "process.ln2_immersion",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Direct LN2 immersion is specified by the protocol.",
+      "evidence_ids": [
+        "expb_cryotop"
+      ]
+    },
+    {
+      "key": "carrier.oocyte.capacity",
+      "constraint": {
+        "kind": "count_at_least",
+        "n": 4
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "This selected protocol carries4oocytes; the manufacturer's maximum is4.",
+      "evidence_ids": [
+        "expb_cryotop"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Medium composition,timing,operator technique and warming are essential; Lean does not prove survival or clinical eligibility.",
+    "No sample chamber temperature range or guaranteed cooling rate has been invented for an open LN2 carrier."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Source-specific requirements reviewed by the catalog author on 2026-10-31. They describe the selected procedure, not a universal limit. Users must confirm them before a run; edits require confirmation again."
+}

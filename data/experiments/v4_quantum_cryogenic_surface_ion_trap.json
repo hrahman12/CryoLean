@@ -1,0 +1,144 @@
+{
+ "id": "quantum_cryogenic_surface_ion_trap",
+ "name": "88Sr+ loading by laser ablation and Doppler cooling in a surface-electrode RF ion trap at about 6 K and 1e-8 torr",
+ "plain_name": "Trap and laser-cool single charged atoms above a chip in a cold vacuum",
+ "industry": "quantum_computing_and_sensing",
+ "description": "Mount a silver-on-sapphire surface-electrode trap (five DC control electrodes, two RF electrodes, 200 V at 18.45 MHz) on the 4 K stage of a bath or low-vibration closed-cycle cryostat, reach about 1e-8 torr by cryopumping, load 88Sr+ by laser ablation and Doppler-cool with 422 nm and 1091 nm lasers through side windows while imaging through a bottom window.",
+ "keywords": [
+  "Trap and laser-cool single charged atoms above a chip in a cold vacuum",
+  "quantum_computing_and_sensing"
+ ],
+ "sources": [
+  {
+   "citation": "Cryogenic Ion Trapping Systems with Surface-Electrode Traps (Antohi et al., arXiv:0807.4763; Rev. Sci. Instrum. 80, 013103, 2009)",
+   "url": "https://arxiv.org/html/0807.4763v1",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "liquid helium bath cryostat",
+  "Advanced Research Systems (Model GMX-20B) low vibration cryostat",
+  "surface-electrode ion trap (silver thin film on sapphire)"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 6000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The trap ran at 6.0 K with 200 V RF applied; the cold stage must hold the trap at about 6 K.",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "flag_is",
+    "b": true
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ion trapping needs an evacuated (UHV) sample space.",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_1"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.00000001",
+     "unit": "Torr"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Long trapped-ion lifetimes required a working pressure of 1e-8 torr (the closed-cycle version reached 3e-9 torr at the ion pump).",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_2"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Ablation, 422 nm cooling, 1091 nm repumping and ion imaging all need windows to the trap.",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_3"
+   ],
+   "conditions": [],
+   "key": "optical_access"
+  },
+  {
+   "constraint": {
+    "kind": "count_at_least",
+    "n": 5
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Each of the five DC control electrodes must be wired out (the paper uses two wires per electrode).",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_4"
+   ],
+   "conditions": [],
+   "key": "electrical.dc_lines"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "RF (200 V, 18.45 MHz) and DC voltages must reach the trap electrodes.",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_5"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 106,
+     "unit": "nm"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Optional: the closed-cycle variant was qualified with cold-tip displacement below 106 nm.",
+   "evidence_ids": [
+    "v4e_quantum_cryogenic_surface_ion_trap_6"
+   ],
+   "conditions": [],
+   "key": "vibration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

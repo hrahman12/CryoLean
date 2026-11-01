@@ -1,0 +1,115 @@
+{
+  "id": "expc_photonics_qd_autocorrelation",
+  "name": "Telecom quantum-dot single-photon-source autocorrelation at 4 K (Thomas et al.2024 source subsystem)",
+  "plain_name": "Measure the single-photon purity of a semiconductor quantum-dot emitter",
+  "industry": "photonics_and_telecommunications",
+  "description": "Measure the single-photon purity of a semiconductor quantum-dot emitter. A bounded, source-grounded procedure profile; compatibility covers the listed checks and does not guarantee measured scientific performance.",
+  "profile_type": "published_procedure",
+  "keywords": [
+    "optical_emitter",
+    "photonics_and_telecommunications"
+  ],
+  "sources": [
+    {
+      "id": "src_qd",
+      "citation": "Thomas et al. (2024), Deterministic storage and retrieval of telecom light from a quantum dot single-photon source interfaced with an atomic quantum memory, Science Advances 10, eadi7346",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11014446/fullTextXML",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "4 K",
+      "normalized": {
+        "value": "4000",
+        "unit": "mK"
+      },
+      "evidence_id": "expc_qd_4k"
+    },
+    {
+      "key": "measurement",
+      "as_printed": "second-order autocorrelation",
+      "normalized": null,
+      "evidence_id": "expc_qd_hbt"
+    }
+  ],
+  "reported_equipment": [
+    "attoDRY800",
+    "Swabian Instruments time tagger"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "4000",
+          "unit": "mK"
+        }
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Replicate the published4 K emitter sample environment. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_qd_4k"
+      ]
+    },
+    {
+      "key": "optical_access",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Excitation and collection need a real optical path to the emitter. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_qd_excitation"
+      ]
+    },
+    {
+      "key": "module.quantum_dot_excitation",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "Pulsed excitation and collection optics are essential. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_qd_excitation"
+      ]
+    },
+    {
+      "key": "module.hbt_correlation",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "A beam splitter and two detector paths are essential to g(2) measurement. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_qd_hbt"
+      ]
+    },
+    {
+      "key": "module.photon_timing",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "origin": "experimental_observation",
+      "rationale": "The published setup measures correlations with a time tagger. These are this profile's reviewed procedure conditions, not a universal requirement for the scientific field.",
+      "evidence_ids": [
+        "expc_qd_time_tagger"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "The source-only profile does not certify the paper's warm atomic-memory interface.",
+    "QD material preparation, pump spectral width, filter response, detector efficiency and coincidence calibration need separate review; g(2)(0) is not hardcoded."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Profile author reviewed these exact sourced conditions on 2026-10-31. The application must still require the user's review/confirmation; all edits invalidate confirmation."
+}

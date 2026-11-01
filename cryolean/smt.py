@@ -166,7 +166,7 @@ def _cond_ok(c: dict, cfg_doc: dict, exp_doc: dict) -> str:
         cap = lookup(cfg_doc, c["key"])
         if cap is None:
             return "unknown"
-        if cap["install"] == "optional_not_installed":
+        if cap["install"] in ("optional_not_installed", "not_available"):
             if cap["evidence_status"] not in TRUSTED:
                 return "unknown"
             return "holds" if not c["b"] else "fails"
@@ -257,14 +257,15 @@ def key_status(cfg_doc: dict, key: str, cons: dict) -> dict:
     cap = lookup(cfg_doc, key)
     if cap is None:
         return {"kind": "unknown", "why": "not documented"}
-    if cap["install"] == "optional_not_installed":
+    if cap["install"] in ("optional_not_installed", "not_available"):
         # mirrors Lean checkCapability: a "not fitted" record needs trusted provenance for pass AND fail
         if cap["evidence_status"] not in TRUSTED:
             return {"kind": "unknown", "why": f"'not installed' claim has evidence {cap['evidence_status']}"}
         if _is_absence(cons):
             return {"kind": "pass", "cap": cap}
-        st = {"kind": "fail", "cap": cap, "why": "option not installed"}
-        if cap["value"]["kind"] != "unknown":
+        st = {"kind": "fail", "cap": cap,
+              "why": "not available on this instrument" if cap["install"] == "not_available" else "option not installed"}
+        if cap["install"] == "optional_not_installed" and cap["value"]["kind"] != "unknown":
             var = _cap_var(key, cap["value"])
             f = _value_formula(cons, cap["value"], var)
             if f is not None:
@@ -319,7 +320,10 @@ def explain_conflict(cfg_doc: dict, exp_doc: dict) -> dict:
         added.add(label)
         if var is None:
             track(label, z3.Not(z3.Bool(f"installed[{key}]")),
-                  {"kind": "fact", "key": key, "text": f"{key} is an option that is not installed", "evidence_ids": cap.get("evidence_ids", [])})
+                  {"kind": "fact", "key": key,
+                   "text": (f"{key} is not available on this instrument" if cap.get("install") == "not_available"
+                            else f"{key} is an option that is not installed"),
+                   "evidence_ids": cap.get("evidence_ids", [])})
         else:
             track(label, _cap_fact(var, cap["value"]),
                   {"kind": "fact", "key": key, "text": text or f"{key} documented as {describe_cap(cap)} ({cap['evidence_status']})",

@@ -1,0 +1,120 @@
+{
+ "id": "env_soil_plant_water_cryo_vacuum_extraction",
+ "name": "Cryogenic vacuum extraction of soil and plant water for d2H/d18O analysis (18-slot manifold, 0.3 Pa, 90 C, liquid-nitrogen U-tube traps)",
+ "plain_name": "Pull water out of soil samples under vacuum for isotope tracing",
+ "industry": "environmental_science",
+ "description": "Frozen soil or plant samples in extraction tubes are evacuated to 0.3 Pa, then heated to 90 C in a water bath while the evaporated water is frozen in U-tubes immersed in liquid nitrogen; the recovered water is analysed for stable hydrogen and oxygen isotopes to trace water sources in ecohydrology.",
+ "keywords": [
+  "Pull water out of soil samples under vacuum for isotope tracing",
+  "environmental_science"
+ ],
+ "sources": [
+  {
+   "citation": "Orlowski N, Frede H-G, Brueggemann N, Breuer L (2013). Validation and application of a cryogenic vacuum extraction system for soil and plant water extraction for isotope analysis. J. Sens. Sens. Syst. 2, 179-193. doi:10.5194/jsss-2-179-2013",
+   "url": "https://jsss.copernicus.org/articles/2/179/2013/jsss-2-179-2013.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Edwards RV5 two-stage rotary vane pump",
+  "Vacuubrand VAP-5 PIRANI vacuum gauge",
+  "Vacuubrand DCP 3000 + VSK 3000 vacuum gauge",
+  "Grant JB aqua 18 water bath",
+  "Reichelt Chemietechnik nitrogen cold trap 478-4302",
+  "Swagelok stainless-steel vacuum manifold with 18 extraction slots"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The extraction runs under vacuum so water distils from the heated sample to the cold trap.",
+   "evidence_ids": [
+    "v4e_env_soil_plant_water_cryo_vacuum_extraction_0"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": "0.3",
+     "unit": "Pa"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The validated procedure evacuates the line to 0.3 Pa before extraction; the authors note lower pressure may be needed for clay soils.",
+   "evidence_ids": [
+    "v4e_env_soil_plant_water_cryo_vacuum_extraction_1"
+   ],
+   "conditions": [],
+   "key": "pressure.base"
+  },
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 363150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Samples are held at 90 C (363.15 K) for the whole extraction.",
+   "evidence_ids": [
+    "v4e_env_soil_plant_water_cryo_vacuum_extraction_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "set_contains",
+    "needed": [
+     "liquid_nitrogen"
+    ]
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The evolved vapour is collected in liquid-nitrogen-cooled traps.",
+   "evidence_ids": [
+    "v4e_env_soil_plant_water_cryo_vacuum_extraction_3"
+   ],
+   "conditions": [],
+   "key": "cryogen.type"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 180,
+     "unit": "min"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Extraction must run to completion to avoid fractionation; the validation runs lasted 180 min.",
+   "evidence_ids": [
+    "v4e_env_soil_plant_water_cryo_vacuum_extraction_4"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

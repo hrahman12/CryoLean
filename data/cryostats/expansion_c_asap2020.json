@@ -1,0 +1,57 @@
+{
+  "id": "expc_asap2020",
+  "manufacturer": "Micromeritics",
+  "model": "ASAP 2020, hydrogen-analysis software and LN2 sample bath",
+  "family": "cryogenic_sorption",
+  "description": "Micromeritics ASAP 2020 hydrogen adsorption setup with liquid-nitrogen bath. Source-backed comparison configuration; grouping is not a suitability claim.",
+  "documents": [
+    {
+      "id": "doc_expc_asap2020",
+      "title": "Micromeritics Application Note 136: Using the ASAP 2020 for Determining the Hydrogen Adsorption Capacity of Powders and Porous Materials",
+      "url": "https://downloads.micromeritics.com/Appnotes/Using-the-ASAP-2020-for-Determining-the-Hydrogen-Adsorption-Capacity-of-Powders-and-Porous-Materials.pdf",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "configurations": [
+    {
+      "id": "expc_asap2020_hydrogen_ln2",
+      "name": "Micromeritics ASAP 2020 hydrogen adsorption setup with liquid-nitrogen bath",
+      "configuration_basis": "Exact application-note configuration: hydrogen-capable software, standard fritted sample tube and cryogenic isothermal jacket. The note does not specify a guaranteed sample-temperature interval, so temperature.range is UNKNOWN; a bath's boiling point is not silently treated as specimen temperature. Preparation/degas equipment is included in the method, not a hypothetical retrofit.",
+      "capabilities": [
+        {
+          "key": "module.volumetric_hydrogen_sorption",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_asap_hydrogen"
+          ]
+        },
+        {
+          "key": "module.liquid_nitrogen_bath",
+          "value": {
+            "kind": "flag",
+            "b": true
+          },
+          "install": "installed",
+          "evidence_status": "manufacturer_specification",
+          "evidence_ids": [
+            "expc_asap_cryo_bath"
+          ]
+        },
+        {
+          "key": "temperature.range",
+          "value": {
+            "kind": "unknown"
+          },
+          "install": "unknown",
+          "evidence_status": "unknown",
+          "evidence_ids": []
+        }
+      ]
+    }
+  ]
+}

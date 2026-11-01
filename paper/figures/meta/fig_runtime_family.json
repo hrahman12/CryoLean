@@ -1,0 +1,18 @@
+{
+ "name": "fig_runtime_family",
+ "title": "Lean runtime per configuration family",
+ "question": "Does the Lean checker's runtime depend on the kind of cryostat (configuration family) or on the verdict over the real 11 x 26 grid?",
+ "model": "Wall-clock timing (time.perf_counter) of lean_runner.check, one process per check; 3 repeats per pair in shuffled order; per-pair median; Kruskal-Wallis test across families; Spearman correlation with input size.",
+ "data": "paper/data/bench_runtime_family.json and paper/data/fig_runtime_family.json, written by paper/scripts/fig_benchmarks.py: all 286 experiment x configuration pairs of the real catalog (11 experiments x 26 configurations, documents from verifier.build_documents), 3 repeats each; verdict markers are the Lean verdicts of these runs; process start sampled after every 10th check. Families from the sourced equipment records (data/cryostats/*.json). Machine: Intel(R) Core(TM) i9-14900HX (24 cores / 32 threads, 29.7 GiB), Windows-11-10.0.26200-SP0, Python 3.12.10, cryolean v2 (Lean 4.35.0), Z3 5.3.3.",
+ "claim": "MEASURED+COMPUTED",
+ "caption": "Lean single-check wall time for the 286 real experiment-configuration pairs, grouped by configuration family (boxes: IQR and median of the per-pair medians of 3 repeats; markers: the Lean verdict of each pair; grey band: Lean process start, median 145 ms). Family medians span 152-190 ms and do not differ significantly (Kruskal-Wallis H = 6.0, p = 0.65); time is uncorrelated with document size (Spearman rho = 0.07). For real documents the cost of a check is that of launching the checker, not the cryostat or the verdict. Timings are measured; verdicts are computed by the Lean checker. The machine was not idle: median whole-system CPU utilisation during this benchmark was 35% (other desktop applications, antivirus scanning and other sessions' jobs).",
+ "section": "supplement",
+ "script": "paper/scripts/fig_benchmarks.py",
+ "command": "python paper/scripts/fig_benchmarks.py",
+ "files": [
+  "paper/figures/fig_runtime_family.png",
+  "paper/figures/fig_runtime_family.svg",
+  "paper/figures/fig_runtime_family.pdf"
+ ],
+ "interactive": null
+}

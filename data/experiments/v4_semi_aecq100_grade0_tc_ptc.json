@@ -1,0 +1,100 @@
+{
+ "id": "semi_aecq100_grade0_tc_ptc",
+ "name": "AEC-Q100 Rev-H Grade 0 temperature cycling (-55 C to +150 C, 2000 cycles) and power temperature cycling (Ta -40 C to +150 C, 1000 cycles)",
+ "plain_name": "Qualify a car chip for engine-bay heat and winter cold by cycling it, including while powered",
+ "industry": "semiconductors_and_electronics",
+ "description": "Automotive IC qualification for Grade 0 (ambient -40 C to +150 C): test A4 temperature cycling per JESD22-A104 from -55 C to +150 C for 2000 cycles with hot electrical test before and after, and test A5 power temperature cycling per JESD22-A105 at Ta -40 C to +150 C for 1000 cycles with the device powered (no thermal shut-down allowed).",
+ "keywords": [
+  "Qualify a car chip for engine-bay heat and winter cold by cycling it, including while powered",
+  "semiconductors_and_electronics"
+ ],
+ "sources": [
+  {
+   "citation": "AEC-Q100 Rev-H: Failure Mechanism Based Stress Test Qualification for Integrated Circuits (Automotive Electronics Council, 11 Sep 2014)",
+   "url": "http://www.aecouncil.com/Documents/AEC_Q100_Rev_H_Base_Document.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "at_most",
+    "q": {
+     "value": 218150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Grade 0 TC (test A4) cold extreme is -55 C = 218.15 K.",
+   "evidence_ids": [
+    "v4e_semi_aecq100_grade0_tc_ptc_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 423150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Grade 0 TC hot extreme is +150 C = 423.15 K.",
+   "evidence_ids": [
+    "v4e_semi_aecq100_grade0_tc_ptc_1"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "range_within",
+    "lo": {
+     "value": 233150,
+     "unit": "mK"
+    },
+    "hi": {
+     "value": 423150,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Grade 0 PTC (test A5, JESD22-A105) cycles the ambient from -40 C (233.15 K) to +150 C (423.15 K).",
+   "evidence_ids": [
+    "v4e_semi_aecq100_grade0_tc_ptc_2"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "reference_data",
+   "rationale": "Power temperature cycling runs the parts powered during the cycling (thermal shut-down must not occur), so bias wiring into the chamber is needed.",
+   "evidence_ids": [
+    "v4e_semi_aecq100_grade0_tc_ptc_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}

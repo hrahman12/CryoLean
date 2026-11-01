@@ -1,0 +1,86 @@
+{
+  "id": "expa_hydrogen_lad_transfer",
+  "name": "Liquid-hydrogen screen-channel LAD outflow test at 20.3 K",
+  "plain_name": "Liquid-hydrogen screen-channel LAD outflow test at 20.3 K",
+  "industry": "aerospace_and_space_exploration",
+  "description": "Reproduce the documented 20.3 K fluid condition for NASA SMiRF inverted 1-g vertical screen-channel LAD outflow. This requires an actual propellant acquisition/outflow apparatus.",
+  "keywords": [
+    "hydrogen lad transfer",
+    "cryogenic propellant loop"
+  ],
+  "sources": [
+    {
+      "citation": "Hartwig et al., Screen Channel Liquid Acquisition Device Outflow Tests in Liquid Hydrogen",
+      "url": "https://ntrs.nasa.gov/api/citations/20140010818/downloads/20140010818.pdf",
+      "accessed": "2026-10-31"
+    },
+    {
+      "citation": "NASA Small Multi-Purpose Research Facility",
+      "url": "https://www.nasa.gov/setmo/facilities/smirf/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "reported_conditions": [
+    {
+      "key": "temperature.range",
+      "as_printed": "fixed fluid saturation temperatures of 20.3, 21.4, 22.9, and 24.2K",
+      "evidence_id": "expa_lad_operating_point"
+    }
+  ],
+  "reported_equipment": [
+    "NASA SMiRF 487-gallon LAD test tank"
+  ],
+  "requirements": [
+    {
+      "key": "temperature.range",
+      "constraint": {
+        "kind": "point_within",
+        "q": {
+          "value": "20.3",
+          "unit": "K"
+        }
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Section 6.1 reports fixed fluid saturation temperatures including 20.3 K; cold reach alone cannot satisfy this operating-point requirement.",
+      "evidence_ids": [
+        "expa_lad_operating_point"
+      ]
+    },
+    {
+      "key": "module.liquid_hydrogen_handling",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "Actual liquid-hydrogen handling is essential.",
+      "evidence_ids": [
+        "expa_lad_operating_point"
+      ]
+    },
+    {
+      "key": "module.propellant_acquisition_transfer",
+      "constraint": {
+        "kind": "present"
+      },
+      "mandatory": true,
+      "applicable": true,
+      "origin": "experimental_observation",
+      "rationale": "The experiment requires screen-channel LAD outflow plumbing and controlled flow.",
+      "evidence_ids": [
+        "expa_lad_operating_point"
+      ]
+    }
+  ],
+  "params": [],
+  "coupled": [],
+  "missing_information": [
+    "Tank pressure, mass-flow setpoint, screen bubble-point and detailed LAD geometry must match the selected row of Table 3. This profile does not infer a continuous controllable temperature interval or orbital microgravity behavior."
+  ],
+  "confirmed": true,
+  "confirmation_note": "Curated bounded procedure from the cited source. User must confirm applicability before an interactive verification. Passing encoded checks does not establish unmodeled performance.",
+  "verification_scope": "Temperature plus the named indispensable measurement/handling functions; no extrapolation of undocumented performance, pressure, calibration, cleanliness or full facility safety."
+}

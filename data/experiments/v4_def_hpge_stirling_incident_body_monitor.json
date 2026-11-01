@@ -1,0 +1,113 @@
+{
+ "id": "def_hpge_stirling_incident_body_monitor",
+ "name": "Incident-response whole-body and thyroid gamma monitoring with a Stirling-cooled coaxial HPGe radionuclide identifier (crystal at liquid-nitrogen temperature without liquid nitrogen)",
+ "plain_name": "Check people for swallowed or inhaled radioactivity after an incident with a portable electrically cooled germanium detector",
+ "industry": "defense_and_security",
+ "description": "After a radiological incident, an ORTEC Detective portable radionuclide identifier, whose ~50 mm x 30 mm coaxial hyper-pure germanium crystal is cooled electrically by a low-power Stirling cooler (no liquid nitrogen, important for transport), is calibrated and used as a rapidly deployable whole-body and I-131 thyroid monitor running about 3 h on its internal battery. Germanium detectors must be operated at liquid-nitrogen temperature (77 K) in an evacuated cryostat.",
+ "keywords": [
+  "Check people for swallowed or inhaled radioactivity after an incident with a portable electrically cooled germanium detector",
+  "defense_and_security"
+ ],
+ "sources": [
+  {
+   "citation": "HPA-RPD-045 The Use of a High-resolution Radionuclide Identifier as a Portable Whole Body Monitor (M J Youngman, Health Protection Agency, 2008)",
+   "url": "https://assets.publishing.service.gov.uk/media/5a7e06a840f0b62305b8051a/HPA-RPD-045_for_website.pdf",
+   "accessed": "2026-11-01"
+  },
+  {
+   "citation": "Environmental Radioactivity Measuring Methods No.7: Gamma-ray Spectrometry using Germanium Semiconductor Detector (Nuclear Regulation Authority, Japan; amendment June 2021)",
+   "url": "https://www.envraddb.go.jp/en/wp-content/uploads/sites/3/2020/12/No.7_E.pdf",
+   "accessed": "2026-11-01"
+  }
+ ],
+ "reported_conditions": [],
+ "reported_equipment": [
+  "Ortec Detective"
+ ],
+ "requirements": [
+  {
+   "constraint": {
+    "kind": "point_within",
+    "q": {
+     "value": 77000,
+     "unit": "mK"
+    }
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The germanium crystal must be held at liquid-nitrogen temperature, 77 K.",
+   "evidence_ids": [
+    "v4e_def_hpge_stirling_incident_body_monitor_0"
+   ],
+   "conditions": [],
+   "key": "temperature.range"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "Deployment by one person in an ordinary car relies on electrical Stirling cooling; liquid nitrogen is explicitly not used.",
+   "evidence_ids": [
+    "v4e_def_hpge_stirling_incident_body_monitor_1"
+   ],
+   "conditions": [],
+   "key": "cryogen.cryogen_free"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The germanium crystal sits in an evacuated cryostat; loss of cryostat vacuum degrades the detector.",
+   "evidence_ids": [
+    "v4e_def_hpge_stirling_incident_body_monitor_2"
+   ],
+   "conditions": [],
+   "key": "vacuum.available"
+  },
+  {
+   "constraint": {
+    "kind": "present"
+   },
+   "mandatory": true,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The cold crystal must be biased and read out by the integral acquisition electronics, so electrical connections to the cooled element are needed.",
+   "evidence_ids": [
+    "v4e_def_hpge_stirling_incident_body_monitor_3"
+   ],
+   "conditions": [],
+   "key": "electrical.sample_connections"
+  },
+  {
+   "constraint": {
+    "kind": "at_least",
+    "q": {
+     "value": 3,
+     "unit": "h"
+    }
+   },
+   "mandatory": false,
+   "applicable": true,
+   "origin": "experimental_observation",
+   "rationale": "The monitor ran about 3 h on its internal battery in the field (8 h with the external battery).",
+   "evidence_ids": [
+    "v4e_def_hpge_stirling_incident_body_monitor_4"
+   ],
+   "conditions": [],
+   "key": "operating_duration.max"
+  }
+ ],
+ "params": [],
+ "coupled": [],
+ "missing_information": [],
+ "confirmed": true,
+ "confirmation_note": "Requirements taken from the cited procedure and independently re-verified against the source (research/v4, 2026-11-01). Users must confirm them for their own run; edits require confirmation again.",
+ "source": "research/v4"
+}
