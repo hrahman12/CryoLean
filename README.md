@@ -1,6 +1,7 @@
 # CryoLean
 
-<img width="2172" height="724" alt="image" src="https://github.com/user-attachments/assets/09af2497-deac-410c-9099-9b31cfe960ef" />
+<img width="2172" height="724" alt="image" src="https://github.com/user-attachments/assets/4146799a-ab36-4f0b-9fb0-6504607d04bd" />
+
 
 **Cryo, made simple.** CryoLean answers one question: *can this cryogenic machine physically perform my
 experiment under its actual operating conditions?* The product proposal is in [docs/PRODUCT.md](docs/PRODUCT.md).
