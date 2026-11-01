@@ -24,6 +24,7 @@ def trustedB : EvidenceStatus → Bool
   | .manufacturerSpecification => true
   | .experimentalObservation   => true
   | .referenceData             => true
+  | .certifiedSimulation       => true
   | .userEntered               => true
   | .inferredEstimate          => false
   | .unknown                   => false
@@ -65,7 +66,9 @@ def checkCapability (k : Constraint) (c : Capability) : Outcome :=
   match c.install with
   | .optionalNotInstalled =>
       -- a documented option that is NOT fitted: absent.  It satisfies only "must be absent".
-      if k = .flagIs false then (if trustedB c.evidence then .pass else .unknown) else .fail
+      -- The "not fitted" claim itself needs trusted provenance, for pass AND for fail
+      -- (forensics vacuity judge: an untrusted "not installed" record must not cause a REJECT).
+      if trustedB c.evidence then (if k = .flagIs false then .pass else .fail) else .unknown
   | .unknown => .unknown
   | .installed => if trustedB c.evidence then checkValue k c.value else .unknown
 
@@ -84,6 +87,7 @@ def combineAny (os : List Outcome) : Outcome :=
 
 /-! ## Conditions -/
 
+/-- Three-valued result of evaluating a condition: holds, fails, or unknown (missing/untrusted information). -/
 inductive CondR where
   | holds | fails | unknown
 deriving Repr, DecidableEq, Inhabited
@@ -94,6 +98,7 @@ def paramValue (e : Experiment) (name : String) : Option Quantity :=
   | some p => if trustedB p.origin then p.value else none
   | none => none
 
+/-- Evaluate one applicability condition. Untrusted or missing information gives `unknown`, never `holds`/`fails`. -/
 def evalCond (cfg : Configuration) (e : Experiment) : Condition → CondR
   | .capFlag key b =>
       match lookup cfg key with
@@ -123,6 +128,7 @@ def condsResult (cfg : Configuration) (e : Experiment) (cs : List Condition) : C
 
 /-! ## Requirements -/
 
+/-- Outcome of one requirement: its conditions decide applicability, then any of its keys may satisfy it. -/
 def checkRequirement (cfg : Configuration) (e : Experiment) (r : Requirement) : Outcome :=
   match condsResult cfg e r.conditions with
   | .fails => .notApplicable
@@ -131,12 +137,14 @@ def checkRequirement (cfg : Configuration) (e : Experiment) (r : Requirement) : 
 
 /-! ## Coupled constraints -/
 
+/-- Result of evaluating a coupled-constraint expression: a dimensioned value, or why none could be produced. -/
 inductive EvalR where
   | ok (q : Quantity)
   | missing (what : String)
   | bad (why : String)
 deriving Repr, Inhabited
 
+/-- Pick the lower or upper bound (or the single documented value) of a capability for use in an expression. -/
 def selValue (v : CapValue) (s : Sel) : EvalR :=
   match s, v with
   | _, .unknown => .missing "value UNKNOWN"
@@ -147,6 +155,7 @@ def selValue (v : CapValue) (s : Sel) : EvalR :=
   | .count, .count n => .ok ⟨Q.ofNat n, Dim.one⟩
   | _, _ => .bad "selector does not match the capability shape"
 
+/-- Evaluate an expression using only usable (installed, trusted) capabilities and trusted parameters; additions require equal dimensions. -/
 def evalExpr (cfg : Configuration) (e : Experiment) : Expr → EvalR
   | .lit q => if q.val.den = 0 then .bad "zero denominator" else .ok q
   | .cap key s =>
@@ -198,6 +207,7 @@ def validityOutcome (cfg : Configuration) (e : Experiment) (vs : List (Expr × E
   else if ∃ p ∈ vs, checkLe cfg e p.1 p.2 = .unknown then .unknown
   else .unsupported
 
+/-- Outcome of one coupled multiphysics constraint `lhs ≤ rhs`, including its validity-range checks. -/
 def checkCoupled (cfg : Configuration) (e : Experiment) (c : Coupled) : Outcome :=
   match condsResult cfg e c.conditions with
   | .fails => .notApplicable
@@ -232,12 +242,14 @@ def verdict (cfg : Configuration) (e : Experiment) : Verdict :=
 
 /-! ## Results -/
 
+/-- Per-requirement line of a result: the requirement and its outcome. -/
 structure ReqResult where
   requirement : Requirement
   perKey      : List (String × Option Capability × Outcome)
   outcome     : Outcome
 deriving Repr, Inhabited
 
+/-- Per-coupled-constraint line of a result: the constraint, both evaluated sides and its outcome. -/
 structure CoupledResult where
   coupled  : Coupled
   lhs      : EvalR
@@ -246,6 +258,7 @@ structure CoupledResult where
   outcome  : Outcome
 deriving Repr, Inhabited
 
+/-- Full checker output bound to the exact configuration and experiment ids it was computed from. -/
 structure Result where
   configurationId : String
   equipmentId     : String
@@ -255,14 +268,17 @@ structure Result where
   coupled         : List CoupledResult
 deriving Repr, Inhabited
 
+/-- Build the result line for one requirement. -/
 def reqResult (cfg : Configuration) (e : Experiment) (r : Requirement) : ReqResult :=
   ⟨r, r.keys.map (fun k => (k, lookup cfg k, keyOutcome cfg r.constraint k)), checkRequirement cfg e r⟩
 
+/-- Build the result line for one coupled constraint. -/
 def coupledResult (cfg : Configuration) (e : Experiment) (c : Coupled) : CoupledResult :=
   ⟨c, evalExpr cfg e c.lhs, evalExpr cfg e c.rhs,
    c.validity.map (fun p => (evalExpr cfg e p.1, evalExpr cfg e p.2, checkLe cfg e p.1 p.2)),
    checkCoupled cfg e c⟩
 
+/-- Run the checker: the verdict plus every requirement and coupled constraint outcome, bound to the input ids. -/
 def run (cfg : Configuration) (e : Experiment) : Result :=
   ⟨cfg.id, cfg.equipmentId, e.id, verdict cfg e,
    e.requirements.map (reqResult cfg e), e.coupled.map (coupledResult cfg e)⟩

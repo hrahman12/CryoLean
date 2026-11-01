@@ -121,4 +121,22 @@ def run() -> int:
     _save("demo_c_new_industry_search", found)
     _save("demo_c_new_industry_check", r)
     shutil.rmtree(tmp, ignore_errors=True)
+
+    # ------------------------------------------------------------------ D
+    _hr("Demo D — campaign: three experiments in one cooldown of the Lake Shore CRX-VF (Z3 packs, Lean validSchedule decides)")
+    exps = ["bio_cryo_fluorescence_vitrified", "chem_low_temperature_raman", "chem_phase_transition_pom",
+            "mat_magnetoresistance_10T"]
+    durs = {exps[0]: {"value": 6, "unit": "h"}, exps[1]: {"value": 8, "unit": "h"}, exps[2]: {"value": 4, "unit": "h"},
+            exps[3]: {"value": 2, "unit": "h"}}
+    d = api.schedule_campaign("lakeshore_crx_vf", exps, {"value": 48, "unit": "h"}, durs, None, True)["data"]
+    for e in d["excluded_experiments"]:
+        print(f"   excluded by Lean: {e['experiment_id']} ({e['lean_verdict']})")
+    print(f"   cooldown {d['cooldown']}, Z3 makespan {d['z3']['makespan']}")
+    for t in d["timeline"]:
+        print(f"   {t['start']:>6} - {t['stop']:>6}  {t['experiment_id']}")
+    print(f"   Lean validSchedule: {d['lean']['valid']}  theorems: {', '.join(d['lean']['theorems'])}")
+    tight = api.schedule_campaign("lakeshore_crx_vf", exps[:3], {"value": 20, "unit": "h"}, durs, None, True)["data"]
+    print(f"   20 h run instead: Z3 {tight['z3']['status']}: {tight['z3']['explanation']}")
+    d.pop("lean_input", None)
+    _save("demo_d_campaign_schedule", {"fits": d, "too_long": tight})
     return 0

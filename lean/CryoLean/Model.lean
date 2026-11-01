@@ -55,6 +55,9 @@ inductive EvidenceStatus where
   | manufacturerSpecification
   | experimentalObservation
   | referenceData
+  /-- A simulation result whose specification carries a Lanyon certificate AND whose exported Lean
+  proof was admitted by CryoLean's Gatekeeper (no sorry / native_decide / non-standard axioms). -/
+  | certifiedSimulation
   | userEntered
   | inferredEstimate
   | unknown

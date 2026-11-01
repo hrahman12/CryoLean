@@ -83,6 +83,50 @@ def check_candidates(experiment: dict, candidates: list[dict]) -> list[dict]:
     return res
 
 
+def check_schedule(doc: dict) -> dict:
+    """Proven `validSchedule` (validSchedule_sound / _bounds / _disjoint / _only_accepted)."""
+    res = _parse(_with_file(doc, ["check-schedule"], timeout=config.lean_timeout() * max(1, len(doc.get("experiments", [])))))
+    if res.get("error"):
+        raise LeanDecodeError(res["error"])
+    return res
+
+
+def run_lean_file(path: Path, timeout: float = 600, cwd: Path | None = None) -> tuple[int, str, str]:
+    """`lake env lean <file>` from a Lake project (default: CryoLean's, so CryoLean is importable). Used by the Gatekeeper."""
+    try:
+        proc = subprocess.run(["lake", "env", "lean", str(path)], cwd=cwd or config.LEAN_DIR, capture_output=True, text=True,
+                              encoding="utf-8", timeout=timeout)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        raise LeanUnavailable(f"could not run lake: {e}")
+    return proc.returncode, proc.stdout, proc.stderr
+
+
+def source_hash() -> str:
+    """SHA-256 of the trusted Lean sources and the compiled checker (the 'source hash' on every verdict card)."""
+    import hashlib
+    h = hashlib.sha256()
+    for p in sorted((config.LEAN_DIR / "CryoLean").glob("*.lean")) + [config.LEAN_DIR / "Main.lean"]:
+        h.update(p.name.encode())
+        h.update(p.read_bytes())
+    b = lean_binary()
+    if b:
+        h.update(b.read_bytes())
+    return h.hexdigest()
+
+
+AUDIT_FILE = config.LEAN_DIR / "audit-axioms.json"
+
+
+def axiom_audit() -> dict:
+    """Cached `#print axioms` results for the key theorems (written by scripts/audit_axioms.py).
+    Marked stale when the Lean sources or binary changed since the audit."""
+    if not AUDIT_FILE.exists():
+        return {"status": "missing", "theorems": {}}
+    data = json.loads(AUDIT_FILE.read_text(encoding="utf-8"))
+    data["status"] = "current" if data.get("source_hash") == source_hash() else "stale"
+    return data
+
+
 def check_batch(pairs: list[tuple[dict, dict]]) -> list[dict]:
     res = _parse(_with_file([{"configuration": c, "experiment": e} for c, e in pairs], ["check-batch"],
                             timeout=config.lean_timeout() * max(1, len(pairs) // 8 + 1)))

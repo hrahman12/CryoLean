@@ -3,6 +3,7 @@ import CryoLean.Model
 import CryoLean.Checker
 import CryoLean.Json
 import CryoLean.Explain
+import CryoLean.Schedule
 /-!
 # Result serialisation (v2)
 
@@ -92,5 +93,47 @@ def checkCandidatesDocument (doc : Json) : Except String Json := do
   let cs ← (← (← doc.getObjVal? "candidates").getArr?).toList.mapM configurationFromJson
   let h := toString (hash doc.compress)
   pure (toJson ((checkCandidates cs e).map (fun r => resultToJson r h e.name e.industry)))
+
+/-- Decode `{configuration, experiments, slots, run_length}` and run the proven `validSchedule`. -/
+def checkScheduleDocument (doc : Json) : Except String Json := do
+  let cfg ← configurationFromJson (← doc.getObjVal? "configuration")
+  let exps ← (← (← doc.getObjVal? "experiments").getArr?).toList.mapM experimentFromJson
+  let slots ← (← (← doc.getObjVal? "slots").getArr?).toList.mapM (fun j => do
+    let q ← quantityFromJson (← j.getObjVal? "start")
+    if q.dim ≠ secDim then throw "slot start must be in seconds"
+    pure (⟨← getStr j "experiment_id", q.val⟩ : Slot))
+  let L ← quantityFromJson (← doc.getObjVal? "run_length")
+  let ok := validSchedule cfg exps slots L
+  -- diagnostics (display only; the decision is `ok`)
+  let reasons : List String :=
+    (if slots.length ≠ exps.length then ["the number of slots differs from the number of experiments"] else []) ++
+    (match cooldownOf cfg with
+     | none => ["the configuration has no documented, trusted cooldown time (cooldown_time.max)"]
+     | some cd => if cd.dim ≠ secDim then ["cooldown time is not in seconds"] else []) ++
+    (if L.dim ≠ secDim then ["run length is not in seconds"] else []) ++
+    ((exps.filter (fun e => verdict cfg e != .accept)).map (fun e => s!"experiment '{e.id}' is not accepted on this configuration ({verdictToString (verdict cfg e)})")) ++
+    (match resolve exps slots with
+     | none => ["slots do not match the experiments in order, or an experiment has no trusted run_duration in seconds"]
+     | some ps =>
+        (match cooldownOf cfg with
+         | some cd => (ps.filter (fun p => !(decide (Q.le cd.val p.start)))).map (fun p => s!"slot '{p.experimentId}' starts before the cooldown is complete")
+         | none => []) ++
+        ((ps.filter (fun p => !(decide (Q.le p.stop L.val)))).map (fun p => s!"slot '{p.experimentId}' ends after the run")) ++
+        (if decide (ps.Pairwise Disjoint) then [] else ["two slots overlap"]))
+  let placed : List Json := match resolve exps slots with
+    | some ps => ps.map (fun p => Json.mkObj [("experiment_id", toJson p.experimentId),
+        ("start", quantityToJson ⟨p.start, secDim⟩), ("stop", quantityToJson ⟨p.stop, secDim⟩),
+        ("start_display", toJson (fmtQuantity ⟨p.start, secDim⟩)), ("stop_display", toJson (fmtQuantity ⟨p.stop, secDim⟩))])
+    | none => []
+  pure (Json.mkObj [
+    ("checker", "CryoLean Lean 4 validSchedule"),
+    ("valid", toJson ok),
+    ("configuration_id", toJson cfg.id),
+    ("experiment_verdicts", toJson (exps.map (fun e => Json.mkObj [("experiment_id", toJson e.id), ("verdict", toJson (verdictToString (verdict cfg e)))]))),
+    ("slots", toJson placed),
+    ("run_length_display", toJson (fmtQuantity L)),
+    ("reasons", toJson (if ok then ([] : List String) else reasons)),
+    ("theorems", toJson ["validSchedule_sound", "validSchedule_bounds", "validSchedule_disjoint", "validSchedule_only_accepted"]),
+    ("input_hash", toJson (toString (hash doc.compress)))])
 
 end CryoLean

@@ -684,7 +684,7 @@
   ],
   "fingerprint": "d02aa4808e9d5f460eb08b6353080fed097cc8787fce54cf25dc7ba3fe7c94f2",
   "catalog_version": "b69dd6affd4ff447",
-  "checked_at": "2026-11-01T01:02:19.466112+00:00",
+  "checked_at": "2026-11-01T02:32:20.985086+00:00",
   "lean_input": {
     "configuration": {
       "id": "qd_dynacool_9T_eto_res",
@@ -1312,6 +1312,52 @@
       "confirmed": true
     }
   },
+  "verdict_card": {
+    "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+    "reason": "'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Requirement not met.",
+    "failed": [
+      "magnetic_field.max"
+    ],
+    "missing": [
+      "sample.width.max",
+      "sample.length.max",
+      "sample.height.max"
+    ],
+    "decided_by": "Lean 4 checker (CryoLean.verdict, compiled)",
+    "theorems": [
+      "verdict_reject_sound",
+      "fail_implies_reject",
+      "fail_needs_trusted",
+      "violation_prevents_accept",
+      "run_binds_inputs"
+    ],
+    "axioms": {
+      "verdict_reject_sound": [
+        "propext",
+        "Quot.sound"
+      ],
+      "fail_implies_reject": [
+        "propext"
+      ],
+      "fail_needs_trusted": [
+        "propext"
+      ],
+      "violation_prevents_accept": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "run_binds_inputs": [
+        "propext"
+      ]
+    },
+    "axioms_standard_only": true,
+    "axiom_audit": "current",
+    "source_hash": "5262e4e8c30d09e8126695328940be0e7dc3969462a7eef0817873403cac1850",
+    "lean_input_hash": "4122767249582765024",
+    "lean_version": "4.35.0",
+    "z3_role": "Z3 output is a hint, never a verdict"
+  },
   "suggestions": {
     "engine": "z3",
     "note": "Suggestions come from the Z3 solver. A suggestion is marked verified only if the Lean checker accepted the exact suggested configuration and parameters.",
@@ -1502,5 +1548,5 @@
       "largest smallest relative margin over numeric requirements"
     ]
   },
-  "result_id": "res_3c371b557c1e"
+  "result_id": "res_d803f78b0688"
 }

@@ -12,9 +12,9 @@ from dataclasses import dataclass, field
 from . import units
 
 EVIDENCE_STATUSES = {"manufacturer_specification", "experimental_observation", "reference_data", "textbook_model",
-                     "user_entered", "inferred_estimate", "unknown"}
+                     "user_entered", "inferred_estimate", "unknown", "certified_simulation"}
 LEAN_STATUSES = {"manufacturer_specification", "experimental_observation", "reference_data", "user_entered",
-                 "inferred_estimate", "unknown"}
+                 "inferred_estimate", "unknown", "certified_simulation"}
 INSTALL = {"installed", "optional_not_installed", "unknown"}
 VALUE_KINDS = {"range", "max", "min", "flag", "count", "enum", "set", "unknown"}
 CONSTRAINT_KINDS = {"point_within", "range_within", "at_least", "at_most", "present", "absent", "flag_is",
@@ -185,6 +185,11 @@ def validate_configuration(catalog, cfg, path, rep):
         st = cap.get("evidence_status")
         if st not in LEAN_STATUSES:
             rep.error(p, f"capability evidence_status must be one of {sorted(LEAN_STATUSES)}")
+        if st == "certified_simulation":
+            cert = cap.get("certificate") or {}
+            if not (cert.get("lanyon_session") and cert.get("proof_sha256") and cert.get("registry_rule")):
+                rep.error(p, "certified_simulation needs certificate {lanyon_session, proof_sha256, registry_rule}: "
+                             "only a Lanyon run whose exported proof passed the Gatekeeper may use this status")
         validate_cap_value(cap.get("value"), p + ".value", rep, shape, unit)
         kind = (cap.get("value") or {}).get("kind")
         if kind == "unknown" and st != "unknown":

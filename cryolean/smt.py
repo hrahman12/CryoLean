@@ -28,7 +28,8 @@ import z3
 
 from . import units
 
-TRUSTED = {"manufacturer_specification", "experimental_observation", "reference_data", "user_entered"}
+TRUSTED = {"manufacturer_specification", "experimental_observation", "reference_data", "user_entered",
+           "certified_simulation"}
 DIMLESS = (0, 0, 0, 0, 0, 0, 0)
 
 
@@ -257,10 +258,13 @@ def key_status(cfg_doc: dict, key: str, cons: dict) -> dict:
     if cap is None:
         return {"kind": "unknown", "why": "not documented"}
     if cap["install"] == "optional_not_installed":
+        # mirrors Lean checkCapability: a "not fitted" record needs trusted provenance for pass AND fail
+        if cap["evidence_status"] not in TRUSTED:
+            return {"kind": "unknown", "why": f"'not installed' claim has evidence {cap['evidence_status']}"}
         if _is_absence(cons):
-            return {"kind": "pass" if cap["evidence_status"] in TRUSTED else "unknown", "cap": cap}
+            return {"kind": "pass", "cap": cap}
         st = {"kind": "fail", "cap": cap, "why": "option not installed"}
-        if cap["evidence_status"] in TRUSTED and cap["value"]["kind"] != "unknown":
+        if cap["value"]["kind"] != "unknown":
             var = _cap_var(key, cap["value"])
             f = _value_formula(cons, cap["value"], var)
             if f is not None:

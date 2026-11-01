@@ -86,6 +86,32 @@ export const getSessionResult = (sessionId) => call("get_session_result", sessio
 export const getResearchCoverage = () => call("get_research_coverage");
 export const getLeanStatus = () => call("get_lean_status");
 export const getPhysicalProperties = () => call("get_physical_properties");
+/** Theorem names, their audited axioms, the Lean source hash and the forensics summary. */
+export const getVerificationCard = () => call("get_verification_card");
+
+// ---------------------------------------------------------------- campaign scheduling (Z3 proposes, Lean decides)
+/**
+ * Pack experiments into one cooldown of a cryostat.
+ * runLength / durations[experimentId]: { value: 48, unit: "h" }   (units: s, min, h)
+ * Returns { feasible_experiments, excluded_experiments (with Lean verdict + reason), cooldown, timeline,
+ *           z3: { status: "sat"|"unsat"|..., makespan, conflicting_experiments, explanation },
+ *           lean: { valid, reasons, slots, theorems }, schedule_ok }
+ * Only `schedule_ok` (= Lean validSchedule) may be shown as "Schedule OK".
+ */
+export const scheduleCampaign = (configurationId, experimentIds, runLength, durations, { parameters = null, confirmed = false } = {}) =>
+  call("schedule_campaign", configurationId, experimentIds, runLength, durations, parameters, confirmed);
+export const checkSchedule = (leanInputDocument) => call("check_schedule", leanInputDocument);
+
+// ---------------------------------------------------------------- Gatekeeper + Registry (new rules / new sheets)
+/** Proposed Lean code. Admitted only if it compiles, has no sorry/axiom/native_decide, and uses standard axioms only. */
+export const submitLeanRule = (name, source, proposer = "user") => call("submit_lean_rule", name, source, proposer);
+export const listRegistry = () => call("list_registry");
+
+// ---------------------------------------------------------------- Lanyon certified simulations
+export const getLanyonStatus = () => call("get_lanyon_status");
+/** Sends the prompt to Lanyon's servers (ask the user first). Long-running: show progress UI. */
+export const runLanyonModel = (problem, instructions = null, name = null) => call("run_lanyon_model", problem, instructions, name);
+export const importLanyonSession = (runDir) => call("import_lanyon_session", runDir);
 
 // ---------------------------------------------------------------- UI helpers (display only)
 export const HEADLINE = {
@@ -111,4 +137,21 @@ export function checkQuestion(check) {
 /** The only place a "verified" badge may appear: a Lean REQUIREMENTS_MET on this exact result. */
 export function isVerified(result) {
   return result?.verdict === VERDICT.MET && result?.verification?.concrete_evaluation?.verified_by_lean === true;
+}
+
+/** The verdict card: verdict · reason · theorem names · axioms · source hash. Z3 output is a hint, never a verdict. */
+export function verdictCard(result) {
+  const c = result?.verdict_card;
+  if (!c) return null;
+  return {
+    verdict: c.verdict,
+    headline: HEADLINE[c.verdict],
+    reason: c.reason,
+    theorems: c.theorems,
+    axioms: c.axioms,
+    axiomsStandardOnly: c.axioms_standard_only,
+    sourceHash: c.source_hash?.slice(0, 12),
+    inputHash: c.lean_input_hash,
+    note: c.z3_role,
+  };
 }

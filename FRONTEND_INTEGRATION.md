@@ -117,6 +117,12 @@ Arguments may be passed as objects or JSON strings. Quantities are `{"value": "<
 | `research_new_experiment(description, industry="unspecified", research_text=None)` | NEED_MORE_INFORMATION + 12-step research plan (+ optional untrusted AI draft) |
 | `get_research_coverage()` | coverage registry (industries, profiles, equipment, evidence, 40 properties, coupled models, gaps) |
 | `get_lean_status()` / `get_physical_properties()` / `reload_catalog()` | status and registries |
+| `get_verification_card()` | theorem names, audited axioms, Lean source hash, forensics summary |
+| `schedule_campaign(configuration_id, experiment_ids, run_length, durations, parameters=None, confirmed=False)` | Lean verdict per experiment, Z3 packs the accepted ones into one cooldown (minimum makespan, unsat core if they cannot fit), Lean `validSchedule` checks the slots. Show "Schedule OK" only when `schedule_ok` is true |
+| `check_schedule(document)` | Lean `validSchedule` on an edited slot list (the `lean_input` of a schedule result) |
+| `submit_lean_rule(name, source, proposer="user")` | Gatekeeper: compile, no sorry/axiom/native_decide, standard axioms only; admitted rules go to the Registry |
+| `list_registry()` | admitted rules (sha256, theorems, axioms, proposer) |
+| `get_lanyon_status()` / `run_lanyon_model(problem, instructions=None, name=None)` / `import_lanyon_session(run_dir)` | Lanyon certified simulations. A result counts as `certified_simulation` only if Lanyon certified it **and** its exported Lean proof passed the Gatekeeper; otherwise it is an `inferred_estimate`. `run_lanyon_model` sends the prompt to Lanyon's servers, so ask the user first |
 
 `requirement_edits`: `[{"key": "magnetic_field.max", "constraint": {"kind": "at_least", "q": {"value": 12000, "unit": "mT"}}}]`.
 Edits mark the requirement `user_entered` and reset confirmation; removing a mandatory requirement or changing its
@@ -168,7 +174,24 @@ Full real outputs: [`docs/examples/demo_a_incompatibility.json`](docs/examples/d
 Outcomes per check: `pass`, `fail`, `unknown` (missing information), `unsupported` (unrepresentable or model not
 valid here), `not_applicable` (a condition is false, e.g. the frost rule above 0 °C).
 
-## 6. How results update when equipment changes
+## 6. The verdict card
+
+Every `check_compatibility` result has `verdict_card`:
+
+```json
+{ "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+  "reason": "'magnetic_field.max' needs at least 10 T, but this configuration has a documented maximum of 9 T (manufacturer specification). Requirement not met.",
+  "theorems": ["verdict_reject_sound", "fail_implies_reject", "fail_needs_trusted", "violation_prevents_accept", "run_binds_inputs"],
+  "axioms": { "verdict_reject_sound": ["propext", "Quot.sound"], "...": [] },
+  "axioms_standard_only": true, "axiom_audit": "current",
+  "source_hash": "5262e4e8c30d…", "lean_input_hash": "4122767249582765024",
+  "z3_role": "Z3 output is a hint, never a verdict" }
+```
+
+`cryo.verdictCard(result)` returns it ready to render: verdict · reason · theorem names · axioms · source hash.
+`axiom_audit` is `stale` if the Lean sources changed since `python scripts/audit_axioms.py` last ran.
+
+## 7. How results update when equipment changes
 
 * Each result is bound to its exact inputs by `fingerprint`; `get_verification_details(result_id)` recomputes it and
   returns `stale_result` if the catalog version, configuration (including modifications) or experiment changed.

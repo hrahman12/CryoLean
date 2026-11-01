@@ -17,6 +17,11 @@ REQUIRED = [
     "run_reports_everything", "candidates_accept_sound", "candidates_verdicts_are_lean", "verdict_industry_irrelevant",
     "verdict_name_irrelevant", "pass_implies_dims_match", "coupled_pass_dims_match", "Q.le_scale_left", "Q.le_scale_right",
     "evalExpr_sound", "evalExpr_complete", "satisfies_spec_exclusive",
+    # forensics fix: rejections rest on trusted evidence; dimensions for every constraint shape
+    "fail_needs_trusted", "untrusted_never_passes", "untrusted_never_fails", "pass_dims_all_match",
+    # campaign scheduling
+    "validSchedule_sound", "validSchedule_complete", "validSchedule_bounds", "validSchedule_disjoint",
+    "validSchedule_only_accepted", "validSchedule_rejects_unaccepted", "resolve_ids",
 ]
 
 
@@ -54,3 +59,10 @@ def test_axiom_audit_standard_axioms_only():
 def test_runtime_binary_selftest(lean_available):
     ok, out = lean_runner.selftest()
     assert ok, out
+
+
+def test_audit_cache_matches_sources():
+    """lean/audit-axioms.json must be regenerated (scripts/audit_axioms.py) whenever the trusted sources change."""
+    audit = lean_runner.axiom_audit()
+    assert audit["status"] == "current", "run: python scripts/audit_axioms.py"
+    assert audit["all_standard"] and set(audit["theorems"]) >= {t for t in REQUIRED}

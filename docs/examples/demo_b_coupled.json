@@ -1012,7 +1012,7 @@
   ],
   "fingerprint": "71422dcdcf94cb52757acdc42ec1b446701f6a8ba4229e390cb5e5388e1a0fef",
   "catalog_version": "b69dd6affd4ff447",
-  "checked_at": "2026-11-01T01:02:20.282529+00:00",
+  "checked_at": "2026-11-01T02:32:22.280773+00:00",
   "lean_input": {
     "configuration": {
       "id": "bluefors_ld400_hdw",
@@ -1810,6 +1810,48 @@
       "confirmed": true
     }
   },
+  "verdict_card": {
+    "verdict": "DOES_NOT_MEET_REQUIREMENTS",
+    "reason": "Mixing-chamber wiring heat load (with design margin) vs cooling power: 14.592 µW exceeds 12 µW. Constraint not met.",
+    "failed": [
+      "Mixing-chamber wiring heat load (with design margin) vs cooling power"
+    ],
+    "missing": [],
+    "decided_by": "Lean 4 checker (CryoLean.verdict, compiled)",
+    "theorems": [
+      "verdict_reject_sound",
+      "fail_implies_reject",
+      "fail_needs_trusted",
+      "violation_prevents_accept",
+      "run_binds_inputs"
+    ],
+    "axioms": {
+      "verdict_reject_sound": [
+        "propext",
+        "Quot.sound"
+      ],
+      "fail_implies_reject": [
+        "propext"
+      ],
+      "fail_needs_trusted": [
+        "propext"
+      ],
+      "violation_prevents_accept": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "run_binds_inputs": [
+        "propext"
+      ]
+    },
+    "axioms_standard_only": true,
+    "axiom_audit": "current",
+    "source_hash": "5262e4e8c30d09e8126695328940be0e7dc3969462a7eef0817873403cac1850",
+    "lean_input_hash": "3987998938908462003",
+    "lean_version": "4.35.0",
+    "z3_role": "Z3 output is a hint, never a verdict"
+  },
   "suggestions": {
     "engine": "z3",
     "note": "Suggestions come from the Z3 solver. A suggestion is marked verified only if the Lean checker accepted the exact suggested configuration and parameters.",
@@ -1958,5 +2000,5 @@
       "largest smallest relative margin over numeric requirements"
     ]
   },
-  "result_id": "res_30e7b82155de"
+  "result_id": "res_58fe186f4fd0"
 }

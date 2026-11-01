@@ -104,6 +104,7 @@ def describeEvidence : EvidenceStatus → String
   | .manufacturerSpecification => "manufacturer specification"
   | .experimentalObservation   => "experimental observation"
   | .referenceData             => "reference data"
+  | .certifiedSimulation       => "certified simulation (Lanyon, Gatekeeper-admitted proof)"
   | .userEntered               => "user-entered value"
   | .inferredEstimate          => "inferred estimate"
   | .unknown                   => "no recorded provenance"

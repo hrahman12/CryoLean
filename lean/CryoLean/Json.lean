@@ -86,6 +86,7 @@ def evidenceStatusFromJson (j : Json) : Except String EvidenceStatus := do
   | "manufacturer_specification" => pure .manufacturerSpecification
   | "experimental_observation"   => pure .experimentalObservation
   | "reference_data"             => pure .referenceData
+  | "certified_simulation"       => pure .certifiedSimulation
   | "user_entered"               => pure .userEntered
   | "inferred_estimate"          => pure .inferredEstimate
   | "unknown"                    => pure .unknown
@@ -95,6 +96,7 @@ def evidenceStatusToString : EvidenceStatus → String
   | .manufacturerSpecification => "manufacturer_specification"
   | .experimentalObservation   => "experimental_observation"
   | .referenceData             => "reference_data"
+  | .certifiedSimulation       => "certified_simulation"
   | .userEntered               => "user_entered"
   | .inferredEstimate          => "inferred_estimate"
   | .unknown                   => "unknown"
@@ -227,16 +229,25 @@ def selFromJson (s : String) : Except String Sel :=
   | "lo" => pure .lo | "hi" => pure .hi | "max" => pure .max | "min" => pure .min | "count" => pure .count
   | s => throw s!"unknown selector '{s}'"
 
-partial def exprFromJson (j : Json) : Except String Expr := do
-  match ← getStr j "op" with
-  | "lit"   => pure (.lit (← quantityFromJson (← j.getObjVal? "q")))
-  | "cap"   => pure (.cap (← getStr j "key") (← selFromJson (← getStr j "sel")))
-  | "param" => pure (.param (← getStr j "name"))
-  | "add"   => pure (.add (← exprFromJson (← j.getObjVal? "a")) (← exprFromJson (← j.getObjVal? "b")))
-  | "sub"   => pure (.sub (← exprFromJson (← j.getObjVal? "a")) (← exprFromJson (← j.getObjVal? "b")))
-  | "mul"   => pure (.mul (← exprFromJson (← j.getObjVal? "a")) (← exprFromJson (← j.getObjVal? "b")))
-  | "neg"   => pure (.neg (← exprFromJson (← j.getObjVal? "a")))
-  | s => throw s!"unknown expression op '{s}'"
+/-- Maximum nesting depth of a coupled-constraint expression.  Bounding the depth makes the decoder
+total (no `partial`; flagged by the for-all-dev/forensics extractor) and refuses absurdly deep input. -/
+def exprMaxDepth : Nat := 64
+
+/-- Decode an expression, with `fuel` bounding the nesting depth (total, fail-closed). -/
+def exprFromJsonFuel : Nat → Json → Except String Expr
+  | 0, _ => throw s!"expression nested deeper than {exprMaxDepth} levels"
+  | fuel + 1, j => do
+    match ← getStr j "op" with
+    | "lit"   => pure (.lit (← quantityFromJson (← j.getObjVal? "q")))
+    | "cap"   => pure (.cap (← getStr j "key") (← selFromJson (← getStr j "sel")))
+    | "param" => pure (.param (← getStr j "name"))
+    | "add"   => pure (.add (← exprFromJsonFuel fuel (← j.getObjVal? "a")) (← exprFromJsonFuel fuel (← j.getObjVal? "b")))
+    | "sub"   => pure (.sub (← exprFromJsonFuel fuel (← j.getObjVal? "a")) (← exprFromJsonFuel fuel (← j.getObjVal? "b")))
+    | "mul"   => pure (.mul (← exprFromJsonFuel fuel (← j.getObjVal? "a")) (← exprFromJsonFuel fuel (← j.getObjVal? "b")))
+    | "neg"   => pure (.neg (← exprFromJsonFuel fuel (← j.getObjVal? "a")))
+    | s => throw s!"unknown expression op '{s}'"
+
+def exprFromJson (j : Json) : Except String Expr := exprFromJsonFuel exprMaxDepth j
 
 def coupledFromJson (j : Json) : Except String Coupled := do
   let validity ← match optField j "validity" with

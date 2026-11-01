@@ -1,0 +1,9 @@
+One-dimensional transient heat diffusion (pure diffusion, a special case of advection-diffusion with zero advection velocity) along a sample rod of non-dimensional length 1, for a cryogenic thermal-conductivity measurement.
+
+Equation: u_t = alpha * u_xx on the domain x in [0, 1], t > 0, where u(x, t) is the non-dimensional temperature and alpha > 0 is a constant thermal diffusivity (use alpha = 1).
+
+Boundary conditions: fixed-temperature (Dirichlet) at both ends, u(0, t) = 0 (cold end, attached to the cryostat stage) and u(1, t) = 1 (warm end, heater), for all t > 0.
+
+Initial condition: u(x, 0) = sin(pi * x) + x, which is smooth and matches both boundary values.
+
+Use a conservative finite-volume discretisation on a uniform grid with an explicit or implicit time stepper that is stable for diffusion. The property we care about is a maximum principle: the discrete temperature stays within the bounds set by the initial data and the two boundary values, so that the temperature difference across the sample can be bounded, and the solution relaxes towards the linear steady profile u(x) = x.

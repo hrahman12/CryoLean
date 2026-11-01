@@ -8,21 +8,39 @@
 experiment under its actual operating conditions?* The product proposal is in [docs/PRODUCT.md](docs/PRODUCT.md).
 Built for the [VibeCheck FM + AI Hackathon](https://fmxai.org/vibecheck/).
 
-```
-your experiment ─► sourced requirements ─► Lean 4 verdict (trusted) ─► Z3 suggestions ─► Lean re-checks each suggestion
-                                              │
-                         REQUIREMENTS_MET · DOES_NOT_MEET_REQUIREMENTS · NEED_MORE_INFORMATION
-```
+## Pipeline
 
-| Layer | Role | Trusted? |
-|---|---|---|
-| **Lean 4** (`lean/`) | One universal compatibility checker over exact rationals with dimensional analysis; 33 audited soundness/completeness theorems (no `sorry`, standard axioms only). The compiled binary *is* the proven definitions. | **Yes — the only source of verdicts** |
-| **Z3** (`cryolean/smt.py`) | After the verdict: unsat cores (why it fails, with the datasheet facts), ranked alternative configurations across all manufacturers, optimised parameter changes. Every suggestion is re-checked by Lean. | No |
-| **SQLite** (`data/cryolean.db`) | Evidence-backed catalog built from version-controlled JSON seeds: 667 sourced records, 9 equipment families, 26 configurations, 11 experiment profiles, 40 physical properties, 13 coupled models. | Data (validated, not proven) |
-| **Python** (`cryolean/`) | Local orchestration, exact unit conversion, desktop bridge for the Antigravity frontend. | Never decides a verdict |
-| **AI** (`cryolean/ai.py`) | Natural-language matching onto prepared profiles (closed set), research drafting into *untrusted* candidates. | No |
+![CryoLean pipeline: inputs, untrusted proposers (Z3, Claude, Lanyon), the trusted Lean 4 kernel, outputs, and the verdict card](docs/images/pipeline.svg)
 
-No web server is needed: the Antigravity frontend calls `window.pywebview.api.*` (see [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md)).
+<sub>Regenerate with `python scripts/make_pipeline_svg.py`.</sub>
+
+## Built with
+
+| | Tool | Where it sits | What it does here | Trusted? |
+|:-:|---|---|---|---|
+| <img src="docs/images/logos/lean-96.png" width="44" alt="Lean"> | **Lean 4** | `lean/CryoLean/` | `verdict cfg e` and `validSchedule`, compiled to the checker binary. 44 audited theorems, standard axioms only. Also the Gatekeeper's judge: proposed code is admitted only if the Lean kernel accepts it. | **Yes: the only source of verdicts** |
+| <img src="docs/images/logos/forall-96.png" width="44" alt="Forall"> | **Forall forensics** | `scripts/run_forensics.py`, [docs/forensics](docs/forensics/README.md) | Audits the kernel itself: 839 declarations, 0 smells, 0 unsafe flags. Its judges found a real soundness gap, now fixed and proved. | Auditor |
+| <img src="docs/images/logos/z3-96.png" width="44" alt="Z3"> | **Z3** | `cryolean/smt.py`, `cryolean/schedule.py` | Unsat cores (why it fails), ranked alternatives, parameter fixes, campaign packing with minimum makespan. Every output is re-checked by Lean. | No: a hint |
+| <img src="docs/images/logos/anthropic-96.png" width="44" alt="Anthropic Claude"> | **Claude** | `cryolean/ai.py`, `cryolean/research.py` | Matches plain language to a prepared profile and drafts new rules or sheets. Drafts stay untrusted until reviewed. | No |
+| <img src="docs/images/logos/lanyon-96.png" width="44" alt="Lanyon AI"> | **Lanyon AI** | `cryolean/lanyon.py` | Certified simulations: specify, verify (exported Lean + Rocq proof), compile, simulate. A result counts as `certified_simulation` only if its Lean proof passes the Gatekeeper. | Only through the Gatekeeper |
+| <img src="docs/images/logos/sqlite-96.png" width="44" alt="SQLite"> | **SQLite** | `data/cryolean.db` | Catalog built from the JSON seeds: 667 sourced records, 26 configurations, 11 experiment profiles, 40 properties, 13 coupled models, plus the rule Registry. | Data, validated |
+| <img src="docs/images/logos/python-96.png" width="44" alt="Python"> | **Python** | `cryolean/` | Exact unit conversion, fail-closed JSON for Lean, orchestration. | Never decides a verdict |
+| <img src="docs/images/logos/pywebview-96.png" width="44" alt="pywebview"> | **PyWebView** | `cryolean/desktop.py`, `cryolean/bridge.py` | Native Windows window; the UI calls `window.pywebview.api.*`. No web server. | Transport |
+| <img src="docs/images/logos/antigravity-96.png" width="44" alt="Google Antigravity"> | **Google Antigravity** | separate frontend | The UI. Copy [docs/antigravity/cryolean-client.js](docs/antigravity/cryolean-client.js); see [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md). | Display only |
+
+## How the code differs from the original sketch
+
+The architecture sketch is implemented as drawn. These are the places where the code uses different names or adds a step.
+
+| In the sketch | In the code |
+|---|---|
+| `decideRun c e` | `verdict cfg e` in `lean/CryoLean/Checker.lean`, run through `run`. |
+| `thm decideRun_correct: accept ↔ Requirements, deny r → violated r` | Two theorems. `verdict_accept_iff` proves accept ↔ `AcceptSpec`. `verdict_reject_sound` proves reject → a documented violation. `fail_needs_trusted` adds that every violation rests on trusted evidence. |
+| ACCEPT / DENY + reason | Three verdicts. NEED_MORE_INFORMATION is the third: missing or untrusted data never becomes a pass or a fail. |
+| `validSchedule` (bounds + pairwise disjoint), `thm validSchedule_bounds` | `lean/CryoLean/Schedule.lean`. `validSchedule_sound` and `validSchedule_complete` give the full spec. `_bounds` and `_disjoint` are its parts. `_only_accepted` adds that only experiments Lean accepted can be scheduled. |
+| Gatekeeper (no sorry/axiom/native_decide, `#print axioms` ⊆ std) | `cryolean/gatekeeper.py`. Python runs it, but the decision is the Lean kernel's: the code must compile and `#print axioms` must list only standard axioms. Proofs that import Mathlib are compiled in a separate Mathlib workspace (`.tools/mathlib-gate`, or `CRYOLEAN_MATHLIB_PROJECT`). |
+| LLM proposes Lean code or data | Claude, and also Lanyon, whose exported proofs go through the same Gatekeeper. |
+| Verdict card: verdict · reason · theorem names · axioms · source hash | `verdict_card` on every result. Axioms come from `lean/audit-axioms.json`, written by `python scripts/audit_axioms.py`, and are marked stale if the Lean sources change. |
 
 ## Setup on Windows
 
@@ -58,7 +76,7 @@ python -m cryolean.desktop --frontend C:\path\to\antigravity\dist\index.html
 Verification is fully offline once the database is built. Optional: `CRYOLEAN_AI_PROVIDER=claude` (with Anthropic API credentials) for
 Claude-based matching and research drafting; the default matcher is offline.
 
-## The three demonstrations (`python -m cryolean demo`)
+## The demonstrations (`python -m cryolean demo`)
 
 * **A — confirmed incompatibility.** A 10 T magnetoresistance measurement on the PPMS DynaCool 9 T: Lean rejects
   (`magnetic_field.max`), Z3's unsat core cites the Quantum Design brochure quote, and the 14 T configuration is proposed.
@@ -70,6 +88,10 @@ Claude-based matching and research drafting; the default matcher is offline.
   stations) passes the validation gate and reviewer approval, Z3 searches every configuration, the same Lean binary verifies
   the Lake Shore CRX-VF (and rejects the 2-probe-arm CRX-4K configuration for the ≥ 3-arm requirement), and the hash of the
   Lean core is unchanged.
+* **D — campaign scheduling.** Four experiments for one cooldown of the Lake Shore CRX-VF over 48 h. Lean rejects the 10 T
+  magnetoresistance run, so it is never scheduled. Z3 packs the other three after the documented 5 h cooldown, finishing at 23 h,
+  and Lean `validSchedule` accepts the exact slot list. With a 20 h run, Z3's unsat core reports that 18 h of experiments
+  cannot fit in the 15 h left.
 
 ## What is in the catalog
 
@@ -92,12 +114,12 @@ Missing facts are UNKNOWN (121 capability entries); `get_research_coverage()` li
 
 | Path | Contents |
 |---|---|
-| `lean/CryoLean/` | `Model` (universal types, SI dimensions), `Num` (exact rationals), `Checker`, `Spec` (independent specification), `Soundness` (proofs), `Json`, `Explain`, `Report`; `lean/Main.lean` CLI; `lean/Audit.lean` axiom audit |
-| `cryolean/` | `bridge` (desktop API), `verifier` (Lean then Z3), `smt`, `serialize` (the Python→Lean boundary), `units`, `db`, `catalog`, `validation`, `research`, `modifications`, `edits`, `coverage`, `ai`, `demo`, `desktop` |
+| `lean/CryoLean/` | `Model` (universal types, SI dimensions), `Num` (exact rationals), `Checker`, `Spec` (independent specification), `Soundness` (proofs), `Schedule` (`validSchedule`), `Json`, `Explain`, `Report`; `lean/Main.lean` CLI; `lean/Audit.lean` axiom audit |
+| `cryolean/` | `bridge` (desktop API), `verifier` (Lean then Z3, verdict card), `smt`, `schedule` (Z3 campaign packing), `gatekeeper` (rule Registry), `lanyon`, `serialize` (the Python→Lean boundary), `units`, `db`, `catalog`, `validation`, `research`, `modifications`, `edits`, `coverage`, `ai`, `demo`, `desktop` |
 | `data/` | JSON seeds (`cryostats/`, `experiments/`, `evidence/`, `physics/`, `capability_vocabulary.json`, `industries.json`), `evidence.json`, `coverage.json`, `SCHEMA.md` |
-| `research/` | raw research notes and the independently re-verified v2 research (`research/v2/`), new-industry candidate |
-| `docs/` | `PRODUCT.md`, `antigravity/cryolean-client.js`, real example outputs in `examples/` |
-| `scripts/` | `validate_sources.py`, `build_evidence.py`, `build_coverage.py`, `promote_candidate.py`, `import_research_v2.py` |
+| `research/` | raw research notes, the re-verified v2 research (`research/v2/`), new-industry candidate, the Lanyon prompts (`research/lanyon/`) |
+| `docs/` | `PRODUCT.md`, `antigravity/cryolean-client.js`, `forensics/` (audit report), `lanyon/` (first certified session), `images/` (pipeline), real example outputs in `examples/` |
+| `scripts/` | `audit_axioms.py`, `run_forensics.py`, `make_pipeline_svg.py`, `validate_sources.py`, `build_evidence.py`, `build_coverage.py`, `promote_candidate.py`, `import_research_v2.py` |
 | `tests/` | 68 tests: the 20 required scenarios, engine guarantees, review regressions, Lean build + axiom audit, data and bridge |
 
 Read [VERIFICATION_SCOPE.md](VERIFICATION_SCOPE.md) for exactly what is and is not guaranteed, and

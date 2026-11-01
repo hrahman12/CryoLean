@@ -47,6 +47,11 @@ def cmdCheckBatch (path : String) : IO UInt32 := withDoc path fun doc =>
     IO.println (toJson outs).compress
     pure 0
 
+def cmdCheckSchedule (path : String) : IO UInt32 := withDoc path fun doc =>
+  match checkScheduleDocument doc with
+  | .error e => emitError s!"decode error: {e}"
+  | .ok out => do IO.println out.compress; pure 0
+
 def cmdCheckCandidates (path : String) : IO UInt32 := withDoc path fun doc =>
   match checkCandidatesDocument doc with
   | .error e => emitError s!"decode error: {e}"
@@ -147,13 +152,14 @@ def cmdSelftest : IO UInt32 := do
     IO.println s!"selftest: {failures} failure(s)"; pure 1
 
 def usage : String :=
-  "usage: cryolean check <file|->  |  check-batch <file|->  |  check-candidates <file|->  |  selftest  |  version"
+  "usage: cryolean check <file|->  |  check-batch <file|->  |  check-candidates <file|->  |  check-schedule <file|->  |  selftest  |  version"
 
 def main (args : List String) : IO UInt32 := do
   match args with
   | ["check", p] => cmdCheck p
   | ["check-batch", p] => cmdCheckBatch p
   | ["check-candidates", p] => cmdCheckCandidates p
+  | ["check-schedule", p] => cmdCheckSchedule p
   | ["selftest"] => cmdSelftest
   | ["version"] => IO.println s!"cryolean v2 (Lean {Lean.versionString})"; pure 0
   | _ => IO.println usage; pure 1

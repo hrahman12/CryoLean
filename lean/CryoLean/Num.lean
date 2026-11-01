@@ -63,10 +63,10 @@ theorem Q.le_refl (a : Q) : Q.le a a := by
   unfold Q.le; exact Int.le_refl _
 
 /-- Products of positive denominators stay positive, so evaluated quantities stay well formed. -/
-theorem Q.add_den_pos {a b : Q} (ha : 0 < a.den) (hb : 0 < b.den) : 0 < (Q.add a b).den := by
-  simp [Q.add]; exact Nat.mul_pos ha hb
+theorem Q.add_den_pos {a b : Q} (ha : 0 < a.den) (hb : 0 < b.den) : 0 < (Q.add a b).den :=
+  Nat.mul_pos ha hb
 
-theorem Q.mul_den_pos {a b : Q} (ha : 0 < a.den) (hb : 0 < b.den) : 0 < (Q.mul a b).den := by
-  simp [Q.mul]; exact Nat.mul_pos ha hb
+theorem Q.mul_den_pos {a b : Q} (ha : 0 < a.den) (hb : 0 < b.den) : 0 < (Q.mul a b).den :=
+  Nat.mul_pos ha hb
 
 end CryoLean

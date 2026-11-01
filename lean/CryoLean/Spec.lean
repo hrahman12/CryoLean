@@ -18,6 +18,7 @@ def TrustedEvidence : EvidenceStatus → Prop
   | .manufacturerSpecification => True
   | .experimentalObservation   => True
   | .referenceData             => True
+  | .certifiedSimulation       => True
   | .userEntered               => True
   | .inferredEstimate          => False
   | .unknown                   => False
@@ -63,17 +64,19 @@ def SatisfiesKey (cfg : Configuration) (k : Constraint) (key : String) : Prop :=
     ((c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueMeets k c.value) ∨
      (c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ k = .flagIs false))
 
-/-- The capability under `key` is an option that is not fitted (and the constraint needs it), or is
-fitted and demonstrably conflicts. -/
+/-- The capability under `key` is documented (trusted) as an option that is not fitted (and the
+constraint needs it), or is fitted, trusted and demonstrably conflicts.  Every violation rests on
+trusted evidence: untrusted records can only ever lead to NEED_MORE_INFORMATION. -/
 def ViolatesKey (cfg : Configuration) (k : Constraint) (key : String) : Prop :=
   ∃ c, lookup cfg key = some c ∧
-    ((c.install = .optionalNotInstalled ∧ k ≠ .flagIs false) ∨
+    ((c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ k ≠ .flagIs false) ∨
      (c.install = .installed ∧ TrustedEvidence c.evidence ∧ ValueFails k c.value))
 
 /-- A parameter has a trusted value `q`. -/
 def ParamIs (e : Experiment) (name : String) (q : Quantity) : Prop :=
   ∃ p, findParam e name = some p ∧ TrustedEvidence p.origin ∧ p.value = some q
 
+/-- A condition definitely holds, judged only from trusted, installed (or trusted not-fitted) records and trusted parameters. -/
 def CondHolds (cfg : Configuration) (e : Experiment) : Condition → Prop
   | .capFlag key b => ∃ c, lookup cfg key = some c ∧
       ((c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ b = false) ∨
@@ -81,6 +84,7 @@ def CondHolds (cfg : Configuration) (e : Experiment) : Condition → Prop
   | .paramAtMost name q => ∃ v, ParamIs e name v ∧ v.dim = q.dim ∧ Q.le v.val q.val
   | .paramAtLeast name q => ∃ v, ParamIs e name v ∧ v.dim = q.dim ∧ Q.le q.val v.val
 
+/-- A condition definitely fails, judged only from trusted evidence (the requirement it guards is then not applicable). -/
 def CondFails (cfg : Configuration) (e : Experiment) : Condition → Prop
   | .capFlag key b => ∃ c, lookup cfg key = some c ∧
       ((c.install = .optionalNotInstalled ∧ TrustedEvidence c.evidence ∧ b = true) ∨
@@ -136,6 +140,7 @@ def ReqViolated (cfg : Configuration) (e : Experiment) (r : Requirement) : Prop 
 def CoupledPasses (cfg : Configuration) (e : Experiment) (c : Coupled) : Prop :=
   (∀ d ∈ c.conditions, CondHolds cfg e d) ∧ (∀ p ∈ c.validity, LeHolds cfg e p.1 p.2) ∧ LeHolds cfg e c.lhs c.rhs
 
+/-- A coupled constraint is satisfied, or is not mandatory/applicable and so imposes nothing. -/
 def CoupledOK (cfg : Configuration) (e : Experiment) (c : Coupled) : Prop :=
   (∃ d ∈ c.conditions, CondFails cfg e d) ∨ CoupledPasses cfg e c
 

@@ -25,7 +25,7 @@ import json
 import traceback
 import uuid
 
-from . import ai, coverage, db, lean_runner, modifications, research, serialize, verifier
+from . import ai, coverage, db, gatekeeper, lanyon, lean_runner, modifications, research, schedule, serialize, verifier
 from .catalog import Catalog, CatalogError
 from .edits import EditError
 from .modifications import ModificationError
@@ -57,6 +57,8 @@ def _api(fn):
             return _err("edit_refused", str(e))
         except ResearchError as e:
             return _err("research_refused", str(e))
+        except lanyon.LanyonUnavailable as e:
+            return _err("lanyon_unavailable", str(e))
         except (UnitError, SerializationError, ValueError, TypeError, KeyError) as e:
             return _err("invalid_input", f"{type(e).__name__}: {e}")
         except StaleResult as e:
@@ -374,6 +376,60 @@ class CryoLeanAPI:
         inv = lean_runner.theorem_inventory()
         return {"lean_available": inv["lean_binary_present"], "version": lean_runner.version(), "selftest_passed": ok,
                 "theorem_count": inv["count"], "theorems": inv["theorems"], "unsafe_markers": inv["unproved_or_unsafe_markers"]}
+
+    @_api
+    def get_verification_card(self):
+        """Theorems, their axioms (cached `#print axioms`), the source hash and the forensics summary."""
+        audit = lean_runner.axiom_audit()
+        fx = verifier.config_path("docs", "forensics", "summary.json")
+        return {"axiom_audit": audit, "source_hash": lean_runner.source_hash(),
+                "card_theorems": verifier.CARD_THEOREMS,
+                "forensics": json.loads(fx.read_text(encoding="utf-8")) if fx.exists() else None,
+                "z3_role": "Z3 output is a hint, never a verdict"}
+
+    # ------------------------------------------------------------------ campaign scheduling (Z3 -> Lean validSchedule)
+    @_api
+    def schedule_campaign(self, configuration_id: str, experiment_ids, run_length, durations, parameters=None,
+                          confirmed: bool = False):
+        """Pack several experiments into one cooldown of a configuration.
+        run_length / durations[experiment_id]: {"value": .., "unit": "h"|"min"|"s"|"d"}.
+        Lean decides each experiment first (only REQUIREMENTS_MET ones are scheduled); Z3 proposes start times
+        (minimum makespan, unsat core when they cannot fit); Lean `validSchedule` checks the exact slot list."""
+        return schedule.schedule_campaign(self._catalog, configuration_id, list(_parse(experiment_ids)), _parse(run_length),
+                                          _parse(durations) or {}, _parse(parameters), confirmed)
+
+    @_api
+    def check_schedule(self, document):
+        """Check a hand-edited schedule with Lean validSchedule (same document as schedule_campaign's lean_input)."""
+        return schedule.check_schedule_document(_parse(document))
+
+    # ------------------------------------------------------------------ Gatekeeper + rule Registry
+    @_api
+    def submit_lean_rule(self, name: str, source: str, proposer: str = "user"):
+        """Proposed Lean code (from an LLM, Lanyon or a person). Admitted to the Registry only if it compiles against
+        CryoLean, has no sorry/axiom/native_decide/escape hatch, and every theorem's axioms are standard."""
+        return gatekeeper.submit(self._catalog, name, source, proposer)
+
+    @_api
+    def list_registry(self):
+        return gatekeeper.registry(self._catalog)
+
+    # ------------------------------------------------------------------ Lanyon certified simulations
+    @_api
+    def get_lanyon_status(self):
+        return lanyon.client_status()
+
+    @_api
+    def run_lanyon_model(self, problem: str, instructions: str | None = None, name: str | None = None):
+        """Runs Lanyon (specify, verify, compile, simulate, download). Sends the prompt to Lanyon's servers.
+        Then imports the session: every exported Lean proof goes through the Gatekeeper."""
+        run = lanyon.run(problem, instructions, name)
+        run["import"] = lanyon.import_session(self._catalog, run["run_dir"])
+        return run
+
+    @_api
+    def import_lanyon_session(self, run_dir: str):
+        return lanyon.import_session(self._catalog, run_dir)
 
     @_api
     def get_physical_properties(self):

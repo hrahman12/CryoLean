@@ -14,28 +14,36 @@ Every result separates four things, and so does this document:
 The trusted core has no notion of industry, manufacturer or property. Numbers are exact rationals in SI coherent units
 with a 7-component dimension vector; every comparison checks dimensions; units are never converted inside Lean.
 `Spec.lean` defines satisfaction/violation independently of the checker (shared: `lookup`, `findParam`, exact
-rational order `Q.le`, exact arithmetic). `lean/Audit.lean` prints the axioms of the 33 key theorems; the test suite requires
+rational order `Q.le`, exact arithmetic). `lean/Audit.lean` prints the axioms of the 44 key theorems (cached with the source hash in `lean/audit-axioms.json` by `scripts/audit_axioms.py`); the test suite requires
 `{propext, Classical.choice, Quot.sound}` only.
 
 | # | Required guarantee | Theorem(s) |
 |---|---|---|
 | 1 | ACCEPT ⇒ every applicable mandatory requirement passes (or is excluded by a definitely-false condition) | `verdict_accept_sound`, `verdict_accept_iff` |
 | 2 | Missing mandatory information cannot produce ACCEPT | `accept_no_unknown`, `missing_capability_unknown`, `unknown_value_never_passes`, `cap_not_usable_missing` |
-| 3 | Unsupported mandatory requirements (dimension/shape mismatch, model invalid here) cannot produce ACCEPT | `accept_no_unknown`, `pass_implies_dims_match`, `coupled_pass_dims_match` |
-| 4 | A confirmed mandatory failure prevents ACCEPT | `fail_implies_reject`, `violation_prevents_accept`, `verdict_reject_complete` |
+| 3 | Unsupported mandatory requirements (dimension/shape mismatch, model invalid here) cannot produce ACCEPT | `accept_no_unknown`, `pass_dims_all_match` (every numeric constraint shape), `coupled_pass_dims_match` |
+| 4 | A confirmed mandatory failure prevents ACCEPT; every REJECT rests on trusted evidence | `fail_implies_reject`, `violation_prevents_accept`, `verdict_reject_complete`, `verdict_reject_sound`, `fail_needs_trusted` |
 | 5 | Every applicable mandatory coupled constraint passes before ACCEPT | `accept_all_coupled`, `verdict_accept_sound` (`CoupledOK`) |
 | 6 | Optional requirements do not block acceptance | `verdict_ignores_optional` |
 | 7 | Non-applicable requirements do not cause false failures | `verdict_ignores_nonapplicable`, `condition_false_not_applicable` |
 | 8 | Installed accessories are distinguished from optional ones | `not_installed_never_passes`, `unknown_install_never_passes`, `cap_not_usable_missing` |
-| 9 | A verdict applies only to the exact configuration and experiment | `run_binds_inputs`, `verdict_deterministic`, `run_reports_everything` (+ input hash and fingerprint) |
+| 9 | A verdict applies only to the exact configuration and experiment | `run_binds_inputs`, `run_reports_everything` (+ input hash and fingerprint). `verdict_deterministic` is only congruence: purity comes from `verdict` being an ordinary Lean function |
 | 10 | AI cannot bypass the gate | Lean's input has no AI field; injected `"verdict"` fields are ignored (test); AI output is a closed-set match or an untrusted candidate |
 | 11 | Z3 cannot override a Lean rejection | `candidates_verdicts_are_lean`, `candidates_accept_sound` (the `check-candidates` entry point) |
 | 12 | New industries cannot bypass mandatory checking | `verdict_industry_irrelevant`, `verdict_name_irrelevant` |
 | — | ACCEPT and REJECT specifications are exclusive; evaluation of coupled expressions is sound and complete w.r.t. the big-step semantics | `satisfies_spec_exclusive`, `evalExpr_sound`, `evalExpr_complete` |
 | — | The rational order does not depend on the representation | `Q.le_scale_left`, `Q.le_scale_right` |
+| 13 | A campaign schedule is accepted only if every slot lies after cooldown and before the end of the run, slots do not overlap, and every experiment was accepted | `validSchedule_sound`, `validSchedule_complete`, `validSchedule_bounds`, `validSchedule_disjoint`, `validSchedule_only_accepted`, `validSchedule_rejects_unaccepted` |
 
 Evidence classes that may support a pass: manufacturer specification, experimental observation, reference data,
-user-entered. Inferred estimates and records without provenance never pass (`estimate_never_passes`, `no_provenance_never_passes`).
+user-entered, and certified simulation (a Lanyon result whose exported Lean proof was admitted by the Gatekeeper). Inferred estimates and
+records without provenance never pass and never fail (`untrusted_never_passes`, `untrusted_never_fails`, `estimate_never_passes`,
+`no_provenance_never_passes`): they can only give NEED_MORE_INFORMATION.
+
+**Fixed after the forensics audit.** Before the audit, an optional accessory recorded as "not installed" made a requirement fail
+whatever the record's provenance. The for-all-dev/forensics vacuity judge showed `verdict` returning reject on a configuration
+whose only evidence was `unknown`. The checker and `ViolatesKey` now require trusted evidence on that path too. See
+[docs/forensics/README.md](docs/forensics/README.md).
 
 ## 2. Concrete evaluation and the serialization boundary
 
@@ -54,6 +62,9 @@ missing or fails, the bridge returns `lean_unavailable` with `verdict: null`.
 | Z3 (`cryolean/smt.py`) | unsat cores, alternatives, parameter optimisation | every suggestion is re-checked by Lean; only `verified: true` (Lean `REQUIREMENTS_MET` on the exact document) may be shown as compatible; tested with a deliberately wrong Z3 ranking |
 | AI (`cryolean/ai.py`) | closed-set matching; research drafting | invented ids discarded; drafts become untrusted candidates; the user confirms the match |
 | Research pipeline | candidates | validation gate + named reviewer before anything enters the trusted tables |
+| Z3 campaign scheduler (`cryolean/schedule.py`) | proposes start times | only Lean-accepted experiments are packed; the exact slot list is checked by Lean `validSchedule`; only `schedule_ok` may be shown as "Schedule OK" |
+| Gatekeeper (`cryolean/gatekeeper.py`) | admits proposed Lean code to the Registry | the code must compile, contain no `sorry`/`admit`/`axiom`/`native_decide`/`opaque`/`unsafe`/`implemented_by`/`extern`, and `#print axioms` must be standard. The Python wrapper only reads Lean's output; Registry rules never change how a verdict is computed |
+| Lanyon (`cryolean/lanyon.py`) | certified simulations | `certified_simulation` requires a Lanyon certificate, no discrepancy event, and an admitted exported Lean proof; the validator also requires the certificate fields. Otherwise the result is an `inferred_estimate` |
 
 ## 4. Rules that protect requirements
 

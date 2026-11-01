@@ -156,8 +156,62 @@ def check(catalog: Catalog, experiment: dict, configuration_id: str, extra_modif
         "checked_at": _now(),
         "lean_input": {"configuration": cfg_doc, "experiment": exp_doc},
     }
+    result["verdict_card"] = verdict_card(verdict, msg, lean, result["failed_requirements"], result["missing_information"])
     result["suggestions"] = suggest(catalog, experiment, cfg_doc, exp_doc, lean, max_alternatives) if suggestions else None
     return result
+
+
+# The theorems that justify each verdict (names exactly as in lean/CryoLean/*.lean).
+CARD_THEOREMS = {
+    "REQUIREMENTS_MET": ["verdict_accept_iff", "verdict_accept_sound", "accept_no_unknown", "accept_all_coupled",
+                         "pass_dims_all_match", "run_binds_inputs"],
+    "DOES_NOT_MEET_REQUIREMENTS": ["verdict_reject_sound", "fail_implies_reject", "fail_needs_trusted",
+                                   "violation_prevents_accept", "run_binds_inputs"],
+    "NEED_MORE_INFORMATION": ["accept_no_unknown", "missing_capability_unknown", "untrusted_never_passes",
+                              "untrusted_never_fails", "verdict_reject_complete", "run_binds_inputs"],
+}
+
+
+def verdict_card(verdict: str, reason: str, lean: dict, failed: list, missing: list) -> dict:
+    """The card the UI shows: verdict, reason, theorem names, their axioms, and the source hash.
+    'Z3 output is a hint, never a verdict' -- the card only ever reports the Lean result."""
+    audit = lean_runner.axiom_audit()
+    names = CARD_THEOREMS[verdict]
+    axioms = {n: audit.get("theorems", {}).get(n) for n in names}
+    return {
+        "verdict": verdict,
+        "reason": reason,
+        "failed": failed,
+        "missing": missing,
+        "decided_by": "Lean 4 checker (CryoLean.verdict, compiled)",
+        "theorems": names,
+        "axioms": axioms,
+        "axioms_standard_only": bool(audit.get("all_standard")) and all(a is not None for a in axioms.values()),
+        "axiom_audit": audit.get("status"),
+        "source_hash": _cached_source_hash(),
+        "lean_input_hash": lean.get("input_hash"),
+        "lean_version": lean.get("lean_version"),
+        "z3_role": "Z3 output is a hint, never a verdict",
+    }
+
+
+def config_path(*parts):
+    from . import config
+    return config.ROOT.joinpath(*parts)
+
+
+_SRC_CACHE: dict = {}
+
+
+def _cached_source_hash() -> str:
+    from . import config
+    files = sorted((config.LEAN_DIR / "CryoLean").glob("*.lean")) + [config.LEAN_DIR / "Main.lean"]
+    b = lean_runner.lean_binary()
+    key = tuple((str(f), f.stat().st_mtime_ns) for f in files + ([b] if b else []))
+    if key not in _SRC_CACHE:
+        _SRC_CACHE.clear()
+        _SRC_CACHE[key] = lean_runner.source_hash()
+    return _SRC_CACHE[key]
 
 
 def _references(catalog: Catalog, experiment: dict, checks: list, coupled: list) -> list[dict]:

@@ -34,6 +34,10 @@ open CryoLean
 -- guarantee 8: installed vs optional accessories
 #print axioms not_installed_never_passes
 #print axioms unknown_install_never_passes
+-- forensics fix: every DOES_NOT_MEET verdict rests on trusted evidence
+#print axioms fail_needs_trusted
+#print axioms untrusted_never_passes
+#print axioms untrusted_never_fails
 -- guarantee 9: verdict bound to exact inputs
 #print axioms run_binds_inputs
 #print axioms verdict_deterministic
@@ -47,8 +51,17 @@ open CryoLean
 -- units, dimensions and exact arithmetic
 #print axioms pass_implies_dims_match
 #print axioms coupled_pass_dims_match
+#print axioms pass_dims_all_match
 #print axioms Q.le_scale_left
 #print axioms Q.le_scale_right
 #print axioms evalExpr_sound
 #print axioms evalExpr_complete
 #print axioms satisfies_spec_exclusive
+-- campaign scheduling (Z3 proposes, Lean decides)
+#print axioms validSchedule_sound
+#print axioms validSchedule_complete
+#print axioms validSchedule_bounds
+#print axioms validSchedule_disjoint
+#print axioms validSchedule_only_accepted
+#print axioms validSchedule_rejects_unaccepted
+#print axioms resolve_ids

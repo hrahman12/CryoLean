@@ -1,0 +1,187 @@
+{
+  "fits": {
+    "configuration_id": "lakeshore_crx_vf",
+    "run_length": "48 h",
+    "feasible_experiments": [
+      "bio_cryo_fluorescence_vitrified",
+      "chem_low_temperature_raman",
+      "chem_phase_transition_pom"
+    ],
+    "excluded_experiments": [
+      {
+        "experiment_id": "mat_magnetoresistance_10T",
+        "lean_verdict": "DOES_NOT_MEET_REQUIREMENTS",
+        "reason": "Does not meet requirements. A documented limitation conflicts with: 'magnetic_field.max', 'temperature.range'."
+      }
+    ],
+    "note": "Z3 proposes the slots (a hint); only the Lean validSchedule result decides.",
+    "z3": {
+      "status": "sat",
+      "makespan": "23 h"
+    },
+    "cooldown": "5 h",
+    "timeline": [
+      {
+        "experiment_id": "chem_phase_transition_pom",
+        "start": "5 h",
+        "stop": "9 h"
+      },
+      {
+        "experiment_id": "chem_low_temperature_raman",
+        "start": "9 h",
+        "stop": "17 h"
+      },
+      {
+        "experiment_id": "bio_cryo_fluorescence_vitrified",
+        "start": "17 h",
+        "stop": "23 h"
+      }
+    ],
+    "lean": {
+      "checker": "CryoLean Lean 4 validSchedule",
+      "configuration_id": "lakeshore_crx_vf",
+      "experiment_verdicts": [
+        {
+          "experiment_id": "chem_phase_transition_pom",
+          "verdict": "REQUIREMENTS_MET"
+        },
+        {
+          "experiment_id": "chem_low_temperature_raman",
+          "verdict": "REQUIREMENTS_MET"
+        },
+        {
+          "experiment_id": "bio_cryo_fluorescence_vitrified",
+          "verdict": "REQUIREMENTS_MET"
+        }
+      ],
+      "input_hash": "9495646420964992761",
+      "reasons": [],
+      "run_length_display": "172.8 ks",
+      "slots": [
+        {
+          "experiment_id": "chem_phase_transition_pom",
+          "start": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 18000
+          },
+          "start_display": "18 ks",
+          "stop": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 32400
+          },
+          "stop_display": "32.4 ks"
+        },
+        {
+          "experiment_id": "chem_low_temperature_raman",
+          "start": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 32400
+          },
+          "start_display": "32.4 ks",
+          "stop": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 61200
+          },
+          "stop_display": "61.2 ks"
+        },
+        {
+          "experiment_id": "bio_cryo_fluorescence_vitrified",
+          "start": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 61200
+          },
+          "start_display": "61.2 ks",
+          "stop": {
+            "den": 1,
+            "dim": {
+              "A": 0,
+              "K": 0,
+              "cd": 0,
+              "kg": 0,
+              "m": 0,
+              "mol": 0,
+              "s": 1
+            },
+            "num": 82800
+          },
+          "stop_display": "82.8 ks"
+        }
+      ],
+      "theorems": [
+        "validSchedule_sound",
+        "validSchedule_bounds",
+        "validSchedule_disjoint",
+        "validSchedule_only_accepted"
+      ],
+      "valid": true
+    },
+    "schedule_ok": true
+  },
+  "too_long": {
+    "configuration_id": "lakeshore_crx_vf",
+    "run_length": "20 h",
+    "feasible_experiments": [
+      "bio_cryo_fluorescence_vitrified",
+      "chem_low_temperature_raman",
+      "chem_phase_transition_pom"
+    ],
+    "excluded_experiments": [],
+    "note": "Z3 proposes the slots (a hint); only the Lean validSchedule result decides.",
+    "z3": {
+      "status": "unsat",
+      "conflicting_experiments": [
+        "bio_cryo_fluorescence_vitrified",
+        "chem_low_temperature_raman",
+        "chem_phase_transition_pom"
+      ],
+      "explanation": "the experiments ['bio_cryo_fluorescence_vitrified', 'chem_low_temperature_raman', 'chem_phase_transition_pom'] cannot all fit between the end of cooldown (5 h) and the end of the run (20 h): 15 h available, 18 h needed"
+    },
+    "lean": null,
+    "schedule_ok": false
+  }
+}
