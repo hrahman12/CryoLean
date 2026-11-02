@@ -1070,7 +1070,7 @@ def checkValue : Constraint → CapValue → Outcome
   // Each stage of a run lights up the machine parts it uses: 0 load = the sample, 1 vacuum = outer shell, pump and
   // gauges, 2 cool down = copper/gold cold plates, 3 magnet = copper coil windings, 4 measure = instrument, feedthroughs
   // and wiring, 5 hold = compressor and its hoses. The current stage's parts flash; at the stage where the run stops
-  // they pulse red/amber and the camera glides onto them (you can still orbit and zoom).
+  // they pulse red/amber (the camera stays where you put it).
   const RUNCOL = { run: 0x4f8cff, p: 0x2fa35a, f: 0xff3b3b, u: 0xffb020, s: 0xffb020 };
   const HOSE = [0x9aa7b4, 0x5d6b78];
   let runState = null, sampleM = null, parts = null, lit = [], zoom = null;
@@ -1102,14 +1102,6 @@ def checkValue : Constraint → CapValue → Outcome
     lit = (parts[st.i] || []).filter((m) => m.material && m.material.emissive);
     lit.forEach((m) => { if (m.userData.e0 === undefined) { m.userData.e0 = m.material.emissive.getHex(); m.userData.i0 = m.material.emissiveIntensity } });
     if (halo) halo.material.color.setHex(RUNCOL[st.status] || RUNCOL.run);
-    const stopped = st.status === "f" || st.status === "u" || st.status === "s";
-    if (stopped && lit.length && !(prev && prev.i === st.i && prev.status === st.status)) {
-      const bb = new THREE.Box3(); lit.forEach((m) => bb.expandByObject(m));
-      const c = bb.getCenter(new THREE.Vector3()), r = Math.max(0.25, bb.getSize(new THREE.Vector3()).length() * 0.5);
-      const dir = camera.position.clone().sub(controls.target).normalize();
-      zoom = { t0: performance.now(), fromT: controls.target.clone(), fromP: camera.position.clone(), toT: c, toP: c.clone().add(dir.multiplyScalar(r * 3.2 + (state.drawnInterior ? 2.0 : 0.6))) };
-      controls.autoRotate = false;
-    }
   }
   function runTick(t) {
     if (!runState) return;
