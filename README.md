@@ -106,8 +106,11 @@ requirement; until every requirement is ticked, Lean answers *need more informat
 where it matters (sample size → load, cryogen and temperature → cool down, wiring and optics → measure, run time → hold),
 and Lean's combined checks count under "connect and measure". The page shows the first stage that fails (✗) or stalls
 because a spec is undocumented or unconfirmed (?), names the requirement responsible, and marks later stages "not reached".
-The same run plays inside the 3D cryostat: a glowing ring moves down one level per stage, the sample frosts once
-cool-down passes, and the ring stops and pulses red or amber at the failing stage.
+In the Demos tab the same run plays inside the 3D cryostat: each stage lights the machine parts it uses, and at the
+failing stage those parts pulse red or amber while the camera zooms onto them. The *Inside* view draws only parts whose
+size is in the datasheet, to scale in millimetres with labels: the sample space (diameter x height), the bore, and the
+experiment's sample at its documented size (`scripts/export_machine_dims.py` -> `site/machine_dims.json`, 120 machines).
+Undocumented parts are not drawn.
 
 ## The command-line demonstrations (`python -m cryolean demo`)
 

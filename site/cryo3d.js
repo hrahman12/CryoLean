@@ -375,10 +375,55 @@
     indexParts(); lit = []; if (runState) { const st = runState; runState = null; runStage(st) }   // rebuilt parts pick up the current stage
   }
 
+  // ---------------------------------------------------------------- documented interior, to scale
+  // Inside view with documented dimensions: the generic internals are hidden and only datasheet parts are drawn, in
+  // millimetres to one common scale: the sample space (diameter x height), the bore, and the experiment's sample at its
+  // documented size. Each part carries a mm label. Parts without a documented dimension are not drawn.
+  function label(g, text, at, col = "#e8eef8") {
+    const c = document.createElement("canvas"), x = c.getContext("2d"); c.width = 512; c.height = 64;
+    x.font = "600 30px system-ui, sans-serif"; const w = Math.min(500, x.measureText(text).width + 24);
+    x.fillStyle = "rgba(10,16,28,.82)"; x.fillRect(0, 6, w, 52); x.fillStyle = col; x.fillText(text, 12, 42);
+    const t = new THREE.CanvasTexture(c); t.anisotropy = 4;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false, transparent: true }));
+    sp.scale.set(0.9, 0.1125, 1); sp.center.set(0, 0.5); sp.position.set(at[0], at[1], at[2]); sp.renderOrder = 9; g.add(sp); return sp;
+  }
+  function interior(g, at, det) {
+    const D = det.dims || {}, smp = det.sample || {};
+    const spaceR = (D.space_d || D.bore_d || 0) / 2, spaceH = D.space_h || 0;
+    if (!spaceR) return false;
+    const sR = Math.max(spaceR, (smp.d || 0) / 2, Math.hypot(smp.w || 0, smp.l || 0) / 2);
+    const s = Math.min(0.36 / sR, spaceH ? 1.15 / Math.max(spaceH, smp.h || 0) : Infinity);   // scene units per mm
+    const G = new THREE.Group(); G.position.set(at[0], at[1], at[2]); g.add(G);
+    const glass = new THREE.MeshStandardMaterial({ color: 0x7cc4ff, transparent: true, opacity: 0.16, side: THREE.DoubleSide, depthWrite: false, emissive: 0x000000 });
+    const h = spaceH ? spaceH * s : 0.04;
+    const wall = new THREE.Mesh(new THREE.CylinderGeometry(spaceR * s, spaceR * s, h, 64, 1, true), glass); wall.position.y = h / 2; wall.userData.role = 0; G.add(wall);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.CylinderGeometry(spaceR * s, spaceR * s, h, 64, 1, true), 30), new THREE.LineBasicMaterial({ color: 0x9fd4ff }));
+    edge.position.y = h / 2; G.add(edge);
+    const floor = new THREE.Mesh(new THREE.CylinderGeometry(spaceR * s, spaceR * s, Math.max(0.006, 1.5 * s), 64), new THREE.MeshStandardMaterial({ color: COPPER, metalness: 0.6, roughness: 0.3, emissive: 0x000000 }));
+    floor.userData.role = 2; G.add(floor);
+    const nm = D.space_d ? "sample space" : "bore";
+    label(G, `${nm} Ø ${D.space_d || D.bore_d} mm`, [spaceR * s + 0.04, h * 0.85, 0]);
+    label(G, spaceH ? `height ${spaceH} mm` : "height not documented", [spaceR * s + 0.04, h * 0.85 - 0.13, 0]);
+    if (smp.d || smp.w) {   // the experiment's sample at its documented size (thickness only if documented)
+      const th = (smp.h || 1) * s, mt = new THREE.MeshStandardMaterial({ color: 0xffd27a, metalness: 0.2, roughness: 0.4, emissive: 0x000000 });
+      const m = smp.d ? new THREE.Mesh(new THREE.CylinderGeometry(smp.d / 2 * s, smp.d / 2 * s, th, 48), mt) : new THREE.Mesh(new THREE.BoxGeometry((smp.w || smp.l) * s, th, (smp.l || smp.w) * s), mt);
+      m.position.y = th / 2 + 0.01; m.userData.role = 0; G.add(m); sampleM = m;
+      label(G, `your sample ${smp.d ? "Ø " + smp.d : smp.w + " × " + (smp.l || smp.w)} mm${smp.h ? " × " + smp.h + " mm" : ""}`, [-(Math.max(smp.d || 0, smp.w || 0) / 2 * s) - 0.95, th + 0.06, 0], (smp.d || smp.w) > 2 * spaceR ? "#ff9a9a" : "#ffe3a3");
+    }
+    label(G, "drawn to scale from the datasheet · undocumented parts not shown", [-0.9, -0.2, 0], "#9fb0c8");
+    return true;
+  }
   function assemble(g, kind, inside, verdict, id) {
     const v = variant(id || kind);
     const inner = new THREE.Group(); g.add(inner);
     const target = BUILD[kind](inner, inside, verdict);
+    if (inside && state.detail && (state.detail.dims || {}).space_d || inside && state.detail && (state.detail.dims || {}).bore_d) {
+      inner.traverse((o) => { if (!o.isMesh || o === halo) return;
+        const big = o.geometry && o.geometry.type === "CylinderGeometry" && o.userData.c0 === WHITE && ((o.geometry.parameters || {}).radiusTop || 0) > 0.3;
+        if (!big) o.visible = false; });                                   // keep only the outer shell (ghosted)
+      if (halo) halo.visible = false;
+      state.drawnInterior = interior(inner, target, state.detail);
+    } else state.drawnInterior = false;
     // recolour shells / trims for this machine (sample + halo keep the verdict colour)
     inner.traverse((o) => { if (!o.isMesh || o === halo || !o.material || !o.material.color) return;
       const hx = o.material.color.getHex();
@@ -388,7 +433,7 @@
     const t = [target[0] * v.sx, target[1] * v.sy, target[2] * v.sx];
     inner.updateMatrixWorld(true);
     const bb = new THREE.Box3().setFromObject(inner);
-    decorate(g, v, bb);
+    if (!state.drawnInterior || !inside) decorate(g, v, bb);   // documented-interior view shows no illustrative extras
     return t;
   }
   let thumbR, thumbScene, thumbCam;
@@ -440,7 +485,8 @@
   }
   function indexParts() {
     parts = [[], [], [], [], [], []];
-    if (root) root.traverse((o) => { if (!o.isMesh || o === halo || !o.material || !o.material.emissive) return; const r = roleOf(o); if (r >= 0) parts[r].push(o); });
+    if (root) root.traverse((o) => { if (!o.isMesh || !o.visible || o === halo || !o.material || !o.material.emissive) return; const r = roleOf(o); if (r >= 0) parts[r].push(o); });
+    if (state.drawnInterior) [3, 4, 5].forEach((k) => { if (!parts[k].length) parts[k] = parts[0].slice() });
     if (!parts[3].length) parts[3] = parts[2].slice();   // no coil drawn: the field acts at the cold stage
     if (!parts[5].length) parts[5] = parts[1].slice();   // no compressor drawn: holding cold is the cryostat body
   }
@@ -460,7 +506,7 @@
       const bb = new THREE.Box3(); lit.forEach((m) => bb.expandByObject(m));
       const c = bb.getCenter(new THREE.Vector3()), r = Math.max(0.25, bb.getSize(new THREE.Vector3()).length() * 0.5);
       const dir = camera.position.clone().sub(controls.target).normalize();
-      zoom = { t0: performance.now(), fromT: controls.target.clone(), fromP: camera.position.clone(), toT: c, toP: c.clone().add(dir.multiplyScalar(r * 3.2 + 0.6)) };
+      zoom = { t0: performance.now(), fromT: controls.target.clone(), fromP: camera.position.clone(), toT: c, toP: c.clone().add(dir.multiplyScalar(r * 3.2 + (state.drawnInterior ? 2.0 : 0.6))) };
       controls.autoRotate = false;
     }
   }
@@ -478,6 +524,8 @@
 
   window.Cryo3D = {
     stage(st) { if (!renderer) return; runStage(st); },
+    detail(det) { if (!renderer) return; const k = JSON.stringify(det || null); if (k === state.detailKey) return; state.detailKey = k; state.detail = det; if (state.inside) build(); },
+    interiorDrawn() { return !!state.drawnInterior; },
     thumb,
     archetype, label: (k) => LABEL[k] || "Cryogenic apparatus",
     mount(el) { return init(el); },
