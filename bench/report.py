@@ -260,6 +260,17 @@ def results_md() -> str:
           f"{fmt(b['uncertifiable_cases_said_YES'])}, exact agreement with the truth {fmt(b['exact_agreement_with_truth'])}"
           f"/{fmt(T5['cases'])}")
     a("")
+    a("## What correct means")
+    a("")
+    a("Correct means CryoLean's answer matches the specification in `lean/CryoLean/Spec.lean`, written separately from "
+      "the checker. `verdict_accept_iff`: YES exactly when `AcceptSpec` holds; `verdict_reject_sound` / "
+      "`verdict_reject_complete`: NO exactly when `RejectSpec` holds; NEED INFO otherwise. The layers: `ValueMeets` "
+      "(one documented number meets one requirement, units checked, exact rationals) -> `SatisfiesKey` (installed and "
+      "trusted source only) -> `ReqOK` / `CoupledOK` (every mandatory line and physics relation, inside its validity "
+      "range) -> `AcceptSpec` (confirmed profile, all of the above, at least one genuine pass). `RejectSpec` mirrors it "
+      "with `ValueFails`. Correct is relative to this specification and the sourced records, not a proof that a "
+      "datasheet is true.")
+    a("")
     a("## Proved in Lean (lean/VsRegular.lean)")
     a("")
     a(f"`lake env lean VsRegular.lean` compiles {len(PROOFS['theorems'])} theorems; standard axioms only: "
@@ -346,6 +357,60 @@ def svg_industries() -> str:
                  f'<text x="{X(frac) + 5:.1f}" y="{y + 10}" class="tick">{100 * frac:.0f}%</text>')
     g.append("</svg>")
     return "".join(g)
+
+
+def spec_excerpt(start: str, stop: str) -> str:
+    """Lines of lean/CryoLean/Spec.lean from the one containing `start` up to (not including) the one containing `stop`."""
+    lines = (ROOT / "lean" / "CryoLean" / "Spec.lean").read_text(encoding="utf-8").splitlines()
+    i = next(k for k, l in enumerate(lines) if start in l)
+    j = next(k for k, l in enumerate(lines) if k > i and stop in l)
+    return "\n".join(lines[i:j]).rstrip()
+
+
+MEETS = [
+    ("pointWithin", "the operating point lies inside the documented range", "run at 4 K on a machine documented for 1.8–400 K"),
+    ("rangeWithin", "the whole required range lies inside the documented range", "sweep 5–300 K inside 1.8–400 K"),
+    ("atLeastMax", "the documented maximum reaches the requirement", "need 10 T, the magnet goes to 14 T"),
+    ("atLeastRange", "the top of the documented range reaches it", "need 300 K, the range ends at 400 K"),
+    ("atMostMin", "the documented minimum gets low enough", "need 20 mK or colder, the LD400 reaches 10 mK"),
+    ("atMostRange", "the bottom of the documented range gets low enough", "need 2 K, the range starts at 1.8 K"),
+    ("flagIs", "a yes/no feature is what the experiment needs", "optical access is present"),
+    ("countAtLeast", "there are enough of something", "need 124 RF lines, the LD400 + HDW has 168"),
+    ("countEquals", "there is exactly the required number", "exactly the number of probe arms the method uses"),
+    ("enumIn", "the category is one the experiment allows", "the cryogen is liquid nitrogen"),
+    ("setContains", "every needed item is in the documented set", "every measurement module the method needs"),
+]
+
+
+def correct_section() -> str:
+    meets = esc(spec_excerpt('documented value `v` meets', 'documented value `v` demonstrably'))
+    accept = esc(spec_excerpt("What ACCEPT is supposed to mean", "What REJECT is supposed to mean"))
+    rows = "".join(f"<tr><td><code>{esc(k)}</code></td><td>{esc(a)}</td><td>{esc(b)}</td></tr>" for k, a, b in MEETS)
+    return f"""
+<section aria-labelledby="correct">
+  <h2 id="correct">What “correct” means</h2>
+  <div class="col">
+  <p>Correct means CryoLean's answer matches a specification written separately from the checker, in <code>lean/CryoLean/Spec.lean</code>. The two share only the record lookup, the exact rational order and exact arithmetic. Lean proves the match in both directions: <code>verdict_accept_iff</code> says CryoLean answers YES exactly when <code>AcceptSpec</code> holds, <code>verdict_reject_sound</code> and <code>verdict_reject_complete</code> say it answers NO exactly when <code>RejectSpec</code> holds, and NEED INFO is everything else. The specification is built in four layers.</p>
+  <ol class="layers">
+    <li><b><code>ValueMeets</code>: one documented number meets one requirement.</b> Every numeric case carries a unit check as a premise (<code>d : m.dim = q.dim</code>), so tesla is never compared with kelvin, and the comparison is exact: <code>Q.le a b</code> is <code>a.num × b.den ≤ b.num × a.den</code> on integers.</li>
+    <li><b><code>SatisfiesKey</code>: the number counts only if it belongs to the installed configuration and has a trusted source</b> (manufacturer specification, measurement, reference data, a certified simulation, or the user's own entry). The one other way to satisfy a line is a trusted record that an option is not fitted, and only when the experiment needs that item absent. Estimates and unsourced records never count.</li>
+    <li><b><code>ReqOK</code> and <code>CoupledOK</code>: every mandatory requirement passes on some alternative key or is ruled out by a definitely false condition, and every coupled physics relation holds inside its validity range</b> (for example, wiring heat load at most the cooling power documented at a temperature no warmer than the operating point).</li>
+    <li><b><code>AcceptSpec</code>: the profile is confirmed, all of the above holds, and at least one item genuinely passes.</b> <code>RejectSpec</code> mirrors it with <code>ValueFails</code>: some mandatory item is violated by trusted evidence on every alternative.</li>
+  </ol>
+  <h3>Layer 1, as written in the specification</h3>
+  </div>
+<pre><code>{meets}</code></pre>
+  <div class="scroll"><table class="meets"><thead><tr><th>Case</th><th>Means</th><th>For example</th></tr></thead><tbody>{rows}</tbody></table></div>
+  <div class="col">
+  <p class="note"><code>ValueFails</code> has the same eleven cases with the comparison negated. A value that is unknown, has the wrong units or the wrong shape satisfies neither, so it can only ever produce NEED INFO.</p>
+  <h3>Layer 4, the definition of YES</h3>
+  </div>
+<pre><code>{accept}</code></pre>
+  <div class="col">
+  <p class="note">Correct is relative to this specification and to the sourced records. Lean does not prove that a datasheet is true or that the specification captures every physical effect.</p>
+  </div>
+</section>
+"""
 
 
 def page() -> str:
@@ -474,6 +539,13 @@ section {{ margin-top: 56px; }}
 .chart .limit {{ stroke: var(--muted); stroke-dasharray: 2 3; }}
 .chart .bar-no {{ fill: var(--no); opacity: .8; }} .chart .bar-ok {{ fill: var(--ok); }}
 table.thm {{ width: 100%; border-collapse: collapse; font-size: 13.5px; }}
+ol.layers {{ margin: 14px 0 18px; padding-left: 22px; display: grid; gap: 10px; }}
+ol.layers li {{ padding-left: 4px; }}
+ol.layers li::marker {{ font: 700 15px var(--display); color: var(--accent); }}
+table.meets {{ width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; margin: 4px 0 12px; }}
+.meets th {{ text-align: left; font: 600 12px var(--text); color: var(--muted); padding: 6px 8px; }}
+.meets td {{ border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }}
+.meets td:last-child {{ color: var(--ink-2); }}
 .thm td {{ border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }}
 .thm td:last-child {{ color: var(--muted); font: 12px var(--mono); }}
 pre {{ background: var(--code); border-radius: 8px; padding: 14px; overflow-x: auto; font: 12.5px/1.55 var(--mono); }}
@@ -578,6 +650,7 @@ a:focus-visible, button:focus-visible {{ outline: 2px solid var(--accent); outli
   </div>
 </section>
 
+{correct_section()}
 <section aria-labelledby="lean">
   <h2 id="lean">Why it has to come out this way: proved in Lean</h2>
   <div class="col">

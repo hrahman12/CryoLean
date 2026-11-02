@@ -76,6 +76,13 @@ section { margin-top: 56px; }
 .chart .limit { stroke: var(--muted); stroke-dasharray: 2 3; }
 .chart .bar-no { fill: var(--no); opacity: .8; } .chart .bar-ok { fill: var(--ok); }
 table.thm { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+ol.layers { margin: 14px 0 18px; padding-left: 22px; display: grid; gap: 10px; }
+ol.layers li { padding-left: 4px; }
+ol.layers li::marker { font: 700 15px var(--display); color: var(--accent); }
+table.meets { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; margin: 4px 0 12px; }
+.meets th { text-align: left; font: 600 12px var(--text); color: var(--muted); padding: 6px 8px; }
+.meets td { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
+.meets td:last-child { color: var(--ink-2); }
 .thm td { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
 .thm td:last-child { color: var(--muted); font: 12px var(--mono); }
 pre { background: var(--code); border-radius: 8px; padding: 14px; overflow-x: auto; font: 12.5px/1.55 var(--mono); }
@@ -190,6 +197,52 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <li><span>CryoLean certified</span><b class="ok">0</b></li>
   </ul>
   <p>CryoLean's answer matched the constructed truth in 2,750 of 2,750 cases; the best regular method matched 1,953.</p>
+  </div>
+</section>
+
+
+<section aria-labelledby="correct">
+  <h2 id="correct">What “correct” means</h2>
+  <div class="col">
+  <p>Correct means CryoLean's answer matches a specification written separately from the checker, in <code>lean/CryoLean/Spec.lean</code>. The two share only the record lookup, the exact rational order and exact arithmetic. Lean proves the match in both directions: <code>verdict_accept_iff</code> says CryoLean answers YES exactly when <code>AcceptSpec</code> holds, <code>verdict_reject_sound</code> and <code>verdict_reject_complete</code> say it answers NO exactly when <code>RejectSpec</code> holds, and NEED INFO is everything else. The specification is built in four layers.</p>
+  <ol class="layers">
+    <li><b><code>ValueMeets</code>: one documented number meets one requirement.</b> Every numeric case carries a unit check as a premise (<code>d : m.dim = q.dim</code>), so tesla is never compared with kelvin, and the comparison is exact: <code>Q.le a b</code> is <code>a.num × b.den ≤ b.num × a.den</code> on integers.</li>
+    <li><b><code>SatisfiesKey</code>: the number counts only if it belongs to the installed configuration and has a trusted source</b> (manufacturer specification, measurement, reference data, a certified simulation, or the user's own entry). The one other way to satisfy a line is a trusted record that an option is not fitted, and only when the experiment needs that item absent. Estimates and unsourced records never count.</li>
+    <li><b><code>ReqOK</code> and <code>CoupledOK</code>: every mandatory requirement passes on some alternative key or is ruled out by a definitely false condition, and every coupled physics relation holds inside its validity range</b> (for example, wiring heat load at most the cooling power documented at a temperature no warmer than the operating point).</li>
+    <li><b><code>AcceptSpec</code>: the profile is confirmed, all of the above holds, and at least one item genuinely passes.</b> <code>RejectSpec</code> mirrors it with <code>ValueFails</code>: some mandatory item is violated by trusted evidence on every alternative.</li>
+  </ol>
+  <h3>Layer 1, as written in the specification</h3>
+  </div>
+<pre><code>/-- &quot;documented value `v` meets constraint `k`&quot; -/
+inductive ValueMeets : Constraint → CapValue → Prop
+  | pointWithin {q lo hi : Quantity} (d₁ : lo.dim = q.dim) (d₂ : hi.dim = q.dim)
+      (h₁ : Q.le lo.val q.val) (h₂ : Q.le q.val hi.val) : ValueMeets (.pointWithin q) (.range lo hi)
+  | rangeWithin {rlo rhi lo hi : Quantity} (d₀ : rlo.dim = rhi.dim) (d₁ : lo.dim = rlo.dim)
+      (d₂ : hi.dim = rlo.dim) (wf : Q.le rlo.val rhi.val)
+      (h₁ : Q.le lo.val rlo.val) (h₂ : Q.le rhi.val hi.val) : ValueMeets (.rangeWithin rlo rhi) (.range lo hi)
+  | atLeastMax {q m : Quantity} (d : m.dim = q.dim) (h : Q.le q.val m.val) : ValueMeets (.atLeast q) (.max m)
+  | atLeastRange {q lo hi : Quantity} (d : hi.dim = q.dim) (h : Q.le q.val hi.val) : ValueMeets (.atLeast q) (.range lo hi)
+  | atMostMin {q m : Quantity} (d : m.dim = q.dim) (h : Q.le m.val q.val) : ValueMeets (.atMost q) (.min m)
+  | atMostRange {q lo hi : Quantity} (d : lo.dim = q.dim) (h : Q.le lo.val q.val) : ValueMeets (.atMost q) (.range lo hi)
+  | flagIs {b : Bool} : ValueMeets (.flagIs b) (.flag b)
+  | countAtLeast {n m : Nat} (h : n ≤ m) : ValueMeets (.countAtLeast n) (.count m)
+  | countEquals {n : Nat} : ValueMeets (.countEquals n) (.count n)
+  | enumIn {allowed : List String} {s : String} (h : s ∈ allowed) : ValueMeets (.enumIn allowed) (.enum s)
+  | setContains {needed xs : List String} (h : ∀ x ∈ needed, x ∈ xs) : ValueMeets (.setContains needed) (.set xs)</code></pre>
+  <div class="scroll"><table class="meets"><thead><tr><th>Case</th><th>Means</th><th>For example</th></tr></thead><tbody><tr><td><code>pointWithin</code></td><td>the operating point lies inside the documented range</td><td>run at 4 K on a machine documented for 1.8–400 K</td></tr><tr><td><code>rangeWithin</code></td><td>the whole required range lies inside the documented range</td><td>sweep 5–300 K inside 1.8–400 K</td></tr><tr><td><code>atLeastMax</code></td><td>the documented maximum reaches the requirement</td><td>need 10 T, the magnet goes to 14 T</td></tr><tr><td><code>atLeastRange</code></td><td>the top of the documented range reaches it</td><td>need 300 K, the range ends at 400 K</td></tr><tr><td><code>atMostMin</code></td><td>the documented minimum gets low enough</td><td>need 20 mK or colder, the LD400 reaches 10 mK</td></tr><tr><td><code>atMostRange</code></td><td>the bottom of the documented range gets low enough</td><td>need 2 K, the range starts at 1.8 K</td></tr><tr><td><code>flagIs</code></td><td>a yes/no feature is what the experiment needs</td><td>optical access is present</td></tr><tr><td><code>countAtLeast</code></td><td>there are enough of something</td><td>need 124 RF lines, the LD400 + HDW has 168</td></tr><tr><td><code>countEquals</code></td><td>there is exactly the required number</td><td>exactly the number of probe arms the method uses</td></tr><tr><td><code>enumIn</code></td><td>the category is one the experiment allows</td><td>the cryogen is liquid nitrogen</td></tr><tr><td><code>setContains</code></td><td>every needed item is in the documented set</td><td>every measurement module the method needs</td></tr></tbody></table></div>
+  <div class="col">
+  <p class="note"><code>ValueFails</code> has the same eleven cases with the comparison negated. A value that is unknown, has the wrong units or the wrong shape satisfies neither, so it can only ever produce NEED INFO.</p>
+  <h3>Layer 4, the definition of YES</h3>
+  </div>
+<pre><code>/-- What ACCEPT is supposed to mean. -/
+def AcceptSpec (cfg : Configuration) (e : Experiment) : Prop :=
+  e.confirmed = true ∧
+  (∀ r ∈ e.requirements, r.mandatory = true → r.applicable = true → ReqOK cfg e r) ∧
+  (∀ c ∈ e.coupled, c.mandatory = true → c.applicable = true → CoupledOK cfg e c) ∧
+  ((∃ r ∈ e.requirements, r.mandatory = true ∧ r.applicable = true ∧ ReqPasses cfg e r) ∨
+   (∃ c ∈ e.coupled, c.mandatory = true ∧ c.applicable = true ∧ CoupledPasses cfg e c))</code></pre>
+  <div class="col">
+  <p class="note">Correct is relative to this specification and to the sourced records. Lean does not prove that a datasheet is true or that the specification captures every physical effect.</p>
   </div>
 </section>
 

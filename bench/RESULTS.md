@@ -97,6 +97,10 @@ The catalog of revision `7a224f4` (Oct 31) against today's catalog, on the 284 p
 * Physics-aware script: impossible said YES 0, uncertifiable said YES 422, exact agreement with the truth 1,953/2,750
 * CryoLean: impossible said YES 0, uncertifiable said YES 0, exact agreement with the truth 2,750/2,750
 
+## What correct means
+
+Correct means CryoLean's answer matches the specification in `lean/CryoLean/Spec.lean`, written separately from the checker. `verdict_accept_iff`: YES exactly when `AcceptSpec` holds; `verdict_reject_sound` / `verdict_reject_complete`: NO exactly when `RejectSpec` holds; NEED INFO otherwise. The layers: `ValueMeets` (one documented number meets one requirement, units checked, exact rationals) -> `SatisfiesKey` (installed and trusted source only) -> `ReqOK` / `CoupledOK` (every mandatory line and physics relation, inside its validity range) -> `AcceptSpec` (confirmed profile, all of the above, at least one genuine pass). `RejectSpec` mirrors it with `ValueFails`. Correct is relative to this specification and the sourced records, not a proof that a datasheet is true.
+
 ## Proved in Lean (lean/VsRegular.lean)
 
 `lake env lean VsRegular.lean` compiles 13 theorems; standard axioms only: True.
