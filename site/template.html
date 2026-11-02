@@ -1309,7 +1309,7 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
     $("stagetag").hidden = true;
-    if (has3d) { Cryo3D.detail({ dims: MDIMS[mc.id] || null, sample: sampleMM(ex.id, liveState(ex.id)) }); Cryo3D.show(kind, VCLS[vcode], mc.id, ex); }
+    if (has3d) { Cryo3D.hiDetail(isDemo); Cryo3D.detail({ dims: MDIMS[mc.id] || null, sample: sampleMM(ex.id, liveState(ex.id)) }); Cryo3D.show(kind, VCLS[vcode], mc.id, ex); }
     renderLive(ex, mc, lv, vcode, ind);
     runIn3D();
     updateLiveFlow(ex, mc, vcode);

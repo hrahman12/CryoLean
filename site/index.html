@@ -915,6 +915,66 @@ def checkValue : Constraint → CapValue → Outcome
     indexParts(); lit = []; if (runState) { const st = runState; runState = null; runStage(st) }   // rebuilt parts pick up the current stage
   }
 
+  // ---------------------------------------------------------------- high-detail hardware (Demos tab, outside view)
+  // Illustrative hardware every real cryostat carries, fitted to this machine's main shell: top and bottom flanges with
+  // full bolt circles, KF vacuum ports with clamps, a gauge and a valve on the top plate, a finned cold head, braided
+  // helium hoses, cable looms, a nameplate and levelling feet. Brushed-steel and anodised finishes (PBR).
+  const pbr = (color, metal = 0.85, rough = 0.28, clear = 0) => new THREE.MeshPhysicalMaterial({ color, metalness: metal, roughness: rough, clearcoat: clear, clearcoatRoughness: 0.2 });
+  function hiDetail(g, inner, v) {
+    let shell = null, best = 0;
+    inner.traverse((o) => { if (o.isMesh && o.geometry && o.geometry.type === "CylinderGeometry" && o.userData.c0 === WHITE) {
+      const r = (o.geometry.parameters.radiusTop || 0) * inner.scale.x; if (r > best) { best = r; shell = o } } });
+    if (!shell) return;
+    inner.updateMatrixWorld(true);
+    const bb = new THREE.Box3().setFromObject(shell), c = bb.getCenter(new THREE.Vector3()), R = best, top = bb.max.y, bot = bb.min.y, H = top - bot;
+    const D = new THREE.Group(); g.add(D);
+    shell.material = pbr(v.shell, 0.35, 0.42, 0.6);                                        // painted, clear-coated shell
+    const steel = pbr(0xc3ccd6, 0.92, 0.22), dark = pbr(v.trim, 0.6, 0.35, 0.4), brass = pbr(0xd8b25a, 0.9, 0.25), rubber = pbr(0x1d232c, 0.1, 0.7);
+    const M = (geo, m, at, rot) => { const o = new THREE.Mesh(geo, m); o.position.set(at[0], at[1], at[2]); if (rot) o.rotation.set(rot[0], rot[1], rot[2]); o.castShadow = o.receiveShadow = true; D.add(o); return o };
+    // flanges + bolt circles (top and bottom)
+    [top - 0.012, bot + 0.012].forEach((y) => {
+      M(new THREE.CylinderGeometry(R * 1.07, R * 1.07, 0.035, 72), steel, [c.x, y, c.z]);
+      const nb = Math.max(16, Math.round(R * 44));
+      for (let i = 0; i < nb; i++) { const a = i / nb * Math.PI * 2;
+        M(new THREE.CylinderGeometry(0.011, 0.011, 0.022, 6), dark, [c.x + Math.cos(a) * R * 1.0, y + 0.025, c.z + Math.sin(a) * R * 1.0]) }
+    });
+    // stiffening bands on the shell
+    for (let k = 1; k <= 2; k++) M(new THREE.TorusGeometry(R * 1.005, 0.008, 8, 72), steel, [c.x, bot + H * k / 3, c.z], [Math.PI / 2, 0, 0]);
+    // KF ports with clamp rings, around the upper shell
+    for (let k = 0; k < 4; k++) { const a = 0.6 + k * 1.15, px = c.x + Math.cos(a) * R, pz = c.z + Math.sin(a) * R, y = top - H * (0.2 + 0.12 * (k % 2));
+      const grp = new THREE.Group(); grp.position.set(px, y, pz); grp.rotation.y = -a; D.add(grp);
+      const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.12, 24), steel); tube.rotation.z = Math.PI / 2; tube.position.x = 0.06; grp.add(tube);
+      const fl = new THREE.Mesh(new THREE.CylinderGeometry(0.048, 0.048, 0.014, 32), steel); fl.rotation.z = Math.PI / 2; fl.position.x = 0.12; grp.add(fl);
+      const clamp = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.007, 8, 32), dark); clamp.rotation.y = Math.PI / 2; clamp.position.x = 0.125; grp.add(clamp);
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.03, 0.012), dark); wing.position.set(0.125, 0.055, 0); grp.add(wing) }
+    // finned cold head on the top plate
+    const ch = new THREE.Group(); ch.position.set(c.x + R * 0.3, top + 0.02, c.z - R * 0.15); D.add(ch);
+    ch.add(Object.assign(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.1, 0.05, 32), steel), { castShadow: true }));
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.24, 32), dark); body.position.y = 0.15; ch.add(body);
+    for (let i = 0; i < 9; i++) { const fin = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.006, 32), steel); fin.position.y = 0.06 + i * 0.022; ch.add(fin) }
+    const motor = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.08, 0.1), dark); motor.position.y = 0.31; ch.add(motor);
+    [-0.035, 0.035].forEach((x) => { const n = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.05, 12), brass); n.position.set(x, 0.37, 0); ch.add(n) });
+    // braided helium hoses from the cold head down to the floor (corrugation = stacked rings)
+    [[-0.035, 0x9aa7b4], [0.035, 0xb7c1cb]].forEach(([dx, col]) => {
+      const p0 = new THREE.Vector3(ch.position.x + dx, ch.position.y + 0.4, ch.position.z), p3 = new THREE.Vector3(c.x + R * 1.6, -1.2, c.z - R * 0.4 + dx * 3);
+      const curve = new THREE.CubicBezierCurve3(p0, p0.clone().add(new THREE.Vector3(0.1, 0.35, 0)), p3.clone().add(new THREE.Vector3(0, 0.9, 0)), p3);
+      M(new THREE.TubeGeometry(curve, 80, 0.018, 10, false), pbr(col, 0.7, 0.45), [0, 0, 0]);
+      for (let t = 0.04; t < 1; t += 0.035) { const pt = curve.getPoint(t), tg = curve.getTangent(t);
+        const rg = M(new THREE.TorusGeometry(0.02, 0.004, 6, 16), steel, [pt.x, pt.y, pt.z]); rg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), tg) } });
+    // gauge + valve on the top plate
+    gauge(D, [c.x - R * 0.45, top + 0.12, c.z + R * 0.35], 0.5, v.trim); valve(D, [c.x - R * 0.1, top + 0.05, c.z + R * 0.55], v.trim);
+    // cable looms: bundles of thin wires over the top plate down the side
+    for (let k = 0; k < 6; k++) { const off = (k - 2.5) * 0.012;
+      const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(c.x - R * 0.5 + off, top + 0.03, c.z - R * 0.4), new THREE.Vector3(c.x - R * 0.9, top + 0.12, c.z - R * 0.5 + off),
+        new THREE.Vector3(c.x - R * 1.2, top - H * 0.3, c.z - R * 0.45 + off), new THREE.Vector3(c.x - R * 1.25, bot + 0.05, c.z - R * 0.4 + off)]);
+      M(new THREE.TubeGeometry(curve, 60, 0.005, 6, false), pbr([0xc0392b, 0x2e6fe0, 0xf1c40f, 0x27ae60, 0xecf0f1, 0x8e44ad][k], 0.1, 0.5), [0, 0, 0]) }
+    // nameplate + feet
+    const np = M(new THREE.BoxGeometry(0.22, 0.09, 0.006), brass, [c.x + Math.cos(-0.3) * R * 1.01, bot + H * 0.55, c.z + Math.sin(-0.3) * R * 1.01], [0, Math.PI / 2 + 0.3, 0]);
+    np.userData.hi = 1;
+    for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2 + Math.PI / 4;
+      M(new THREE.CylinderGeometry(0.04, 0.05, 0.035, 20), rubber, [c.x + Math.cos(a) * R * 0.85, bot - 0.02, c.z + Math.sin(a) * R * 0.85]) }
+  }
+
   // ---------------------------------------------------------------- documented interior, to scale
   // Inside view with documented dimensions: the generic internals are hidden and only datasheet parts are drawn, in
   // millimetres to one common scale: the sample space (diameter x height), the bore, and the experiment's sample at its
@@ -974,6 +1034,7 @@ def checkValue : Constraint → CapValue → Outcome
     inner.updateMatrixWorld(true);
     const bb = new THREE.Box3().setFromObject(inner);
     if (!state.drawnInterior || !inside) decorate(g, v, bb);   // documented-interior view shows no illustrative extras
+    if (!inside && state.hi) hiDetail(g, inner, v);
     return t;
   }
   let thumbR, thumbScene, thumbCam;
@@ -1064,6 +1125,7 @@ def checkValue : Constraint → CapValue → Outcome
 
   window.Cryo3D = {
     stage(st) { if (!renderer) return; runStage(st); },
+    hiDetail(on) { if (!renderer) return; if (!!on === !!state.hi) return; state.hi = !!on; build(); },
     detail(det) { if (!renderer) return; const k = JSON.stringify(det || null); if (k === state.detailKey) return; state.detailKey = k; state.detail = det; if (state.inside) build(); },
     interiorDrawn() { return !!state.drawnInterior; },
     thumb,
@@ -2328,7 +2390,7 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
     $("stagetag").hidden = true;
-    if (has3d) { Cryo3D.detail({ dims: MDIMS[mc.id] || null, sample: sampleMM(ex.id, liveState(ex.id)) }); Cryo3D.show(kind, VCLS[vcode], mc.id, ex); }
+    if (has3d) { Cryo3D.hiDetail(isDemo); Cryo3D.detail({ dims: MDIMS[mc.id] || null, sample: sampleMM(ex.id, liveState(ex.id)) }); Cryo3D.show(kind, VCLS[vcode], mc.id, ex); }
     renderLive(ex, mc, lv, vcode, ind);
     runIn3D();
     updateLiveFlow(ex, mc, vcode);
