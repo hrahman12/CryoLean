@@ -94,9 +94,12 @@ examples can never disagree with it. You can still switch cryostats in step 2 an
   CCS-800 is a cooler that uses no liquid nitrogen, so Lean says **not compatible**. Switch to the Thermo Fisher freezer in
   step 2 and it turns green.
 
-Below the three steps, a panel plays the check on a loop: your experiment, the machine, Lean's check, then Lanyon AI. Lanyon
-AI is an assistant that suggests fixes (another machine, a smaller number). It can be wrong, so Lean checks every idea and
-you only see the ones Lean proves.
+Below the three steps, a fluid simulation shows the check (a stable-fluids solver: the flow is advected and kept
+incompressible on a grid). Your experiment enters from the left as a blue jet and meets one gate per run stage. It turns
+green as it crosses each stage that passes (✓). A failing stage (✗) is a solid red wall, where the flow stalls and pools
+red; a stage with missing information (?) is an amber, leaky wall; stages behind the wall are greyed out as "not
+reached". During the Lanyon AI step, purple dye looks for a way past the wall. Lanyon AI suggests fixes (another machine,
+a smaller number), and a channel opens only when Lean has verified fixes. The pointer stirs the fluid.
 
 In the Live checker every value starts at 0 and every box unticked. No verdict color shows until you tick the temperature
 requirement; until every requirement is ticked, Lean answers *need more information* and the arrow into step 3 points back.

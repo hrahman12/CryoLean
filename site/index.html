@@ -1786,6 +1786,7 @@ def checkValue : Constraint → CapValue → Outcome
     const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
     if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
     const runS = runStages(ex.id, mc.id, rs, outs); lastRun = { ...runS, started, key: mc.id + "|" + ex.id };
+    window.CRYOFLOW = { started, stages: runS.used.map((x) => ({ name: x.name, out: x.out })), stop: runS.stop ? runS.used.indexOf(runS.stop) : -1, fixes: passing.length };
     if (runS.stop) { const fx = runS.stop.items.find((y) => y.w === runS.stop.out) || runS.stop.items[0]; lastRun.req = fx && fx.r ? human(fx.r.keys[0]) : "combined check" }
     const S = runS.stop, ICON = { p: "✓", f: "✗", u: "?", s: "…" };
     const why = (s) => { const x = s.items.find((y) => y.w === s.out) || s.items[0];
@@ -1860,7 +1861,7 @@ def checkValue : Constraint → CapValue → Outcome
     const cap = cur && n ? `<div class="k"><b>${esc(AV[cur[0]][0])}</b> · step ${n} of ${st.length}</div><h4>${esc(cur[1])}</h4><p>${esc(cur[2])}</p><span class="res ${cur[4]}">${esc(cur[3])}</span>`
       : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
     const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
-    return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Cymatic pattern: the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
+    return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Fluid simulation of the check: the experiment flows through each run stage; the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
       `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Lean decides every answer. Lanyon AI only suggests ideas, and Lean checks each one." : "Lean decides · Lanyon AI only suggests."}</small></div></div>`;
   }
   // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
@@ -1873,49 +1874,139 @@ def checkValue : Constraint → CapValue → Outcome
   }
   // Cymatic surface: hairline particles settle onto the nodal lines of a Chladni plate. Each actor has its own
   // vibration mode, so the pattern re-forms at every step; the pointer shakes particles loose and they settle back.
+  // Stage flow as a fluid simulation (Stam's stable fluids: semi-Lagrangian advection + pressure projection on a
+  // 120 x 60 grid). Fluid enters from the experiment (left) and meets one gate per run stage, using the real stage
+  // results (window.CRYOFLOW from renderLive): a passing gate is open, the failing gate is a solid wall (the flow stalls
+  // and curls into eddies around it), an amber gate is a leaky wall. During the Lanyon AI step purple dye probes for a
+  // way past the wall; a channel opens only when Lean has verified fixes (machines that pass), else it swirls and
+  // fades. The pointer stirs the fluid.
   const CYM = (() => {
-    const MODE = { you: [2, 5], data: [3, 7], lanyon: [5, 8], z3: [4, 9], lean: [3, 6] };
-    const N = 6000, P = new Float32Array(N * 2);
-    for (let i = 0; i < N * 2; i++) P[i] = Math.random();
-    let n = 3, m = 6, tn = 3, tm = 6, ax = 2, mx = -1, my = -1, el = null, cv = null, ctx = null, w = 0, h = 0, dpr = 1;
+    const NX = 120, NY = 60, SZ = (NX + 2) * (NY + 2), IX = (x, y) => x + (NX + 2) * y;
+    let u = new Float32Array(SZ), v = new Float32Array(SZ), u0 = new Float32Array(SZ), v0 = new Float32Array(SZ);
+    let dB = new Float32Array(SZ), dP = new Float32Array(SZ), t0 = new Float32Array(SZ), solid = new Uint8Array(SZ), leak = new Float32Array(SZ);
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const f = (x, y) => { x *= ax; return Math.cos(n * Math.PI * x) * Math.cos(m * Math.PI * y) + Math.cos(m * Math.PI * x) * Math.cos(n * Math.PI * y); };
+    let el = null, cv = null, ctx = null, w = 0, h = 0, dpr = 1, mx = -1, my = -1, pmx = -1, pmy = -1, who = "you", img = null, off = null, octx = null, geoKey = "";
     function attach() {
       const host = document.querySelector(".uni .cym");
-      if (!host) { el = null; return false; }
+      if (!host) { el = null; return false }
       if (host !== el) {
-        el = host; cv = host.querySelector("canvas"); ctx = cv.getContext("2d");
-        host.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height; });
-        host.addEventListener("pointerleave", () => { mx = my = -1; });
+        el = host; cv = host.querySelector("canvas"); ctx = cv.getContext("2d"); w = h = 0;
+        host.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width; my = (e.clientY - r.top) / r.height });
+        host.addEventListener("pointerleave", () => { mx = my = pmx = pmy = -1 });
       }
-      const mode = MODE[host.dataset.who] || MODE.you; tn = mode[0]; tm = mode[1];
+      who = host.dataset.who || "you";
       const r = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
-      if (Math.round(r.width * dpr) !== w || Math.round(r.height * dpr) !== h) { w = cv.width = Math.round(r.width * dpr); h = cv.height = Math.round(r.height * dpr); }
+      if (Math.round(r.width * dpr) !== w || Math.round(r.height * dpr) !== h) { w = cv.width = Math.round(r.width * dpr); h = cv.height = Math.round(r.height * dpr) }
+      if (!off) { off = document.createElement("canvas"); off.width = NX; off.height = NY; octx = off.getContext("2d"); img = octx.createImageData(NX, NY) }
       return w > 0 && h > 0;
     }
-    function frame() {
+    // walls: channel banks top/bottom plus the gates (solid = wall, leak = how much a leaky wall lets through)
+    function geometry(F, gx, block, open) {
+      const key = JSON.stringify([F.started, gx, block, F.stages.map((g) => g.out), open]); if (key === geoKey) return; geoKey = key;
+      solid.fill(0); leak.fill(0);
+      for (let x = 0; x <= NX + 1; x++) for (const y of [0, 1, 2, NY - 1, NY, NY + 1]) solid[IX(x, y)] = 1;
+      if (!F.started) { const x = Math.round(gx[0] * NX); for (let y = 0; y <= NY + 1; y++) solid[IX(x, y)] = 1; return }
+      F.stages.forEach((g, k) => { if (block >= 0 && k >= block) return; const x = Math.round(gx[k] * NX);
+        for (let y = 6; y < NY - 5; y += 9) for (let dy = 0; dy < 3; dy++) solid[IX(x, y + dy)] = solid[IX(x + 1, y + dy)] = 1 });   // open gate: posts
+      if (block < 0) return;
+      const x = Math.round(gx[block] * NX), amber = F.stages[block].out !== "f";
+      for (let y = 3; y < NY - 2; y++) for (let k = 0; k < 2; k++) {
+        if (open && y < NY * 0.3) continue;                                   // Lanyon's verified detour: an opening over the top
+        if (amber) leak[IX(x + k, y)] = 0.12; else solid[IX(x + k, y)] = 1;
+      }
+    }
+    function bnd(b, f) {
+      for (let y = 1; y <= NY; y++) { f[IX(0, y)] = f[IX(1, y)]; f[IX(NX + 1, y)] = f[IX(NX, y)] }   // open ends: fluid can leave either side
+      for (let x = 1; x <= NX; x++) { f[IX(x, 0)] = b === 2 ? -f[IX(x, 1)] : f[IX(x, 1)]; f[IX(x, NY + 1)] = b === 2 ? -f[IX(x, NY)] : f[IX(x, NY)] }
+      for (let k = 0; k < SZ; k++) if (solid[k]) f[k] = 0; else if (leak[k] && b) f[k] *= leak[k];
+    }
+    function advect(b, d, d0, uu, vv, dt) {
+      for (let y = 1; y <= NY; y++) for (let x = 1; x <= NX; x++) {
+        let px = x - dt * uu[IX(x, y)], py = y - dt * vv[IX(x, y)];
+        px = Math.max(0.5, Math.min(NX + 0.5, px)); py = Math.max(0.5, Math.min(NY + 0.5, py));
+        const i0 = px | 0, j0 = py | 0, s1 = px - i0, t1 = py - j0;
+        d[IX(x, y)] = (1 - s1) * ((1 - t1) * d0[IX(i0, j0)] + t1 * d0[IX(i0, j0 + 1)]) + s1 * ((1 - t1) * d0[IX(i0 + 1, j0)] + t1 * d0[IX(i0 + 1, j0 + 1)]);
+      }
+      bnd(b, d);
+    }
+    function project() {
+      const div = u0, pr = v0;
+      for (let y = 1; y <= NY; y++) for (let x = 1; x <= NX; x++) { div[IX(x, y)] = -0.5 * (u[IX(x + 1, y)] - u[IX(x - 1, y)] + v[IX(x, y + 1)] - v[IX(x, y - 1)]); pr[IX(x, y)] = 0 }
+      bnd(0, div); bnd(0, pr);
+      for (let it = 0; it < 18; it++) {
+        for (let y = 1; y <= NY; y++) for (let x = 1; x <= NX; x++) if (!solid[IX(x, y)])
+          pr[IX(x, y)] = (div[IX(x, y)] + pr[IX(x - 1, y)] + pr[IX(x + 1, y)] + pr[IX(x, y - 1)] + pr[IX(x, y + 1)]) / 4;
+        bnd(0, pr);
+      }
+      for (let y = 1; y <= NY; y++) for (let x = 1; x <= NX; x++) { u[IX(x, y)] -= 0.5 * (pr[IX(x + 1, y)] - pr[IX(x - 1, y)]); v[IX(x, y)] -= 0.5 * (pr[IX(x, y + 1)] - pr[IX(x, y - 1)]) }
+      bnd(1, u); bnd(2, v);
+    }
+    const RGB = { run: [127, 176, 255], p: [61, 220, 132], f: [255, 107, 107], u: [243, 181, 69], s: [243, 181, 69], idle: [91, 107, 133], lan: [180, 140, 255] };
+    function step(F, gx, block, lanyon) {
+      const dt = reduce ? 0.5 : 1, inflow = F.started ? 2.4 : 0.6;
+      const y0 = Math.round(NY * 0.36), y1 = Math.round(NY * 0.64);
+      for (let y = y0; y < y1; y++) { const jit = 1 + 0.25 * Math.sin(y * 0.9 + performance.now() / 300);
+        u[IX(1, y)] = u[IX(2, y)] = inflow * jit; if (((y + (performance.now() / 120 | 0)) % 6) < 3) dB[IX(2, y)] = 1 }   // the experiment's inflow, dye in stripes
+      if (lanyon && block >= 0) { const x = Math.max(2, Math.round(gx[block] * NX) - 3);                          // Lanyon probes upward along the wall
+        for (let y = Math.round(NY * 0.45); y < Math.round(NY * 0.6); y++) { dP[IX(x, y)] = Math.min(1, dP[IX(x, y)] + 0.5); v[IX(x, y)] -= 0.9 } }
+      if (mx >= 0 && pmx >= 0) { const cx = Math.round(mx * NX), cy = Math.round(my * NY);                        // stir
+        for (let y = cy - 3; y <= cy + 3; y++) for (let x = cx - 3; x <= cx + 3; x++) if (x > 0 && x <= NX && y > 0 && y <= NY) { u[IX(x, y)] += (mx - pmx) * NX * 0.6; v[IX(x, y)] += (my - pmy) * NY * 0.6 } }
+      pmx = mx; pmy = my;
+      const cu = t0;                                                              // vorticity confinement
+      for (let y = 1; y <= NY; y++) for (let x = 1; x <= NX; x++) cu[IX(x, y)] = (v[IX(x + 1, y)] - v[IX(x - 1, y)] - u[IX(x, y + 1)] + u[IX(x, y - 1)]) * 0.5;
+      for (let y = 2; y < NY; y++) for (let x = 2; x < NX; x++) { if (solid[IX(x, y)]) continue;
+        const gxv = Math.abs(cu[IX(x + 1, y)]) - Math.abs(cu[IX(x - 1, y)]), gyv = Math.abs(cu[IX(x, y + 1)]) - Math.abs(cu[IX(x, y - 1)]), len = Math.hypot(gxv, gyv) + 1e-5, c = cu[IX(x, y)] * 0.35;
+        u[IX(x, y)] += (gyv / len) * c * dt; v[IX(x, y)] -= (gxv / len) * c * dt }
+      t0.set(u); advect(1, u, t0, t0, v, dt); t0.set(v); advect(2, v, t0, u, t0, dt);
+      project();
+      t0.set(dB); advect(0, dB, t0, u, v, dt); t0.set(dP); advect(0, dP, t0, u, v, dt);
+      for (let k = 0; k < SZ; k++) { dB[k] *= 0.997; dP[k] *= (lanyon && F.fixes) ? 0.997 : 0.985; u[k] *= 0.999; v[k] *= 0.999 }
+    }
+    function frame(t) {
       if (attach() && document.visibilityState === "visible") {
-        const bend = mx >= 0 ? (mx - 0.5) * 1.6 : 0, lift = my >= 0 ? (0.5 - my) * 1.2 : 0;   // hovering bends the mode
-        n += (tn + bend - n) * 0.05; m += (tm + lift - m) * 0.05;          // glide between modes instead of snapping
-        const ink = getComputedStyle(el).color || "#e8eef8";
-        ctx.clearRect(0, 0, w, h);
-        ctx.strokeStyle = ink; ctx.globalAlpha = 0.12; ctx.lineWidth = 1;
-        ctx.strokeRect(0.5 * dpr * 2, 0.5 * dpr * 2, w - 2 * dpr, h - 2 * dpr);   // hairline plate edge
-        ctx.fillStyle = ink; ctx.globalAlpha = 1;
-        const s = Math.max(1.2, dpr * 1.2), aspect = w / h; ax = Math.max(1, aspect);
-        for (let i = 0; i < N; i++) {
-          let x = P[2 * i], y = P[2 * i + 1];
-          const v = f(x, y), e = 0.002, gx = (f(x + e, y) - v) / e, gy = (f(x, y + e) - v) / e, g2 = gx * gx + gy * gy + 1e-6;
-          const pull = Math.min(0.02, Math.abs(v) / Math.sqrt(g2)) * 0.8;   // step down |f| toward the nodal line
-          x -= Math.sign(v) * gx / Math.sqrt(g2) * pull; y -= Math.sign(v) * gy / Math.sqrt(g2) * pull;
-          let amp = (reduce ? 0.0003 : 0.0007) + Math.abs(v) * 0.002;
-          if (mx >= 0) { const dx = (x - mx) * aspect, dy = y - my, d2 = dx * dx + dy * dy; if (d2 < 0.05) amp += (0.05 - d2) * 1.4; }
-          x += (Math.random() - 0.5) * amp; y += (Math.random() - 0.5) * amp;
-          if (x < 0 || x > 1 || y < 0 || y > 1) { x = Math.random(); y = Math.random(); }
-          P[2 * i] = x; P[2 * i + 1] = y;
-          ctx.fillRect(x * w, y * h, s, s);
+        const F = window.CRYOFLOW || { started: false, stages: [], stop: -1, fixes: 0 };
+        const st = F.stages.length ? F.stages : [{ name: "check", out: "idle" }], n = st.length;
+        const gx = st.map((_, k) => 0.18 + (k + 0.5) * (0.7 / n));
+        const block = F.started ? F.stop : -1, bOut = block >= 0 ? st[block].out : null, lanyon = who === "lanyon";
+        geometry(F, gx, block, lanyon && F.fixes > 0);
+        step(F, gx, block, lanyon);
+        // dye -> pixels: colour by region (before the stop = flowing blue, at the wall = its verdict colour, past every
+        // passing gate = green), brightness by dye density; Lanyon's dye is purple
+        const D = img.data, wallX = block >= 0 ? gx[block] : 2, firstX = gx[0];
+        for (let y = 0; y < NY; y++) for (let x = 0; x < NX; x++) {
+          const k = IX(x + 1, y + 1), fx = x / NX, sp = Math.min(1, Math.hypot(u[k], v[k]) * 0.35);
+          const a = Math.min(1, dB[k] * 1.15 + sp * 0.3), b = Math.min(1, dP[k] * 1.6);
+          const c = !F.started ? RGB.idle : fx > wallX + 0.015 ? RGB.idle : (block >= 0 && fx > wallX - 0.1) ? RGB[bOut] : fx > firstX ? RGB.p : RGB.run;
+          const o = (x + y * NX) * 4, sol = solid[k];
+          if (sol) { const wall = block >= 0 && Math.abs(fx - wallX) < 0.03; const wc = wall ? RGB[bOut] : [70, 84, 104];
+            D[o] = wc[0]; D[o + 1] = wc[1]; D[o + 2] = wc[2]; D[o + 3] = wall || y > 2 && y < NY - 3 ? 255 : 120; continue }
+          D[o] = c[0] * a * (1 - b) + RGB.lan[0] * b; D[o + 1] = c[1] * a * (1 - b) + RGB.lan[1] * b; D[o + 2] = c[2] * a * (1 - b) + RGB.lan[2] * b;
+          D[o + 3] = Math.min(255, (a + b) * 235);
         }
-        ctx.globalAlpha = 1;
+        octx.putImageData(img, 0, 0);
+        ctx.clearRect(0, 0, w, h); ctx.imageSmoothingEnabled = true; ctx.drawImage(off, 0, 0, w, h);
+        if (block >= 0) { const x0 = (wallX + 0.015) * w; ctx.fillStyle = "rgba(20,28,42,.55)"; ctx.fillRect(x0, 0, w - x0, h);
+          ctx.fillStyle = "#6b7a92"; ctx.font = `600 ${Math.round(12 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "center"; ctx.fillText("not reached", (x0 + w) / 2, 0.52 * h) }
+        // legend: one colour, one meaning
+        { const L = [["#7fb0ff", "your experiment"], ["#3ddc84", "passed a stage"], ["#ff6b6b", "fails here"], ["#f3b545", "missing info"], ["#b48cff", "Lanyon idea"]];
+          ctx.font = `600 ${Math.round(10.5 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "left"; let lx = 6 * dpr, ly = 0.27 * h;
+          L.forEach(([c, t]) => { const tw = ctx.measureText(t).width + 22 * dpr; if (lx + tw > w * 0.97) { lx = 6 * dpr; ly += 14 * dpr }   // wrap onto a second row
+            ctx.fillStyle = c; ctx.beginPath(); ctx.arc(lx + 4 * dpr, ly - 4 * dpr, 4 * dpr, 0, 7); ctx.fill(); ctx.fillStyle = "#c9d4e5"; ctx.fillText(t, lx + 11 * dpr, ly); lx += tw }) }
+        // gates and labels on top
+        ctx.font = `600 ${Math.round(13 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "center";
+        st.forEach((g, k) => {
+          const x = gx[k] * w, c = !F.started ? "#5b6b85" : k < block || block < 0 ? "#3ddc84" : k === block ? ({ f: "#ff6b6b", u: "#f3b545", s: "#f3b545" })[g.out] : "#5b6b85";
+          ctx.strokeStyle = c; ctx.globalAlpha = k === block ? 0.6 + 0.4 * Math.sin(t / 180) : 0.55; ctx.lineWidth = (k === block ? 3 : 1) * dpr;
+          ctx.setLineDash(k === block && !(lanyon && F.fixes) ? [] : [4 * dpr, 4 * dpr]);
+          ctx.beginPath(); ctx.moveTo(x, 0.06 * h); ctx.lineTo(x, 0.94 * h); ctx.stroke(); ctx.setLineDash([]);
+          ctx.globalAlpha = 1; ctx.fillStyle = c;
+          const mark = !F.started ? "" : k < block || block < 0 ? "✓ " : k === block ? (g.out === "f" ? "✗ " : "? ") : "";
+          ctx.fillText(mark + g.name.replace(/^(Seal and pump the |Turn on the |Hold for the whole |Connect and )/, ""), x, 0.985 * h);
+        });
+        ctx.textAlign = "left"; ctx.fillStyle = "#9fb0c8"; ctx.fillText("experiment →", 6 * dpr, 0.985 * h);
+        ctx.textAlign = "right";
+        ctx.fillStyle = !F.started ? "#5b6b85" : block < 0 ? "#3ddc84" : lanyon && F.fixes ? "#b48cff" : bOut === "f" ? "#ff6b6b" : "#f3b545";
+        ctx.fillText(!F.started ? "tick temperature to start" : block < 0 ? "runs ✓" : lanyon ? (F.fixes ? `${F.fixes} verified fix${F.fixes > 1 ? "es" : ""} →` : "no verified fix") : bOut === "f" ? "blocked ✗" : "waiting for info ?", w - 6 * dpr, 0.1 * h);
       }
       requestAnimationFrame(frame);
     }
