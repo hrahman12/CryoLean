@@ -9,10 +9,13 @@ from .catalog import Catalog, CatalogError
 
 
 def registry(catalog: Catalog) -> dict:
+    from .visuals import _research
+    selection = _research()[3]
     industries = []
     for industry in sorted(catalog.industries.values(), key=lambda i: i["id"]):
-        experiment_ids = list(dict.fromkeys(industry.get("coverage_experiment_ids", industry.get("experiment_ids", []))))
-        configuration_ids = list(dict.fromkeys(industry.get("coverage_configuration_ids", [])))
+        featured = selection.get(industry["id"], {})
+        experiment_ids = list(dict.fromkeys(industry.get("coverage_experiment_ids", featured.get("experiment_ids", industry.get("experiment_ids", [])))))
+        configuration_ids = list(dict.fromkeys(industry.get("coverage_configuration_ids", featured.get("configuration_ids", []))))
         missing_experiments = [eid for eid in experiment_ids if eid not in catalog.experiments]
         missing_configurations = [cid for cid in configuration_ids if cid not in catalog.configurations]
         if missing_experiments or missing_configurations:

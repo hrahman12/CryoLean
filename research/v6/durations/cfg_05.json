@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "id": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+      "applies_to": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+      "status": "not_found",
+      "note": "No room-temperature-to-base cooldown time is published for the Cryogenic Wafer Prober. The Bluefors product page (snapshot b3667c5f30dc8b2b) shows cooldown curves only as images, without a number; the Pre-Installation Guide is sales-only. The only timing on the page is 'Wafer exchange time (measurement-to-measurement) | ~ 3 h', which is the load-lock wafer turnaround with the cryostat already cold, not a system cooldown. Intel's Nature 2024 paper (Neyens et al.) reports about 2 h to load and cool a 300 mm wafer on a custom Bluefors/Afore cryo-prober, which is also a wafer-load time on a custom tool, not this configuration's system cooldown. Not used."
+    },
+    {
+      "id": "bluefors_lhep22_standard",
+      "applies_to": "bluefors_lhep22_standard",
+      "status": "found",
+      "value": "30",
+      "unit": "h",
+      "value_as_printed": "30 hours",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://cdn.bluefors.com/wp-content/uploads/2024/11/15142437/Integrated-LHeP22-CPA1110-Specification-Sheet.pdf",
+      "snapshot_id": "ab7ff7e7aa5b156d",
+      "document_title": "Integrated LHeP22 Liquid Helium Plant Specification Sheet (Bluefors Cryocooler Technologies, 13 Nov 2024)",
+      "location": "page 1, 'Initial system cool down'",
+      "quote": "Initial system cool down 30 hours from initial start up to full production rate",
+      "note": "Time from initial start-up until the liquefier reaches its full production rate (>=22 L/day), i.e. its operating state. Same document as doc_bluefors_lhep22_0 in the equipment file."
+    },
+    {
+      "id": "bluefors_xldhehp_3section",
+      "applies_to": "bluefors_xldhehp_3section",
+      "status": "found",
+      "value": "16",
+      "unit": "h",
+      "value_as_printed": "<16 hours",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://bluefors.com/products/1k-systems/xldhe-high-power-system/",
+      "snapshot_id": "96531480589d3685",
+      "document_title": "XLDHe High Power System (XLDHehp) - Bluefors product page, Technical Specifications",
+      "location": "Technical Specifications table, 'Cooldown time to base temperature (empty system)' row",
+      "quote": "Cooldown time to base temperature (empty system). Optional LN2 pre-cooling loop available for faster cooldown time (<9 h with 2-section vacuum cans). | 3 x PT425-ENH and a short experimental space: <12 hours 2 x PT425-ENH and a very long experimental space: <16 hours",
+      "note": "The configuration is 2 x PT425-ENH with 3-section vacuum cans (776 mm, the 'very long experimental space'), and no LN2 pre-cooling loop, so the '<16 hours' case applies. Bluefors measured this on an empty system. A configuration with experiments mounted may take longer. Same page as doc_bluefors_xldhehp_0."
+    },
+    {
+      "id": "bruker_dnp_nmr_400_klystron_3_2mm",
+      "applies_to": "bruker_dnp_nmr_400_klystron_3_2mm",
+      "status": "not_found",
+      "note": "The Bruker LTMAS Cooling Cabinet datasheet (snapshot 06d6a3c21935c4d3) and the DNP product page give no cooldown time. The Ascend magnet is persistent and stays cold, so the relevant cooldown is the LT-MAS cabinet plus probe. The only timing found is an NHMFL facility procedure for a 600 MHz DNP system (snapshot 9026e143661b37b8, 'Instructions for cooling the LTMAS cabinet and DNP probe', 2016). It gives about 3 h total, but only until the probe's aux sensor reads about 135 K, not the 100 K operating point. It covers a different magnet and probe and is a facility procedure, not a manufacturer specification or a measurement of this configuration. Not used."
+    },
+    {
+      "id": "chart_mve_heco_815p_190_square_rack",
+      "applies_to": "chart_mve_heco_815p_190_square_rack",
+      "status": "not_found",
+      "note": "The MVE HEco 800 Series spec sheet (snapshot 082b79730940f20f) gives static hold times and a temperature test graph (lid-open test, warm-up after the LN2 supply is removed), but no numeric pull-down time from first fill to -190 C. No manufacturer manual stating an initial-fill stabilisation time for the HEco 800 series was found. A BioLife/Chart isothermal freezer start-up guide gives 2-3 days, but that is a different product line and was not used."
+    },
+    {
+      "id": "cole_parmer_spex_cg_400_standard",
+      "applies_to": "cole_parmer_spex_cg_400_standard",
+      "status": "not_applicable",
+      "note": "The CG-400 is a mill whose tub the user fills with LN2, and it has no machine cooldown to a set point. The product page only says 'Reach cryogenic temperatures in minutes' (snapshot 9a61291d5a7520c0), with 10-15 L of LN2 needed for initial cool-down and tub filling. Sample pre-cooling belongs to the run: the SPEX handbook (snapshot 50a0dc0b5988de21) says vials are immersed 'until the contents are thoroughly chilled, usually in 10-15 minutes'. That is a per-sample pre-cool step in the grinding program (run_duration), not a cooldown_time."
+    },
+    {
+      "id": "cryofab_cmsh100_vented_bath",
+      "applies_to": "cryofab_cmsh100_vented_bath",
+      "status": "not_applicable",
+      "note": "The CMSH 100 is a passive liquid-helium storage/transport dewar used as a dip bath. It has no cryocooler or cooldown process of its own: it is cold whenever it holds LHe, and the user fills it. The spec sheet (snapshot 53344155ac984fba) gives no cooldown time."
+    },
+    {
+      "id": "cryogenic_ltd_ccc_recondensing_cryostat_pt405",
+      "applies_to": "cryogenic_ltd_ccc_recondensing_cryostat_pt405",
+      "status": "not_found",
+      "note": "Neither the Cryogenic Ltd product page (snapshot 30eda85465947744) nor the flyer (snapshot 73ee9e8cc18cb621) states a cooldown time. The page gives only a liquefaction rate of 150 cc per hour into a nominal 5 L reservoir. A time derived from that (for example 5 L / 0.15 L/h) would be an estimate, not a documented value, so it was not computed. No paper reporting a measured cooldown of this cryostat was found."
+    },
+    {
+      "id": "cryogenic_ltd_cfms_9t_ivti25_vsm_transport",
+      "applies_to": "cryogenic_ltd_cfms_9t_ivti25_vsm_transport",
+      "status": "found",
+      "value": "30",
+      "unit": "h",
+      "value_as_printed": "30 hrs",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "https://www.cryogenic.co.uk/sites/default/files/product_files/cfm_10-18_specifications.pdf",
+      "snapshot_id": "0a7d9545d8850630",
+      "document_title": "Cryogen Free Measurement Systems (10-18 Tesla) Specification (Cryogenic Ltd), model CFM-9T-H3-IVTI-25 column",
+      "location": "page 1, 'Typical Cryostat specifications'",
+      "quote": "Typical magnet cool-down time 30 hrs Typical CFVTI cool-down time for standard sample probe, 300K to 1.6K 2 hours",
+      "note": "This model-specific spec sheet (doc_cryogenic_ltd_cfms_9t_0, which names CFM-9T-H3-IVTI-25) gives a typical magnet cool-down of 30 hrs. It also gives a separate typical CFVTI cool-down of 2 hours from 300 K to 1.6 K with the standard sample probe. The sheet does not say whether the two run one after the other, so they were not added together. If the VTI cools only after the magnet, reaching the 1.6 K base may take about 2 h more. The CFMS brochure v5.2 (snapshot 9bc1c96726754a98, p. 4) gives 'Cooldown time 24 – 48 hours' for the 9-18 T platform as a whole. As an upper bound, 48 h would be the conservative choice."
+    },
+    {
+      "id": "cryogenic_ltd_mcfms_qhr_5t_30mm_transport",
+      "applies_to": "cryogenic_ltd_mcfms_qhr_5t_30mm_transport",
+      "status": "found",
+      "value": "12",
+      "unit": "h",
+      "value_as_printed": "< 12 hours",
+      "evidence_status": "manufacturer_specification",
+      "source_url": "http://www.cryogenic.co.uk/sites/default/files/product_files/cryogenic_cfms_brochure_v5.2_may_2020_compressed_1.pdf",
+      "snapshot_id": "ea02cb2f70cc206f",
+      "document_title": "Cryogen-Free Measurement System (CFMS) brochure v5.2, May 2020 (Cryogenic Limited), Mini CFMS performance column",
+      "location": "page 5, performance block for the 3-7 T system (Mini CFMS)",
+      "quote": "Maximum magnetic field 3 – 7 Tesla Central field homogeneity for VSM 0.01% over 3cm x Ø 1cm cylinder at field centre Cooldown time < 12 hours",
+      "note": "In the brochure's two-column performance tables (labelled 'Standard CFMS' / 'Mini CFMS'), the 3-7 T block is the Mini CFMS. The 9-18 T Standard CFMS block lists 24-48 hours. The equipment file already maps the 2020 brochure's 3-7 T Mini CFMS to this m-CFMS 5 T configuration. The QHR m-CFMS flyer (snapshot e3e268b3bbbcf817) gives no cooldown time. This is doc_cryogenic_ltd_mcfms_qhr_2 in the equipment file."
+    },
+    {
+      "id": "cryogenics_international_ci_1600_standard",
+      "applies_to": "cryogenics_international_ci_1600_standard",
+      "status": "not_found",
+      "note": "Cryogenics International does not publish a pull-down time to -196 C for the CI-1600. The https pages fail with an SSL error, so the http versions were snapshotted: systems page 10ca426bd9d8e175, About Cryo affd3e664fe5e153. The About Cryo page says only that descent and ascent rates 'will vary based on the size system ... and the amount/type of material'. It gives the whole treatment cycle (descent + soak + ascent) as 'between 36 to 74 hours' or 'approximately 3 days'. That is a process duration (run_duration), not a cooldown_time of the machine."
+    },
+    {
+      "id": "dynavac_smallsat_tvs_2400_ln2",
+      "applies_to": "dynavac_smallsat_tvs_2400_ln2",
+      "status": "not_found",
+      "note": "The Dynavac SmallSAT TVS datasheet (SMALLSAT-TVAC/9-2026/2.0, snapshot e822940adb64488c) and product page (snapshot b1cd276c50f33553) give the LN2 platen range (-180 C to 150 C) and the base pressure (1e-6 Torr). They give no pump-down time, platen cool-down time or ramp rate. A web search found no Dynavac figure for this model."
+    }
+  ]
+}

@@ -17,7 +17,7 @@ import copy
 from datetime import datetime, timezone
 from fractions import Fraction
 
-from . import lean_runner, modifications, serialize, smt, units
+from . import outcome, lean_runner, modifications, serialize, smt, units
 from .catalog import Catalog
 from .validation import Report, validate_configuration, validate_experiment
 
@@ -156,6 +156,7 @@ def check(catalog: Catalog, experiment: dict, configuration_id: str, extra_modif
         "checked_at": _now(),
         "lean_input": {"configuration": cfg_doc, "experiment": exp_doc},
     }
+    result["outcome_card"] = outcome.card(verdict, experiment, cfg_doc, exp_doc, result["failed_requirements"], result["missing_information"])
     result["verdict_card"] = verdict_card(verdict, msg, lean, result["failed_requirements"], result["missing_information"])
     result["suggestions"] = (suggest(catalog, experiment, cfg_doc, exp_doc, lean, max_alternatives, configuration_id,
                                      extra_modifications) if suggestions else None)

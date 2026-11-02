@@ -1,0 +1,20 @@
+import {useEffect,useState} from 'react';
+
+type Verdict='REQUIREMENTS_MET'|'NEED_MORE_INFORMATION'|'DOES_NOT_MEET_REQUIREMENTS';
+type Experiment={id:string;name:string;plain_name:string};
+type Configuration={id:string;name:string;manufacturer:string};
+type Industry={id:string;name:string;experiments:Experiment[];configurations:Configuration[]};
+type Featured={counts:Record<Verdict,number>;industries:Industry[];verdicts:Record<string,{verdict:Verdict;summary:string}>};
+const order:Verdict[]=['REQUIREMENTS_MET','NEED_MORE_INFORMATION','DOES_NOT_MEET_REQUIREMENTS'];
+const labels:Record<Verdict,string>={REQUIREMENTS_MET:'Met',NEED_MORE_INFORMATION:'Need information',DOES_NOT_MEET_REQUIREMENTS:'Not met'};
+const colors:Record<Verdict,string>={REQUIREMENTS_MET:'#28a86b',NEED_MORE_INFORMATION:'#f0bb38',DOES_NOT_MEET_REQUIREMENTS:'#dc5358'};
+
+function countsFor(industry:Industry,data:Featured){const counts:Record<Verdict,number>={REQUIREMENTS_MET:0,NEED_MORE_INFORMATION:0,DOES_NOT_MEET_REQUIREMENTS:0};for(const experiment of industry.experiments)for(const configuration of industry.configurations)counts[data.verdicts[`${experiment.id}|${configuration.id}`].verdict]++;return counts;}
+function ShareBar({counts}:{counts:Record<Verdict,number>}){return <div className="industry-share" title={`Met ${counts.REQUIREMENTS_MET}/9 · Need information ${counts.NEED_MORE_INFORMATION}/9 · Not met ${counts.DOES_NOT_MEET_REQUIREMENTS}/9`}><div className="share-track">{order.map(verdict=><i key={verdict} style={{width:`${counts[verdict]/9*100}%`,background:colors[verdict]}}/>)}</div><span>{Math.round(counts.REQUIREMENTS_MET/9*100)}% met</span></div>}
+
+export function LeanVerdictHeatmap(){
+ const [data,setData]=useState<Featured|null>(null),[error,setError]=useState('');
+ useEffect(()=>{let current=true;void fetch('/research/lean-verdict-heatmap.json').then(r=>{if(!r.ok)throw new Error('Featured matrix unavailable');return r.json()}).then(value=>{if(current)setData(value.featured)}).catch(e=>{if(current)setError(e.message)});return()=>{current=false}},[]);
+ if(error)return <p role="alert">{error}</p>;if(!data)return <p role="status">Loading the saved 180-pair matrix…</p>;
+ return <section className="lean-heatmap featured-only" aria-labelledby="lean-heatmap-title"><div className="heatmap-heading"><div><span className="eyebrow">Saved Lean 4 outcomes · display only</span><h3 id="lean-heatmap-title">180 featured pairings</h3><p className="heatmap-subtitle">60 experiments × 3 machines · 20 industries · 113 met · 1 needs information · 66 not met</p></div></div><div className="featured-heatmap-sheet"><div className="heatmap-sheet-header"><span>Industry</span><span>Experiment × three machines</span><span>Verdict share</span></div>{data.industries.map(industry=>{const counts=countsFor(industry,data);return <section className="featured-heatmap-band" key={industry.id}><div className="heatmap-industry-label"><strong>{industry.name}</strong><span>{counts.REQUIREMENTS_MET}/{counts.NEED_MORE_INFORMATION}/{counts.DOES_NOT_MEET_REQUIREMENTS}</span></div><div className="heatmap-nine"><div className="heatmap-machine-head"><span>Experiment</span>{industry.configurations.map(configuration=><b title={configuration.name} key={configuration.id}>{configuration.manufacturer}</b>)}</div>{industry.experiments.map(experiment=><div className="heatmap-experiment-row" key={experiment.id}><span title={experiment.name}>{experiment.plain_name}</span>{industry.configurations.map(configuration=>{const record=data.verdicts[`${experiment.id}|${configuration.id}`];return <i key={configuration.id} title={`${experiment.name} × ${configuration.name}: ${labels[record.verdict]}. ${record.summary}`} style={{background:colors[record.verdict]}}><span className="sr-only">{labels[record.verdict]}</span></i>})}</div>)}</div><ShareBar counts={counts}/></section>})}</div><div className="heatmap-legend">{order.map(verdict=><span key={verdict}><i style={{background:colors[verdict]}}/>{labels[verdict]}</span>)}</div></section>;
+}

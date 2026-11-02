@@ -1,0 +1,18 @@
+{
+ "name": "fig1_thermal_margin_3d",
+ "title": "Cooling margin of a Joule-heated measurement over operating temperature and heat load",
+ "question": "How much documented cooling power is left (or missing) at each operating temperature and heat load, and does the Lean verdict agree with the sign of that margin?",
+ "model": "M = P_cool(T_doc) - Q with Q = I^2 R; joule_heating_vs_cooling_power passes iff M >= 0. T_doc is the highest documented, installed, non-estimate cooling-power temperature not above T_op (serialize.resolve_slots).",
+ "data": "1020 Lean checks (check_batch, 0.9 s), 3 configurations x 17 T_op x 20 Q, same grid as fig_thermal_feasibility_3d; P_cool is the rhs Lean used, asserted equal to the sourced catalog value; margin sign vs verdict inconsistencies: 0; 360 points have no usable cooling power (margin undefined). paper/data/fig1_thermal_margin_3d.json.",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Height and colour give the cooling margin P_cool(T_doc) - Q (symmetric log, linear within 1 nW), with P_cool the sourced cooling power the Lean checker used; marker shape is the Lean verdict. Circles (met) lie above the zero plane and crosses (not met) below it. Where no documented, non-estimate cooling power applies (below the lowest documented temperature; OptistatDry TLEX at 4.2-5 K, documented only as an estimate) the margin is undefined, Lean answers Need more information, and those points are drawn as triangles on the floor rather than given an invented margin.",
+ "section": "main",
+ "script": "paper/scripts/fig1_thermal_margin_3d.py",
+ "command": "python paper/scripts/fig1_thermal_margin_3d.py",
+ "files": [
+  "paper/figures/fig1_thermal_margin_3d.png",
+  "paper/figures/fig1_thermal_margin_3d.svg",
+  "paper/figures/fig1_thermal_margin_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig1_thermal_margin_3d.html"
+}

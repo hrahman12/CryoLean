@@ -10,12 +10,14 @@ checker inside CryoLeanAPI; Z3 output is returned only as suggestions that Lean 
 from __future__ import annotations
 
 import os
+import threading
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from . import config, lean_runner
@@ -26,17 +28,24 @@ app = FastAPI(title="CryoLean", description="Lean 4-verified cryostat compatibil
 app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("CRYOLEAN_CORS", "*").split(","), allow_methods=["GET", "POST"],
                    allow_headers=["*"])
 _api: CryoLeanAPI | None = None
+_init_lock = threading.Lock()
 
 
 def api() -> CryoLeanAPI:
     global _api
     if _api is None:
-        from . import db
-        dbp, seeds = config.db_path(), list((ROOT / "data").rglob("*.json"))
-        if not dbp.exists() or max(p.stat().st_mtime for p in seeds) > dbp.stat().st_mtime:
-            db.build_database()            # the JSON seeds changed since the database was built
-        _api = CryoLeanAPI()
+        with _init_lock:
+            if _api is None:
+                _api = _create_api()
     return _api
+
+
+def _create_api():
+    from . import db
+    dbp, seeds = config.db_path(), list((ROOT / "data").rglob("*.json"))
+    if not dbp.exists() or max(p.stat().st_mtime for p in seeds) > dbp.stat().st_mtime:
+        db.build_database()
+    return CryoLeanAPI()
 
 
 class Check(BaseModel):
@@ -70,6 +79,49 @@ class ApplyFix(BaseModel):
     confirmed: bool = False
 
 
+class BridgeCall(BaseModel):
+    method: str
+    args: list[Any] = []
+    receipt: str | None = None
+
+
+WEB_METHODS = frozenset({
+    "list_industries", "list_experiments", "list_equipment", "get_experiment_requirements",
+    "get_equipment_details", "get_lean_status", "get_research_coverage", "get_industry_coverage",
+    "get_verification_details", "check_compatibility", "find_compatible_equipment", "compare_equipment",
+    "get_verified_repairs", "apply_verified_repair", "match_experiment", "schedule_campaign",
+})
+
+
+@app.post("/api/bridge")
+def bridge(b: BridgeCall):
+    from . import http_receipts
+    if b.method not in WEB_METHODS or len(b.args) > 8:
+        return _env({"ok": False, "error": {"code": "invalid_input", "message": "Unsupported web operation", "verdict": None}})
+    a = api()
+    result_methods = {"get_verification_details", "get_verified_repairs", "apply_verified_repair"}
+    try:
+        if b.method == 'check_compatibility' and len(b.args)>5 and b.args[5]:
+            raise ValueError('Web checks use documented catalog configurations; inline equipment modifications are not accepted.')
+        if b.method == 'compare_equipment' and len(b.args)>1 and len(b.args[1])>20:
+            raise ValueError('Compare at most 20 configurations at a time.')
+        if b.method in result_methods and b.receipt:
+            http_receipts.restore(a, b.args[0], b.receipt)
+        # Hosted lexical matching has no external AI dependency.
+        result = getattr(a, b.method)(*b.args)
+        if result.get("ok"):
+            ids = set()
+            if b.method in result_methods and b.args:
+                ids.add(b.args[0])
+            data = result.get("data", {})
+            if isinstance(data, dict) and data.get("result_id"):
+                ids.add(data["result_id"])
+            result["receipts"] = {rid: http_receipts.issue(a, rid) for rid in ids}
+        return _env(result)
+    except (ValueError, KeyError, TypeError, IndexError) as e:
+        return _env({"ok": False, "error": {"code": "invalid_input", "message": str(e), "verdict": None}})
+
+
 def _env(r: dict) -> JSONResponse:
     """Bridge envelopes are {ok, data | error}; errors keep their code and HTTP 422 so the page can show them."""
     return JSONResponse(r, status_code=200 if r.get("ok") else 422)
@@ -81,7 +133,7 @@ def health():
     cat = api()._catalog
     return {"ok": True, "lean": st.get("data"), "lean_source_hash": lean_runner.source_hash(),
             "catalog": {"experiments": len(cat.experiments), "configurations": len(cat.configurations)},
-            "database": str(config.db_path())}
+            "transport": "real Lean subprocess and local Z3"}
 
 
 @app.post("/api/check")
@@ -141,7 +193,7 @@ def configuration(configuration_id: str):
 
 @app.get("/api/verdict-card/{result_id}")
 def verdict_card(result_id: str):
-    return _env(api().verdict_card(result_id))
+    return _env(api().get_verification_details(result_id))
 
 
 @app.post("/api/repair-demo")
@@ -152,23 +204,38 @@ def repair_demo():
     if not first.get("ok"):
         return _env(first)
     r = first["data"]
-    fixes = (r.get("suggestions") or {}).get("verified_fixes", [])
-    steps = {"initial": r, "verified_fixes": fixes, "z3_proposals": fixes, "recheck": None}
-    if fixes:
-        fx = fixes[0]   # the user "applies" the first verified fix; Lean then checks that exact configuration again
-        steps["applied"] = fx
-        steps["recheck"] = a.apply_fix("quantum_mxc_wiring_heat_budget", fx, None, None, True).get("data")
+    fixes = a.get_verified_repairs(r["result_id"])
+    if not fixes.get("ok"): return _env(fixes)
+    found = fixes["data"]["fixes"]
+    steps = {"initial": r, "verified_fixes": found, "recheck": None}
+    if found:
+        applied = a.apply_verified_repair(r["result_id"], found[0]["id"])
+        if not applied.get("ok"): return _env(applied)
+        steps["applied"] = found[0]["parameters"]
+        steps["recheck"] = applied["data"]
     return {"ok": True, "data": steps}
 
 
 @app.get("/", response_class=HTMLResponse)
 def site():
-    page = ROOT / "site" / "index.html"
+    page = ROOT / "frontend" / "dist" / "index.html"
     if not page.exists():
-        return HTMLResponse("<p>Build the site first: python scripts/export_site_data.py && python scripts/build_site.py</p>", 404)
+        return HTMLResponse("<p>Build the frontend first: npm run build</p>", 404)
     html = page.read_text(encoding="utf-8")
     # live mode: the page calls this server for real Lean checks
     return HTMLResponse('<script>window.CRYOLEAN_API = "";</script>' + html)
+
+
+if (ROOT / "frontend/dist/assets").is_dir():
+    app.mount("/assets", StaticFiles(directory=ROOT / "frontend/dist/assets"), name="assets")
+if (ROOT / "frontend/public").is_dir():
+    app.mount("/coverage", StaticFiles(directory=ROOT / "frontend/public/coverage", check_dir=False), name="coverage")
+    app.mount("/research", StaticFiles(directory=ROOT / "frontend/public/research", check_dir=False), name="research")
+
+
+@app.get('/recordings.json')
+def recordings():
+    return FileResponse(ROOT/'frontend/public/recordings.json',media_type='application/json')
 
 
 def main(argv: list[str] | None = None) -> int:

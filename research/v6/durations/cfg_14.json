@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "id": "tenney_tvac_economical_fluid_chiller",
+      "applies_to": "tenney_tvac_economical_fluid_chiller",
+      "status": "not_found",
+      "note": "Tenney TVAC brochure and product page give no cooldown/pull-down time for the platen. They give only a transition rate ('5°C per minute average over the range of -40°C to -80°C'), and computing a time from it would be an estimate. They also give a vacuum pump-down time ('ultimate vacuum within 6 hours or less'; product page: 5.0 x 10-6 Torr within four hours), which is pumping, not cooling. Vessel size is per order."
+    },
+    {
+      "id": "thermo_fisher_cryostar_nx70_standard",
+      "applies_to": "thermo_fisher_cryostar_nx70_standard",
+      "status": "found",
+      "value": "3.5",
+      "unit": "h",
+      "value_as_printed": "approximately 2 to 3.5 hours",
+      "quote": "The cooling phase will take approximately 2 to 3.5 hours depending on the set chamber temperature.",
+      "source_url": "https://ord.nycu.edu.tw/userfiles/ordch/files/20231018135651505.pdf",
+      "snapshot_id": "ffb8ab7e1ddb2e56",
+      "location": "Operator Guide 387928 Issue 10, installation/switching on (page 37)",
+      "evidence_status": "manufacturer_specification",
+      "document_title": "Thermo Scientific CryoStar NX70 Operator Guide",
+      "note": "Initial cool-down after switch-on with default -15 C blade holder/specimen head settings; the upper bound (3.5 h) is used as max."
+    },
+    {
+      "id": "thermo_fisher_vitrobot_mark_iv_standard",
+      "applies_to": "thermo_fisher_vitrobot_mark_iv_standard",
+      "status": "found",
+      "value": "30",
+      "unit": "min",
+      "value_as_printed": "some 20-30 minutes",
+      "quote": "For temperature and humidity equilibration some 20-30 minutes are required (also see test read-outs provided with the instrument).",
+      "source_url": "https://documents.thermofisher.com/TFS-Assets/MSD/manuals/vitrobot-mk-iv-user-manual-pn103261.pdf",
+      "snapshot_id": "451df2e4e46b6a08",
+      "location": "User Manual PN 103261 Rev G, General Remarks on the Operational Procedures",
+      "evidence_status": "manufacturer_specification",
+      "document_title": "Vitrobot Mark IV User Manual PN 103261",
+      "note": "Time for the climate chamber to reach its set temperature/humidity (operating condition, 4-60 C). The cryogen side (LN2 pre-cooling of the coolant container and condensing ethane) is done by the user and the manual gives no time for it, so it is not included."
+    },
+    {
+      "id": "thermo_scientific_cryomed_tscm48xv_standard",
+      "applies_to": "thermo_scientific_cryomed_tscm48xv_standard",
+      "status": "not_found",
+      "note": "TSCM48XV Technical Data Sheet Rev-B gives only freezing/warming rates (0.1-99.9 C/min, no load) and no time to reach a set point; the chamber follows the user's freezing profile. Deriving a time from the rate would be an estimate. The CryoMed brochure URL returned a security-verification page (no text)."
+    },
+    {
+      "id": "thermo_scientific_tsx60086la_standard",
+      "applies_to": "thermo_scientific_tsx60086la_standard",
+      "status": "found",
+      "value": "287",
+      "unit": "min",
+      "value_as_printed": "287 (5)",
+      "quote": "Pull down (20° C to -80° C) minutes* (hours) 307 (5) 576 (10) 287 (5) 486 (8)",
+      "source_url": "https://documents.thermofisher.com/TFS-Assets/LPD/brochures/tsx-ult-freezers-medical-device-brochure.pdf",
+      "snapshot_id": "3fe0794141ee5cc4",
+      "location": "TSX Universal Series ULT freezers - Medical Device brochure, page 5, Table A",
+      "evidence_status": "manufacturer_specification",
+      "document_title": "Thermo Scientific TSX Universal Series ULT freezers - Medical Device brochure",
+      "note": "Table A columns are TSX70086LA, TSX70086A, TSX60086LA, TSX60086A, ...; the third value (287 min, ~5 h) is TSX60086LA, pull-down 20 C to -80 C. Caveat: the brochure footnote states the data is representative performance and 'not published product specifications'."
+    },
+    {
+      "id": "thermotron_ats_320_v_ln2_standard",
+      "applies_to": "thermotron_ats_320_v_ln2_standard",
+      "status": "not_found",
+      "note": "Thermotron BC-155 brochure and the ATS-320-V model pages give load capacities and '9-point product recovery in 15 minutes or less' (recovery after basket transfer, MIL-STD-883 1010), but no pull-down time from ambient for either zone. Recovery time is not a cooldown time."
+    },
+    {
+      "id": "thermotron_fa_16_ch_5_5_standard",
+      "applies_to": "thermotron_fa_16_ch_5_5_standard",
+      "status": "not_found",
+      "note": "Thermotron BC-150 altitude-chamber brochure, the altitude-chamber page and FA-16 model pages give the temperature range (-73 to 177 C), workspace and electrical data, but no temperature pull-down time or rate."
+    },
+    {
+      "id": "theva_tapestar_xl_standard",
+      "applies_to": "theva_tapestar_xl_standard",
+      "status": "not_applicable",
+      "note": "The measurement head sits in an integrated LN2 dewar that the user fills from an LN2 supply (0.5 bar). There is no refrigerator with a cooldown cycle, and the June 2024 datasheet gives no fill or cooldown time."
+    },
+    {
+      "id": "theva_tapestar_xl_hf",
+      "applies_to": "theva_tapestar_xl_hf",
+      "status": "not_applicable",
+      "note": "Same platform as TAPESTAR XL: an integrated LN2 dewar filled by the user from an LN2 supply, with no refrigerator cooldown. The June 2024 XL-HF datasheet gives no fill or cooldown time."
+    },
+    {
+      "id": "tinius_olsen_environmental_chamber_m150_600_ln2",
+      "applies_to": "tinius_olsen_environmental_chamber_m150_600_ln2",
+      "status": "not_found",
+      "note": "The Tinius Olsen EC2368 datasheet only states 'Heating/cooling time to maximum temperature from ambient typical <80min depending on masses in chamber'. That is time to the maximum (600 C), not cooldown to -150 C with the LN2 Dewar, and no LN2 pull-down time is given on the product page."
+    },
+    {
+      "id": "tristan_g377_ngd1030",
+      "applies_to": "tristan_g377_ngd1030",
+      "status": "not_applicable",
+      "note": "Passive 7 L NGD-1030 LN2 dewar with HTS SQUID sensors, filled by the user. There is no refrigerator cooldown; the datasheet gives only the hold time (2-3 weeks) and no fill or cooldown time."
+    },
+    {
+      "id": "zwickroell_robotest_i_metals_standard",
+      "applies_to": "zwickroell_robotest_i_metals_standard",
+      "status": "not_found",
+      "note": "ZwickRoell PI 486 gives a cycle time of ≤1.5 minutes and a feeding time of ≤5 s, which are per-specimen test cycle values. It gives no time for the LN2 tempering unit to cool specimens from ambient to -180 C, and the product page has none either."
+    }
+  ]
+}

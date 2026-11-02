@@ -74,7 +74,7 @@ _u("nm", F(1, 10**9), METRE, "nanometre"); _u("cm", F(1, 100), METRE, "centimetr
 _u("kg", 1, KILOGRAM, "kilogram"); _u("g", F(1, 1000), KILOGRAM, "gram"); _u("mg", F(1, 10**6), KILOGRAM, "milligram")
 _u("ug", F(1, 10**9), KILOGRAM, "microgram")
 # time
-_u("s", 1, SECOND, "second"); _u("ms", F(1, 1000), SECOND, "millisecond"); _u("min", 60, SECOND, "minute"); _u("h", 3600, SECOND, "hour")
+_u("s", 1, SECOND, "second"); _u("ms", F(1, 1000), SECOND, "millisecond"); _u("min", 60, SECOND, "minute"); _u("h", 3600, SECOND, "hour"); _u("d", 86400, SECOND, "day")
 # current
 _u("A", 1, AMPERE, "ampere"); _u("mA", F(1, 1000), AMPERE); _u("uA", F(1, 10**6), AMPERE); _u("nA", F(1, 10**9), AMPERE)
 _u("pA", F(1, 10**12), AMPERE, "picoampere")

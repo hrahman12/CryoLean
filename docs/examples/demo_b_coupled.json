@@ -1010,9 +1010,9 @@
       "accessed": "2026-10-31"
     }
   ],
-  "fingerprint": "98e1281f18f6b4f92c13da3073ffed0748459d1ecf200ddaa5d65b5de99f5dd8",
-  "catalog_version": "1aa3dc782a4b0d6e",
-  "checked_at": "2026-11-01T06:46:47.301677+00:00",
+  "fingerprint": "3ab05f70d5fd12a9d3787478a2dd548b4a0182e6a3240c6ec2562eee56fbdb87",
+  "catalog_version": "4dcefed03f1da06d",
+  "checked_at": "2026-11-01T07:16:32.899428+00:00",
   "lean_input": {
     "configuration": {
       "id": "bluefors_ld400_hdw",
@@ -1953,9 +1953,9 @@
           "facts": [
             {
               "kind": "parameter",
-              "name": "design_margin",
-              "text": "design_margin = 3 (experimental_observation)",
-              "label": "param:design_margin"
+              "name": "n_drive_lines",
+              "text": "n_drive_lines = 58 (experimental_observation)",
+              "label": "param:n_drive_lines"
             },
             {
               "kind": "parameter",
@@ -1965,9 +1965,9 @@
             },
             {
               "kind": "parameter",
-              "name": "n_drive_lines",
-              "text": "n_drive_lines = 58 (experimental_observation)",
-              "label": "param:n_drive_lines"
+              "name": "n_output_lines",
+              "text": "n_output_lines = 8 (experimental_observation)",
+              "label": "param:n_output_lines"
             },
             {
               "kind": "parameter",
@@ -1977,9 +1977,9 @@
             },
             {
               "kind": "parameter",
-              "name": "n_output_lines",
-              "text": "n_output_lines = 8 (experimental_observation)",
-              "label": "param:n_output_lines"
+              "name": "design_margin",
+              "text": "design_margin = 3 (experimental_observation)",
+              "label": "param:design_margin"
             },
             {
               "kind": "parameter",
@@ -2009,7 +2009,7 @@
               "label": "fact:cooling_power.at_20mK.max"
             }
           ],
-          "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power cannot hold together with design_margin = 3 (experimental_observation); p_flux_dc = 50 nW (experimental_observation); n_drive_lines = 58 (experimental_observation); n_flux_lines = 50 (experimental_observation); n_output_lines = 8 (experimental_observation); q_output_line = 20 nW (experimental_observation); q_flux_line = 29 nW (experimental_observation); q_drive_line = 13 nW (experimental_observation); cooling_power.at_20mK documented as 12 µW (manufacturer_specification)"
+          "explanation": "Mixing-chamber wiring heat load (with design margin) vs cooling power cannot hold together with n_drive_lines = 58 (experimental_observation); p_flux_dc = 50 nW (experimental_observation); n_output_lines = 8 (experimental_observation); n_flux_lines = 50 (experimental_observation); design_margin = 3 (experimental_observation); q_output_line = 20 nW (experimental_observation); q_flux_line = 29 nW (experimental_observation); q_drive_line = 13 nW (experimental_observation); cooling_power.at_20mK documented as 12 µW (manufacturer_specification)"
         }
       ],
       "not_encoded": [],
@@ -2061,7 +2061,43 @@
       }
     ],
     "requirement_relaxations": [],
-    "alternatives": [],
+    "alternatives": [
+      {
+        "configuration_id": "quantum_design_oxford_proteox_lx_iso100",
+        "equipment_id": "quantum_design_oxford_proteox",
+        "name": "ProteoxLX, twin PTR, standard ISO100-2 Secondary Insert with experimental wiring, no magnet, no windows",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#1:electrical.coax_lines"
+        ],
+        "min_relative_margin": "0.4163",
+        "named_in_sources": false,
+        "documented_passes": 1,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'electrical.coax_lines'."
+      },
+      {
+        "configuration_id": "expa_cuore_documented",
+        "equipment_id": "expa_cuore",
+        "name": "CUORE TeO2 bolometer cryostat, reported 10 mK configuration — documented configuration",
+        "z3_status": "pending_information",
+        "added_options": [],
+        "z3_unknown_items": [
+          "req#1:electrical.coax_lines",
+          "coupled#0:mxc_wiring_heat_budget#0.0"
+        ],
+        "min_relative_margin": "0.5",
+        "named_in_sources": false,
+        "documented_passes": 1,
+        "hypothetical": false,
+        "lean_verdict": "NEED_MORE_INFORMATION",
+        "verified": false,
+        "lean_summary": "Need more information. The available evidence does not establish: 'electrical.coax_lines', Mixing-chamber wiring heat load (with design margin) vs cooling power."
+      }
+    ],
     "ranking_criteria": [
       "Z3 status tier: satisfiable < needs documented options < pending information",
       "fewest added optional accessories",
@@ -2071,5 +2107,5 @@
       "largest smallest relative margin over numeric requirements"
     ]
   },
-  "result_id": "res_ed51a32014b3"
+  "result_id": "res_b5b78ce0cf7a"
 }

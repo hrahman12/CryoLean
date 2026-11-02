@@ -1,0 +1,19 @@
+{
+ "name": "fig_lean_z3_performance",
+ "title": "Lean 4 and Z3 runtime vs problem size",
+ "section": "main",
+ "question": "How do verification (Lean) and solver (Z3) runtimes scale with the number of experiment x configuration pairs?",
+ "model": "Wall-clock timing (time.perf_counter) of lean_runner.check_batch, smt.evaluate, smt.rank_alternatives and scripts/build_grid.py on the same pairs.",
+ "data": "paper/data/fig_lean_z3_performance.json (catalog full_v4.db, 204 experiments x 220 configurations)",
+ "claim": "MEASURED",
+ "caption": "Measured runtime of the Lean 4 checker (decides every verdict) and Z3 (explains and ranks) against problem size on a 32-CPU machine. Medians of 5 runs (3 runs for Z3 at 1000 pairs); bars span min to max. Lean check_batch in one process: 5000 pairs in 4.83 s (0.97 ms/pair). Z3 evaluate, serial: 1000 pairs in 7.0 s (7.0 ms/pair). Full grid (44,880 pairs, scripts/build_grid.py, 24 worker processes, including serialisation and database writes): median 51 s over 3 runs. Z3 was not run on the full grid and no extrapolation is drawn.",
+ "notes": "Machine: {'cpu_count': 32, 'grid_workers': 24, 'platform': 'Windows-11-10.0.26200-SP0', 'processor': 'Intel64 Family 6 Model 183 Stepping 1, GenuineIntel', 'python': '3.12.10'}. Lean binary C:\\Users\\Rahma\\AppData\\Local\\Temp\\claude\\C--Users-Rahma-CryoLean\\e0ff960e-6e13-4d25-b7a1-50ccd6d09f12\\scratchpad\\leanbuild\\.lake\\build\\bin\\cryolean.exe, source hash a1b460f33516d78c570e478e938dd6a99992b3c4f123e5505ce1184b99390f2e.",
+ "script": "paper/scripts/fig_lean_z3_performance.py",
+ "command": "python paper/scripts/fig_lean_z3_performance.py",
+ "files": [
+  "paper/figures/fig_lean_z3_performance.png",
+  "paper/figures/fig_lean_z3_performance.svg",
+  "paper/figures/fig_lean_z3_performance.pdf"
+ ],
+ "interactive": null
+}

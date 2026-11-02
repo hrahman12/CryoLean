@@ -1,0 +1,19 @@
+{
+ "name": "fig_cross_industry_heatmap",
+ "title": "Cross-industry compatibility heatmap (full catalog)",
+ "question": "Which cryogenic configurations can run which experiments, across 20 industries?",
+ "model": "Lean 4 checker verdicts (cryolean grid table); no re-evaluation, no Z3",
+ "data": "catalog database table grid (lean_source_hash a1b460f33516d78c570e478e938dd6a99992b3c4f123e5505ce1184b99390f2e)",
+ "claim": "COMPUTED",
+ "caption": "Every cell is a verdict of the compiled Lean 4 checker for one experiment-configuration pair of the full catalog (204 experiments, 220 configurations, 44,880 stored pairs; grid built 2026-11-01T06:41:05+00:00). Rows are grouped by the experiment's industry (catalog order). The catalog assigns no industry to configurations, so columns are grouped by each configuration's home industry, defined here as the industry in which it has the most REQUIREMENTS_MET pairs (ties go to the earlier industry), with 11 configurations that meet no experiment in a final block; within a block columns are sorted by equipment family. Black lines mark industry block boundaries. Totals: 3,118 met, 11,463 need more information, 30,299 not met. Right panel: verdict shares and counts (met/need info/not met) per experiment industry.",
+ "section": "main",
+ "notes": "Column home industry is a grouping derived from Lean MET counts, not catalog data. Pairs absent from grid: 0.",
+ "script": "paper/scripts/fig_cross_industry.py",
+ "command": "python paper/scripts/fig_cross_industry.py",
+ "files": [
+  "paper/figures/fig_cross_industry_heatmap.png",
+  "paper/figures/fig_cross_industry_heatmap.svg",
+  "paper/figures/fig_cross_industry_heatmap.pdf"
+ ],
+ "interactive": null
+}

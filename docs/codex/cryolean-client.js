@@ -18,15 +18,28 @@ export class CryoLeanError extends Error {
   }
 }
 
-/** Resolves when PyWebView has injected window.pywebview.api. */
-export function ready() {
-  if (window.pywebview?.api) return Promise.resolve();
-  return new Promise((resolve) => window.addEventListener("pywebviewready", () => resolve(), { once: true }));
+const receipts = new Map();
+const apiBase = () => typeof window !== 'undefined' ? (window.CRYOLEAN_API ?? '') : '';
+/** Both transports reach the same CryoLeanAPI and compiled Lean checker. */
+export async function ready() {
+  if (window.pywebview?.api) return;
+  const response = await fetch(`${apiBase()}/api/health`, {signal: AbortSignal.timeout(10000)});
+  const status = await response.json();
+  if (!response.ok || status.ok !== true) throw new CryoLeanError({code:'bridge_unavailable',message:'The verification backend is unavailable. No verdict was produced.'});
 }
 
 async function call(method, ...args) {
-  await ready();
-  const env = await window.pywebview.api[method](...args);
+  let env;
+  if (window.pywebview?.api) env = await window.pywebview.api[method](...args);
+  else {
+    try {
+      const response = await fetch(`${apiBase()}/api/bridge`, {method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({method,args,receipt:receipts.get(args[0])??null}), signal:AbortSignal.timeout(90000)});
+      env = await response.json();
+      for (const [id,receipt] of Object.entries(env.receipts??{})) receipts.set(id,receipt);
+      while(receipts.size>40) receipts.delete(receipts.keys().next().value);
+    } catch (e) { throw new CryoLeanError({code:'bridge_unavailable',message:'The verification backend did not respond. No verdict was produced. Retry the check.'}); }
+  }
   if (!env || env.ok !== true) throw new CryoLeanError(env?.error);
   return env.data;
 }
@@ -62,6 +75,17 @@ export const registerModification = (configurationId, status, changes, descripti
  *   parameters: { name: {value: "200", unit: "uA"} }   (exact decimal strings, never floats)
  *   confirmed:  must be true after the user reviewed the requirements, otherwise NEED_MORE_INFORMATION.
  */
+/**
+ * Every check result carries `outcome_card`, the two lines to show under the verdict, built from the user's own
+ * step 1 (experiment + the values they entered) and step 2 (the chosen cryostat):
+ *   outcome_card.compatibility = {state: "compatible"|"might_be_compatible"|"not_compatible", label, detail}
+ *   outcome_card.run_time      = {state: "runs"|"might_run"|"does_not_run", label, detail, total_seconds,
+ *                                 total_display, run_seconds, cooldown_seconds, cooldown_source, needs[]}
+ * The time is cooldown + the duration the USER enters: pass parameters.run_duration (and optionally
+ * parameters.cooldown_time to override the cryostat's documented cooldown), e.g.
+ *   checkCompatibility(exp, cfg, {confirmed: true, parameters: {run_duration: {value: "6", unit: "h"}}})
+ * Units: s, min, h, d. Without run_duration, run_time.total_seconds is null and run_time.needs says what to enter.
+ */
 export const checkCompatibility = (experimentId, configurationId, opts = {}) =>
   call("check_compatibility", experimentId, configurationId, opts.parameters ?? null, opts.requirementEdits ?? null,
        opts.confirmed ?? false, opts.extraModifications ?? null, opts.suggestions ?? true);
@@ -72,6 +96,8 @@ export const compareEquipment = (experimentId, configurationIds, opts = {}) =>
   call("compare_equipment", experimentId, configurationIds, opts.parameters ?? null, opts.requirementEdits ?? null, opts.confirmed ?? true);
 /** Throws CryoLeanError(code "stale_result") if the catalog or inputs changed since the check. */
 export const getVerificationDetails = (resultId) => call("get_verification_details", resultId);
+export const getVerifiedRepairs = (resultId) => call("get_verified_repairs", resultId);
+export const applyVerifiedRepair = (resultId, repairId) => call("apply_verified_repair", resultId, repairId);
 
 // ---------------------------------------------------------------- sessions (switching cryostats)
 export const startSession = (experimentId) => call("start_session", experimentId);

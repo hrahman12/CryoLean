@@ -1,79 +1,94 @@
 {
-  "id": "expc_nasa_opus_one",
-  "manufacturer": "Quantum Opus / NASA Glenn published apparatus",
-  "model": "Opus One two-detector optical-communications characterization setup",
-  "family": "optical_detector",
-  "description": "NASA 2018 Opus One two-detector setup with external TCSPC and calibrated1550 nm input. Source-backed comparison configuration; grouping is not a suitability claim.",
-  "documents": [
+ "id": "expc_nasa_opus_one",
+ "manufacturer": "Quantum Opus / NASA Glenn published apparatus",
+ "model": "Opus One two-detector optical-communications characterization setup",
+ "family": "optical_detector",
+ "description": "NASA 2018 Opus One two-detector setup with external TCSPC and calibrated1550 nm input. Source-backed comparison configuration; grouping is not a suitability claim.",
+ "documents": [
+  {
+   "id": "doc_expc_nasa_opus_one",
+   "title": "Vyhnalek, Tedder and Nappier (2018), Performance and characterization of a modular superconducting nanowire single photon detector system for space-to-Earth optical communications links",
+   "url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf",
+   "accessed": "2026-10-31"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "expc_nasa_opus_one_2018_setup",
+   "name": "NASA 2018 Opus One two-detector setup with external TCSPC and calibrated1550 nm input",
+   "configuration_basis": "The exact published NASA test setup includes the named two-channel Opus One, external laser/attenuators/power meter, polarization controllers and TCSPC. These external instruments are asserted only for this published lab configuration, not for an unconfigured factory Opus One. Detector composition is not guessed.",
+   "capabilities": [
     {
-      "id": "doc_expc_nasa_opus_one",
-      "title": "Vyhnalek, Tedder and Nappier (2018), Performance and characterization of a modular superconducting nanowire single photon detector system for space-to-Earth optical communications links",
-      "url": "https://ntrs.nasa.gov/api/citations/20180002074/downloads/20180002074.pdf",
-      "accessed": "2026-10-31"
-    }
-  ],
-  "configurations": [
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": "2500",
+       "unit": "mK"
+      },
+      "hi": {
+       "value": "2500",
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expc_snspd_2p5k"
+     ]
+    },
     {
-      "id": "expc_nasa_opus_one_2018_setup",
-      "name": "NASA 2018 Opus One two-detector setup with external TCSPC and calibrated1550 nm input",
-      "configuration_basis": "The exact published NASA test setup includes the named two-channel Opus One, external laser/attenuators/power meter, polarization controllers and TCSPC. These external instruments are asserted only for this published lab configuration, not for an unconfigured factory Opus One. Detector composition is not guessed.",
-      "capabilities": [
-        {
-          "key": "temperature.range",
-          "value": {
-            "kind": "range",
-            "lo": {
-              "value": "2500",
-              "unit": "mK"
-            },
-            "hi": {
-              "value": "2500",
-              "unit": "mK"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expc_snspd_2p5k"
-          ]
-        },
-        {
-          "key": "module.snspd_detection",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expc_snspd_two_detector"
-          ]
-        },
-        {
-          "key": "module.photon_timing",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expc_snspd_tcspc"
-          ]
-        },
-        {
-          "key": "module.calibrated_photon_flux",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expc_snspd_calibration"
-          ]
-        }
-      ]
+     "key": "module.snspd_detection",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expc_snspd_two_detector"
+     ]
+    },
+    {
+     "key": "module.photon_timing",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expc_snspd_tcspc"
+     ]
+    },
+    {
+     "key": "module.calibrated_photon_flux",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expc_snspd_calibration"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "4",
+       "unit": "h"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "ev_v6_cool_008"
+     ]
     }
-  ]
+   ]
+  }
+ ]
 }

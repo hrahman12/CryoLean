@@ -1,109 +1,124 @@
 {
-  "id": "expc_lakeshore_cpx",
-  "manufacturer": "Lake Shore Cryotronics",
-  "model": "CPX liquid-helium split-flow probe station",
-  "family": "probe_station_flow",
-  "description": "Lake Shore CPX standard4.4–475 K split-flow probe station with included31.8 mm holder. Source-backed comparison configuration; grouping is not a suitability claim.",
-  "documents": [
+ "id": "expc_lakeshore_cpx",
+ "manufacturer": "Lake Shore Cryotronics",
+ "model": "CPX liquid-helium split-flow probe station",
+ "family": "probe_station_flow",
+ "description": "Lake Shore CPX standard4.4–475 K split-flow probe station with included31.8 mm holder. Source-backed comparison configuration; grouping is not a suitability claim.",
+ "documents": [
+  {
+   "id": "doc_expc_lakeshore_cpx",
+   "title": "Lake Shore: CPX cryogenic probe station specifications",
+   "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-cpx-cryogenic-probe-station",
+   "accessed": "2026-10-31"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "expc_lakeshore_cpx_standard",
+   "name": "Lake Shore CPX standard4.4–475 K split-flow probe station with included31.8 mm holder",
+   "configuration_basis": "Documented standard CPX cooling configuration, included sample holder and vacuum system. Up to six arms is capacity, so installed arm count remains UNKNOWN. Optional PS-LT/PS-VLT stages, high-vacuum upgrade,67 GHz probes, fibre probes and external analyzers are not asserted installed. The selected sample holder limits the supported diameter to31.8 mm.",
+   "capabilities": [
     {
-      "id": "doc_expc_lakeshore_cpx",
-      "title": "Lake Shore: CPX cryogenic probe station specifications",
-      "url": "https://www.lakeshore.com/products/categories/specification/material-characterization-products/cryogenic-probe-stations/model-cpx-cryogenic-probe-station",
-      "accessed": "2026-10-31"
-    }
-  ],
-  "configurations": [
+     "key": "temperature.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": "4400",
+       "unit": "mK"
+      },
+      "hi": {
+       "value": "475000",
+       "unit": "mK"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expc_cpx_temperature"
+     ]
+    },
     {
-      "id": "expc_lakeshore_cpx_standard",
-      "name": "Lake Shore CPX standard4.4–475 K split-flow probe station with included31.8 mm holder",
-      "configuration_basis": "Documented standard CPX cooling configuration, included sample holder and vacuum system. Up to six arms is capacity, so installed arm count remains UNKNOWN. Optional PS-LT/PS-VLT stages, high-vacuum upgrade,67 GHz probes, fibre probes and external analyzers are not asserted installed. The selected sample holder limits the supported diameter to31.8 mm.",
-      "capabilities": [
-        {
-          "key": "temperature.range",
-          "value": {
-            "kind": "range",
-            "lo": {
-              "value": "4400",
-              "unit": "mK"
-            },
-            "hi": {
-              "value": "475000",
-              "unit": "mK"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expc_cpx_temperature"
-          ]
-        },
-        {
-          "key": "module.electrical_probing",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expc_cpx_probing"
-          ]
-        },
-        {
-          "key": "sample.diameter.max",
-          "value": {
-            "kind": "max",
-            "q": {
-              "value": "31800",
-              "unit": "um"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expc_cpx_holder"
-          ]
-        },
-        {
-          "key": "vacuum.available",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expc_cpx_vacuum"
-          ]
-        },
-        {
-          "key": "electrical.probe_arms",
-          "value": {
-            "kind": "unknown"
-          },
-          "install": "unknown",
-          "evidence_status": "unknown",
-          "evidence_ids": []
-        },
-        {
-          "key": "module.semiconductor_parameter_analyzer",
-          "value": {
-            "kind": "unknown"
-          },
-          "install": "unknown",
-          "evidence_status": "unknown",
-          "evidence_ids": []
-        },
-        {
-          "key": "module.capacitance_transient_spectroscopy",
-          "value": {
-            "kind": "unknown"
-          },
-          "install": "unknown",
-          "evidence_status": "unknown",
-          "evidence_ids": []
-        }
-      ]
+     "key": "module.electrical_probing",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expc_cpx_probing"
+     ]
+    },
+    {
+     "key": "sample.diameter.max",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": "31800",
+       "unit": "um"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expc_cpx_holder"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expc_cpx_vacuum"
+     ]
+    },
+    {
+     "key": "electrical.probe_arms",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "module.semiconductor_parameter_analyzer",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "module.capacitance_transient_spectroscopy",
+     "value": {
+      "kind": "unknown"
+     },
+     "install": "unknown",
+     "evidence_status": "unknown",
+     "evidence_ids": []
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "1.25",
+       "unit": "h"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "ev_v6_cool_007"
+     ]
     }
-  ]
+   ]
+  }
+ ]
 }

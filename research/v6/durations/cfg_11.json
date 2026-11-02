@@ -1,0 +1,130 @@
+{
+ "items": [
+  {
+   "id": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "applies_to": "ortec_mobius_st_gem_streamline_cfg_sv",
+   "status": "not_found",
+   "note": "No initial detector cool-down time is stated for the MOBIUS-ST / GEM Streamline CFG-SV. The Mobius brochure (snapshot 3c63f2bd59172808) gives only LN2 holding time (7-10 days for a Streamline cryostat) and the 2-year no-refill claim; the GEM configuration guide (8f581ef570485c0a) mentions only a 'typical three day loss of use' after a warm-up of a standard cryostat, which is not a cooldown spec. Web searches found no ORTEC figure; generic HPGe cooldown advice (2-8 h) is not model-specific and was not used."
+  },
+  {
+   "id": "oxford_cryosystems_cryostream_800_standard",
+   "applies_to": "oxford_cryosystems_cryostream_800_standard",
+   "status": "found",
+   "value": "20",
+   "unit": "min",
+   "value_as_printed": "20 minutes",
+   "quote": "Cool Down Time to 100 Kelvin 20 minutes",
+   "source_url": "https://www.sfu.ca/~mpaetzel/manuals/Cryo/Cryostream_800_series.pdf",
+   "snapshot_id": "4dfb8bc9e86001d6",
+   "document_title": "800 Series Cryostream Cooler (user manual, Oxford Cryosystems Ltd, 2014)",
+   "location": "Technical data table (Cryostream coldhead)",
+   "evidence_status": "manufacturer_specification",
+   "note": "Manufacturer technical data: cool down time to 100 K (the controller's default start-up command is 'Cool to 100.0 K'). The configuration base is 80 K; no separate time to 80 K is stated, so this is the documented cooldown to the standard operating temperature."
+  },
+  {
+   "id": "oxford_instruments_helioxvt_helvt30sys",
+   "applies_to": "oxford_instruments_helioxvt_helvt30sys",
+   "status": "found",
+   "value": "2.5",
+   "unit": "h",
+   "value_as_printed": "about 2.5 hours",
+   "quote": "Note that the time needed to cool down the insert from room temperature and 0.3 K is about 2.5 hours.",
+   "source_url": "https://www.psi.ch/smus/InstrumentDollyEN/QUICK_REF_HELIOX_DOLLY_June_2017.pdf",
+   "snapshot_id": "0e65b7420654f57d",
+   "document_title": "HelioxVT quick reference for the Dolly instrument (Paul Scherrer Institut, June 2017)",
+   "location": "Initial Cooldown section",
+   "evidence_status": "experimental_observation",
+   "note": "Facility (PSI Dolly muSR instrument) user guide for its Oxford Instruments HelioxVT, not a manufacturer spec and not a peer-reviewed paper; that installation runs in a Variox VTI with a Mercury controller rather than the ITC503 of HELVT30SYS. The 2003 manufacturer product guide (doc_oxford_instruments_helioxvt_0, snapshot d6171861a022a5d4) only says the condensation and the cool down time typically require less than 1 hour, counted after the VTI has precooled the insert from 300 K to ~10 K, so it is not a room-temperature-to-base time."
+  },
+  {
+   "id": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+   "applies_to": "oxford_instruments_plasmapro_100_cobra_cryo_electrode",
+   "status": "not_found",
+   "note": "No cooldown time of the LN2-cooled wide-temperature-range electrode to -150 C is published. The ICP-RIE product page (fff4988644a3856d) and the PlasmaPro 100 brochure (plasma.oxinst.com/assets/uploads/PlasmaPro_100_6.pdf, 6246453e02570da5) give no time; the only timing found is for the separate LN2 Auto Changeover upgrade (200 C to 20 C in 40 min), which is not a cooldown to the cryo set point, so it was not used."
+  },
+  {
+   "id": "phc_mdf_dc500vx_standard",
+   "applies_to": "phc_mdf_dc500vx_standard",
+   "status": "not_found",
+   "note": "No pull-down time for the MDF-DC500VX chest freezer was found: the PHCbi global and EU product pages (c8de52373b7aab3f, 83268f0154c1a2d7) list only cooling performance (-86 C), and no DC500VX data sheet with a pull-down figure or curve could be retrieved (vitaris leaflet 404, directindustry catalogue 403). Upright TwinGuard data sheets are other models and were not used."
+  },
+  {
+   "id": "phc_mdf_du702vh_standard",
+   "applies_to": "phc_mdf_du702vh_standard",
+   "status": "found",
+   "value": "5.5",
+   "unit": "h",
+   "value_as_printed": "5.5 hours",
+   "quote": "Pull-Down Time from 20ºC Ambient Setpoint -70ºC | Setpoint -80ºC 4.5 hours | 5.5 hours",
+   "source_url": "https://www.bsilab.com/wp-content/uploads/2021/02/11559_3_PHCBI_MDF_DU702VH_technical_spec_vf.pdf",
+   "snapshot_id": "42462a01b5cd58ba",
+   "document_title": "MDF-DU702VH-PA Technical Data Sheet (PHCbi, ENERGY STAR certified upright ULT freezer; copy hosted by distributor BSI)",
+   "location": "Page 1, Performance table",
+   "evidence_status": "manufacturer_specification",
+   "note": "PHC technical data sheet for MDF-DU702VH-PA, the 220 V North-American variant of the same VIP ECO model (same 729 L volume and 870 x 600 x 1400 mm interior as the global data sheet). Pull-down from 20 C ambient to the -80 C setpoint is 5.5 h (4.5 h to -70 C). The global data sheet in the equipment file shows only a pull-down curve without a printed number. No time to -86 C is given."
+  },
+  {
+   "id": "phc_mdf_mu339hl_pe_standard",
+   "applies_to": "phc_mdf_mu339hl_pe_standard",
+   "status": "not_found",
+   "note": "No pull-down time for the MDF-MU339HL(-PE) was found: the PHC Europe product page (d204c7435235c116) lists only cooling performance (-30 C); no technical data sheet with a pull-down figure could be located (the ENERGY STAR listing renders via JavaScript; the inycom catalogue was unreachable and covers MDF-MU339, not HL)."
+  },
+  {
+   "id": "qd_oxford_proteoxmx_iso100_no_magnet",
+   "applies_to": "qd_oxford_proteoxmx_iso100_no_magnet",
+   "status": "found",
+   "value": "30",
+   "unit": "h",
+   "value_as_printed": "around 30 hours",
+   "quote": "The cooldown time from room temperature to the base temperature is around 30 hours.",
+   "source_url": "https://cisup.unipi.it/?p=5370",
+   "snapshot_id": "a9501840cb52bd32",
+   "document_title": "Cryogen-free dilution refrigerator - Proteox MX450 (CISUP, University of Pisa instrument page)",
+   "location": "Instrument description",
+   "evidence_status": "experimental_observation",
+   "note": "University facility statement for its installed Proteox MX450 (ProteoxMX, 360 mm plate, exchangeable second insert, wiring listed, no magnet mentioned); not a manufacturer specification and not a peer-reviewed paper. QD Oxford's ProteoxMX page and brochure give only sample-puck cooldowns (<8 h with the bottom loader), which do not apply to this no-loader configuration, and no full-system cooldown time."
+  },
+  {
+   "id": "qdoxford_optistatdn_v_ln2",
+   "applies_to": "qdoxford_optistatdn_v_ln2",
+   "status": "found",
+   "value": "20",
+   "unit": "min",
+   "value_as_printed": "20 mins",
+   "quote": "Cool down from ambient to 77.2 K 20 mins",
+   "source_url": "https://www.qd-oxford.com/siteDocs/Optical_Cryostats_matrix_final.pdf",
+   "snapshot_id": "c73e273061693731",
+   "document_title": "Optistats - Automated & Compact Optical Cryostats for Spectroscopy (Quantum Design Oxford specification matrix, OPTSS 0926 R5)",
+   "location": "Page 4, OptistatDN / OptistatDN-V Specifications table",
+   "evidence_status": "manufacturer_specification",
+   "note": "One value shared by the OptistatDN and OptistatDN-V columns. The product page agrees: 'System Cooldown: ~ 20 Minutes to 77 K' in the OptistatDN-V section."
+  },
+  {
+   "id": "qdoxford_optistatcf_v_helium_flow",
+   "applies_to": "qdoxford_optistatcf_v_helium_flow",
+   "status": "found",
+   "value": "10",
+   "unit": "min",
+   "value_as_printed": "~10 mins",
+   "quote": "System Cooldown: ~10 mins to 4.2 K",
+   "source_url": "https://www.qd-oxford.com/products/optistat_spectroscopy.html",
+   "snapshot_id": "295cbbaf14723ca3",
+   "document_title": "Optical cryostats for spectroscopy - Optistat (Quantum Design Oxford product page)",
+   "location": "OptistatCF-V Overview",
+   "evidence_status": "manufacturer_specification",
+   "note": "OptistatCF-V (sample in vacuum) helium-flow cooldown to 4.2 K. The specification matrix (OPTSS 0926 R5, page 5, snapshot c73e273061693731) gives 'Cool down from ambient to 4.2 K' 25 min (OptistatCF) and 10 min (CF-V). Excludes the time to set up the external LHe storage dewar and transfer line."
+  },
+  {
+   "id": "qualitest_charpy_qualichltc100_standard",
+   "applies_to": "qualitest_charpy_qualichltc100_standard",
+   "status": "not_found",
+   "note": "Qualitest's specification (c933174d0b24c576) gives only staged cooling speeds at 25 C ambient (room temperature to 0 C: 2 C/min; 0 to -40 C: 1.5 C/min; -40 to -80 C: 1.3 C/min; -80 to -100 C: 0.8 C/min), not a pull-down time to a set point. A time could only be computed from these rates, which would be a derived estimate, so it is not reported."
+  },
+  {
+   "id": "qualitest_qualibrittle_nda_ln2_option",
+   "applies_to": "qualitest_qualibrittle_nda_ln2_option",
+   "status": "not_found",
+   "note": "The Qualitest QualiBrittle NDA specification table (8ba46dff0556ce34) lists temperature range, accuracy and striker data only; no cooling/pull-down time to -70 C (compressor) or -120 C (LN2 option) is published. The 5 min figure is the specimen soak time, not a cooldown."
+  }
+ ]
+}

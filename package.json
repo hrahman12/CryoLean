@@ -1,0 +1,15 @@
+{
+  "name": "cryolean",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "version": "2.0.0",
+  "description": "Formal Cryogenic Compatibility Verification — 3D WebGL",
+  "scripts": {
+    "build": "python scripts/export_frontend_catalog.py && python scripts/export_frontend_assets.py && python scripts/build_heatmap_view_data.py && npm --prefix frontend run build",
+    "dev": "npm --prefix frontend run dev",
+    "test": "npm --prefix frontend test",
+    "deploy:package": "npm run build && node scripts/package_vercel.mjs && python scripts/package_hosted_backend.py",
+    "deploy": "npm run deploy:package && npx --yes vercel --prebuilt --prod --yes"
+  }
+}

@@ -1,0 +1,21 @@
+export const VERDICT: { MET: 'REQUIREMENTS_MET'; NOT_MET: 'DOES_NOT_MEET_REQUIREMENTS'; NEED_INFO: 'NEED_MORE_INFORMATION' };
+export const HEADLINE: Record<string, string>;
+export class CryoLeanError extends Error { code: string; verdict: null; constructor(error: {code?: string; message?: string}); }
+export function listIndustries(query?: string | null): Promise<any>;
+export function listExperiments(industry?: string | null): Promise<any>;
+export function getExperimentRequirements(id: string): Promise<any>;
+export function listEquipment(manufacturer?: string | null, family?: string | null): Promise<any>;
+export function getEquipmentDetails(id: string): Promise<any>;
+export function matchExperiment(text: string, topK?: number): Promise<any>;
+export function checkCompatibility(experimentId: string, configurationId: string, opts?: object): Promise<any>;
+export function findCompatibleEquipment(experimentId: string, opts?: object): Promise<any>;
+export function compareEquipment(experimentId: string, ids: string[], opts?: object): Promise<any>;
+export function getVerificationDetails(id: string): Promise<any>;
+export function ready(): Promise<void>;
+export function getVerifiedRepairs(id:string):Promise<any>;
+export function applyVerifiedRepair(resultId:string,repairId:string):Promise<any>;
+export function getLeanStatus(): Promise<any>;
+export function getResearchCoverage(): Promise<any>;
+export function isVerified(result: unknown): boolean;
+export function verdictCard(result: unknown): any;
+export function checkQuestion(check: unknown): string;

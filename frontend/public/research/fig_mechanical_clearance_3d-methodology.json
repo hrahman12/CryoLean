@@ -1,0 +1,19 @@
+{
+ "name": "fig_mechanical_clearance_3d",
+ "title": "3D mechanical compatibility: sample size vs documented clearance",
+ "section": "main",
+ "question": "Does a sample of a given width/diameter and height fit the documented sample space, and how much clearance remains?",
+ "model": "Requirements sample.diameter.max >= D and sample.height.max >= H decided by the Lean checker; clearance = documented limit - requested size",
+ "data": "paper/data/fig_mechanical_clearance_3d.json; catalog sample-space capabilities (manufacturer specifications)",
+ "claim": "COMPUTED+SOURCED",
+ "caption": "Mechanical compatibility in three dimensions. A synthetic experiment family requests a sample of width/diameter D and height H (12 x 12 grid; user_entered requirements sample.diameter.max >= D and sample.height.max >= H). Markers are verdicts of the compiled Lean 4 checker (864 checks over 6 configurations); surfaces are the binding remaining clearance min(D_max - D, H_max - H) computed from manufacturer-documented limits, zero contour in black. Lean verdicts and the sign of the sourced clearance agree on 720 of 720 documented points. Bluefors LD400 (renamed LD450) with side-loading ports (LD400sl) and High-Density Wiring in one side-loading port lists both size keys with unknown values, so every request is Need more information, never a pass. Across the catalog only 67 of 220 configurations document a numeric diameter and height limit; sample.width.max is numeric for 6 and sample.length.max for 3, so full width x length x height footprints cannot be checked for most configurations.",
+ "notes": "Diameter is the lateral limit because sample.width.max is numeric for very few configurations; the fit of a rectangular sample's diagonal in a circular bore is not modeled. The clearance surface is arithmetic on sourced values, not a verdict.",
+ "script": "paper/scripts/fig_mechanical3d.py",
+ "command": "python paper/scripts/fig_mechanical3d.py",
+ "files": [
+  "paper/figures/fig_mechanical_clearance_3d.png",
+  "paper/figures/fig_mechanical_clearance_3d.svg",
+  "paper/figures/fig_mechanical_clearance_3d.pdf"
+ ],
+ "interactive": "paper/interactive/fig_mechanical_clearance_3d.html"
+}

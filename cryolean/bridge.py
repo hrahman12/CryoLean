@@ -121,14 +121,17 @@ class CryoLeanAPI:
     # ------------------------------------------------------------------ experiments
     @_api
     def list_experiments(self, industry: str | None = None):
+        from . import visuals
         exps = [self._catalog.public(e) for e in self._catalog.experiments.values() if not industry or industry in e.get("industries", [e.get("industry")])]
-        return {"experiments": [{k: e.get(k) for k in ("id", "plain_name", "name", "industry", "industries", "description", "confirmed", "visualization", "preferred_configuration_ids")} for e in exps],
+        return {"experiments": [{**{k: e.get(k) for k in ("id", "plain_name", "name", "industry", "industries", "description", "confirmed")}, **visuals.experiment(self._catalog,e)} for e in exps],
                 "count": len(exps)}
 
     @_api
     def get_experiment_requirements(self, experiment_id: str):
         """Full prepared profile: requirements, parameters, coupled constraints, sources, missing information."""
         ex = self._catalog.public(self._catalog.get_experiment(experiment_id))
+        from . import visuals
+        ex.update(visuals.experiment(self._catalog,ex))
         ex["evidence"] = self._catalog.evidence_for(sorted({i for r in ex["requirements"] for i in r.get("evidence_ids", [])}
                                                           | {i for p in ex.get("params", []) for i in p.get("evidence_ids", [])}))
         ex["coupled_models"] = [self._catalog.coupled_models.get(c["model"]) for c in ex.get("coupled", [])]
@@ -162,15 +165,16 @@ class CryoLeanAPI:
     # ------------------------------------------------------------------ equipment
     @_api
     def list_equipment(self, manufacturer: str | None = None, family: str | None = None):
+        from . import visuals
         out = []
         for e in self._catalog.equipment.values():
             if manufacturer and manufacturer.lower() not in (e.get("manufacturer") or "").lower():
                 continue
             if family and family.lower() not in (e.get("family") or "").lower():
                 continue
-            out.append({"id": e["id"], "manufacturer": e.get("manufacturer"), "model": e.get("model"), "family": e.get("family"), "visualization": e.get("visualization"),
+            out.append({"id": e["id"], "manufacturer": e.get("manufacturer"), "model": e.get("model"), "family": e.get("family"), "visualization": visuals.configuration(self._catalog,e["configurations"][0]) if e.get("configurations") else None,
                         "description": e.get("description"),
-                        "configurations": [{"id": c["id"], "name": c.get("name")} for c in e.get("configurations", [])]})
+                        "configurations": [{"id": c["id"], "name": c.get("name"), "visualization": visuals.configuration(self._catalog,c)} for c in e.get("configurations", [])]})
         return {"equipment": out, "count": len(out)}
 
     @_api
@@ -187,6 +191,8 @@ class CryoLeanAPI:
         out["configurations"] = []
         for c in cfgs:
             pc = cat.public(c)
+            from . import visuals
+            pc["visualization"] = visuals.configuration(cat,c)
             for cap in pc["capabilities"]:
                 cap["evidence"] = cat.evidence_for(cap.get("evidence_ids", []))
                 cap["display"] = _display_value(cap["value"])
@@ -347,6 +353,18 @@ class CryoLeanAPI:
         if now_fp != row["fingerprint"]:
             raise StaleResult("this result no longer matches the current catalog, configuration or experiment; check again")
         return doc["result"]
+
+    @_api
+    def get_verified_repairs(self, result_id: str):
+        """Only exact Lean-accepted fixes for a fresh, confirmed result; no requirement relaxation."""
+        from . import repairs
+        return repairs.suggest(self, result_id)
+
+    @_api
+    def apply_verified_repair(self, result_id: str, repair_id: str):
+        """Apply a server-held candidate and run Lean again on the identical verified inputs."""
+        from . import repairs
+        return repairs.apply(self, result_id, repair_id)
 
     # ------------------------------------------------------------------ sessions (switching equipment)
     @_api

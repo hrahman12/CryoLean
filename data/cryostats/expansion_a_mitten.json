@@ -1,79 +1,94 @@
 {
-  "id": "expa_mitten",
-  "manufacturer": "University of Michigan",
-  "model": "MITTEN mid-infrared detector cryostat, reported 2020 apparatus",
-  "family": "detector_dewar",
-  "description": "Two-stage pulse-tube cooled optical bench with internal source and Offner relay. Future filter-wheel/aperture additions in the source are not treated as installed. The 16 K figure belongs to the bench.",
-  "documents": [
+ "id": "expa_mitten",
+ "manufacturer": "University of Michigan",
+ "model": "MITTEN mid-infrared detector cryostat, reported 2020 apparatus",
+ "family": "detector_dewar",
+ "description": "Two-stage pulse-tube cooled optical bench with internal source and Offner relay. Future filter-wheel/aperture additions in the source are not treated as installed. The 16 K figure belongs to the bench.",
+ "documents": [
+  {
+   "id": "expa_mitten_doc",
+   "url": "https://arxiv.org/abs/2012.06620",
+   "title": "Bowens et al., The Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat",
+   "accessed": "2026-10-31"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "expa_mitten_documented",
+   "name": "MITTEN mid-infrared detector cryostat, reported 2020 apparatus — documented configuration",
+   "configuration_basis": "Source-specific reported apparatus/capabilities only. Facility access and present availability are not asserted.",
+   "capabilities": [
     {
-      "id": "expa_mitten_doc",
-      "url": "https://arxiv.org/abs/2012.06620",
-      "title": "Bowens et al., The Michigan Infrared Test Thermal ELT N-band (MITTEN) Cryostat",
-      "accessed": "2026-10-31"
-    }
-  ],
-  "configurations": [
+     "key": "temperature.optical_bench.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": "16",
+       "unit": "K"
+      },
+      "hi": {
+       "value": "16",
+       "unit": "K"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expa_mitten"
+     ]
+    },
     {
-      "id": "expa_mitten_documented",
-      "name": "MITTEN mid-infrared detector cryostat, reported 2020 apparatus — documented configuration",
-      "configuration_basis": "Source-specific reported apparatus/capabilities only. Facility access and present availability are not asserted.",
-      "capabilities": [
-        {
-          "key": "temperature.optical_bench.range",
-          "value": {
-            "kind": "range",
-            "lo": {
-              "value": "16",
-              "unit": "K"
-            },
-            "hi": {
-              "value": "16",
-              "unit": "K"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expa_mitten"
-          ]
-        },
-        {
-          "key": "module.mid_ir_detector_characterization",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expa_mitten"
-          ]
-        },
-        {
-          "key": "module.internal_offner_relay",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expa_mitten"
-          ]
-        },
-        {
-          "key": "vacuum.available",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expa_mitten"
-          ]
-        }
-      ]
+     "key": "module.mid_ir_detector_characterization",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expa_mitten"
+     ]
+    },
+    {
+     "key": "module.internal_offner_relay",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expa_mitten"
+     ]
+    },
+    {
+     "key": "vacuum.available",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expa_mitten"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "24",
+       "unit": "h"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "ev_v6_cool_003"
+     ]
     }
-  ]
+   ]
+  }
+ ]
 }

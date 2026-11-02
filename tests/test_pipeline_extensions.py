@@ -345,3 +345,25 @@ def test_bridge_data_completeness(api):
         for eid, v in rec["verdicts"].items():
             if v != "NEED_MORE_INFORMATION":
                 assert eid in rec["complete_for"]
+
+
+# ---------------------------------------------------------------- outcome card (steps 1 and 2 -> two lines)
+def test_outcome_card_uses_only_user_inputs(api):
+    def card(exp, cfg, params, confirmed=True):
+        r = api.check_compatibility(exp, cfg, params, None, confirmed, None, False)
+        assert r["ok"], r.get("error")
+        return r["data"]["verdict"], r["data"]["outcome_card"]
+
+    v, c = card("mat_magnetometry_vsm", "qd_dynacool_12T_vsm", None)
+    assert v == "REQUIREMENTS_MET" and c["compatibility"]["state"] == "compatible"
+    assert c["run_time"]["state"] == "runs" and c["run_time"]["total_seconds"] is None   # no duration entered -> no time
+    v, c = card("mat_magnetometry_vsm", "qd_dynacool_12T_vsm", {"run_duration": {"value": "6", "unit": "h"}})
+    assert v == "REQUIREMENTS_MET" and c["run_time"]["total_seconds"] == str(6 * 3600 + 2400)
+    v, c = card("mat_magnetometry_vsm", "qd_dynacool_12T_vsm", {"run_duration": {"value": "6", "unit": "h"}}, confirmed=False)
+    assert c["compatibility"]["state"] == "might_be_compatible" and c["run_time"]["state"] == "might_run"
+    v, c = card("mat_magnetoresistance_10T", "qd_dynacool_9T_eto_res", {"run_duration": {"value": "6", "unit": "h"}})
+    assert v == "DOES_NOT_MEET_REQUIREMENTS" and c["compatibility"]["state"] == "not_compatible"
+    assert c["run_time"]["state"] == "does_not_run" and c["run_time"]["total_seconds"] is None
+    v, c = card("mat_magnetometry_vsm", "qd_dynacool_12T_vsm",
+                {"run_duration": {"value": "90", "unit": "min"}, "cooldown_time": {"value": "2", "unit": "h"}})
+    assert c["run_time"]["cooldown_source"] == "you entered" and c["run_time"]["total_seconds"] == str(5400 + 7200)

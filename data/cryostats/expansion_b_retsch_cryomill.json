@@ -1,85 +1,100 @@
 {
-  "id": "expansion_b_retsch_cryomill",
-  "manufacturer": "RETSCH",
-  "model": "CryoMill, 50 mL steel jar and LN2 autofill",
-  "family": "cryogenic_mill",
-  "description": "Single-station continuously cooled mixer mill. A milling apparatus, not a conventional sample cryostat. Nominal LN2 temperature is a published operating observation, not arbitrary temperature control.",
-  "documents": [
+ "id": "expansion_b_retsch_cryomill",
+ "manufacturer": "RETSCH",
+ "model": "CryoMill, 50 mL steel jar and LN2 autofill",
+ "family": "cryogenic_mill",
+ "description": "Single-station continuously cooled mixer mill. A milling apparatus, not a conventional sample cryostat. Nominal LN2 temperature is a published operating observation, not arbitrary temperature control.",
+ "documents": [
+  {
+   "id": "expb_doc_retsch_cryomill",
+   "title": "CryoMill technical data",
+   "url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
+   "accessed": "2026-10-31"
+  }
+ ],
+ "configurations": [
+  {
+   "id": "expansion_b_retsch_cryomill_documented",
+   "name": "RETSCH CryoMill, 50 mL steel jar and LN2 autofill",
+   "configuration_basis": "Documented 50 mL steel jar and LN2 autofill arrangement. Jar cooling does not establish volatile-analyte recovery or grind-size performance on every matrix.",
+   "capabilities": [
     {
-      "id": "expb_doc_retsch_cryomill",
-      "title": "CryoMill technical data",
-      "url": "https://www.retsch.com/products/milling/ball-mills/mixer-mill-cryomill/",
-      "accessed": "2026-10-31"
-    }
-  ],
-  "configurations": [
+     "key": "process.cryogenic_milling",
+     "value": {
+      "kind": "flag",
+      "b": true
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expb_cryomill_spec"
+     ]
+    },
     {
-      "id": "expansion_b_retsch_cryomill_documented",
-      "name": "RETSCH CryoMill, 50 mL steel jar and LN2 autofill",
-      "configuration_basis": "Documented 50 mL steel jar and LN2 autofill arrangement. Jar cooling does not establish volatile-analyte recovery or grind-size performance on every matrix.",
-      "capabilities": [
-        {
-          "key": "process.cryogenic_milling",
-          "value": {
-            "kind": "flag",
-            "b": true
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expb_cryomill_spec"
-          ]
-        },
-        {
-          "key": "temperature.base",
-          "value": {
-            "kind": "min",
-            "q": {
-              "value": "77.15",
-              "unit": "K"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "experimental_observation",
-          "evidence_ids": [
-            "expb_retsch_protocols"
-          ]
-        },
-        {
-          "key": "milling.frequency.range",
-          "value": {
-            "kind": "range",
-            "lo": {
-              "value": "5",
-              "unit": "Hz"
-            },
-            "hi": {
-              "value": "30",
-              "unit": "Hz"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expb_cryomill_spec"
-          ]
-        },
-        {
-          "key": "milling.jar_volume",
-          "value": {
-            "kind": "max",
-            "q": {
-              "value": "0.05",
-              "unit": "L"
-            }
-          },
-          "install": "installed",
-          "evidence_status": "manufacturer_specification",
-          "evidence_ids": [
-            "expb_cryomill_spec"
-          ]
-        }
-      ]
+     "key": "temperature.base",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "77.15",
+       "unit": "K"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "experimental_observation",
+     "evidence_ids": [
+      "expb_retsch_protocols"
+     ]
+    },
+    {
+     "key": "milling.frequency.range",
+     "value": {
+      "kind": "range",
+      "lo": {
+       "value": "5",
+       "unit": "Hz"
+      },
+      "hi": {
+       "value": "30",
+       "unit": "Hz"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expb_cryomill_spec"
+     ]
+    },
+    {
+     "key": "milling.jar_volume",
+     "value": {
+      "kind": "max",
+      "q": {
+       "value": "0.05",
+       "unit": "L"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "expb_cryomill_spec"
+     ]
+    },
+    {
+     "key": "cooldown_time.max",
+     "value": {
+      "kind": "min",
+      "q": {
+       "value": "10",
+       "unit": "min"
+      }
+     },
+     "install": "installed",
+     "evidence_status": "manufacturer_specification",
+     "evidence_ids": [
+      "ev_v6_cool_006"
+     ]
     }
-  ]
+   ]
+  }
+ ]
 }
