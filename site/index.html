@@ -1573,8 +1573,13 @@ def checkValue : Constraint → CapValue → Outcome
   // scale the 1536 x 1024 landscape stage to the window (whole stage on screen on desktops, full width on phones)
   const stage = $("stage"), vp = $("viewport");
   let stageH = 1024;
+  // the stage is exactly as tall as its last visible section (plus a small bottom margin), so no empty band remains
+  function naturalH() {
+    let bottom = 0; for (const c of stage.children) if (!c.hidden && c.offsetParent !== null) bottom = Math.max(bottom, c.offsetTop + c.offsetHeight);
+    return Math.max(1024, Math.ceil(bottom + 16));
+  }
   function fit() {
-    stage.style.height = "auto"; stageH = Math.max(1024, Math.ceil(stage.scrollHeight));
+    stageH = naturalH();
     const w = document.documentElement.clientWidth, h = window.innerHeight;
     const s = w >= 900 && h > 300 && stageH <= 1100 ? Math.min(w / 1536, h / stageH) : Math.min(w / 1536, 1);
     stage.style.height = stageH + "px";
@@ -1583,6 +1588,7 @@ def checkValue : Constraint → CapValue → Outcome
   }
   addEventListener("resize", fit); fit();
   document.querySelectorAll("details.fold").forEach((d) => d.addEventListener("toggle", fit));
+  setInterval(() => { if (Math.abs(naturalH() - stageH) > 2) fit() }, 400);   // content grew or shrank: re-fit
 
   const st = { ind: 0, exp: 0, cfg: 0 };
   try { Object.assign(st, JSON.parse(localStorage.getItem("cryolean-state") || "{}")) } catch (e) {}
