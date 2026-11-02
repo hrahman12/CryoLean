@@ -1,0 +1,247 @@
+/* CryoLean pitch decks: one visual system shared by every version.
+   Modelled on the LeanKeel pitch: 1456 x 819 px slides, dark navy, mono eyebrows, cream headlines,
+   cards with a coloured top or left bar, a small grey source line at the bottom of every slide.
+   Verdict colours: teal = requirements met, amber = need more information, pink = does not meet. */
+
+:root {
+  --bg: #060d1a;
+  --panel: #0b1730;
+  --panel-2: #0e1b35;
+  --panel-deep: #081226;
+  --line: #1c2b48;
+  --line-2: #2a3a5a;
+  --cream: #f2ede4;
+  --text: #c6d0dd;
+  --text-2: #e3e8ef;
+  --muted: #8794a8;
+  --dim: #5b6a82;
+
+  --orange: #f5a524;
+  --amber: #f5a524;
+  --purple: #b8a4ff;
+  --teal: #2dd4bf;
+  --pink: #f0609e;
+  --blue: #4c9be8;
+  --green: #22c08a;
+  --silver: #c9d2dc;
+
+  /* tinted panel backgrounds for coloured cards */
+  --tint-orange: #15110b;
+  --tint-purple: #0f1233;
+  --tint-teal: #061a1c;
+  --tint-pink: #1a0b14;
+
+  --sans: Arial, "Liberation Sans", Helvetica, sans-serif;
+  --mono: Consolas, "Liberation Mono", "Cascadia Mono", "Courier New", monospace;
+
+  --W: 1456px;
+  --H: 819px;
+  --mx: 97px;            /* left/right margin */
+}
+
+/* Designed on a 1456 x 819 canvas; printed on 1920 x 1080 (1440 x 810 pt), the LeanKeel PDF page size. */
+@page { size: 1920px 1080px; margin: 0; }
+@media print { .slide { zoom: 1.3186813; } }
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; background: var(--bg);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+body { font-family: var(--sans); color: var(--text); }
+
+/* ---------- the page ---------- */
+.slide {
+  position: relative;
+  width: var(--W); height: var(--H);
+  overflow: hidden;
+  background: var(--bg);
+  padding: 97px var(--mx) 0 var(--mx);
+  break-after: page; page-break-after: always;
+}
+.slide:last-child { break-after: auto; page-break-after: auto; }
+
+/* ---------- type ---------- */
+.eyebrow {
+  font-family: var(--mono); font-size: 17px; line-height: 21px;
+  letter-spacing: 0.17em; text-transform: uppercase;
+  color: var(--orange); margin: 0;
+}
+.headline {
+  font-family: var(--sans); font-weight: 700; color: var(--cream);
+  font-size: 44px; line-height: 1.16; letter-spacing: -0.005em;
+  margin: 22px 0 0 0;
+}
+.headline.sm { font-size: 40px; }
+.hero {
+  font-family: var(--sans); font-weight: 700; color: var(--cream);
+  font-size: 104px; line-height: 1.0; letter-spacing: -0.01em; margin: 0;
+}
+.subtitle {
+  font-family: var(--sans); font-weight: 400; color: var(--text);
+  font-size: 40px; line-height: 1.15; margin: 0;
+}
+.lead { font-size: 21px; line-height: 1.45; color: var(--text-2); margin: 0; }
+.body { font-size: 19px; line-height: 1.45; color: var(--text); margin: 0; }
+.small { font-size: 16px; line-height: 1.4; color: var(--muted); margin: 0; }
+.mono { font-family: var(--mono); }
+.b { font-weight: 700; color: var(--cream); }
+.content { margin-top: 26px; }
+
+/* colour helpers (text) */
+.c-orange, .c-amber { color: var(--orange) !important; }
+.c-purple { color: var(--purple) !important; }
+.c-teal   { color: var(--teal) !important; }
+.c-pink   { color: var(--pink) !important; }
+.c-blue   { color: var(--blue) !important; }
+.c-green  { color: var(--green) !important; }
+.c-cream  { color: var(--cream) !important; }
+.c-muted  { color: var(--muted) !important; }
+.c-silver { color: var(--silver) !important; }
+
+/* ---------- pills (title slide) ---------- */
+.pills { display: flex; flex-wrap: wrap; gap: 11px 11px; }
+.pill {
+  display: inline-block; font-family: var(--sans); font-weight: 700;
+  font-size: 17px; line-height: 33px; height: 33px; padding: 0 15px;
+  border-radius: 999px; color: #0a1220; background: var(--orange); white-space: nowrap;
+}
+.pill.orange { background: var(--orange); }
+.pill.purple { background: var(--purple); }
+.pill.teal   { background: var(--teal); }
+.pill.pink   { background: var(--pink); }
+.pill.silver { background: var(--silver); }
+.pill.ghost  { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1.5px var(--line-2); }
+
+/* ---------- cards ---------- */
+.card {
+  position: relative; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 11px;
+  padding: 22px 26px;
+}
+.card.deep { background: var(--panel-deep); }
+.card.top-orange { border-top: 5px solid var(--orange); }
+.card.top-purple { border-top: 5px solid var(--purple); }
+.card.top-teal   { border-top: 5px solid var(--teal); }
+.card.top-pink   { border-top: 5px solid var(--pink); }
+.card.top-silver { border-top: 5px solid var(--silver); }
+.card.top-blue   { border-top: 5px solid var(--blue); }
+.card.left-orange { border-left: 6px solid var(--orange); }
+.card.left-purple { border-left: 6px solid var(--purple); }
+.card.left-teal   { border-left: 6px solid var(--teal); }
+.card.left-pink   { border-left: 6px solid var(--pink); }
+.card.left-silver { border-left: 6px solid var(--silver); }
+.card.left-blue   { border-left: 6px solid var(--blue); }
+.card.tint-orange { background: var(--tint-orange); }
+.card.tint-purple { background: var(--tint-purple); }
+.card.tint-teal   { background: var(--tint-teal); }
+.card.tint-pink   { background: var(--tint-pink); }
+
+.label {
+  font-family: var(--mono); font-size: 16px; line-height: 20px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0;
+}
+.card-title { font-size: 31px; line-height: 1.15; font-weight: 700; color: var(--cream); margin: 10px 0 0 0; }
+.card-body  { font-size: 19px; line-height: 1.45; color: var(--text); margin: 10px 0 0 0; }
+
+/* big numbers */
+.num {
+  font-family: var(--mono); font-weight: 700; color: var(--cream);
+  font-size: 42px; line-height: 1.05; letter-spacing: -0.01em; margin: 0;
+}
+.num.xl { font-size: 56px; }
+.num.lg { font-size: 48px; }
+.num-label { font-size: 18px; line-height: 1.35; color: var(--text); margin: 8px 0 0 0; }
+
+/* verdict word, e.g. YES-IF in the LeanKeel deck */
+.verdict-word {
+  font-family: var(--sans); font-weight: 700; font-size: 62px; line-height: 1.0;
+  letter-spacing: -0.01em; margin: 12px 0 0 0;
+}
+.verdict-word.met   { color: var(--teal); }
+.verdict-word.info  { color: var(--amber); }
+.verdict-word.not   { color: var(--pink); }
+
+/* ---------- chart / image frames ---------- */
+.panel {
+  position: relative; background: var(--panel-deep);
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.panel > img, .panel > svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+.caption { font-size: 19px; line-height: 1.4; color: var(--text); margin: 12px 0 0 0; }
+
+/* ---------- code ---------- */
+.code {
+  font-family: var(--mono); font-size: 22px; line-height: 1.5; color: var(--cream);
+  white-space: pre; margin: 0;
+}
+.code .kw { color: var(--purple); }
+.code .ty { color: var(--teal); }
+.code .cm { color: var(--muted); }
+.code .st { color: var(--orange); }
+.code .bad { color: var(--pink); }
+.codebox {
+  background: #0d1336; border: 1px solid #262f63; border-radius: 12px; padding: 22px 26px;
+}
+
+/* ---------- tables (LeanKeel slide 6 style) ---------- */
+table.grid { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 19px; }
+table.grid th {
+  background: #141e45; color: var(--cream); font-weight: 700; text-align: center;
+  padding: 10px 12px; line-height: 1.15;
+}
+table.grid th:first-child, table.grid td:first-child { text-align: left; }
+table.grid td { padding: 10px 12px; text-align: center; color: var(--text-2); line-height: 1.15; }
+table.grid tr:nth-child(odd) td  { background: #070f1e; }
+table.grid tr:nth-child(even) td { background: #0e1636; }
+table.grid { border: 1px solid #262f63; }
+table.grid td.bad  { color: var(--pink); }
+table.grid td.good { color: var(--teal); }
+table.grid td.warn { color: var(--amber); }
+table.grid td.dim  { color: var(--muted); }
+
+/* ---------- flow line ---------- */
+.flow { font-family: var(--mono); font-size: 22px; line-height: 1.4; color: var(--cream); margin: 0; }
+
+/* ---------- numbered step rows (LeanKeel slide 14) ---------- */
+.step {
+  display: flex; align-items: center; gap: 30px;
+  background: var(--panel); border-radius: 10px; border-left: 5px solid var(--silver);
+  padding: 0 28px; height: 88px;
+}
+.step .n { font-family: var(--sans); font-weight: 700; font-size: 34px; width: 30px; color: var(--silver); }
+.step .t { font-size: 27px; font-weight: 700; color: var(--cream); line-height: 1.15; }
+.step .s { font-size: 18px; color: var(--text); line-height: 1.3; margin-top: 2px; }
+.step.orange { border-left-color: var(--orange); } .step.orange .n { color: var(--orange); }
+.step.teal   { border-left-color: var(--teal); }   .step.teal .n   { color: var(--teal); }
+.step.purple { border-left-color: var(--purple); } .step.purple .n { color: var(--purple); }
+.step.pink   { border-left-color: var(--pink); }   .step.pink .n   { color: var(--pink); }
+
+/* ---------- arrow (ask -> answer) ---------- */
+.arrow {
+  width: 73px; height: 37px; background: var(--orange);
+  clip-path: polygon(0 32%, 60% 32%, 60% 0, 100% 50%, 60% 100%, 60% 68%, 0 68%);
+}
+.arrow.purple { background: var(--purple); } .arrow.teal { background: var(--teal); }
+
+/* ---------- footer source line ---------- */
+.footer {
+  position: absolute; left: var(--mx); right: var(--mx); bottom: 46px;
+  font-family: var(--sans); font-size: 17px; line-height: 1.3; color: var(--muted); margin: 0;
+}
+.footer.mono { font-family: var(--mono); font-size: 16px; letter-spacing: 0.01em; }
+
+/* ---------- layout helpers ---------- */
+.row { display: flex; gap: 24px; }
+.col { display: flex; flex-direction: column; gap: 14px; }
+.grow { flex: 1 1 0; min-width: 0; }
+.abs { position: absolute; }
+.center { align-items: center; }
+
+/* ---------- marks ---------- */
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: middle; margin-right: 8px; }
+.dot.met { background: var(--teal); } .dot.info { background: var(--amber); } .dot.not { background: var(--pink); }
+.hl-pink { color: var(--pink); font-weight: 700; }
+.hl-teal { color: var(--teal); font-weight: 700; }
+.hl-amber { color: var(--amber); font-weight: 700; }
+.hl-purple { color: var(--purple); font-weight: 700; }

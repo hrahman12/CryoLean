@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CryoLean · v4 · Physics</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<script src="../shared/check.js"></script>
+<style>
+  .check { padding: 18px 24px; display:flex; flex-direction:column; justify-content:center; }
+  .col > .card.grow { display:flex; flex-direction:column; justify-content:center; }
+  .check .num { font-size: 36px; }
+  .check .num-label { margin-top: 6px; }
+  .tick { font-family: var(--sans); font-weight: 700; margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide title">
+  <div class="abs" style="left:97px; top:190px; width:560px;">
+    <p class="eyebrow">VibeCheck · The Usable Formal Methods<br>Hackathon · San Francisco · Nov 2026</p>
+    <h1 class="hero" style="margin-top:28px;">CryoLean</h1>
+    <p class="subtitle" style="margin-top:26px; font-size:36px;">Find the failure before the cooldown, not at 10&nbsp;mK.</p>
+    <div class="pills" style="margin-top:28px; width:540px;">
+      <span class="pill teal">heat budgets</span>
+      <span class="pill orange">cooldown schedules</span>
+      <span class="pill purple">Lean 4 proofs</span>
+    </div>
+  </div>
+  <img class="abs" src="charts/cryostat_mxc.svg" style="left:640px; top:190px; width:740px; height:440px;" alt="">
+  <p class="abs" style="left:97px; top:706px; margin:0; font-size:26px; color:var(--text);"><span class="b">Hanah Rahman</span> · Nicholas Brandenburg</p>
+  <p class="footer mono">hrahman12.github.io/CryoLean · github.com/hrahman12/CryoLean · generic cryostat drawn in code, no real model</p>
+</section>
+
+<!-- 2 · COUPLED HEAT (Demo B) -->
+<section class="slide">
+  <p class="eyebrow c-teal">/ Coupled physics · 50-qubit wiring</p>
+  <h1 class="headline">Each check passes. Together they fail.</h1>
+  <div class="row content" style="gap:30px;">
+    <div style="width:790px;">
+      <div class="panel" style="height:410px;"><img src="charts/heat_budget.svg" alt="Mixing-chamber heat load: 14.592 µW for the current wiring, 11.985 µW after Z3's fix, against 12 µW cooling power"></div>
+      <p class="caption">Bluefors LD400 mixing chamber. Z3's fix leaves <span class="b">15 nW</span> of slack.</p>
+    </div>
+    <div class="grow col" style="gap:14px; height:410px;">
+      <div class="card check grow left-teal"><p class="num">10 ≤ 20 mK<span class="tick c-teal">✓</span></p><p class="num-label">base temperature</p></div>
+      <div class="card check grow left-teal"><p class="num">168 ≥ 124<span class="tick c-teal">✓</span></p><p class="num-label">wiring lines</p></div>
+      <div class="card check grow left-pink tint-pink"><p class="num c-pink">14.592 &gt; 12 µW<span class="tick">✗</span></p><p class="num-label">heat from all lines together</p></div>
+    </div>
+  </div>
+  <p class="footer">docs/examples/demo_b_coupled.json · paper/data/e5_heat.json, fig_heat_budget.json · line loads from Krinner et al., EPJ Quantum Technology 2019. Honest limit: with an assumed ±20 % per-line uncertainty the 39-line design passes about 51 % of the time; 95 % needs at most 33 lines (paper/data/fig_uncertainty.json).</p>
+</section>
+
+<!-- 3 · ONE COOLDOWN (Demo D) -->
+<section class="slide">
+  <p class="eyebrow c-teal">/ Scheduling · one cold run</p>
+  <h1 class="headline">One cooldown, three experiments, a proved schedule.</h1>
+  <div class="row content" style="gap:30px;">
+    <div class="panel" style="width:860px; height:440px;"><img src="charts/schedule.svg" alt="Gantt chart of a 48 h Lake Shore CRX-VF run: 5 h cooldown, three experiments ending at 23 h, the 10 T run rejected"></div>
+    <div class="grow col" style="gap:14px; height:440px;">
+      <div class="card top-teal grow"><p class="num xl">23 h</p><p class="num-label">to finish all three accepted experiments in one cold run</p></div>
+      <div class="card top-purple grow"><p class="num xl">400 / 400</p><p class="num-label">tampered schedules where Lean agrees with an independent checker</p></div>
+    </div>
+  </div>
+  <p class="footer">docs/examples/demo_d_campaign_schedule.json · paper/data/e6_schedule.json (139 valid, 261 rejected) · Lean proves the schedule valid, not minimal. The 20 h case is Z3's unsat core, not a Lean proof.</p>
+</section>
+
+<!-- 4 · MISSING DATA -->
+<section class="slide">
+  <p class="eyebrow c-purple">/ What we don't know</p>
+  <h1 class="headline">Missing data never becomes a pass.</h1>
+  <div class="row content" style="gap:30px;">
+    <div style="width:790px;">
+      <div class="panel" style="height:410px;"><img src="charts/missing_data.svg" alt="Verdict shares as 0 to 100 percent of specs are deleted: only Need more information grows"></div>
+      <p class="caption">Delete specs, and verdicts only drift toward <span class="hl-amber">Need more information</span>.</p>
+    </div>
+    <div class="grow col" style="gap:14px; height:410px;">
+      <div class="card top-orange grow"><p class="num xl">665</p><p class="num-label">of 2,832 capability entries stored as UNKNOWN, not guessed</p></div>
+      <div class="card top-purple grow"><p class="num mono c-purple" style="font-size:30px;">verdict_refines</p><p class="num-label">Lean theorem: new data can only resolve Need more information</p></div>
+    </div>
+  </div>
+  <p class="footer">paper/data/fig_incomplete_info.json (paper evaluation: 286 pairs, 30 random deletions per level) · data/cryostats/*.json · lean/CryoLean/Monotone.lean. Proofs cover our model and the sourced data, not the machine.</p>
+</section>
+
+</body>
+</html>

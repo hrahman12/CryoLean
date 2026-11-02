@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CryoLean · v3 · Formal methods</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<script src="../shared/check.js"></script>
+<style>
+  .thm { margin: 0; }
+  .thm + .thm { margin-top: 16px; }
+  .thm .code { font-size: 18px; line-height: 1.4; }
+  .thm .words { font-size: 19px; line-height: 1.35; color: var(--text); margin: 3px 0 0 0; }
+  .thm .words i { color: var(--cream); font-style: normal; font-weight: 700; }
+  .stat { display: flex; align-items: baseline; gap: 16px; }
+  .stat .num-label { margin: 0; }
+  .tag { font-family: var(--mono); font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0; }
+  .hlbad { color: var(--pink); background: rgba(240, 96, 158, 0.16); border-radius: 4px; padding: 0 4px; }
+  .hlgood { color: var(--amber); background: rgba(245, 165, 36, 0.14); border-radius: 4px; padding: 0 4px; }
+  .who { padding: 14px 22px; }
+  .who .card-title { font-size: 25px; margin: 0; }
+  .who .card-body { font-size: 18px; margin: 2px 0 0 0; }
+  .vline { font-size: 20px; font-weight: 700; margin: 0; line-height: 1.25; }
+  .vline + .vline { margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide title">
+  <div class="abs" style="left:97px; top:190px; width:580px;">
+    <p class="eyebrow">VibeCheck · The Usable Formal Methods<br>Hackathon · San Francisco · Nov 2026</p>
+    <h1 class="hero" style="margin-top:28px;">CryoLean</h1>
+    <p class="subtitle" style="margin-top:26px; font-size:36px;">A cryostat checker where every verdict is a theorem.</p>
+    <div class="pills" style="margin-top:28px; width:560px;">
+      <span class="pill purple">Lean 4 · decides</span>
+      <span class="pill orange">Z3 · Claude · Lanyon · propose</span>
+      <span class="pill teal">Forall · audits</span>
+    </div>
+  </div>
+  <img class="abs" src="charts/cryostat.svg" style="left:690px; top:190px; width:700px; height:440px;" alt="">
+  <p class="abs" style="left:97px; top:690px; margin:0; font-size:26px; color:var(--text);"><span class="b">Hanah Rahman</span> · Nicholas Brandenburg</p>
+  <p class="footer mono">hrahman12.github.io/CryoLean · github.com/hrahman12/CryoLean · generic cryostat drawn in code, no real model</p>
+</section>
+
+<!-- 2 · THE THEOREMS -->
+<section class="slide">
+  <p class="eyebrow c-purple">/ The theorems · Lean 4</p>
+  <h1 class="headline">If Lean says met, every requirement holds. Provably.</h1>
+  <div class="codebox content" style="padding:22px 28px;">
+    <p class="label c-purple" style="margin-bottom:16px;">The theorems · verbatim from lean/CryoLean/</p>
+    <div class="thm">
+      <p class="code"><span class="kw">theorem</span> verdict_accept_iff <span class="cm">…</span> : verdict cfg e = <span class="ty">.accept</span> ↔ AcceptSpec cfg e</p>
+      <p class="words">→ <i>met</i> exactly when the specification holds</p>
+    </div>
+    <div class="thm">
+      <p class="code"><span class="kw">theorem</span> verdict_reject_sound <span class="cm">…</span> (h : verdict cfg e = <span class="bad">.reject</span>) : RejectSpec cfg e</p>
+      <p class="words">→ every <i>does not meet</i> rests on a documented violation</p>
+    </div>
+    <div class="thm">
+      <p class="code"><span class="kw">theorem</span> fail_needs_trusted <span class="cm">…</span> (h : checkCapability k c = <span class="bad">.fail</span>) : TrustedEvidence c.evidence</p>
+      <p class="words">→ every failure rests on trusted evidence</p>
+    </div>
+    <div class="thm">
+      <p class="code"><span class="kw">theorem</span> verdict_refines (hr : Refines cfg cfg') (hd : verdict cfg e ≠ <span class="st">.needMoreInfo</span>) : verdict cfg' e = verdict cfg e</p>
+      <p class="words">→ new data never flips a decided verdict</p>
+    </div>
+  </div>
+  <div class="row" style="gap:18px; margin-top:18px;">
+    <div class="card left-purple grow"><p class="num c-purple">128</p><p class="num-label">theorems · 0 sorry / admit / native_decide</p></div>
+    <div class="card left-purple grow"><p class="num c-purple">48</p><p class="num-label">axiom-audited theorems, standard axioms only</p></div>
+    <div class="card left-purple grow"><p class="num c-purple">0</p><p class="num-label">dependencies · exact rationals, no floats</p></div>
+  </div>
+  <p class="footer">lean/CryoLean/Soundness.lean · Monotone.lean · lean/audit-axioms.json · Lean 4.35.0, no Mathlib · rationals with 7 SI dimensions · binders elided at …</p>
+</section>
+
+<!-- 3 · THE SELF-AUDIT -->
+<section class="slide">
+  <p class="eyebrow">/ Forensics · auditing the checker</p>
+  <h1 class="headline">We audited our own verifier. It found a real bug.</h1>
+  <div class="row content" style="gap:26px;">
+    <div style="width:820px;">
+      <div class="codebox" style="padding:22px 28px;">
+        <p class="label c-purple">checkCapability · Checker.lean:65-73 · “not installed” record</p>
+        <p class="tag c-pink" style="margin-top:18px;">Before</p>
+        <pre class="code" style="margin-top:6px; font-size:21px;"><span class="kw">if</span> k = .flagIs false
+  <span class="kw">then</span> (<span class="kw">if</span> trustedB c.evidence <span class="kw">then</span> .pass <span class="kw">else</span> .unknown)
+  <span class="kw">else</span> <span class="hlbad">.fail</span>   <span class="cm">-- even with no source</span></pre>
+        <p class="tag c-teal" style="margin-top:18px;">After</p>
+        <pre class="code" style="margin-top:6px; font-size:21px;"><span class="kw">if</span> trustedB c.evidence
+  <span class="kw">then</span> (<span class="kw">if</span> k = .flagIs false <span class="kw">then</span> .pass <span class="kw">else</span> .fail)
+  <span class="kw">else</span> <span class="hlgood">.unknown</span></pre>
+      </div>
+      <p class="caption" style="margin-top:16px;">The build was green: the spec had the same hole. Now proved:</p>
+      <p class="code c-teal" style="font-size:19px; margin-top:6px;">fail_needs_trusted · untrusted_never_passes · untrusted_never_fails</p>
+    </div>
+    <div class="grow col" style="gap:14px;">
+      <div class="card left-purple"><p class="num">839</p><p class="num-label">declarations scanned: 0 non-standard axioms, 0 smells, 0 unsafe flags</p></div>
+      <div class="card left-orange"><p class="num">27</p><p class="num-label">flags from 7 judges, each re-checked by the Lean kernel</p></div>
+      <div class="card left-pink"><p class="num c-pink">1</p><p class="num-label">real soundness gap, fixed</p></div>
+    </div>
+  </div>
+  <p class="footer">docs/forensics/README.md · lean/CryoLean/Checker.lean:65-73 (fix b0b02d5) · the scan predates Monotone.lean · tool run by the team, not a third-party audit</p>
+</section>
+
+<!-- 4 · ONE JUDGE -->
+<section class="slide">
+  <p class="eyebrow c-purple">/ Untrusted helpers, one judge</p>
+  <h1 class="headline">AI proposes. Lean decides.</h1>
+
+  <p class="abs label c-orange" style="left:97px; top:218px;">Untrusted · propose</p>
+  <div class="abs col" style="left:97px; top:248px; width:300px; gap:12px;">
+    <div class="card left-orange who"><p class="card-title">Claude</p><p class="card-body">matches setups</p></div>
+    <div class="card left-orange who"><p class="card-title">Lanyon AI</p><p class="card-body">physics proofs</p></div>
+    <div class="card left-orange who"><p class="card-title">Z3</p><p class="card-body">alternatives, fixes</p></div>
+  </div>
+  <div class="abs arrow" style="left:418px; top:370px;"></div>
+
+  <p class="abs label c-purple" style="left:513px; top:218px;">Trusted · decides</p>
+  <div class="abs card left-purple tint-purple" style="left:513px; top:248px; width:360px; height:279px;">
+    <p class="card-title" style="margin-top:4px;">Lean 4 checker</p>
+    <p class="card-body" style="font-size:19px;">Each candidate gets Lean’s verdict.</p>
+    <p class="code c-purple" style="font-size:18px; margin-top:22px;">candidates_verdicts_are_lean</p>
+    <p class="code" style="font-size:18px; margin-top:4px; color:var(--text);">Soundness.lean:1056</p>
+  </div>
+  <div class="abs arrow purple" style="left:893px; top:370px;"></div>
+
+  <p class="abs label" style="left:986px; top:218px;">The verdict card</p>
+  <div class="abs card" style="left:986px; top:248px; width:373px; height:279px;">
+    <p class="vline c-teal"><span class="dot met"></span>Requirements met</p>
+    <p class="vline c-amber"><span class="dot info"></span>Need more information</p>
+    <p class="vline c-pink"><span class="dot not"></span>Does not meet requirements</p>
+    <p class="code" style="font-size:18px; margin-top:26px; color:var(--text); white-space:normal;">+ reason · theorem names · axioms · source hash</p>
+  </div>
+
+  <div class="abs row" style="left:97px; top:551px; width:1262px; gap:18px;">
+    <div class="card left-purple" style="width:800px;"><p class="num c-purple">2 of 7</p><p class="num-label">proofs admitted by the Gatekeeper. Rejected: sorry, native_decide, a custom axiom, a false statement, an AI proof with 54 compile errors.</p></div>
+    <div class="card left-teal grow"><p class="num c-teal" style="white-space:nowrap;">15,795 / 15,795</p><p class="num-label">designs where Z3 and Lean agree</p></div>
+  </div>
+  <p class="footer">lean/CryoLean/Soundness.lean:1056-1069 · cryolean/gatekeeper.py · paper/data/e9_gatekeeper.json · Lean proves conclusions from the modelled requirements and the supplied, sourced facts; it does not prove a datasheet is correct or that an experiment will succeed.</p>
+</section>
+
+</body>
+</html>

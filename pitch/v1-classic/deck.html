@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CryoLean · pitch v1 · Classic</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<script src="../shared/check.js"></script>
+<style>
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .stack .card { padding: 14px 24px; flex: 1 1 0; }
+  .stack .num-label { margin-top: 6px; }
+  .stack .num { font-size: 38px; }
+  .checks { font-family: var(--mono); font-size: 21px; line-height: 1.5; color: var(--text-2); margin: 18px 0 0 0; }
+  .checks .ok { color: var(--teal); font-weight: 700; }
+  .verdict-word.sm { font-size: 38px; margin-top: 8px; }
+  .code.lg { font-size: 24px; }
+  .inwords { font-size: 23px; line-height: 1.4; color: var(--text-2); margin: 18px 0 0 0; font-family: var(--sans); }
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide title">
+  <div class="abs" style="left:97px; top:190px; width:540px;">
+    <p class="eyebrow">VibeCheck · The usable formal methods<br>hackathon · San Francisco · Nov 2026</p>
+    <h1 class="hero" style="margin-top:28px;">CryoLean</h1>
+    <p class="subtitle" style="margin-top:26px;">Can this cryostat do my experiment?</p>
+    <div class="pills" style="margin-top:28px; width:500px;">
+      <span class="pill orange">Claude · Lanyon · suggest</span>
+      <span class="pill purple">Lean 4 · decides</span>
+      <span class="pill teal">Z3 · explains</span>
+    </div>
+  </div>
+  <img class="abs" src="../shared/cryostat.svg" style="left:650px; top:180px; width:730px; height:450px;" alt="">
+  <p class="abs" style="left:97px; top:690px; margin:0; font-size:26px; color:var(--text);"><span class="b">Hanah Rahman</span> · Nicholas Brandenburg</p>
+  <p class="footer mono">hrahman12.github.io/CryoLean · github.com/hrahman12/CryoLean · generic cryostat drawn in code, no real model</p>
+</section>
+
+<!-- 2 · THE PROBLEM -->
+<section class="slide">
+  <p class="eyebrow">/ The problem · why cryostats</p>
+  <h1 class="headline">A cryostat’s limits are fixed. Every experiment asks for something different.</h1>
+  <div class="row content" style="gap:30px;">
+    <div style="width:700px;">
+      <div class="panel" style="height:396px;"><img src="charts/landscape.svg" alt="Catalogued configurations: coldest temperature against strongest magnetic field"></div>
+      <p class="caption">The catalog: <span class="b">220</span> machine configurations, <span class="b">204</span> experiment profiles.</p>
+    </div>
+    <div class="grow stack" style="height:396px;">
+      <div class="card top-orange"><p class="num">24 h</p><p class="num-label">to cool a Bluefors LD. A late mismatch costs that day again.</p></div>
+      <div class="card top-silver"><p class="num">23.5 %</p><p class="num-label">of capability entries unconfirmed (665 of 2,832).</p></div>
+      <div class="card top-pink"><p class="num">149 <span style="font-size:26px; color:var(--muted);">of 286</span></p><p class="num-label">pairs a datasheet-style checker says yes to that Lean won’t sign off on.</p></div>
+    </div>
+  </div>
+  <p class="footer">Chart: data/cryostats/, 200 of 220 configurations with a documented coldest temperature, field = installed magnet · data/evidence/bluefors.json · data/coverage.json · paper/data/fig_baseline_comparison.json (paper evaluation): of the 149, 148 lack trusted evidence, 1 genuinely overheats.</p>
+</section>
+
+<!-- 3 · WHAT IT DOES -->
+<section class="slide">
+  <p class="eyebrow">/ What it does</p>
+  <h1 class="headline">Ask if an experiment fits a machine. Get the answer and the reason.</h1>
+  <div class="abs card" style="left:97px; top:286px; width:450px; height:250px;">
+    <p class="label">The ask</p>
+    <p class="card-title" style="font-size:31px;">Can a Bluefors LD400 run our 50-qubit wiring?</p>
+    <p class="checks">10 mK ≤ 20 mK <span class="ok">✓</span><br>168 ≥ 124 lines <span class="ok">✓</span></p>
+  </div>
+  <p class="abs label" style="left:97px; top:560px; width:450px; color:var(--text);">median 138 ms per check,<br>including process start</p>
+  <div class="abs arrow" style="left:572px; top:392px;"></div>
+  <div class="abs card left-pink tint-pink" style="left:669px; top:286px; width:690px; height:230px;">
+    <p class="label">Lean’s answer</p>
+    <p class="verdict-word not">DOES NOT MEET</p>
+    <p class="lead" style="margin-top:16px;">Each spec passes, but together the lines put <span class="hl-pink">14.592 µW</span> into a mixing chamber that removes <span class="b">12 µW</span>.</p>
+  </div>
+  <div class="abs card left-teal tint-teal" style="left:669px; top:536px; width:690px; height:128px; padding-top:18px;">
+    <p class="verdict-word met sm">REQUIREMENTS MET</p>
+    <p class="body" style="margin-top:8px;">Z3 suggests 39 flux lines. Lean re-checks: <span class="hl-teal">11.985 µW ≤ 12 µW</span>.</p>
+  </div>
+  <p class="footer">docs/examples/demo_b_coupled.json · paper/data/e5_heat.json · e2_latency.json · wiring from Krinner et al., <i>EPJ Quantum Technology</i> 2019.</p>
+</section>
+
+<!-- 4 · PROOF IT WORKS -->
+<section class="slide">
+  <p class="eyebrow c-purple">/ Proof it works</p>
+  <h1 class="headline">Every verdict comes from a theorem.</h1>
+  <div class="codebox" style="margin-top:40px; padding:28px 32px;">
+    <p class="code lg"><span class="kw">theorem</span> verdict_accept_iff (cfg : <span class="ty">Configuration</span>) (e : <span class="ty">Experiment</span>) :
+    verdict cfg e = .accept <span class="kw">↔</span> <span class="ty">AcceptSpec</span> cfg e</p>
+    <p class="inwords"><span class="hl-purple">In words:</span> Lean says <i>requirements met</i> exactly when a separately written specification holds.</p>
+  </div>
+  <div class="row" style="gap:22px; margin-top:36px;">
+    <div class="card top-purple grow" style="padding:26px 28px;"><p class="num xl">128</p><p class="num-label">theorems, 0 <span class="mono">sorry</span>. 48 axiom-audited, standard axioms only.</p></div>
+    <div class="card top-teal grow" style="padding:26px 28px;"><p class="num xl">2,750</p><p class="num-label">fault-injected configurations. 0 defective ones accepted.</p></div>
+    <div class="card top-teal grow" style="padding:26px 28px;"><p class="num xl">15,795</p><p class="num-label">of 15,795 heat-budget designs: Z3 and Lean agree.</p></div>
+  </div>
+  <p class="footer">lean/CryoLean/Soundness.lean:861 · lean/audit-axioms.json · paper/data/e4_faults.json · fig_z3_lean_agreement.json. Proofs cover the modelled requirements and sourced facts, not the physical machine.</p>
+</section>
+
+</body>
+</html>

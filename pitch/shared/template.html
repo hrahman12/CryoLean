@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CryoLean · template (layout reference, not a deliverable)</title>
+<link rel="stylesheet" href="deck.css">
+<script src="check.js"></script>
+</head>
+<body>
+
+<!-- 1 · TITLE (LeanKeel slide 1) -->
+<section class="slide title">
+  <div class="abs" style="left:97px; top:200px; width:520px;">
+    <p class="eyebrow">VibeCheck FM + AI Hackathon ·<br>formal methods meets AI</p>
+    <h1 class="hero" style="margin-top:28px;">CryoLean</h1>
+    <p class="subtitle" style="margin-top:26px;">Can this cryostat run my experiment?</p>
+    <div class="pills" style="margin-top:26px; width:470px;">
+      <span class="pill orange">Claude · Lanyon · suggest</span>
+      <span class="pill purple">Lean · decides</span>
+      <span class="pill teal">Z3 · explains</span>
+    </div>
+  </div>
+  <img class="abs" src="cryostat.svg" style="left:640px; top:190px; width:740px; height:440px;" alt="">
+  <p class="abs" style="left:97px; top:706px; margin:0; font-size:26px; color:var(--text);"><span class="b">Hanah Rahman</span> · Nicholas Brandenburg</p>
+  <p class="footer mono">github.com/hrahman12/CryoLean · generic cryostat drawn in code, no real model</p>
+</section>
+
+<!-- 2 · PROBLEM: chart + 2x2 stat cards (LeanKeel slide 2) -->
+<section class="slide">
+  <p class="eyebrow">/ The problem · why cryostats</p>
+  <h1 class="headline">Template: a headline that states the claim.</h1>
+  <div class="row content" style="gap:30px;">
+    <div style="width:653px;">
+      <div class="panel" style="height:420px;"><img src="template_chart.svg" alt=""></div>
+      <p class="caption">Caption with one <span class="b">bold</span> number under the chart.</p>
+    </div>
+    <div class="grow col" style="gap:14px;">
+      <div class="row" style="gap:14px;">
+        <div class="card top-orange grow"><p class="num">149</p><p class="num-label">pairs an optimistic checker wrongly accepts</p></div>
+        <div class="card top-teal grow"><p class="num">0</p><p class="num-label">wrong accepts from Lean</p></div>
+      </div>
+      <div class="row" style="gap:14px;">
+        <div class="card top-purple grow"><p class="num">839</p><p class="num-label">declarations audited</p></div>
+        <div class="card top-silver grow"><p class="num">3</p><p class="num-label">verdicts, never a guess</p></div>
+      </div>
+      <p class="lead" style="margin-top:8px;">Body text in the right column, with one <span class="hl-pink">highlighted</span> number.</p>
+    </div>
+  </div>
+  <p class="footer">Source line: repo path · what is real vs synthetic · caveat</p>
+</section>
+
+<!-- 3 · ASK -> ANSWER (LeanKeel slide 3) -->
+<section class="slide">
+  <p class="eyebrow">/ What it does</p>
+  <h1 class="headline">Ask if an experiment fits a machine. Get the answer and the reason.</h1>
+  <div class="abs card" style="left:97px; top:320px; width:450px; height:228px;">
+    <p class="label">The ask</p>
+    <p class="card-title" style="font-size:32px;">Can the PPMS DynaCool 9 T run a 10 T measurement?</p>
+  </div>
+  <div class="abs arrow" style="left:572px; top:416px;"></div>
+  <div class="abs card left-pink" style="left:669px; top:290px; width:690px; height:290px;">
+    <p class="label">Lean's answer</p>
+    <p class="verdict-word not">DOES NOT MEET</p>
+    <p class="lead" style="margin-top:14px;">“magnetic_field.max: the experiment needs 10 T; the machine documents 9 T.”</p>
+  </div>
+  <p class="footer">Template: recorded kernel output, file path, timing</p>
+</section>
+
+<!-- 4 · THREE CARDS + FLOW (LeanKeel slide 4) -->
+<section class="slide">
+  <p class="eyebrow">/ How it works</p>
+  <h1 class="headline">One machine, three roles.</h1>
+  <div class="row content" style="gap:22px; margin-top:30px;">
+    <div class="card top-orange grow" style="height:206px;"><p class="label c-orange">01 · Propose</p><p class="card-title">AI suggests</p><p class="card-body">Claude and Lanyon draft setups and fixes. They never decide.</p></div>
+    <div class="card top-purple grow" style="height:206px;"><p class="label c-purple">02 · Decide</p><p class="card-title">Lean decides</p><p class="card-body">Checks every requirement, and proves the answer is right.</p></div>
+    <div class="card top-teal grow" style="height:206px;"><p class="label c-teal">03 · Explain</p><p class="card-title">Z3 explains</p><p class="card-body">Finds why it fails and what would fix it. Lean re-checks.</p></div>
+  </div>
+  <p class="flow" style="margin-top:48px;">experiment → machine → Lean → verdict card</p>
+  <p class="footer">Footer: the honest caveat (what is and is not proved)</p>
+</section>
+
+</body>
+</html>

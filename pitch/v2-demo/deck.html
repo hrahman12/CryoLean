@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CryoLean · v2 Demo-first</title>
+<link rel="stylesheet" href="../shared/deck.css">
+<script src="../shared/check.js"></script>
+<style>
+  .vcard { display: flex; flex-direction: column; height: 456px; padding: 26px 28px; }
+  .vcard .card-title { font-size: 30px; margin-top: 14px; }
+  .vcard .need { font-family: var(--mono); font-size: 19px; line-height: 1.4; color: var(--text-2); margin: 10px 0 0 0; }
+  .vcard .mach { font-size: 21px; line-height: 1.3; color: var(--cream); margin: 8px 0 0 0; }
+  .vcard .verdict-block { margin-top: auto; border-top: 1px solid var(--line-2); padding-top: 20px; }
+  .vcard .verdict-word { font-size: 36px; line-height: 1.08; margin: 0; }
+  .vcard .why { font-size: 19px; line-height: 1.4; color: var(--text); margin: 12px 0 0 0; min-height: 53px; }
+  .eyebrow.c-teal { color: var(--teal); }
+  .step .t { font-size: 26px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide title">
+  <div class="abs" style="left:97px; top:190px; width:620px;">
+    <p class="eyebrow">VibeCheck · The Usable Formal Methods<br>Hackathon · San Francisco · Nov 2026</p>
+    <h1 class="hero" style="margin-top:28px;">CryoLean</h1>
+    <p class="subtitle" style="margin-top:26px;">One experiment. One machine.<br>One honest answer.</p>
+    <div class="pills" style="margin-top:28px;">
+      <span class="pill teal">Requirements met</span>
+      <span class="pill orange">Need more information</span>
+      <span class="pill pink">Does not meet</span>
+    </div>
+  </div>
+  <img class="abs" src="charts/cryostat.svg" style="left:700px; top:190px; width:680px; height:440px;" alt="">
+  <p class="abs" style="left:97px; top:706px; margin:0; font-size:26px; color:var(--text);"><span class="b">Hanah Rahman</span> · Nicholas Brandenburg</p>
+  <p class="footer mono">hrahman12.github.io/CryoLean · github.com/hrahman12/CryoLean · generic cryostat drawn in code, no real model</p>
+</section>
+
+<!-- 2 · THREE ANSWERS -->
+<section class="slide">
+  <p class="eyebrow">/ What it does · three real checks</p>
+  <h1 class="headline">Three experiments. Three honest answers.</h1>
+  <div class="row" style="gap:24px; margin-top:34px;">
+    <div class="card top-teal tint-teal vcard grow">
+      <p class="label c-teal">Aerospace</p>
+      <p class="card-title">Mars-rover sensors</p>
+      <p class="need">−135 to +70 °C cycles,<br>+125 °C bake</p>
+      <p class="mach">on a Tinius Olsen chamber</p>
+      <div class="verdict-block">
+        <p class="verdict-word met">Requirements<br>met</p>
+        <p class="why">Chamber documents<br><span class="b">−150 to +600 °C</span>.</p>
+      </div>
+    </div>
+    <div class="card top-orange tint-orange vcard grow">
+      <p class="label c-amber">Quantum</p>
+      <p class="card-title">300 mm silicon wafers</p>
+      <p class="need">at ≤ 1.6 K</p>
+      <p class="mach">on a Bluefors XLDHehp</p>
+      <div class="verdict-block">
+        <p class="verdict-word info">Need more<br>information</p>
+        <p class="why">Wafer size unconfirmed<br>(<span class="b">1 of 3</span> needs). Lean waits.</p>
+      </div>
+    </div>
+    <div class="card top-pink tint-pink vcard grow">
+      <p class="label c-pink">Biology</p>
+      <p class="card-title">Protein crystal</p>
+      <p class="need">flash-cooled in<br>liquid nitrogen</p>
+      <p class="mach">on a Lake Shore CCS-800</p>
+      <div class="verdict-block">
+        <p class="verdict-word not">Does not meet<br>requirements</p>
+        <p class="why">No cryogen documented.<br>A CryoMed TSCM48XV passes.</p>
+      </div>
+    </div>
+  </div>
+  <p class="footer">Verdicts as the website shows them: site/data.json; data/experiments/v4_aero_mars_prt_thermal_cycling.json. The quantum demo leaves wafer size unconfirmed on purpose; confirmed, it passes. Lean checks the plan against sourced specs, not the machine itself.</p>
+</section>
+
+<!-- 3 · LIVE DEMO -->
+<section class="slide">
+  <p class="eyebrow c-teal">● Live · real Lean verdicts</p>
+  <h1 class="headline">Live: you pick the experiment.</h1>
+  <div class="abs col" style="left:97px; top:212px; width:542px; gap:12px;">
+    <div class="step"><span class="n">1</span><div><div class="t">Choose an experiment</div><div class="s">20 industries, 3 experiments each</div></div></div>
+    <div class="step orange"><span class="n">2</span><div><div class="t">Choose a cryostat</div><div class="s">220 configurations</div></div></div>
+    <div class="step teal"><span class="n">3</span><div><div class="t">Check the setup</div><div class="s">Lean shows the first stage that fails</div></div></div>
+    <div class="step purple"><span class="n">4</span><div><div class="t">Ask for a fix</div><div class="s">you only see fixes Lean passes</div></div></div>
+    <div class="step pink"><span class="n">5</span><div><div class="t">Break it</div><div class="s">untick a need: <span class="hl-amber">Need more information</span></div></div></div>
+  </div>
+  <div class="abs panel" style="left:669px; top:244px; width:690px; height:425px;"><img src="charts/demo.png" alt="CryoLean website, Demos tab"></div>
+  <p class="footer">hrahman12.github.io/CryoLean · every answer on the page is one of 138,564 precomputed Lean outcomes (13,200 featured pairs) · Demos tab shown</p>
+</section>
+
+</body>
+</html>
