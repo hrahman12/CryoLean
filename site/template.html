@@ -535,6 +535,7 @@ def checkValue : Constraint → CapValue → Outcome
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script id="cryolean-dims" type="application/json">__DIMS__</script>
 <script>__CRYO3D__</script>
 <script>__SAMPLE3D__</script>
 <script type="application/json" id="cryolean-data">__DATA__</script>
@@ -575,6 +576,15 @@ def checkValue : Constraint → CapValue → Outcome
   D.industries.forEach((ind, i) => { const o = document.createElement("option"); o.value = i; o.textContent = ind.name; sel.appendChild(o) });
   sel.addEventListener("change", () => { Object.assign(st, { ind: +sel.value, exp: 0, cfg: 0, alt: null }); render() });
   const verdictOf = (e, c) => D.verdicts[e.id + "|" + c.id];
+  // Documented inside dimensions per machine (mm) and the experiment's documented sample size (mm, from step 3 values)
+  const MDIMS = JSON.parse(document.getElementById("cryolean-dims").textContent || "{}");
+  function sampleMM(eid, lv) {
+    const out = {}, M = { "sample.diameter.max": "d", "sample.height.max": "h", "sample.width.max": "w", "sample.length.max": "l" };
+    (L.requirements[eid] || []).forEach((r) => { const k = M[r.keys[0]]; if (!k || r.kind !== "at_least") return;
+      const v = r.editable ? lv.vals[r.index] : +r.value, f = factor(r);
+      if (v > 0 && f) out[k] = +(v * f * 1000).toPrecision(6) });   // SI metres -> mm
+    return out;
+  }
 
   const has3d = !!(window.Cryo3D && Cryo3D.mount($("gl")));
   const hasS3d = !!(window.Sample3D && Sample3D.mount($("sample3d")));
@@ -1204,7 +1214,7 @@ theorem untrusted_never_fails {k : Constraint} {c : Capability}
     $("kind").textContent = (altC ? "Catalog alternative · " : "") + (has3d ? Cryo3D.label(kind) + " · illustrative" : "");
     $("kind").title = `${mc.manufacturer || ""} · ${mc.name}`;
     $("stagetag").hidden = true;
-    if (has3d) Cryo3D.show(kind, VCLS[vcode], mc.id, ex);
+    if (has3d) { Cryo3D.detail({ dims: MDIMS[mc.id] || null, sample: sampleMM(ex.id, liveState(ex.id)) }); Cryo3D.show(kind, VCLS[vcode], mc.id, ex); }
     renderLive(ex, mc, lv, vcode, ind);
     runIn3D();
     updateLiveFlow(ex, mc, vcode);
