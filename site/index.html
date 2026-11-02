@@ -57,6 +57,14 @@ header.top { text-align: center; height: 172px }
 .lxs pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px; white-space: pre-wrap; overflow-wrap: anywhere }
 .flow .idle { display: grid; place-content: center; gap: 6px; text-align: center; height: 100%; min-height: 140px; color: var(--ink-2); font-size: 13.5px } .flow .idle b { font: 800 17px var(--display); color: var(--ink) }
 .suggest .tvr.idle { --c: var(--muted) }
+.suggest .fdet { display: grid; gap: 6px; margin-top: 4px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--panel) 70%, transparent) }
+.suggest .fdet > b { font: 800 13.5px var(--display); color: var(--ink) } .suggest .fdet .where, .suggest .fdet .src { font-size: 11.5px; color: var(--ink-2) }
+.suggest .fdet .src a { color: var(--accent) }
+.suggest .fi { border-left: 3px solid var(--line); padding: 4px 0 4px 8px } .suggest .fi.f { border-color: var(--fail) } .suggest .fi.u, .suggest .fi.s { border-color: var(--info) } .suggest .fi.p { border-color: var(--met); opacity: .8 }
+.suggest .fi .fh { font: 700 12.5px var(--body); color: var(--ink); display: flex; gap: 6px; align-items: center; flex-wrap: wrap } .suggest .fi .fh em { font-weight: 500; font-style: normal; color: var(--muted) }
+.suggest .fi .badge { font: 800 10px var(--body); padding: 1px 6px; border-radius: 99px } .suggest .fi p { margin: 2px 0; font-size: 11.5px; color: var(--ink-2) }
+.suggest .fi dl { margin: 3px 0 0; display: grid; grid-template-columns: 112px 1fr; gap: 2px 8px; font-size: 11.5px } .suggest .fi dt { color: var(--muted); font-weight: 700 } .suggest .fi dd { margin: 0; color: var(--ink-2); overflow-wrap: anywhere }
+.suggest .fi code, .suggest .fdet code { font: 10.5px ui-monospace, Menlo, Consolas, monospace; color: var(--ink) }
 .suggest .stl { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 2px; font-size: 12.5px; color: var(--ink-2) }
 .suggest .stl li b { display: inline-block; width: 18px; text-align: center; font-weight: 800 } .suggest .stl li.ok b { color: var(--met) }
 .suggest .stl li.no { color: var(--fail); font-weight: 700 } .suggest .stl li.maybe { color: var(--info); font-weight: 700 } .suggest .stl li.nr { opacity: .5 } .suggest .stl em { font-style: normal; font-size: 11px }
@@ -1613,6 +1621,54 @@ def checkValue : Constraint → CapValue → Outcome
     return { used, stop };
   }
   let lastRun = null;
+  const PART = ["sample holder", "vacuum shell and pump", "cold plate and cold finger", "magnet coils", "wiring, feedthroughs and measuring instrument", "compressor that keeps it cold"];
+  const LEANK = { at_least: "atLeast", at_most: "atMost", range_within: "rangeWithin", point_within: "pointWithin", present: "present", flag_is: "flagIs",
+    set_contains: "setContains", count_at_least: "countAtLeast", count_equals: "countEquals", enum_in: "enumIn" };
+  const LEANO = { p: ".pass", f: ".fail", u: ".unknown", s: "(not checked: unconfirmed)" };
+  // What the experiment needs, in words, using the values currently in step 3
+  function needText(r, lv) {
+    const u = esc(r.unit || ""), v = r.editable ? lv.vals[r.index] : null;
+    if (r.kind === "range_within" && v) return `operate across ${fnum(Math.min(v[0], v[1]))} to ${fnum(Math.max(v[0], v[1]))} ${u}`;
+    if (r.kind === "point_within" && v != null) return `operate at ${fnum(v)} ${u}`;
+    if (r.kind === "at_least" && v != null) return `at least ${fnum(v)} ${u}`;
+    if (r.kind === "at_most" && v != null) return `${fnum(v)} ${u} or lower`;
+    return null;
+  }
+  // The machine's documented limits Lean compared against (from the lattice), in the requirement's unit
+  function limitsText(r, e) {
+    if (!e || !e.limits || !e.limits.length) return null;
+    const f = factor(r) || 1;
+    return e.limits.map((x) => `${fnum(x / f)} ${esc(r.unit || "")}`).join(", ");
+  }
+  function gapText(r, lv, e, o) {
+    if (o !== "f" || !r.editable || !e || e.limits.length !== 1) return null;
+    const lim = e.limits[0] / (factor(r) || 1), v = lv.vals[r.index];
+    if (r.kind === "at_least") return `the machine tops out at ${fnum(lim)} ${esc(r.unit || "")}, ${fnum(v - lim)} ${esc(r.unit || "")} short of what's needed`;
+    if (r.kind === "at_most") return `the machine only gets down to ${fnum(lim)} ${esc(r.unit || "")}, ${fnum(lim - v)} ${esc(r.unit || "")} warmer than needed`;
+    return null;
+  }
+  function failDetail(S, ex, mc, lv, num) {
+    const v = verdictOf(ex, mc) || { checks: [] }, oc = L.lattice[ex.id] && L.lattice[ex.id][mc.id];
+    const docs = (mc.documents || []).filter((d) => d.url);
+    const rank = { f: 0, u: 1, s: 2, p: 3 };
+    const items = S.items.slice().sort((a, b) => rank[a.o] - rank[b.o]);
+    const rows = items.map((x) => {
+      if (!x.r) return `<div class="fi ${x.o}"><div class="fh"><span class="badge ${x.o}">${OUTW[x.o] || x.o}</span> Combined check across several parts</div>
+        <p>Lean's coupled model adds up effects from several parts at once (for example the heat every wire leaks into the cold stage). Result: <code>${LEANO[x.o]}</code>.</p></div>`;
+      const r = x.r, c = v.checks.find((k) => k.keys.join() === r.keys.join()) || {};
+      const e = oc && oc.edits && oc.edits[r.index];
+      const need = needText(r, lv) || c.required || esc(r.kind.replace(/_/g, " "));
+      const avail = c.available ? esc(c.available) : (limitsText(r, e) ? "documented limits at " + limitsText(r, e) : (x.o === "u" ? "not in the datasheet" : "see datasheet"));
+      const gap = gapText(r, lv, e, x.o);
+      const lean = `checkValue (.${LEANK[r.kind] || r.kind} ${esc(need)}) (machine: ${esc(c.available || (x.o === "u" ? ".unknown" : "documented spec"))}) = ${LEANO[x.o]}`;
+      return `<div class="fi ${x.o}"><div class="fh"><span class="badge ${x.o}">${OUTW[x.o] || x.o}</span> ${esc(human(r.keys[0]))}${r.mandatory ? "" : " <em>(optional, doesn't block)</em>"}</div><dl>` +
+        `<dt>Experiment needs</dt><dd>${esc(need)}</dd><dt>Machine documents</dt><dd>${avail}</dd>` + (gap ? `<dt>Gap</dt><dd>${gap}</dd>` : "") +
+        `<dt>Lean's check</dt><dd><code>${lean}</code></dd>` + (r.rationale ? `<dt>Why it matters</dt><dd>${esc(r.rationale)}</dd>` : "") +
+        (c.explanation ? `<dt>Evidence</dt><dd>${esc(c.explanation)}</dd>` : "") + `</dl></div>`;
+    }).join("");
+    return `<div class="fdet"><b>Inside stage ${num} · ${S.name}</b><span class="where">Where in the machine: the ${PART[S.k]}. Lean result: <code>${LEANO[S.out]}</code></span>${rows}` +
+      (docs.length ? `<span class="src">Machine sources: ${docs.slice(0, 3).map((d) => `<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title || "datasheet")}</a>`).join(" · ")}</span>` : "") + `</div>`;
+  }
   // The verdict tiles stay dark until the first temperature requirement (or the first requirement) is ticked
   function gateTicked(eid, lv) {
     const rs = L.requirements[eid] || []; if (!rs.length) return true;
@@ -1672,6 +1728,7 @@ def checkValue : Constraint → CapValue → Outcome
     const arw = document.querySelectorAll(".arrow")[1];   // between step 2 and step 3: points back until every box is ticked
     if (arw) { arw.classList.toggle("back", unconf); arw.title = unconf ? "Tick every requirement in step 3 to get Lean's answer" : "" }
     const runS = runStages(ex.id, mc.id, rs, outs); lastRun = { ...runS, started, key: mc.id + "|" + ex.id };
+    if (runS.stop) { const fx = runS.stop.items.find((y) => y.w === runS.stop.out) || runS.stop.items[0]; lastRun.req = fx && fx.r ? human(fx.r.keys[0]) : "combined check" }
     const S = runS.stop, ICON = { p: "✓", f: "✗", u: "?", s: "…" };
     const why = (s) => { const x = s.items.find((y) => y.w === s.out) || s.items[0];
       const nm = x.r ? human(x.r.keys[0]) : "Combined check (several parts together)";
@@ -1684,7 +1741,8 @@ def checkValue : Constraint → CapValue → Outcome
     const stopAt = S ? runS.used.indexOf(S) : runS.used.length;
     const timeline = `<div class="tv">${tvRow(head)}<ol class="stl">` + runS.used.map((s, i) =>
       `<li class="${i < stopAt ? "ok" : i === stopAt ? { f: "no", u: "maybe", s: "maybe" }[s.out] : "nr"}"><b>${i < stopAt || i === stopAt ? ICON[s.out] : "·"}</b>${i + 1}. ${s.name}${i > stopAt ? " <em>not reached</em>" : ""}</li>`).join("") + `</ol></div>`;
-    let h = started ? timeline : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
+    const detail = S ? failDetail(S, ex, mc, lv, runS.used.indexOf(S) + 1) : "";
+    let h = started ? timeline + detail : `<div class="tv"><div class="tvr idle"><i></i><span><b>Not checked yet</b><small>Tick the temperature requirement to start; Lean answers once every box is ticked.</small></span></div></div>`;
     if (started && !unconf && vcode !== "R") {
       const k = first >= 0 ? first : firstU, r = rs[k], o = L.lattice[ex.id][mc.id], e = o && o.edits[r.index];
       const steps = [];
@@ -1856,7 +1914,7 @@ def checkValue : Constraint → CapValue → Outcome
       const cold = coolAt >= 0 && (i > coolAt || (i === coolAt && end && !R.stop));
       if (has3d) Cryo3D.stage({ i: s.k, n: STAGES.length, status, cold });
       tag.hidden = false; tag.className = "runtag " + ({ f: "no", u: "maybe", s: "maybe", p: "ok", run: "" }[status] || "");
-      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? " ✗ fails here (flashing part)" : " ? stops here (flashing part)");
+      tag.textContent = `Stage ${i + 1} of ${n} · ${s.name}` + (status === "run" ? "…" : status === "p" ? " ✓ run complete" : status === "f" ? ` ✗ fails here: ${R.req} (flashing part)` : ` ? stops here: ${R.req} (flashing part)`);
     };
     show();
     run3dT = setInterval(() => { if (i < stopAt) { i++; show() } else if (R.stop) clearInterval(run3dT); else if (++hold > 2) { i = 0; hold = 0; show() } }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 2600 : 1300);
