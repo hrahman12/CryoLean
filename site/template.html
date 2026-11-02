@@ -57,6 +57,8 @@ header.top { text-align: center; height: 172px }
 .lxs pre { margin: 0; font: 12px/1.5 ui-monospace, Menlo, Consolas, monospace; color: #c9d4e5; background: #070b13; border: 1px solid #1c2638; border-radius: 8px; padding: 8px 10px; white-space: pre-wrap; overflow-wrap: anywhere }
 .flow .idle { display: grid; place-content: center; gap: 6px; text-align: center; height: 100%; min-height: 140px; color: var(--ink-2); font-size: 13.5px } .flow .idle b { font: 800 17px var(--display); color: var(--ink) }
 .suggest .tvr.idle { --c: var(--muted) }
+.uni .flowleg { display: flex; flex-wrap: wrap; gap: 4px 12px; font: 600 11.5px var(--body); color: var(--ink-2) }
+.uni .flowleg span { display: inline-flex; align-items: center; gap: 5px } .uni .flowleg i { width: 9px; height: 9px; border-radius: 50%; display: inline-block }
 .suggest .fdet { display: grid; gap: 6px; margin-top: 4px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--panel) 70%, transparent) }
 .suggest .fdet > b { font: 800 13.5px var(--display); color: var(--ink) } .suggest .fdet .where, .suggest .fdet .src { font-size: 11.5px; color: var(--ink-2) }
 .suggest .fdet .src a { color: var(--accent) }
@@ -849,7 +851,7 @@ def checkValue : Constraint → CapValue → Outcome
       : `<div class="k">${esc(dinfo(id).d)}</div><h4>Starting the run…</h4>`;
     const cw = cur ? cur[0] : "you", wc = cw === "lean" ? "var(--met)" : cw === "lanyon" ? "#a77bff" : "var(--ink)";
     return `<div class="uni"><div class="cym" data-who="${cw}" role="img" aria-label="Fluid simulation of the check: the experiment flows through each run stage; the current step is ${esc(AV[cw][0])}"><canvas></canvas><div class="cymlbl" style="color:${wc}"><b>${esc(AV[cw][0])}</b><span>${esc(AV[cw][1])}</span></div><div class="cymhint">hover to disturb</div></div><div class="cap">${cap}` +
-      `<div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Lean decides every answer. Lanyon AI only suggests ideas, and Lean checks each one." : "Lean decides · Lanyon AI only suggests."}</small></div></div>`;
+      `<div class="flowleg"><span><i style="background:#7fb0ff"></i>your experiment</span><span><i style="background:#3ddc84"></i>passed a stage</span><span><i style="background:#ff6b6b"></i>fails here</span><span><i style="background:#f3b545"></i>missing info</span><span><i style="background:#b48cff"></i>Lanyon idea</span></div><div class="dots">${st.map((_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</div><small>${id === "L" ? "Lean decides every answer. Lanyon AI only suggests ideas, and Lean checks each one." : "Lean decides · Lanyon AI only suggests."}</small></div></div>`;
   }
   // Lanyon AI drawn as an actual lanyon: neck strap, clip and ID badge
   function lanyonIcon(x, y, on) {
@@ -973,12 +975,7 @@ def checkValue : Constraint → CapValue → Outcome
         octx.putImageData(img, 0, 0);
         ctx.clearRect(0, 0, w, h); ctx.imageSmoothingEnabled = true; ctx.drawImage(off, 0, 0, w, h);
         if (block >= 0) { const x0 = (wallX + 0.015) * w; ctx.fillStyle = "rgba(20,28,42,.55)"; ctx.fillRect(x0, 0, w - x0, h);
-          ctx.fillStyle = "#6b7a92"; ctx.font = `600 ${Math.round(12 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "center"; ctx.fillText("not reached", (x0 + w) / 2, 0.52 * h) }
-        // legend: one colour, one meaning
-        { const L = [["#7fb0ff", "your experiment"], ["#3ddc84", "passed a stage"], ["#ff6b6b", "fails here"], ["#f3b545", "missing info"], ["#b48cff", "Lanyon idea"]];
-          ctx.font = `600 ${Math.round(10.5 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "left"; let lx = 6 * dpr, ly = 0.27 * h;
-          L.forEach(([c, t]) => { const tw = ctx.measureText(t).width + 22 * dpr; if (lx + tw > w * 0.97) { lx = 6 * dpr; ly += 14 * dpr }   // wrap onto a second row
-            ctx.fillStyle = c; ctx.beginPath(); ctx.arc(lx + 4 * dpr, ly - 4 * dpr, 4 * dpr, 0, 7); ctx.fill(); ctx.fillStyle = "#c9d4e5"; ctx.fillText(t, lx + 11 * dpr, ly); lx += tw }) }
+          ctx.fillStyle = getComputedStyle(el).getPropertyValue("--muted").trim() || "#6b7a92"; ctx.font = `600 ${Math.round(12 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "center"; ctx.fillText("not reached", (x0 + w) / 2, 0.52 * h) }
         // gates and labels on top
         ctx.font = `600 ${Math.round(13 * dpr)}px system-ui, sans-serif`; ctx.textAlign = "center";
         st.forEach((g, k) => {
@@ -990,7 +987,8 @@ def checkValue : Constraint → CapValue → Outcome
           const mark = !F.started ? "" : k < block || block < 0 ? "✓ " : k === block ? (g.out === "f" ? "✗ " : "? ") : "";
           ctx.fillText(mark + g.name.replace(/^(Seal and pump the |Turn on the |Hold for the whole |Connect and )/, ""), x, 0.985 * h);
         });
-        ctx.textAlign = "left"; ctx.fillStyle = "#9fb0c8"; ctx.fillText("experiment →", 6 * dpr, 0.985 * h);
+        const ink = getComputedStyle(el).getPropertyValue("--ink-2").trim() || "#9fb0c8";
+        ctx.textAlign = "left"; ctx.fillStyle = ink; ctx.fillText("experiment →", 6 * dpr, 0.985 * h);
         ctx.textAlign = "right";
         ctx.fillStyle = !F.started ? "#5b6b85" : block < 0 ? "#3ddc84" : lanyon && F.fixes ? "#b48cff" : bOut === "f" ? "#ff6b6b" : "#f3b545";
         ctx.fillText(!F.started ? "tick temperature to start" : block < 0 ? "runs ✓" : lanyon ? (F.fixes ? `${F.fixes} verified fix${F.fixes > 1 ? "es" : ""} →` : "no verified fix") : bOut === "f" ? "blocked ✗" : "waiting for info ?", w - 6 * dpr, 0.1 * h);
