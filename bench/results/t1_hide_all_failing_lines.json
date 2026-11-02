@@ -1,0 +1,1323 @@
+{
+ "label": "every failing line hidden",
+ "cases": 30055,
+ "truth": "NO (the configuration's own trusted spec rules it out)",
+ "by_method": {
+  "R1": {
+   "YES": 26770,
+   "NO": 3285,
+   "NEED_INFO": 0,
+   "wrong_YES": 26770
+  },
+  "R2": {
+   "YES": 0,
+   "NO": 3285,
+   "NEED_INFO": 26770,
+   "wrong_YES": 0
+  },
+  "R3": {
+   "YES": 0,
+   "NO": 3285,
+   "NEED_INFO": 26770,
+   "wrong_YES": 0
+  },
+  "CryoLean": {
+   "YES": 0,
+   "NO": 3214,
+   "NEED_INFO": 26841,
+   "wrong_YES": 0
+  }
+ },
+ "cryolean_need_info_names_the_hidden_line": 26841,
+ "cryolean_yes_cases": [],
+ "wrong_yes_by_industry": {
+  "aerospace_and_space_exploration": {
+   "cases": 1494,
+   "R1": 1311,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "astronomy_and_astrophysics": {
+   "cases": 1817,
+   "R1": 1275,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "automotive_and_transportation": {
+   "cases": 1309,
+   "R1": 1305,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "biology_and_biotechnology": {
+   "cases": 1235,
+   "R1": 1235,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "chemistry_and_pharmaceuticals": {
+   "cases": 1671,
+   "R1": 1667,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "defense_and_security": {
+   "cases": 1680,
+   "R1": 1673,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "energy_and_hydrogen": {
+   "cases": 621,
+   "R1": 619,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "environmental_science": {
+   "cases": 1047,
+   "R1": 880,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "physics_and_particle_accelerators": {
+   "cases": 1599,
+   "R1": 1595,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "nuclear_engineering_and_fusion": {
+   "cases": 1484,
+   "R1": 1479,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "scientific_research": {
+   "cases": 1810,
+   "R1": 1690,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "food_and_agriculture": {
+   "cases": 1271,
+   "R1": 1187,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "geology_and_oceanography": {
+   "cases": 1245,
+   "R1": 1217,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "healthcare_and_medicine": {
+   "cases": 1064,
+   "R1": 1039,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "manufacturing_and_industrial_processing": {
+   "cases": 982,
+   "R1": 884,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "metrology_and_calibration": {
+   "cases": 1919,
+   "R1": 1780,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "photonics_and_telecommunications": {
+   "cases": 1908,
+   "R1": 1402,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "semiconductors_and_electronics": {
+   "cases": 1968,
+   "R1": 1836,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "materials_and_nanotechnology": {
+   "cases": 1781,
+   "R1": 1777,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  },
+  "quantum_computing_and_sensing": {
+   "cases": 2150,
+   "R1": 919,
+   "R2": 0,
+   "R3": 0,
+   "CryoLean": 0
+  }
+ },
+ "examples": [
+  {
+   "experiment_id": "aero_adr_xray_microcalorimeter_50mk",
+   "experiment": "Hold an X-ray space-telescope detector at 50 millikelvin with a magnetic refrigerator",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "temperature.base",
+    "temperature.stability"
+   ],
+   "why_no": [
+    "temperature.base: needs 50 mK or lower; sheet: a documented minimum of 9 K",
+    "temperature.stability: needs 2 µK or lower; sheet: a documented minimum of 100 mK"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_cubesat_tvac_lsp",
+   "experiment": "Space-qualify a small CubeSat satellite by cycling it hot and cold in a vacuum chamber",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "pressure.base",
+    "sample.diameter.max"
+   ],
+   "why_no": [
+    "pressure.base: needs 13.332 mPa or lower; sheet: a documented minimum of 1 Pa",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration",
+    "sample.diameter.max: needs at least 141.6 mm; sheet: a documented maximum of 10 mm"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_ecss_equipment_tvac",
+   "experiment": "Test a satellite electronics unit in vacuum under the European space testing standard",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "pressure.base"
+   ],
+   "why_no": [
+    "pressure.base: needs 1 mPa or lower; sheet: a documented minimum of 1 Pa",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_gevs_unit_tvac",
+   "experiment": "Prove a NASA spacecraft part keeps working through hot and cold cycles in space-like vacuum",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "pressure.base"
+   ],
+   "why_no": [
+    "pressure.base: needs 1.33 mPa or lower; sheet: a documented minimum of 1 Pa",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_lox_liquefaction_90k",
+   "experiment": "Make and keep liquid oxygen in a Moon-lander tank using an electric cryogenic cooler",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_oxygen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_lox_mechanical_impact",
+   "experiment": "Drop a heavy weight on material soaked in liquid oxygen to check that it does not ignite",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_oxygen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "aero_mars_prt_thermal_cycling",
+   "experiment": "Cycle Mars-rover temperature sensors through Martian day-night temperature swings",
+   "industry": "aerospace_and_space_exploration",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 398.15 K; sheet: a documented range of 1.5 K to 320 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_arecibo_wideband_feed_15k",
+   "experiment": "Cool an entire radio antenna feed horn to 15 K and measure how much noise it adds",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 15 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_fast_lband_receiver_15k",
+   "experiment": "Cool a giant radio telescope's 1.2-1.8 GHz receiver electronics to 15 K to cut its noise",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "pressure.base",
+    "sample.diameter.max",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 15 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "pressure.base: needs 10 µPa or lower; sheet: a documented minimum of 1 Pa",
+    "sample.diameter.max: needs at least 189 mm; sheet: a documented maximum of 10 mm"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_ge_ccd_nir_95k",
+   "experiment": "Check a new germanium camera chip for infrared astronomy while it sits at about 95 K",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "pressure.base"
+   ],
+   "why_no": [
+    "pressure.base: needs 6.666 mPa or lower; sheet: a documented minimum of 1 Pa",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_h2rg_ir_array_35k",
+   "experiment": "Test a large infrared camera chip for a telescope while it is held at 35 K",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "pressure.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 35 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "pressure.base: needs 1.333 mPa or lower; sheet: a documented minimum of 1 Pa",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_interstellar_ice_uhv_14k",
+   "experiment": "Make space-like ice at 14 K in ultra-high vacuum and watch it change under UV light",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "pressure.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 14 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "pressure.base: needs 10 nPa or lower; sheet: a documented minimum of 1 Pa"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_mkid_uvoir_photon_counting_90mk",
+   "experiment": "Count single photons of starlight with a superconducting detector array kept near 0.1 K",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "temperature.base"
+   ],
+   "why_no": [
+    "temperature.base: needs 90 mK or lower; sheet: a documented minimum of 9 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_qubic_tes_array_320mk",
+   "experiment": "Characterize an array of ultra-sensitive heat detectors for measuring the Big Bang's afterglow",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "temperature.base"
+   ],
+   "why_no": [
+    "temperature.base: needs 320 mK or lower; sheet: a documented minimum of 9 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "astro_xray_microcalorimeter_42mk",
+   "experiment": "Test an X-ray detector that measures the energy of single X-ray photons as a tiny temperature rise",
+   "industry": "astronomy_and_astrophysics",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "temperature.base"
+   ],
+   "why_no": [
+    "temperature.base: needs 42 mK or lower; sheet: a documented minimum of 9 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_iec62660_low_temp_capacity",
+   "experiment": "Measure how much charge an electric-car battery cell delivers at -20 C",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_iso16750_constant_temperature",
+   "experiment": "Leave a car electronic unit at -40 C for a day, then at 85 C for two days",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_iso16750_temperature_cycling",
+   "experiment": "Cycle a powered car electronics module 30 times between -40 C and 65 C",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_li_plating_subzero_cycling",
+   "experiment": "Charge and discharge battery cells over and over at -10 C to see metal lithium build up",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_pemfc_system_minus30_cold_start",
+   "experiment": "Start a full-size car fuel-cell power system after it has been frozen to -30 C",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_starter_battery_cold_cranking",
+   "experiment": "Test whether a 12 V car starter battery can crank an engine at -30 C",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "auto_un383_t2_thermal_cycling",
+   "experiment": "Bake and freeze a lithium battery ten times to prove it is safe to ship",
+   "industry": "automotive_and_transportation",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 233.15 K to 345.15 K; sheet: a documented range of 1.5 K to 320 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_bacterial_glycerol_stock_minus80",
+   "experiment": "Bank bacteria and their plasmids in a minus-80 freezer",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 193.15 K; sheet: a documented range of 233.15 K to 453.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_cryo_fluorescence_vitrified",
+   "experiment": "Examine a sample under the microscope while keeping it cold",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "optical_access"
+   ],
+   "why_no": [
+    "optical_access: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_cryoem_single_particle_krios",
+   "experiment": "Photograph frozen protein molecules with a 300 kV electron microscope",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 80 K; sheet: a documented range of 83.15 K to 873.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_cryofib_lamella_milling",
+   "experiment": "Carve a thin window through a frozen cell with an ion beam",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "attocube_attodry2100_9t_basic_insert",
+   "configuration": "attoDRY2100 with 9 T solenoid and Basic Measurement Insert",
+   "hidden": [
+    "vacuum.available"
+   ],
+   "why_no": [
+    "vacuum.available: must be installed / available; sheet: documented as absent"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_cryosection_frozen_tissue",
+   "experiment": "Cut a frozen tissue sample",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "bluefors_ld250_manual_v2",
+   "configuration": "Bluefors LD250 (renamed LD350 in 2026), standard system per User Manual v2.0 (2022), no wiring/magnet/optical options installed",
+   "hidden": [
+    "section_thickness.range",
+    "temperature.chamber.range",
+    "temperature.specimen_head.range"
+   ],
+   "why_no": [
+    "temperature.chamber.range: must be able to operate at 253.15 K; sheet: documented as not fitted / not available on this configuration",
+    "temperature.specimen_head.range: must be able to operate at 255.15 K; sheet: documented as not fitted / not available on this configuration",
+    "section_thickness.range: must be able to operate at 15 µm; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_freeze_substitution_afs2",
+   "experiment": "Slowly swap ice for solvent in frozen cells before embedding them in resin",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 183.15 K; sheet: a documented range of 233.15 K to 453.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_freezer_mill_tissue_rna",
+   "experiment": "Grind frozen cartilage into powder for RNA extraction",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_mx_cryocrystallography_100k",
+   "experiment": "Collect X-ray diffraction from a protein crystal kept at 100 K",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "bio_tokuyasu_cryo_ultramicrotomy",
+   "experiment": "Cut ultra-thin frozen slices of cells for antibody gold labelling",
+   "industry": "biology_and_biotechnology",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_cryo_ion_ir_spectroscopy",
+   "experiment": "Identify a molecule by chilling its ions and shining infrared on them",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "pressure.base",
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 30 K to 45 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "temperature.base: needs 30 K or lower; sheet: a documented minimum of 83.15 K",
+    "pressure.base: needs 200 µPa or lower; sheet: a documented minimum of 1 Pa"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_cryomilling_amorphization",
+   "experiment": "Grind a medicine into powder while liquid nitrogen keeps it brittle",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_dnp_ssnmr_protac",
+   "experiment": "Boost a magnetic resonance signal by cooling a drug powder to 100 K",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "magnetic_field.max"
+   ],
+   "why_no": [
+    "magnetic_field.max: needs at least 9.39 T; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_epr_frozen_catalyst",
+   "experiment": "Detect unpaired electrons in a deep-frozen catalyst sample",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 40 K to 50 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "temperature.base: needs 40 K or lower; sheet: a documented minimum of 83.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_low_temperature_raman",
+   "experiment": "Study a sample using light at low temperature",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "sample.diameter.max"
+   ],
+   "why_no": [
+    "sample.diameter.max: needs at least 15 mm; sheet: a documented maximum of 10 mm"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_lyophilization_cycle",
+   "experiment": "Freeze-dry a medicine into a shelf-stable powder",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "attocube_attodry2100_9t_attocfm1",
+   "configuration": "attoDRY2100 with 9 T solenoid and attoCFM I confocal microscope insert",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 223.15 K to 313.15 K; sheet: a documented range of 1.8 K to 300 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_matrix_isolation_ir",
+   "experiment": "Trap single molecules in frozen argon and study them with infrared light",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "pressure.base",
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 15 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "temperature.base: needs 15 K or lower; sheet: a documented minimum of 83.15 K",
+    "pressure.base: needs 3.5 mPa or lower; sheet: a documented minimum of 1 Pa"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_mdsc_frozen_tg",
+   "experiment": "Find the temperature at which a frozen medicine mixture softens",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 203.15 K to 373.15 K; sheet: a documented range of 1.5 K to 320 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_phase_transition_pom",
+   "experiment": "Watch a crystal melt or change phase under a polarizing microscope",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "optical_access",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 203 K to 393 K; sheet: a documented range of 1.5 K to 320 K",
+    "optical_access: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "chem_temperature_dependent_photoluminescence",
+   "experiment": "Measure how a material's light emission changes with temperature",
+   "industry": "chemistry_and_pharmaceuticals",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 4 K to 300 K; sheet: a documented range of 83.15 K to 873.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_ansi_n4234_rid_ambient_temperature",
+   "experiment": "Check a handheld radiation identifier still names radioactive sources correctly from -20 C to +50 C",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "sample.diameter.max"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration",
+    "sample.diameter.max: needs at least 427 mm; sheet: a documented maximum of 10 mm"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_hot_mwir_idca_120k",
+   "experiment": "Keep a thermal-sight camera's infrared chip near 120 K inside a sealed vacuum package with a long-life cooler",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "cryogen.cryogen_free",
+    "electrical.sample_connections"
+   ],
+   "why_no": [
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration",
+    "cryogen.cryogen_free: must be installed / available; sheet: documented as absent"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_hpge_stirling_incident_body_monitor",
+   "experiment": "Check people for swallowed or inhaled radioactivity after an incident with a portable electrically cooled germanium detector",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "cryogen.cryogen_free",
+    "electrical.sample_connections",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 77 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "cryogen.cryogen_free: must be installed / available; sheet: documented as absent",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_hts_squid_mad_tensor_77k",
+   "experiment": "Find a hidden metal object from the tiny dent it makes in the Earth's magnetic field using nitrogen-cooled SQUID sensors",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 77 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_integral_stirling_77k_lift",
+   "experiment": "Check that a small battlefield-camera cooler can pull its heat load down to 77 K quickly",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "cryogen.cryogen_free",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 77 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "cryogen.cryogen_free: must be installed / available; sheet: documented as absent"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_jt_spray_seeker_fast_cooldown",
+   "experiment": "Chill a missile's infrared eye to 100 K in about two seconds with expanding high-pressure argon",
+   "industry": "defense_and_security",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cooldown_time.max",
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cooldown_time.max: needs 2.3 s or lower; sheet: a documented minimum of 4.32 ks",
+    "cryogen.type: must support all of [compressed_argon_jt]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_mil810_502_cold_operation_c2",
+   "experiment": "Prove military equipment still switches on and works after soaking at -46 C",
+   "industry": "defense_and_security",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 227.15 K; sheet: a documented range of 233.15 K to 453.15 K",
+    "temperature.base: needs 227.15 K or lower; sheet: a documented minimum of 233.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_mil810_502_munitions_storage_c3",
+   "experiment": "Store explosives and munitions at -51 C for three days to check they stay safe",
+   "industry": "defense_and_security",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 222.15 K; sheet: a documented range of 233.15 K to 453.15 K",
+    "temperature.base: needs 222.15 K or lower; sheet: a documented minimum of 233.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "def_mil810_503_cold_region_shock",
+   "experiment": "Carry a military device between arctic outdoors and a heated shelter to check sudden temperature change does not crack it",
+   "industry": "defense_and_security",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.base",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 227.15 K to 297.15 K; sheet: a documented range of 233.15 K to 453.15 K",
+    "temperature.base: needs 227.15 K or lower; sheet: a documented minimum of 233.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "energy_rebco_ic_axial_strain_77k",
+   "experiment": "Find how far a superconducting tape can be stretched before it stops carrying current",
+   "industry": "energy_and_hydrogen",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 77 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "energy_rebco_ic_surface_4k_20k_19t",
+   "experiment": "Map how much current superconducting tapes carry at 4 K and 20 K in very strong magnetic fields",
+   "industry": "energy_and_hydrogen",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "electrical.sample_connections",
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 4.2 K to 20 K; sheet: a documented range of 83.15 K to 873.15 K",
+    "electrical.sample_connections: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_fresh_inp_plate_freezing",
+   "experiment": "Count ice-forming particles from air filters in plate wells",
+   "industry": "environmental_science",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "optical_access"
+   ],
+   "why_no": [
+    "optical_access: must be installed / available; sheet: documented as not fitted / not available on this configuration"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_ice_core_archive_storage",
+   "experiment": "Keep ice cores frozen in a national archive freezer",
+   "industry": "environmental_science",
+   "configuration_id": "bluefors_cryogenic_wafer_prober_300mm_18ghz",
+   "configuration": "Cryogenic Wafer Prober, 300 mm, manual load-lock loading, 18 GHz RF wiring",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 237.15 K; sheet: a documented range of 2 K to 2 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_ice_core_co2_sublimation_extraction",
+   "experiment": "Release ancient air from ice-core pieces to measure past CO2",
+   "industry": "environmental_science",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_medusa_halocarbon_monitoring",
+   "experiment": "Monitor ozone-depleting and greenhouse gases at a remote air station",
+   "industry": "environmental_science",
+   "configuration_id": "as_scientific_ill_orange_cryostat_100mm",
+   "configuration": "Orange Ø100 quad-exchanger top-loading cryostat with helium pumping (1.5-320 K)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 108.15 K to 373.15 K; sheet: a documented range of 1.5 K to 320 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_soil_plant_water_cryo_vacuum_extraction",
+   "experiment": "Pull water out of soil samples under vacuum for isotope tracing",
+   "industry": "environmental_science",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "env_specimen_bank_ln2_vapour_archive",
+   "experiment": "Archive environmental samples for decades above liquid nitrogen",
+   "industry": "environmental_science",
+   "configuration_id": "advanced_research_systems_cs204ab_uhv_standard",
+   "configuration": "CS204AB typical configuration (DE-204AB, ARS-4HW, 6 in CF flange, 10-pin feedthrough, 4 sample wires)",
+   "hidden": [
+    "cryogen.type"
+   ],
+   "why_no": [
+    "cryogen.type: must support all of [liquid_nitrogen]; sheet: the documented set []"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "expa_argon_charge_scintillation",
+   "experiment": "Two-phase liquid-argon ionization and scintillation detection at 87 K",
+   "industry": "physics_and_particle_accelerators",
+   "configuration_id": "binder_mk_240_standard",
+   "configuration": "BINDER MK 240 standard (9020-0376, 400 V)",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must be able to operate at 87 K; sheet: a documented range of 233.15 K to 453.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  },
+  {
+   "experiment_id": "expa_bib_detector_photometry",
+   "experiment": "Far-infrared BIB detector dark and illuminated response, 5–20 K",
+   "industry": "defense_and_security",
+   "configuration_id": "anton_paar_ttk600_ln2_vacuum",
+   "configuration": "TTK 600 with liquid-nitrogen cooling, operated under vacuum, standard nickel flat-plate sample holder",
+   "hidden": [
+    "temperature.range"
+   ],
+   "why_no": [
+    "temperature.range: must cover the whole range 5 K to 20 K; sheet: a documented range of 83.15 K to 873.15 K"
+   ],
+   "borrowed_from": null,
+   "R1": "YES",
+   "R2": "NEED INFO",
+   "R3": "NEED INFO",
+   "CryoLean": "NEED INFO"
+  }
+ ],
+ "featured": [],
+ "rows": []
+}

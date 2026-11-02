@@ -1,0 +1,242 @@
+<title>CryoLean vs the Regular Way</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;800;900&family=Red+Hat+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; the scoreboard and the two charts break out to a wider measure. Tokens follow the CryoLean site. */
+:root {
+  --bg: #eef4fb; --panel: #f9fcff; --line: #c9dbf2; --ink: #0b2a55; --ink-2: #33507a; --muted: #5d7597;
+  --accent: #1468e8; --ok: #17803d; --ok-soft: #e1f3e7; --no: #c72f2f; --no-soft: #fbe3e3; --info: #a86a00; --info-soft: #fdf1d6;
+  --grid: #d7e3f3; --code: #e6eef9;
+  --display: "Red Hat Display", "Segoe UI", system-ui, sans-serif;
+  --text: "Red Hat Text", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #081427; --panel: #0d1d36; --line: #22385a; --ink: #e4edf9; --ink-2: #b4c6e0; --muted: #8aa1c2;
+  --accent: #6aa5ff; --ok: #4cc77a; --ok-soft: #10301f; --no: #ff7b7b; --no-soft: #3a1518; --info: #f2b544; --info-soft: #33260a;
+  --grid: #1b2f4e; --code: #12264a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #081427; --panel: #0d1d36; --line: #22385a; --ink: #e4edf9; --ink-2: #b4c6e0; --muted: #8aa1c2;
+  --accent: #6aa5ff; --ok: #4cc77a; --ok-soft: #10301f; --no: #ff7b7b; --no-soft: #3a1518; --info: #f2b544; --info-soft: #33260a;
+  --grid: #1b2f4e; --code: #12264a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--text); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 720px; }
+.eyebrow { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 900 clamp(30px, 5vw, 48px)/1.08 var(--display); margin: 10px 0 16px; text-wrap: balance; letter-spacing: -.01em; }
+h1 .no { color: var(--no); } h1 .ok { color: var(--ok); }
+h2 { font: 800 24px/1.2 var(--display); margin: 0; text-wrap: balance; }
+h3 { font: 700 17px/1.3 var(--display); margin: 0 0 6px; }
+p { margin: 0 0 14px; }
+.lede { font-size: 18px; color: var(--ink-2); }
+code { font: 13px/1.4 var(--mono); background: var(--code); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+b.no, .no { color: var(--no); } b.ok, .ok { color: var(--ok); } b.info, .info { color: var(--info); }
+.scroll { overflow-x: auto; }
+table.score { width: 100%; border-collapse: collapse; min-width: 640px; font-variant-numeric: tabular-nums; margin-top: 18px; }
+.score thead th { font: 600 12px/1.3 var(--text); color: var(--muted); text-align: right; padding: 8px 10px; vertical-align: bottom; }
+.score thead th:first-child { text-align: left; }
+.score thead th.us { color: var(--ok); }
+.score tbody th { text-align: left; font-weight: 600; padding: 12px 10px; border-top: 1px solid var(--line); }
+.score .truth { display: block; font: 400 12.5px/1.4 var(--text); color: var(--muted); margin-top: 2px; }
+.tid { font: 500 12px var(--mono); color: var(--accent); margin-right: 4px; }
+.score td.num { text-align: right; padding: 12px 10px; border-top: 1px solid var(--line); white-space: nowrap; }
+.score .big { display: block; font: 800 20px/1.1 var(--display); }
+.score .sub { font: 12px var(--mono); color: var(--muted); }
+.score td.hot .big { color: var(--no); } .score td.warm .big { color: var(--info); } .score td.zero .big { color: var(--ok); }
+.score td.zero { background: var(--ok-soft); }
+.score tfoot td, .score tfoot th { border-top: 2px solid var(--ink); padding: 12px 10px; font: 800 18px var(--display); text-align: right; }
+.score tfoot th { text-align: left; font: 700 15px var(--display); }
+.score tfoot td.hot { color: var(--no); } .score tfoot td.zero { color: var(--ok); background: var(--ok-soft); }
+.note { font-size: 13.5px; color: var(--muted); }
+section { margin-top: 56px; }
+.methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+.method { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0; }
+.method.us { border-color: var(--ok); }
+.method ul { margin: 8px 0 0; padding-left: 18px; font-size: 14px; color: var(--ink-2); }
+.test header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.test header .tid { font-size: 14px; }
+.tally { list-style: none; padding: 0; margin: 14px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.tally li { border-left: 3px solid var(--line); padding: 2px 0 2px 10px; }
+.tally span { display: block; font-size: 12.5px; color: var(--muted); }
+.tally b { font: 800 26px/1.2 var(--display); font-variant-numeric: tabular-nums; }
+.ex { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: 14.5px; }
+.chart { width: 100%; height: auto; display: block; margin: 8px 0 4px; }
+.chart .grid { stroke: var(--grid); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font: 11px var(--mono); }
+.chart .axis { fill: var(--ink-2); font: 600 12px var(--text); }
+.chart .load { fill: none; stroke: var(--ink); stroke-width: 2.4; }
+.chart .load-label { fill: var(--ink); font: 600 12px var(--text); }
+.chart .cool { stroke: var(--ok); stroke-width: 2; stroke-dasharray: 6 4; }
+.chart .cool-label { fill: var(--ok); font: 600 12px var(--text); }
+.chart .danger { fill: var(--no-soft); }
+.chart .danger-label { fill: var(--no); font: 700 12px var(--text); }
+.chart .limit { stroke: var(--muted); stroke-dasharray: 2 3; }
+.chart .bar-no { fill: var(--no); opacity: .8; } .chart .bar-ok { fill: var(--ok); }
+table.thm { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.thm td { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; }
+.thm td:last-child { color: var(--muted); font: 12px var(--mono); }
+pre { background: var(--code); border-radius: 8px; padding: 14px; overflow-x: auto; font: 12.5px/1.55 var(--mono); }
+.claims { display: grid; gap: 10px; margin: 14px 0; }
+.claim { border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; }
+.claim code { font-size: 12px; }
+ul.limits li { margin-bottom: 6px; }
+footer { margin-top: 56px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 520px) { .lede { font-size: 16.5px; } .score .big { font-size: 17px; } }
+</style>
+<div class="wrap">
+<header class="col">
+  <div class="eyebrow">VibeCheck FM × AI · CryoLean · head-to-head</div>
+  <h1>The regular datasheet check approved <span class="no">16,966</span> setups the evidence rules out. CryoLean approved <span class="ok">none</span>.</h1>
+  <p class="lede">Same catalog, same 44,880 experiment × cryostat pairs, the same input files. We ran three versions of the regular way and the Lean checker through five tests where the right answer does not come from CryoLean: the manufacturer's own specs, a published heat-budget rule, documentation we found after the fact, and planted defects. Then we proved in Lean why the result has to come out this way.</p>
+</header>
+
+<section class="scoreboard" aria-labelledby="sb">
+  <h2 id="sb">Wrong YES answers, by test</h2>
+  <p class="note">A wrong YES approves an experiment the truth rules out (T1–T4), or, in T5, certifies a datasheet line the sheet cannot support. It is the error that costs a cooldown. The bottom row adds up T1–T4 only.</p>
+  <div class="scroll">
+  <table class="score">
+    <thead><tr><th>Test</th><th>Spec-sheet<br>checklist</th><th>Careful<br>spreadsheet</th><th>Physics-aware<br>script</th><th class="us">CryoLean<br>(Lean 4)</th></tr></thead>
+    <tbody><tr><th scope="row"><span class="tid">T1</span> Hide one datasheet line<span class="truth">Truth: the configuration&#x27;s own sourced spec rules the setup out · 17,581 cases</span></th><td class="num hot"><span class="big">15,766</span><span class="sub">89.7%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td></tr><tr><th scope="row"><span class="tid">T2</span> Borrow a sibling model&#x27;s number<span class="truth">Truth: the configuration&#x27;s own sourced spec rules the setup out · 496 cases</span></th><td class="num hot"><span class="big">482</span><span class="sub">97.2%</span></td><td class="num hot"><span class="big">197</span><span class="sub">39.7%</span></td><td class="num hot"><span class="big">197</span><span class="sub">39.7%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td></tr><tr><th scope="row"><span class="tid">T3</span> Scale a qubit chip, 1 to 200 qubits<span class="truth">Truth: Krinner et al.&#x27;s published heat-budget rule, recomputed exactly · 44,000 cases</span></th><td class="num warm"><span class="big">622</span><span class="sub">1.4%</span></td><td class="num warm"><span class="big">27</span><span class="sub">0.1%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td></tr><tr><th scope="row"><span class="tid">T4</span> Our own project history<span class="truth">Truth: documentation found after the Oct 31 build, same requirements · 284 cases</span></th><td class="num hot"><span class="big">96</span><span class="sub">33.8%</span></td><td class="num warm"><span class="big">1</span><span class="sub">0.4%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td></tr><tr><th scope="row"><span class="tid">T5</span> Inject a defect into the sheet<span class="truth">Truth: by construction: a planted defect leaves a line uncertifiable · 2,750 cases</span></th><td class="num hot"><span class="big">1,499</span><span class="sub">54.5%</span></td><td class="num warm"><span class="big">422</span><span class="sub">15.3%</span></td><td class="num warm"><span class="big">422</span><span class="sub">15.3%</span></td><td class="num zero"><span class="big">0</span><span class="sub">0%</span></td></tr></tbody>
+    <tfoot><tr><th>Impossible setups approved (T1–T4, 62,361 cases)</th><td class="num total hot">16,966</td><td class="num total hot">225</td><td class="num total hot">197</td><td class="num total zero">0</td></tr></tfoot>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="who">
+  <h2 id="who">The regular way, built fairly</h2>
+  <p class="col">Each regular method reads the same documents the Lean checker reads and respects what the sheet says about installed options, so none of them confuses a brochure option with the installed machine. Each one is a step closer to CryoLean. The code is <code>bench/regular_way.py</code>.</p>
+  <div class="methods">
+    <div class="method"><h3>Spec-sheet checklist</h3><ul><li>one datasheet line at a time</li><li>a blank line passes</li><li>any number on the sheet is believed</li><li>no coupled physics</li></ul></div>
+    <div class="method"><h3>Careful spreadsheet</h3><ul><li>one line at a time</li><li>a blank line means "TBD"</li><li>any number on the sheet is believed</li><li>no coupled physics</li></ul></div>
+    <div class="method"><h3>Physics-aware script</h3><ul><li>lines plus heat budget, Joule heating, ramp time</li><li>a blank line means "TBD"</li><li>any number is believed</li><li>floats, no validity range</li></ul></div>
+    <div class="method us"><h3>CryoLean</h3><ul><li>lines plus physics, exact rationals with units</li><li>a blank line means NEED INFO, and names it</li><li>only sourced numbers decide</li><li>every verdict backed by Lean theorems</li></ul></div>
+  </div>
+</section>
+
+<section class="test" id="t1">
+  <header><span class="tid">T1</span><h2>Hide one datasheet line</h2></header>
+  <div class="col">
+  <p>We took the 17,581 pairs that CryoLean rejects on exactly one sourced datasheet line, deleted that line as if the sheet were silent on it, and asked again. The machine did not change, so the right answer is still no.</p>
+  <ul class="tally">
+    <li><span>Checklist said YES</span><b class="no">15,766</b></li>
+    <li><span>Spreadsheet said YES</span><b class="ok">0</b></li>
+    <li><span>Physics script said YES</span><b class="ok">0</b></li>
+    <li><span>CryoLean said YES</span><b class="ok">0</b></li>
+  </ul>
+  <p>CryoLean answered NEED INFO and named the hidden line in 15,809 of 15,809 cases. A careful spreadsheet that treats blanks as "TBD" also survives this test; the next two are where it stops.</p>
+  <p class="ex"><b>Example.</b> Measure how a crystal&#x27;s resistance changes in a 10 T field at 2 K on the PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity. magnetic_field.max: needs at least 10 T; sheet: a documented maximum of 9 T. With the magnet line hidden the checklist answers <b class="no">YES</b>; CryoLean answers <b class="info">NEED INFO</b> and names <code>magnetic_field.max</code> as the line to look up.</p>
+  <h3>Share of these cases the checklist approved, by industry</h3>
+  </div>
+  <svg viewBox="0 0 720 406" role="img" aria-label="Share of hidden-line cases the checklist answered YES, by industry" class="chart"><line x1="150.0" x2="150.0" y1="14" y2="402" class="grid"/><text x="150.0" y="10" class="tick" text-anchor="middle">0%</text><line x1="275.0" x2="275.0" y1="14" y2="402" class="grid"/><text x="275.0" y="10" class="tick" text-anchor="middle">25%</text><line x1="400.0" x2="400.0" y1="14" y2="402" class="grid"/><text x="400.0" y="10" class="tick" text-anchor="middle">50%</text><line x1="525.0" x2="525.0" y1="14" y2="402" class="grid"/><text x="525.0" y="10" class="tick" text-anchor="middle">75%</text><line x1="650.0" x2="650.0" y1="14" y2="402" class="grid"/><text x="650.0" y="10" class="tick" text-anchor="middle">100%</text><text x="142" y="31" class="tick" text-anchor="end">Biology</text><rect x="150" y="22" width="500.0" height="12" class="bar-no"/><text x="655.0" y="32" class="tick">100%</text><text x="142" y="50" class="tick" text-anchor="end">Particle physics</text><rect x="150" y="41" width="499.4" height="12" class="bar-no"/><text x="654.4" y="51" class="tick">100%</text><text x="142" y="69" class="tick" text-anchor="end">Energy &amp; hydrogen</text><rect x="150" y="60" width="498.9" height="12" class="bar-no"/><text x="653.9" y="70" class="tick">100%</text><text x="142" y="88" class="tick" text-anchor="end">Defense</text><rect x="150" y="79" width="498.6" height="12" class="bar-no"/><text x="653.6" y="89" class="tick">100%</text><text x="142" y="107" class="tick" text-anchor="end">Materials &amp; nano</text><rect x="150" y="98" width="498.1" height="12" class="bar-no"/><text x="653.1" y="108" class="tick">100%</text><text x="142" y="126" class="tick" text-anchor="end">Automotive</text><rect x="150" y="117" width="498.0" height="12" class="bar-no"/><text x="653.0" y="127" class="tick">100%</text><text x="142" y="145" class="tick" text-anchor="end">Chemistry &amp; pharma</text><rect x="150" y="136" width="497.5" height="12" class="bar-no"/><text x="652.5" y="146" class="tick">100%</text><text x="142" y="164" class="tick" text-anchor="end">Nuclear &amp; fusion</text><rect x="150" y="155" width="496.9" height="12" class="bar-no"/><text x="651.9" y="165" class="tick">99%</text><text x="142" y="183" class="tick" text-anchor="end">Healthcare</text><rect x="150" y="174" width="488.2" height="12" class="bar-no"/><text x="643.2" y="184" class="tick">98%</text><text x="142" y="202" class="tick" text-anchor="end">Geology &amp; oceans</text><rect x="150" y="193" width="479.1" height="12" class="bar-no"/><text x="634.1" y="203" class="tick">96%</text><text x="142" y="221" class="tick" text-anchor="end">Semiconductors</text><rect x="150" y="212" width="472.2" height="12" class="bar-no"/><text x="627.2" y="222" class="tick">94%</text><text x="142" y="240" class="tick" text-anchor="end">Metrology</text><rect x="150" y="231" width="468.7" height="12" class="bar-no"/><text x="623.7" y="241" class="tick">94%</text><text x="142" y="259" class="tick" text-anchor="end">Food &amp; agriculture</text><rect x="150" y="250" width="466.4" height="12" class="bar-no"/><text x="621.4" y="260" class="tick">93%</text><text x="142" y="278" class="tick" text-anchor="end">Aerospace</text><rect x="150" y="269" width="463.8" height="12" class="bar-no"/><text x="618.8" y="279" class="tick">93%</text><text x="142" y="297" class="tick" text-anchor="end">General research</text><rect x="150" y="288" width="453.2" height="12" class="bar-no"/><text x="608.2" y="298" class="tick">91%</text><text x="142" y="316" class="tick" text-anchor="end">Manufacturing</text><rect x="150" y="307" width="448.5" height="12" class="bar-no"/><text x="603.5" y="317" class="tick">90%</text><text x="142" y="335" class="tick" text-anchor="end">Environmental science</text><rect x="150" y="326" width="416.8" height="12" class="bar-no"/><text x="571.8" y="336" class="tick">83%</text><text x="142" y="354" class="tick" text-anchor="end">Photonics</text><rect x="150" y="345" width="389.6" height="12" class="bar-no"/><text x="544.6" y="355" class="tick">78%</text><text x="142" y="373" class="tick" text-anchor="end">Astronomy</text><rect x="150" y="364" width="336.2" height="12" class="bar-no"/><text x="491.2" y="374" class="tick">67%</text><text x="142" y="392" class="tick" text-anchor="end">Quantum</text><rect x="150" y="383" width="173.3" height="12" class="bar-no"/><text x="328.3" y="393" class="tick">35%</text></svg>
+</section>
+
+<section class="test" id="t2">
+  <header><span class="tid">T2</span><h2>Borrow a sibling model's number</h2></header>
+  <div class="col">
+  <p>The classic slip: the brochure covers several configurations, and the number you read belongs to another one. We refilled every failing line with the value printed for a sibling configuration of the same instrument and recorded it as what it is, an inferred estimate. 496 pairs could be refilled this way; the truth is still no.</p>
+  <ul class="tally">
+    <li><span>Checklist said YES</span><b class="no">482</b></li>
+    <li><span>Spreadsheet said YES</span><b class="no">197</b></li>
+    <li><span>Physics script said YES</span><b class="no">197</b></li>
+    <li><span>CryoLean said YES</span><b class="ok">0</b></li>
+  </ul>
+  <p class="ex"><b>Example.</b> Measure quantized Hall conduction in graphene on a magnetic insulator on the PPMS DynaCool, 9 T magnet, Electrical Transport Option (ETO) + DC Resistivity. magnetic_field.max: needs at least 12 T; sheet: a documented maximum of 9 T. Fill the blank with the <code>magnetic_field.max</code> printed for <code>qd_dynacool_12T_vsm</code> and the careful spreadsheet answers <b class="no">YES</b>, the physics script <b class="no">YES</b>; CryoLean answers <b class="info">NEED INFO</b>, because a number borrowed from another configuration is an estimate and estimates never decide.</p>
+  </div>
+</section>
+
+<section class="test" id="t3">
+  <header><span class="tid">T3</span><h2>Scale a superconducting-qubit chip</h2></header>
+  <div class="col">
+  <p>Krinner et al.'s 50-qubit wiring layout, scaled from 1 to 200 qubits, on every configuration in the catalog: 44,000 cases. The truth is their published design rule, recomputed here in exact fractions without Lean: three times the summed per-line heat load must stay under the cooling power documented at 20 mK. Every datasheet line can pass while the heat budget fails.</p>
+  <ul class="tally">
+    <li><span>Checklist said YES</span><b class="no">622</b></li>
+    <li><span>Spreadsheet said YES</span><b class="no">27</b></li>
+    <li><span>Physics script said YES</span><b class="ok">0</b></li>
+    <li><span>CryoLean said YES</span><b class="ok">0</b></li>
+  </ul>
+  <h3>Bluefors LD400 with high-density wiring</h3>
+  <p class="note">The rule allows 40 qubits. The checklist and the spreadsheet approve up to 67, the point where the 168 RF lines run out.</p>
+  </div>
+  <svg viewBox="0 0 720 340" role="img" aria-label="Wiring heat load versus number of qubits on the Bluefors LD400" class="chart"><line x1="118" x2="702" y1="240.0" y2="240.0" class="grid"/><text x="110" y="244.0" class="tick" text-anchor="end">0</text><line x1="118" x2="702" y1="196.4" y2="196.4" class="grid"/><text x="110" y="200.4" class="tick" text-anchor="end">5</text><line x1="118" x2="702" y1="152.8" y2="152.8" class="grid"/><text x="110" y="156.8" class="tick" text-anchor="end">10</text><line x1="118" x2="702" y1="109.2" y2="109.2" class="grid"/><text x="110" y="113.2" class="tick" text-anchor="end">15</text><line x1="118" x2="702" y1="65.6" y2="65.6" class="grid"/><text x="110" y="69.6" class="tick" text-anchor="end">20</text><line x1="118" x2="702" y1="22.0" y2="22.0" class="grid"/><text x="110" y="26.0" class="tick" text-anchor="end">25</text><text x="118.0" y="258" class="tick" text-anchor="middle">0</text><text x="191.0" y="258" class="tick" text-anchor="middle">10</text><text x="264.0" y="258" class="tick" text-anchor="middle">20</text><text x="337.0" y="258" class="tick" text-anchor="middle">30</text><text x="410.0" y="258" class="tick" text-anchor="middle">40</text><text x="483.0" y="258" class="tick" text-anchor="middle">50</text><text x="556.0" y="258" class="tick" text-anchor="middle">60</text><text x="629.0" y="258" class="tick" text-anchor="middle">70</text><text x="702.0" y="258" class="tick" text-anchor="middle">80</text><text x="118" y="18" class="axis">µW at the mixing chamber</text><text x="702" y="274" class="axis" text-anchor="end">qubits</text><rect x="413.6" y="22" width="197.1" height="218" class="danger"/><text x="512.2" y="38" class="danger-label" text-anchor="middle">regular way: YES · physics: NO</text><line x1="118" x2="702" y1="135.4" y2="135.4" class="cool"/><text x="132.6" y="129.4" class="cool-label">cooling power at 20 mK: 12 µW</text><polyline points="125.3,236.7 132.6,234.3 139.9,231.9 147.2,229.5 154.5,227.1 161.8,224.7 169.1,221.4 176.4,219.0 183.7,216.6 191.0,214.2 198.3,211.8 205.6,209.4 212.9,206.1 220.2,203.7 227.5,201.3 234.8,198.9 242.1,196.5 249.4,194.1 256.7,190.8 264.0,188.4 271.3,186.0 278.6,183.6 285.9,181.2 293.2,178.8 300.5,176.4 307.8,173.1 315.1,170.7 322.4,168.3 329.7,165.9 337.0,163.5 344.3,161.1 351.6,157.8 358.9,155.4 366.2,153.0 373.5,150.6 380.8,148.2 388.1,145.8 395.4,142.5 402.7,140.1 410.0,137.7 417.3,135.3 424.6,132.9 431.9,130.5 439.2,127.2 446.5,124.8 453.8,122.4 461.1,120.0 468.4,117.6 475.7,115.2 483.0,112.8 490.3,109.5 497.6,107.1 504.9,104.7 512.2,102.3 519.5,99.9 526.8,97.5 534.1,94.2 541.4,91.8 548.7,89.4 556.0,87.0 563.3,84.6 570.6,82.2 577.9,78.9 585.2,76.5 592.5,74.1 599.8,71.7 607.1,69.3" class="load"/><text x="278.6" y="207.6" class="load-label">3 × wiring heat load</text><line x1="610.8" x2="610.8" y1="22" y2="240" class="limit"/><text x="615.9" y="213.8" class="tick">168 RF lines</text><text x="615.9" y="226.8" class="tick">run out</text><text x="110" y="288" class="tick" text-anchor="end">Checklist</text><rect x="121.7" y="281" width="489.1" height="7" class="bar-no"/><text x="614.8" y="288" class="tick">YES up to 67</text><text x="110" y="300" class="tick" text-anchor="end">Spreadsheet</text><rect x="121.7" y="293" width="489.1" height="7" class="bar-no"/><text x="614.8" y="300" class="tick">YES up to 67</text><text x="110" y="312" class="tick" text-anchor="end">Physics script</text><rect x="121.7" y="305" width="292.0" height="7" class="bar-ok"/><text x="417.6" y="312" class="tick">YES up to 40</text><text x="110" y="324" class="tick" text-anchor="end">CryoLean</text><rect x="121.7" y="317" width="292.0" height="7" class="bar-ok"/><text x="417.6" y="324" class="tick">YES up to 40</text></svg>
+</section>
+
+<section class="test" id="t4">
+  <header><span class="tid">T4</span><h2>Our own project history</h2></header>
+  <p>The same experiments and machines on the catalog as it stood on Oct 31 (revision <code>7a224f4</code>) and on today's catalog,
+  limited to the 284 pairs whose requirements did not change. The specs the team dug up since then show
+  231 of those pairs to be impossible.</p>
+  <ul class="tally">
+    <li><span>Checklist said YES to</span><b class="no">96</b></li>
+    <li><span>Careful spreadsheet</span><b class="no">1</b></li>
+    <li><span>Physics script</span><b class="ok">0</b></li>
+    <li><span>CryoLean</span><b class="ok">0</b></li>
+  </ul>
+  <p class="ex"><b>Example.</b> <code>bio_cryo_fluorescence_vitrified</code> on <code>leica_cm1950_dualecotec_standard</code>: on the Oct 31 data the checklist said <b class="no">YES</b> and CryoLean said <b class="info">NEED INFO</b>. The record found later: temperature.range: needs 136 K or lower; sheet now: a documented range of 223.15 K to 263.15 K.</p>
+</section>
+
+<section class="test" id="t5">
+  <header><span class="tid">T5</span><h2>Inject a defect into the sheet</h2></header>
+  <div class="col">
+  <p>2,750 synthetic configurations from the paper's fault-injection generator: 826 with a defect that makes the run impossible, 1,874 with a line that cannot be certified (an unknown value, an estimate, no source, unknown install status, a wrong unit dimension, a missing line), and 50 clean controls. Everyone catches the impossible ones, because the bad number is printed right there. The difference is what each method certifies without evidence.</p>
+  <ul class="tally">
+    <li><span>Checklist certified</span><b class="no">1,499</b></li>
+    <li><span>Spreadsheet certified</span><b class="no">422</b></li>
+    <li><span>Physics script certified</span><b class="no">422</b></li>
+    <li><span>CryoLean certified</span><b class="ok">0</b></li>
+  </ul>
+  <p>CryoLean's answer matched the constructed truth in 2,750 of 2,750 cases; the best regular method matched 1,953.</p>
+  </div>
+</section>
+
+<section aria-labelledby="lean">
+  <h2 id="lean">Why it has to come out this way: proved in Lean</h2>
+  <div class="col">
+  <p>The tests above are measurements. <code>lean/VsRegular.lean</code> writes the checklist with CryoLean's own types and proves the pattern holds for every input, not just ours. It compiles 13 theorems against the unchanged checker, with Lean's standard axioms only.</p>
+  <div class="claims">
+    <div class="claim"><b>A checker that is never wrong can only say YES where CryoLean does.</b> If every YES a checker gives meets the specification, CryoLean says YES on that pair too, so no such checker decides more than CryoLean. <code>sound_yes_le_cryolean</code>, and the same for NO: <code>sound_no_le_cryolean</code>.</div>
+    <div class="claim"><b>So every extra YES is unsupported.</b> On the catalog the checklist says YES 14,558 times and CryoLean 3,118 times; each of the 11,440 extra YESes fails the specification. <code>extra_yes_unsupported</code></div>
+    <div class="claim"><b>The checklist approves a blank datasheet, for every experiment.</b> CryoLean never does. <code>checklist_yes_to_blank_sheet</code>, <code>cryolean_no_yes_to_blank_sheet</code></div>
+    <div class="claim"><b>Hiding a line can flip the checklist from NO to YES</b> (10 T magnetoresistance on the 9 T DynaCool). Hiding lines can never do that to CryoLean. <code>checklist_not_monotone</code>, <code>hiding_lines_never_creates_yes</code></div>
+    <div class="claim"><b>The checklist believes a guessed 14 T; CryoLean does not decide on it.</b> <code>checklist_believes_a_guess</code></div>
+    <div class="claim"><b>Every line of the 50-qubit layout passes, and the heat budget still fails:</b> 3 × 4.864 µW = 14.592 µW against 12 µW. The checklist says YES, CryoLean says NO. <code>checklist_misses_coupled_physics</code>, <code>wiring_load_is_14592_nW</code></div>
+  </div>
+<pre><code>/-- The spec-sheet checklist: NO if some line visibly fails, otherwise YES. -/
+def checklist (cfg : Configuration) (e : Experiment) : Verdict :=
+  if .fail ∈ (relevantReqs e).map (line cfg) then .reject else .accept
+
+theorem sound_yes_le_cryolean (chk : Configuration → Experiment → Verdict)
+    (hsound : ∀ c e, chk c e = .accept → AcceptSpec c e)
+    (h : chk c e = .accept) : verdict c e = .accept :=
+  verdict_accept_complete (hsound c e h)</code></pre>
+  </div>
+  <div class="scroll"><table class="thm"><tbody><tr><td><code>sound_yes_le_cryolean</code></td><td>propext, Quot.sound</td></tr><tr><td><code>sound_no_le_cryolean</code></td><td>propext, Classical.choice, Quot.sound</td></tr><tr><td><code>extra_yes_unsupported</code></td><td>propext, Quot.sound</td></tr><tr><td><code>extra_no_unsupported</code></td><td>propext, Classical.choice, Quot.sound</td></tr><tr><td><code>checklist_yes_to_blank_sheet</code></td><td>propext, Quot.sound</td></tr><tr><td><code>cryolean_no_yes_to_blank_sheet</code></td><td>propext, Quot.sound</td></tr><tr><td><code>checklist_blank_yes_unsupported</code></td><td>propext, Quot.sound</td></tr><tr><td><code>checklist_not_monotone</code></td><td>propext</td></tr><tr><td><code>hiding_lines_never_creates_yes</code></td><td>propext, Quot.sound</td></tr><tr><td><code>checklist_believes_a_guess</code></td><td>propext</td></tr><tr><td><code>checklist_misses_coupled_physics</code></td><td>propext</td></tr><tr><td><code>wiring_load_is_14592_nW</code></td><td>propext</td></tr><tr><td><code>checklist_qubits_yes_unsupported</code></td><td>propext, Quot.sound</td></tr></tbody></table></div>
+</section>
+
+<section aria-labelledby="price">
+  <h2 id="price">What it costs</h2>
+  <div class="col">
+  <p>Being right costs very little. On the full catalog CryoLean answers NEED INFO 11,458 times, against 11,431 for the careful spreadsheet, and its result lists which lines are missing (in the hide-one-line test it named the hidden line every time). More research can only resolve those answers, never reverse a decided one (<code>verdict_refines</code>). The regular methods also said NO 22 times on the strength of an unsourced number or an unsourced "not fitted" claim; CryoLean waits for a source there too.</p>
+  </div>
+</section>
+
+<section aria-labelledby="limits">
+  <h2 id="limits">What this does not show</h2>
+  <ul class="col limits">
+    <li>The truth in T1, T2 and T4 is the catalog's sourced record. If a datasheet is wrong, every method inherits the error.</li>
+    <li>T1 and T2 perturb real records. They measure what each method does with a silent or borrowed line, not how often real datasheets are silent.</li>
+    <li>The regular-way checkers are ours. They are short, readable and in the repo, and two of them already avoid the silent-line mistake, which is why all three are reported.</li>
+    <li>Floating point never flipped a verdict in these runs. The physics script's misses come from believing unsourced numbers.</li>
+    <li>No language-model baseline is included yet.</li>
+  </ul>
+</section>
+
+<footer>
+  Reproduce: <code>cd lean &amp;&amp; lake build &amp;&amp; cd .. &amp;&amp; python bench/vs_regular.py &amp;&amp; python bench/report.py</code> (about two minutes).
+  Lean checker source hash <code>179242c369f42fb9</code>. Repository: <a href="https://github.com/hrahman12/CryoLean">github.com/hrahman12/CryoLean</a>.
+</footer>
+</div>
